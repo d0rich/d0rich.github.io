@@ -21,8 +21,8 @@ var DotsVisible = function(target, screenlist){
     {
       pos=0;
     }
-    else if (pos>screensPosition.bottom- screensPosition.top) {
-      pos=screensPosition.bottom- screensPosition.top;
+    else if (pos>screensPosition.bottom- screensPosition.top -120) {
+      pos=screensPosition.bottom- screensPosition.top -120;
     }
     target.style.top=pos+"px";
 }
