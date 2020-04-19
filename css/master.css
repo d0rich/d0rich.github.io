@@ -1,0 +1,208 @@
+/*----Переменные с цветами----*/
+.colors{
+  --color1: #b32652;
+  --color2: #141940;
+  --color3: #d88c68;
+  --color4: #021859;
+  --color5: #0B9ED9;
+}
+
+/*----Основное тело----*/
+body{
+  background-color: var(--color2);
+  height: 10000px;
+  font-family: 'Comfortaa';
+  font-weight: bold;
+
+}
+.content{
+  max-width: 600px;
+  margin-top: 55px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.CoverElements{
+  top:0;
+  position: absolute;
+}
+
+/*----Полоска с лого наверху----*/
+.head {
+  background-color: var(--color4);
+  height: 55px;
+  width: 100%;
+  color: var(--color1);
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  position: fixed;
+  z-index: 100;
+  padding:5px;
+}
+.head div{
+  display: flex;
+}
+.head div:nth-of-type(1) img{
+  width:45px;
+  height: 45px;
+  user-select: none;
+}
+.head div:nth-of-type(2) span{
+  user-select: none;
+  line-height: 55px;
+}
+.head div:nth-of-type(2) span font:nth-of-type(1){
+  font-size: 20pt;
+  color: var(--color5);
+}
+.head div:nth-of-type(2) span font:nth-of-type(2){
+  color: var(--color4);
+  animation: brick-color 2s infinite;
+}
+@keyframes brick-color {
+  0% {background-color: var(--color3);}
+  65% {background-color: var(--color3);}
+  66% {background-color: var(--color4);}
+  99% {background-color: var(--color4);}
+  100% {background-color: var(--color3);}
+}
+@keyframes brick-color2 {
+  0% {background-color: var(--color4);}
+  100% {background-color: var(--color4);}
+}
+
+/*----Кнопка для вызова навигационной панели----*/
+#MenuButton{
+  position: fixed;
+  right:65px;
+  top:45%;
+  z-index: 10;
+  animation: wiggle 10s ease-in-out infinite;
+}
+#MenuButton:hover{
+  cursor:pointer;
+}
+#MenuButton.Active .Body:nth-of-type(1) {
+  background-color:var(--color4);
+}
+#MenuButton.Active .Body:nth-of-type(2) {
+  background-color:var(--color5);
+}
+
+#MenuButton.Active .Line {
+  background-color: var(--color5);
+}
+#MenuButton.Active .Line:nth-last-of-type(1) {
+  top:23px;
+  transform: rotate(135deg);
+}
+#MenuButton.Active .Line:nth-last-of-type(2) {
+  top:23px;
+  transform: rotate(45deg);
+}
+#MenuButton.Active .Line:nth-last-of-type(3) {
+  top:23px;
+  transform: rotate(-45deg);
+}
+#MenuButton div{
+  position: absolute;
+}
+.Body:nth-of-type(1) {
+  background-color:var(--color2);
+  border-radius: 50%;
+  border-width: 5px;
+  z-index: 1;
+  height: 42px;
+  width: 42px;
+  top:4px;
+  left:4px;
+  transition: ease 0.2s;
+}
+.Body:nth-of-type(2) {
+  background-color:var(--color1);
+  border-radius: 50%;
+  border-width: 5px;
+  z-index: 0;
+  height: 50px;
+  width: 50px;
+  transition: ease 0.2s;
+}
+
+.Line {
+  width: 26px;
+  height:4px;
+  border-radius: 2px;
+  background-color: var(--color1);
+  z-index: 2;
+  left: 12px;
+  transition: ease 0.2s;
+}
+.Line:nth-last-of-type(1){
+  top:14px;
+}
+.Line:nth-last-of-type(2){
+  top:23px;
+}
+.Line:nth-last-of-type(3){
+  top: 32px;
+}
+
+@keyframes wiggle{
+  0% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(10px, 5px);
+  }
+  50% {
+    transform: translate(0px, -8px);
+  }
+  75% {
+    transform: translate(-5px, -4px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+/*----Конец кнопки для вызова навигационной панели----*/
+
+
+/*----Навигационная панель----*/
+#NavPanel{
+  background-color: var(--color4);
+  width: 50%;
+  max-width:300px;
+  height: 100%;
+  position: absolute;
+  position: fixed;
+  right: -50%;
+  z-index: 9;
+  transition: right ease 0.2s;
+}
+#NavPanel.Show{
+  right: 0;
+}
+#NavPanel nav{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width:medium;
+  border-color: var(--color5);
+  background-color: var(--color1);
+  color: var(--color5);
+}
+
+#NavPanel nav:hover{
+  border-color: var(--color1);
+  background-color: var(--color5);
+  color: var(--color1);
+  cursor: pointer;
+}
+
+#NavPanel nav:nth-of-type(1){
+  margin-top:60px;
+}
+/*----Конец Навигационной панели----*/
