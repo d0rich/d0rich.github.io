@@ -17,12 +17,12 @@ var DotsVisible = function(target, screenlist){
       bottom: window.pageYOffset + document.documentElement.clientHeight
     };
     var pos = windowPosition.top - screensPosition.top/2;
-    if (pos<0)
+    if (pos<30)
     {
-      pos=0;
+      pos=30;
     }
-    else if (pos>screensPosition.bottom- screensPosition.top -120) {
-      pos=screensPosition.bottom- screensPosition.top -120;
+    else if (pos>screensPosition.bottom- screensPosition.top -150) {
+      pos=screensPosition.bottom- screensPosition.top -150;
     }
     target.style.top=pos+"px";
 }
