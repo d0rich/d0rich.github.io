@@ -36,7 +36,7 @@ var animate = function(timing, draw, duration) {
     // вычисление текущего состояния анимации
     let progress = timing(timeFraction);
 
-    draw(45-progress*23); // отрисовать её
+    draw(45.5-progress*23); // отрисовать её
 
     if (timeFraction < 1) {
       requestAnimationFrame(animate);
@@ -66,7 +66,7 @@ var glitchVis = function(glitch, chance, fun){
 var t1 = function(t){return t;}
 var t2 = function(t){return t*t;}
 var t3 = function(t){return t*t*t;}
-SetTri1Size(45);
+SetTri1Size(45.5);
 Translate(glitch1, 0, 15);
 Translate(glitch2, 20, 25);
 Translate(glitch3, 10, 33);
@@ -77,4 +77,7 @@ setInterval(function() {
                       glitchVis(glitch1, 45, t3);
                       glitchVis(glitch2, 70, t2);
                       glitchVis(glitch3, 80, t1);
+                      Translate(glitch1, 0, 15);
+                      Translate(glitch2, 20, 25);
+                      Translate(glitch3, 10, 33);
                     }, 400)

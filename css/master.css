@@ -57,8 +57,8 @@ body{
 #triangle1{
   width: 0;
   height: 0;
-  border-top: 45px solid var(--color1);
-  border-left: 45px solid transparent;
+  border-top: 45.5px solid var(--color1);
+  border-left: 45.5px solid transparent;
   top:0;
   transform-origin: top right;
 
@@ -66,8 +66,8 @@ body{
 #triangle2{
   width: 0;
   height: 0;
-  border-bottom: 45px solid var(--color1);
-  border-right: 45px solid transparent;
+  border-bottom: 45.5px solid var(--color1);
+  border-right: 45.5px solid transparent;
   transform-origin: bottom left;
 }
 .glitch{
