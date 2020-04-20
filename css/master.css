@@ -48,15 +48,24 @@ body{
   height: 45px;
   user-select: none;
   z-index:0;
+  opacity: 0;
 }
 .triangle{
   position: absolute;
   z-index: 5;
 }
+#square{
+  width: 45px;
+  height: 45px;
+  background-color: var(--color1);
+  position: absolute;
+  transform: scale(0);
+  z-index: 6;
+}
 #triangle1{
   width: 0;
   height: 0;
-  border-top: 45.5px solid var(--color1);
+  border-top: 45.5px solid transparent;
   border-left: 45.5px solid transparent;
   top:0;
   transform-origin: top right;
@@ -65,12 +74,13 @@ body{
 #triangle2{
   width: 0;
   height: 0;
-  border-bottom: 45.5px solid var(--color1);
+  border-bottom: 45.5px solid transparent;
   border-right: 45.5px solid transparent;
   transform-origin: bottom left;
 }
 .glitch{
   z-index:3;
+  opacity: 0;
   background-color: var(--color3);
   position: absolute;
 }
