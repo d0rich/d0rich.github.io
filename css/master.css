@@ -10,9 +10,9 @@
 /*----Основное тело----*/
 body{
   background-color: var(--color2);
-  height: 10000px;
   font-family: 'Comfortaa';
   font-weight: bold;
+  min-height: 2000px;
 
 }
 .content{
@@ -43,10 +43,49 @@ body{
 .head div{
   display: flex;
 }
+
 .head div:nth-of-type(1) img{
   width:45px;
   height: 45px;
   user-select: none;
+  z-index:0;
+}
+.triangle{
+  position: absolute;
+  z-index: 5;
+}
+#triangle1{
+  width: 0;
+  height: 0;
+  border-top: 45px solid var(--color1);
+  border-left: 45px solid transparent;
+  top:0;
+  transform-origin: top right;
+
+}
+#triangle2{
+  width: 0;
+  height: 0;
+  border-bottom: 45px solid var(--color1);
+  border-right: 45px solid transparent;
+  transform-origin: bottom left;
+}
+.glitch{
+  z-index:3;
+  background-color: var(--color3);
+  position: absolute;
+}
+#glitch1{
+  width:5px;
+  height: 5px;
+}
+#glitch2{
+  width:10px;
+  height:5px;
+}
+#glitch3{
+  width:15px;
+  height: 7px;
 }
 .head div:nth-of-type(2) span{
   user-select: none;
