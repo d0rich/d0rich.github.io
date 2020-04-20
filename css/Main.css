@@ -81,6 +81,10 @@
   height: 10px;
   width:10px;
   margin:5px;
+  transition: ease 0.2s;
+}
+.NavDots .ShowDot{
+  background-color: var(--color3);
 }
 .content2{
   display: flex;
@@ -96,7 +100,7 @@
   border-style: solid;;
   border-color: var(--color3);
   border-width: 0px;
-  transition: ease 0.5s;
+  transition: ease 0.2s;
 }
 .Showing{
   background-color: var(--color5);

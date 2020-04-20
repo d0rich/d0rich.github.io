@@ -16,61 +16,43 @@ var DotsVisible = function(target, screenlist){
     },
     pos = windowPosition.top - screensPosition.top/2,
     length = screens.length - 1,
-    WronglyActiveScreen, ActiveID;
+    WronglyActiveScreen, WronglyActiveDot, ActiveID;
 
     screens.forEach((screen, i) => {
-      if (TopBottom(screen).top<TopBottom(target).top && TopBottom(screen).bottom>TopBottom(target).top)
+      if (TopBottom(screen).top<TopBottom(target).top+(length+1)*10 && TopBottom(screen).bottom>TopBottom(target).top+(length+1)*10)
       ActiveID = i;
-
     });
 
     if (pos<30)
     {
       pos=30;
       ActiveID=0;
-      screens.forEach((screen) => {
-        if (screen.index!=ActiveID && screen.classList.contains('Showing'))
-        WronglyActiveScreen = screen;
-      });
-
-      if (WronglyActiveScreen != undefined)
-      WronglyActiveScreen.classList.remove('Showing');
-
-      screens[ActiveID].classList.add('Showing');
     }
 
 
-    else if (pos>screensPosition.bottom- screensPosition.top -150)
+    else if (pos>screensPosition.bottom- screensPosition.top -(length+1)*20-30)
     {
-      pos=screensPosition.bottom- screensPosition.top -150;
+      pos=screensPosition.bottom- screensPosition.top -(length+1)*20-30;
       ActiveID=length;
-      screens.forEach((screen) => {
-        if (screen.index!=ActiveID && screen.classList.contains('Showing'))
-        WronglyActiveScreen = screen;
-      });
-
-      if (WronglyActiveScreen != undefined)
-      WronglyActiveScreen.classList.remove('Showing');
-
-      screens[ActiveID].classList.add('Showing')
     }
 
+    screens.forEach((screen, i) => {
+      if (i!=ActiveID && screen.classList.contains('Showing'))
+      {
+        WronglyActiveScreen = screen;
+        WronglyActiveDot = dots[i];
+      }
+    });
 
-    else
+    if (ActiveID != undefined)
     {
-      screens.forEach((screen) => {
-        if (screen.index!=ActiveID && screen.classList.contains('Showing'))
-        WronglyActiveScreen = screen;
-      });
-
+      screens[ActiveID].classList.add('Showing')
+      dots[ActiveID].classList.add('ShowDot');
       if (WronglyActiveScreen != undefined)
       WronglyActiveScreen.classList.remove('Showing');
-
-      if (ActiveID != undefined)
-      screens[ActiveID].classList.add('Showing')
-
+      if (WronglyActiveDot != undefined)
+      WronglyActiveDot.classList.remove('ShowDot');
     }
-
 
     target.style.top=pos+"px";
 }
