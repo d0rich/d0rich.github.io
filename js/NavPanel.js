@@ -5,10 +5,12 @@ $(document).ready(function() {
   {
     $("#NavPanel").removeClass("Show");
     $("#MenuButton").removeClass("Active");
+    $("#block").removeClass("blocked");
   }
   else {
     $("#NavPanel").addClass("Show");
     $("#MenuButton").addClass("Active");
+    $("#block").addClass("blocked");
   }
   });
 });
