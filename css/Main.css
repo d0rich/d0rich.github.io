@@ -81,9 +81,11 @@
   height: 10px;
   width:10px;
   margin:5px;
+  transform: scale(1);
   transition: ease 0.2s;
 }
 .NavDots .ShowDot{
+  transform: scale(1.25);
   background-color: var(--color3);
 }
 .content2{
