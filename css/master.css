@@ -223,10 +223,12 @@ body{
   width: 50%;
   max-width:300px;
   height: 100%;
+  min-height: 600px;
   position: fixed;
   position: fixed;
   right: -50%;
   z-index: 9;
+  overflow-x: hidden;
   transition: right ease-in 0.2s;
 }
 #NavPanel.Show{
