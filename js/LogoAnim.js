@@ -71,7 +71,7 @@ var t3 = function(t){return t*t*t;}
 SetTri1Size(45.5);
 	setTimeout(()=>{animate(t3, SetTri1Size, 500);
     animate(t3, SetTri2Size, 500);
-  }, 3000)
+  }, 1000)
 setInterval(function() {
                       glitchVis(glitch1, 45, t3);
                       glitchVis(glitch2, 70, t2);
