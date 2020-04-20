@@ -6,23 +6,25 @@ let glitch2 = document.getElementById('glitch2');
 let glitch3 = document.getElementById('glitch3');
 
 let logo = document.getElementById('logo');
-let LogoBorder = {
+var LogoBorder = function(){
+  return{
   top: logo.getBoundingClientRect().top,
   left: logo.getBoundingClientRect().left,
   right: logo.getBoundingClientRect().right,
   bottom: logo.getBoundingClientRect().bottom
 }
+}
 
 var SetTri1Size = function (size){
     triangle1.style.transform= 'scale('+size/45+')';
-    triangle1.style.top=LogoBorder.top+"px";
+    triangle1.style.top=LogoBorder().top+"px";
 }
 var SetTri2Size = function (size){
     triangle2.style.transform= 'scale('+size/45+')';
 }
 var Translate = function (elem, dx, dy){
-  elem.style.top = LogoBorder.top+dy+"px";
-  elem.style.left = LogoBorder.left+dx+"px";
+  elem.style.top = LogoBorder().top+dy+"px";
+  elem.style.left = LogoBorder().left+dx+"px";
 }
 var animate = function(timing, draw, duration) {
 
@@ -67,9 +69,6 @@ var t1 = function(t){return t;}
 var t2 = function(t){return t*t;}
 var t3 = function(t){return t*t*t;}
 SetTri1Size(45.5);
-Translate(glitch1, 0, 15);
-Translate(glitch2, 20, 25);
-Translate(glitch3, 10, 33);
 	setTimeout(()=>{animate(t3, SetTri1Size, 500);
     animate(t3, SetTri2Size, 500);
   }, 3000)
@@ -77,7 +76,7 @@ setInterval(function() {
                       glitchVis(glitch1, 45, t3);
                       glitchVis(glitch2, 70, t2);
                       glitchVis(glitch3, 80, t1);
-                      Translate(glitch1, 0, 15);
-                      Translate(glitch2, 20, 25);
-                      Translate(glitch3, 10, 33);
+                      Translate(glitch1, 12, 15);
+                      Translate(glitch2, 32, 25);
+                      Translate(glitch3, 22, 33);
                     }, 400)
