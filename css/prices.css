@@ -70,6 +70,7 @@
   padding: 10px;
   border-radius: 20px;
   background-color: var(--color1);
+  margin: 10px;
   transition: ease 0.2s;
 }
 .PriceCard.Show{
