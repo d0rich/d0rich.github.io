@@ -20,6 +20,7 @@ body{
   display: block;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 30px;
 }
 .CoverElements{
   top:0;
@@ -234,8 +235,8 @@ body{
 #NavPanel.Show{
   right: 0;
 }
-#NavPanel nav{
-  margin: 10px;
+#NavPanel ul li a nav{
+  margin: 10px 0 10px 0;
   padding: 10px;
   border-radius: 10px;
   border-style: solid;
@@ -244,15 +245,22 @@ body{
   background-color: var(--color1);
   color: var(--color5);
 }
-
-#NavPanel nav:hover{
+#NavPanel ul{
+  list-style-type: none;
+  padding: 0 10px 0 10px;
+}
+#NavPanel a{
+  text-decoration: none;
+}
+#NavPanel ul li a:hover  nav{
+  user-select: none;
   border-color: var(--color1);
   background-color: var(--color5);
   color: var(--color1);
   cursor: pointer;
 }
 
-#NavPanel nav:nth-of-type(1){
+#NavPanel ul li:nth-of-type(1){
   margin-top:60px;
 }
 #NavPanel div{
@@ -302,4 +310,6 @@ footer{
   font-size: 8pt;
   display: flex;
   flex-direction: column;
+  position: relative;
+  bottom: 0px;
 }
