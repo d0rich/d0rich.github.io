@@ -19,10 +19,13 @@
 
     <link rel="stylesheet" type="text/css" href="css/master.css">
     <link rel="stylesheet" type="text/css" href="css/prices.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="shortcut icon" href="favicon.ico" >
     <title>Расценки - Dorich prod.</title>
   </head>
   <body class="colors">
+
+<!-- Начало покрывающих элементов -->
   <div class="CoverElements">
   <header class="colors head">
           <div class="logo">
@@ -44,47 +47,32 @@
           </div>
   </header>
 
-    <div id="NavPanel" >
-      <ul>
-        <li><a href="index.html"><nav> Главная</nav></a></li>
-        <li><a href="index.html"><nav> Все проекты</nav></a></li>
-        <li><a href="index.html"><nav> Как чё кого</nav></a></li>
-        <li><a href="prices.html"><nav> Расценки</nav></a></li>
-        <li><a href="index.html"><nav> Пункт5</nav></a></li>
-      </ul>
+  <div id="NavPanel" >
+    <ul >
+      <li v-for="i in Sections"><a :href=i.link><nav>{{i.name}}</nav></a></li>
+    </ul>
 
-      <div>
-          <div>
-              <img src='img/Social/vk.svg' />
-              <span><a href="https://vk.com/d0rich">@d0rich</a></span>
-          </div>
-          <div>
-              <img src='img/Social/vk.svg' />
-              <span><a href="https://vk.com/d0rich">@d0rich_prod.</a></span>
-          </div>
-          <div>
-              <img src='img/Social/instagram.svg' />
-              <span><a href="https://vk.com/d0rich">@d0rich</a></span>
-          </div>
-          <div>
-              <img src='img/Social/youtube.svg' />
-              <span><a href="https://vk.com/d0rich">@d0rich</a></span>
-          </div>
-      </div>
+    <div>
+        <div v-for="i in Social">
+            <img :src=i.imglink />
+            <span><a :href=i.link>{{i.nick}}</a></span>
+        </div>
     </div>
-
-    <div id="MenuButton">
-      <div class="Body"></div>
-      <div class="Body"></div>
-      <div class="Line"></div>
-      <div class="Line"></div>
-      <div class="Line"></div>
-    </div>
-    <div id="block"></div>
-    <script src="js/NavPanel.js"></script>
-    <script src="js/LogoAnim.js"></script>
   </div>
 
+  <div id="MenuButton">
+    <div class="Body"></div>
+    <div class="Body"></div>
+    <div class="Line"></div>
+    <div class="Line"></div>
+    <div class="Line"></div>
+  </div>
+  <div id="block"></div>
+  <script src="js/NavPanel.js"></script>
+  <script src="js/LogoAnim.js"></script>
+  <script src="js/vue/commonVue.js"></script>
+  </div>
+<!-- Конец покрывающих элементов -->
 
   <div class="content">
 
