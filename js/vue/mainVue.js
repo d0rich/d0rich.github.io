@@ -1,4 +1,3 @@
-
 new Vue ({
   el: '#MainContent',
   data: {
