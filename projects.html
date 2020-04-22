@@ -80,7 +80,7 @@
         <span v-if="!ProjectsShow"> -> </span></span>
   </transition>
   <transition name="slide-fade">
-        <span v-if="!ProjectsShow">Тизер для "События"</span>
+        <span v-if="!ProjectsShow">{{NowProjectName}}</span>
   </transition>
 </div>
 <!-- Начало шаблона для видео -->
@@ -88,9 +88,11 @@
     <div v-if="!ProjectsShow" class="VideoPattern">
       <div class="video">
         <div>
-          <iframe src='https://player.vimeo.com/video/388640735' allow="fullscreen" allowfullscreen></iframe>
+          <iframe :src=NowVideoLink allow="fullscreen" allowfullscreen></iframe>
         </div>
       </div>
+      <div class="hashtags"><span >{{NowHashtags}}</span></div>
+      <div class="description"><p >{{NowDescription}}</p></div>
     </div>
 </transition>
 <!-- Конец шаблона для видео -->
@@ -102,10 +104,10 @@
             <img class="MainImg" :src=i.MainImg />
             <span class="hashtags">{{i.HashTags}}</span>
             <span class="ProjectName">{{i.name}}</span>
-            <nav class="ProLink" v-on:click="ProjectsShow = false">Подробнее...</nav>
+            <nav class="ProLink" :id=i.id v-on:click="NowPage">Подробнее...</nav>
         </div>
         <div class="screens">
-          <img v-for="img in i.screens" :src=img />
+          <img v-for="img in i.mainscreens" :src=img />
         </div>
     </div>
   </div>

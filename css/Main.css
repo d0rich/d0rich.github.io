@@ -64,6 +64,7 @@
   border-style: solid;
   border-color: var(--color1);
   border-width: 3px;
+  background-color: var(--color1);
 }
 .PresNavigation{
   padding:10px;
@@ -136,4 +137,5 @@
   border-width: 3px;
   border-style: solid;
   border-color: var(--color3);
+  background-color: var(--color3);
 }
