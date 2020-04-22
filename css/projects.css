@@ -20,6 +20,14 @@
 .ProTitle span:nth-of-type(3){
   color: var(--color3);
 }
+.ActiveShow{
+  animation: hColor 3s ease infinite;
+}
+@keyframes hColor{
+  0% {background-color: transparent;}
+  20% {background-color: var(--color3);}
+  40% {background-color: transparent;}
+}
 /* Начало описания превью окон */
 .prevue{
   display: flex;

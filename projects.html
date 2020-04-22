@@ -73,9 +73,10 @@
   <script src="js/vue/commonVue.js"></script>
 </div>
 <!-- Конец покрывающих элементов -->
+<!-- Начало заголовка -->
 <div class="content" id="ProjectsContent">
 <div  class="ProTitle">
-  <span v-on:click="ProjectsShow = true">Мои проекты</span>
+  <span v-on:click="NowProjects" id="Heading">Мои проекты</span>
   <transition name="slide-fade">
         <span v-if="!ProjectsShow"> -> </span></span>
   </transition>
@@ -83,6 +84,7 @@
         <span v-if="!ProjectsShow">{{NowProjectName}}</span>
   </transition>
 </div>
+<!-- Конец заголовка -->
 <!-- Начало шаблона для видео -->
 <transition name="slide-fade">
     <div v-if="!ProjectsShow" class="VideoPattern">

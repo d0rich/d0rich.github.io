@@ -116,10 +116,6 @@ body{
   99% {background-color: var(--color4);}
   100% {background-color: var(--color3);}
 }
-@keyframes brick-color2 {
-  0% {background-color: var(--color4);}
-  100% {background-color: var(--color4);}
-}
 
 /*----Кнопка для вызова навигационной панели----*/
 #MenuButton{

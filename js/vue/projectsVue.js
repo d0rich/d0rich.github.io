@@ -5,6 +5,7 @@ var search = function(nameKey, myArray){
         }
     }
 }
+
 var Projects = new Vue ({
   el: '#ProjectsContent',
   data: {
@@ -28,14 +29,19 @@ var Projects = new Vue ({
   },
   methods:{
       NowPage(event){
-      id=event.target.id;
-      PageData=search(id, this.Prevues);
-      this.ProjectsShow = false;
-      this.NowVideoLink = PageData.videolink;
-      this.NowProjectName = PageData.name;
-      this.NowHashtags = PageData.HashTags;
-      this.NowDescription = PageData.description;
-      this.NowScreens = [];
-    }
+        id=event.target.id;
+        PageData=search(id, this.Prevues);
+        this.ProjectsShow = false;
+        this.NowVideoLink = PageData.videolink;
+        this.NowProjectName = PageData.name;
+        this.NowHashtags = PageData.HashTags;
+        this.NowDescription = PageData.description;
+        this.NowScreens = [];
+        document.getElementById('Heading').classList.add("ActiveShow");
+      },
+      NowProjects(){
+        this.ProjectsShow = true;
+        document.getElementById('Heading').classList.remove("ActiveShow");
+      }
   }
 })
