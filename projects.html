@@ -74,18 +74,40 @@
 </div>
 <!-- Конец покрывающих элементов -->
 <div class="content" id="ProjectsContent">
-<div class="ProTitle">Мои проекты</div>
-<div v-for="i in Prevues" class="prevue">
-    <div class="main">
-        <img class="MainImg" :src=i.MainImg />
-        <span class="hashtags">{{i.HashTags}}</span>
-        <span class="ProjectName">{{i.name}}</span>
-        <a class="ProLink" :href=i.link><nav>Подробнее...</nav></a>
-    </div>
-    <div class="screens">
-      <img v-for="img in i.screens" :src=img />
-    </div>
+<div  class="ProTitle">
+  <span v-on:click="ProjectsShow = true">Мои проекты</span>
+  <transition name="slide-fade">
+        <span v-if="!ProjectsShow"> - Тизер для "События"</span>
+  </transition>
 </div>
+<!-- Начало списка проектов -->
+<transition name="slide-fade">
+  <div v-if="ProjectsShow">
+    <div v-for="i in Prevues" class="prevue">
+        <div class="main">
+            <img class="MainImg" :src=i.MainImg />
+            <span class="hashtags">{{i.HashTags}}</span>
+            <span class="ProjectName">{{i.name}}</span>
+            <nav class="ProLink" v-on:click="ProjectsShow = false">Подробнее...</nav>
+        </div>
+        <div class="screens">
+          <img v-for="img in i.screens" :src=img />
+        </div>
+    </div>
+  </div>
+</transition>
+<!-- Конец списка проектов -->
+<!-- Начало шаблона для видео -->
+<transition name="slide-fade">
+    <div v-if="!ProjectsShow" class="VideoPattern">
+      <div class="video">
+        <div>
+          <iframe src='https://player.vimeo.com/video/388640735' allow="fullscreen" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+</transition>
+<!-- Конец шаблона для видео -->
 </div>
 <script src="js/vue/projectsVue.js"></script>
 
