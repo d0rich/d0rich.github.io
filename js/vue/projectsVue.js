@@ -33,7 +33,7 @@ var Projects = new Vue ({
       this.ProjectsShow = false;
       this.NowVideoLink = PageData.videolink;
       this.NowProjectName = PageData.name;
-      this.NowHashtags = PageData.hashtags;
+      this.NowHashtags = PageData.HashTags;
       this.NowDescription = PageData.description;
       this.NowScreens = [];
     }
