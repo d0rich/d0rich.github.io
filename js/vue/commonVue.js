@@ -3,7 +3,7 @@ new Vue ({
   data: {
     Social:[
       {imglink:'img/Social/vk.svg', link:'https://vk.com/d0rich', nick:'@d0rich' },
-      {imglink:'img/Social/vk.svg', link:'https://vk.com/@d0rich_prod.', nick:'@d0rich' },
+      {imglink:'img/Social/vk.svg', link:'https://vk.com/d0rich', nick:'@d0rich_prod.' },
       {imglink:'img/Social/instagram.svg', link:'https://vk.com/d0rich', nick:'@d0rich' },
       {imglink:'img/Social/youtube.svg', link:'https://vk.com/d0rich', nick:'@d0rich' }
     ],
