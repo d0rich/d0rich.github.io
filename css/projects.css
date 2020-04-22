@@ -9,6 +9,7 @@
   border-radius: 10px;
   padding: 5px;
   color:var(--color1);
+  transition: 0.2s;
 }
 .ProTitle span:nth-of-type(1):hover{
   cursor: pointer;
@@ -21,7 +22,9 @@
   color: var(--color3);
 }
 .ActiveShow{
-  animation: hColor 3s ease infinite;
+  border-width: 3px;
+  border-style: solid;
+  border-color: var(--color1);
 }
 @keyframes hColor{
   0% {background-color: transparent;}
