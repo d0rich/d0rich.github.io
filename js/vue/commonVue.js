@@ -9,7 +9,7 @@ new Vue ({
     ],
     Sections:[
       {link:'index.html', name:'Главная'},
-      {link:'projects.html', name:'Все проекты'},
+      {link:'index.html', name:'Все проекты'},
       {link:'prices.html', name:'Расценки'},
       {link:'index.html', name:'Пункт 4'},
       {link:'index.html', name:'Пункт 5'}
