@@ -19,36 +19,17 @@ var Scale = function (progress){
   square.style.transform= 'scale('+progress+')';
 }
 var SetTri1Size = function (size){
-    triangle1.style.transform= 'scale('+size/45+')';
+    triangle1.style.transform= 'scale('+45.5-size*23+')';
     triangle1.style.top=LogoBorder().top+"px";
 }
 var SetTri2Size = function (size){
-    triangle2.style.transform= 'scale('+size/45+')';
+    triangle2.style.transform= 'scale('+45.5-size*23+')';
 }
 var Translate = function (elem, dx, dy){
   elem.style.top = LogoBorder().top+dy+"px";
   elem.style.left = LogoBorder().left+dx+"px";
 }
-var open = function(timing, draw, duration) {
 
-  let start = performance.now();
-
-  requestAnimationFrame(function open(time) {
-    // timeFraction изменяется от 0 до 1
-    let timeFraction = (time - start) / duration;
-    if (timeFraction > 1) timeFraction = 1;
-
-    // вычисление текущего состояния анимации
-    let progress = timing(timeFraction);
-
-    draw(45.5-progress*23); // отрисовать её
-
-    if (timeFraction < 1) {
-      requestAnimationFrame(open);
-    }
-
-  });
-}
 var animate = function(timing, draw, duration) {
 
   let start = performance.now();
@@ -92,7 +73,7 @@ var sqrt = function(t){return Math.sqrt(t);}
 var t1 = function(t){return t;}
 var t2 = function(t){return t*t;}
 var t3 = function(t){return t*t*t;}
-SetTri1Size(45.5);
+SetTri1Size(0);
 setTimeout(animate(sqrt, Scale, 500), 1000)
 setTimeout(function(){
   triangle1.style.borderTop='45.5px solid var(--color1)';
@@ -103,8 +84,8 @@ setTimeout(function(){
   glitch2.style.opacity=1;
   glitch3.style.opacity=1;
 },1500)
-setTimeout(()=>{open(t3, SetTri1Size, 500);
-    open(t3, SetTri2Size, 500);}, 1500)
+setTimeout(()=>{animate(t3, SetTri1Size, 500);
+    animate(t3, SetTri2Size, 500);}, 1500)
 setTimeout(function(){
 
 })
