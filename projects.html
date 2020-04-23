@@ -1,129 +1,166 @@
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="css/master.css">
-    <link rel="stylesheet" type="text/css" href="css/projects.css">
-    <link rel="shortcut icon" href="favicon.ico" >
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <title>Все проекты - Dorich prod.</title>
-  </head>
+  <link rel="stylesheet" type="text/css" href="css/master.css">
+  <link rel="stylesheet" type="text/css" href="css/projects.css">
+  <link rel="shortcut icon" href="favicon.ico">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Все проекты - Dorich prod.</title>
+</head>
 
 <body class="colors">
 
-<!-- Начало покрывающих элементов -->
-<div class="CoverElements">
-<header class="colors head">
-        <div class="logo">
-            <div id="logo">
-              <img src="img/LogoD.svg" id="logoimg"/>
-              <div class="triangle" id="triangle1"></div>
-              <div class="triangle" id="triangle2"></div>
-              <div class="glitch" id="glitch1"></div>
-              <div class="glitch" id="glitch2"></div>
-              <div class="glitch" id="glitch3"></div>
-              <div id="square"></div>
-            </div>
-            <div>
-              <span>
-              <font>orich</font>
-              <font>prod.</font>
-              </span>
-            </div>
+  <!-- Начало покрывающих элементов -->
+  <div class="CoverElements">
+    <header class="colors head">
+      <div class="logo">
+        <div id="logo">
+          <img src="img/LogoD.svg" id="logoimg" />
+          <div class="triangle" id="triangle1"></div>
+          <div class="triangle" id="triangle2"></div>
+          <div class="glitch" id="glitch1"></div>
+          <div class="glitch" id="glitch2"></div>
+          <div class="glitch" id="glitch3"></div>
+          <div id="square"></div>
         </div>
-</header>
-
-  <div id="NavPanel" >
-    <ul >
-      <li v-for="i in Sections"><a :href=i.link><nav>{{i.name}}</nav></a></li>
-    </ul>
-
-    <div>
-        <div v-for="i in Social">
-            <img :src=i.imglink />
-            <span><a :href=i.link>{{i.nick}}</a></span>
-        </div>
-    </div>
-  </div>
-
-  <div id="MenuButton">
-    <div class="Body"></div>
-    <div class="Body"></div>
-    <div class="Line"></div>
-    <div class="Line"></div>
-    <div class="Line"></div>
-  </div>
-  <div id="block"></div>
-  <script src="js/NavPanel.js"></script>
-  <script src="js/LogoAnim.js"></script>
-  <script src="js/vue/commonVue.js"></script>
-</div>
-<!-- Конец покрывающих элементов -->
-<!-- Начало заголовка -->
-<div class="content" id="ProjectsContent">
-<div  class="ProTitle">
-  <span v-on:click="NowProjects" id="Heading">Мои проекты</span>
-  <transition name="slide-fade">
-        <span v-if="!ProjectsShow"> -> </span></span>
-  </transition>
-  <transition name="slide-fade">
-        <span v-if="!ProjectsShow">{{NowProjectName}}</span>
-  </transition>
-</div>
-<!-- Конец заголовка -->
-<!-- Начало шаблона для видео -->
-<transition name="slide-fade">
-    <div v-if="!ProjectsShow" class="VideoPattern">
-      <div class="video">
         <div>
-          <iframe :src=NowVideoLink allow="fullscreen" allowfullscreen></iframe>
+          <span>
+            <font>orich</font>
+            <font>prod.</font>
+          </span>
         </div>
       </div>
-      <div class="hashtags"><span >{{NowHashtags}}</span></div>
-      <div class="description"><p >{{NowDescription}}</p></div>
+    </header>
+
+    <div id="NavPanel">
+      <ul>
+        <li v-for="i in Sections"><a :href=i.link>
+            <nav>{{i.name}}</nav>
+          </a></li>
+      </ul>
+
+      <div>
+        <div v-for="i in Social">
+          <img :src=i.imglink />
+          <span><a :href=i.link>{{i.nick}}</a></span>
+        </div>
+      </div>
     </div>
-</transition>
-<!-- Конец шаблона для видео -->
-<!-- Начало списка проектов -->
-<transition name="slide-fade">
-  <div v-if="ProjectsShow">
-    <div v-for="i in Prevues" class="prevue">
-        <div class="main">
+
+    <div id="MenuButton">
+      <div class="Body"></div>
+      <div class="Body"></div>
+      <div class="Line"></div>
+      <div class="Line"></div>
+      <div class="Line"></div>
+    </div>
+    <div id="block"></div>
+    <script src="js/NavPanel.js"></script>
+    <script src="js/LogoAnim.js"></script>
+    <script src="js/vue/commonVue.js"></script>
+  </div>
+  <!-- Конец покрывающих элементов -->
+  <!-- Начало заголовка -->
+  <div class="content" id="ProjectsContent">
+    <div class="ProTitle">
+      <span v-on:click="NowProjects" id="Heading">Мои проекты</span>
+      <transition name="slide-fade">
+        <span v-if="!ProjectsListShow"> -> </span></span>
+      </transition>
+      <transition name="slide-fade">
+        <span v-if="!ProjectsListShow">{{PageData.name}}</span>
+      </transition>
+    </div>
+    <!-- Конец заголовка -->
+    <!-- Начало шаблона для больших проектов -->
+    <transition name="slide-fade">
+      <div v-if="bigProjectShow" class="BigProjectPattern ProjectPattern">
+        <div v-for="i in PageData.videolink" class="video">
+          <div>
+            <iframe :src=PageData.videolink allow="fullscreen" allowfullscreen></iframe>
+          </div>
+        </div>
+        <img v-for="i in PageData.FirstImg" :src=PageData.FirstImg />
+        <div class="hashtags"><span>{{PageData.HashTags}}</span></div>
+        <div class="description">
+          <p>{{PageData.description}}</p>
+        </div>
+        <div v-for="i in PageData.Tiles" class="Tile">
+          <div class="TextPart">
+            {{i.subdescription}}
+          </div>
+          <div class="ImgPart">
+              <img v-for="k in i.mainimg" :src=k class="MainImg" />
+              <div v-for="k in i.video" class="video">
+                <div>
+                  <iframe :src=k allow="fullscreen" allowfullscreen></iframe>
+                </div>
+              </div>
+              <div class="SecondaryImg">
+                  <img v-for="k in i.subimg" :src=k />
+              </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+    <!-- Конец шаблона для больших проектов -->
+    <!-- Начало шаблона для видео -->
+    <transition name="slide-fade">
+      <div v-if="videoShow" class="VideoPattern ProjectPattern">
+        <div class="video">
+          <div>
+            <iframe :src=PageData.videolink allow="fullscreen" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="hashtags"><span>{{PageData.HashTags}}</span></div>
+        <div class="description">
+          <p>{{PageData.description}}</p>
+        </div>
+      </div>
+    </transition>
+    <!-- Конец шаблона для видео -->
+    <!-- Начало списка проектов -->
+    <transition name="slide-fade">
+      <div v-if="ProjectsListShow">
+        <div v-for="i in Prevues" class="prevue">
+          <div class="main">
             <img class="MainImg" :src=i.MainImg />
             <span class="hashtags">{{i.HashTags}}</span>
             <span class="ProjectName">{{i.name}}</span>
             <nav class="ProLink" :id=i.id v-on:click="NowPage">Подробнее...</nav>
+          </div>
+          <div class="screens">
+            <img v-for="img in i.mainscreens" :src=img />
+          </div>
         </div>
-        <div class="screens">
-          <img v-for="img in i.mainscreens" :src=img />
-        </div>
-    </div>
+      </div>
+    </transition>
+    <!-- Конец списка проектов -->
+
   </div>
-</transition>
-<!-- Конец списка проектов -->
+  <script src="js/vue/projectsVue.js"></script>
 
-</div>
-<script src="js/vue/projectsVue.js"></script>
-
-<div class="hor"></div>
-<footer>
-  <p>Developed by Dorich production with Dorich production's support for Dorich production.</p>
-  <p>©All rights reserved.</p>
-</footer>
+  <div class="hor"></div>
+  <footer>
+    <p>Developed by Dorich production with Dorich production's support for Dorich production.</p>
+    <p>©All rights reserved.</p>
+  </footer>
 
 </body>
 
