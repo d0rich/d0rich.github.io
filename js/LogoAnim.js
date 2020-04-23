@@ -19,11 +19,11 @@ var Scale = function (progress){
   square.style.transform= 'scale('+progress+')';
 }
 var SetTri1Size = function (size){
-    triangle1.style.transform= 'scale('+45.5-size*23+')';
+    triangle1.style.transform= 'scale('+(45.5-size*23)/45.5+')';
     triangle1.style.top=LogoBorder().top+"px";
 }
 var SetTri2Size = function (size){
-    triangle2.style.transform= 'scale('+45.5-size*23+')';
+    triangle2.style.transform= 'scale('+(45.5-size*23)/45.5+')';
 }
 var Translate = function (elem, dx, dy){
   elem.style.top = LogoBorder().top+dy+"px";
