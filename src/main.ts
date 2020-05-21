@@ -13,7 +13,7 @@ Vue.config.productionTip = false
 Vue.mixin({
   data: function() {
     return {
-      ServerLink:'http://localhost:8000'
+      ServerLink:'https://dorich-prod-site.herokuapp.com'
     }
   },
   methods: {
