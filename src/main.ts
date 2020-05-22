@@ -18,6 +18,12 @@ Vue.mixin({
   },
   methods: {
     ImgLink(Path){return 'https://d0rich.github.io/assets/img/'+Path;},
+    ScrollToTop(){
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+    }
   }
 })
 

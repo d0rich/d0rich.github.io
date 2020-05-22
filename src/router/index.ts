@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Projects from '../views/Projects.vue'
 import ProjectPage from '../views/ProjectPage.vue'
 import Prices from '../views/Prices.vue'
+import Loader from '../components/Loader.vue'
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,10 @@ Vue.use(VueRouter)
   {
     path: '/prices',
     component: Prices
+  },
+  {
+    path: '/preloader',
+    component: Loader
   }
 ]
 

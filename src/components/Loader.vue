@@ -92,7 +92,7 @@ export default Vue.extend({
 #visual{
     height: 300px;
     width: 300px;
-    margin-top: 15vh;
+    margin-top: 10vh;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -477,17 +477,17 @@ export default Vue.extend({
 #figure1{
     width: 50%;
     height: 100%;
-    animation: f1 3s infinite;
+    animation: f1 2s infinite;
 }
 #figure2{
     width: 25%;
     height: 100%;
-    animation: f2 3s infinite;
+    animation: f2 2s infinite;
 }
 #figure3{
     width: 25%;
     height: 100%;
-    animation: f3 3s infinite;
+    animation: f3 2s infinite;
 }
 #row2{
     display:flex;
@@ -504,12 +504,12 @@ export default Vue.extend({
 #figure4{
     width: 100%;
     height: 66.66%;
-    animation: f4 3s infinite;
+    animation: f4 2s infinite;
 }
 #figure7{
     width: 100%;
     height: 33.33%;
-    animation: f7 3s infinite;
+    animation: f7 2s infinite;
 }
 #row2-column2{
     display:flex;
@@ -520,7 +520,7 @@ export default Vue.extend({
 #figure5{
     width:100%;
     height: 33.33%;
-    animation: f5 3s infinite;
+    animation: f5 2s infinite;
 }
 #row2-column2-row2{
     display: flex;
@@ -537,7 +537,7 @@ export default Vue.extend({
 #figure6{
     width:100%;
     height: 50%;
-    animation: f6 3s infinite;
+    animation: f6 2s infinite;
 }
 #row2-column2-row2-column1-row2{
     display: flex;
@@ -548,16 +548,16 @@ export default Vue.extend({
 #figure8{
     width:50%;
     height: 100%;
-    animation: f8 3s infinite;
+    animation: f8 2s infinite;
 }
 #figure9{
     width:50%;
     height: 100%;
-    animation: f9 3s infinite;
+    animation: f9 2s infinite;
 }
 #figure10{
     height: 100%;
     width: 33.33%;
-    animation: f10 3s infinite;
+    animation: f10 2s infinite;
 }
 </style>

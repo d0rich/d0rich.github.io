@@ -13,6 +13,7 @@
             <li><a href="https://www.freepik.com">tudiogstock / Freepik</a></li>
           </ul>
         </div>
+        <p>Preloader arts designed by <a href="http://www.freepik.com">Freepik</a></p>
         <p>Developed by Dorich production with Dorich production's support for Dorich production.</p>
         <p>©All rights reserved.</p>
     </footer>

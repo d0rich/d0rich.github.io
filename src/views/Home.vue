@@ -279,6 +279,7 @@ export default Vue.extend({
   border-color: var(--color3);
   color: var(--color3);
   text-align: center;
+  font-size: 10pt;
 }
 .Screenshot img{
   max-width: 100%;

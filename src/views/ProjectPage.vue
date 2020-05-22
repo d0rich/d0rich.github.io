@@ -5,7 +5,7 @@
     <div v-if="!OnLoad">
       <div class="ProTitle">
           <router-link to="/projects">
-            <span id="Heading" class="ActiveShow">Мои проекты</span>
+            <span id="Heading" class="ActiveShow" @click="ScrollToTop()">Мои проекты</span>
           </router-link>
           <span> -> </span>
           <span>{{ProjectData.name}}</span>
@@ -14,7 +14,7 @@
       <BigProjectPattern v-if="ProjectData.Big" :ProjectData=ProjectData />
       <div class="back">
         <router-link to="/projects">
-          <span class="ActiveShow">Назад к проектам...</span>
+          <span class="ActiveShow" @click="ScrollToTop()">Назад к проектам...</span>
         </router-link>
       </div>
     </div>
@@ -52,7 +52,6 @@ export default Vue.extend({
           console.log(response.data.message);
           else
           this.ProjectData = response.data;
-          console.log(response.data);
         })
         .catch(error => {
           console.log(error);

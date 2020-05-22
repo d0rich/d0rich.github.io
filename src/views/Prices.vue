@@ -92,7 +92,6 @@ export default Vue.extend({
           console.log(response.data.message);
           else
           this.PricesPageData = response.data;
-          console.log(response.data);
         })
         .catch(error => {
           console.log(error);

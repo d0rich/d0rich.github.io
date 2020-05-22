@@ -18,7 +18,7 @@
               <span class="hashtags">{{i.HashTags}}</span>
               <span class="ProjectName">{{i.name}}</span>
               <router-link :to="{name: 'ProjectPage' , params:{id:ProjectsData[index].id}}">
-                <nav class="ProLink" :id=i.id>Подробнее...</nav>
+                <nav class="ProLink" @click="ScrollToTop()" :id=i.id>Подробнее...</nav>
               </router-link>
             </div>
             <div class="screens">

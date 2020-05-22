@@ -1,20 +1,20 @@
 <template>
     <div class="BigProjectPattern ProjectPattern">
-        <VideoFrame v-for="(i, index) in ProjectData.videolink" :Link=ProjectData.videolink :key="index" />
-        <img v-for="(i, index) in ProjectData.FirstImg" :key="index" :src=ImgLink(ProjectData.FirstImg) />
+        <VideoFrame v-for="(i, index) in ProjectData.videolink" :Link=ProjectData.videolink :key="'VideoFrame'+index" />
+        <img v-for="(i, index) in ProjectData.FirstImg" :key="'FirstImg'+index" :src=ImgLink(ProjectData.FirstImg) />
         <div class="hashtags"><span>{{ProjectData.HashTags}}</span></div>
         <div class="description">
           <p>{{ProjectData.description}}</p>
         </div>
-        <div v-for="(i, index) in ProjectData.Tiles" :key="index" class="Tile">
+        <div v-for="(i, index) in ProjectData.Tiles" :key="'Tile'+index" class="Tile">
           <div class="TextPart">
             {{i.subdescription}}
           </div>
           <div class="ImgPart">
-              <img v-for="(k, index) in i.mainimg" :key="index" :src=ImgLink(k) class="MainImg" />
-              <VideoFrame v-for="(k, index) in i.video" :key="index" :Link="k" />
+              <img v-for="(k, index) in i.mainimg" :key="'MainImg'+index" :src=ImgLink(k) class="MainImg" />
+              <VideoFrame v-for="(k, index) in i.video" :key="'Video'+index" :Link="k" />
               <div class="SecondaryImg">
-                  <img v-for="(k, index) in i.subimg" :key="index" :src=ImgLink(k) />
+                  <img v-for="(k, index) in i.subimg" :key="'img'+index" :src=ImgLink(k) />
               </div>
           </div>
         </div>

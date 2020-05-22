@@ -3,7 +3,7 @@
     <header class="colors head">
       <div class="logo">
         <div id="logo">
-          <img :src="ImgLink(NavPanelData.LogoD)" id="logoimg" />
+          <img :src="NavPanelData.LogoD" id="logoimg" />
           <div class="triangle" id="triangle1"></div>
           <div class="triangle" id="triangle2"></div>
           <div class="glitch" id="glitch1"></div>
@@ -25,7 +25,7 @@
         <ul>
           <li v-for="(i, index) in NavPanelData.Sections" v-bind:key="index">
               <router-link :to="i.link">
-                <nav @click="ShowNavPanel()">{{i.name}}</nav>
+                <nav @click="ShowNavPanel(); ScrollToTop();" >{{i.name}}</nav>
               </router-link>
           </li>
         </ul>
@@ -34,7 +34,7 @@
           <div v-for="(i, index) in NavPanelData.Social" v-bind:key="index" class="SocialLink">
             <a :href=i.link>
               <div>
-                <img :src="ImgLink(i.imglink)" />
+                <img :src="i.imglink" />
                 <span>{{i.nick}}</span>
               </div>
             </a>
@@ -78,36 +78,25 @@ export default Vue.extend({
   data(){
     return{
       NavPanelData: {
-        language: '',
-        LogoD: '',
+        language: 'ru',
+        LogoD: require('@/assets/img/LogoD.svg'),
         Social:[
-          {
-            imglink:'',
-            link: '',
-            nick:''
-          }
+          {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
+          {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich_prod.'},
+          {imglink:require('@/assets/img/Social/instagram.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
+          {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
         ],
         Sections:[
-          {
-            link:'',
-            name:''
-          }
+          {link:'/',name:'Главная'},
+          {link:'/projects',name:'Все проекты'},
+          {link:'/prices',name:'Расценки'},
+          {link:'/preloader',name:'Посмотреть прелоудер'},
+          {link:'/',name:'Пункт5'}
         ]
       }
     }
   },
-  beforeMount:
-    function(){
-      axios
-        .get(this.$data.ServerLink +'/getNavPanelData?language=ru')
-        .then(response => {
-          this.NavPanelData = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        })
-  },
-  updated:
+  mounted:
     function(){
       const triangle1: HTMLElement = document.querySelector('#triangle1');
       const triangle2: HTMLElement = document.querySelector('#triangle2');
