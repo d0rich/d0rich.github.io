@@ -25,7 +25,7 @@
         <ul>
           <li v-for="(i, index) in NavPanelData.Sections" v-bind:key="index">
               <router-link :to="i.link">
-                <nav>{{i.name}}</nav>
+                <nav @click="ShowNavPanel()">{{i.name}}</nav>
               </router-link>
           </li>
         </ul>
@@ -77,7 +77,23 @@ export default Vue.extend({
   },
   data(){
     return{
-      NavPanelData: null,
+      NavPanelData: {
+        language: '',
+        LogoD: '',
+        Social:[
+          {
+            imglink:'',
+            link: '',
+            nick:''
+          }
+        ],
+        Sections:[
+          {
+            link:'',
+            name:''
+          }
+        ]
+      }
     }
   },
   beforeMount:
@@ -365,18 +381,23 @@ export default Vue.extend({
 @keyframes wiggle{
   0% {
     transform: translate(0px, 0px);
+    animation-timing-function: ease-in-out;
   }
   25% {
     transform: translate(10px, 5px);
+    animation-timing-function: ease-in-out;
   }
   50% {
     transform: translate(0px, -8px);
+    animation-timing-function: ease-in-out;
   }
   75% {
     transform: translate(-5px, -4px);
+    animation-timing-function: ease-in-out;
   }
   100% {
     transform: translate(0px, 0px);
+    animation-timing-function: ease-in-out;
   }
 }
 

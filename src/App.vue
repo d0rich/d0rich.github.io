@@ -13,6 +13,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import CoverElements from './components/CoverElements.vue'
+import Loader from '@/components/Loader.vue'
 import Footer from './components/Footer.vue'
 
 export default Vue.extend({
@@ -20,11 +21,6 @@ export default Vue.extend({
   components:{
     CoverElements,
     Footer,
-  },
-  computed:{
-    projects(){
-      return (this.$route.path == "/projects");
-    }
   },
   data(){
     return{
@@ -68,11 +64,14 @@ a{
   font-family: 'Comfortaa';
   src: url('./assets/fonts/Comfortaa-VariableFont_wght.ttf');
 }
-
+#app{
+  overflow:hidden;
+}
 body{
   background-color: var(--color2);
   font-family: 'Comfortaa';
   font-weight: bold;
+  margin:0;
 }
 .content{
   max-width: 600px;
@@ -99,6 +98,19 @@ body{
 }
 .slide-fade-enter{
   transform: translateX(-100px);
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: all 0.1s;
+}
+.fade-leave-active {
+  transition: all 0.1s;
+}
+.fade-leave-to{
+  opacity: 0;
+}
+.fade-enter{
   opacity: 0;
 }
 

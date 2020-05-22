@@ -1,44 +1,74 @@
 <template>
   <div>
-    <div id="IntroInf">
-      <div class="Parallax">
-        <div class="ParallaxGroup">
-          <img :src="ImgLink(PricesPageData.Img1.Layer1)" />
-          <img :src="ImgLink(PricesPageData.Img1.Layer2)" />
-          <img :src="ImgLink(PricesPageData.Img1.Layer3)" />
-          <img :src="ImgLink(PricesPageData.Img1.Layer4)" />
+    <transition :duration=200 name="fade" mode="out-in">
+    <Loader v-if="OnLoad" />
+    <div v-if="!OnLoad">
+      <div id="IntroInf">
+        <div class="Parallax">
+          <div class="ParallaxGroup">
+            <img :src="ImgLink(PricesPageData.Img1.Layer1)" />
+            <img :src="ImgLink(PricesPageData.Img1.Layer2)" />
+            <img :src="ImgLink(PricesPageData.Img1.Layer3)" />
+            <img :src="ImgLink(PricesPageData.Img1.Layer4)" />
+          </div>
+        </div>
+        <div>
+          <span>{{PricesPageData.Header1}}</span>
+          <p>{{PricesPageData.Text1}}</p>
         </div>
       </div>
-      <div>
-        <span>{{PricesPageData.Header1}}</span>
-        <p>{{PricesPageData.Text1}}</p>
+      <div id="TextDiv">
+        <p>{{PricesPageData.Text2}}</p>
       </div>
-    </div>
-    <div id="TextDiv">
-      <p>{{PricesPageData.Text2}}</p>
-    </div>
-    <div id="prices">
-      <div class="priceCards">
-        <div class="PriceCard nonActive" v-for="PriceCard in PricesPageData.PriceCards" :key="PriceCard.id">
-          <img :src="ImgLink(PriceCard.Img)" @click="ShowCard" />
-          <span>{{PriceCard.name}}</span>
-          <p>{{PriceCard.description}}</p>
-          <span>Цена: {{PriceCard.price}}</span>
-          <div class="button">Подать заявку.</div>
+      <div id="prices">
+        <div class="priceCards">
+          <div class="PriceCard nonActive" v-for="PriceCard in PricesPageData.PriceCards" :key="PriceCard.id">
+            <img :src="ImgLink(PriceCard.Img)" @click="ShowCard" />
+            <span>{{PriceCard.name}}</span>
+            <p>{{PriceCard.description}}</p>
+            <span>Цена: {{PriceCard.price}}</span>
+            <div class="button">Подать заявку.</div>
+          </div>
         </div>
       </div>
     </div>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import axios from 'axios'
+import Loader from '@/components/Loader.vue'
 export default Vue.extend({
     name:'Prices',
+    components:{
+      Loader
+    },
     data(){
       return{
-        PricesPageData: null
+        OnLoad:true,
+        PricesPageData: {
+              language:'',
+              Img1:{
+                Layer1:'',
+                Layer2:'',
+                Layer3:'',
+                Layer4:'',
+              },
+              Header1:'',
+              Text1:'',
+              Text2:'',
+              PriceCards:[
+                {
+                  id:'',
+                  name:'',
+                  Img:'',
+                  price:'',
+                  description:''
+                }
+              ]
+            }
       }
     },
     methods:{
@@ -53,7 +83,7 @@ export default Vue.extend({
         setTimeout(function(){event.target.parentElement.classList.remove('activate')}, 300);
       }
     },
-    beforeMount:
+    mounted:
     function(){
       axios
         .get(this.$data.ServerLink +'/getPricesPageData?language=ru')
@@ -67,6 +97,7 @@ export default Vue.extend({
         .catch(error => {
           console.log(error);
         })
+        .finally(()=>{this.OnLoad=false;})
   },
 
 })

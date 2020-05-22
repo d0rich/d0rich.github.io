@@ -1,43 +1,50 @@
 <template>
     <!-- Начало заголовка -->
   <div>
-    <div>
-      <div class="ProTitle">
-        <span id="Heading">Мои проекты</span>
-      </div>
-    </div>
-    <!-- Конец заголовка -->
-    <!-- Начало списка проектов -->
+    <transition :duration=200 name="fade" mode="out-in">
+    <Loader v-if="OnLoad" />
+    <div v-if="!OnLoad">
       <div>
-        <div v-for="(i, index) in ProjectsData" :key="index" class="prevue">
-          <div class="main">
-            <img class="MainImg" :src=ImgLink(i.MainImg) />
-            <span class="hashtags">{{i.HashTags}}</span>
-            <span class="ProjectName">{{i.name}}</span>
-            <router-link :to="{name: 'ProjectPage' , params:{id:ProjectsData[index].id}}">
-              <nav class="ProLink" :id=i.id>Подробнее...</nav>
-            </router-link>
-          </div>
-          <div class="screens">
-            <img v-for="(img, index) in i.mainscreens" :key="index" :src=ImgLink(img) />
-          </div>
+        <div class="ProTitle">
+          <span id="Heading">Мои проекты</span>
         </div>
       </div>
+      <!-- Конец заголовка -->
+      <!-- Начало списка проектов -->
+        <div>
+          <div v-for="(i, index) in ProjectsData" :key="index" class="prevue">
+            <div class="main">
+              <img class="MainImg" :src=ImgLink(i.MainImg) />
+              <span class="hashtags">{{i.HashTags}}</span>
+              <span class="ProjectName">{{i.name}}</span>
+              <router-link :to="{name: 'ProjectPage' , params:{id:ProjectsData[index].id}}">
+                <nav class="ProLink" :id=i.id>Подробнее...</nav>
+              </router-link>
+            </div>
+            <div class="screens">
+              <img v-for="(img, index) in i.mainscreens" :key="index" :src=ImgLink(img) />
+            </div>
+          </div>
+        </div>
     <!-- Конец списка проектов -->
+      </div>
+      </transition>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import axios from 'axios'
-
+import Loader from '@/components/Loader.vue'
 
 export default Vue.extend({
     name: "Projects",
     components: {
+      Loader
     },
     data: function(){
         return{        
+          OnLoad:true,
             ProjectsData: null
         }
 
@@ -55,6 +62,7 @@ export default Vue.extend({
         .catch(error => {
           console.log(error);
         })
+        .finally(()=>{this.OnLoad=false;})
   },
     methods:{
 

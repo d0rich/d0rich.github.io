@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="footer">
     <div class="hor"></div>
     <footer> 
         <div v-if="this.$route.path==='/prices'">
@@ -27,6 +27,10 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.footer{
+  position:relative;
+  bottom: 0px;
+}
 a{
   color:var(--color5);
 }

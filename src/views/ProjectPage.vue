@@ -1,19 +1,24 @@
 <template>
   <div>
-    <div class="ProTitle">
+    <transition :duration=200 name="fade" mode="out-in">
+    <Loader v-if="OnLoad" />
+    <div>
+      <div class="ProTitle">
+          <router-link to="/projects">
+            <span id="Heading" class="ActiveShow">Мои проекты</span>
+          </router-link>
+          <span> -> </span>
+          <span>{{ProjectData.name}}</span>
+        </div>
+      <SmallProjectPattern v-if="!ProjectData.Big" :ProjectData=ProjectData />
+      <BigProjectPattern v-if="ProjectData.Big" :ProjectData=ProjectData />
+      <div class="back">
         <router-link to="/projects">
-          <span id="Heading" class="ActiveShow">Мои проекты</span>
+          <span class="ActiveShow">Назад к проектам...</span>
         </router-link>
-        <span> -> </span>
-        <span>{{ProjectData.name}}</span>
       </div>
-    <SmallProjectPattern v-if="!ProjectData.Big" :ProjectData=ProjectData />
-    <BigProjectPattern v-if="ProjectData.Big" :ProjectData=ProjectData />
-    <div class="back">
-      <router-link to="/projects">
-        <span class="ActiveShow">Назад к проектам...</span>
-      </router-link>
     </div>
+    </transition>
   </div>
 </template>
 
@@ -22,16 +27,19 @@ import Vue from 'vue'
 import axios from 'axios'
 import SmallProjectPattern from '@/components/SmallProjectPattern.vue'
 import BigProjectPattern from '@/components/BigProjectPattern.vue'
+import Loader from '@/components/Loader.vue'
 
 
 export default Vue.extend({
     name:"VideoProject",
     components:{
         SmallProjectPattern,
-        BigProjectPattern
+        BigProjectPattern,
+        Loader
     },
     data: function(){
         return{
+          OnLoad: true,
             ProjectData: null
         }
     },
@@ -49,6 +57,7 @@ export default Vue.extend({
         .catch(error => {
           console.log(error);
         })
+        .finally(()=>{this.OnLoad=false;})
     }
     
 })

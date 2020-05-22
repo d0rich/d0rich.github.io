@@ -1,46 +1,52 @@
 <template>
   <div>
-    <div class="content1">
-      <div class="photo">
-        <div>PHOTO</div>
-      </div>
-      <div class="description">
-        <p>
-          {{HomePageData.Text1}}
-        </p>
-      </div>
-    </div>
-
-    <div class="videopresentation_h">
-      <span>ВИДЕОПРЕЗЕНТАЦИЯ</span>
-    </div>
-
-    <VideoFrame :Link=HomePageData.PresLink />
-
-    <div class="PresNavigation">
-      <div>
-        <div class="NavDots">
-          <div v-for="(screen, index) in HomePageData.Screenshots" :key="index"></div>
+    <transition :duration=200 name="fade" mode="out-in">
+    <Loader v-if="OnLoad" />
+    
+    <div v-if="!OnLoad">
+      <div class="content1">
+        <div class="photo">
+          <div>PHOTO</div>
+        </div>
+        <div class="description">
+          <p>
+            {{HomePageData.Text1}}
+          </p>
         </div>
       </div>
-      <div class="content2">
-        <div v-for="(screen, index) in HomePageData.Screenshots" :key="index" class="Screen">
-          <div class="ScreenDes">
-            <span>{{screen.description}}</span>
+
+      <div class="videopresentation_h">
+        <span>{{HomePageData.Header1}}</span>
+      </div>
+
+      <VideoFrame :Link=HomePageData.PresLink />
+
+      <div class="PresNavigation">
+        <div>
+          <div class="NavDots">
+            <div v-for="(screen, index) in HomePageData.Screenshots" :key="index"></div>
           </div>
-          <div class="ScreenRight">
-            <div class="TimeCode">
-              <div>
-                <span>{{screen.timecode}}</span>
+        </div>
+        <div class="content2">
+          <div v-for="(screen, index) in HomePageData.Screenshots" :key="index" class="Screen">
+            <div class="ScreenDes">
+              <span>{{screen.description}}</span>
+            </div>
+            <div class="ScreenRight">
+              <div class="TimeCode">
+                <div>
+                  <span>{{screen.timecode}}</span>
+                </div>
+              </div>
+              <div class="Screenshot">
+                <img :src="ImgLink(screen.screenlink)">
               </div>
             </div>
-            <div class="Screenshot">
-              <img :src="ImgLink(screen.screenlink)">
-            </div>
           </div>
         </div>
       </div>
     </div>
+    </transition>
   </div>
 </template>
 
@@ -48,18 +54,31 @@
 import Vue from 'vue'
 import axios from 'axios'
 import VideoFrame from '@/components/VideoFrame.vue'
+import Loader from '@/components/Loader.vue'
 
 export default Vue.extend({
   name: 'Home',
   data(){
     return{
-      HomePageData: null,
+      OnLoad: true,
+      HomePageData: {
+        language: '',
+        Text1: '',
+        Header1: '',
+        PresLink: '',
+        Screenshots: [{
+          description: '',
+          timecode: '',
+          screenlink: ''
+        }]
+      },
     }
   },
   components: {
-    VideoFrame
+    VideoFrame,
+    Loader
   },
-  beforeMount:
+  mounted:
     function(){
       axios
         .get(this.$data.ServerLink +'/getHomePageData?language=ru')
@@ -69,6 +88,7 @@ export default Vue.extend({
         .catch(error => {
           console.log(error);
         })
+        .finally(()=>{this.OnLoad=false;})
   },
   updated:
     function(){
@@ -141,6 +161,7 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+
 .content1{
   min-height:300px;
   display: flex;
