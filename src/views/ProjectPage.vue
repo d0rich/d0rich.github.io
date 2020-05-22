@@ -2,7 +2,7 @@
   <div>
     <transition :duration=200 name="fade" mode="out-in">
     <Loader v-if="OnLoad" />
-    <div>
+    <div v-if="!OnLoad">
       <div class="ProTitle">
           <router-link to="/projects">
             <span id="Heading" class="ActiveShow">Мои проекты</span>

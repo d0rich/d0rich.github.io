@@ -62,9 +62,9 @@ export default Vue.extend({
             ]
         }
     },
-    beforeMount(){
+    created(){
         function arrayRandElement(arr) {
-            var rand = Math.floor(Math.random() * arr.length);
+            const rand = Math.floor(Math.random() * arr.length);
             return arr[rand];
         }
         this.Text = arrayRandElement(this.Texts);
