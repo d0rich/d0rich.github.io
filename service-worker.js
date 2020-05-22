@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.75bb25e67c2766d2edc5e338ca1a60ce.js"
+  "/precache-manifest.f0fc8b4770e95e87fc7d15599bcd7960.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "dorich-prod"});
