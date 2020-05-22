@@ -21,7 +21,7 @@
 
       <VideoFrame :Link=HomePageData.PresLink />
 
-      <div class="PresNavigation">
+      <div class="PresNavigation" >
         <div>
           <div class="NavDots">
             <div v-for="(screen, index) in HomePageData.Screenshots" :key="index"></div>
@@ -88,10 +88,13 @@ export default Vue.extend({
         .catch(error => {
           console.log(error);
         })
-        .finally(()=>{this.OnLoad=false;})
+        .finally(()=>{this.OnLoad=false; 
+        setTimeout(() => {
+          this.SetDots();
+        }, 400);})
   },
-  updated:
-    function(){
+  methods:{
+    SetDots:function(){
         const target = document.querySelector('.NavDots');
         const screenlist = document.querySelector('.PresNavigation');
         const screens = document.querySelectorAll('.Screen');
@@ -157,6 +160,7 @@ export default Vue.extend({
         GoCheck();
       });
     }
+  }
 })
 </script>
 
