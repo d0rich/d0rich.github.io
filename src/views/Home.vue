@@ -247,16 +247,16 @@ export default Vue.extend({
   color:var(--color1);
   margin-top: 20px;
   border-radius: 20px;
+  border-width: 2px;
+  border-color: var(--color4);
   background-color: var(--color4);
   padding:10px;
   border-style: solid;;
-  border-color: var(--color3);
-  border-width: 0px;
   transition: ease 0.2s;
 }
 .Showing{
   background-color: var(--color5);
-  border-width: 2px;
+  border-color: var(--color3);
 }
 .ScreenDes{
   background-color: var(--color5);
@@ -276,10 +276,11 @@ export default Vue.extend({
   border-radius: 10px;
   border-width: 3px;
   border-style: solid;
+  padding: 2px;
   border-color: var(--color3);
   color: var(--color3);
   text-align: center;
-  font-size: 10pt;
+  font-size: 11pt;
 }
 .Screenshot img{
   max-width: 100%;
