@@ -207,7 +207,7 @@ export default Vue.extend({
   justify-content: center;
 }
 .videopresentation_h span{
-  color: var(--color1);
+  color: var(--color3);
   font-size: 15pt;
 }
 .video{
@@ -218,6 +218,7 @@ export default Vue.extend({
 .PresNavigation{
   padding:10px;
   display: flex;
+  flex-direction: row;
 }
 .NavDots{
   position:relative;
@@ -239,31 +240,41 @@ export default Vue.extend({
   background-color: var(--color3);
 }
 .content2{
+  width: 80%;
   display: flex;
   flex-direction: column;
 }
 .Screen{
-  display: flex;
+  display:flex;
+  flex-direction: column-reverse;
+  max-height: 350px;
   color:var(--color1);
   margin-top: 20px;
   border-radius: 20px;
-  border-width: 2px;
-  border-color: var(--color4);
   background-color: var(--color4);
   padding:10px;
   border-style: solid;;
+  border-color: var(--color3);
+  border-width: 0px;
   transition: ease 0.2s;
 }
 .Showing{
   background-color: var(--color5);
-  border-color: var(--color3);
+  border-width: 2px;
 }
 .ScreenDes{
   background-color: var(--color5);
-  border-radius: 20px;
+  border-radius: 8px;
   padding:10px;
-  margin-right: 10px;
-  max-width: 60%;
+  margin-top: 10px;
+  overflow-y: scroll;
+}
+.ScreenDes::-webkit-scrollbar-corner {
+  background:var(--color5); 
+}
+.ScreenDes::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 .ScreenRight{
   display: flex;
@@ -276,19 +287,29 @@ export default Vue.extend({
   border-radius: 10px;
   border-width: 3px;
   border-style: solid;
-  padding: 2px;
   border-color: var(--color3);
   color: var(--color3);
   text-align: center;
-  font-size: 11pt;
+  font-size: 14pt;
+}
+.Showing .TimeCode div{
+  border-color: var(--color1);
+  color: var(--color1);
 }
 .Screenshot img{
+  display: block;
+  max-height: 125px;
   max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 10px;
   border-width: 3px;
   border-style: solid;
   border-color: var(--color3);
   background-color: var(--color3);
 }
-
+.Showing .Screenshot img{
+  border-color: var(--color1);
+  color: var(--color1);
+}
 </style>

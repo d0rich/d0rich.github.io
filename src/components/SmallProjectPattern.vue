@@ -46,7 +46,7 @@ export default Vue.extend({
   margin-right: auto;
   margin-top: 15px;
   margin-bottom: 30px;
-  color: var(--color1);
+  color: var(--color3);
   border-style: solid;
   border-width: 4px;
   border-radius: 20px;

@@ -1,6 +1,8 @@
 <template>
     <div class="BigProjectPattern ProjectPattern">
-        <VideoFrame v-for="(i, index) in ProjectData.videolink" :Link=ProjectData.videolink :key="'VideoFrame'+index" />
+      <div class="MainVideo" v-for="(i, index) in ProjectData.videolink" :key="'VideoFrame'+index">
+        <VideoFrame :Link=ProjectData.videolink  />
+      </div>
         <img v-for="(i, index) in ProjectData.FirstImg" :key="'FirstImg'+index" :src=ImgLink(ProjectData.FirstImg) />
         <div class="hashtags"><span>{{ProjectData.HashTags}}</span></div>
         <div class="description">
@@ -12,7 +14,9 @@
           </div>
           <div class="ImgPart">
               <img v-for="(k, index) in i.mainimg" :key="'MainImg'+index" :src=ImgLink(k) class="MainImg" />
-              <VideoFrame v-for="(k, index) in i.video" :key="'Video'+index" :Link="k" />
+              <div class="TileVideo" v-for="(k, index) in i.video" :key="'Video'+index" >
+                <VideoFrame :Link="k" />
+              </div>
               <div class="SecondaryImg">
                   <img v-for="(k, index) in i.subimg" :key="'img'+index" :src=ImgLink(k) />
               </div>
@@ -35,7 +39,10 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.video{
+.TileVideo{
+  margin-bottom: 10px;
+}
+.MainVideo{
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
@@ -56,7 +63,7 @@ export default Vue.extend({
   margin-right: auto;
   margin-top: 15px;
   margin-bottom: 30px;
-  color: var(--color1);
+  color: var(--color3);
   border-style: solid;
   border-width: 4px;
   border-radius: 20px;

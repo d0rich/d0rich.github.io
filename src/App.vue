@@ -13,7 +13,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import CoverElements from './components/CoverElements.vue'
-import Loader from '@/components/Loader.vue'
 import Footer from './components/Footer.vue'
 
 export default Vue.extend({
@@ -33,6 +32,9 @@ export default Vue.extend({
 ::-webkit-scrollbar {
     width: 8px;
     height: 16px;
+}
+::-webkit-scrollbar-corner {
+  background:var(--color2); 
 }
 ::-webkit-scrollbar-thumb {
     background-color: var(--color1);
