@@ -267,7 +267,7 @@ export default Vue.extend({
   border-radius: 8px;
   padding:10px;
   margin-top: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .ScreenDes::-webkit-scrollbar-corner {
   background:var(--color5); 
