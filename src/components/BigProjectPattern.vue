@@ -40,7 +40,7 @@ export default Vue.extend({
 
 <style scoped>
 .TileVideo{
-  margin-bottom: -100%;
+  margin-bottom: -50%;
   width: 200%;
   transform-origin: left top;
   transform: scale(0.5, 0.5);
