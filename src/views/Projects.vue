@@ -6,7 +6,7 @@
     <div v-if="!OnLoad">
       <div>
         <div class="ProTitle">
-          <span id="Heading">Мои проекты</span>
+          <span id="Heading">{{PageData.Header}}</span>
         </div>
       </div>
       <!-- Конец заголовка -->
@@ -18,7 +18,7 @@
               <span class="hashtags">{{i.HashTags}}</span>
               <span class="ProjectName">{{i.name}}</span>
               <router-link :to="{name: 'ProjectPage' , params:{id:i.id , lan: i.language }}">
-                <nav class="ProLink" @click="ScrollToTop()" :id=i.id>Подробнее...</nav>
+                <nav class="ProLink" @click="ScrollToTop()" :id=i.id>{{PageData.Details}}</nav>
               </router-link>
             </div>
             <div class="screens">
@@ -45,9 +45,26 @@ export default Vue.extend({
     data: function(){
         return{        
           OnLoad:true,
-            ProjectsData: null
+          ProjectsData: null,
+          lan: null
         }
 
+    },
+    computed:{
+      PageData(){
+        if(this.lan == 'ru'){
+          return {
+            Header: 'Мои проекты',
+            Details: 'Подробнее...'
+          }
+        }
+        else{
+          return {
+            Header: 'My projects',
+            Details: 'More details...'
+          }
+        }
+      }
     },
     watch:{
       $route() {this.FetchData();}
@@ -70,6 +87,7 @@ export default Vue.extend({
           console.log(error);
         })
         .finally(()=>{this.OnLoad=false;})
+        this.lan = this.$route.params.lan;
       }
   } 
 })

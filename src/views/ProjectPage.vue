@@ -5,7 +5,7 @@
     <div v-if="!OnLoad">
       <div class="ProTitle">
           <router-link :to="{name:'Projects' , params:{ lan: $route.params.lan}}">
-            <span id="Heading" class="ActiveShow" @click="ScrollToTop()">Мои проекты</span>
+            <span id="Heading" class="ActiveShow" @click="ScrollToTop()">{{PageData.Header}}</span>
           </router-link>
           <span> -> </span>
           <span>{{ProjectData.name}}</span>
@@ -14,7 +14,7 @@
       <BigProjectPattern v-if="ProjectData.Big" :ProjectData=ProjectData />
       <div class="back">
         <router-link :to="{name:'Projects' , params:{ lan: $route.params.lan}}">
-          <span class="ActiveShow" @click="ScrollToTop()">Назад к проектам...</span>
+          <span class="ActiveShow" @click="ScrollToTop()">{{PageData.Back}}</span>
         </router-link>
       </div>
     </div>
@@ -40,8 +40,25 @@ export default Vue.extend({
     data: function(){
         return{
           OnLoad: true,
-            ProjectData: null
+          ProjectData: null,
+          lan: null
         }
+    },
+    computed:{
+      PageData(){
+        if(this.lan == 'ru'){
+          return {
+            Header: 'Мои проекты',
+            Back: 'Назад к проектам...'
+          }
+        }
+        else{
+          return {
+            Header: 'My projects',
+            Back: 'Back to projects...'
+          }
+        }
+      }
     },
     methods:{
       FetchData(){
@@ -58,6 +75,7 @@ export default Vue.extend({
           console.log(error);
         })
         .finally(()=>{this.OnLoad=false;})
+        this.lan = this.$route.params.lan;
       }
     },
     watch:{

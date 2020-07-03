@@ -48,12 +48,19 @@ export default Vue.extend({
         return{
             Text: null,
             IMG: null,
-            Texts:[
-                "Вычисляем вас по IP",
+            TextsRu:[
+                'Вычисляем вас по IP',
                 'Оптимизируем ваш бизнес',
                 'Настраиваем рекламу',
                 'Проверяем историю браузера',
                 'Бежим на сервер за информацией'
+            ],
+            TextsEn:[
+                'We calculate you by IP',
+                'Optimize your business',
+                'Customize ads',
+                'Checking browser history',
+                'Run to the server for information'
             ],
             IMGs:[
                 require('@/assets/img/LoaderMan1.svg'),
@@ -62,13 +69,24 @@ export default Vue.extend({
             ]
         }
     },
-    created(){
-        function arrayRandElement(arr) {
+    methods:{
+        arrayRandElement(arr) {
             const rand = Math.floor(Math.random() * arr.length);
             return arr[rand];
+        },
+        generate(){
+            if(this.$route.params.lan == 'ru')
+                this.Text = this.arrayRandElement(this.TextsRu);
+            else
+                this.Text = this.arrayRandElement(this.TextsEn);
+            this.IMG = this.arrayRandElement(this.IMGs);
         }
-        this.Text = arrayRandElement(this.Texts);
-        this.IMG = arrayRandElement(this.IMGs);
+    },
+    watch:{
+      $route() {this.generate()}
+    },
+    created(){
+        this.generate();
     }
 
 })

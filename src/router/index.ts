@@ -30,7 +30,7 @@ Vue.use(VueRouter)
     component: Prices
   },
   {
-    path: '/preloader',
+    path: '/:lan/preloader',
     name: 'Pre',
     component: Loader
   }
