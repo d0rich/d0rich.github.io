@@ -64,12 +64,16 @@ export default Vue.extend({
       FetchData(){
         this.OnLoad=true;
         axios
-        .get(this.$data.ServerLink +'/getProject?language=' + this.$route.params.lan + '&projectID='+this.$route.params.id)
+        .get(this.$data.ServerLink +'/get-project?language=' + this.$route.params.lan + '&projectID='+this.$route.params.id)
         .then(response => {
           if (response.data.status=="error")
           console.log(response.data.message);
-          else
-          this.ProjectData = response.data;
+          else{
+            if(response.data.status=="not found")
+              this.$router.push({name:'Error404', params:{ lan:this.$route.params.lan }});
+            else
+              this.ProjectData = response.data;
+          }
         })
         .catch(error => {
           console.log(error);

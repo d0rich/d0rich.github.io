@@ -90,9 +90,16 @@ export default Vue.extend({
     FetchData(){
       this.OnLoad=true; 
       axios
-        .get(this.$data.ServerLink +'/getHomePageData?language='+this.$route.params.lan)
+        .get(this.$data.ServerLink +'/get-home-page-data?language='+this.$route.params.lan)
         .then(response => {
-          this.HomePageData = response.data;
+          if (response.data.status=="error")
+          console.log(response.data.message);
+          else{
+            if(response.data.status=="not found")
+              this.$router.push({name:'Error404', params:{ lan:this.$route.params.lan }});
+            else
+             this.HomePageData = response.data;
+          }
         })
         .catch(error => {
           console.log(error);

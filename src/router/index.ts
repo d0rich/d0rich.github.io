@@ -5,10 +5,15 @@ import Projects from '../views/Projects.vue'
 import ProjectPage from '../views/ProjectPage.vue'
 import Prices from '../views/Prices.vue'
 import Loader from '../components/Loader.vue'
+import Error404 from '../views/Error404.vue'
 
 Vue.use(VueRouter)
 
   const routes: Array<RouteConfig> = [
+  {
+    path:'/',
+    redirect: { name: 'Home' }
+  },
   {
     path: '/:lan/home',
     name: 'Home',
@@ -33,6 +38,15 @@ Vue.use(VueRouter)
     path: '/:lan/preloader',
     name: 'Pre',
     component: Loader
+  },
+  {
+    path: '/:lan/error404',
+    name: 'Error404',
+    component: Error404
+  },
+  {
+    path:'*',
+    redirect: { name: 'Error404' }
   }
 ]
 
