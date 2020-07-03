@@ -78,10 +78,19 @@ export default Vue.extend({
     VideoFrame,
     Loader
   },
-  mounted:
-    function(){
+  watch:{
+    $route() {
+      this.FetchData();
+    }
+  },
+  mounted(){
+      this.FetchData();
+  },
+  methods:{
+    FetchData(){
+      this.OnLoad=true; 
       axios
-        .get(this.$data.ServerLink +'/getHomePageData?language=ru')
+        .get(this.$data.ServerLink +'/getHomePageData?language='+this.$route.params.lan)
         .then(response => {
           this.HomePageData = response.data;
         })
@@ -92,8 +101,7 @@ export default Vue.extend({
         setTimeout(() => {
           this.SetDots();
         }, 400);})
-  },
-  methods:{
+    },
     SetDots:function(){
         const target = document.querySelector('.NavDots');
         const screenlist = document.querySelector('.PresNavigation');
@@ -236,7 +244,8 @@ export default Vue.extend({
   transition: ease 0.2s;
 }
 .NavDots .ShowDot{
-  transform: scale(1.25);
+  transform: scale(1.5);
+  transform-origin: center;
   background-color: var(--color3);
 }
 .content2{
@@ -248,10 +257,10 @@ export default Vue.extend({
   display:flex;
   flex-direction: column-reverse;
   max-height: 350px;
-  color:var(--color1);
+  color:var(--color3);
   margin-top: 20px;
   border-radius: 20px;
-  background-color: var(--color4);
+  background-color: var(--color2);
   padding:10px;
   border-style: solid;;
   border-color: var(--color3);
@@ -259,11 +268,12 @@ export default Vue.extend({
   transition: ease 0.2s;
 }
 .Showing{
-  background-color: var(--color5);
+  background-color: var(--color4);
   border-width: 2px;
+  border-color: var(--color1);
 }
 .ScreenDes{
-  background-color: var(--color5);
+  background-color: var(--color4);
   border-radius: 8px;
   padding:10px;
   margin-top: 10px;
@@ -287,14 +297,11 @@ export default Vue.extend({
   border-radius: 10px;
   border-width: 3px;
   border-style: solid;
-  border-color: var(--color3);
   color: var(--color3);
   text-align: center;
   font-size: 14pt;
-}
-.Showing .TimeCode div{
-  border-color: var(--color1);
-  color: var(--color1);
+  border-color: var(--color3);
+  color: var(--color3);
 }
 .Screenshot img{
   display: block;
@@ -308,7 +315,7 @@ export default Vue.extend({
   border-color: var(--color3);
   background-color: var(--color3);
 }
-.Showing .Screenshot img{
+.Screenshot img{
   border-color: var(--color1);
   color: var(--color1);
 }

@@ -17,7 +17,7 @@
               <img class="MainImg" :src=ImgLink(i.MainImg) />
               <span class="hashtags">{{i.HashTags}}</span>
               <span class="ProjectName">{{i.name}}</span>
-              <router-link :to="{name: 'ProjectPage' , params:{id:ProjectsData[index].id}}">
+              <router-link :to="{name: 'ProjectPage' , params:{id:i.id , lan: i.language }}">
                 <nav class="ProLink" @click="ScrollToTop()" :id=i.id>Подробнее...</nav>
               </router-link>
             </div>
@@ -49,10 +49,17 @@ export default Vue.extend({
         }
 
     },
-    beforeMount:
-    function(){
-      axios
-        .get(this.$data.ServerLink +'/getProjects?language=ru')
+    watch:{
+      $route() {this.FetchData();}
+    },
+    mounted(){
+      this.FetchData();
+    },
+    methods:{
+      FetchData(){
+        this.OnLoad=true;
+        axios
+        .get(this.$data.ServerLink +'/getProjects?language='+this.$route.params.lan)
         .then(response => {
           if (response.data.status=="error")
           console.log(response.data.message);
@@ -63,9 +70,7 @@ export default Vue.extend({
           console.log(error);
         })
         .finally(()=>{this.OnLoad=false;})
-  },
-    methods:{
-
+      }
   } 
 })
 </script>

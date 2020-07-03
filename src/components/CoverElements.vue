@@ -1,6 +1,6 @@
 <template>
   <div class="CoverElements">
-    <header class="colors head">
+    <header class="head">
       <div class="logo">
         <div id="logo">
           <img :src="NavPanelData.LogoD" id="logoimg" />
@@ -22,9 +22,29 @@
 
     <div id="NavPanel">
       <div class="Scroll">
+        <div class="themeToggler"> 
+          <div class="toggleBody">
+            <div v-bind:class="{togglePoint:true, toggleRight: ThemeToggleRight, toggleLeft: !ThemeToggleRight}"  
+              v-on:click="$emit('theme-toggle')">
+            </div>
+            <div class="toggleText">
+              <span>{{ThemeName}}</span>
+              </div>
+          </div>
+        </div>
+        <div class="languageToggler"> 
+          <div class="toggleBody">
+            <div v-bind:class="{togglePoint:true, toggleRight: LanToggleRight, toggleLeft: !LanToggleRight}"  
+              v-on:click="$emit('lan-toggle')">
+            </div>
+            <div class="toggleText">
+              <span>{{LanName}}</span>
+              </div>
+          </div>
+        </div>
         <ul>
           <li v-for="(i, index) in NavPanelData.Sections" v-bind:key="index">
-              <router-link :to="i.link">
+              <router-link :to=" {name:i.link, params: { lan: lan }}">
                 <nav @click="ShowNavPanel(); ScrollToTop();" >{{i.name}}</nav>
               </router-link>
           </li>
@@ -56,10 +76,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import axios from 'axios'
 export default Vue.extend({
   name:"CoverElements",
-  props:['Data'],
+  props:['ThemeIndex', 'lan'],
   methods: {
     ShowNavPanel(){
       if (document.getElementById("NavPanel").classList.contains("Show"))
@@ -73,27 +92,71 @@ export default Vue.extend({
         document.getElementById("MenuButton").classList.add("Active");
         document.getElementById("block").classList.add("blocked");
       }
+    }
+  },
+  computed:{
+    ThemeToggleRight(){
+      if (this.ThemeIndex == 1)
+      return true;
+      else
+      return false;
     },
+    LanToggleRight(){
+      if ( this.lan == 'en' )
+      return true;
+      else
+      return false;
+    },
+    ThemeName(){
+      const ruNames: string[] = ['Классич.', 'Тёмная'];
+      const enNames: string[] = ['Classic', 'Dark'];
+      if( this.lan == 'ru' )
+        return ruNames[parseInt(this.ThemeIndex)];
+      else return enNames[parseInt(this.ThemeIndex)];
+    },
+    LanName(){
+      if( this.lan == 'ru' )
+        return 'Русский';
+      else return 'English';
+    },
+    NavPanelData(){
+      if (this.lan == 'en' )
+        return {
+          LogoD: require('@/assets/img/LogoD.svg'),
+          Social:[
+            {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
+            {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich_prod.'},
+            {imglink:require('@/assets/img/Social/instagram.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
+            {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
+          ],
+          Sections:[
+            {link:'Home',name:'Home'},
+            {link:'Projects',name:'My projects'},
+            {link:'Prices',name:'Prices'},
+            {link:'Pre',name:'Watch preloader'},
+            {link:'Home',name:'Point5'}
+          ]
+        };
+      else return{
+          LogoD: require('@/assets/img/LogoD.svg'),
+          Social:[
+            {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
+            {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich_prod.'},
+            {imglink:require('@/assets/img/Social/instagram.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
+            {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
+          ],
+          Sections:[
+            {link:'Home',name:'Главная'},
+            {link:'Projects',name:'Все проекты'},
+            {link:'Prices',name:'Расценки'},
+            {link:'Pre',name:'Посмотреть прелоудер'},
+            {link:'Home',name:'Пункт5'}
+          ]
+      };
+    }
   },
   data(){
     return{
-      NavPanelData: {
-        language: 'ru',
-        LogoD: require('@/assets/img/LogoD.svg'),
-        Social:[
-          {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
-          {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich_prod.'},
-          {imglink:require('@/assets/img/Social/instagram.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
-          {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
-        ],
-        Sections:[
-          {link:'/',name:'Главная'},
-          {link:'/projects',name:'Все проекты'},
-          {link:'/prices',name:'Расценки'},
-          {link:'/preloader',name:'Посмотреть прелоудер'},
-          {link:'/',name:'Пункт5'}
-        ]
-      }
     }
   },
   mounted:
@@ -191,10 +254,64 @@ export default Vue.extend({
 
   },
   
+  
 
 })
 </script>
 
+<style>
+.themeToggler{
+  margin-top: 80px;
+  margin-bottom: 15px;
+}
+.toggleBody{
+  width: 150px;
+  height: 30px;
+  margin: auto;
+  position: relative;
+  border-width: 3px;
+  border-color: var(--color1);
+  border-style: solid;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+}
+.togglePoint{
+  position: absolute;
+  z-index: 5;
+  background-color: var(--color1);
+  border-width: 3px;
+  border-color: var(--color1);
+  border-style: solid;
+  border-radius: 15px;
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+  transition: ease 0.1s;
+
+}
+.togglePoint:hover{
+  cursor: pointer;
+  background-color: var(--color4);
+  border-color: var(--color3);
+}
+.togglePoint.toggleLeft{
+  left:0px;
+  transition: ease 0.2s;
+}
+.togglePoint.toggleRight{
+  left: 120px;
+  transition: ease 0.2s;
+}
+.toggleText{
+  position: relative;
+  margin:auto;
+  text-align: center;
+}
+.toggleText span{
+  color:var(--color3);
+}
+</style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 /*----Полоска с лого наверху----*/
@@ -414,15 +531,16 @@ export default Vue.extend({
 #NavPanel.Show{
   right: 0;
 }
+
 #NavPanel ul li nav{
   margin: 10px 0 10px 0;
   padding: 10px;
   border-radius: 10px;
   border-style: solid;
   border-width:medium;
-  border-color: var(--color5);
-  background-color: var(--color1);
-  color: var(--color5);
+  border-color: var(--color3);
+  background-color: var(--color4);
+  color: var(--color3);
   user-select: none;
 }
 #NavPanel ul{
@@ -430,16 +548,13 @@ export default Vue.extend({
   padding: 0 10px 0 10px;
 }
 #NavPanel ul li nav:hover{
-  border-color: var(--color1);
-  background-color: var(--color5);
-  color: var(--color1);
+  border-color: var(--color4);
+  background-color: var(--color3);
+  color: var(--color4);
   cursor: pointer;
   user-select: none;
 }
 
-#NavPanel ul li:nth-of-type(1){
-  margin-top:60px;
-}
 #NavPanel .SocialLinks{
   margin-left: 5px;
   bottom: 15px;
@@ -447,17 +562,17 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
 }
-#NavPanel div div div{
+#NavPanel .SocialLinks div div{
   display: flex;
   flex-direction: row;
   position: relative;
 }
-#NavPanel div div div img{
+#NavPanel .SocialLinks div div img{
   height: 30px;
   width:30px;
   margin: 5px;
 }
-#NavPanel div div div span{
+#NavPanel .SocialLinks div div span{
   margin:auto 0 auto 0;
   color: var(--color5);
 }

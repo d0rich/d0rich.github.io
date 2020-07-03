@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <CoverElements/>
+    <CoverElements :ThemeIndex="sendedThemeIndex" :lan="lan" v-on:theme-toggle="ChangeTheme()" v-on:lan-toggle="ChangeLan()" />
     <div class="content">
       <transition name="slide-fade" mode="out-in">
         <router-view />
@@ -23,9 +23,56 @@ export default Vue.extend({
   },
   data(){
     return{
+      sendedThemeIndex: null,
+      lan: null,
     }
   },
-  
+  methods:{
+    ChangeTheme(){
+      if(this.ThemeIndex() == 0)
+      {localStorage.ThemeIndex = 1;}
+      else 
+      {localStorage.ThemeIndex = 0;}
+      this.SetTheme();
+    },
+    ChangeLan(){
+      if(this.$route.params.lan == 'ru')
+      {
+        this.$route.params.lan = 'en';
+      }
+      else
+      {
+        this.$route.params.lan = 'ru';
+      }
+      this.lan = this.$route.params.lan;
+      this.$router.push(this.$route);
+    },
+    SetTheme(){
+      const body: HTMLElement = document.body;
+      const themes: string[] = ["commonTheme", "darkTheme"];
+      themes.forEach(element => {
+        body.classList.remove(element);
+      });
+      if (this.ThemeIndex() == 0)
+      {
+        body.classList.add(themes[0]);
+      }
+      else
+      {
+        body.classList.add(themes[1]);
+      }
+      this.sendedThemeIndex = this.ThemeIndex();
+    },
+    ThemeIndex(){
+      if (localStorage.ThemeIndex == null)
+        {localStorage.ThemeIndex = 0;}
+      return localStorage.ThemeIndex;
+    }
+  },
+  created(){
+      this.SetTheme();
+      this.lan = this.$route.params.lan;
+  }
 })
 </script>
 <style>
@@ -53,12 +100,21 @@ a{
   user-select: none;
 }
 /*----Переменные с цветами----*/
-.colors{
+.commonTheme{
   --color1: #b32652;
   --color2: #141940;
   --color3: #d88c68;
   --color4: #021859;
   --color5: #0B9ED9;
+  transition: ease 0.3s;
+}
+.darkTheme{
+  --color1: #0B9ED9;
+  --color2: #212121;
+  --color3: #0B9ED9;
+  --color4: #2e2e2e;
+  --color5: #0B9ED9;
+  transition: ease 0.3s;
 }
 
 /*----Основное тело----*/
@@ -68,12 +124,13 @@ a{
 }
 #app{
   overflow:hidden;
+  
 }
 body{
   background-color: var(--color2);
   font-family: 'Comfortaa';
   font-weight: bold;
-  margin:0;
+  margin:auto;
 }
 .content{
   max-width: 600px;

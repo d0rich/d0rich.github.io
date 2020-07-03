@@ -24,6 +24,13 @@ Vue.mixin({
         behavior: 'smooth'
     });
     }
+  },
+  beforeCreate(){
+    if(this.$route.params.lan != 'en' && this.$route.params.lan != 'ru')
+    {
+      this.$route.params.lan = 'en';
+      this.$router.push(this.$route);
+    }
   }
 })
 

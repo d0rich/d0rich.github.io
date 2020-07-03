@@ -4,7 +4,7 @@
     <Loader v-if="OnLoad" />
     <div v-if="!OnLoad">
       <div class="ProTitle">
-          <router-link to="/projects">
+          <router-link :to="{name:'Projects' , params:{ lan: $route.params.lan}}">
             <span id="Heading" class="ActiveShow" @click="ScrollToTop()">Мои проекты</span>
           </router-link>
           <span> -> </span>
@@ -13,7 +13,7 @@
       <SmallProjectPattern v-if="!ProjectData.Big" :ProjectData=ProjectData />
       <BigProjectPattern v-if="ProjectData.Big" :ProjectData=ProjectData />
       <div class="back">
-        <router-link to="/projects">
+        <router-link :to="{name:'Projects' , params:{ lan: $route.params.lan}}">
           <span class="ActiveShow" @click="ScrollToTop()">Назад к проектам...</span>
         </router-link>
       </div>
@@ -43,10 +43,11 @@ export default Vue.extend({
             ProjectData: null
         }
     },
-    beforeMount:
-    function(){
-      axios
-        .get(this.$data.ServerLink +'/getProject?language=ru&projectID='+this.$route.path.substr(10))
+    methods:{
+      FetchData(){
+        this.OnLoad=true;
+        axios
+        .get(this.$data.ServerLink +'/getProject?language=' + this.$route.params.lan + '&projectID='+this.$route.params.id)
         .then(response => {
           if (response.data.status=="error")
           console.log(response.data.message);
@@ -57,6 +58,13 @@ export default Vue.extend({
           console.log(error);
         })
         .finally(()=>{this.OnLoad=false;})
+      }
+    },
+    watch:{
+      $route() {this.FetchData();}
+    },
+    created(){
+      this.FetchData();
     }
     
 })
@@ -76,9 +84,10 @@ export default Vue.extend({
   transition: 0.2s;
   line-height: 40pt;
 }
-#Heading:hover, .back:hover span {
+#Heading:hover, .back span:hover {
   cursor: pointer;
   background-color: var(--color3);
+  color: var(--color2);
 }
 .ProTitle span:nth-of-type(1){
   color: var(--color1);
@@ -95,7 +104,7 @@ export default Vue.extend({
 .back span {
   border-radius: 10px;
   padding: 5px;
-  color:var(--color1);
+  color:var(--color3);
   transition: 0.2s;
   line-height: 40pt;
 }

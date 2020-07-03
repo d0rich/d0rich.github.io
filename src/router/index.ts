@@ -10,26 +10,28 @@ Vue.use(VueRouter)
 
   const routes: Array<RouteConfig> = [
   {
-    path: '/',
+    path: '/:lan/home',
     name: 'Home',
     component: Home
   },
   {
-    path: '/projects',
+    path: '/:lan/projects',
     name: 'Projects',
     component: Projects
   },
   {
-    path: '/projects/:id',
+    path: '/:lan/projects/:id',
     name: 'ProjectPage',
     component: ProjectPage
   },
   {
-    path: '/prices',
+    path: '/:lan/prices',
+    name: 'Prices',
     component: Prices
   },
   {
     path: '/preloader',
+    name: 'Pre',
     component: Loader
   }
 ]

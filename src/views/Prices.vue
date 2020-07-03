@@ -81,12 +81,11 @@ export default Vue.extend({
            }
         event.target.parentElement.classList.add('activate');
         setTimeout(function(){event.target.parentElement.classList.remove('activate')}, 300);
-      }
-    },
-    mounted:
-    function(){
-      axios
-        .get(this.$data.ServerLink +'/getPricesPageData?language=ru')
+      },
+      FetchData(){
+        this.OnLoad=true;
+        axios
+        .get(this.$data.ServerLink +'/getPricesPageData?language='+this.$route.params.lan)
         .then(response => {
           if (response.data.status=="error")
           console.log(response.data.message);
@@ -97,7 +96,12 @@ export default Vue.extend({
           console.log(error);
         })
         .finally(()=>{this.OnLoad=false;})
-  },
+      }
+    },
+    watch:{
+      $route() {this.FetchData();}
+    },
+    created(){ this.FetchData(); },
 
 })
 </script>
