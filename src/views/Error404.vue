@@ -17,6 +17,7 @@ export default Vue.extend({
 </script>
 <style scoped>
 .ErrorMessage{
+    padding:15px;
     font-size: xx-large;
     color: var(--color1);
 }

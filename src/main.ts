@@ -13,8 +13,8 @@ Vue.config.productionTip = false
 Vue.mixin({
   data: function() {
     return {
-      //ServerLink:'https://dorich-prod-site.herokuapp.com'
-      ServerLink: 'http://localhost:8000'
+      ServerLink:'https://dorich-prod-site.herokuapp.com'
+      //ServerLink: 'http://localhost:8000'
     }
   },
   methods: {
@@ -29,9 +29,19 @@ Vue.mixin({
   beforeCreate(){
     if(this.$route.params.lan != 'en' && this.$route.params.lan != 'ru')
     {
-      this.$route.params.lan = 'en';
-      this.$router.push(this.$route);
+      if (!localStorage.lan){
+        localStorage.lan = 'en';
+      }
+      this.$route.params.lan = localStorage.lan;
     }
+    if(this.$route.params.prof != 'videomaker' && this.$route.params.prof != 'programmer')
+    {
+      if (!localStorage.prof){
+        localStorage.prof = 'videomaker';
+      }
+      this.$route.params.prof = localStorage.prof;
+    }
+    this.$router.push(this.$route);
   }
 })
 

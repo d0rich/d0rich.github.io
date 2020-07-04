@@ -85,7 +85,7 @@ export default Vue.extend({
       FetchData(){
         this.OnLoad=true;
         axios
-        .get(this.$data.ServerLink +'/get-prices-page-data?language='+this.$route.params.lan)
+        .get(this.$data.ServerLink +'/get-prices-page-data?language=' + this.$route.params.lan + '&prof=' + this.$route.params.prof)
         .then(response => {
           if (response.data.status=="error")
           console.log(response.data.message);

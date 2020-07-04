@@ -15,12 +15,12 @@ Vue.use(VueRouter)
     redirect: { name: 'Home' }
   },
   {
-    path: '/:lan/home',
+    path: '/:lan/:prof/home',
     name: 'Home',
     component: Home
   },
   {
-    path: '/:lan/projects',
+    path: '/:lan/:prof/projects',
     name: 'Projects',
     component: Projects
   },
@@ -30,17 +30,17 @@ Vue.use(VueRouter)
     component: ProjectPage
   },
   {
-    path: '/:lan/prices',
+    path: '/:lan/:prof/prices',
     name: 'Prices',
     component: Prices
   },
   {
-    path: '/:lan/preloader',
+    path: '/:lan/:prof/preloader',
     name: 'Pre',
     component: Loader
   },
   {
-    path: '/:lan/error404',
+    path: '/error404',
     name: 'Error404',
     component: Error404
   },

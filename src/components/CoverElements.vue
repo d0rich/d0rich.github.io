@@ -22,16 +22,6 @@
 
     <div id="NavPanel">
       <div class="Scroll">
-        <div class="themeToggler"> 
-          <div class="toggleBody">
-            <div v-bind:class="{togglePoint:true, toggleRight: ThemeToggleRight, toggleLeft: !ThemeToggleRight}"  
-              v-on:click="$emit('theme-toggle')">
-            </div>
-            <div class="toggleText">
-              <span>{{ThemeName}}</span>
-              </div>
-          </div>
-        </div>
         <div class="languageToggler"> 
           <div class="toggleBody">
             <div v-bind:class="{togglePoint:true, toggleRight: LanToggleRight, toggleLeft: !LanToggleRight}"  
@@ -42,9 +32,29 @@
               </div>
           </div>
         </div>
+        <div class="themeToggler"> 
+          <div class="toggleBody">
+            <div v-bind:class="{togglePoint:true, toggleRight: ThemeToggleRight, toggleLeft: !ThemeToggleRight}"  
+              v-on:click="$emit('theme-toggle')">
+            </div>
+            <div class="toggleText">
+              <span>{{ThemeName}}</span>
+              </div>
+          </div>
+        </div>
+        <div class="profToggler"> 
+          <div class="toggleBody">
+            <div v-bind:class="{togglePoint:true, toggleRight: ProfToggleRight, toggleLeft: !ProfToggleRight}"  
+              v-on:click="$emit('prof-toggle')">
+            </div>
+            <div class="toggleText">
+              <span>{{ProfName}}</span>
+              </div>
+          </div>
+        </div>
         <ul>
           <li v-for="(i, index) in NavPanelData.Sections" v-bind:key="index">
-              <router-link :to=" {name:i.link, params: { lan: lan }}">
+              <router-link :to=" {name:i.link, params: { lan: lan, prof:prof }}">
                 <nav @click="ShowNavPanel(); ScrollToTop();" >{{i.name}}</nav>
               </router-link>
           </li>
@@ -78,7 +88,7 @@
 import Vue from 'vue'
 export default Vue.extend({
   name:"CoverElements",
-  props:['ThemeIndex', 'lan'],
+  props:['ThemeIndex', 'lan', 'prof'],
   methods: {
     ShowNavPanel(){
       if (document.getElementById("NavPanel").classList.contains("Show"))
@@ -107,6 +117,12 @@ export default Vue.extend({
       else
       return false;
     },
+    ProfToggleRight(){
+      if ( this.prof == 'programmer' )
+      return true;
+      else
+      return false;
+    },
     ThemeName(){
       const ruNames: string[] = ['Классич.', 'Тёмная'];
       const enNames: string[] = ['Classic', 'Dark'];
@@ -118,6 +134,24 @@ export default Vue.extend({
       if( this.lan == 'ru' )
         return 'Русский';
       else return 'English';
+    },
+    ProfName(){
+      const ruNames: string[] = ['Видео', 'Программ.'];
+      const enNames: string[] = ['Video', 'Programmer'];
+      if( this.lan == 'ru' )
+      {
+        if ( this.prof == 'programmer' )
+          return ruNames[1]
+        else  
+          return ruNames[0]
+      }
+      else
+      {
+        if ( this.prof == 'programmer' )
+          return enNames[1]
+        else  
+          return enNames[0]
+      }
     },
     NavPanelData(){
       if (this.lan == 'en' )
@@ -258,10 +292,13 @@ export default Vue.extend({
 
 })
 </script>
-
+<!-- togglers -->
 <style>
-.themeToggler{
+.languageToggler{
   margin-top: 80px;
+  margin-bottom: 15px;
+}
+.themeToggler{
   margin-bottom: 15px;
 }
 .toggleBody{
@@ -312,9 +349,8 @@ export default Vue.extend({
   color:var(--color3);
 }
 </style>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!----Полоска с лого наверху---->
 <style scoped>
-/*----Полоска с лого наверху----*/
 .head {
   left:0px;
   background-color: var(--color4);
@@ -406,8 +442,9 @@ export default Vue.extend({
   99% {background-color: var(--color4);}
   100% {background-color: var(--color3);}
 }
-
-/*----Кнопка для вызова навигационной панели----*/
+</style>
+<!----Кнопка для вызова навигационной панели---->
+<style scoped>
 #MenuButton{
   position: fixed;
   right:65px;
@@ -508,9 +545,9 @@ export default Vue.extend({
 }
 
 /*----Конец кнопки для вызова навигационной панели----*/
-
-
-/*----Навигационная панель----*/
+</style>
+<!----Навигационная панель---->
+<style scoped>
 #NavPanel{
   background-color: var(--color4);
   width: 50%;

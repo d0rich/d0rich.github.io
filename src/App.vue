@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <CoverElements :ThemeIndex="sendedThemeIndex" :lan="lan" v-on:theme-toggle="ChangeTheme()" v-on:lan-toggle="ChangeLan()" />
+    <CoverElements 
+    :ThemeIndex="sendedThemeIndex" :lan="lan" :prof="prof" 
+    v-on:theme-toggle="ChangeTheme()" v-on:lan-toggle="ChangeLan()" v-on:prof-toggle="ChangeProf()" />
     <div class="content">
       <transition name="slide-fade" mode="out-in">
         <router-view />
@@ -25,6 +27,7 @@ export default Vue.extend({
     return{
       sendedThemeIndex: null,
       lan: null,
+      prof: null
     }
   },
   methods:{
@@ -38,13 +41,27 @@ export default Vue.extend({
     ChangeLan(){
       if(this.$route.params.lan == 'ru')
       {
-        this.$route.params.lan = 'en';
+        localStorage.lan = 'en';
       }
       else
       {
-        this.$route.params.lan = 'ru';
+        localStorage.lan = 'ru';
       }
+      this.$route.params.lan = localStorage.lan;
       this.lan = this.$route.params.lan;
+      this.$router.push(this.$route);
+    },
+    ChangeProf(){
+      if(this.$route.params.prof == 'programmer')
+      {
+        localStorage.prof = 'videomaker';
+      }
+      else
+      {
+        localStorage.prof = 'programmer';
+      }
+      this.$route.params.prof = localStorage.prof;
+      this.prof = this.$route.params.prof;
       this.$router.push(this.$route);
     },
     SetTheme(){
@@ -72,6 +89,7 @@ export default Vue.extend({
   created(){
       this.SetTheme();
       this.lan = this.$route.params.lan;
+      this.prof = this.$route.params.prof;
   }
 })
 </script>

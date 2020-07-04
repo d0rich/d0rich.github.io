@@ -4,7 +4,7 @@
     <Loader v-if="OnLoad" />
     <div v-if="!OnLoad">
       <div class="ProTitle">
-          <router-link :to="{name:'Projects' , params:{ lan: $route.params.lan}}">
+          <router-link :to="{name:'Projects' , params:{ lan: $route.params.lan, prof: ProjectData.prof}}">
             <span id="Heading" class="ActiveShow" @click="ScrollToTop()">{{PageData.Header}}</span>
           </router-link>
           <span> -> </span>
@@ -13,7 +13,7 @@
       <SmallProjectPattern v-if="!ProjectData.Big" :ProjectData=ProjectData />
       <BigProjectPattern v-if="ProjectData.Big" :ProjectData=ProjectData />
       <div class="back">
-        <router-link :to="{name:'Projects' , params:{ lan: $route.params.lan}}">
+        <router-link :to="{name:'Projects' , params:{ lan: $route.params.lan, prof: ProjectData.prof}}">
           <span class="ActiveShow" @click="ScrollToTop()">{{PageData.Back}}</span>
         </router-link>
       </div>
