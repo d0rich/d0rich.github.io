@@ -5,7 +5,9 @@
     v-on:theme-toggle="ChangeTheme()" v-on:lan-toggle="ChangeLan()" v-on:prof-toggle="ChangeProf()" />
     <div class="content">
       <transition name="slide-fade" mode="out-in">
-        <router-view />
+        <router-view 
+          :ThemeIndex="sendedThemeIndex" :lan="lan" :prof="prof" 
+          v-on:theme-toggle="ChangeTheme()" v-on:lan-toggle="ChangeLan()" v-on:prof-toggle="ChangeProf()" />
       </transition>
     </div>
     <Footer />
@@ -28,6 +30,21 @@ export default Vue.extend({
       sendedThemeIndex: null,
       lan: null,
       prof: null
+    }
+  },
+  watch:{
+    $route(){
+      if(this.$route.params.lan)
+        {
+          this.lan = this.$route.params.lan;
+          localStorage.lan = this.lan
+        }
+
+      if(this.$route.params.prof)
+        {
+          this.prof = this.$route.params.prof;
+          localStorage.prof = this.$route.params.prof;
+        }
     }
   },
   methods:{

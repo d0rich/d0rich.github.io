@@ -295,7 +295,6 @@ export default Vue.extend({
 <!-- togglers -->
 <style>
 .languageToggler{
-  margin-top: 80px;
   margin-bottom: 15px;
 }
 .themeToggler{
@@ -347,6 +346,11 @@ export default Vue.extend({
 }
 .toggleText span{
   color:var(--color3);
+}
+</style>
+<style scoped>
+.languageToggler{
+  margin-top: 80px;
 }
 </style>
 <!----Полоска с лого наверху---->
