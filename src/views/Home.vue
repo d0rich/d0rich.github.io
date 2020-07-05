@@ -1,211 +1,230 @@
 <template>
   <div>
-    <transition :duration=200 name="fade" mode="out-in">
-    <Loader v-if="OnLoad" />
-    
-    <div v-if="!OnLoad">
-      <div class="content1">
-        <div class="photo">
-          <div>PHOTO</div>
-        </div>
-        <div class="description">
-          <p>
-            {{HomePageData.Text1}}
-          </p>
-        </div>
-      </div>
+    <transition :duration="200" name="fade" mode="out-in">
+      <Loader v-if="OnLoad" />
 
-      <div class="videopresentation_h">
-        <span>{{HomePageData.Header1}}</span>
-      </div>
-
-      <VideoFrame :Link=HomePageData.PresLink />
-
-      <div class="PresNavigation" >
-        <div>
-          <div class="NavDots">
-            <div v-for="(screen, index) in HomePageData.Screenshots" :key="index"></div>
+      <div v-if="!OnLoad">
+        <div class="content1">
+          <div class="photo">
+            <div>PHOTO</div>
+          </div>
+          <div class="description">
+            <p>{{HomePageData.Text1}}</p>
           </div>
         </div>
-        <div class="content2">
-          <div v-for="(screen, index) in HomePageData.Screenshots" :key="index" class="Screen">
-            <div class="ScreenDes">
-              <span>{{screen.description}}</span>
+
+        <div class="videopresentation_h">
+          <span>{{HomePageData.Header1}}</span>
+        </div>
+
+        <VideoFrame :Link="HomePageData.PresLink" />
+
+        <div class="PresNavigation">
+          <div>
+            <div class="NavDots">
+              <div v-for="(screen, index) in HomePageData.Screenshots" :key="index"></div>
             </div>
-            <div class="ScreenRight">
-              <div class="TimeCode">
-                <div>
-                  <span>{{screen.timecode}}</span>
+          </div>
+          <div class="content2">
+            <div v-for="(screen, index) in HomePageData.Screenshots" :key="index" class="Screen">
+              <div class="ScreenDes">
+                <span>{{screen.description}}</span>
+              </div>
+              <div class="ScreenRight">
+                <div class="TimeCode">
+                  <div>
+                    <span>{{screen.timecode}}</span>
+                  </div>
+                </div>
+                <div class="Screenshot">
+                  <img :src="ImgLink(screen.screenlink)" />
                 </div>
               </div>
-              <div class="Screenshot">
-                <img :src="ImgLink(screen.screenlink)">
-              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </transition>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import axios from 'axios'
-import VideoFrame from '@/components/VideoFrame.vue'
-import Loader from '@/components/Loader.vue'
+import Vue from "vue";
+import axios from "axios";
+import VideoFrame from "@/components/VideoFrame.vue";
+import Loader from "@/components/Loader.vue";
+import { CustomVue } from "vuex";
 
 export default Vue.extend({
-  name: 'Home',
-  data(){
-    return{
+  name: "Home",
+  data() {
+    return {
       OnLoad: true,
       HomePageData: {
-        language: '',
-        Text1: '',
-        Header1: '',
-        PresLink: '',
-        Screenshots: [{
-          description: '',
-          timecode: '',
-          screenlink: ''
-        }]
+        language: "",
+        Text1: "",
+        Header1: "",
+        PresLink: "",
+        Screenshots: [
+          {
+            description: "",
+            timecode: "",
+            screenlink: ""
+          }
+        ]
       },
-    }
+      DotsData: {
+        target: null,
+        screenlist: null,
+        screens: null,
+        dots: null
+      }
+    };
   },
   components: {
     VideoFrame,
     Loader
   },
-  watch:{
+  watch: {
     $route() {
       this.FetchData();
     }
   },
-  mounted(){
-      this.FetchData();
+  mounted() {
+    this.FetchData();
   },
-  methods:{
-    FetchData(){
-      this.OnLoad=true; 
+  methods: {
+    FetchData() {
+      this.OnLoad = true;
       axios
-        .get(this.$data.ServerLink +'/get-home-page-data?language=' + this.$route.params.lan + '&prof=' + this.$route.params.prof)
+        .get(
+          this.$data.ServerLink +
+            "/get-home-page-data?language=" +
+            this.$route.params.lan +
+            "&prof=" +
+            this.$route.params.prof
+        )
         .then(response => {
-          if (response.data.status=="error")
-          console.log(response.data.message);
-          else{
-            if(response.data.status=="not found")
-              this.$router.push({name:'Error404', params:{ lan:this.$route.params.lan }});
-            else
-             this.HomePageData = response.data;
+          if (response.data.status == "error")
+            console.log(response.data.message);
+          else {
+            if (response.data.status == "not found")
+              this.$router.push({
+                name: "Error404",
+                params: { lan: this.$route.params.lan }
+              });
+            else this.HomePageData = response.data;
           }
         })
         .catch(error => {
           console.log(error);
         })
-        .finally(()=>{this.OnLoad=false; 
-        setTimeout(() => {
-          this.SetDots();
-        }, 400);})
+        .finally(() => {
+          this.OnLoad = false;
+          setTimeout(() => {
+            this.SetDotsInfo();
+            this.SetDots(this.DotsData.target, this.DotsData.screenlist);
+            this.AddListener(this.DotsData, this.SetDots);
+          }, 400);
+        });
     },
-    SetDots:function(){
-        const target = document.querySelector('.NavDots');
-        const screenlist = document.querySelector('.PresNavigation');
-        const screens = document.querySelectorAll('.Screen');
-        const dots = document.querySelectorAll('.NavDots div');
-        const TopBottom=function(elem){
-          return{
-            top: window.pageYOffset + elem.getBoundingClientRect().top,
-            bottom: window.pageYOffset + elem.getBoundingClientRect().bottom
-          }
-        }
-      const DotsVisible = function(target, screenlist){
-        const screensPosition = TopBottom(screenlist),
-          windowPosition = {
-            top: window.pageYOffset,
-            bottom: window.pageYOffset + document.documentElement.clientHeight
-          },
-          length = screens.length - 1;
-          let pos = windowPosition.top - screensPosition.top/2,
-          WronglyActiveScreen, WronglyActiveDot, ActiveID;
+    TopBottom(elem) {
+      return {
+        top: window.pageYOffset + elem.getBoundingClientRect().top,
+        bottom: window.pageYOffset + elem.getBoundingClientRect().bottom
+      };
+    },
+    SetDotsInfo() {
+      this.DotsData.target = document.querySelector(".NavDots");
+      this.DotsData.screenlist = document.querySelector(".PresNavigation");
+      this.DotsData.screens = document.querySelectorAll(".Screen");
+      this.DotsData.dots = document.querySelectorAll(".NavDots div");
+    },
+    SetDots(target, screenlist) {
+      const screensPosition = this.TopBottom(screenlist),
+        windowPosition = {
+          top: window.pageYOffset,
+          bottom: window.pageYOffset + document.documentElement.clientHeight
+        },
+        length = this.DotsData.screens.length - 1;
+      let pos = windowPosition.top - screensPosition.top / 2,
+        WronglyActiveScreen,
+        WronglyActiveDot,
+        ActiveID;
 
-          screens.forEach((screen, i) => {
-            if (TopBottom(screen).top<TopBottom(target).top+(length+1)*10 && TopBottom(screen).bottom>TopBottom(target).top+(length+1)*10)
-            ActiveID = i;
-          });
+      this.DotsData.screens.forEach((screen, i) => {
+        if (
+          this.TopBottom(screen).top <
+            this.TopBottom(target).top + (length + 1) * 10 &&
+          this.TopBottom(screen).bottom >
+            this.TopBottom(target).top + (length + 1) * 10
+        )
+          ActiveID = i;
+      });
 
-          if (pos<30)
-          {
-            pos=30;
-            ActiveID=0;
-          }
-
-
-          else if (pos>screensPosition.bottom- screensPosition.top -(length+1)*20-30)
-          {
-            pos=screensPosition.bottom- screensPosition.top -(length+1)*20-30;
-            ActiveID=length;
-          }
-
-          screens.forEach((screen, i) => {
-            if (i!=ActiveID && screen.classList.contains('Showing'))
-            {
-              WronglyActiveScreen = screen;
-              WronglyActiveDot = dots[i];
-            }
-          });
-
-          if (ActiveID != undefined)
-          {
-            screens[ActiveID].classList.add('Showing')
-            dots[ActiveID].classList.add('ShowDot');
-            if (WronglyActiveScreen != undefined)
-            WronglyActiveScreen.classList.remove('Showing');
-            if (WronglyActiveDot != undefined)
-            WronglyActiveDot.classList.remove('ShowDot');
-          }
-
-          target.style.top=pos+"px";
+      if (pos < 30) {
+        pos = 30;
+        ActiveID = 0;
+      } else if (
+        pos >
+        screensPosition.bottom - screensPosition.top - (length + 1) * 20 - 30
+      ) {
+        pos =
+          screensPosition.bottom - screensPosition.top - (length + 1) * 20 - 30;
+        ActiveID = length;
       }
 
-      const GoCheck = function(){DotsVisible (target, screenlist);}
-      GoCheck();
-      window.addEventListener('scroll', function() {
-        GoCheck();
+      this.DotsData.screens.forEach((screen, i) => {
+        if (i != ActiveID && screen.classList.contains("Showing")) {
+          WronglyActiveScreen = screen;
+          WronglyActiveDot = this.DotsData.dots[i];
+        }
       });
+
+      if (ActiveID != undefined) {
+        this.DotsData.screens[ActiveID].classList.add("Showing");
+        this.DotsData.dots[ActiveID].classList.add("ShowDot");
+        if (WronglyActiveScreen != undefined)
+          WronglyActiveScreen.classList.remove("Showing");
+        if (WronglyActiveDot != undefined)
+          WronglyActiveDot.classList.remove("ShowDot");
+      }
+
+      target.style.top = pos + "px";
+    },
+    AddListener(DotsData, DotsFunc) {
+      window.addEventListener('scroll', function(){DotsFunc(DotsData.target, DotsData.screenlist);});
     }
   }
-})
+});
 </script>
 
 <style scoped>
-
-.content1{
-  min-height:300px;
+.content1 {
+  min-height: 300px;
   display: flex;
 }
-.photo{
-  margin:7px;
+.photo {
+  margin: 7px;
   border-radius: 20px;
   border-width: 5px;
   border-color: var(--color1);
   border-style: solid;
   justify-content: center;
   background-color: var(--color4);
-  width:30%;
+  width: 30%;
   margin-bottom: 50px;
   height: 66%;
   color: var(--color1);
 }
-.photo div{
-  line-height:200px;
+.photo div {
+  line-height: 200px;
   margin-left: 20%;
 }
 .description {
-  margin:7px;
+  margin: 7px;
   max-width: 63%;
-  margin-top:50px;
+  margin-top: 50px;
   padding: 10px;
   border-radius: 20px;
   border-width: 5px;
@@ -213,94 +232,94 @@ export default Vue.extend({
   border-style: solid;
   background-color: var(--color4);
 }
-.description p{
-  color: var(--color3)
+.description p {
+  color: var(--color3);
 }
-.videopresentation_h{
-  margin-top:50px;
+.videopresentation_h {
+  margin-top: 50px;
   display: flex;
   justify-content: center;
 }
-.videopresentation_h span{
+.videopresentation_h span {
   color: var(--color3);
   font-size: 15pt;
 }
-.video{
+.video {
   margin-top: 20px;
-  width:80%;
+  width: 80%;
   margin-left: 10%;
 }
-.PresNavigation{
-  padding:10px;
+.PresNavigation {
+  padding: 10px;
   display: flex;
   flex-direction: row;
 }
-.NavDots{
-  position:relative;
-  width:30px;
-  padding:15px;
+.NavDots {
+  position: relative;
+  width: 30px;
+  padding: 15px;
   margin-right: 10px;
 }
-.NavDots div{
+.NavDots div {
   border-radius: 50%;
   background-color: var(--color1);
   height: 10px;
-  width:10px;
-  margin:5px;
+  width: 10px;
+  margin: 5px;
   transform: scale(1);
   transition: ease 0.2s;
 }
-.NavDots .ShowDot{
+.NavDots .ShowDot {
   transform: scale(1.5);
   transform-origin: center;
   background-color: var(--color3);
 }
-.content2{
+.content2 {
   width: 80%;
   display: flex;
   flex-direction: column;
 }
-.Screen{
-  display:flex;
+.Screen {
+  display: flex;
   flex-direction: column-reverse;
   max-height: 350px;
-  color:var(--color3);
+  color: var(--color3);
   margin-top: 20px;
   border-radius: 20px;
   background-color: var(--color2);
-  padding:10px;
-  border-style: solid;;
+  padding: 10px;
+  border-style: solid;
   border-color: var(--color3);
   border-width: 0px;
   transition: ease 0.2s;
 }
-.Showing{
+.Showing {
   background-color: var(--color4);
   border-width: 2px;
   border-color: var(--color1);
 }
-.ScreenDes{
+.ScreenDes {
   background-color: var(--color4);
   border-radius: 8px;
-  padding:10px;
+  padding: 10px;
   margin-top: 10px;
   overflow-y: auto;
 }
 .ScreenDes::-webkit-scrollbar-corner {
-  background:var(--color5); 
+  background: var(--color5);
 }
 .ScreenDes::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  width: 8px;
+  height: 8px;
 }
-.ScreenRight{
+.ScreenRight {
   display: flex;
   flex-direction: column;
 }
-.TimeCode{
-  padding:7px;
+.TimeCode {
+  padding: 7px;
 }
-.TimeCode div{
+.TimeCode div {
   border-radius: 10px;
   border-width: 3px;
   border-style: solid;
@@ -310,7 +329,7 @@ export default Vue.extend({
   border-color: var(--color3);
   color: var(--color3);
 }
-.Screenshot img{
+.Screenshot img {
   display: block;
   max-height: 125px;
   max-width: 100%;
@@ -322,7 +341,7 @@ export default Vue.extend({
   border-color: var(--color3);
   background-color: var(--color3);
 }
-.Screenshot img{
+.Screenshot img {
   border-color: var(--color1);
   color: var(--color1);
 }

@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="hor"></div>
     <footer> 
-        <div v-if="this.$route.path==='/prices'">
+        <div v-if="this.$route.name==='Prices'">
           <p class="Authors">Arts designed by:</p>
           <ul>
             <li><a href="http://www.freepik.com">Freepik</a></li>
@@ -14,6 +14,7 @@
           </ul>
         </div>
         <p>Preloader arts designed by <a href="http://www.freepik.com">Freepik</a></p>
+        <p>Error404 art designed by <a href="http://www.freepik.com">pikisuperstar / Freepik</a></p>
         <p>Developed by Dorich production with Dorich production's support for Dorich production.</p>
         <p>©All rights reserved.</p>
     </footer>
