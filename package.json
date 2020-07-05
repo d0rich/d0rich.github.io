@@ -1,0 +1,10 @@
+{
+  "name": "dorich-prod",
+  "version": "1.0.0",
+  "description": "Heroku App",
+  "author": "Dorich prod.",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install express"
+  }
+}
