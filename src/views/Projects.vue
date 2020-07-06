@@ -8,23 +8,31 @@
         <div class="ProTitle">
           <span id="Heading">{{PageData.Header}}</span>
         </div>
+        <div class="tagsKit">
+          <div class="UTag" v-for="(tag, index) in UniqueTags" :key="index">
+            <span @click="InsertTag(tag, $event)" >{{'#'+tag}}</span>
+          </div>
+        </div>
+        
       </div>
       <!-- Конец заголовка -->
       <!-- Начало списка проектов -->
-        <div>
-          <div v-for="(i, index) in ProjectsData" :key="index" class="prevue">
-            <div class="main">
-              <img class="MainImg" :src=ImgLink(i.MainImg) />
-              <span class="hashtags">{{i.HashTags}}</span>
-              <span class="ProjectName">{{i.name}}</span>
-              <router-link :to="{name: 'ProjectPage' , params:{id:i.id , lan: i.language }}">
-                <nav class="ProLink" @click="ScrollToTop()" :id=i.id>{{PageData.Details}}</nav>
-              </router-link>
+        <div v-for="(i, index) in ProjectsData" :key="index" class="prevueBox">
+          <transition name="slide-fade" mode="out-in">
+            <div  v-if="ActiveProject(i.HashTags)" class="prevue">
+              <div class="main">
+                <img class="MainImg" :src=ImgLink(i.MainImg) />
+                <span class="hashtags">{{HashTags(i.HashTags)}}</span>
+                <span class="ProjectName">{{i.name}}</span>
+                <router-link :to="{name: 'ProjectPage' , params:{id:i.id , lan: i.language }}">
+                  <nav class="ProLink" @click="ScrollToTop()" :id=i.id>{{PageData.Details}}</nav>
+                </router-link>
+              </div>
+              <div class="screens">
+                <img v-for="(img, index) in i.mainscreens" :key="index" :src=ImgLink(img) />
+              </div>
             </div>
-            <div class="screens">
-              <img v-for="(img, index) in i.mainscreens" :key="index" :src=ImgLink(img) />
-            </div>
-          </div>
+          </transition>
         </div>
     <!-- Конец списка проектов -->
       </div>
@@ -46,7 +54,8 @@ export default Vue.extend({
         return{        
           OnLoad:true,
           ProjectsData: null,
-          lan: null
+          lan: null,
+          ActiveTags: []
         }
 
     },
@@ -64,6 +73,19 @@ export default Vue.extend({
             Details: 'More details...'
           }
         }
+      },
+      UniqueTags(){
+        const result = [];
+
+        this.ProjectsData.forEach(project => {
+          project.HashTags.forEach(tag => {
+            if (!result.includes(tag)) {
+              result.push(tag);
+            }
+          });
+        });
+
+        return result;
       }
     },
     watch:{
@@ -73,6 +95,36 @@ export default Vue.extend({
       this.FetchData();
     },
     methods:{
+      ActiveProject(projectTags){
+        let result = false;
+        if (this.ActiveTags.length == 0)
+          result = true;
+        else{
+          projectTags.forEach(tag => {
+            if (this.ActiveTags.includes(tag))
+              {
+                result = true;
+              }
+          });
+          this.ActiveTags.forEach(tag => {
+            if (!projectTags.includes(tag))
+              {
+                result = false;
+              }
+          });
+        }
+        return result;
+      },
+      InsertTag(tag, event){
+        if (this.ActiveTags.includes(tag)){
+            this.ActiveTags.splice(this.ActiveTags.indexOf(tag), 1);
+            event.target.parentElement.classList.remove('Active');
+          }
+        else {
+          event.target.parentElement.classList.add('Active');
+          this.ActiveTags.push(tag);
+        }
+      },
       FetchData(){
         this.OnLoad=true;
         axios
@@ -98,6 +150,33 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.tagsKit{
+  margin-left:30px;
+  display: -webkit-flex; 
+  -webkit-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+}
+.UTag{
+  margin-top: 10px;
+  margin-bottom: 18px;
+  margin-right: 4px;
+}
+.UTag span{
+  cursor: pointer;
+  border-style: solid;
+  border-color: var(--color3);
+  color: var(--color3);
+  border-width: 3px;
+  border-radius: 16px;
+  padding: 5px;
+  font-size: large;
+  transition: ease 0.15s ;
+}
+.UTag.Active span{
+  background-color: var(--color3);
+  color: var(--color4);
+}
 .ProTitle{
   user-select: none;
   margin-left: 30px;
@@ -143,11 +222,11 @@ export default Vue.extend({
   border-width: 5px;
   background-color: var(--color4);
 }
-.prevue:nth-of-type(2n+1){
+.prevueBox:nth-of-type(2n+1) .prevue{
   flex-direction: row;
   border-color: var(--color1);
 }
-.prevue:nth-of-type(2n){
+.prevueBox:nth-of-type(2n) .prevue{
   flex-direction: row-reverse;
   border-color: var(--color3);
 }

@@ -566,7 +566,7 @@ export default Vue.extend({
 
 .Scroll{
     height:90%;
-    min-height: 550px;
+    min-height: 700px;
     position: relative;
 }
 #NavPanel.Show{

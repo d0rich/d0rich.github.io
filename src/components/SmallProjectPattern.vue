@@ -1,9 +1,12 @@
 <template>
     <div class="VideoPattern ProjectPattern">
         <VideoFrame :Link="ProjectData.videolink" />
-        <div class="hashtags"><span>{{ProjectData.HashTags}}</span></div>
+        <div class="hashtags"><span>{{HashTags(ProjectData.HashTags)}}</span></div>
         <div class="description">
           <p>{{ProjectData.description}}</p>
+        </div>
+        <div class="ScreenShots" >
+          <ImgWithFullScreen v-for="(screen, index) in ProjectData.screens" :key="index" :src="ImgLink(screen)" />
         </div>
     </div>
 </template>
@@ -11,17 +14,28 @@
 <script lang="ts">
 import Vue from 'vue'
 import VideoFrame from '@/components/VideoFrame.vue'
+import ImgWithFullScreen from '@/components/ImgWithFullScreen.vue'
 
 export default Vue.extend({
     name:'SmallProjectInfo',
     components: {
-        VideoFrame
+        VideoFrame,
+        ImgWithFullScreen
     },
     props:['ProjectData']
 })
 </script>
 
 <style scoped>
+.ScreenShots{
+  display: -webkit-flex; 
+  -webkit-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+}
+.Img{
+  width: 150px;
+}
 .video{
   margin-top: 20px;
   margin-left: auto;

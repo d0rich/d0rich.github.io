@@ -24,6 +24,13 @@ Vue.mixin({
         top: 0,
         behavior: 'smooth'
     });
+    },
+    HashTags(tags: string[]){
+      let result = '';
+      tags.forEach(tag => {
+        result = result + '#' + tag + ' ';
+      });
+      return result;
     }
   },
   beforeCreate(){

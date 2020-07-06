@@ -4,7 +4,7 @@
         <VideoFrame :Link=ProjectData.videolink  />
       </div>
         <img v-for="(i, index) in ProjectData.FirstImg" :key="'FirstImg'+index" :src=ImgLink(ProjectData.FirstImg) />
-        <div class="hashtags"><span>{{ProjectData.HashTags}}</span></div>
+        <div class="hashtags"><span>{{HashTags(ProjectData.HashTags)}}</span></div>
         <div class="description">
           <p>{{ProjectData.description}}</p>
         </div>
@@ -13,12 +13,14 @@
             {{i.subdescription}}
           </div>
           <div class="ImgPart">
-              <img v-for="(k, index) in i.mainimg" :key="'MainImg'+index" :src=ImgLink(k) class="MainImg" />
+              <ImgWithFullScreen v-for="(k, index) in i.mainimg" :key="'MainImg'+index" :src=ImgLink(k) class="MainImg" />
               <div class="TileVideo" v-for="(k, index) in i.video" :key="'Video'+index" >
                 <VideoFrame :Link="k" />
               </div>
               <div class="SecondaryImg">
-                  <img v-for="(k, index) in i.subimg" :key="'img'+index" :src=ImgLink(k) />
+                <div class="SecImg" v-for="(k, index) in i.subimg" :key="'img'+index">
+                  <ImgWithFullScreen  :src=ImgLink(k) />
+                </div>
               </div>
           </div>
         </div>
@@ -28,11 +30,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import VideoFrame from '@/components/VideoFrame.vue'
+import ImgWithFullScreen from '@/components/ImgWithFullScreen.vue'
 
 export default Vue.extend({
     name:'BigProjectInfo',
     components: {
-        VideoFrame
+        VideoFrame,
+        ImgWithFullScreen
     },
     props:['ProjectData']
 })
@@ -96,6 +100,7 @@ export default Vue.extend({
   border-width: 3px;
   padding:5px;
   display: flex;
+  overflow: hidden;
 }
 .Tile:nth-last-of-type(1){
     margin-bottom:30px;
@@ -117,29 +122,20 @@ export default Vue.extend({
   flex-direction: column;
 }
 .MainImg{
-  max-width:100%;
-  height:auto;
-  border-radius: 20px;
-  border-style: solid;
-  border-width: 3px;
-  border-color: var(--color1);
-  background-color: var(--color1);
+  width:95%;
+
 }
 .Tile .ImgPart img, .Tile.ImgPart div{
   margin: 5px;
 }
 .SecondaryImg {
-  display: block;
+  display: -webkit-flex; 
+  -webkit-flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
-.SecondaryImg img{
-  margin:5px;
-  max-width: 35%;
-  height:auto;
-  border-radius: 20px;
-  border-style: solid;
-  border-width: 3px;
-  border-color: var(--color3);
-  background-color: var(--color3);
+.SecondaryImg .SecImg{
+  width: 45%;
 }
 .BigProjectPattern .Tile .TextPart{
   width: 55%;
