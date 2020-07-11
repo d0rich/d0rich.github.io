@@ -20,7 +20,7 @@
       </div>
     </header>
 
-    <div id="NavPanel">
+    <div id="NavPanel" :class="{ Show: ShowNP || WideScreen }">
       <div class="Scroll">
         <div class="languageToggler"> 
           <div class="toggleBody">
@@ -72,15 +72,18 @@
         </div>
       </div>
     </div>
-
-    <div id="MenuButton" @click="ShowNavPanel">
-      <div class="Body"></div>
-      <div class="Body"></div>
-      <div class="Line"></div>
-      <div class="Line"></div>
-      <div class="Line"></div>
-    </div>
-    <div id="block"></div>
+    <transition name="long-fade">
+      <div id="MenuButton" :class="{ Active: ShowNP }" @click="ShowNavPanel" v-if="!WideScreen">
+        <div class="Body"></div>
+        <div class="Body"></div>
+        <div class="Line"></div>
+        <div class="Line"></div>
+        <div class="Line"></div>
+      </div>
+    </transition>
+    <transition name="long-fade">
+      <div id="block" :class="{ blocked: ShowNP}" v-if="!WideScreen"></div>
+    </transition>
   </div>
 </template>
 
@@ -89,53 +92,58 @@ import Vue from 'vue'
 export default Vue.extend({
   name:"CoverElements",
   props:['ThemeIndex', 'lan', 'prof'],
+  data(){
+    return{
+      ShowNP: false,
+      Width: 0
+    }
+  },
   methods: {
-    ShowNavPanel(){
-      if (document.getElementById("NavPanel").classList.contains("Show"))
-      {
-        document.getElementById("NavPanel").classList.remove("Show");
-        document.getElementById("MenuButton").classList.remove("Active");
-        document.getElementById("block").classList.remove("blocked");
-      }
-      else{
-        document.getElementById("NavPanel").classList.add("Show");
-        document.getElementById("MenuButton").classList.add("Active");
-        document.getElementById("block").classList.add("blocked");
-      }
+    ShowNavPanel() {
+      this.ShowNP = !this.ShowNP;
+    },
+    GetScreenWidth(){
+      this.Width = document.body.clientWidth;
     }
   },
   computed:{
-    ThemeToggleRight(){
-      if (this.ThemeIndex == 1)
-      return true;
+    WideScreen(): boolean{
+      if (this.Width > 1200)
+        return true;
       else
-      return false;
+        return false;
     },
-    LanToggleRight(){
+    ThemeToggleRight(): boolean{
+      if (this.ThemeIndex == 1)
+        return true;
+      else
+        return false;
+    },
+    LanToggleRight(): boolean{
       if ( this.lan == 'en' )
       return true;
       else
       return false;
     },
-    ProfToggleRight(){
+    ProfToggleRight(): boolean{
       if ( this.prof == 'programmer' )
       return true;
       else
       return false;
     },
-    ThemeName(){
+    ThemeName(): string{
       const ruNames: string[] = ['Классич.', 'Тёмная'];
       const enNames: string[] = ['Classic', 'Dark'];
       if( this.lan == 'ru' )
         return ruNames[parseInt(this.ThemeIndex)];
       else return enNames[parseInt(this.ThemeIndex)];
     },
-    LanName(){
+    LanName(): string{
       if( this.lan == 'ru' )
         return 'Русский';
       else return 'English';
     },
-    ProfName(){
+    ProfName(): string{
       const ruNames: string[] = ['Видео', 'Программ.'];
       const enNames: string[] = ['Video', 'Programmer'];
       if( this.lan == 'ru' )
@@ -189,9 +197,8 @@ export default Vue.extend({
       };
     }
   },
-  data(){
-    return{
-    }
+  created(){
+    window.addEventListener('resize', this.GetScreenWidth);
   },
   mounted:
     function(){

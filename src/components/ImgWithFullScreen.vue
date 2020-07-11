@@ -64,7 +64,7 @@ export default Vue.extend({
         display:block;
         margin: auto;
         position: relative;
-        top: calc(50vh - 40vw * 9 /16);
+        top: 10vh;
         z-index: 50;
         width:auto;
         height: 80vh;

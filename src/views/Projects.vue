@@ -8,17 +8,21 @@
         <div class="ProTitle">
           <span id="Heading">{{PageData.Header}}</span>
         </div>
+        <div class="TagsHeading">
+          <span>
+            {{ChooseTags}}
+          </span>
+        </div>
         <div class="tagsKit">
           <div class="UTag" v-for="(tag, index) in UniqueTags" :key="index">
             <span @click="InsertTag(tag, $event)" >{{'#'+tag}}</span>
           </div>
         </div>
-        
       </div>
       <!-- Конец заголовка -->
       <!-- Начало списка проектов -->
         <div v-for="(i, index) in ProjectsData" :key="index" class="prevueBox">
-          <transition name="slide-fade" mode="out-in">
+          <transition name="slide-fade">
             <div  v-if="ActiveProject(i.HashTags)" class="prevue">
               <div class="main">
                 <img class="MainImg" :src=ImgLink(i.MainImg) />
@@ -86,6 +90,12 @@ export default Vue.extend({
         });
 
         return result;
+      },
+      ChooseTags(){
+        if (this.$route.params.lan == 'ru')
+          return 'Выберите теги, в которых вы заинтересованы:'
+        else
+          return 'Choose tags you interested in:'
       }
     },
     watch:{
@@ -150,6 +160,15 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.TagsHeading{
+  margin-left: 35px;
+  margin-bottom: 15px;
+}
+.TagsHeading span{
+  color: var(--color3);
+  font-size:x-large;
+}
+
 .tagsKit{
   margin-left:30px;
   display: -webkit-flex; 

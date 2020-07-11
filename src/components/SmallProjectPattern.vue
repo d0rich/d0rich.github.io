@@ -1,6 +1,6 @@
 <template>
     <div class="VideoPattern ProjectPattern">
-        <VideoFrame :Link="ProjectData.videolink" />
+        <VideoFrame :Link="ProjectData.video.link" :proportion="ProjectData.video.W/ProjectData.video.H" />
         <div class="hashtags"><span>{{HashTags(ProjectData.HashTags)}}</span></div>
         <div class="description">
           <p>{{ProjectData.description}}</p>

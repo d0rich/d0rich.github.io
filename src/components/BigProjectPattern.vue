@@ -1,7 +1,7 @@
 <template>
     <div class="BigProjectPattern ProjectPattern">
-      <div class="MainVideo" v-for="(i, index) in ProjectData.videolink" :key="'VideoFrame'+index">
-        <VideoFrame :Link=ProjectData.videolink  />
+      <div class="MainVideo" v-for="(i, index) in ProjectData.video" :key="'VideoFrame'+index">
+        <VideoFrame :Link=i.link :proportion="i.W/i.H" />
       </div>
         <img v-for="(i, index) in ProjectData.FirstImg" :key="'FirstImg'+index" :src=ImgLink(ProjectData.FirstImg) />
         <div class="hashtags"><span>{{HashTags(ProjectData.HashTags)}}</span></div>
@@ -15,7 +15,7 @@
           <div class="ImgPart">
               <ImgWithFullScreen v-for="(k, index) in i.mainimg" :key="'MainImg'+index" :src=ImgLink(k) class="MainImg" />
               <div class="TileVideo" v-for="(k, index) in i.video" :key="'Video'+index" >
-                <VideoFrame :Link="k" />
+                <VideoFrame :Link="k.link" :proportion="k.W/k.H" />
               </div>
               <div class="SecondaryImg">
                 <div class="SecImg" v-for="(k, index) in i.subimg" :key="'img'+index">

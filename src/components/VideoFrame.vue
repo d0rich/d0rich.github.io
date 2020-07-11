@@ -1,7 +1,7 @@
 <template>
     <div class="video">
-      <div>
-          <div>
+      <div class="video-subdiv" :style="{'padding-bottom': Proportion+'%'}">
+          <div class="video-subsubdiv" >
             <iframe :src=Link allow="fullscreen" allowfullscreen></iframe>
           </div>
       </div>
@@ -12,23 +12,34 @@
 import Vue from 'vue'
 export default Vue.extend({
     name: "VideoFrame",
-    props: ['Link']
+    props: {
+      Link: String,
+      proportion: Number
+    },
+    computed:{
+      Proportion(){
+        if(this.proportion == undefined || this.proportion == null || isNaN(parseInt(String(this.proportion))))
+          return String(9/16*100);
+        else
+          return String(1/this.proportion*100);
+      }
+    }
     
 })
 </script>
 
 <style scoped>
-.video div{
+.video-subdiv{
   padding-top: 0;
   height:0;
-  padding-bottom:56.25%;
   position:relative;
 }
-.video div div{
+.video-subsubdiv{
   position:absolute;
   left:0;
   top:0;
   width:100%;
+  height:100%;
   border-radius: 10px;
   border-style: solid;
   border-color: var(--color1);
@@ -36,7 +47,7 @@ export default Vue.extend({
   background-color: var(--color1);
   overflow: hidden;
 }
-iframe{
+.video iframe{
   position:absolute;
   border-style: hidden;
   left:0;

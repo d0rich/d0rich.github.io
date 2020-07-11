@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import axios from 'axios'
 import CoverElements from './components/CoverElements.vue'
 import Footer from './components/Footer.vue'
 
@@ -45,7 +46,11 @@ export default Vue.extend({
           this.prof = this.$route.params.prof;
           localStorage.prof = this.$route.params.prof;
         }
-    }
+      //axios
+      //  .get('https://api.2ip.ua/geo.json?ip=')
+      //  .then(response => console.log(response))
+    },
+
   },
   methods:{
     ChangeTheme(){
@@ -179,7 +184,22 @@ body{
   top:0;
   position: absolute;
 }
-/* Переходы */
+</style>
+<!-- Переходы -->
+<style>
+.long-fade-enter-active {
+  transition: all 0.5s;
+}
+.long-fade-leave-active {
+  transition: all 0.5s;
+}
+.long-fade-leave-to{
+  opacity: 0;
+}
+.long-fade-enter{
+  opacity: 0;
+}
+
 .slide-fade-enter-active {
   transition: all .3s ease;
 }

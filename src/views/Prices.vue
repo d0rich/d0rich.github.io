@@ -1,5 +1,8 @@
 <template>
   <div>
+    <transition name="fade">
+        <ApplicationForm :SelectedService="SelectedService" v-if="ActiveForm" @close-form="ShowForm()" />
+      </transition>
     <transition :duration=200 name="fade" mode="out-in">
     <Loader v-if="OnLoad" />
     <div v-if="!OnLoad">
@@ -27,7 +30,7 @@
             <span>{{PriceCard.name}}</span>
             <p>{{PriceCard.description}}</p>
             <span>Цена: {{PriceCard.price}}</span>
-            <div class="button">Подать заявку.</div>
+            <div @click="ShowForm(PriceCard.name)" class="button">Подать заявку.</div>
           </div>
         </div>
       </div>
@@ -40,14 +43,19 @@
 import Vue from 'vue'
 import axios from 'axios'
 import Loader from '@/components/Loader.vue'
+import ApplicationForm from '@/components/ApplicationForm.vue'
+
 export default Vue.extend({
     name:'Prices',
     components:{
-      Loader
+      Loader,
+      ApplicationForm
     },
     data(){
       return{
         OnLoad:true,
+        ActiveForm: false,
+        SelectedService: '',
         PricesPageData: {
               language:'',
               Img1:{
@@ -72,6 +80,10 @@ export default Vue.extend({
       }
     },
     methods:{
+      ShowForm(SelectedService){
+        this.ActiveForm = !this.ActiveForm;
+        this.SelectedService = SelectedService;
+      },
       ShowCard(event){
           if (event.target.parentElement.classList.contains('Active') )
             event.target.parentElement.classList.remove('Active');
@@ -279,7 +291,7 @@ export default Vue.extend({
   color: var(--color4);
   border-style: solid;
   border-color: var(--color4);
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: var(--color3);
   user-select: none;
   transition: ease 0.1s;

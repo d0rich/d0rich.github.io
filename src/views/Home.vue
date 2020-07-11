@@ -66,7 +66,7 @@
           <span>{{HomePageData.Header1}}</span>
         </div>
 
-        <VideoFrame :Link="HomePageData.PresLink" />
+        <VideoFrame :Link="HomePageData.Pres.Link" :proportion="HomePageData.Pres.W / HomePageData.Pres.H" />
 
         <div class="PresNavigation">
           <div>
