@@ -61,6 +61,7 @@
         </ul>
 
         <div class="SocialLinks">
+          <div><div><span>{{NavPanelData.SocialSpan}}</span></div></div>
           <div v-for="(i, index) in NavPanelData.Social" v-bind:key="index" class="SocialLink">
             <a :href=i.link>
               <div>
@@ -165,40 +166,37 @@ export default Vue.extend({
       if (this.lan == 'en' )
         return {
           LogoD: require('@/assets/img/LogoD.svg'),
+          SocialSpan:'Me in social networks:',
           Social:[
-            {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
-            {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich_prod.'},
             {imglink:require('@/assets/img/Social/instagram.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
-            {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
+            {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'}
           ],
           Sections:[
             {link:'Home',name:'Home'},
             {link:'Projects',name:'My projects'},
-            {link:'Prices',name:'Prices'},
-            {link:'Pre',name:'Watch preloader'},
-            {link:'Home',name:'Point5'}
+            {link:'Prices',name:'Prices'}
           ]
         };
       else return{
           LogoD: require('@/assets/img/LogoD.svg'),
+          SocialSpan:'Я в социальных сетях:',
           Social:[
             {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
             {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich_prod.'},
             {imglink:require('@/assets/img/Social/instagram.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
-            {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
+            {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'}
           ],
           Sections:[
             {link:'Home',name:'Главная'},
             {link:'Projects',name:'Все проекты'},
-            {link:'Prices',name:'Расценки'},
-            {link:'Pre',name:'Посмотреть прелоудер'},
-            {link:'Home',name:'Пункт5'}
+            {link:'Prices',name:'Расценки'}
           ]
       };
     }
   },
   created(){
     window.addEventListener('resize', this.GetScreenWidth);
+    this.GetScreenWidth();
   },
   mounted:
     function(){

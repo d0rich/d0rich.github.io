@@ -5,12 +5,13 @@
       </div>
         <img v-for="(i, index) in ProjectData.FirstImg" :key="'FirstImg'+index" :src=ImgLink(ProjectData.FirstImg) />
         <div class="hashtags"><span>{{HashTags(ProjectData.HashTags)}}</span></div>
+        <div class="hashtags"><span>{{DateToString(ProjectData.date)}}</span></div>
         <div class="description">
-          <p>{{ProjectData.description}}</p>
+          <span v-html="ProjectData.description" />
         </div>
         <div v-for="(i, index) in ProjectData.Tiles" :key="'Tile'+index" class="Tile">
           <div class="TextPart">
-            {{i.subdescription}}
+            <span v-html="i.subdescription" />
           </div>
           <div class="ImgPart">
               <ImgWithFullScreen v-for="(k, index) in i.mainimg" :key="'MainImg'+index" :src=ImgLink(k) class="MainImg" />

@@ -64,10 +64,10 @@ export default Vue.extend({
         display:block;
         margin: auto;
         position: relative;
-        top: 10vh;
+        top: 5vh;
         z-index: 50;
         width:auto;
-        height: 80vh;
+        height: calc(80vh - 55px);
         transition: ease 0.5s;
     }
 }
@@ -76,7 +76,7 @@ export default Vue.extend({
         display:block;
         margin: auto;
         position: relative;
-        top: calc(50vh - 40vw);
+        top: calc(50vh - 40vw - 55px);
         z-index: 50;
         width: 80vw;
         transition: ease 0.5s;

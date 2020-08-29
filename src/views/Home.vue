@@ -59,11 +59,11 @@
         </div>
 
         <div class="description2">
-          <p>{{HomePageData.Text1}}</p>
+          <span v-html="HomePageData.Text1" />
         </div>
 
         <div class="videopresentation_h">
-          <span>{{HomePageData.Header1}}</span>
+          <span v-html="HomePageData.Header1" />
         </div>
 
         <VideoFrame :Link="HomePageData.Pres.Link" :proportion="HomePageData.Pres.W / HomePageData.Pres.H" />
@@ -77,7 +77,7 @@
           <div class="content2">
             <div v-for="(screen, index) in HomePageData.Screenshots" :key="index" class="Screen">
               <div class="ScreenDes">
-                <span>{{screen.description}}</span>
+                <span v-html="screen.description" />
               </div>
               <div class="ScreenRight">
                 <div class="TimeCode">
@@ -99,7 +99,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import axios from "axios";
+import axios from 'axios';
 import VideoFrame from "@/components/VideoFrame.vue";
 import Loader from "@/components/Loader.vue";
 
@@ -205,16 +205,16 @@ export default Vue.extend({
         p8: 'Приятного просмотра! (´• ω •`)'
       }
       else return{
-        p1: `I welcome you to my personal site! My name is Nikolai Dorofeev.
-              I am a professional in the fields of video creation and programming.
-              You can learn more about these things later on the page.`,
-        p2: 'The site provides switches for language, color scheme, target professional activity:',
+        p1: `I welcome you to my personal site! My name is Nikolay Dorofeev.
+              I am a professional in the fields of video production and programming.
+              You can learn more about these things further on this page.`,
+        p2: 'The site provides switches for language, color scheme, professional activity:',
         p3: 'Here you can select the language: Russian or English.',
-        p4: 'This switch is responsible for the color scheme. You can choose between the classic colors of the site and the dark theme. ',
+        p4: 'This switch is responsible for the color scheme. You can choose between the primary site colors and the dark theme. ',
         p5: 'And finally, decide which side of my professionalism you want to familiarize yourself with: video production or programming.',
         p6: 'Switches are also available in the sidebar ====>',
-        p7: 'You don’t have to return to the main page to switch something!',
-        p8: 'Enjoy your viewing! (´ • ω • `) '
+        p7: 'You don’t have to return to the home page to switch something!',
+        p8: 'Pleasant viewing! (´ • ω • `) '
       }
     }
   },
@@ -429,7 +429,7 @@ export default Vue.extend({
 .Screen {
   display: flex;
   flex-direction: column-reverse;
-  max-height: 350px;
+  max-height: 400px;
   color: var(--color3);
   margin-top: 20px;
   border-radius: 20px;

@@ -12,6 +12,21 @@
         </div>
       <SmallProjectPattern v-if="!ProjectData.Big" :ProjectData=ProjectData />
       <BigProjectPattern v-if="ProjectData.Big" :ProjectData=ProjectData />
+
+      <div class="collaborators" v-if="ProjectData.Collaborators">
+        <p>{{PageData.Collaborators}}</p>
+        <ul>
+          <li v-for="person in ProjectData.Collaborators" :key="person.link">
+            <a :href="person.link">
+              <div class="personRow">
+                <img :src="ImgLink(person.img)" />
+                <span>{{`${person.role} - ${person.name}`}}</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
       <div class="back">
         <router-link :to="{name:'Projects' , params:{ lan: $route.params.lan, prof: ProjectData.prof}}">
           <span class="ActiveShow" @click="ScrollToTop()">{{PageData.Back}}</span>
@@ -49,12 +64,14 @@ export default Vue.extend({
         if(this.lan == 'ru'){
           return {
             Header: 'Мои проекты',
+            Collaborators: 'Также участвовали в проекте:',
             Back: 'Назад к проектам...'
           }
         }
         else{
           return {
             Header: 'My projects',
+            Collaborators: 'Collaborators:',
             Back: 'Back to projects...'
           }
         }
@@ -140,5 +157,27 @@ export default Vue.extend({
   0% {background-color: transparent;}
   20% {background-color: var(--color3);}
   40% {background-color: transparent;}
+}
+
+.collaborators{
+  color: var(--color3);
+  margin-left: 5px;
+}
+.collaborators ul{
+  list-style-type: none;
+}
+.collaborators .personRow{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-bottom: 10px;
+}
+.collaborators img{
+  width: 30px;
+  margin-right: 15px;
+}
+.collaborators a{
+  margin: auto 0;
+  color: var(--color5)
 }
 </style>

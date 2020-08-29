@@ -5,6 +5,7 @@
             <div class="ServiceInfo">
               <span> {{FormData.serv}}: {{SelectedService}}</span>
             </div>
+            <p class="MoreInfo">{{FormData.messahep}}</p>
             <div class="TZarea">
               <textarea  v-model="Application.Message" :placeholder="FormData.messageph">
               </textarea>
@@ -25,6 +26,7 @@
                 </transition-group>
                 <input v-model="newRef.description" :placeholder="FormData.refph1"/>
                 <input v-model="newRef.link"  :placeholder="FormData.refph2"/>
+                <p v-if="refErrorBool" class="errors">{{FormData.refError}}</p>
                 <div class="button" v-if="AddRefButton" @click="AddRef()">
                     {{FormData.add}}
                 </div>
@@ -50,12 +52,24 @@
                   </div>
                 </div>
               </div>
+              <div>
+                <p>{{FormData.namep}}</p>
+                <input style="width:100%; margin-bottom: 15px;" v-model="Application.Orderer" :placeholder="FormData.nameph"/>
+              </div>
+            </div>
+            <div v-if="errorsBool && Errors.length != 0" class="errors">
+              <p>{{FormData.errorMessage}}</p>
+              <ul>
+                <li v-for="(error, index) in Errors" :key="index">
+                  {{error}}
+                </li>
+              </ul>
             </div>
             <div style="display: flex; flex-direction: row; width:100%">
-              <div class="button" style="width:50%" @click="$emit('close-form')">
-                  {{FormData.close}}...
+              <div class="button" style="width:50%" @click="CloseForm()">
+                  {{FormData.close}}.
               </div>
-              <div class="button" style="width:50%" @click="SendForm()">
+              <div :class="{button: true, disabled:formSended}" style="width:50%" @click="SendForm()">
                   {{FormData.send}}...
               </div>
             </div>
@@ -72,20 +86,24 @@ export default Vue.extend({
     props: ['SelectedService'],
     data(){
       return{
-        selectedContactKind: 'email',
+        formSended: false,
+        selectedContactKind: 'E-mail',
+        refErrorBool: false,
+        errorsBool: false,
         newRef: {link:'', description:''},
         ContactKinds:[
-          'vk',
-          'watsapp',
-          'viber',
-          'telegram',
-          'email'
+          'E-mail',
+          'Telegram',
+          'VK',
+          'WatsApp',
+          'Viber'
         ],
         Application:{
           Service: this.SelectedService,
           Message:'',
           References: [],
-          Contacts: []
+          Contacts: [],
+          Orderer: ''
         }
       }
     },
@@ -104,42 +122,74 @@ export default Vue.extend({
         if(this.$route.params.lan == 'ru')
         return {
           serv: 'Услуга',
-          messageph:'Поясните, что вы хотите сделать',
+          messahep: 'Мы уже близко к сотрудничеству :). Опишите ниже вкратце продукт, который вы хотели бы заказать.',
+          messageph:'Поясните, какой продукт вы в итоге хотите получить.',
           refp1: 'Есть ли такие источники, которые вдохновили вас на создание данного продукта?',
           refp2: 'Либо вы просто хотели бы позаимствовать интересные идеи откуда-то?',
           refp3: 'Оставьте ссылку на эти продукты в списке ниже и кратко опишите, что именно вам в них приглянулось.',
           reflist: 'Список референсов',
           refph1:'Описание',
           refph2:'Ссылка',
-          conp1: 'Ну и конечно, оставьте контакты для обратной связи ; )',
+          refError: 'Ошибка: введите описание и ссылку на источник',
+          conp1: 'Ну и конечно, оставьте контакты для нашей дальнейшей связи ; )',
           conlist: 'Список контактов',
           conph1:'Введите контакт для связи',
           add: 'Добавить',
+          namep: 'Впишите, пожалуйста, своё имя, чтобы мы знали как вас зовут.',
+          nameph: 'Впишите своё имя сюда',
+          errorMessage: 'Пожалуйста, исправьте следующие ошибки:',
           send: 'Отправить',
           close: 'Закрыть'
         };
         else return {
-          serv: 'Услуга',
-          messageph:'Поясните, что вы хотите сделать',
-          refp1: 'Есть ли такие источники, которые вдохновили вас на создание данного продукта?',
-          refp2: 'Либо вы просто хотели бы позаимствовать интересные идеи откуда-то?',
-          refp3: 'Оставьте ссылку на эти продукты в списке ниже и кратко опишите, что именно вам в них приглянулось.',
-          reflist: 'Список референсов',
-          refph1:'Описание',
-          refph2:'Ссылка',
-          conp1: 'Ну и конечно, оставьте контакты для обратной связи ; )',
-          conlist: 'Список контактов',
-          conph1:'Введите контакт для связи',
-          add: 'Добавить',
-          send: 'Отправить',
-          close: 'Закрыть'
+          serv: 'Service',
+          messahep: 'We are already close to partnership :). Describe briefly the product you would like to order.',
+          messageph:'Describe the product you want.',
+          refp1: 'Are there any sources that inspired you to create this product?',
+          refp2: 'Or you just like to borrow interesting ideas from somewhere?',
+          refp3: 'Leave links to these products in the list below and briefly describe what exactly you liked about them.',
+          reflist: 'Reference list',
+          refph1:'Description',
+          refph2:'Link',
+          refError: 'Error: enter description and link to source',
+          conp1: 'And of course, leave contacts for our further communication ; )',
+          conlist: 'Contact list',
+          conph1:'Enter your contact',
+          add: 'Add',
+          namep: 'Please write your name beacause we need to know that.',
+          nameph: 'Enter your name here',
+          errorMessage: 'Please correct the following errors:',
+          send: 'Send',
+          close: 'Close'
         };
+      },
+      Errors(){
+        const errors = [];
+        let ru = false;
+        if (this.$route.params.lan == 'ru')
+          ru = true;
+        if (this.Application.Message == ''){
+          if (ru) errors.push('Объясните, какой продукт вы хотите получить');
+          else errors.push('Describe the product you want');
+        }
+        if (this.Application.Contacts.filter(c => c.Contact != '').length == 0){
+          if (ru) errors.push('Укажите хотя бы 1 контакт для связи');
+          else errors.push('Please provide at least 1 contact for communication');
+        }
+        if (this.Application.Orderer == ''){
+          if (ru) errors.push('Напишите, как вас зовут');
+          else errors.push('Write your name');
+        }
+        return errors;
       }
     },
     methods:{
         AddRef(){
-          if(this.newRef.link != '' && this.newRef.description != '')
-          this.Application.References.push({link:this.newRef.link, description:this.newRef.description});
+          if(this.newRef.link != '' && this.newRef.description != ''){
+            this.Application.References.push({link:this.newRef.link, description:this.newRef.description});
+            this.refErrorBool = false;
+          }
+          else this.refErrorBool = true;
         },
         DelRef(index){
           this.Application.References.splice(index,1);
@@ -150,15 +200,45 @@ export default Vue.extend({
         DelContact(index){
           this.Application.Contacts.splice(index,1);
         },
+        CloseForm(){
+          this.$emit('close-form');
+        },
         SendForm(){
+          if(!this.formSended){
+            if (this.Errors.length == 0){
+            this.errorsBool = false;
+            this.formSended = true;
             axios
               .post(this.$data.ServerLink +'/send-application/', this.Application )
-              .then(response =>{
-                console.log(response);
+              .then(res =>{
+                if (res.status==200){
+                  if(this.$route.params.lan == 'ru'){
+                    alert(`Ваша заявка успешно отправлена ; ) \nБудем рады сотрудничеству с вами, ${this.Application.Orderer}`);
+                  }
+                  else{
+                    alert(`Your application has been sent successfully ; ) \nLooking forward to working with you, ${this.Application.Orderer}`);
+                  }
+                  this.$emit('close-form');
+                }
+                else{
+                  this.formSended = false;
+                  if(this.$route.params.lan == 'ru'){
+                    alert('Упс :(, что-то пошло не так. Попробуйте отослать заявку позже.');
+                  }
+                  else{
+                    alert('Oops :(, something went wrong. Try to send the application later.');
+                  }
+                  
+                }
+                  
               })
               .catch(error => {
                 console.log(error);
                 })
+            }
+            else this.errorsBool = true;
+          }
+          
         }
     }
 
@@ -205,6 +285,17 @@ export default Vue.extend({
 }
 .appl-form .button:hover{
   cursor: pointer;
+  color: var(--color5);
+  border-color: var(--color5);
+  background-color: var(--color2);
+}
+.button.disabled{
+  color: var(--color5);
+  border-color: var(--color5);
+  background-color: var(--color2);
+}
+.button.disabled:hover{
+  cursor: default;
   color: var(--color5);
   border-color: var(--color5);
   background-color: var(--color2);
@@ -304,6 +395,9 @@ export default Vue.extend({
 }
 .delRef span{
   padding: 5px;
+}
+.errors{
+  color: #b32652;
 }
 .blocker{
     position: fixed;

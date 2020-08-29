@@ -13,8 +13,8 @@ Vue.config.productionTip = false
 Vue.mixin({
   data: function() {
     return {
-      //ServerLink:'https://dorich-prod-site-server.herokuapp.com'
-      ServerLink: 'http://localhost:8000'
+      ServerLink:'https://dorich-prod-site-server.herokuapp.com'
+      //ServerLink: 'http://localhost:8000'
     }
   },
   methods: {
@@ -31,6 +31,16 @@ Vue.mixin({
         result = result + '#' + tag + ' ';
       });
       return result;
+    },
+    DateToString(date){
+      const d = new Date(date);
+      let datePart = `${d.getDate()}`;
+      if(d.getDate() < 10)
+        datePart = `0${d.getDate()}`
+      let monthPart = `${d.getDate()}`;
+      if(d.getMonth() < 10)
+        monthPart = `0${d.getMonth()}`
+      return(`${datePart}/${monthPart}/${d.getFullYear()}`)
     }
   },
   beforeCreate(){
@@ -40,6 +50,7 @@ Vue.mixin({
         localStorage.lan = 'en';
       }
       this.$route.params.lan = localStorage.lan;
+      this.$router.push(this.$route);
     }
     if(this.$route.params.prof != 'videomaker' && this.$route.params.prof != 'programmer')
     {
@@ -47,8 +58,8 @@ Vue.mixin({
         localStorage.prof = 'videomaker';
       }
       this.$route.params.prof = localStorage.prof;
+      this.$router.push(this.$route);
     }
-    this.$router.push(this.$route);
   }
 })
 

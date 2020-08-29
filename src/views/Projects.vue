@@ -27,6 +27,9 @@
               <div class="main">
                 <img class="MainImg" :src=ImgLink(i.MainImg) />
                 <span class="hashtags">{{HashTags(i.HashTags)}}</span>
+                <span class="hashtags">
+                  {{DateToString(i.date)}}
+                  </span>
                 <span class="ProjectName">{{i.name}}</span>
                 <router-link :to="{name: 'ProjectPage' , params:{id:i.id , lan: i.language }}">
                   <nav class="ProLink" @click="ScrollToTop()" :id=i.id>{{PageData.Details}}</nav>

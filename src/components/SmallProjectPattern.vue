@@ -2,8 +2,9 @@
     <div class="VideoPattern ProjectPattern">
         <VideoFrame :Link="ProjectData.video.link" :proportion="ProjectData.video.W/ProjectData.video.H" />
         <div class="hashtags"><span>{{HashTags(ProjectData.HashTags)}}</span></div>
+        <div class="hashtags"><span>{{DateToString(ProjectData.date)}}</span></div>
         <div class="description">
-          <p>{{ProjectData.description}}</p>
+          <span v-html="ProjectData.description"></span>
         </div>
         <div class="ScreenShots" >
           <ImgWithFullScreen v-for="(screen, index) in ProjectData.screens" :key="index" :src="ImgLink(screen)" />
@@ -56,10 +57,7 @@ export default Vue.extend({
 }
 .description{
   width:80%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15px;
-  margin-bottom: 30px;
+  margin: 15px auto 30px;
   color: var(--color3);
   border-style: solid;
   border-width: 4px;

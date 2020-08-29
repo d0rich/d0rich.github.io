@@ -29,8 +29,8 @@
             <img :src="ImgLink(PriceCard.Img)" @click="ShowCard" />
             <span>{{PriceCard.name}}</span>
             <p>{{PriceCard.description}}</p>
-            <span>Цена: {{PriceCard.price}}</span>
-            <div @click="ShowForm(PriceCard.name)" class="button">Подать заявку.</div>
+            <span>{{PageText.price}}: {{PriceCard.price}}</span>
+            <div @click="ShowForm(PriceCard.name)" class="button">{{PageText.sendAp}}</div>
           </div>
         </div>
       </div>
@@ -77,6 +77,19 @@ export default Vue.extend({
                 }
               ]
             }
+      }
+    },
+    computed:{
+      PageText(){
+        if(this.$route.params.lan == 'ru')
+        return{
+          price: 'Цена',
+          sendAp: 'Подать заявку.'
+        }
+        else return{
+          price: 'Price',
+          sendAp: 'Apply.'
+        }
       }
     },
     methods:{
