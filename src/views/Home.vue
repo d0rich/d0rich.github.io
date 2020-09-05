@@ -337,6 +337,9 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+a{
+  text-decoration: underline;
+}
 .content1 {
   min-height: 300px;
   display: flex;

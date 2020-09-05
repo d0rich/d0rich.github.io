@@ -251,7 +251,7 @@ export default Vue.extend({
   position: fixed;
   z-index: 5;
   top: 15vh;
-  left: calc(50%-250px);
+  left: calc(50% - 250px);
   width:80%;
   min-width: 325px;
   max-width: 500px;

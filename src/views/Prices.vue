@@ -27,9 +27,9 @@
         <div class="priceCards">
           <div class="PriceCard nonActive" v-for="PriceCard in PricesPageData.PriceCards" :key="PriceCard.id">
             <img :src="ImgLink(PriceCard.Img)" @click="ShowCard" />
-            <span>{{PriceCard.name}}</span>
-            <p>{{PriceCard.description}}</p>
-            <span>{{PageText.price}}: {{PriceCard.price}}</span>
+            <span class="priceName">{{PriceCard.name}}</span>
+            <span class="priceDes" v-html="PriceCard.description" />
+            <span class="priceName">{{PageText.price}}: {{PriceCard.price}}</span>
             <div @click="ShowForm(PriceCard.name)" class="button">{{PageText.sendAp}}</div>
           </div>
         </div>
@@ -280,7 +280,7 @@ export default Vue.extend({
   50%{transform: scale(0.9);}
   100%{transform: scale(1);}
 }
-.PriceCard span{
+.PriceCard .priceName{
   padding:5px;
   margin-top:10px;
   font-size: 15pt;
@@ -288,7 +288,7 @@ export default Vue.extend({
   border-radius: 5px;
   background-color: var(--color4);
 }
-.PriceCard p{
+.PriceCard .priceDes{
   padding:5px;
   margin-top:10px;
   color: var(--color5);

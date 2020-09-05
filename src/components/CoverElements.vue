@@ -600,7 +600,9 @@ export default Vue.extend({
   cursor: pointer;
   user-select: none;
 }
-
+#NavPanel .SocialLinks a{
+  text-decoration: underline;
+}
 #NavPanel .SocialLinks{
   margin-left: 5px;
   bottom: 15px;

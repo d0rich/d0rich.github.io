@@ -16,7 +16,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
-    name:"Img with full screen",
+    name:"ImgWithFullScreen",
     props:['src'],
     data(){
         return{

@@ -136,8 +136,12 @@ export default Vue.extend({
     background-color: var(--color2);
 }
 a{
+  color: var(--color5);
   text-decoration: none;
   user-select: none;
+}
+a:visited{
+  color: var(--color5);
 }
 /*----Переменные с цветами----*/
 .commonTheme{

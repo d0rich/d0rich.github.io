@@ -26,8 +26,13 @@ export default Vue.extend({
     props:['ProjectData']
 })
 </script>
-
+<style>
+.description a{
+  text-decoration: underline;
+}
+</style>
 <style scoped>
+
 .ScreenShots{
   display: -webkit-flex; 
   -webkit-flex-wrap: wrap;

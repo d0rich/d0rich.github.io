@@ -178,6 +178,7 @@ export default Vue.extend({
 }
 .collaborators a{
   margin: auto 0;
+  text-decoration: underline;
   color: var(--color5)
 }
 </style>

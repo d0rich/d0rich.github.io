@@ -1,9 +1,9 @@
 <template>
     <div class="BigProjectPattern ProjectPattern">
       <div class="MainVideo" v-for="(i, index) in ProjectData.video" :key="'VideoFrame'+index">
-        <VideoFrame :Link=i.link :proportion="i.W/i.H" />
+        <VideoFrame :Link=i.Link :proportion="i.W/i.H" />
       </div>
-        <img v-for="(i, index) in ProjectData.FirstImg" :key="'FirstImg'+index" :src=ImgLink(ProjectData.FirstImg) />
+        <img class="HeadImg" v-for="(i, index) in ProjectData.FirstImg" :key="'FirstImg'+index" :src=ImgLink(ProjectData.FirstImg) />
         <div class="hashtags"><span>{{HashTags(ProjectData.HashTags)}}</span></div>
         <div class="hashtags"><span>{{DateToString(ProjectData.date)}}</span></div>
         <div class="description">
@@ -11,14 +11,16 @@
         </div>
         <div v-for="(i, index) in ProjectData.Tiles" :key="'Tile'+index" class="Tile">
           <div class="TextPart">
-            <span v-html="i.subdescription" />
+            <span style="margin: auto" v-html="i.subdescription" />
           </div>
           <div class="ImgPart">
-              <ImgWithFullScreen v-for="(k, index) in i.mainimg" :key="'MainImg'+index" :src=ImgLink(k) class="MainImg" />
-              <div class="TileVideo" v-for="(k, index) in i.video" :key="'Video'+index" >
-                <VideoFrame :Link="k.link" :proportion="k.W/k.H" />
+              <div v-for="(k, index) in i.mainimg" :key="'MainImg'+index" class="MainImg" >
+                <ImgWithFullScreen :src=ImgLink(k) />
               </div>
-              <div class="SecondaryImg">
+              <div class="TileVideo" v-for="(k, index) in i.video" :key="'Video'+index" >
+                <VideoFrame :Link="k.Link" :proportion="k.W/k.H" />
+              </div>
+              <div v-if="i.subimg.length !== 0" class="SecondaryImg">
                 <div class="SecImg" v-for="(k, index) in i.subimg" :key="'img'+index">
                   <ImgWithFullScreen  :src=ImgLink(k) />
                 </div>
@@ -42,9 +44,17 @@ export default Vue.extend({
     props:['ProjectData']
 })
 </script>
-
+<style>
+.Tile .TextPart a{
+  text-decoration: underline;
+}
+</style>
 <style scoped>
+
 .TileVideo{
+  margin-bottom: 10px
+}
+.TileVideo video{
   margin-bottom: -50%;
   width: 200%;
   transform-origin: left top;
@@ -55,6 +65,12 @@ export default Vue.extend({
   margin-left: auto;
   margin-right: auto;
   width:80%;
+}
+.HeadImg{
+  width: 85%;
+  border: 5px solid var(--color3);
+  border-radius: 20px;
+  margin: 15px calc((100% - 85%) / 2);
 }
 .hashtags{
   text-align: left;
@@ -121,6 +137,9 @@ export default Vue.extend({
   margin: 5px;
   display: flex;
   flex-direction: column;
+}
+.ImgPart{
+  width: 40%;
 }
 .MainImg{
   width:95%;
