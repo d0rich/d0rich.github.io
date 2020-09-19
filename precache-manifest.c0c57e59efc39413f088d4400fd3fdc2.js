@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "480a2bd1164aeb953365",
-    "url": "/css/app.ce829740.css"
+    "revision": "822bf4ae6b38568d541b",
+    "url": "/css/app.b65b1cbf.css"
   },
   {
     "revision": "f40889caa25956ef4d27c2aadc4fbe13",
@@ -32,6 +32,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/instagram.fc23b902.svg"
   },
   {
+    "revision": "56cb93da26b9dde3e86a3eeb7fa07bf6",
+    "url": "/img/telegram.56cb93da.svg"
+  },
+  {
     "revision": "b03024c4d635b0a304e483e1d9fa34d8",
     "url": "/img/vk.b03024c4.svg"
   },
@@ -40,12 +44,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/youtube.a6372485.svg"
   },
   {
-    "revision": "ed2428ec21469a00ea7408492c8ace16",
+    "revision": "b1a90a99336621e5454419143a218df8",
     "url": "/index.html"
   },
   {
-    "revision": "480a2bd1164aeb953365",
-    "url": "/js/app.9eedc64f.js"
+    "revision": "822bf4ae6b38568d541b",
+    "url": "/js/app.6601488e.js"
   },
   {
     "revision": "04dbea6ff237a05d332b",
