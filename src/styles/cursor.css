@@ -1,0 +1,9 @@
+.cursor{
+    animation: flashing linear 1s infinite;
+}
+@keyframes flashing {
+    0%{opacity: 0}
+    49%{opacity: 0}
+    50%{opacity: 1}
+    100%{opacity: 1}
+}
