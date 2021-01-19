@@ -3,7 +3,7 @@
     <Header v-if="headerOn" />
     <BottomNavigation v-else />
     <v-main>
-      <router-view />
+      <router-view class="page pa-2" />
     </v-main>
   </v-app>
 </template>
@@ -47,5 +47,12 @@ export default {
 @import "./styles/cursor.css";
 #app{
   font-family: 'JetBrains Mono', Roboto, sans-serif;
+}
+.page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  margin: auto;
 }
 </style>
