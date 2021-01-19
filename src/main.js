@@ -15,11 +15,25 @@ Vue.use(VueAxios, axios)
 
 import vuetify from './plugins/vuetify';
 
+import {mapState} from "vuex";
 
 Vue.mixin({
   computed:{
+    ...mapState(['lang']),
     routeNow(){
       return this.$route.name
+    }
+  },
+  methods:{
+    timeout(ms){
+      return new Promise(resolve => {
+        setTimeout(() =>resolve(), ms)
+      })
+    },
+    timeoutRand(ms){
+      return new Promise(resolve => {
+        setTimeout(() =>resolve(), ms * (1 - 0.1 + Math.random() * 0.2))
+      })
     }
   }
 })

@@ -43,6 +43,8 @@ export default {
 };
 </script>
 <style>
+@import "./styles/linkFormatter.css";
+@import "./styles/cursor.css";
 #app{
   font-family: 'JetBrains Mono', Roboto, sans-serif;
 }

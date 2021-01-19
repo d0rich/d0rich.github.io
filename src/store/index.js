@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    windowWidth: 1000
+    windowWidth: 1000,
+    lang: 'ru'
   },
   getters: {
     headerOn(state){
@@ -15,6 +16,9 @@ export default new Vuex.Store({
   mutations: {
     getWindowWidth(state, width){
       state.windowWidth = width
+    },
+    setLang(state, lang){
+      state.lang = lang
     }
   },
   actions: {

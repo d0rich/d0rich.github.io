@@ -5,22 +5,25 @@
         v-resize="onResize"
     >
       <div class="header-line">
-        <v-btn text :to="{ name: 'About' }">
-          <span>About</span>
-          <span style="opacity: 0" :class="{cursor: routeNow === 'About'}">_</span>
+        <v-btn text :to="navigation.blog.route">
+          <span>{{navigation.blog.text.getText(lang)}}</span>
+          <span style="opacity: 0" :class="{cursor: routeNow === navigation.blog.route.name}">_</span>
         </v-btn>
-        <v-btn text :to="{ name: 'Blog' }">
-          <span>Blog</span>
-          <span style="opacity: 0" :class="{cursor: routeNow === 'Blog'}">_</span>
+
+        <v-btn text :to="navigation.about.route">
+          <span>{{navigation.about.text.getText(lang)}}</span>
+          <span style="opacity: 0" :class="{cursor: routeNow === navigation.about.route.name}">_</span>
         </v-btn>
-        <router-link :to="{name: 'Home'}" class="btn-main" >
-          <span>Dorich</span>
-          <span style="opacity: 0" :class="{cursor: routeNow === 'Home'}">_</span>
+
+        <router-link :to="navigation.home.route" class="btn-main" >
+          <span>{{navigation.home.text.getText(lang)}}</span>
+          <span style="opacity: 0" :class="{cursor: routeNow === navigation.home.route.name}">_</span>
         </router-link>
-        <v-btn text :to="{ name: 'Portfolio' }">
-          <span>Portfolio</span>
-          <span style="opacity: 0" :class="{cursor: routeNow === 'Portfolio'}">_</span>
+        <v-btn text :to="navigation.portfolio.route">
+          <span>{{navigation.portfolio.text.getText(lang)}}</span>
+          <span style="opacity: 0" :class="{cursor: routeNow === navigation.portfolio.route.name}">_</span>
         </v-btn>
+        <LangSwitcher />
       </div>
       <div class="header-bg">
         <div class="square1" :class="{active: squaresOn}" :style="{width: `${squareWidth}px`, height: `${squareWidth}px`}"></div>
@@ -30,12 +33,18 @@
 </template>
 
 <script>
+import {navigation} from '@/data/navigation'
+import LangSwitcher from "@/components/LangSwitcher";
 export default {
 name: "Header",
+  components:{
+    LangSwitcher
+  },
   data(){
     return{
       squareWidth: 100,
-      squaresOn: false
+      squaresOn: false,
+      navigation: navigation
     }
   },
   methods:{
@@ -51,8 +60,6 @@ name: "Header",
 </script>
 
 <style scoped lang="scss">
-@import '../styles/cursor.css';
-@import '../styles/linkFormatter.css';
 .header{
   overflow: hidden;
   width: 100%;
@@ -83,6 +90,7 @@ name: "Header",
 .square1{
   position: absolute;
   background-color: var(--v-primary-base);
+  margin-left: -16px;
   z-index: -2;
   transform: rotate(45deg) scale(0);
   transition: transform 1s ease 1s;
@@ -93,6 +101,7 @@ name: "Header",
 .square2{
   position: absolute;
   background-color: var(--v-secondary-darken1);
+  margin-left: -16px;
   z-index: -1;
   transform: rotate(45deg) scale(0);
   transition: transform 1s ease 1.3s;
