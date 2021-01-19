@@ -1,5 +1,5 @@
 <template>
-  <div class="home pa-2">
+  <div>
     <Terminal reveal enter-word="hello world">
       <h1 class="align-self-start cursor-on-hover">{{data.h1.text}}<span class="cursor">_</span></h1>
       <p class="align-self-start cursor-on-hover">
@@ -32,18 +32,11 @@ export default {
     }
   },
   metaInfo: {
-    title: 'd0rich',
+    title: 'Dorich',
     titleTemplate: null
   }
 }
 </script>
 <style scoped lang="scss">
 @import "../styles/font.css";
-.home{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 900px;
-  margin: auto;
-}
 </style>

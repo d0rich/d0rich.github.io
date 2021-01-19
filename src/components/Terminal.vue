@@ -9,7 +9,9 @@
            style="min-height: 1.5em">
         {{line.text.text}}
       </div>
-      <div :style="{opacity: showCommand*1}">{{href}}>{{command}}</div>
+      <div :style="{opacity: showCommand*1}">
+        <span style="word-break: break-all;" >{{href}}></span>{{command}}
+      </div>
       <div :style="{opacity: showContent*1}" class="mb-5">
         <slot />
       </div>
