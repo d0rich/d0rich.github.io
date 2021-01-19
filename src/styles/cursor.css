@@ -1,4 +1,5 @@
 .cursor{
+    opacity: 0;
     animation: flashing linear 1s infinite;
 }
 @keyframes flashing {
@@ -6,4 +7,11 @@
     49%{opacity: 0}
     50%{opacity: 1}
     100%{opacity: 1}
+}
+.cursor-on-hover:hover .cursor{
+    animation: flashing linear 1s infinite;
+}
+.cursor-on-hover .cursor{
+    opacity: 0;
+    animation: none;
 }
