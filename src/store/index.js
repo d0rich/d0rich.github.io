@@ -19,6 +19,7 @@ export default new Vuex.Store({
     },
     setLang(state, lang){
       state.lang = lang
+      localStorage.setItem('lang', lang)
     }
   },
   actions: {
