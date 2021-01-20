@@ -27,14 +27,14 @@ export default {
     ...mapGetters(['headerOn'])
   },
   methods:{
-    ...mapMutations(['getWindowWidth']),
+    ...mapMutations(['getWindowWidth', "setLang"]),
     onResize(){
       this.getWindowWidth(window.innerWidth)
     }
   },
   beforeMount() {
     console.log(this.$vuetify.theme.themes.dark)
-
+    this.setLang(localStorage.getItem('lang') || 'en')
   },
   metaInfo: {
     title: 'Default Title',
