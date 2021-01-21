@@ -1,5 +1,5 @@
 <template>
-  <v-app v-resize="onResize">
+  <v-app class="main-scroll" v-resize="onResize">
     <Header v-if="headerOn" />
     <BottomNavigation v-else />
     <v-main>
@@ -45,14 +45,16 @@ export default {
 <style>
 @import "./styles/linkFormatter.css";
 @import "./styles/cursor.css";
+@import "./styles/scroll.scss";
 #app{
   font-family: 'JetBrains Mono', Roboto, sans-serif;
+  overflow: hidden;
 }
 .page{
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 900px;
+  max-width: 1080px;
   margin: auto;
 }
 </style>
