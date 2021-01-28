@@ -72,7 +72,7 @@ name: "Terminal",
       this.showCommand = true
       this.showContent = true
     }
-
+    this.$emit('revealed')
   }
 }
 </script>
@@ -82,6 +82,7 @@ name: "Terminal",
   border: solid 3px var(--v-primary-base);
   width: 100%;
   max-width: 700px;
+  background-color: var(--v-secondary-darken2);
   .head{
     position: relative;
     width: 100%;

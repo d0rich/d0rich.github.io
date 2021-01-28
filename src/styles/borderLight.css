@@ -1,0 +1,10 @@
+.border-light--primary{
+    border: var(--v-primary-base) solid 2px;
+    border-radius: 2px;
+    box-shadow: 4px 4px 29px -6px var(--v-primary-base);
+}
+.border-light--accent{
+    border: var(--v-accent-base) solid 2px;
+    border-radius: 2px;
+    box-shadow: 4px 4px 29px -6px var(--v-accent-base);
+}
