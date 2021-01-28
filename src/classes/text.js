@@ -13,4 +13,8 @@ export class Text{
     get text(){
         return this.getText(store.state.lang)
     }
+
+    static fromObj(text = {ru: '', en: ''}){
+        return new Text(text.ru, text.en)
+    }
 }
