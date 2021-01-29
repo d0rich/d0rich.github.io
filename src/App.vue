@@ -5,19 +5,21 @@
     <v-main>
       <router-view class="page pa-2" />
     </v-main>
+    <Footer />
   </v-app>
 </template>
 
 <script>
 import '@/assets/fonts/JetBrainsMono/fontface.css'
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import BottomNavigation from "@/components/BottomNavigation";
 import {mapGetters, mapMutations} from 'vuex'
 export default {
   name: 'App',
 
   components: {
-    Header, BottomNavigation
+    Header, BottomNavigation, Footer
   },
 
   data: () => ({
