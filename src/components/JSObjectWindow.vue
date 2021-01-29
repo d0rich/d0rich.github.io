@@ -2,7 +2,7 @@
   <div class="js-object border-light--primary">
     <span v-if="object.name">{{object.name.text}} = </span>{
     <div v-for="(field, index) in object.fields" :key="index" class="js-object__field" >
-      <span class="key">{{field.key.text}}</span> : <span class="value">{{field.value.text}}</span>
+      <span class="key">{{field.key.text}}</span>: <span class="value">{{field.value.text}}</span><span class="comma" v-if="index < object.fields.length - 1">,</span>
     </div>
     }
   </div>
@@ -33,6 +33,9 @@ name: "JSObjectWindow",
   }
   .value{
 
+  }
+  .comma{
+    color: var(--v-warning-lighten1);
   }
 }
 </style>
