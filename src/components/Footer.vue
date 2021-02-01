@@ -2,7 +2,13 @@
   <div class="border-light--accent footer">
     <div style="max-width: 1100px; margin: auto">
       <div class="footer__block--main">
-        <div style="height: 50px">Страницы:</div>
+        <div class="mb-3">
+          <div>{{navigation.title.text}}:</div>
+          <ul>
+            <FooterRoute v-for="(route, index) in navigation.routes" :key="index" :route="route" />
+          </ul>
+
+        </div>
         <div>
           <div>{{connection.title.text}}:</div>
           <div><v-icon>mdi-email</v-icon> d.orich@yandex.com</div>
@@ -23,12 +29,30 @@
 
 <script>
 import {Text} from "@/classes";
-
+import FooterRoute from "@/components/FooterRoute";
 export default {
 name: "Footer",
+  components: {
+    FooterRoute
+  },
   data(){
     return{
       dorich: new Text('Свободный программист Dorich', 'Free programmer Dorich'),
+      navigation: {
+        title: new Text('Навигация', 'Navigation'),
+        routes: [
+          { title: new Text('Главная', 'Home'), route: { name: 'Home' } },
+          { title: new Text('Обо мне', 'About me'), route: { name: 'About' }, children: [
+              { title: new Text('Резюме', 'Resume'), route: { name: 'Resume' }, children: [
+                  //{ title: new Text('Фронтенд', 'Frontend'), route: { name: 'Resume' } },
+                  //{ title: new Text('Бэкенд', 'Backend'), route: { name: 'Resume' } },
+                  //{ title: new Text('Фуллстак', 'Fullstack'), route: { name: 'Resume' } }
+                ] }
+            ] },
+          { title: new Text('Портфолио', 'Portfolio'), route: { name: 'Portfolio' } },
+          { title: new Text('Блог', 'Blog'), route: { name: 'Blog' } },
+        ]
+      },
       connection: {
         title: new Text('Связаться со мной', 'Connect with me'),
         socials: [

@@ -5,6 +5,10 @@
         {{text.text}}
       </div>
     </Terminal>
+    <transition name="glitch-transition" mode="out-in">
+      <router-view />
+    </transition>
+
   </div>
 </template>
 <script>

@@ -42,7 +42,7 @@ export default {
   },
   metaInfo: {
     title: 'Default Title',
-    titleTemplate: '%s | d0rich'
+    titleTemplate: '%s | Dorich'
   }
 };
 </script>
