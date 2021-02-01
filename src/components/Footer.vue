@@ -1,20 +1,23 @@
 <template>
   <div class="border-light--accent footer">
-    <div class="footer__block--main">
-      <div style="height: 50px">Страницы:</div>
-      <div>
-        <div>{{connection.title.text}}:</div>
-        <div><v-icon>mdi-email</v-icon> d.orich@yandex.com</div>
-        <v-btn icon target="_blank"
-            v-for="btn in connection.socials" :key="btn.href"
-            :href="btn.href" >
-          <v-icon>{{btn.icon}}</v-icon>
-        </v-btn>
+    <div style="max-width: 1100px; margin: auto">
+      <div class="footer__block--main">
+        <div style="height: 50px">Страницы:</div>
+        <div>
+          <div>{{connection.title.text}}:</div>
+          <div><v-icon>mdi-email</v-icon> d.orich@yandex.com</div>
+          <v-btn icon target="_blank"
+                 v-for="btn in connection.socials" :key="btn.href"
+                 :href="btn.href" >
+            <v-icon>{{btn.icon}}</v-icon>
+          </v-btn>
+        </div>
+      </div>
+      <div class="footer__block--bottom">
+        <span>© 2021 {{dorich.text}}</span>
       </div>
     </div>
-    <div class="footer__block--bottom">
-      <span>© 2021 {{dorich.text}}</span>
-    </div>
+
   </div>
 </template>
 
