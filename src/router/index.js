@@ -2,9 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
-import About from '../views/About'
+import About from '../views/About/About'
 import Blog from "@/views/Blog"
 import Portfolio from "@/views/Portfolio";
+import Resume from "@/views/About/Resume";
+import AboutMain from "@/views/About/AboutMain";
 
 Vue.use(VueRouter)
 
@@ -17,9 +19,22 @@ const routes = [
   },
   {
     path: '/about',
-    name: 'About',
     component: About,
-    meta: { scrollToTop: true }
+    meta: { scrollToTop: true },
+    children: [
+      {
+        path: '',
+        name: 'About',
+        component: AboutMain,
+        meta: { scrollToTop: true }
+      },
+      {
+        path: 'resume',
+        name: 'Resume',
+        component: Resume,
+        meta: { scrollToTop: true }
+      }
+    ]
   },
   {
     path: '/blog',
