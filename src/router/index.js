@@ -12,22 +12,26 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: { scrollToTop: true }
   },
   {
     path: '/about',
     name: 'About',
-    component: About
+    component: About,
+    meta: { scrollToTop: true }
   },
   {
     path: '/blog',
     name: 'Blog',
-    component: Blog
+    component: Blog,
+    meta: { scrollToTop: true }
   },
   {
     path: '/portfolio',
     name: 'Portfolio',
-    component: Portfolio
+    component: Portfolio,
+    meta: { scrollToTop: true }
   },
   {
     path: '/*',
@@ -39,6 +43,13 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.afterEach((to) => {
+  if (to.meta.scrollToTop) {
+    setTimeout(() => window.scrollTo(0, 0), 300)
+
+  }
 })
 
 export default router
