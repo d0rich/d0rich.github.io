@@ -3,7 +3,9 @@
     <Header v-if="headerOn" />
     <BottomNavigation v-else />
     <v-main>
-      <router-view class="page pa-2" />
+      <transition name="glitch-transition" mode="out-in">
+        <router-view class="page pa-2" />
+      </transition>
     </v-main>
     <Footer />
   </v-app>
