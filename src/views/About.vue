@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <Terminal enter-word="watch blog" >
+    <Terminal enter-word="watch about" >
       <div class="error--text">
         {{text.text}}
       </div>
