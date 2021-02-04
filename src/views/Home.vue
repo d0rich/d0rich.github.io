@@ -73,7 +73,6 @@ export default {
     return {
       title: new Text('Главная', 'Home').text
     }
-
   }
 }
 </script>

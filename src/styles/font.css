@@ -1,4 +1,9 @@
 h1{
+    font-weight: 500;
+    color: var(--v-accent-base);
+}
+h2{
+    font-weight: 500;
     color: var(--v-accent-base);
 }
 p{
