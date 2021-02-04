@@ -40,9 +40,15 @@ export default {
     console.log(this.$vuetify.theme.themes.dark)
     this.setLang(localStorage.getItem('lang') || 'en')
   },
-  metaInfo: {
-    title: 'Default Title',
-    titleTemplate: '%s | Dorich'
+  metaInfo() {
+    return {
+      title: 'Default Title',
+      titleTemplate: '%s | Dorich',
+      htmlAttrs: {
+        lang: this.lang
+      }
+    }
+
   }
 };
 </script>
