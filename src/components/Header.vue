@@ -5,23 +5,23 @@
         v-resize="onResize"
     >
       <div class="header-line">
-        <v-btn text :to="navigation.blog.route">
+        <v-btn active-class="nav-btn" text :to="navigation.blog.route">
           <span>{{navigation.blog.text.getText(lang)}}</span>
-          <span style="opacity: 0" :class="{cursor: routeNow === navigation.blog.route.name}">_</span>
+          <span style="opacity: 0" class="cursor">_</span>
         </v-btn>
 
-        <v-btn text :to="navigation.about.route">
+        <v-btn active-class="nav-btn" text :to="navigation.about.route">
           <span>{{navigation.about.text.getText(lang)}}</span>
-          <span style="opacity: 0" :class="{cursor: routeNow === navigation.about.route.name}">_</span>
+          <span style="opacity: 0" class="cursor">_</span>
         </v-btn>
 
         <router-link :to="navigation.home.route" class="btn-main" >
           <span>{{navigation.home.text.getText(lang)}}</span>
           <span style="opacity: 0" :class="{cursor: routeNow === navigation.home.route.name}">_</span>
         </router-link>
-        <v-btn text :to="navigation.portfolio.route">
+        <v-btn active-class="nav-btn" text :to="navigation.portfolio.route">
           <span>{{navigation.portfolio.text.getText(lang)}}</span>
-          <span style="opacity: 0" :class="{cursor: routeNow === navigation.portfolio.route.name}">_</span>
+          <span style="opacity: 0" class="cursor">_</span>
         </v-btn>
         <LangSwitcher />
       </div>

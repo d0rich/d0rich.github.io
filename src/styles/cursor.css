@@ -1,4 +1,4 @@
-.cursor{
+.nav-btn .cursor{
     opacity: 0;
     animation: flashing linear 1s infinite;
 }
