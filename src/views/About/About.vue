@@ -1,10 +1,14 @@
 <template>
   <div class="about">
-    <Terminal enter-word="watch about" >
-      <div class="error--text">
-        {{text.text}}
-      </div>
-    </Terminal>
+    <div class="btns">
+      <v-btn class="mx-3" exact text :to="{name: 'About'}" >
+        {{text.main.text}}
+      </v-btn>
+      <v-btn class="mx-3" text :to="{name: 'Resume'}" >
+        {{text.resume.text}}
+      </v-btn>
+    </div>
+
     <transition name="glitch-transition" mode="out-in">
       <router-view />
     </transition>
@@ -12,22 +16,27 @@
   </div>
 </template>
 <script>
-import Terminal from "@/components/Terminal";
 import {Text} from "@/classes";
 export default {
   name: "About",
   components:{
-    Terminal
   },
   data(){
     return {
-      text: new Text('Упс, страница обо мне ещё в разработке :(',
-          'Oops, it seems about me is still in development :(')
+      text: {
+        main: new Text('Основное', 'The main'),
+        resume: new Text('Резюме', 'Resume')
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-
+.btns{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 2rem;
+}
 </style>
