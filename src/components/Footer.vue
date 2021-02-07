@@ -1,14 +1,14 @@
 <template>
-  <div class="border-light--accent footer">
+  <footer class="border-light--accent footer">
     <div style="max-width: 1100px; margin: auto">
       <div class="footer__block--main">
-        <div class="mb-3">
+        <nav class="mb-3">
           <div>{{navigation.title.text}}:</div>
           <ul>
             <FooterRoute v-for="(route, index) in navigation.routes" :key="index" :route="route" />
           </ul>
 
-        </div>
+        </nav>
         <div>
           <div>{{connection.title.text}}:</div>
           <div><v-icon>mdi-email</v-icon> d.orich@yandex.com</div>
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-  </div>
+  </footer>
 </template>
 
 <script>

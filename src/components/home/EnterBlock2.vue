@@ -1,5 +1,5 @@
 <template>
-  <div ref="enterBlock" class="content">
+  <section ref="enterBlock" class="content">
     <div v-resize="onResize" class="block">
       <div v-for="(block, index) in blocks" :key="index"
            class="block__column">
@@ -19,7 +19,7 @@
         <v-icon class="arrow">mdi-chevron-down</v-icon>
       </div>
     </div>
-  </div>
+  </section>
 
 </template>
 

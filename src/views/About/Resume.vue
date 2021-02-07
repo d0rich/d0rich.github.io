@@ -1,6 +1,6 @@
 <template>
   <div class="px-5 pt-3">
-    <div class="intro">
+    <section class="intro">
       <div class="intro__info">
         <h1>{{resume.header.text}}</h1>
         <div class="mb-3">{{resume.intro.text}}</div>
@@ -29,9 +29,9 @@
       <div class="intro__photo">
         <img class="border-light--primary" :src="resume.photo" alt="Me">
       </div>
-    </div>
+    </section>
     <div class="hr" />
-    <div class="skills block">
+    <section class="skills block">
       <div class="block__column--text skills__description">
         <h1>{{text.skills.title.text}}</h1>
         <div>{{text.skills.subscription.text}}</div>
@@ -42,9 +42,9 @@
           <div>{{section.skills.join(', ')}}</div>
         </div>
       </div>
-    </div>
+    </section>
     <div class="hr" />
-    <div class="block">
+    <section class="block">
       <div class="block__column--text">
         <h1>{{text.experience.title.text}}</h1>
         <div>{{text.experience.subscription.text}}</div>
@@ -60,9 +60,9 @@
           <div class="time-note__description">{{note.description.text}}</div>
         </div>
       </div>
-    </div>
+    </section>
     <div class="hr" />
-    <div class="block">
+    <section class="block">
       <div class="block__column--text">
         <h1>{{text.education.title.text}}</h1>
         <div>{{text.education.subscription.text}}</div>
@@ -78,7 +78,7 @@
           <div class="time-note__description">{{note.description.text}}</div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
