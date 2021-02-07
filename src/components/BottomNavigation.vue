@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <nav>
     <LangSwitcher />
     <v-bottom-navigation class="bottom-nav" color="primary lighten-1">
       <v-btn active-class="nav-btn" :to="navigation.blog.route"  >
@@ -32,7 +32,7 @@
         <v-icon>mdi-file-presentation-box</v-icon>
       </v-btn>
     </v-bottom-navigation>
-  </div>
+  </nav>
 
 </template>
 

@@ -4,7 +4,7 @@
         class="header"
         v-resize="onResize"
     >
-      <div class="header-line">
+      <nav class="header-line">
         <v-btn active-class="nav-btn" text :to="navigation.blog.route">
           <span>{{navigation.blog.text.getText(lang)}}</span>
           <span style="opacity: 0" class="cursor">_</span>
@@ -24,7 +24,7 @@
           <span style="opacity: 0" class="cursor">_</span>
         </v-btn>
         <LangSwitcher />
-      </div>
+      </nav>
       <div class="header-bg">
         <div class="square1" :class="{active: squaresOn}" :style="{width: `${squareWidth}px`, height: `${squareWidth}px`}"></div>
         <div class="square2" :class="{active: squaresOn}" :style="{width: `${squareWidth*5/6}px`, height: `${squareWidth*5/6}px`}"></div>

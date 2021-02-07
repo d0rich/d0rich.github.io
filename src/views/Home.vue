@@ -7,7 +7,7 @@
       </span>
       <span style="font-size: 1.7rem;" class="mx-3">{{data.block1.p1.t4.text}}</span>
     </EnterBlock2>
-    <div class="block2 mt-16">
+    <section class="block2 mt-16">
       <v-lazy :options="{threshold: 0.7}" min-width="300" min-height="200px" transition="glitch-transition">
         <Terminal reveal enter-word="hello world" @revealed="show.block2info = true">
           <h1 class="align-self-start cursor-on-hover">{{data.block2.terminal.h1.text}}<span class="cursor">_</span></h1>
@@ -40,7 +40,7 @@
         </div>
       </v-lazy>
 
-    </div>
+    </section>
 
 
   </div>
