@@ -18,13 +18,13 @@ import vuetify from './plugins/vuetify';
 import {mapState} from "vuex";
 
 import './styles/transitions.scss'
-
+import './styles/loadings.scss'
 import { createSimpleTransition } from 'vuetify/lib/components/transitions/createTransition'
 Vue.component('scale-transition', createSimpleTransition('scale-transition'))
 
 Vue.mixin({
   computed:{
-    ...mapState(['lang']),
+    ...mapState(['lang', "apiUrl"]),
     routeNow(){
       return this.$route.name
     }
