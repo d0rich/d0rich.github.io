@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="intro__photo">
-        <img class="border-light--primary" :src="resume.photo" alt="Me">
+        <img class="border-light--primary" :src="resume.photo.src" alt="Nikolay Dorofeev - Web Developer">
       </div>
     </section>
     <div class="hr" />
@@ -83,13 +83,13 @@
 </template>
 
 <script>
-import resumeObj from '@/data/about/resume'
+//import resumeObj from '@/data/about/resume'
 import {Resume, Text} from "@/classes";
 export default {
 name: "Resume",
   data(){
     return{
-      resume: new Resume(resumeObj),
+      resume: new Resume(),
       text: {
         phone: new Text('Телефон','Phone'),
         email: new Text('Email', 'Email'),
@@ -115,11 +115,20 @@ name: "Resume",
       }
     }
   },
+  methods:{
+    async fetchResume(){
+      const response = await this.axios.get(`${this.apiUrl}/resume/get`)
+      this.resume = new Resume(response.data)
+      this.resume.photo.getSrc()
+    }
+  },
+  created() {
+    this.fetchResume()
+  },
   metaInfo() {
     return {
       title: new Text('Резюме', 'Resume').text
     }
-
   }
 }
 </script>
@@ -162,6 +171,8 @@ name: "Resume",
   align-items: center;
   img{
     max-width: 15rem;
+    min-width: 200px;
+    min-height: 200px;
   }
 }
 .block{
