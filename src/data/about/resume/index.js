@@ -1,8 +1,8 @@
-import {SkillsSection, Social, Text, TimeNote} from "@/classes";
+import {ImageModel, SkillsSection, Social, Text, TimeNote} from "@/classes";
 import my_photo from '@/assets/home/dorich.jpg'
 
 export default {
-    photo: my_photo,
+    photo: new ImageModel({src: my_photo}),
     header: new Text('Николай Дорофеев', 'Nikolay Dorofeev'),
     intro: new Text('Я JavaScript разработчик из Томска (Россия). ' +
         'На данный момент я обучаюсь на 3-ем курсе в Томском Политехническом Университете на направлении  ' +

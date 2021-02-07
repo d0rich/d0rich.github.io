@@ -3,6 +3,7 @@ export * from './skillsSection'
 export * from './timeNote'
 
 import {Text} from "@/classes";
+import {ImageModel} from "@/classes/imageModel";
 import {SkillsSection} from "@/classes/resume/skillsSection";
 import {Social} from "@/classes/resume/social";
 import {TimeNote} from "@/classes/resume/timeNote";
@@ -18,7 +19,7 @@ const noNotesNote = new TimeNote({
         'The first note will appear there vey soon.') })
 
 const resumeExample = {
-    photo: '',
+    photo: new ImageModel(),
     header: new Text(),
     intro: new Text(),
     phone: new Text(),
@@ -32,16 +33,28 @@ const resumeExample = {
 
 export class Resume{
     constructor(resume = resumeExample) {
-        this.photo = resume.photo
+        this.photo = new ImageModel(resume.photo)
         this.header = Text.fromObj(resume.header)
         this.intro = Text.fromObj(resume.intro)
         this.phone = Text.fromObj(resume.phone)
         this.email = Text.fromObj(resume.email)
         this.address = Text.fromObj(resume.address)
-        this.social = resume.social
-        this.skills = resume.skills
-        this.experience = resume.experience
-        this.education = resume.education
+        this.social = []
+        resume.social.forEach(social => {
+            this.social.push(new Social(social))
+        })
+        this.skills = []
+        resume.skills.forEach(skill => {
+            this.skills.push(new SkillsSection(skill))
+        })
+        this.experience = []
+        resume.experience.forEach(exp => {
+            this.experience.push(new TimeNote(exp))
+        })
+        this.education = []
+        resume.education.forEach(ed => {
+            this.education.push(new TimeNote(ed))
+        })
 
         if (this.experience.length === 0){
             this.experience.push(noNotesNote)

@@ -6,7 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     windowWidth: 1000,
-    lang: 'ru'
+    lang: 'ru',
+    //apiUrl: 'http://127.0.0.1:3000/api',
+    apiUrl: 'https://dorich-server.herokuapp.com/api',
+
   },
   getters: {
     headerOn(state){
