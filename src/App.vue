@@ -2,6 +2,11 @@
   <v-app class="main-scroll" v-resize="onResize">
     <Header v-if="headerOn" />
     <BottomNavigation v-else />
+    <transition name="glitch-transition">
+      <div v-if="onPageLoad" class="loading-container">
+        <loading />
+      </div>
+    </transition>
     <v-main>
       <transition name="glitch-transition" mode="out-in">
         <router-view class="page pa-2" :class="{'loading--glitch': onPageLoad}" />
@@ -16,13 +21,15 @@ import '@/assets/fonts/JetBrainsMono/fontface.css'
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BottomNavigation from "@/components/BottomNavigation";
+import Loading from "@/components/Loading";
 import {mapGetters, mapMutations} from 'vuex'
 import {Text} from "@/classes";
 export default {
   name: 'App',
 
   components: {
-    Header, BottomNavigation, Footer
+    Header, BottomNavigation,
+    Footer, Loading
   },
 
   data: () => ({
@@ -67,6 +74,15 @@ export default {
   align-items: center;
   max-width: 1080px;
   margin: auto;
+}
+.loading-container{
+  pointer-events: none;
+  position: fixed;
+  z-index: 9000;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 @media screen and (max-width: 640px) {
   html{
