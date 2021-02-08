@@ -4,7 +4,7 @@
     <BottomNavigation v-else />
     <v-main>
       <transition name="glitch-transition" mode="out-in">
-        <router-view class="page pa-2" />
+        <router-view class="page pa-2" :class="{'loading--glitch': onPageLoad}" />
       </transition>
     </v-main>
     <Footer />
@@ -17,6 +17,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BottomNavigation from "@/components/BottomNavigation";
 import {mapGetters, mapMutations} from 'vuex'
+import {Text} from "@/classes";
 export default {
   name: 'App',
 
@@ -38,11 +39,10 @@ export default {
   },
   beforeMount() {
     console.log(this.$vuetify.theme.themes.dark)
-    this.setLang(localStorage.getItem('lang') || 'en')
   },
   metaInfo() {
     return {
-      title: 'Default Title',
+      title: new Text('JavaScript Разработчик', 'JavaScript Developer').text,
       titleTemplate: '%s | Dorich',
       htmlAttrs: {
         lang: this.lang

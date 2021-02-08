@@ -15,7 +15,7 @@ Vue.use(VueAxios, axios)
 
 import vuetify from './plugins/vuetify';
 
-import {mapState} from "vuex";
+import {mapState, mapMutations} from "vuex";
 
 import './styles/transitions.scss'
 import './styles/loadings.scss'
@@ -24,12 +24,13 @@ Vue.component('scale-transition', createSimpleTransition('scale-transition'))
 
 Vue.mixin({
   computed:{
-    ...mapState(['lang', "apiUrl"]),
+    ...mapState(['lang', "apiUrl", "onPageLoad"]),
     routeNow(){
       return this.$route.name
     }
   },
   methods:{
+    ...mapMutations(["turnPageLoad"]),
     timeout(ms){
       return new Promise(resolve => {
         setTimeout(() =>resolve(), ms)

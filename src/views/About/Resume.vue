@@ -83,13 +83,13 @@
 </template>
 
 <script>
-//import resumeObj from '@/data/about/resume'
+import resumeObj from '@/data/about/resume'
 import {Resume, Text} from "@/classes";
 export default {
 name: "Resume",
   data(){
     return{
-      resume: new Resume(),
+      resume: new Resume(resumeObj),
       text: {
         phone: new Text('Телефон','Phone'),
         email: new Text('Email', 'Email'),
@@ -117,9 +117,11 @@ name: "Resume",
   },
   methods:{
     async fetchResume(){
+      this.turnPageLoad(true)
       const response = await this.axios.get(`${this.apiUrl}/resume/get`)
       this.resume = new Resume(response.data)
       this.resume.photo.getSrc()
+      this.turnPageLoad(false)
     }
   },
   created() {
