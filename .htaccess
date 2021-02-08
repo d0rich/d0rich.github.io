@@ -1,3 +1,4 @@
 <IfModule mod_rewrite.c>
+    ExpiresActive on
 	ExpiresDefault "access plus 0 minutes"
 </IfModule>
