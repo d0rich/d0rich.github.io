@@ -15,9 +15,9 @@
           <span style="opacity: 0" class="cursor">_</span>
         </v-btn>
 
-        <router-link :to="navigation.home.route" class="btn-main" >
+        <router-link :to="navigation.home.route" class="btn-main" :class="{'nav-btn': routeNow === navigation.home.route.name}">
           <span>{{navigation.home.text.getText(lang)}}</span>
-          <span style="opacity: 0" :class="{cursor: routeNow === navigation.home.route.name}">_</span>
+          <span style="opacity: 0" class="cursor">_</span>
         </router-link>
         <v-btn active-class="nav-btn" text :to="navigation.portfolio.route">
           <span>{{navigation.portfolio.text.getText(lang)}}</span>
@@ -79,6 +79,7 @@ name: "Header",
   z-index: -1;
 }
 .btn-main{
+  color: white;
   font-size: 2rem;
   padding: 0 0.3rem ;
   transition: background-color 0.1s ease;

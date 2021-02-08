@@ -3,7 +3,7 @@
     <EnterBlock2 class="text-center">
       <span style="font-size: 1.7rem;" class="mx-3">{{data.block1.p1.t1.text}}</span>
       <span style="font-size: 1.7rem;" class="ma-3">{{data.block1.p1.t2.text}}
-        <span style="font-size: 2.3rem; font-weight: bold">{{data.block1.p1.t3.text}}<span class="cursor">_</span></span>
+        <span style="font-size: 2.3rem; font-weight: bold">{{data.block1.p1.t3.text}}<span class="cursor--active">_</span></span>
       </span>
       <span style="font-size: 1.7rem;" class="mx-3">{{data.block1.p1.t4.text}}</span>
     </EnterBlock2>

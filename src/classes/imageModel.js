@@ -1,9 +1,10 @@
 import axios from "axios"
 import store from '@/store'
 import {Text} from "@/classes/text";
+import ph from '@/assets/img-placeholder.svg'
 
 const imageExample = {
-    src: '',
+    src: ph,
     alt: new Text(),
     path: ''
 }
