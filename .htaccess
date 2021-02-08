@@ -1,7 +1,0 @@
-<IfModule mod_rewrite.c>
-    Header append Cache-control "public"
-    FileETag MTime Size
-    ExpiresActive on
-	ExpiresDefault "access plus 0 minutes"
-	ExpiresByType text/javascript "access plus 0 minutes"
-</IfModule>
