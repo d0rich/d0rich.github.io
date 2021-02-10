@@ -1,5 +1,5 @@
 <template>
-  <div class="px-5 pt-3">
+  <div class="px-5 pt-3" :class="{'loading--glitch': onPageLoad}" >
     <section class="intro">
       <div class="intro__info">
         <h1>{{resume.header.text}}</h1>
@@ -27,7 +27,11 @@
         </div>
       </div>
       <div class="intro__photo">
-        <img class="border-light--primary" :src="resume.photo.src" alt="Nikolay Dorofeev - Web Developer">
+        <img-with-ph
+            class="border-light--primary"
+            :src="resume.photo.src"
+            :ph-src="resume.photo.phSrc" />
+
       </div>
     </section>
     <div class="hr" />
@@ -85,11 +89,14 @@
 <script>
 import resumeObj from '@/data/about/resume'
 import {Resume, Text} from "@/classes";
+import {fake} from "@/data/fake";
+
 export default {
 name: "Resume",
   data(){
     return{
       resume: new Resume(resumeObj),
+      fakeImg: fake.img,
       text: {
         phone: new Text('Телефон','Phone'),
         email: new Text('Email', 'Email'),
@@ -119,8 +126,8 @@ name: "Resume",
     async fetchResume(){
       this.turnPageLoad(true)
       const response = await this.axios.get(`${this.apiUrl}/resume/get`)
+      this.resume.photo = undefined
       this.resume = new Resume(response.data)
-      this.resume.photo.getSrc()
       this.turnPageLoad(false)
     }
   },
@@ -134,8 +141,8 @@ name: "Resume",
   }
 }
 </script>
-
 <style scoped lang="scss">
+
 .hr{
   margin: 3rem 0 ;
   width: 100%;
@@ -171,10 +178,10 @@ name: "Resume",
   display: flex;
   justify-content: center;
   align-items: center;
-  img{
+  .img--wPh{
     max-width: 15rem;
-    min-width: 200px;
-    min-height: 200px;
+    min-width: 100px;
+    min-height: 100px;
   }
 }
 .block{

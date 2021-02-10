@@ -7,9 +7,9 @@ export default new Vuex.Store({
   state: {
     windowWidth: 1000,
     lang: localStorage.getItem('lang') || 'en',
-    //apiUrl: 'http://127.0.0.1:3000/api',
-    apiUrl: 'https://dorich-server.herokuapp.com/api',
-    onPageLoad: false
+    onPageLoad: false,
+    apiUrl: 'http://127.0.0.1:3000/api',
+    //apiUrl: 'https://dorich-server.herokuapp.com/api',
   },
   getters: {
     headerOn(state){
