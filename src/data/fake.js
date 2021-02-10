@@ -1,5 +1,4 @@
 import {ImageModel, Text} from "@/classes";
-import img from '@/assets/img-placeholder.svg'
 
 export const fake = {
     text: {
@@ -12,5 +11,5 @@ export const fake = {
         big: new Text('Таким образом новая модель организационной деятельности способствует подготовки и реализации систем массового участия. С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач.',
             'Eam id posse dictas voluptua, veniam laoreet oportere no mea, quis regione suscipiantur mea an. Ius dicat feugiat no, vix cu modo dicat principes. Nec labore cetero theophrastus no, ei vero facer veritus nec. Sale liber et vel. Vivendum dignissim conceptam pri ut, ei vel partem audiam sapientem.')
     },
-    img: new ImageModel({ src: img })
+    img: new ImageModel()
 }

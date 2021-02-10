@@ -9,7 +9,7 @@
     </transition>
     <v-main>
       <transition name="glitch-transition" mode="out-in">
-        <router-view class="page pa-2" :class="{'loading--glitch': onPageLoad}" />
+        <router-view class="page pa-2" />
       </transition>
     </v-main>
     <Footer />
@@ -83,6 +83,9 @@ export default {
   height: 100vh;
   display: flex;
   align-items: center;
+}
+.v-image__image--preload{
+  filter: none;
 }
 @media screen and (max-width: 640px) {
   html{

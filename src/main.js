@@ -13,15 +13,17 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
-import vuetify from './plugins/vuetify';
+import ImgWithPh from "@/components/ImgWithPh";
+Vue.component('img-with-ph', ImgWithPh)
 
-import {mapState, mapMutations} from "vuex";
+import vuetify from './plugins/vuetify';
 
 import './styles/transitions.scss'
 import './styles/loadings.scss'
 import { createSimpleTransition } from 'vuetify/lib/components/transitions/createTransition'
 Vue.component('scale-transition', createSimpleTransition('scale-transition'))
 
+import {mapState, mapMutations} from "vuex";
 Vue.mixin({
   computed:{
     ...mapState(['lang', "apiUrl", "onPageLoad"]),

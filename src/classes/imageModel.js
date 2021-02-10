@@ -4,7 +4,8 @@ import {Text} from "@/classes/text";
 import ph from '@/assets/img-placeholder.svg'
 
 const imageExample = {
-    src: ph,
+    src: null,
+    phSrc: ph,
     alt: new Text(),
     path: ''
 }
@@ -14,6 +15,7 @@ export class ImageModel{
         this.alt = Text.fromObj(image.alt)
         this.path = image.path
         this.src = image.src
+        this.phSrc = image.phSrc
     }
 
     async getSrc(){
