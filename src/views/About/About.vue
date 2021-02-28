@@ -24,7 +24,7 @@ export default {
   data(){
     return {
       text: {
-        main: new Text('Основное', 'The main'),
+        main: new Text('Основное', 'Overall'),
         resume: new Text('Резюме', 'Resume')
       }
     }
