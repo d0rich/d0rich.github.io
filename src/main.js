@@ -11,6 +11,9 @@ Vue.use(VueMeta)
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+axios.defaults.headers = {
+
+}
 Vue.use(VueAxios, axios)
 
 import ImgWithPh from "@/components/ImgWithPh";

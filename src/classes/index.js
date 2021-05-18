@@ -1,5 +1,7 @@
 export * from './text'
 export * from './JSField'
 export * from './JSObject'
+export * from './pageBlock'
 export * from './resume'
 export * from './imageModel'
+export * from './aboutMe'

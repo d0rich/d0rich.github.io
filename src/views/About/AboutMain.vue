@@ -5,22 +5,31 @@
         {{text.text}}
       </div>
     </Terminal>
+    <!-- <page-block :block="data.overall"></page-block> -->
   </div>
 </template>
 
 <script>
 import Terminal from "@/components/Terminal";
-import {Text} from "@/classes";
+//import PageBlock from '@/components/PageBlock'
+import {AboutMe, Text} from "@/classes";
+import pageData from '@/data/about/aboutMe'
 
 export default {
 name: "AboutMain",
   components:{
-    Terminal
+    Terminal, //PageBlock
   },
   data(){
     return {
       text: new Text('Упс, страница обо мне ещё в разработке :(',
-          'Oops, it seems about me is still in development :(')
+          'Oops, it seems about me is still in development :('),
+      data: new AboutMe(pageData)
+    }
+  },
+  metaInfo() {
+    return {
+      title: new Text('Обо мне', 'About me').text
     }
   }
 }

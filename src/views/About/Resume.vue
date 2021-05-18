@@ -143,14 +143,6 @@ name: "Resume",
 </script>
 <style scoped lang="scss">
 
-.hr{
-  margin: 3rem 0 ;
-  width: 100%;
-  height: 1px;
-  border: var(--v-accent-base) solid;
-  border-width: 2px  0 0 0  ;
-  box-shadow: 0px 0px 15px 3px var(--v-accent-base);
-}
 .intro{
   display: flex;
   justify-content: space-between;

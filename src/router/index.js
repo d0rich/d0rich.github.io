@@ -24,6 +24,7 @@ const routes = [
       },
       {
         path: 'about',
+        name: 'AboutHome',
         component: About,
         meta: { scrollToTop: true },
         children: [
@@ -68,10 +69,10 @@ const router = new VueRouter({
   routes
 })
 
-router.afterEach((to) => {
+router.afterEach((to, from) => {
   if (to.meta.scrollToTop) {
-    setTimeout(() => window.scrollTo(0, 0), 300)
-
+    if (to.name !== from.name)
+      setTimeout(() => window.scrollTo(0, 0), 300)
   }
 })
 

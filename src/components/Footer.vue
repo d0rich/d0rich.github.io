@@ -7,16 +7,19 @@
           <ul>
             <FooterRoute v-for="(route, index) in navigation.routes" :key="index" :route="route" />
           </ul>
-
         </nav>
+
         <div>
           <div>{{connection.title.text}}:</div>
           <div><v-icon>mdi-email</v-icon> d.orich@yandex.com</div>
-          <v-btn icon target="_blank"
-                 v-for="btn in connection.socials" :key="btn.href"
-                 :href="btn.href" >
-            <v-icon>{{btn.icon}}</v-icon>
-          </v-btn>
+          <div>
+            <v-btn icon target="_blank"
+                   v-for="btn in connection.socials" :key="btn.href"
+                   :href="btn.href" >
+              <v-icon>{{btn.icon}}</v-icon>
+            </v-btn>
+          </div>
+          <AuthModal />
         </div>
       </div>
       <div class="footer__block--bottom">
@@ -30,10 +33,11 @@
 <script>
 import {Text} from "@/classes";
 import FooterRoute from "@/components/FooterRoute";
+import AuthModal from "@/components/AuthModal";
 export default {
 name: "Footer",
   components: {
-    FooterRoute
+    FooterRoute, AuthModal
   },
   data(){
     return{
