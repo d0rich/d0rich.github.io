@@ -22,7 +22,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BottomNavigation from "@/components/BottomNavigation";
 import Loading from "@/components/Loading";
-import {mapGetters, mapMutations} from 'vuex'
+import {mapGetters, mapMutations, mapActions} from 'vuex'
 import {Text} from "@/classes";
 export default {
   name: 'App',
@@ -40,12 +40,14 @@ export default {
   },
   methods:{
     ...mapMutations(['getWindowWidth', "setLang"]),
+    ...mapActions(["authByToken"]),
     onResize(){
       this.getWindowWidth(window.innerWidth)
     }
   },
   beforeMount() {
-    console.log(this.$vuetify.theme.themes.dark)
+    // console.log(this.$vuetify.theme.themes.dark)
+    this.authByToken(localStorage.getItem('token'))
   },
   metaInfo() {
     return {
