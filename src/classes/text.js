@@ -17,4 +17,8 @@ export class Text{
     static fromObj(text = {ru: '', en: ''}){
         return new Text(text.ru, text.en)
     }
+
+    static fromArr(text = ['', '']){
+        return new Text(text[0], text[1])
+    }
 }

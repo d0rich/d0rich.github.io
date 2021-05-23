@@ -1,11 +1,11 @@
 <template>
   <div>
-    <Terminal enter-word="watch portfolio">
+    <Terminal v-if="inDev" enter-word="watch portfolio">
       <div class="error--text">
         {{text.text}}
       </div>
     </Terminal>
-    <EditProjectModal>Создать проект</EditProjectModal>
+    <EditProjectModal class="align-self-start">Создать проект</EditProjectModal>
   </div>
 </template>
 
@@ -20,9 +20,14 @@ name: "Portfolio",
   },
   data(){
     return {
+      inDev: false,
       text: new Text('Упс, портфолио ещё в разработке :(',
-                     'Oops, it seems portfolio is still in development :(')
+                     'Oops, it seems portfolio is still in development :('),
+      projects: []
     }
+  },
+  created() {
+    this.projects
   }
 }
 </script>

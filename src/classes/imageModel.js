@@ -21,4 +21,9 @@ export class ImageModel{
     async getSrc(){
         this.src = (await axios.get(`${store.state.apiUrl}/dbx/files/get/link?path=${this.path}`)).data
     }
+
+    static async fetchFromPath(path, alt){
+        const res = (await axios.get(`${store.state.apiUrl}/dbx/files/images/get/links?path=${path}`)).data
+        return new ImageModel({ src: res.src, phSrc: res.phSrc, alt, path  })
+    }
 }

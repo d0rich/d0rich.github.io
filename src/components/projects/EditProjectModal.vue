@@ -273,7 +273,7 @@ name: "EditProjectModal",
         ru: false,
         en: false
       },
-      acceptImg: ['.png', '.jpg', 'jpeg'],
+      acceptImg: ['.jpg', 'jpeg'],
       projectForm: {
         image: null,
         stringId: '',
