@@ -13,8 +13,8 @@
           <h1 class="align-self-start cursor-on-hover">{{data.block2.terminal.h1.text}}<span class="cursor">_</span></h1>
           <p class="align-self-start cursor-on-hover">
             {{data.block2.terminal.t1.text}}
-            <router-link class="link" :to="{name: 'Portfolio'}">{{data.block2.terminal.t2.text}}</router-link>{{data.block2.terminal.t3.text}}
-            <router-link class="link" :to="{name: 'About'}">{{data.block2.terminal.t4.text}}</router-link>{{data.block2.terminal.t5.text}}
+            <router-link class="link" :to="{name: 'PortfolioIndex'}">{{data.block2.terminal.t2.text}}</router-link>{{data.block2.terminal.t3.text}}
+            <router-link class="link" :to="{name: 'AboutIndex'}">{{data.block2.terminal.t4.text}}</router-link>{{data.block2.terminal.t5.text}}
             <router-link class="link" :to="{name: 'Blog'}">{{data.block2.terminal.t6.text}}</router-link>{{data.block2.terminal.t7.text}}<span class="cursor">_</span>
           </p>
         </Terminal>

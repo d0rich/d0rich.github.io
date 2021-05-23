@@ -46,14 +46,14 @@ name: "Footer",
         title: new Text('Навигация', 'Navigation'),
         routes: [
           { title: new Text('Главная', 'Home'), route: { name: 'Home' } },
-          { title: new Text('Обо мне', 'About me'), route: { name: 'About' }, children: [
+          { title: new Text('Обо мне', 'About me'), route: { name: 'AboutIndex' }, children: [
               { title: new Text('Резюме', 'Resume'), route: { name: 'Resume' }, children: [
                   //{ title: new Text('Фронтенд', 'Frontend'), route: { name: 'Resume' } },
                   //{ title: new Text('Бэкенд', 'Backend'), route: { name: 'Resume' } },
                   //{ title: new Text('Фуллстак', 'Fullstack'), route: { name: 'Resume' } }
                 ] }
             ] },
-          { title: new Text('Портфолио', 'Portfolio'), route: { name: 'Portfolio' } },
+          { title: new Text('Портфолио', 'Portfolio'), route: { name: 'PortfolioIndex' } },
           { title: new Text('Блог', 'Blog'), route: { name: 'Blog' } },
         ]
       },

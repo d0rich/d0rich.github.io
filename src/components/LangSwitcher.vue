@@ -1,5 +1,5 @@
 <template>
-  <v-menu :offset-x="headerOn" :offset-y="!headerOn" bottom>
+  <v-menu :offset-x="headerOn" :offset-y="!headerOn" transition="glitch-transition" bottom>
     <template v-slot:activator="{ on: menu, attrs }">
       <v-tooltip :disabled="!headerOn" bottom>
         <template v-slot:activator="{ on: tooltip }">
