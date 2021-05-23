@@ -18,9 +18,9 @@
 
 <script>
 import '@/assets/fonts/JetBrainsMono/fontface.css'
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import BottomNavigation from "@/components/BottomNavigation";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import BottomNavigation from "@/components/layout/BottomNavigation";
 import Loading from "@/components/Loading";
 import {mapGetters, mapMutations, mapActions} from 'vuex'
 import {Text} from "@/classes";

@@ -32,7 +32,7 @@
 
 <script>
 import {Text} from "@/classes";
-import FooterRoute from "@/components/FooterRoute";
+import FooterRoute from "@/components/layout/FooterRoute";
 import AuthModal from "@/components/AuthModal";
 export default {
 name: "Footer",

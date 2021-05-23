@@ -1,13 +1,13 @@
 <template>
   <div>
     <span v-if="!login"
-          v-on:click="showModal = !showModal"
-          style="user-select: none; cursor: pointer">
+          @click="showModal = !showModal"
+          class="auth-btn">
       Вход
     </span>
     <span v-else
           @dblclick="logout"
-          style="user-select: none; cursor: pointer">
+          class="auth-btn">
       {{login}}
     </span>
     <v-dialog v-model="showModal"
@@ -25,10 +25,10 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn @click="showModal = !showModal">
+            <v-btn color="red" @click="showModal = !showModal">
               {{text.exit.text}}
             </v-btn>
-            <v-btn :loading="loginRequest" type="submit">
+            <v-btn :loading="loginRequest" color="primary" type="submit">
               {{text.auth.text}}
             </v-btn>
           </v-card-actions>
@@ -72,6 +72,7 @@ name: "AuthModal",
     async authorize(){
       this.loginRequest = true
       this.error = await this.authByPwd(this.authData)
+      this.authData.password = ''
       this.loginRequest = false
       if (this.login) this.showModal = false
     }
@@ -80,16 +81,8 @@ name: "AuthModal",
 </script>
 
 <style scoped>
-.auth-modal{
-  position: fixed;
-  z-index: 100;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.45);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
+.auth-btn{
+  user-select: none;
+  cursor: pointer;
 }
 </style>
