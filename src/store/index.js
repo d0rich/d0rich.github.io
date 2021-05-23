@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
+import {projects} from "@/store/projects";
 
 Vue.use(Vuex)
 
@@ -17,6 +18,16 @@ export default new Vuex.Store({
   getters: {
     headerOn(state){
       return state.windowWidth > 640
+    },
+    isAuth(state){
+      return !!state.token
+    },
+    authHeaders(state){
+      return {
+        headers: {
+          Authorization: state.token
+        }
+      }
     }
   },
   mutations: {
@@ -44,8 +55,10 @@ export default new Vuex.Store({
   actions: {
     getServerErrorMessage(state, err){
       if (err.response) {
+        console.log(err.response.data)
         return err.response.data
       } else if (err.request) {
+        console.log('Problem with server connection')
         return 'Problem with server connection'
       } else {
         // anything else
@@ -80,5 +93,6 @@ export default new Vuex.Store({
     }
   },
   modules: {
+    projects
   }
 })

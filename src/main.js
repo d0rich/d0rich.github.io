@@ -26,10 +26,11 @@ import './styles/loadings.scss'
 import { createSimpleTransition } from 'vuetify/lib/components/transitions/createTransition'
 Vue.component('scale-transition', createSimpleTransition('scale-transition'))
 
-import {mapState, mapMutations} from "vuex";
+import {mapState, mapMutations, mapGetters} from "vuex";
 Vue.mixin({
   computed:{
     ...mapState(['lang', "apiUrl", "onPageLoad"]),
+    ...mapGetters(['isAuth', "authHeaders"]),
     routeNow(){
       return this.$route.name
     }

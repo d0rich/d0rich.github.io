@@ -5,16 +5,18 @@
         {{text.text}}
       </div>
     </Terminal>
+    <EditProjectModal>Создать проект</EditProjectModal>
   </div>
 </template>
 
 <script>
 import Terminal from "@/components/Terminal";
+import EditProjectModal from "@/components/projects/EditProjectModal";
 import {Text} from "@/classes";
 export default {
 name: "Portfolio",
   components:{
-    Terminal
+    Terminal, EditProjectModal
   },
   data(){
     return {
