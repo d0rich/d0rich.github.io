@@ -2,11 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
-import About from '../views/About/About'
+import About from '../views/About/index'
 import Blog from "@/views/Blog"
-import Portfolio from "@/views/Portfolio";
+import PortfolioIndex from '@/views/Portfolio/index'
+import Projects from "@/views/Portfolio/Projects";
 import Resume from "@/views/About/Resume";
-import AboutMain from "@/views/About/AboutMain";
+import AboutMain from "@/views/About/Main";
 import LangRouter from "@/views/LangRouter";
 
 Vue.use(VueRouter)
@@ -24,13 +25,12 @@ const routes = [
       },
       {
         path: 'about',
-        name: 'AboutHome',
         component: About,
         meta: { scrollToTop: true },
         children: [
           {
             path: '',
-            name: 'About',
+            name: 'AboutIndex',
             component: AboutMain,
             meta: { scrollToTop: true }
           },
@@ -50,10 +50,18 @@ const routes = [
       },
       {
         path: 'portfolio',
-        name: 'Portfolio',
-        component: Portfolio,
-        meta: { scrollToTop: true }
+        component: PortfolioIndex,
+        meta: { scrollToTop: true },
+        children: [
+          {
+            path: '',
+            name: 'PortfolioIndex',
+            component: Projects,
+            meta: { scrollToTop: true }
+          },
+        ]
       },
+
     ]
   },
 

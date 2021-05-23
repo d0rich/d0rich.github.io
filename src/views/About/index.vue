@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="btns">
-      <v-btn class="mx-3" exact text :to="{name: 'About'}" >
+      <v-btn class="mx-3" exact text :to="{name: 'AboutIndex'}" >
         {{text.main.text}}
       </v-btn>
       <v-btn class="mx-3" text :to="{name: 'Resume'}" >

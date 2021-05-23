@@ -3,7 +3,7 @@ import {Text} from "@/classes/text";
 export const navigation = {
     about: {
         text: new Text('Обо мне', 'About me'),
-        route: { name: 'About' }
+        route: { name: 'AboutIndex' }
     },
     blog: {
         text: new Text('Блог', 'Blog'),
@@ -15,6 +15,6 @@ export const navigation = {
     },
     portfolio: {
         text: new Text('Портфолио', 'Portfolio'),
-        route: { name: 'Portfolio' }
+        route: { name: 'PortfolioIndex' }
     }
 }

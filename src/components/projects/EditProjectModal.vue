@@ -1,6 +1,6 @@
 <template>
   <div v-if="isAuth">
-    <v-btn @click="showModal = ! showModal" color="primary">
+    <v-btn block @click="showModal = ! showModal" color="accent darken-4">
       <slot />
     </v-btn>
     <v-dialog class="projectModal" v-model="showModal"
