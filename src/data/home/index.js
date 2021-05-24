@@ -47,7 +47,7 @@ export default {
             new JSObject([
                 new JSField( { key: new Text('Никнейм', 'Nickname'), value: new Text('d0rich', 'd0rich') } ),
                 new JSField( { key: new Text('Фронтенд', 'Frontend'), value: new Text('Vue.js', 'Vue.js') } ),
-                new JSField( { key: new Text('Бэкенд', 'Backend'), value: new Text('Node.js', 'Node.js') } ),
+                new JSField( { key: new Text('Бэкенд', 'Backend'), value: new Text('Node.js, Python', 'Node.js, Python') } ),
                 new JSField( { key: new Text('База данных', 'Database'), value: new Text('PostgreSQL, MongoDB', 'PostgreSQL, MongoDB') } )
             ], new Text('Разработчик', 'Developer'))
         ]
