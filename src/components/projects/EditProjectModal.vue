@@ -273,7 +273,7 @@ name: "EditProjectModal",
         ru: false,
         en: false
       },
-      acceptImg: ['.jpg', 'jpeg'],
+      acceptImg: ['.jpg', '.jpeg'],
       projectForm: {
         image: null,
         stringId: '',
@@ -334,22 +334,51 @@ name: "EditProjectModal",
       return errors
     }
   },
+  watch:{
+    id(){
+      this.fetchProject()
+    }
+  },
   methods:{
+    async fetchProject(){
+      this.load.project = true
+      try {
+        let res = await this.axios.get(`${this.apiUrl}/projects/get/byId/${this.id}`)
+        this.projectForm.stringId = res.data.stringId
+        this.projectForm.title = res.data.title
+        this.projectForm.description = res.data.description
+        this.projectForm.url = res.data.url
+        this.projectForm.githubUrl = res.data.githubUrl
+        this.projectForm.date = res.data.date
+        this.projectForm.tags = res.data.tagId_tags.map(tag => tag.id)
+        this.projectForm.technologies = res.data.technologyId_technologies.map(tech => {
+          return {
+            id: tech.id,
+            name: tech.name,
+            url: tech.url,
+            version: tech.technologies_in_project.version
+          }
+        })
+      }
+      catch (e){this.getServerErrorMessage(e)}
+
+      this.load.project = false
+    },
     async sendForm(){
       this.$refs.form.validate()
       if (this.valid)
       {
         this.load.project = true
         try {
-          const imageBuffer = Buffer.from(await this.projectForm.image.arrayBuffer())
+          const image = this.projectForm.image ? {
+            buffer: Buffer.from(await this.projectForm.image.arrayBuffer()),
+            type: this.projectForm.image.type.split('/')[1]
+          } : undefined
           const result = await this.axios.post(`${this.apiUrl}/projects/edit`,
               {
                 id: this.id,
                 ...this.projectForm,
-                image: {
-                  buffer: imageBuffer,
-                  type: this.projectForm.image.type.split('/')[1]
-                },
+                image,
               }, this.authHeaders)
           console.log(result.data)
         }

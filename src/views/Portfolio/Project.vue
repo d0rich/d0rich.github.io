@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 class="text-center mt-7">{{texts.title.text}}</h1>
+    <EditProjectModal :id="id" @updated="fetch">{{texts.editProject.text}}</EditProjectModal>
     <div class="hr" />
     <v-btn class="ml-5" color="primary" :to="{ name: 'PortfolioIndex' }">
       <v-icon>
@@ -63,12 +64,17 @@
 
 <script>
 import {ImageModel, Text} from "@/classes";
+import EditProjectModal from "@/components/projects/EditProjectModal";
 
 export default {
   name: "Project",
+  components: {
+    EditProjectModal
+  },
   data(){
     return{
       texts: {
+        editProject: new Text('Редактировать  проект', 'Edit project'),
         title: new Text('Просмотр проекта', 'View project'),
         backBtn: new Text('Назад к проектам', 'Back to projects'),
         date: new Text('Дата', 'Date'),
@@ -90,7 +96,7 @@ export default {
   },
   methods:{
     async getProject(stringId){
-      let res = await this.axios.get(`${this.apiUrl}/projects/get/byId/${stringId}`)
+      let res = await this.axios.get(`${this.apiUrl}/projects/get/byStringId/${stringId}`)
       let project = res.data
       this.id = project.id
       this.title = Text.fromArr(project.title)
@@ -101,6 +107,7 @@ export default {
         })
       this.description = Text.fromArr(project.description)
       this.url = project.url
+      this.githubUrl = project.githubUrl
       this.date = new Date(project.date)
       this.tags = project.tagId_tags.map(tag => {
         return {id: tag.id, text: tag.text}
