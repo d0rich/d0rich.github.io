@@ -2,6 +2,9 @@
   <div>
     <h1 class="text-center mt-7">{{texts.title.text}}</h1>
     <EditProjectModal :id="id" @updated="fetch">{{texts.editProject.text}}</EditProjectModal>
+    <DeleteProject class="my-2" :id="id" :string-id="stringId" @deleted="$router.push({name: 'PortfolioIndex'})">
+      {{texts.delete.text}}
+    </DeleteProject>
     <div class="hr" />
     <v-btn class="ml-5" color="primary" :to="{ name: 'PortfolioIndex' }">
       <v-icon>
@@ -65,10 +68,12 @@
 <script>
 import {ImageModel, Text} from "@/classes";
 import EditProjectModal from "@/components/projects/EditProjectModal";
+import DeleteProject from "@/components/projects/DeleteProject";
 
 export default {
   name: "Project",
   components: {
+    DeleteProject,
     EditProjectModal
   },
   data(){
@@ -81,9 +86,11 @@ export default {
         technologies: new Text('Технологии', 'Technologies'),
         links: new Text('Ссылки', 'Links'),
         projectLink: new Text('Рабочий проект', 'Working project'),
-        githubUrl: new Text('Исходники на Github', 'Source code on Github')
+        githubUrl: new Text('Исходники на Github', 'Source code on Github'),
+        delete: new Text('Удалить проект', 'Delete project')
       },
       id: 0,
+      stringId: '',
       title: new Text('Проект','Project'),
       image: null,
       description: new Text('', ''),
@@ -99,6 +106,7 @@ export default {
       let res = await this.axios.get(`${this.apiUrl}/projects/get/byStringId/${stringId}`)
       let project = res.data
       this.id = project.id
+      this.stringId = project.stringId
       this.title = Text.fromArr(project.title)
       this.image = new ImageModel({
           src: project.imgUrl[0],
