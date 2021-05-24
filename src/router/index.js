@@ -6,6 +6,7 @@ import About from '../views/About/index'
 import Blog from "@/views/Blog"
 import PortfolioIndex from '@/views/Portfolio/index'
 import Projects from "@/views/Portfolio/Projects";
+import Project from "@/views/Portfolio/Project";
 import Resume from "@/views/About/Resume";
 import AboutMain from "@/views/About/Main";
 import LangRouter from "@/views/LangRouter";
@@ -57,6 +58,12 @@ const routes = [
             path: '',
             name: 'PortfolioIndex',
             component: Projects,
+            meta: { scrollToTop: true }
+          },
+          {
+            path: ':stringId',
+            name: 'Project',
+            component: Project,
             meta: { scrollToTop: true }
           },
         ]

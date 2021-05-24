@@ -7,6 +7,7 @@
     </Terminal>
     <h1 class="text-center mt-7">{{texts.title.text}}</h1>
     <EditProjectModal @updated="fetch" class="align-self-start">{{texts.createBtn.text}}</EditProjectModal>
+    <div class="hr" />
     <div class="mx-md-5 mx-sm-1">
       <v-chip-group class="mt-5" color="accent" multiple v-model="chosenTags">
         <v-chip :value="tag.id" v-for="tag in tags" :key="tag.id">
@@ -20,7 +21,8 @@
 
     <transition-group name="glitch-transition" class="projects-container">
       <v-card min-width="300px" width="100%" max-width="400px"
-              v-for="project in projects" :key="project.id">
+              v-for="project in projects" :key="project.id"
+              :to="{name: 'Project', params: { stringId: project.stringId }}">
         <v-img height="200px" :src="project.image.src" :lazy-src="project.image.phSrc" :alt="project.image.alt.text" />
         <v-card-title>{{project.title.text}}</v-card-title>
         <v-card-subtitle>
