@@ -82,7 +82,6 @@ name: "Projects",
           await this.axios.get(`${this.apiUrl}/projects/get/all?page=${page}&onPage=${onPage}&tags=${tags.join(',')}`)
       let projects = res.data.projects
       this.pages = res.data.pages
-      console.log(projects)
       return projects.map(project => {
         return {
           id: project.id,
