@@ -33,7 +33,7 @@
           </p>
         </section>
         <div class="project__extra">
-          <div class="extra__technologies">
+          <div class="extra__technologies" v-if="technologies.length > 0">
             <h2>{{texts.technologies.text}}:</h2>
             <ul>
               <v-list-item v-for="tech in technologies" :key="tech.id"
@@ -42,7 +42,7 @@
               </v-list-item>
             </ul>
           </div>
-          <div class="extra__links">
+          <div class="extra__links" v-if="githubUrl || url">
             <h2>{{texts.links.text}}:</h2>
             <ul>
               <v-list-item v-if="url" :href="url" target="_blank">
