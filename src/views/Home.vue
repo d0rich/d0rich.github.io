@@ -27,7 +27,7 @@
             <div class="block2__info__text">
               <h1>{{data.block2.h1.text}}</h1>
               <p v-for="(text, index) in data.block2.p1.text.split('\n')" :key="index" >{{text}}</p>
-              <v-btn :to="{name: 'About'}" color="primary">{{btns.myInfo.text}}</v-btn>
+              <v-btn :to="{name: 'AboutIndex'}" color="primary">{{btns.myInfo.text}}</v-btn>
             </div>
           </div>
 
