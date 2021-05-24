@@ -151,7 +151,7 @@ name: "EnterBlock2",
   background-position: left;
   background-attachment: fixed;
   background-size: cover;
-  filter: saturate(30%) blur(3px) ;
+  filter: saturate(30%);
 }
 .column__content{
   display: flex;
