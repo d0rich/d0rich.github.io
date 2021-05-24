@@ -112,7 +112,6 @@ name: "Projects",
   async created() {
     if (!this.$route.query.page)
       this.$route.query.page = '1'
-    console.log(this.$route)
     this.page = +this.$route.query.page
     await this.fetch()
   },
