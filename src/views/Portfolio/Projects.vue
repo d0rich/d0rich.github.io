@@ -31,7 +31,7 @@
 import Terminal from "@/components/Terminal";
 import EditProjectModal from "@/components/projects/EditProjectModal";
 import ProjectBlock from "@/components/projects/ProjectBlock";
-import {ImageModel, Text} from "@/classes";
+import {Text} from "@/classes";
 import {mapActions} from 'vuex'
 export default {
 name: "Projects",
@@ -62,35 +62,15 @@ name: "Projects",
     }
   },
   methods: {
-    ...mapActions(['getAllTags']),
-    async getProjects(page = 1, onPage = 6, tags = []){
-      let res =
-          await this.axios.get(`${this.apiUrl}/projects/get/all?page=${page}&onPage=${onPage}&tags=${tags.join(',')}`)
-      let projects = res.data.projects
-      this.pages = res.data.pages
-      return projects.map(project => {
-        return {
-          id: project.id,
-          stringId: project.stringId,
-          date: new Date(project.date),
-          title: Text.fromArr(project.title),
-          image: new ImageModel({
-            src: project.imgUrl[0],
-            phSrc: project.imgUrl[1],
-            alt: Text.fromArr(project.title)
-          }),
-          tags: project.tagId_tags.map(tag => {
-            return {id: tag.id, text: tag.text}
-          })
-        }
-      })
-    },
+    ...mapActions(['getAllTags', 'getProjects']),
     async fetch(){
       this.turnPageLoad(true)
       if (this.chosenTags.sort().join() !== this.lastFilters.sort().join())
         this.page = 1
       this.lastFilters = this.chosenTags
-      this.projects = await this.getProjects(this.page, 6, this.chosenTags)
+      let projectsData = await this.getProjects({page: this.page, onPage: 6, tags: this.chosenTags})
+      this.projects = projectsData.projects
+      this.pages = projectsData.pages
       this.tags = await this.getAllTags()
       this.turnPageLoad(false)
     }

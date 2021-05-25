@@ -6,7 +6,7 @@ import ph from '@/assets/img-placeholder.svg'
 const imageExample = {
     src: null,
     phSrc: ph,
-    alt: new Text(),
+    alt: {ru: '', en: ''},
     path: ''
 }
 

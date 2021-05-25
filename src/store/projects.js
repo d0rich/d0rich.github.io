@@ -1,4 +1,6 @@
 import axios from "axios";
+import {ImageModel } from "@/classes/imageModel";
+import {Text} from "@/classes/text";
 
 export const projects = {
     state: () => ({
@@ -11,6 +13,28 @@ export const projects = {
 
     },
     actions:{
+        async getProjects({rootState},{page = 1, onPage = 6, tags = []}){
+            let res =
+                await axios.get(`${rootState.apiUrl}/projects/get/all?page=${page}&onPage=${onPage}&tags=${tags.join(',')}`)
+            let projectsData = res.data.projects
+            let projects = projectsData.map(project => {
+                return {
+                    id: project.id,
+                    stringId: project.stringId,
+                    date: new Date(project.date),
+                    title: Text.fromArr(project.title),
+                    image: new ImageModel({
+                        src: project.imgUrl[0],
+                        phSrc: project.imgUrl[1],
+                        alt: Text.fromArr(project.title)
+                    }),
+                    tags: project.tagId_tags.map(tag => {
+                        return {id: tag.id, text: tag.text}
+                    })
+                }
+            })
+            return { pages: res.data.pages, projects }
+        },
         async getAllTags({rootState}){
             const result = await axios.get(`${rootState.apiUrl}/projects/tags/get/all`)
             return result.data.map(tag => ({ id: tag.id, text: tag.text }))
