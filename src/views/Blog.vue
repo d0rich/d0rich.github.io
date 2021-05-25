@@ -21,6 +21,9 @@ name: "Blog",
       text: new Text('Упс, блог ещё в разработке :(',
           'Oops, it seems blog is still in development :(')
     }
+  },
+  async created(){
+    this.turnPageLoad(false)
   }
 }
 </script>
