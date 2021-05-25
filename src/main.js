@@ -36,7 +36,7 @@ Vue.mixin({
     }
   },
   methods:{
-    ...mapMutations(["turnPageLoad"]),
+    ...mapMutations(["turnPageLoad", 'setError404']),
     timeout(ms){
       return new Promise(resolve => {
         setTimeout(() =>resolve(), ms)

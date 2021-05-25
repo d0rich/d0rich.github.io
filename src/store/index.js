@@ -13,7 +13,8 @@ export default new Vuex.Store({
     apiUrl: 'http://127.0.0.1:3000/api',
     //apiUrl: 'https://dorich-server.herokuapp.com/api',
     login: null,
-    token: null
+    token: null,
+    error404: false
   },
   getters: {
     headerOn(state){
@@ -50,6 +51,9 @@ export default new Vuex.Store({
       state.login = ''
       state.token = ''
       localStorage.removeItem('token')
+    },
+    setError404(state, error = false){
+      state.error404 = error
     }
   },
   actions: {
