@@ -9,7 +9,10 @@
     </transition>
     <v-main>
       <transition name="glitch-transition" mode="out-in">
-        <router-view class="page pa-2" />
+        <router-view v-if="!error404" class="page pa-2" />
+        <div  class="page pa-2" v-else>
+          <Error404 />
+        </div>
       </transition>
     </v-main>
     <Footer />
@@ -22,21 +25,23 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BottomNavigation from "@/components/layout/BottomNavigation";
 import Loading from "@/components/Loading";
-import {mapGetters, mapMutations, mapActions} from 'vuex'
+import Error404 from "@/views/Error404";
+import {mapGetters, mapMutations, mapActions, mapState} from 'vuex'
 import {Text} from "@/classes";
 export default {
   name: 'App',
 
   components: {
     Header, BottomNavigation,
-    Footer, Loading
+    Footer, Loading, Error404
   },
 
   data: () => ({
     //
   }),
   computed:{
-    ...mapGetters(['headerOn'])
+    ...mapGetters(['headerOn']),
+    ...mapState(['error404'])
   },
   methods:{
     ...mapMutations(['getWindowWidth', "setLang"]),

@@ -130,7 +130,12 @@ export default {
     },
     async fetch(){
       this.turnPageLoad(true)
-      await this.getProject(this.$route.params.stringId)
+      try {
+        await this.getProject(this.$route.params.stringId)
+      }
+      catch (e){
+        this.setError404(true)
+      }
       this.turnPageLoad(false)
     }
   },
