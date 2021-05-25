@@ -51,7 +51,9 @@ export default {
                 new JSField( { key: new Text('База данных', 'Database'), value: new Text('PostgreSQL, MongoDB', 'PostgreSQL, MongoDB') } )
             ], new Text('Разработчик', 'Developer'))
         ]
-
+    },
+    block3: {
+        title: new Text('Последние проекты', 'Last projects')
     }
 
 }

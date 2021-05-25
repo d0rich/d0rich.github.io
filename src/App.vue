@@ -80,7 +80,7 @@ export default {
 .loading-container{
   pointer-events: none;
   position: fixed;
-  z-index: 9000;
+  z-index: 12000;
   width: 100vw;
   height: 100vh;
   display: flex;

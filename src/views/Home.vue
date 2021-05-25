@@ -39,7 +39,23 @@
           </div>
         </div>
       </v-lazy>
-
+    </section>
+    <div class="hr my-16"></div>
+    <section class="block3">
+      <h1 class="text-center">{{data.block3.title.text}}</h1>
+      <transition-group name="glitch-transition" class="block3__projects">
+        <ProjectBlock :project="project"
+                      v-for="project in projects" :key="project.id" />
+      </transition-group>
+      <v-btn :to="{name: 'PortfolioIndex'}" class="align-self-end my-5" large color="primary">
+        {{btns.myInfo.text}}
+        <v-icon>
+          mdi-chevron-right
+        </v-icon>
+      </v-btn>
+      <v-overlay :opacity="0" absolute :value="load.projects">
+        <Loading />
+      </v-overlay>
     </section>
 
 
@@ -51,12 +67,16 @@ import homepage from '@/data/home'
 import Terminal from "@/components/Terminal"
 import JSObjectWindow from "@/components/JSObjectWindow";
 import EnterBlock2 from "@/components/home/EnterBlock2";
-import {Text} from "@/classes";
+import ProjectBlock from "@/components/projects/ProjectBlock";
+import Loading from "@/components/Loading";
+import {Text} from "@/classes/text";
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
-    Terminal, EnterBlock2, JSObjectWindow
+    Terminal, EnterBlock2,
+    JSObjectWindow, Loading, ProjectBlock
   },
   data(){
     return{
@@ -66,10 +86,23 @@ export default {
       },
       show: {
         block2info: false
-      }
+      },
+      load: {
+        projects: true
+      },
+      projects: []
     }
   },
-  async created(){
+  methods: {
+    ...mapActions(['getProjects']),
+    async fetchProjects(){
+      this.load.projects = true
+      this.projects = (await this.getProjects({page: 1, onPage: 3})).projects
+      this.load.projects = false
+    }
+  },
+  created(){
+    this.fetchProjects()
     this.turnPageLoad(false)
   },
   metaInfo() {
@@ -111,6 +144,22 @@ export default {
     justify-content: center;
   }
 }
+.block3{
+  position: relative;
+  min-height: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.block3__projects{
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  justify-items: center;
+  align-items: start;
+}
 @media screen and (max-width: 550px){
   .block2__info{
 
@@ -118,6 +167,17 @@ export default {
       flex-direction: column;
       align-items: center;
     }
+  }
+}
+@media screen and (max-width: 1080px) {
+  .block3__projects{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .block3__projects{
+    grid-template-columns: 1fr;
   }
 }
 </style>

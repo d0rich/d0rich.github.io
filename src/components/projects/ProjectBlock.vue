@@ -27,7 +27,10 @@ name: "ProjectBlock",
       type: Object
     },
     chosenTags: {
-      type: Array
+      type: Array,
+      default(){
+        return []
+      }
     }
   },
   data(){
