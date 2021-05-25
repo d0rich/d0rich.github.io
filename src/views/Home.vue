@@ -69,11 +69,15 @@ export default {
       }
     }
   },
+  async created(){
+    this.turnPageLoad(false)
+  },
   metaInfo() {
     return {
       title: new Text('Главная', 'Home').text
     }
-  }
+  },
+
 }
 </script>
 <style scoped lang="scss">

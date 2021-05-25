@@ -27,6 +27,9 @@ name: "AboutMain",
       data: new AboutMe(pageData)
     }
   },
+  async created(){
+    this.turnPageLoad(false)
+  },
   metaInfo() {
     return {
       title: new Text('Обо мне', 'About me').text
