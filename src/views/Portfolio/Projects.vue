@@ -20,22 +20,8 @@
     </div>
 
     <transition-group name="glitch-transition" class="projects-container">
-      <v-card min-width="300px" width="100%" max-width="400px"
-              v-for="project in projects" :key="project.id"
-              :to="{name: 'Project', params: { stringId: project.stringId }}">
-        <v-img height="200px" :src="project.image.src" :lazy-src="project.image.phSrc" :alt="project.image.alt.text" />
-        <v-card-title>{{project.title.text}}</v-card-title>
-        <v-card-subtitle>
-          {{texts.date.text}}: {{project.date.toLocaleDateString()}}
-        </v-card-subtitle>
-        <v-divider />
-        <v-card-text>
-          <v-chip :color="chosenTags.some(id => id === tag.id)? 'primary':''"
-                  class="ma-1" v-for="tag in project.tags" :key="tag.id">
-            {{tag.text}}
-          </v-chip>
-        </v-card-text>
-      </v-card>
+      <ProjectBlock :project="project" :chosen-tags="chosenTags"
+              v-for="project in projects" :key="project.id" />
     </transition-group>
     <v-pagination v-if="pages>1" @input="fetch" class="mt-9" v-model="page" :length="pages" />
   </div>
@@ -44,12 +30,13 @@
 <script>
 import Terminal from "@/components/Terminal";
 import EditProjectModal from "@/components/projects/EditProjectModal";
+import ProjectBlock from "@/components/projects/ProjectBlock";
 import {ImageModel, Text} from "@/classes";
 import {mapActions} from 'vuex'
 export default {
 name: "Projects",
   components:{
-    Terminal, EditProjectModal
+    Terminal, EditProjectModal, ProjectBlock
   },
   data(){
     return {
@@ -59,7 +46,6 @@ name: "Projects",
                      'Oops, it seems portfolio is still in development :('),
       texts: {
         title: new Text('Мои проекты', 'My projects'),
-        date: new Text('Дата', 'Date'),
         createBtn: new Text('Создать проект', 'Create project'),
         filterBtn: new Text('Проекты по тегам', 'Projects with tags')
       },
@@ -130,6 +116,7 @@ name: "Projects",
   grid-gap: 1rem;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
+  align-items: start;
 }
 @media screen and (max-width: 1080px) {
   .projects-container{
