@@ -153,6 +153,8 @@ export default {
   align-items: center;
 }
 .block3__projects{
+  min-height: 200px;
+  min-width: 10px;
   margin-top: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -171,12 +173,15 @@ export default {
 }
 @media screen and (max-width: 1080px) {
   .block3__projects{
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
 @media screen and (max-width: 640px) {
   .block3__projects{
+    display: grid;
     grid-template-columns: 1fr;
   }
 }
