@@ -8,7 +8,6 @@
       <span style="font-size: 1.7rem;" class="mx-3">{{data.block1.p1.t4.text}}</span>
     </EnterBlock2>
     <section class="block2 mt-16">
-      <v-lazy :options="{threshold: 0.7}" min-width="300" min-height="200px" transition="glitch-transition">
         <Terminal reveal enter-word="hello world" @revealed="show.block2info = true">
           <h1 class="align-self-start cursor-on-hover">{{data.block2.terminal.h1.text}}<span class="cursor">_</span></h1>
           <p class="align-self-start cursor-on-hover">
@@ -18,9 +17,6 @@
             <router-link class="link" :to="{name: 'Blog'}">{{data.block2.terminal.t6.text}}</router-link>{{data.block2.terminal.t7.text}}<span class="cursor">_</span>
           </p>
         </Terminal>
-      </v-lazy>
-
-      <v-lazy v-model="show.block2info" min-width="300" min-height="500px" :options="{threshold: 1}" transition="glitch-transition">
         <div class="block2__info">
           <div class="info-row">
             <img :src="data.block2.my_photo" alt="d0rich" class="border-light--accent my-photo" />
@@ -38,7 +34,6 @@
                             :object="object" />
           </div>
         </div>
-      </v-lazy>
     </section>
     <div class="hr my-16"></div>
     <section class="block3">

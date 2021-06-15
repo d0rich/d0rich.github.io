@@ -15,6 +15,7 @@
         </v-chip>
       </v-chip-group>
       <v-btn :loading="onPageLoad" color="primary" @click="fetch">
+        <v-icon>mdi-filter</v-icon>
         {{texts.filterBtn.text}}
       </v-btn>
     </div>
@@ -47,7 +48,7 @@ name: "Projects",
       texts: {
         title: new Text('Мои проекты', 'My projects'),
         createBtn: new Text('Создать проект', 'Create project'),
-        filterBtn: new Text('Проекты по тегам', 'Projects with tags')
+        filterBtn: new Text('Фильтр по тегам', 'Filter by tags')
       },
       pages: 1,
       projects: [],

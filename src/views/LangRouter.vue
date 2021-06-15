@@ -6,7 +6,6 @@
 import {languages} from "@/data/languages";
 import {Text} from "@/classes/text";
 import {mapMutations} from 'vuex'
-import router from "@/router";
 
 export default {
 name: "LangRouter",
@@ -20,10 +19,10 @@ name: "LangRouter",
     ...mapMutations(['setLang'])
   },
   watch:{
-    lang(){
+   /* lang(){
       this.$route.params.lang = this.lang
       router.push({ ...this.$route })
-    }
+    }*/
   },
   created() {
     const langToSet = this.languages.find((lang) => this.$route.params.lang === lang.short)

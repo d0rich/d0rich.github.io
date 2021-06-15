@@ -10,8 +10,8 @@ export default new Vuex.Store({
     windowWidth: 1000,
     lang: localStorage.getItem('lang') || 'en',
     onPageLoad: false,
-    apiUrl: 'http://127.0.0.1:3000/api',
-    //apiUrl: 'https://dorich-server.herokuapp.com/api',
+    //apiUrl: 'http://127.0.0.1:3000/api',
+    apiUrl: 'https://dorich-server.herokuapp.com/api',
     login: null,
     token: null,
     error404: false

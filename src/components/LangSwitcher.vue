@@ -16,15 +16,19 @@
       </v-tooltip>
     </template>
     <v-list dense>
-      <v-list-item
-          v-for="(item, index) in languages"
-          :key="index" link
-          @click="setLang(item.short)"
-      >
-        <v-list-item-action-text :class="{active: item.short === lang}">
-          {{ item.name }}<span style="opacity: 0" :class="{cursor: lang === item.short}">_</span>
-        </v-list-item-action-text>
-      </v-list-item>
+      <nav v-for="(item, index) in languages"
+          :key="index">
+        <v-list-item
+            link
+            :to="langRoute(item.short)"
+            @click="setLang(item.short)"
+        >
+          <v-list-item-action-text :class="{active: item.short === lang}">
+            {{ item.name }}<span style="opacity: 0" :class="{'cursor--active': lang === item.short}">_</span>
+          </v-list-item-action-text>
+        </v-list-item>
+      </nav>
+
     </v-list>
   </v-menu>
 </template>
@@ -46,7 +50,10 @@ name: "LangSwitcher",
     ...mapGetters(['headerOn'])
   },
   methods:{
-    ...mapMutations(['setLang'])
+    ...mapMutations(['setLang']),
+    langRoute(lang){
+      return({ ...this.$route, params: { lang } })
+    }
   }
 }
 </script>
