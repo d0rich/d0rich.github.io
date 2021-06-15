@@ -6,12 +6,14 @@
       {{texts.delete.text}}
     </DeleteProject>
     <div class="hr" />
-    <v-btn class="ml-5" color="primary" :to="{ name: 'PortfolioIndex' }">
-      <v-icon>
-        mdi-chevron-left
-      </v-icon>
-      {{texts.backBtn.text}}
-    </v-btn>
+    <nav>
+      <v-btn class="ml-5" color="primary" :to="{ name: 'PortfolioIndex' }">
+        <v-icon>
+          mdi-chevron-left
+        </v-icon>
+        {{texts.backBtn.text}}
+      </v-btn>
+    </nav>
     <article class="mt-6">
       <v-img v-if="image"
              min-width="300px" max-width="600px" width="100%" max-height="30vh"
