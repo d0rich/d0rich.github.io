@@ -27,15 +27,17 @@ export default {
             'Меня зовут Николай Дорофеев, я JavaScript разработчик, сейчас обучаюсь на 3-ем курсе ТПУ ' +
             'по направлению "Информационные системы и технологии в бизнесе и промышленности".\n' +
             'Полученных знаний и собственного опыта работы с вёрсткой сайтов, базами данных, серверами ' +
-            'уже вполне достаточно, чтобы создавать специально для ВАС ' +
-            'так называемые Single Page Application (SPA) - сайты, которые не требуют загрузки отдельных страниц.\n' +
+            'уже вполне достаточно, чтобы создавать Одностраничные Веб-Приложения, которые помогут ' +
+            'вам или вашему бизнесу предстать перед интернет сообществом в новом свете.\n' +
+            'Одностраничные Веб-Приложения - сайты, которые не требуют загрузки отдельных страниц. ' +
             'Этот подход позволяет получить новый опыт взаимодействия с продуктом без лишних задержек.',
             'Young, talented, energetic. \n' +
             'My name is Nikolay Dorofeev, I am a JavaScript developer, now I am a 3rd year student at TPU ' +
             'in the direction of "Information systems and technologies in business and industry".\n' +
             'The acquired knowledge and personal experience of working with site layout, databases, and servers ' +
-            'is already quite enough to create so-called Single Page Application (SPA) specially for YOU ' +
-            '- sites that do not require loading separate pages.\n' +
+            'is already quite enough to create Single Page Web Applications ' +
+            'that will help you or your business appear in a new light before the Internet community \n' +
+            'Single Page Web Applications - sites that do not require loading separate pages. ' +
             'This approach allows you to get a new experience with the product without unnecessary delays.'),
         objects: [
             new JSObject([
