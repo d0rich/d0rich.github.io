@@ -77,9 +77,6 @@ name: "Projects",
     }
   },
   async created() {
-    if (!this.$route.query.page)
-      this.$route.query.page = '1'
-    this.page = +this.$route.query.page
     await this.fetch()
   },
   metaInfo() {
