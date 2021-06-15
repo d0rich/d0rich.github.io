@@ -16,7 +16,7 @@ name: "Loading",
       canvas: HTMLCanvasElement.prototype,
       ctx: CanvasRenderingContext2D.prototype,
       text: new Text('Загрузка', 'Loading'),
-      loop: null
+      calcAnimation: true
     }
   },
   mounted() {
@@ -34,8 +34,9 @@ name: "Loading",
       new Line(points[4], points[5], 2),
       new Line(points[5], points[3], 2)
     ]
-    this.loop = () => {
-      window.requestAnimationFrame(this.loop)
+    const loop = () => {
+      if (this.calcAnimation)
+        window.requestAnimationFrame(loop)
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
       points.forEach(point => {
         point.update(this.canvas)
@@ -45,10 +46,10 @@ name: "Loading",
         line.draw(this.ctx)
       })
     }
-    window.requestAnimationFrame(this.loop)
+    window.requestAnimationFrame(loop)
   },
   destroyed() {
-    setTimeout(() => this.loop = null, 300)
+    setTimeout(() => this.calcAnimation = false, 300)
   }
 }
 </script>
