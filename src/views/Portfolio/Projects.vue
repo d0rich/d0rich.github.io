@@ -24,7 +24,9 @@
       <ProjectBlock :project="project" :chosen-tags="chosenTags"
               v-for="project in projects" :key="project.id" />
     </transition-group>
-    <v-pagination v-if="pages>1" @input="fetch" class="mt-9" v-model="page" :length="pages" />
+    <v-pagination v-if="pages > 1" class="mt-9"
+                  @input="fetch"
+                  v-model="page" :length="pages" />
   </div>
 </template>
 
@@ -58,16 +60,22 @@ name: "Projects",
     }
   },
   watch: {
-    'page'(){
-      //this.$router.push({name: 'PortfolioIndex',query: {page: this.page.toString()}})
+    '$route.fullPath'(){
+      this.page = +this.$route.query.page
+      this.chosenTags = JSON.parse(this.$route.query.tags)
+      this.fetch()
     }
   },
   methods: {
     ...mapActions(['getAllTags', 'getProjects']),
     async fetch(){
-      this.turnPageLoad(true)
       if (this.chosenTags.sort().join() !== this.lastFilters.sort().join())
         this.page = 1
+      if (JSON.stringify(this.$route.query) !== JSON.stringify(
+          { page: this.page.toString(), tags: JSON.stringify(this.chosenTags) }
+          ))
+        await this.$router.push({...this.$route, query: { page: this.page.toString(), tags: JSON.stringify(this.chosenTags) }})
+      this.turnPageLoad(true)
       this.lastFilters = this.chosenTags
       let projectsData = await this.getProjects({page: this.page, onPage: 6, tags: this.chosenTags})
       this.projects = projectsData.projects
@@ -77,6 +85,14 @@ name: "Projects",
     }
   },
   async created() {
+    if (!this.$route.query.page) {
+      await this.$router.replace({...this.$route, query: { ...this.$route.query, page: '1' }})
+    }
+    if (!this.$route.query.tags) {
+      await this.$router.replace({...this.$route, query: { ...this.$route.query, tags: '[]' }})
+    }
+    this.page = +this.$route.query.page
+    this.chosenTags = JSON.parse(this.$route.query.tags)
     await this.fetch()
   },
   metaInfo() {
