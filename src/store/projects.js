@@ -39,6 +39,12 @@ export const projects = {
             const result = await axios.get(`${rootState.apiUrl}/projects/tags/get/all`)
             return result.data.map(tag => ({ id: tag.id, text: tag.text }))
         },
+
+        async getTagsForFilters({rootState}){
+            const result = await axios.get(`${rootState.apiUrl}/projects/tags/get/forFilters`)
+            return result.data.map(tag => ({ id: tag.id, text: tag.text }))
+        },
+
         async createTag({rootState, rootGetters}, tag){
             try {
                 const result = await axios.post(`${rootState.apiUrl}/projects/tags/create`, {text:tag}, rootGetters.authHeaders)
