@@ -67,7 +67,7 @@ name: "Projects",
     }
   },
   methods: {
-    ...mapActions(['getAllTags', 'getProjects']),
+    ...mapActions(['getTagsForFilters', 'getProjects']),
     async fetch(){
       if (this.chosenTags.sort().join() !== this.lastFilters.sort().join())
         this.page = 1
@@ -80,7 +80,6 @@ name: "Projects",
       let projectsData = await this.getProjects({page: this.page, onPage: 6, tags: this.chosenTags})
       this.projects = projectsData.projects
       this.pages = projectsData.pages
-      this.tags = await this.getAllTags()
       this.turnPageLoad(false)
     }
   },
@@ -93,6 +92,7 @@ name: "Projects",
     }
     this.page = +this.$route.query.page
     this.chosenTags = JSON.parse(this.$route.query.tags)
+    this.tags = await this.getTagsForFilters()
     await this.fetch()
   },
   metaInfo() {
