@@ -56,8 +56,8 @@ export default {
   },
   metaInfo() {
     return {
-      title: new Text('JavaScript Разработчик', 'JavaScript Developer').text,
-      titleTemplate: '%s | Dorich',
+      title: new Text('Dorich - JavaScript Разработчик', 'Dorich - JavaScript Developer').text,
+      titleTemplate: new Text('%s | Dorich - JavaScript Разработчик', '%s | Dorich - JavaScript Developer').text,
       htmlAttrs: {
         lang: this.lang
       }
