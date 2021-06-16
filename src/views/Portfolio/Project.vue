@@ -7,7 +7,7 @@
     </DeleteProject>
     <div class="hr" />
     <nav>
-      <v-btn class="ml-5" color="primary" :to="{ name: 'PortfolioIndex' }">
+      <v-btn class="ml-5" color="primary" @click="goBack()">
         <v-icon>
           mdi-chevron-left
         </v-icon>
@@ -21,20 +21,20 @@
           :src="image.src" :lazy-src="image.phSrc" :alt="image.alt.text" />
       <div class="project-text-container">
         <h1 class="text-center mt-5 mb-3">{{title.text}}</h1>
-        <div class="ml-sm-7 project__date">
+        <section class="ml-sm-7 project__date">
           {{texts.date.text}}: {{date.toLocaleDateString()}}
-        </div>
-        <div class="mx-sm-5 mb-3">
+        </section>
+        <section class="mx-sm-5 mb-3">
           <v-chip class="ma-2" color="primary" v-for="tag in tags" :key="tag.id">
             {{tag.text}}
           </v-chip>
-        </div>
+        </section>
         <section>
           <p v-for="(str, index) in description.text.split('\n')" :key="index">
             {{str}}
           </p>
         </section>
-        <div class="project__extra">
+        <section class="project__extra">
           <div class="extra__technologies" v-if="technologies.length > 0">
             <h2>{{texts.technologies.text}}:</h2>
             <ul>
@@ -61,7 +61,7 @@
               </v-list-item>
             </ul>
           </div>
-        </div>
+        </section>
       </div>
     </article>
   </div>
@@ -100,7 +100,8 @@ export default {
       githubUrl: '',
       date: new Date(),
       tags: [],
-      technologies: []
+      technologies: [],
+      prevRoute: null
     }
   },
   methods:{
@@ -130,6 +131,11 @@ export default {
         }
       })
     },
+    goBack(){
+      if (this.prevRoute.name === 'PortfolioIndex')
+        this.$router.go(-1)
+      else this.$router.push({ name: 'PortfolioIndex' })
+    },
     async fetch(){
       this.turnPageLoad(true)
       try {
@@ -144,9 +150,37 @@ export default {
   async created(){
     await this.fetch()
   },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.prevRoute = from
+    })
+  },
+  computed:{
+    keywords(){
+      return new Text('JavaScript разработка, веб приложения, ',
+          'JavaScript development, web applications, ').text + this.tags.map(tag => tag.text).join(', ')
+    }
+  },
   metaInfo() {
     return {
-      title: this.title.text
+      title: this.title.text,
+      meta: [
+        {
+          vmid: 'description' , name: 'description',
+          content: this.description.text.substr(0, 180) + '...'
+        },
+        {
+          vmid: 'keywords', name: 'keywords',
+          content: this.keywords
+        },
+        { vmid: 'og:title', property: 'og:title', content: this.title.text },
+        { vmid: 'og:image', property: 'og:image', content: this.image?.src },
+        {
+          vmid: 'og:description', property: 'og:description',
+          content: this.description.text.substr(0, 180) + '...'
+        },
+        { vmid: 'robots', name: 'robots', content: 'index,follow'}
+      ]
     }
   }
 }

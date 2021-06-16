@@ -8,8 +8,8 @@ export default {
             show: false
         },
         {
-            text: new Text('(c) Свободный программист d0rich, 2021. Все права защищены.',
-                            '(c) Free programmer d0rich, 2021. All rights reserved.'),
+            text: new Text(`(c) Разработчик Николай Дорофеев (d0rich), ${new Date().getFullYear()}. Все права защищены.`,
+                            `(c) Developer Nikolay Dorofeev (d0rich), ${new Date().getFullYear()}. All rights reserved.`),
             show: false
         },
         {

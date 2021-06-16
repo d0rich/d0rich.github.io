@@ -26,16 +26,36 @@
               <v-btn :to="{name: 'AboutIndex'}" color="primary">{{btns.myInfo.text}}</v-btn>
             </div>
           </div>
-
-          <div class="js-objects">
-            <JSObjectWindow class="mb-3 mx-3"
-                            v-for="(object, index) in data.block2.objects"
-                            :key="index"
-                            :object="object" />
-          </div>
         </div>
     </section>
+    <!-- Секция с контактами и характеристиками -->
+    <section class="js-objects-block" :style="{backgroundImage: `url('${data.block2.bg}'`}">
+      <div class="js-objects-block__contacts py-8">
+        <!-- Мои контакты -->
+        <h1>{{data.block2.contactsHeader.text}}</h1>
+        <div class="contacts__btns">
+          <v-btn v-for="contact in data.block2.contacts" :key="contact.text"
+                 :href="contact.href" target="_blank"
+                 class="pa-10" large
+                 tile outlined :block="!headerOn" >
+            <span>
+              <v-icon>{{contact.icon}}</v-icon>  {{contact.text}}
+            </span>
+          </v-btn>
+        </div>
+      </div>
+
+      <div class="js-objects">
+        <!-- Мои характеристики программисткими объектами -->
+        <JSObjectWindow class="mb-3 mx-3"
+                        v-for="(object, index) in data.block2.objects"
+                        :key="index"
+                        :object="object" />
+      </div>
+    </section>
+
     <div class="hr my-16"></div>
+
     <section class="block3">
       <h1 class="text-center">{{data.block3.title.text}}</h1>
       <transition-group name="glitch-transition" class="block3__projects">
@@ -65,7 +85,7 @@ import EnterBlock2 from "@/components/home/EnterBlock2";
 import ProjectBlock from "@/components/projects/ProjectBlock";
 import Loading from "@/components/Loading";
 import {Text} from "@/classes/text";
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
@@ -100,6 +120,9 @@ export default {
     this.fetchProjects()
     this.turnPageLoad(false)
   },
+  computed:{
+    ...mapGetters(['headerOn'])
+  },
   metaInfo() {
     return {
       title: new Text('Главная', 'Home').text
@@ -133,11 +156,44 @@ export default {
   .block2__info__text{
     margin: 0 1rem;
   }
+
+}
+.js-objects-block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100vw;
+  padding: 3rem 0;
+  background-size: cover;
+  background-attachment: fixed;
+
   .js-objects{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
+ }
+.js-objects-block__contacts{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0,0,0,.9);
+  margin-bottom: 2rem;
+  width: 100%;
+  h1{
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+}
+.contacts__btns{
+  padding: 0.5rem 1rem;
+  max-width: 800px;
+  min-width: 300px;
+  width: 95vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: .5rem;
 }
 .block3{
   position: relative;
@@ -178,6 +234,11 @@ export default {
   .block3__projects{
     display: grid;
     grid-template-columns: 1fr;
+  }
+  .contacts__btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
   }
 }
 </style>

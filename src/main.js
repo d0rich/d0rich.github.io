@@ -7,7 +7,9 @@ import router from './router'
 import store from './store'
 
 import VueMeta from 'vue-meta'
-Vue.use(VueMeta)
+Vue.use(VueMeta, {
+  tagIDKeyName: 'vmid'
+})
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'

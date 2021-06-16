@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
 import {projects} from "@/store/projects";
+//import {meta} from "@/store/meta";
 
 Vue.use(Vuex)
 
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     error404: false
   },
   getters: {
+    lang(state){
+      return state.lang
+    },
     headerOn(state){
       return state.windowWidth > 640
     },
@@ -97,6 +101,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    projects
+    //meta,
+    projects,
   }
 })
