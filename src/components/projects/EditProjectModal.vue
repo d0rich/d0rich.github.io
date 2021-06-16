@@ -25,6 +25,7 @@
                 <v-card>
                   <v-card-text>
                     <v-file-input v-model="projectForm.image"
+                                  prepend-icon="mdi-file-image"
                                   outlined dense
                                   :rules="[rules.requiredForNew(id)]"
                                   :accept="acceptImg.join(',')"
@@ -87,6 +88,7 @@
                 <v-card>
                   <v-card-text>
                     <v-file-input v-model="projectForm.image"
+                                  prepend-icon="mdi-file-image"
                                   outlined dense
                                   :rules="[rules.requiredForNew(id)]"
                                   :accept="acceptImg.join(',')"
