@@ -38,6 +38,11 @@ name: "Terminal",
       showContent: false,
     }
   },
+  watch:{
+    '$route.fullPath'(){
+      this.href = document.location.href
+    }
+  },
   methods:{
     async printCommand(command){
       const tick = 2000 / command.length
