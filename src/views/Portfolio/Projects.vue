@@ -1,10 +1,5 @@
 <template>
   <div>
-    <Terminal v-if="inDev" enter-word="watch portfolio">
-      <div class="error--text">
-        {{text.text}}
-      </div>
-    </Terminal>
     <h1 class="text-center mt-7">{{texts.title.text}}</h1>
     <EditProjectModal @updated="fetch" class="align-self-start">{{texts.createBtn.text}}</EditProjectModal>
     <div class="hr" />
@@ -31,7 +26,6 @@
 </template>
 
 <script>
-import Terminal from "@/components/Terminal";
 import EditProjectModal from "@/components/projects/EditProjectModal";
 import ProjectBlock from "@/components/projects/ProjectBlock";
 import {Text} from "@/classes";
@@ -39,14 +33,11 @@ import {mapActions} from 'vuex'
 export default {
 name: "Projects",
   components:{
-    Terminal, EditProjectModal, ProjectBlock
+    EditProjectModal, ProjectBlock
   },
   data(){
     return {
-      inDev: false,
       page: 1,
-      textDev: new Text('Упс, портфолио ещё в разработке :(',
-                     'Oops, it seems portfolio is still in development :('),
       texts: {
         title: new Text('Мои проекты', 'My projects'),
         createBtn: new Text('Создать проект', 'Create project'),
