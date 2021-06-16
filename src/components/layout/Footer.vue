@@ -11,7 +11,10 @@
 
         <div>
           <div>{{connection.title.text}}:</div>
-          <div><v-icon>mdi-email</v-icon> d.orich@yandex.com</div>
+          <a href="mailto:d.orich@yandex.com">
+            <v-icon>mdi-email</v-icon>
+            <span style="color: #FFFFFF; text-decoration: underline">d.orich@yandex.com</span>
+          </a>
           <div>
             <v-btn icon target="_blank"
                    v-for="btn in connection.socials" :key="btn.href"
@@ -23,7 +26,7 @@
         </div>
       </div>
       <div class="footer__block--bottom">
-        <span>© 2021 {{dorich.text}}</span>
+        <span>© {{new Date().getFullYear()}} {{dorich.text}}</span>
       </div>
     </div>
 
@@ -41,7 +44,7 @@ name: "Footer",
   },
   data(){
     return{
-      dorich: new Text('Свободный программист Dorich', 'Free programmer Dorich'),
+      dorich: new Text('Разработчик Николай Дорофеев (d0rich)', 'Developer Nikolay Dorofeev (d0rich)'),
       navigation: {
         title: new Text('Навигация', 'Navigation'),
         routes: [
@@ -60,7 +63,7 @@ name: "Footer",
       connection: {
         title: new Text('Связаться со мной', 'Connect with me'),
         socials: [
-          { href: 'https://t.me/d0rich', icon: 'mdi-telegram', text: 'vk' },
+          { href: 'https://t.me/d0rich', icon: 'mdi-telegram', text: 'telegram' },
           { href: 'https://vk.com/d0rich', icon: 'mdi-vk', text: 'vk' },
           { href: 'https://github.com/d0rich', icon: 'mdi-github', text: 'github' },
         ]
@@ -87,4 +90,5 @@ name: "Footer",
   display: flex;
   justify-content: space-between;
 }
+
 </style>

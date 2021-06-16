@@ -1,5 +1,6 @@
 import {JSField, JSObject, Text} from "@/classes";
 import my_photo from '@/assets/home/dorich.jpg'
+import contactsBg from './contacts-bg.jpg'
 
 export default {
     block1:{
@@ -39,6 +40,14 @@ export default {
             'that will help you or your business appear in a new light before the Internet community \n' +
             'Single Page Web Applications - sites that do not require loading separate pages. ' +
             'This approach allows you to get a new experience with the product without unnecessary delays.'),
+        bg: contactsBg,
+        contactsHeader: new Text('Мои контакты', 'My contacts'),
+        contacts: [
+            { href: 'mailto:d.orich@yandex.com', icon: 'mdi-email', text: 'Email' },
+            { href: 'https://t.me/d0rich', icon: 'mdi-telegram', text: 'telegram' },
+            { href: 'https://github.com/d0rich', icon: 'mdi-github', text: 'github' },
+            { href: 'https://vk.com/d0rich', icon: 'mdi-vk', text: 'vk' },
+        ],
         objects: [
             new JSObject([
                 new JSField( { key: new Text('Имя', 'Name'), value: new Text('Николай', 'Nikolay') } ),

@@ -86,8 +86,9 @@ const router = new VueRouter({
 
 router.afterEach((to, from) => {
   if (to.meta.scrollToTop) {
-    if (to.name !== from.name)
-      setTimeout(() => window.scrollTo(0, 0), 300)
+    if (to.name !== from.name) {
+      // setTimeout(() => window.scrollTo(0, 0), 300)
+    }
   }
 })
 

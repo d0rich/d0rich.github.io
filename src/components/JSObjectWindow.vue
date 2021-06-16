@@ -25,6 +25,7 @@ name: "JSObjectWindow",
 <style scoped lang="scss">
 .js-object{
   padding: 1rem 2rem;
+  background-color: rgba(0,0,0, .9);
 }
 .js-object__field{
   padding-left: 1rem;

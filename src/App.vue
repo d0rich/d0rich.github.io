@@ -41,7 +41,20 @@ export default {
   }),
   computed:{
     ...mapGetters(['headerOn']),
-    ...mapState(['error404'])
+    ...mapState(['error404']),
+    title(){
+      return new Text('Dorich - JavaScript Разработчик', 'Dorich - JavaScript Developer').text
+    },
+    description(){
+      return new Text('Я - Николай Дорофеев, молодой JavaScript разработчик из Томска (Россия). ' +
+          'У меня за плечами уже масса изученных технологий для создания визуальных интерфейсов, ' +
+          'серверов, работы с базами данных. ' +
+          'Создам веб приложения для бизнеса или присоединюсь к команде разработки.',
+          'I am Nikolay Dorofeev, a young JavaScript developer from Tomsk (Russia). ' +
+          'I already know a lot of technologies for creating visual interfaces, ' +
+          'servers, working with databases. ' +
+          'I will create web applications for business or join a development team.').text
+    }
   },
   methods:{
     ...mapMutations(['getWindowWidth', "setLang"]),
@@ -56,11 +69,26 @@ export default {
   },
   metaInfo() {
     return {
-      title: new Text('Dorich - JavaScript Разработчик', 'Dorich - JavaScript Developer').text,
+      title: this.title,
       titleTemplate: new Text('%s | Dorich - JavaScript Разработчик', '%s | Dorich - JavaScript Developer').text,
       htmlAttrs: {
         lang: this.lang
-      }
+      },
+      meta: [
+        { vmid: 'description' , name: 'description', content: this.description },
+        {
+          vmid: 'keywords', name: 'keywords',
+          content: new Text('JavaScript разработчик, веб приложения для бизнеса, ' +
+              'разработчик в Томске, фронтенд, бэкенд, фуллстак',
+              'JavaScript developer, web applications for business, ' +
+              'developer in Tomsk, frontend, backend, fullstack').text
+        },
+        { vmid: 'og:title', property: 'og:title', content: this.title },
+        { vmid: 'og:description', property: 'og:description', content: this.description },
+        { vmid: 'og:site_name', property: 'og:site_name', content: 'Dorich Dev'},
+        { vmid: 'og:type', property: 'og:type', content: 'website'},
+        { vmid: 'robots', name: 'robots', content: 'index,follow'}
+      ]
     }
 
   }
