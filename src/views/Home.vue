@@ -125,7 +125,10 @@ export default {
   },
   metaInfo() {
     return {
-      title: new Text('Главная', 'Home').text
+      title: new Text('Главная', 'Home').text,
+      meta: [
+        { vmid: 'og:url', property: 'og:url', content: 'https://d0rich.github.io/'},
+      ]
     }
   },
 

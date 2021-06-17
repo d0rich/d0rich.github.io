@@ -175,6 +175,7 @@ export default {
         },
         { vmid: 'og:title', property: 'og:title', content: this.title.text },
         { vmid: 'og:image', property: 'og:image', content: this.image?.src },
+        { vmid: 'vk:image'},
         {
           vmid: 'og:description', property: 'og:description',
           content: this.description.text.substr(0, 180) + '...'
