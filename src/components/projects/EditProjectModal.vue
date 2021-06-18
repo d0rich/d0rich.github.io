@@ -42,8 +42,8 @@
                                   :rules="[rules.required]"
                                   label="Русское название" />
                     <v-menu
-                        v-model="calendar.ru"
-                        :close-on-content-click="true"
+                        :value="calendar.ru"
+                        :close-on-content-click="false"
                         transition="glitch-transition"
                         offset-y
                         min-width="auto"
@@ -62,13 +62,10 @@
                         ></v-text-field>
                       </template>
                       <v-date-picker v-model="projectForm.date"
-                          no-title scrollable>
-                        <v-spacer></v-spacer>
-                        <v-btn text color="primary"
-                            @click="calendar.ru = false">
-                          Закрыть
-                        </v-btn>
-                      </v-date-picker>
+                                     v-click-outside="calendar.ru = false"
+                                     locale="ru-ru"
+                                     first-day-of-week="1"
+                                     no-title scrollable />
                     </v-menu>
                     <v-textarea v-model="projectForm.description[0]"
                                 outlined dense
@@ -105,8 +102,8 @@
                                   :rules="[rules.required]"
                                   label="English title" />
                     <v-menu
-                        v-model="calendar.en"
-                        :close-on-content-click="true"
+                        :value="calendar.en"
+                        :close-on-content-click="false"
                         transition="glitch-transition"
                         offset-y
                         min-width="auto"
@@ -125,13 +122,10 @@
                         ></v-text-field>
                       </template>
                       <v-date-picker v-model="projectForm.date"
-                                     no-title scrollable>
-                        <v-spacer></v-spacer>
-                        <v-btn text color="primary"
-                               @click="calendar.en = false">
-                          Закрыть
-                        </v-btn>
-                      </v-date-picker>
+                                     v-click-outside="calendar.en = false"
+                                     locale="en-en"
+                                     first-day-of-week="1"
+                                     no-title scrollable />
                     </v-menu>
                     <v-textarea v-model="projectForm.description[1]"
                                 outlined dense
