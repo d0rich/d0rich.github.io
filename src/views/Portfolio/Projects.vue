@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1 class="text-center mt-7">{{texts.title.text}}</h1>
-    <EditProjectModal @updated="fetch" class="align-self-start">{{texts.createBtn.text}}</EditProjectModal>
+    <EditProjectModal @updated="fetch" class="align-self-start">
+      {{texts.createBtn.text}}
+    </EditProjectModal>
     <header class="projects-header">{{texts.header.text}}</header>
     <div class="hr" />
     <div class="mx-5">
