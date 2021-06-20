@@ -33,6 +33,7 @@ export default {
 <style scoped>
 .btns{
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
   margin-bottom: 2rem;

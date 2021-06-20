@@ -4,36 +4,32 @@
       <div class="intro__info">
         <h1>{{resume.header.text}} - {{resume.spec.text}}</h1>
         <div class="mb-3">{{resume.intro.text}}</div>
-        <div>
-          <div class="contact">
-            <div class="contact__title">{{text.phone.text}}</div>
-            <div class="contact__info">{{resume.phone}}</div>
+        <div class="contacts">
+          <div class="contact__title">{{text.phone.text}}</div>
+          <div class="contact__info">{{resume.phone}}</div>
+          <div class="contact__title">{{text.email.text}}</div>
+          <div class="contact__info">
+            <a :href="`mailto:${resume.email}`" target="_blank" >{{resume.email}}</a>
           </div>
-          <div class="contact">
-            <div class="contact__title">{{text.email.text}}</div>
-            <div class="contact__info">
-              <a :href="`mailto:${resume.email}`" target="_blank" >{{resume.email}}</a>
-            </div>
-          </div>
-          <div class="contact">
-            <div class="contact__title">{{text.address.text}}</div>
-            <div class="contact__info">{{resume.address.text}}</div>
-          </div>
-          <div class="contact">
-            <div class="contact__title">{{text.social.text}}</div>
+          <div class="contact__title">{{text.address.text}}</div>
+          <div class="contact__info">{{resume.address.text}}</div>
+          <div class="contact__title">{{text.social.text}}</div>
+          <div>
             <v-btn v-for="(social, index) in resume.social" :key="index"
-                icon :href="social.link" target="_blank">
+                   icon :href="social.link" target="_blank">
               <v-icon>{{social.icon}}</v-icon>
             </v-btn>
           </div>
         </div>
       </div>
       <div class="intro__photo">
-        <img-with-ph
-            class="border-light--primary"
-            :src="resume.photo.src"
-            :ph-src="resume.photo.phSrc" />
-
+        <v-img class="border-light--primary"
+               width="100vw"
+               max-width="15rem"
+               min-width="100px" min-height="100px"
+               :src="resume.photo.src"
+               :lazy-src="resume.photo.phSrc"
+               :alt="resume.photo.alt.text"/>
       </div>
     </section>
     <div class="hr" />
@@ -42,11 +38,9 @@
         <h1>{{text.skills.title.text}}</h1>
         <div>{{text.skills.subscription.text}}</div>
       </div>
-      <div class="block__column--items skills__sections">
-        <div class="border-light--primary section" v-for="(section, index) in resume.skills" :key="index" >
-          <h2>{{section.title.text}}</h2>
-          <div>{{section.skills.join(', ')}}</div>
-        </div>
+      <div class="block__column--items skills__skills-notes">
+        <skills-note v-for="(note, index) in resume.skills" :key="index"
+                     :skills-note="note" />
       </div>
     </section>
     <div class="hr" />
@@ -56,15 +50,8 @@
         <div>{{text.experience.subscription.text}}</div>
       </div>
       <div class="block__column--items time-notes">
-        <div class="border-light--primary time-note" v-for="(note, index) in resume.experience" :key="index" >
-          <div>
-            <span class="time-note__title">{{note.title.text}} </span>
-            <span class="time-note__place">{{note.place.text}}</span>
-          </div>
-
-          <div class="time-note__period">{{note.period.begin.text}} - {{note.period.end.text}}</div>
-          <div class="time-note__description">{{note.description.text}}</div>
-        </div>
+        <time-note v-for="(note, index) in resume.experience" :key="index"
+                   :time-note="note" />
       </div>
     </section>
     <div class="hr" />
@@ -74,15 +61,8 @@
         <div>{{text.education.subscription.text}}</div>
       </div>
       <div class="block__column--items time-notes">
-        <div class="border-light--primary time-note" v-for="(note, index) in resume.education" :key="index" >
-          <div>
-            <span class="time-note__title">{{note.title.text}} </span>
-            <span class="time-note__place">{{note.place.text}}</span>
-            </div>
-
-          <div class="time-note__period">{{note.period.begin.text}} - {{note.period.end.text}}</div>
-          <div class="time-note__description">{{note.description.text}}</div>
-        </div>
+        <time-note v-for="(note, index) in resume.education" :key="index"
+                   :time-note="note" />
       </div>
     </section>
   </div>
@@ -93,9 +73,14 @@ import resumeObj from '@/data/about/resume'
 import {Resume, Text} from "@/classes";
 import {fake} from "@/data/fake";
 import {mapActions} from 'vuex'
+import TimeNote from "@/components/resume/TimeNote";
+import SkillsNote from "@/components/resume/SkillsNote";
 
 export default {
 name: "Resume",
+  components: {
+    TimeNote, SkillsNote
+  },
   data(){
     return{
       resume: new Resume(resumeObj),
@@ -164,19 +149,14 @@ name: "Resume",
   margin-right: 2rem;
   max-width: 700px;
 }
-.contact{
-  display: flex;
-  justify-content: flex-start;
+.contacts{
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  align-items: center;
 }
 .contact__title{
-  display: flex;
-  align-items: center;
   font-weight: bold;
   text-transform: uppercase;
-  width: 10rem;
-}
-.contact__info{
-  width: calc(100% - 10rem);
 }
 .contact__info a{
   color: inherit;
@@ -186,11 +166,6 @@ name: "Resume",
   display: flex;
   justify-content: center;
   align-items: center;
-  .img--wPh{
-    max-width: 15rem;
-    min-width: 100px;
-    min-height: 100px;
-  }
 }
 .block{
   display: flex;
@@ -204,44 +179,16 @@ name: "Resume",
   display: flex;
   flex-direction: column;
 }
-.skills__sections{
+.skills__skills-notes{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
-.section{
-   font-size: 0.93rem;
-   padding: 1em 2em;
-   width: 22em;
-   margin: 1em;
-   background-color: var(--v-secondary-darken2);
- }
 .time-notes{
   display: flex;
   flex-direction: column;
 }
-.time-note{
-  padding: 0.5em 1em;
-  margin: 1em 0;
-}
-.time-note__title{
-  text-transform: capitalize;
-  font-size: 1.2em;
-  color: var(--v-accent-base);
-}
-.time-note__place{
-  text-transform: capitalize;
-  font-weight: 200;
-  color: var(--v-secondary-lighten5)
-}
-.time-note__period{
-  margin: .5em 0;
-  font-weight: 700;
-  font-size: 1.2em;
-}
-.time-note__description{
-  font-style: italic;
-}
+
 @media screen and (max-width: 900px) {
   .intro{
     flex-direction: column-reverse;
@@ -252,9 +199,5 @@ name: "Resume",
   .block__column--text{
     width: unset;
   }
-  .section{
-    width: 90%;
-  }
-
 }
 </style>
