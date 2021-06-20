@@ -25,7 +25,7 @@ export default {
   async created() {
     await this.getAllResume()
     if (!this.$route.params.resumeId)
-      this.$router.replace({ name: 'Resume', params: { resumeId: this.resumes[0].id } })
+      await this.$router.replace({ name: 'Resume', params: { resumeId: this.resumes[0].id } })
   }
 }
 </script>

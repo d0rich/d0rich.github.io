@@ -13,12 +13,17 @@ export class TimeNote{
         this.title = Text.fromObj(note.title)
         this.place = Text.fromObj(note.place)
         this.period = {
-            begin: new Text(new Date(note.period.begin).toLocaleDateString('ru-ru', { month: 'short', year: 'numeric' }),
-                new Date(note.period.begin).toLocaleDateString('en-en', { month: 'short', year: 'numeric' })),
-            end: new Text(new Date(note.period.end).toLocaleDateString('ru-ru', { month: 'short', year: 'numeric' }),
-                new Date(note.period.end).toLocaleDateString('en-en', { month: 'short', year: 'numeric' })),
+            begin: new Text(TimeNote.firestoreDateToString(note.period.begin, 'ru-ru'),
+                TimeNote.firestoreDateToString(note.period.begin, 'en-en')),
+            end: new Text(TimeNote.firestoreDateToString(note.period.end, 'ru-ru'),
+                TimeNote.firestoreDateToString(note.period.end, 'en-en'))
         }
         this.description = Text.fromObj(note.description)
     }
 
+    static firestoreDateToString(date = { _seconds: 0, _milliseconds: 0 },
+                                 lang = ''){
+        return new Date(date._seconds * 1000)
+            .toLocaleDateString(lang, { month: 'short', year: 'numeric' })
+    }
 }
