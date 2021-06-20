@@ -12,18 +12,19 @@ const noNotesNote = new TimeNote({
     title: new Text('Нет записей','No notes'),
     place: new Text(),
     period: {
-        begin: new Text('Скоро','Soon'),
-        end: new Text('Немного терпения','A little patience')
+        begin: new Date(),
+        end: new Date()
     },
     description: new Text('В ближайшее время тут появится запись.',
         'The first note will appear there vey soon.') })
 
 const resumeExample = {
+    spec: new Text(),
     photo: new ImageModel(),
     header: new Text(),
     intro: new Text(),
-    phone: new Text(),
-    email: new Text(),
+    phone: '',
+    email: '',
     address: new Text(),
     social: [new Social()],
     skills: [new SkillsSection()],
@@ -33,33 +34,23 @@ const resumeExample = {
 
 export class Resume{
     constructor(resume = resumeExample) {
+        this.spec = Text.fromObj(resume.spec)
         this.photo = new ImageModel(resume.photo)
         this.header = Text.fromObj(resume.header)
         this.intro = Text.fromObj(resume.intro)
-        this.phone = Text.fromObj(resume.phone)
-        this.email = Text.fromObj(resume.email)
+        this.phone = resume.phone
+        this.email = resume.email
         this.address = Text.fromObj(resume.address)
-        this.social = []
-        resume.social.forEach(social => {
-            this.social.push(new Social(social))
-        })
-        this.skills = []
-        resume.skills.forEach(skill => {
-            this.skills.push(new SkillsSection(skill))
-        })
-        this.experience = []
-        resume.experience.forEach(exp => {
-            this.experience.push(new TimeNote(exp))
-        })
-        this.education = []
-        resume.education.forEach(ed => {
-            this.education.push(new TimeNote(ed))
-        })
-
-        if (this.experience.length === 0){
+        this.social = resume.social?.map(s => new Social(s))
+        this.skills = resume.skills?.map(skill => new SkillsSection(skill))
+        this.experience = resume.experience?.map(exp => new TimeNote(exp))
+        this.education = resume.education?.map(ed => new TimeNote(ed))
+        if (!this.experience?.length){
+            this.experience = []
             this.experience.push(noNotesNote)
         }
-        if (this.education.length === 0){
+        if (!this.education?.length){
+            this.education = []
             this.education.push(noNotesNote)
         }
     }

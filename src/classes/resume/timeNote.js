@@ -13,8 +13,10 @@ export class TimeNote{
         this.title = Text.fromObj(note.title)
         this.place = Text.fromObj(note.place)
         this.period = {
-            begin: Text.fromObj(note.period.begin),
-            end: Text.fromObj(note.period.end)
+            begin: new Text(new Date(note.period.begin).toLocaleDateString('ru-ru', { month: 'short', year: 'numeric' }),
+                new Date(note.period.begin).toLocaleDateString('en-en', { month: 'short', year: 'numeric' })),
+            end: new Text(new Date(note.period.end).toLocaleDateString('ru-ru', { month: 'short', year: 'numeric' }),
+                new Date(note.period.end).toLocaleDateString('en-en', { month: 'short', year: 'numeric' })),
         }
         this.description = Text.fromObj(note.description)
     }

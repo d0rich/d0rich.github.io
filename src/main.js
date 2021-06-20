@@ -13,6 +13,8 @@ Vue.use(VueMeta, {
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+axios.defaults.baseURL = 'http://127.0.0.1:3000/api/'
+//axios.defaults.baseURL = 'https://dorich-server.herokuapp.com/api/'
 axios.defaults.headers = {
 
 }
@@ -31,7 +33,7 @@ Vue.component('scale-transition', createSimpleTransition('scale-transition'))
 import {mapState, mapMutations, mapGetters} from "vuex";
 Vue.mixin({
   computed:{
-    ...mapState(['lang', "apiUrl", "onPageLoad"]),
+    ...mapState(['lang', "onPageLoad"]),
     ...mapGetters(['isAuth', "authHeaders"]),
     routeNow(){
       return this.$route.name

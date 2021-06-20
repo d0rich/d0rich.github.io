@@ -3,7 +3,8 @@
     <v-btn block @click="showModal = ! showModal" color="accent darken-4">
       <slot />
     </v-btn>
-    <v-dialog class="projectModal" v-model="showModal"
+    <v-dialog class="projectDialog" v-model="showModal"
+              max-width="1200px"
         transition="glitch-transition" persistent scrollable>
       <v-card>
         <v-form :disabled="load.project" @submit.prevent="sendForm" v-model="valid" ref="form">
@@ -336,10 +337,11 @@ name: "EditProjectModal",
     }
   },
   methods:{
+    ...mapActions(['bufferFromFile']),
     async fetchProject(){
       this.load.project = true
       try {
-        let res = await this.axios.get(`${this.apiUrl}/projects/get/byId/${this.id}`)
+        let res = await this.axios.get(`/projects/get/byId/${this.id}`)
         this.projectForm.stringId = res.data.stringId
         this.projectForm.title = res.data.title
         this.projectForm.description = res.data.description
@@ -366,11 +368,8 @@ name: "EditProjectModal",
       {
         this.load.project = true
         try {
-          const image = this.projectForm.image ? {
-            buffer: Buffer.from(await this.projectForm.image.arrayBuffer()),
-            type: this.projectForm.image.type.split('/')[1]
-          } : undefined
-          const result = await this.axios.post(`${this.apiUrl}/projects/edit`,
+          const image = this.projectForm.image ? await  this.bufferFromFile(this.projectForm.image) : undefined
+          const result = await this.axios.post(`/projects/edit`,
               {
                 id: this.id,
                 ...this.projectForm,
@@ -437,7 +436,7 @@ name: "EditProjectModal",
 </script>
 
 <style scoped>
-.projectModal{
+.projectDialog{
   z-index: 10100;
   position: fixed;
 }

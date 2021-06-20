@@ -13,9 +13,9 @@ export const projects = {
 
     },
     actions:{
-        async getProjects({rootState},{page = 1, onPage = 6, tags = []}){
+        async getProjects(state,{page = 1, onPage = 6, tags = []}){
             let res =
-                await axios.get(`${rootState.apiUrl}/projects/get/all?page=${page}&onPage=${onPage}&tags=${tags.join(',')}`)
+                await axios.get(`/projects/get/all?page=${page}&onPage=${onPage}&tags=${tags.join(',')}`)
             let projectsData = res.data.projects
             let projects = projectsData.map(project => {
                 return {
@@ -35,34 +35,34 @@ export const projects = {
             })
             return { pages: res.data.pages, projects }
         },
-        async getAllTags({rootState}){
-            const result = await axios.get(`${rootState.apiUrl}/projects/tags/get/all`)
+        async getAllTags(){
+            const result = await axios.get(`/projects/tags/get/all`)
             return result.data.map(tag => ({ id: tag.id, text: tag.text }))
         },
 
-        async getTagsForFilters({rootState}){
-            const result = await axios.get(`${rootState.apiUrl}/projects/tags/get/forFilters`)
+        async getTagsForFilters(){
+            const result = await axios.get(`/projects/tags/get/forFilters`)
             return result.data.map(tag => ({ id: tag.id, text: tag.text }))
         },
 
-        async createTag({rootState, rootGetters}, tag){
+        async createTag({rootGetters}, tag){
             try {
-                const result = await axios.post(`${rootState.apiUrl}/projects/tags/create`, {text:tag}, rootGetters.authHeaders)
+                const result = await axios.post(`/projects/tags/create`, {text:tag}, rootGetters.authHeaders)
                 return result.data
             }
             catch (e) {return e}
         },
-        async getAllTechnologies({rootState}){
-            const result = await axios.get(`${rootState.apiUrl}/projects/technologies/get/all`)
+        async getAllTechnologies(){
+            const result = await axios.get(`/projects/technologies/get/all`)
             return result.data.map(tech => ({ id: tech.id, name: tech.name, url: tech.url, version: '' }))
         },
-        async checkStringId({rootState}, {stringId, id}){
-            const result = await axios.get(`${rootState.apiUrl}/projects/check/stringId/${stringId}`)
+        async checkStringId(state, {stringId, id}){
+            const result = await axios.get(`/projects/check/stringId/${stringId}`)
             return !!result.data && result.data.id !== id
         },
-        async editTechnology({rootState, rootGetters}, technology){
+        async editTechnology({rootGetters}, technology){
             try {
-                const result = await axios.post(`${rootState.apiUrl}/projects/technologies/edit`, technology, rootGetters.authHeaders)
+                const result = await axios.post(`/projects/technologies/edit`, technology, rootGetters.authHeaders)
                 result.data.version = ''
                 return result.data
             }

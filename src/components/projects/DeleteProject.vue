@@ -75,7 +75,7 @@ name: "DeleteProject",
       if (this.valid) {
         this.load.delete = true
         try {
-          const result = await this.axios.post(`${this.apiUrl}/projects/delete/${this.id}`,
+          const result = await this.axios.post(`/projects/delete/${this.id}`,
               {
                 stringId: this.stringId
               }, this.authHeaders)

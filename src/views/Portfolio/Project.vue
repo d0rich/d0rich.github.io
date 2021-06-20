@@ -106,7 +106,7 @@ export default {
   },
   methods:{
     async getProject(stringId){
-      let res = await this.axios.get(`${this.apiUrl}/projects/get/byStringId/${stringId}`)
+      let res = await this.axios.get(`/projects/get/byStringId/${stringId}`)
       let project = res.data
       this.id = project.id
       this.stringId = project.stringId

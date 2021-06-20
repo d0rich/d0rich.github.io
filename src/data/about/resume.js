@@ -7,8 +7,8 @@ export default {
     photo: fake.img,
     header: fake.text.twoWords,
     intro: fake.text.middle,
-    phone: fake.text.word,
-    email: fake.text.word,
+    phone: '+9-999-999-99-99',
+    email: 'address@mail.com',
     address: fake.text.small,
     social: [
         new Social({link: '#', icon: 'mdi-telegram', title: fake.text.word}),
