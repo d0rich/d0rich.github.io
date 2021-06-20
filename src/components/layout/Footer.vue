@@ -37,6 +37,7 @@
 import {Text} from "@/classes";
 import FooterRoute from "@/components/layout/FooterRoute";
 import AuthModal from "@/components/AuthModal";
+import {mapState} from "vuex";
 export default {
 name: "Footer",
   components: {
@@ -50,7 +51,8 @@ name: "Footer",
         routes: [
           { title: new Text('Главная', 'Home'), route: { name: 'Home' } },
           { title: new Text('Обо мне', 'About me'), route: { name: 'AboutIndex' }, children: [
-              { title: new Text('Резюме', 'Resume'), route: { name: 'Resume' }, children: [
+              { title: new Text('Резюме', 'Resume'),
+                route: { name: 'ResumeIndex' }, children: [
                   //{ title: new Text('Фронтенд', 'Frontend'), route: { name: 'Resume' } },
                   //{ title: new Text('Бэкенд', 'Backend'), route: { name: 'Resume' } },
                   //{ title: new Text('Фуллстак', 'Fullstack'), route: { name: 'Resume' } }
@@ -69,6 +71,11 @@ name: "Footer",
         ]
       }
     }
+  },
+  computed: {
+    ...mapState({
+      resumes: state => state.resume.resumeCollection
+    })
   }
 }
 </script>

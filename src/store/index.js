@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
 import {projects} from "@/store/projects";
-//import {meta} from "@/store/meta";
+import {resume} from "@/store/resume";
 
 Vue.use(Vuex)
 
@@ -11,8 +11,6 @@ export default new Vuex.Store({
     windowWidth: 1000,
     lang: localStorage.getItem('lang') || 'en',
     onPageLoad: false,
-    //apiUrl: 'http://127.0.0.1:3000/api',
-    apiUrl: 'https://dorich-server.herokuapp.com/api',
     login: null,
     token: null,
     error404: false
@@ -72,36 +70,42 @@ export default new Vuex.Store({
         // anything else
       }
     },
-    async authByPwd({commit, state, dispatch}, authData = { login: '', password: ''}){
+    async authByPwd({commit, dispatch}, authData = { login: '', password: ''}){
       try {
-        const authResult = await axios.post(`${state.apiUrl}/auth/byPwd`, authData)
+        const authResult = await axios.post(`/auth/byPwd`, authData)
         commit("setUser", { login: authData.login, token: authResult.data.token })
       }
       catch (e) {
         return dispatch("getServerErrorMessage", e)
       }
     },
-    async authByToken({commit, state, dispatch}, token){
+    async authByToken({commit, dispatch}, token){
       try {
-        const authResult = await axios.post(`${state.apiUrl}/auth/byToken`, {token})
+        const authResult = await axios.post(`/auth/byToken`, {token})
         commit("setUser", { login: authResult.data.login, token: token })
       }
       catch (e) {
         return dispatch("getServerErrorMessage", e)
       }
     },
-    async logout({commit, state, dispatch}){
+    async logout({commit, dispatch}){
       try {
-        await axios.post(`${state.apiUrl}/auth/logout`, {token: localStorage.getItem('token')})
+        await axios.post(`/auth/logout`, {token: localStorage.getItem('token')})
         commit("delUser")
       }
       catch (e) {
         return dispatch("getServerErrorMessage", e)
       }
+    },
+    async bufferFromFile(store, file){
+      return {
+        buffer: Buffer.from(await file.arrayBuffer()),
+        type: file.type.split('/')[1]
+      }
     }
   },
   modules: {
-    //meta,
+    resume,
     projects,
   }
 })

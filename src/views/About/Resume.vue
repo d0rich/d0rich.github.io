@@ -2,16 +2,18 @@
   <div class="px-5 pt-3" :class="{'loading--glitch': onPageLoad}" >
     <section class="intro">
       <div class="intro__info">
-        <h1>{{resume.header.text}}</h1>
+        <h1>{{resume.header.text}} - {{resume.spec.text}}</h1>
         <div class="mb-3">{{resume.intro.text}}</div>
         <div>
           <div class="contact">
             <div class="contact__title">{{text.phone.text}}</div>
-            <div class="contact__info">{{resume.phone.text}}</div>
+            <div class="contact__info">{{resume.phone}}</div>
           </div>
           <div class="contact">
             <div class="contact__title">{{text.email.text}}</div>
-            <div class="contact__info">{{resume.email.text}}</div>
+            <div class="contact__info">
+              <a :href="`mailto:${resume.email}`" target="_blank" >{{resume.email}}</a>
+            </div>
           </div>
           <div class="contact">
             <div class="contact__title">{{text.address.text}}</div>
@@ -90,6 +92,7 @@
 import resumeObj from '@/data/about/resume'
 import {Resume, Text} from "@/classes";
 import {fake} from "@/data/fake";
+import {mapActions} from 'vuex'
 
 export default {
 name: "Resume",
@@ -122,17 +125,26 @@ name: "Resume",
       }
     }
   },
+  watch: {
+    '$route'(){
+      this.fetch()
+    }
+  },
   methods:{
-    async fetchResume(){
+    ...mapActions(["getResumeById"]),
+    async fetch(){
       this.turnPageLoad(true)
-      const response = await this.axios.get(`${this.apiUrl}/resume/get`)
-      this.resume.photo = undefined
-      this.resume = new Resume(response.data)
+      try {
+        this.resume = new Resume(await this.getResumeById(this.$route.params.resumeId))
+      }
+      catch (e) {
+        this.setError404(e)
+      }
       this.turnPageLoad(false)
     }
   },
   created() {
-    this.fetchResume()
+    this.fetch()
   },
   metaInfo() {
     return {
@@ -165,6 +177,10 @@ name: "Resume",
 }
 .contact__info{
   width: calc(100% - 10rem);
+}
+.contact__info a{
+  color: inherit;
+  text-decoration: underline;
 }
 .intro__photo{
   display: flex;
@@ -219,7 +235,6 @@ name: "Resume",
   color: var(--v-secondary-lighten5)
 }
 .time-note__period{
-  text-transform: capitalize;
   margin: .5em 0;
   font-weight: 700;
   font-size: 1.2em;

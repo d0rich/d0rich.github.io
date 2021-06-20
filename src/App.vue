@@ -65,6 +65,7 @@ export default {
   },
   beforeMount() {
     // console.log(this.$vuetify.theme.themes.dark)
+    this.$store.dispatch("getAllResume")
     this.authByToken(localStorage.getItem('token'))
   },
   metaInfo() {
