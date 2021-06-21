@@ -1,11 +1,12 @@
 <template>
   <div class="border-light--primary skills-note">
     <h2>{{skillsNote.title.text}}</h2>
-    <div>{{skillsNote.skills.join(', ')}}</div>
+    <div>{{skillsNote.skills.join('; ')}}</div>
   </div>
 </template>
 
 <script>
+
 import {SkillsSection} from "@/classes";
 
 export default {
