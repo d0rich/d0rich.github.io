@@ -21,5 +21,10 @@ export default {
         subscription: new Text('Всю свою жизнь я свято верил, что образование важно. Я каждый день стараюсь узнать что-то новое.',
             'All my life I have been driven by my strong belief that education is important. ' +
             'I try to learn something new every single day.')
+    },
+    edit: {
+        addSkill: new Text('Добавить навык', 'Add skill'),
+        chooseSkill: new Text('Выбрать', 'Choose'),
+        save: new Text('Сохранить', 'Save')
     }
 }

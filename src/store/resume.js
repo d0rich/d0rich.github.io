@@ -27,6 +27,7 @@ export const resume = {
             const response = await axios.get(`/resume/get/byId/${resumeId}`)
             console.log(response.data)
             return {
+                id: response.data.id,
                 header: response.data.header,
                 spec: response.data.spec,
                 intro: response.data.intro,
@@ -39,6 +40,31 @@ export const resume = {
                 experience: response.data.experience,
                 education: response.data.education
             }
+        },
+        async setResume({rootGetters}, resume){
+            const response = await axios.post(`/resume/set`, resume, rootGetters.authHeaders)
+            return response.data
+        },
+        async getSkillsNote(state, skillId){
+            const response = await axios.get(`/resume/skills/get/byId/${skillId}`)
+            return response.data
+        },
+        async getAllSkillsNotes(){
+            const response = await axios.get(`/resume/skills/get/all`)
+            return response.data.map(s => {
+                return {
+                    id: s.id,
+                    title: Text.fromObj(s.title)
+                }
+            })
+        },
+        async checkSkillId(state, skillId){
+            const response = await axios.get(`/resume/skills/checkId/${skillId}`)
+            return response.data
+        },
+        async setSkillsNote({rootGetters}, skillsNote){
+            const response = await axios.post('/resume/skills/set', skillsNote, rootGetters.authHeaders)
+            return response.data
         }
     }
 }
