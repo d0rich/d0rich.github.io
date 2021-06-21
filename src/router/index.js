@@ -8,6 +8,7 @@ import PortfolioIndex from '@/views/Portfolio/index'
 import Projects from "@/views/Portfolio/Projects";
 import Project from "@/views/Portfolio/Project";
 import Resume from "@/views/About/Resume";
+import ResumeEdit from "@/views/About/ResumeEdit";
 import ResumeIndex from "@/views/About/ResumeIndex";
 import AboutMain from "@/views/About/Main";
 import LangRouter from "@/views/LangRouter";
@@ -46,6 +47,12 @@ const routes = [
                 path: ':resumeId',
                 name: 'Resume',
                 component: Resume,
+                meta: { scrollToTop: true },
+              },
+              {
+                path: ':resumeId/edit',
+                name: 'ResumeEdit',
+                component: ResumeEdit,
                 meta: { scrollToTop: true }
               }
             ]
