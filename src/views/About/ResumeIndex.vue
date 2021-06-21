@@ -2,7 +2,7 @@
   <div>
     <div class="btns">
       <v-btn v-for="resume in resumes" :key="resume.id"
-          class="mx-3" exact text :to="{name: 'Resume', params: { resumeId: resume.id }}" >
+          class="mx-3" text :to="{name: 'Resume', params: { resumeId: resume.id }}" >
         {{resume.spec.text}}
       </v-btn>
     </div>
