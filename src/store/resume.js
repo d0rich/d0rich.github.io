@@ -45,6 +45,34 @@ export const resume = {
             const response = await axios.post(`/resume/set`, resume, rootGetters.authHeaders)
             return response.data
         },
+        // Social
+        async getSocial(state, socialId){
+            const response = await axios.get(`/resume/socials/get/byId/${socialId}`)
+            return response.data
+        },
+        async getAllSocials(){
+            const response = await axios.get(`/resume/socials/get/all`)
+            return response.data.map(s => {
+                return {
+                    id: s.id,
+                    title: Text.fromObj(s.title)
+                }
+            })
+        },
+        async checkSocialId(state, socialId){
+            const response = await axios.get(`/resume/socials/checkId/${socialId}`)
+            return response.data
+        },
+        async setSocial({rootGetters}, social){
+            const response = await axios.post('/resume/socials/set', {
+                    id: social.id,
+                    title: social.title,
+                    link: social.link,
+                    icon: social.icon
+                }, rootGetters.authHeaders)
+            return response.data
+        },
+        // Skills
         async getSkillsNote(state, skillId){
             const response = await axios.get(`/resume/skills/get/byId/${skillId}`)
             return response.data
@@ -65,6 +93,7 @@ export const resume = {
         async setSkillsNote({rootGetters}, skillsNote){
             const response = await axios.post('/resume/skills/set', skillsNote, rootGetters.authHeaders)
             return response.data
-        }
+        },
+
     }
 }

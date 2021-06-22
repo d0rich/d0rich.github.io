@@ -3,7 +3,11 @@
     <section class="intro">
       <div class="intro__info">
         <h1>{{resume.header.text}} - {{resume.spec.text}}</h1>
-        <div class="mb-3">{{resume.intro.text}}</div>
+        <div class="mb-3">
+          <p v-for="(p, index) in resume.intro.text.split('\n')" :key="index">
+            {{p}}
+          </p>
+        </div>
         <div class="contacts">
           <div class="contact__title">{{text.phone.text}}</div>
           <div class="contact__info">{{resume.phone}}</div>
@@ -128,6 +132,7 @@ name: "Resume",
 .intro__info{
   margin-right: 2rem;
   max-width: 700px;
+  width: 100vw;
 }
 .contacts{
   display: grid;
