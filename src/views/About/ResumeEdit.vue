@@ -4,7 +4,12 @@
     <!-- Основная информация -->
     <section class="intro">
       <div class="intro__info">
-        <h1>{{resume.header.text}} - {{resume.spec.text}}</h1>
+        <multi-lang-text-field v-model="resume.header"
+                               outlined dense
+                               :label="text.edit.header.text" />
+        <multi-lang-text-field v-model="resume.spec"
+                               outlined dense
+                               :label="text.edit.spec.text" />
         <div class="mb-3">
           <multi-lang-text-field v-model="resume.intro" label="Вводный текст"
                                  textarea outlined />
@@ -24,10 +29,10 @@
           </div>
           <div class="contact__title">{{text.social.text}}</div>
           <div>
-            <v-btn v-for="(social, index) in resume.social" :key="index"
-                   icon :href="social.link" target="_blank">
-              <v-icon>{{social.icon}}</v-icon>
-            </v-btn>
+            <v-select multiple :items="all.social"
+                      v-model="chosenSocial"
+                      outlined chips
+                      item-text="title.text" item-value="id" />
           </div>
         </div>
       </div>
@@ -42,6 +47,7 @@
       </div>
     </section>
     <p class="error--text">{{errors.mainInfo}}</p>
+    <p class="success--text">{{successes.mainInfo.text}}</p>
     <v-btn @click="saveMainInfo" color="green" class="mt-2" block :loading="load.mainInfo">
       {{ text.edit.save.text }}
     </v-btn>
@@ -52,6 +58,7 @@
         <h1>{{text.skills.title.text}}</h1>
         <div>{{text.skills.subscription.text}}</div>
         <p class="error--text">{{errors.skills}}</p>
+        <p class="success--text">{{successes.skills.text}}</p>
         <v-btn @click="saveSkills" color="green" class="mt-2" block :loading="load.skills">
           {{ text.edit.save.text }}
         </v-btn>
@@ -62,11 +69,11 @@
                           @delete="resume.skills.splice(index, 1)"
                           @saved="resume.skills[index] = $event" />
         <v-col class="align-self-center">
-          <v-btn @click="newSkillsNote" color="primary" class="my-1" >
+          <v-btn @click="newSkillsNote" block color="primary" class="my-1" >
             <v-icon>mdi-plus</v-icon>
             {{text.edit.addSkill.text}}
           </v-btn>
-          <v-select :items="all.skills" clearable
+          <v-select :items="skillsToAdd" clearable
                     item-text="title.text" item-value="id"
                     v-model="chosenSkill"
                     outlined dense />
@@ -82,7 +89,7 @@
 
       </div>
       <div class="block__column--items time-notes">
-        <time-note v-for="(note, index) in resume.experience" :key="index"
+        <edit-time-note v-for="(note, index) in resume.experience" :key="index"
                    :time-note="note" />
       </div>
     </section>
@@ -93,7 +100,7 @@
         <div>{{text.education.subscription.text}}</div>
       </div>
       <div class="block__column--items time-notes">
-        <time-note v-for="(note, index) in resume.education" :key="index"
+        <edit-time-note v-for="(note, index) in resume.education" :key="index"
                    :time-note="note" />
       </div>
     </section>
@@ -106,14 +113,14 @@ import resumeText from '@/data/about/resume'
 import {Resume, Text} from "@/classes";
 import {fake} from "@/data/fake";
 import {mapActions} from 'vuex'
-import TimeNote from "@/components/resume/TimeNote";
+import EditTimeNote from "@/components/resume/EditTimeNote";
 import EditSkillsNote from "@/components/resume/EditSkillsNote";
 import MultiLangTextField from "@/components/custom_inputs/MultiLangTextField";
 
 export default {
 name: "ResumeEdit",
   components: {
-    TimeNote, EditSkillsNote, MultiLangTextField
+    EditTimeNote, EditSkillsNote, MultiLangTextField
   },
   data(){
     return{
@@ -125,13 +132,27 @@ name: "ResumeEdit",
         mainInfo: false
       },
       all: {
-        skills: []
+        social: [],
+        skills: [],
+        experience: [],
+        education: []
       },
       chosenSkill: null,
+      chosenSocial: [],
+      socialIdMessage: '',
       errors: {
         mainInfo: '',
         skills: ''
+      },
+      successes: {
+        mainInfo: new Text(),
+        skills: new Text()
       }
+    }
+  },
+  computed: {
+    skillsToAdd(){
+      return this.all.skills.filter(skill => !this.resume.skills.find(s => s.id === skill.id))
     }
   },
   watch: {
@@ -141,12 +162,20 @@ name: "ResumeEdit",
     }
   },
   methods:{
-    ...mapActions(["getResumeById", "setResume", "getServerErrorMessage",
-      'getAllSkillsNotes', 'getSkillsNote']),
+    ...mapActions(["getResumeById", "setResume", "getServerErrorMessage"]),
+    ...mapActions(['getAllSkillsNotes', 'getSkillsNote']),
+    ...mapActions(['getSocial', 'getAllSocials', 'checkSocialId', 'setSocial']),
+    successText(writeTime = new Date()){
+      const saveTime = new Date(writeTime._seconds * 1000 + writeTime._nanoseconds / 10**6)
+      return new Text(
+          `Успешно сохранено ${saveTime.toLocaleString('ru-ru')}`,
+          `Successfully saved ${saveTime.toLocaleString('en-en')}`)
+    },
     async fetch(){
       this.turnPageLoad(true)
       try {
         this.resume = await this.getResumeById(this.$route.params.resumeId)
+        this.chosenSocial = this.resume.social.map(s => s.id)
       }
       catch (e) {
         this.setError404(e)
@@ -156,33 +185,44 @@ name: "ResumeEdit",
     async saveMainInfo(){
       this.load.mainInfo = true
       try {
-        await this.setResume({
+        const res = await this.setResume({
           id: this.resume.id,
+          header: this.resume.header,
+          spec: this.resume.spec,
           intro: this.resume.intro,
           phone: this.resume.phone,
           email: this.resume.email,
-          address: this.resume.address
+          address: this.resume.address,
+          social: this.chosenSocial.map(s => {
+            return {
+              id: s
+            }
+          })
         })
+        this.successes.mainInfo = this.successText(res._writeTime)
         this.errors.mainInfo = ''
       }
       catch (e) {
         this.errors.mainInfo = await this.getServerErrorMessage(e)
+        this.successes.mainInfo = ''
       }
       this.load.mainInfo = false
     },
     async saveSkills(){
       this.load.skills = true
       try {
-        await this.setResume({
+         const res = await this.setResume({
           id: this.resume.id,
           skills: this.resume.skills
               .filter(s => !s.new)
               .map(s => { return { id: s.id } })
         })
+        this.successes.skills = this.successText(res._writeTime)
         this.errors.skills = ''
       }
       catch (e) {
         this.errors.skills = await this.getServerErrorMessage(e)
+        this.successes.skills = new Text()
       }
       this.load.skills = false
     },
@@ -205,6 +245,7 @@ name: "ResumeEdit",
   async created() {
     this.fetch()
     this.all.skills = await this.getAllSkillsNotes()
+    this.all.social = await this.getAllSocials()
   },
   metaInfo() {
     return {
@@ -226,7 +267,7 @@ name: "ResumeEdit",
 }
 .contacts{
   display: grid;
-  grid-template-columns: 2fr 5fr;
+  grid-template-columns: 3fr 5fr;
   align-items: center;
 }
 .contact__title{

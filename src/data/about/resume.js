@@ -23,8 +23,13 @@ export default {
             'I try to learn something new every single day.')
     },
     edit: {
+        header: new Text('Заголовок', 'Header'),
+        spec: new Text('Специализация', 'Specialization'),
+        socialTitle: new Text('Подпись', 'Title'),
+        socialLink: new Text('Ссылка', 'Reference'),
+        socialIcon: new Text('Mdi иконка', 'Mdi icon'),
         addSkill: new Text('Добавить навык', 'Add skill'),
         chooseSkill: new Text('Выбрать', 'Choose'),
-        save: new Text('Сохранить', 'Save')
+        save: new Text('Сохранить', 'Save'),
     }
 }

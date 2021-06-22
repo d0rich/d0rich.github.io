@@ -11,6 +11,7 @@
 </template>
 
 <script>
+
 import {TimeNote} from "@/classes";
 
 export default {
