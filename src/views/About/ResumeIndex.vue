@@ -79,11 +79,18 @@ export default {
       const errors = []
       if (!this.freeId) errors.push('Id is not free')
       return errors
+    },
+    resumeNow(){
+      return this.$route.params.resumeId
     }
   },
   watch: {
     async isAuth(){
       await this.getAllResume()
+    },
+    async resumeNow(value){
+      if (!value)
+        await this.$router.replace({ name: 'Resume', params: { resumeId: this.resumes[0].id } })
     }
   },
   methods: {
