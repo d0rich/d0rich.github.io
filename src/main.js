@@ -1,10 +1,23 @@
 import Vue from 'vue'
 import App from './App.vue'
-
-
 import router from './router'
-
 import store from './store'
+
+import firebase from "firebase/app"
+import "firebase/analytics"
+const firebaseConfig = {
+  apiKey: "AIzaSyCvD4pqcejJqPMU7e571ocPj1dphEUBDEg",
+  authDomain: "dorich-js.firebaseapp.com",
+  projectId: "dorich-js",
+  storageBucket: "dorich-js.appspot.com",
+  messagingSenderId: "1011414719090",
+  appId: "1:1011414719090:web:172747536c42112683c0eb",
+  measurementId: "G-V7B6TEMZXB"
+}
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 
 import VueMeta from 'vue-meta'
 Vue.use(VueMeta, {
@@ -61,5 +74,6 @@ new Vue({
   store,
   axios,
   vuetify,
+  analytics: firebase.analytics(),
   render: h => h(App)
 }).$mount('#app')
