@@ -119,9 +119,39 @@ name: "Resume",
   created() {
     this.fetch()
   },
+  computed:{
+    title(){
+      return new Text(`${this.resume.spec.ru} - Резюме`, `${this.resume.spec.en} - Resume`)
+    },
+    description(){
+      return this.resume.intro
+    },
+    keywords(){
+      return new Text(`JavaScript разработка, веб приложения, ${this.resume.skills.map(s => s.title.ru).join(', ')}`,
+          `JavaScript development, web applications, ${this.resume.skills.map(s => s.title.en).join(', ')}`)
+    }
+  },
   metaInfo() {
     return {
-      title: new Text('Резюме', 'Resume').text
+      title: this.title.text,
+      meta: [
+        {
+          vmid: 'description' , name: 'description',
+          content: this.description.text.substr(0, 180) + '...'
+        },
+        {
+          vmid: 'keywords', name: 'keywords',
+          content: this.keywords.text
+        },
+        { vmid: 'og:title', property: 'og:title', content: this.title.text },
+        { vmid: 'og:image', property: 'og:image', content: this.image?.src },
+        { vmid: 'vk:image'},
+        {
+          vmid: 'og:description', property: 'og:description',
+          content: this.description.text.substr(0, 180) + '...'
+        },
+        { vmid: 'robots', name: 'robots', content: 'index,follow'}
+      ]
     }
   }
 }
