@@ -1,9 +1,10 @@
 <template>
   <div class="px-5 pt-3" :class="{'loading--glitch': onPageLoad}" >
-    <h1>Редактирование</h1>
+    <h1>{{ text.edit.editing.text }}</h1>
     <!-- Основная информация -->
     <section class="intro">
       <div class="intro__info">
+        <v-checkbox v-model="resume.show" :label="text.edit.show.text" />
         <multi-lang-text-field v-model="resume.header"
                                outlined dense
                                :label="text.edit.header.text" />
@@ -37,13 +38,19 @@
         </div>
       </div>
       <div class="intro__photo">
-        <v-img class="border-light--primary"
-               width="100vw"
-               max-width="15rem"
-               min-width="100px" min-height="100px"
-               :src="resume.photo.src"
-               :lazy-src="resume.photo.phSrc"
-               :alt="resume.photo.alt.text"/>
+        <v-col >
+          <v-img class="border-light--primary"
+                 width="100vw"
+                 max-width="15rem"
+                 min-width="100px" min-height="100px"
+                 :src="resume.photo.src"
+                 :lazy-src="resume.photo.phSrc"
+                 :alt="resume.photo.alt.text"/>
+          <v-file-input class="mt-3" outlined dense
+                        prepend-icon="mdi-image"
+                        v-model="photo"
+                        accept=".jpg, .jpeg" />
+        </v-col>
       </div>
     </section>
     <p class="error--text">{{errors.mainInfo}}</p>
@@ -82,26 +89,57 @@
       </div>
     </section>
     <div class="hr" />
+    <!-- Опыт работы -->
     <section class="block">
       <div class="block__column--text">
         <h1>{{text.experience.title.text}}</h1>
         <div>{{text.experience.subscription.text}}</div>
-
+        <p class="error--text">{{errors.experience}}</p>
+        <p class="success--text">{{successes.experience.text}}</p>
+        <v-btn @click="saveExp" color="green" class="mt-2" block :loading="load.experience">
+          {{ text.edit.save.text }}
+        </v-btn>
       </div>
       <div class="block__column--items time-notes">
         <edit-time-note v-for="(note, index) in resume.experience" :key="index"
-                   :time-note="note" />
+                        :note="note" exp
+                        @delete="resume.experience.splice(index, 1)"
+                        @saved="resume.experience[index] = $event" />
+        <v-btn @click="newExperience" block color="primary" class="my-1" >
+          <v-icon>mdi-plus</v-icon>
+          {{text.edit.addExp.text}}
+        </v-btn>
+        <v-select :items="experienceToAdd" clearable
+                  item-text="title.text" item-value="id"
+                  v-model="chosenExp"
+                  outlined dense />
       </div>
     </section>
     <div class="hr" />
+    <!-- Обучение -->
     <section class="block">
       <div class="block__column--text">
         <h1>{{text.education.title.text}}</h1>
         <div>{{text.education.subscription.text}}</div>
+        <p class="error--text">{{errors.education}}</p>
+        <p class="success--text">{{successes.education.text}}</p>
+        <v-btn @click="saveEdu" color="green" class="mt-2" block :loading="load.education">
+          {{ text.edit.save.text }}
+        </v-btn>
       </div>
       <div class="block__column--items time-notes">
         <edit-time-note v-for="(note, index) in resume.education" :key="index"
-                   :time-note="note" />
+                        :note="note" edu
+                        @delete="resume.education.splice(index, 1)"
+                        @saved="resume.education[index] = $event" />
+        <v-btn @click="newEducation" block color="primary" class="my-1" >
+          <v-icon>mdi-plus</v-icon>
+          {{text.edit.addEdu.text}}
+        </v-btn>
+        <v-select :items="educationToAdd" clearable
+                  item-text="title.text" item-value="id"
+                  v-model="chosenEdu"
+                  outlined dense />
       </div>
     </section>
   </div>
@@ -127,9 +165,12 @@ name: "ResumeEdit",
       resume: new Resume(resumeObj),
       fakeImg: fake.img,
       text: resumeText,
+      photo: null,
       load: {
         skills: false,
-        mainInfo: false
+        mainInfo: false,
+        experience: false,
+        education: false
       },
       all: {
         social: [],
@@ -138,21 +179,33 @@ name: "ResumeEdit",
         education: []
       },
       chosenSkill: null,
+      chosenExp: null,
+      chosenEdu: null,
       chosenSocial: [],
       socialIdMessage: '',
       errors: {
         mainInfo: '',
-        skills: ''
+        skills: '',
+        experience: '',
+        education: ''
       },
       successes: {
         mainInfo: new Text(),
-        skills: new Text()
+        skills: new Text(),
+        experience: new Text(),
+        education: new Text()
       }
     }
   },
   computed: {
     skillsToAdd(){
       return this.all.skills.filter(skill => !this.resume.skills.find(s => s.id === skill.id))
+    },
+    educationToAdd(){
+      return this.all.education.filter(edu => !this.resume.education.find(e => e.id === edu.id))
+    },
+    experienceToAdd(){
+      return this.all.experience.filter(exp => !this.resume.experience.find(e => e.id === exp.id))
     }
   },
   watch: {
@@ -162,9 +215,10 @@ name: "ResumeEdit",
     }
   },
   methods:{
-    ...mapActions(["getResumeById", "setResume", "getServerErrorMessage"]),
+    ...mapActions(["getResumeById", "setResume", "getServerErrorMessage", 'bufferFromFile']),
     ...mapActions(['getAllSkillsNotes', 'getSkillsNote']),
     ...mapActions(['getSocial', 'getAllSocials', 'checkSocialId', 'setSocial']),
+    ...mapActions(['getTimeNote','getAllExpTimeNotes', 'getAllEduTimeNotes']),
     successText(writeTime = new Date()){
       const saveTime = new Date(writeTime._seconds * 1000 + writeTime._nanoseconds / 10**6)
       return new Text(
@@ -187,6 +241,8 @@ name: "ResumeEdit",
       try {
         const res = await this.setResume({
           id: this.resume.id,
+          show: this.resume.show,
+          photo: this.photo ? await this.bufferFromFile(this.photo): undefined,
           header: this.resume.header,
           spec: this.resume.spec,
           intro: this.resume.intro,
@@ -226,6 +282,42 @@ name: "ResumeEdit",
       }
       this.load.skills = false
     },
+    async saveExp(){
+      this.load.experience = true
+      try {
+        const res = await this.setResume({
+          id: this.resume.id,
+          experience: this.resume.experience
+              .filter(e => !e.new)
+              .map(e => { return { id: e.id } })
+        })
+        this.successes.experience = this.successText(res._writeTime)
+        this.errors.experience = ''
+      }
+      catch (e) {
+        this.errors.experience = await this.getServerErrorMessage(e)
+        this.successes.experience = new Text()
+      }
+      this.load.experience = false
+    },
+    async saveEdu(){
+      this.load.education = true
+      try {
+        const res = await this.setResume({
+          id: this.resume.id,
+          education: this.resume.education
+              .filter(e => !e.new)
+              .map(e => { return { id: e.id } })
+        })
+        this.successes.education = this.successText(res._writeTime)
+        this.errors.education = ''
+      }
+      catch (e) {
+        this.errors.skills = await this.getServerErrorMessage(e)
+        this.successes.skills = new Text()
+      }
+      this.load.education = false
+    },
     async newSkillsNote(){
       if (!this.chosenSkill)
         this.resume.skills.push({
@@ -236,9 +328,48 @@ name: "ResumeEdit",
         })
       else {
         const newSkill = await this.getSkillsNote(this.chosenSkill)
-        console.log(newSkill)
         this.resume.skills.push(newSkill)
         newSkill.new = false
+      }
+    },
+    async newExperience(){
+      if (!this.chosenExp)
+        this.resume.experience.push({
+          new: true,
+          id: '',
+          title: new Text(),
+          place: new Text(),
+          description: new Text(),
+          period: {
+            begin: new Date(),
+            end: new Date()
+          }
+        })
+      else {
+        const newTimeNote = await this.getTimeNote(this.chosenExp)
+        console.log(newTimeNote)
+        this.resume.experience.push(newTimeNote)
+        newTimeNote.new = false
+      }
+    },
+    async newEducation(){
+      if (!this.chosenEdu)
+        this.resume.education.push({
+          new: true,
+          id: '',
+          title: new Text(),
+          place: new Text(),
+          description: new Text(),
+          period: {
+            begin: new Date(),
+            end: new Date()
+          }
+        })
+      else {
+        const newTimeNote = await this.getTimeNote(this.chosenEdu)
+        console.log(newTimeNote)
+        this.resume.education.push(newTimeNote)
+        newTimeNote.new = false
       }
     }
   },
@@ -246,6 +377,8 @@ name: "ResumeEdit",
     this.fetch()
     this.all.skills = await this.getAllSkillsNotes()
     this.all.social = await this.getAllSocials()
+    this.all.education = await this.getAllEduTimeNotes()
+    this.all.experience = await this.getAllExpTimeNotes()
   },
   metaInfo() {
     return {
@@ -284,11 +417,10 @@ name: "ResumeEdit",
   align-items: center;
 }
 .block{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 .block__column--text{
-  min-width: 15em;
-  width: 40%;
   margin-right: 2em;
 }
 .block__column--items{
@@ -310,6 +442,7 @@ name: "ResumeEdit",
     flex-direction: column-reverse;
   }
   .block{
+    display: flex;
     flex-direction: column;
   }
   .block__column--text{

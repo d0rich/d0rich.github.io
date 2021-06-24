@@ -2,6 +2,8 @@ import {Text} from "@/classes";
 
 export default {
     phone: new Text('Телефон','Phone'),
+    show: new Text('Показывается всем', 'Shown to all'),
+    notShow: new Text('Не показывается никому', 'Not shown'),
     email: new Text('Email', 'Email'),
     address: new Text('Адрес', 'Address'),
     social: new Text('Социальные сети','Social'),
@@ -23,13 +25,17 @@ export default {
             'I try to learn something new every single day.')
     },
     edit: {
+        editing: new Text('Редактирование', 'Editing'),
+        goToEdit: new Text('Редактировать', 'Edit'),
+        show: new Text('Показывать', 'Show'),
         header: new Text('Заголовок', 'Header'),
         spec: new Text('Специализация', 'Specialization'),
-        socialTitle: new Text('Подпись', 'Title'),
-        socialLink: new Text('Ссылка', 'Reference'),
-        socialIcon: new Text('Mdi иконка', 'Mdi icon'),
         addSkill: new Text('Добавить навык', 'Add skill'),
         chooseSkill: new Text('Выбрать', 'Choose'),
+        addExp: new Text('Добавить опыт работы', 'Add experience'),
+        chooseExp: new Text('Выбрать', 'Choose'),
+        addEdu: new Text('Добавить обучение', 'Add education'),
+        chooseEdu: new Text('Выбрать', 'Choose'),
         save: new Text('Сохранить', 'Save'),
     }
 }

@@ -2,7 +2,7 @@
   <div class="border-light--primary skills-note">
     <v-text-field v-model="skillNote.id" label="id"
                   outlined dense :disabled="!skillNote.new"
-                  @input="checkId"
+                  @input="checkId" autocomplete="off"
                   :loading="load || loadId" :messages="[idMessage]" />
     <multi-lang-text-field v-model="skillNote.title"
                            :label="text.title.text"
@@ -17,9 +17,9 @@
                     :label="(index + 1).toString()" suffix=";"
                     v-model="skillNote.skills[index]"
                     prepend-icon="mdi-plus" append-icon="mdi-close"
-                    @click:prepend="skillNote.skills.splice(index, 0, '')"
+                    @click:prepend="skillNote.skills.splice(index + 1, 0, '')"
                     @click:append="skillNote.skills.splice(index, 1)"
-                    :loading="load"
+                    :loading="load" autocomplete="off"
                     outlined dense />
     </div>
     <div class="error--text mb-2">
@@ -115,6 +115,7 @@ name: "EditSkillsNote",
       this.load = true
       try {
         this.skillNote = await this.getSkillsNote(this.skillNote.id)
+        this.errMessage = ''
       }
       catch (e) {
         this.errMessage = this.getServerErrorMessage(e)

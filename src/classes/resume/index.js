@@ -20,6 +20,7 @@ const noNotesNote = new TimeNote({
 
 const resumeExample = {
     spec: new Text(),
+    show: false,
     photo: new ImageModel(),
     header: new Text(),
     intro: new Text(),
@@ -35,6 +36,7 @@ const resumeExample = {
 export class Resume{
     constructor(resume = resumeExample) {
         this.spec = Text.fromObj(resume.spec)
+        this.show = !!resume.show
         this.photo = new ImageModel(resume.photo)
         this.header = Text.fromObj(resume.header)
         this.intro = Text.fromObj(resume.intro)

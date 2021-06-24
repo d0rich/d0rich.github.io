@@ -3,23 +3,23 @@
     <div class="mb-2">{{label}}</div>
     <div v-if="!textarea" style="width: 100%">
       <v-text-field :value="value.ru" @input="ruInput"
-                    label="Русский"
+                    label="Русский" autocomplete="off"
                     :loading="loading"
                     :outlined="outlined" :dense="dense" />
       <v-text-field :value="value.en" @input="enInput"
-                    label="English"
+                    label="English" autocomplete="off"
                     :loading="loading"
                     :outlined="outlined" :dense="dense" />
     </div>
     <div v-else style="width: 100%">
       <v-textarea :value="value.ru" @input="ruInput"
                   auto-grow style="width: 100%"
-                  label="Русский"
+                  label="Русский" autocomplete="off"
                   :loading="loading"
                   :outlined="outlined" :dense="dense" />
       <v-textarea :value="value.en" @input="enInput"
                   auto-grow style="width: 100%"
-                  label="English"
+                  label="English" autocomplete="off"
                   :loading="loading"
                   :outlined="outlined" :dense="dense" />
     </div>

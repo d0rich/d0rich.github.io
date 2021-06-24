@@ -3,6 +3,10 @@
     <section class="intro">
       <div class="intro__info">
         <h1>{{resume.header.text}} - {{resume.spec.text}}</h1>
+        <p v-if="$store.getters.isAuth">{{resume.show ? text.show.text: text.notShow.text}}</p>
+        <v-btn class="mb-3" color="primary" :to="{ name: 'ResumeEdit' }" v-if="$store.getters.isAuth">
+          {{text.edit.goToEdit.text}}
+        </v-btn>
         <div class="mb-3">
           <p v-for="(p, index) in resume.intro.text.split('\n')" :key="index">
             {{p}}
@@ -132,7 +136,7 @@ name: "Resume",
 .intro__info{
   margin-right: 2rem;
   max-width: 700px;
-  width: 100vw;
+
 }
 .contacts{
   display: grid;
@@ -153,11 +157,10 @@ name: "Resume",
   align-items: center;
 }
 .block{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 .block__column--text{
-  min-width: 15em;
-  width: 40%;
   margin-right: 2em;
 }
 .block__column--items{
@@ -179,6 +182,7 @@ name: "Resume",
     flex-direction: column-reverse;
   }
   .block{
+    display: flex;
     flex-direction: column;
   }
   .block__column--text{
