@@ -313,8 +313,8 @@ name: "ResumeEdit",
         this.errors.education = ''
       }
       catch (e) {
-        this.errors.skills = await this.getServerErrorMessage(e)
-        this.successes.skills = new Text()
+        this.errors.education = await this.getServerErrorMessage(e)
+        this.successes.education = new Text()
       }
       this.load.education = false
     },
