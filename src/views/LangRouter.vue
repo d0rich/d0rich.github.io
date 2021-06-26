@@ -41,7 +41,6 @@ name: "LangRouter",
   beforeRouteUpdate(to, from, next){
     try {
       this.$analytics.logEvent('page_view', {
-        page_name: to?.name,
         project_id: to.params.stringId || undefined,
         resume_id: to.params.resumeId || undefined,
         query: JSON.stringify(this.$route.query),
