@@ -72,13 +72,11 @@ export default {
     if (this.$store.getters.isAuth){
       this.$analytics.logEvent('login', {
         login: this.$store.state.login,
-        page_name: this.$route?.name,
         lang: this.$route.params.lang || undefined,
         page_location: document.location,
         page_path: document.location.origin + '/#' + this.$route.path,
       })
       this.$analytics.setUserProperties({
-        login: this.$store.state.login,
         authorized: true
       })
       this.$analytics.setUserId(this.$store.state.login)

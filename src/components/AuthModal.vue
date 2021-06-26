@@ -81,7 +81,6 @@ name: "AuthModal",
           page_path: document.location.origin + '/#' + this.$route.path,
         })
         this.$analytics.setUserProperties({
-          login: this.$store.state.login,
           authorized: true
         })
         this.$analytics.setUserId(this.$store.state.login)
