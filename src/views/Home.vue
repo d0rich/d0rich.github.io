@@ -37,7 +37,8 @@
           <v-btn v-for="contact in data.block2.contacts" :key="contact.text"
                  :href="contact.href" target="_blank"
                  class="pa-10" large
-                 tile outlined :block="!headerOn" >
+                 tile outlined :block="!headerOn"
+                 @click="logContact(contact.text, $route.name)" >
             <span>
               <v-icon>{{contact.icon}}</v-icon>  {{contact.text}}
             </span>

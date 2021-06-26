@@ -16,7 +16,8 @@
     </div>
     <div class="mx-md-5 mx-sm-1">
       <v-chip-group class="mt-5" color="accent" multiple column v-model="chosenTags">
-        <v-chip :value="tag.id" v-for="tag in tags" :key="tag.id">
+        <v-chip :value="tag.id" v-for="tag in tags" :key="tag.id"
+                @input="logToggleTag(tag.text, $event)">
           {{tag.text}}
         </v-chip>
       </v-chip-group>
@@ -89,6 +90,13 @@ name: "Projects",
       this.projects = projectsData.projects
       this.pages = projectsData.pages
       this.turnPageLoad(false)
+    },
+    logToggleTag(tag_name, value){
+      this.$analytics.logEvent('update_projects_filter', {
+        toggle_tag: tag_name,
+        tag_value: value,
+        all_filters: this.chosenTags.map(tagId => this.tags.find(tag => tag.id === tagId).text)
+      })
     }
   },
   async created() {

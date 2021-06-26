@@ -17,7 +17,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+Vue.prototype.$analytics = firebase.analytics()
 
 import VueMeta from 'vue-meta'
 Vue.use(VueMeta, {
@@ -26,8 +26,8 @@ Vue.use(VueMeta, {
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-axios.defaults.baseURL = 'http://127.0.0.1:3000/api/'
-//axios.defaults.baseURL = 'https://dorich-server.herokuapp.com/api/'
+//axios.defaults.baseURL = 'http://127.0.0.1:3000/api/'
+axios.defaults.baseURL = 'https://dorich-server.herokuapp.com/api/'
 axios.defaults.headers = {
 
 }
@@ -63,7 +63,16 @@ Vue.mixin({
       return new Promise(resolve => {
         setTimeout(() =>resolve(), ms * (1 - 0.1 + Math.random() * 0.2))
       })
-    }
+    },
+    logContact(contact, c_location){
+      this.$analytics.logEvent('get_contact', {
+        contact: contact,
+        contact_location: c_location
+      })
+      this.$analytics.setUserProperties({
+        want_contact: true
+      })
+    },
   }
 })
 
@@ -74,6 +83,5 @@ new Vue({
   store,
   axios,
   vuetify,
-  analytics: firebase.analytics(),
   render: h => h(App)
 }).$mount('#app')

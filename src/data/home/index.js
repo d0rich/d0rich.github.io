@@ -43,7 +43,7 @@ export default {
         bg: contactsBg,
         contactsHeader: new Text('Мои контакты', 'My contacts'),
         contacts: [
-            { href: 'mailto:d.orich@yandex.com', icon: 'mdi-email', text: 'Email' },
+            { href: 'mailto:d.orich@yandex.com', icon: 'mdi-email', text: 'email' },
             { href: 'https://t.me/d0rich', icon: 'mdi-telegram', text: 'telegram' },
             { href: 'https://github.com/d0rich', icon: 'mdi-github', text: 'github' },
             { href: 'https://vk.com/d0rich', icon: 'mdi-vk', text: 'vk' },

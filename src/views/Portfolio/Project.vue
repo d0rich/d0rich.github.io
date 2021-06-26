@@ -39,6 +39,7 @@
             <h2>{{texts.technologies.text}}:</h2>
             <ul>
               <v-list-item v-for="tech in technologies" :key="tech.id"
+                           @click="logWatchTechnology(tech.name, tech.url)"
                            :href="tech.url" target="_blank">
                 {{tech.name}} - v{{tech.version}}
               </v-list-item>
@@ -47,13 +48,13 @@
           <div class="extra__links" v-if="githubUrl || url">
             <h2>{{texts.links.text}}:</h2>
             <ul>
-              <v-list-item v-if="url" :href="url" target="_blank">
+              <v-list-item v-if="url" :href="url" target="_blank" @click="logWatchProject">
                 <v-list-item-icon>
                   <v-icon>mdi-desktop-mac-dashboard</v-icon>
                 </v-list-item-icon>
                 {{texts.projectLink.text}}
               </v-list-item>
-              <v-list-item v-if="githubUrl" :href="githubUrl" target="_blank">
+              <v-list-item v-if="githubUrl" :href="githubUrl" target="_blank" @click="logWatchProjectSourceCode">
                 <v-list-item-icon>
                   <v-icon>mdi-github</v-icon>
                 </v-list-item-icon>
@@ -145,6 +146,28 @@ export default {
         this.setError404(true)
       }
       this.turnPageLoad(false)
+    },
+    logWatchTechnology(t_name, t_url){
+      this.$analytics.logEvent('watch_technology', {
+        t_name, t_url,
+        project: this.$route.params.stringId
+      })
+    },
+    logWatchProject(){
+      this.$analytics.logEvent('watch_project', {
+        project: this.$route.params.stringId
+      })
+      this.$analytics.setUserProperties({
+        interested_in_project: this.$route.params.stringId
+      })
+    },
+    logWatchProjectSourceCode(){
+      this.$analytics.logEvent('watch_project_src_code', {
+        project: this.$route.params.stringId
+      })
+      this.$analytics.setUserProperties({
+        interested_in_project: this.$route.params.stringId
+      })
     }
   },
   async created(){
