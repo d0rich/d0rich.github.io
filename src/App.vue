@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import ogImage from '../public/og-image.jpg'
+import vkImage from '../public/vk-image.jpg'
 import '@/assets/fonts/JetBrainsMono/fontface.css'
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -104,6 +106,8 @@ export default {
         { vmid: 'og:description', property: 'og:description', content: this.description },
         { vmid: 'og:site_name', property: 'og:site_name', content: 'Dorich Dev'},
         { vmid: 'og:type', property: 'og:type', content: 'website'},
+        { vmid: 'og:image', property: 'og:image', content: ogImage},
+        { vmid: 'vk:image', property: 'vk:image', content: vkImage},
         { vmid: 'robots', name: 'robots', content: 'index,follow'}
       ]
     }
