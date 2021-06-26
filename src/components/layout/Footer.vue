@@ -11,14 +11,14 @@
 
         <div>
           <div>{{connection.title.text}}:</div>
-          <a href="mailto:d.orich@yandex.com">
+          <a href="mailto:d.orich@yandex.com" @click="logContact('email', 'footer')">
             <v-icon>mdi-email</v-icon>
             <span style="color: #FFFFFF; text-decoration: underline">d.orich@yandex.com</span>
           </a>
           <div>
             <v-btn icon target="_blank"
                    v-for="btn in connection.socials" :key="btn.href"
-                   :href="btn.href" >
+                   :href="btn.href" @click="logContact(connection.title.en, 'footer')" >
               <v-icon>{{btn.icon}}</v-icon>
             </v-btn>
           </div>

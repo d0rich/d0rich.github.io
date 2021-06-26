@@ -31,6 +31,15 @@ name: "Error404",
     lang(){
       return localStorage.getItem('lang') || 'en'
     }
+  },
+  mounted() {
+    this.$analytics.logEvent('error_404', {
+      query: JSON.stringify(this.$route.query),
+      lang: this.$route.params.lang,
+      page_location: document.location,
+      page_path: this.$route.path,
+      page_full_path: this.$route.fullPath
+    })
   }
 }
 </script>

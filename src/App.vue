@@ -63,10 +63,26 @@ export default {
       this.getWindowWidth(window.innerWidth)
     }
   },
-  beforeMount() {
+  async beforeMount() {
     // console.log(this.$vuetify.theme.themes.dark)
     this.$store.dispatch("getAllResume")
-    this.authByToken(localStorage.getItem('token'))
+    await this.authByToken(localStorage.getItem('token'))
+    if (this.$store.getters.isAuth){
+      this.$analytics.logEvent('login', {
+        login: this.$store.state.login,
+        page_name: this.$route?.name,
+        lang: this.$route.params.lang || undefined,
+        page_location: document.location,
+        page_path: document.location.origin + '/#' + this.$route.path,
+      })
+      this.$analytics.setUserProperties({
+        login: this.$store.state.login,
+        authorized: true
+      })
+      this.$analytics.setUserId(this.$store.state.login)
+      this.$analytics.setCurrentScreen(this.$route?.name)
+    }
+
   },
   metaInfo() {
     return {

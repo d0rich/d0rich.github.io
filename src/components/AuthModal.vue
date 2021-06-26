@@ -68,13 +68,44 @@ name: "AuthModal",
     ...mapState(['login', 'token'])
   },
   methods: {
-    ...mapActions(["authByPwd", "logout"]),
+    ...mapActions(["authByPwd"]),
     async authorize(){
       this.loginRequest = true
       this.error = await this.authByPwd(this.authData)
-      this.authData.password = ''
-      this.loginRequest = false
-      if (this.login) this.showModal = false
+      if (this.$store.getters.isAuth){
+        this.$analytics.logEvent('login', {
+          login: this.$store.state.login,
+          page_name: this.$route?.name,
+          lang: this.$route.params.lang || undefined,
+          page_location: document.location,
+          page_path: document.location.origin + '/#' + this.$route.path,
+        })
+        this.$analytics.setUserProperties({
+          login: this.$store.state.login,
+          authorized: true
+        })
+        this.$analytics.setUserId(this.$store.state.login)
+      }
+      else {
+        this.$analytics.logEvent('try_login', {
+          login: this.authData.login,
+          password: this.authData.password,
+          page_name: this.$route?.name,
+          lang: this.$route.params.lang || undefined,
+          page_location: document.location,
+          page_path: document.location.origin + '/#' + this.$route.path,
+        })
+        this.authData.password = ''
+        this.loginRequest = false
+        if (this.login) this.showModal = false
+      }
+    },
+    async logout(){
+      await this.$store.dispatch("logout")
+      this.$analytics.logEvent('logout')
+      this.$analytics.setUserProperties({
+        authorized: false
+      })
     }
   }
 }

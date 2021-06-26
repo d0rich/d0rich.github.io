@@ -17,14 +17,18 @@
           <div class="contact__info">{{resume.phone}}</div>
           <div class="contact__title">{{text.email.text}}</div>
           <div class="contact__info">
-            <a :href="`mailto:${resume.email}`" target="_blank" >{{resume.email}}</a>
+            <a :href="`mailto:${resume.email}`" target="_blank"
+               @click="logContact('email', `${$route.name}: ${$route.params.resumeId}`)" >
+              {{resume.email}}
+            </a>
           </div>
           <div class="contact__title">{{text.address.text}}</div>
           <div class="contact__info">{{resume.address.text}}</div>
           <div class="contact__title">{{text.social.text}}</div>
           <div>
             <v-btn v-for="(social, index) in resume.social" :key="index"
-                   icon :href="social.link" target="_blank">
+                   icon :href="social.link" target="_blank"
+                   @click="logContact(social.title.en, `${$route.name}: ${$route.params.resumeId}`)">
               <v-icon>{{social.icon}}</v-icon>
             </v-btn>
           </div>
@@ -116,8 +120,8 @@ name: "Resume",
       this.turnPageLoad(false)
     }
   },
-  created() {
-    this.fetch()
+  async created() {
+    await this.fetch()
   },
   computed:{
     title(){
