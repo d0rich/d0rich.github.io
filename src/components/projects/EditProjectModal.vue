@@ -211,7 +211,7 @@
           </v-card-actions>
         </v-form>
         <!-- Форма для создания технологии -->
-        <v-dialog  v-model="showCreateTech" transition="glitch-transition" persistent>
+        <v-dialog max-width="500px"  v-model="showCreateTech" transition="glitch-transition" persistent>
           <v-form ref="createTechForm" v-model="createTechValid" @submit.prevent="createTechReq">
             <v-card>
               <v-toolbar color="primary">
