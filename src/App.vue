@@ -30,6 +30,7 @@ import Loading from "@/components/Loading";
 import Error404 from "@/views/Error404";
 import {mapGetters, mapMutations, mapActions, mapState} from 'vuex'
 import {Text} from "@/classes";
+import {routesNames} from "@/data/constants";
 export default {
   name: 'App',
 
@@ -80,9 +81,67 @@ export default {
         authorized: true
       })
       this.$analytics.setUserId(this.$store.state.login)
-      this.$analytics.setCurrentScreen(this.$route?.name)
     }
-
+    this.$analytics.setUserProperties({
+      lang: this.$route.params.lang
+    })
+    this.$analytics.setCurrentScreen(this.$route?.name)
+  },
+  mounted() {
+    const pageData = {
+      lang: this.$route.params.lang || undefined,
+      page_location: document.location,
+      page_path: document.location.origin + '/#' + this.$route.path,
+      page_referrer: document.referrer,
+      page_referrer_name: 'external_source'
+    }
+    switch (this.$route.name) {
+      case routesNames.HOME_PAGE:
+        this.$analytics.logEvent('home_page_view', {
+          ...pageData
+        })
+        break
+      case routesNames.PORTFOLIO:
+        this.$analytics.logEvent('portfolio_page_view', {
+          filters: JSON.stringify(this.$route.query),
+          ...pageData
+        })
+        break
+      case routesNames.PROJECT_PAGE:
+        this.$analytics.logEvent('project_page_view', {
+          project_id: this.$route.params.stringId || undefined,
+          ...pageData
+        })
+        break
+      case routesNames.RESUME_PAGE:
+        this.$analytics.logEvent('resume_page_view', {
+          resume_id: this.$route.params.resumeId || undefined,
+          ...pageData
+        })
+        this.$analytics.setUserProperties({
+          interested_in_resume: true
+        })
+        break
+      case routesNames.EDIT_RESUME_PAGE:
+        this.$analytics.logEvent('edit_resume_page_view', {
+          resume_id: this.$route.params.resumeId || undefined,
+          query: JSON.stringify(this.$route.query),
+          ...pageData
+        })
+        break
+      case routesNames.BLOG_CONTROLLER:
+        this.$analytics.logEvent('blog_page_view', {
+          ...pageData
+        })
+        break
+      default:
+        this.$analytics.logEvent('undefined_page_view', {
+          route_name: this.$route.name,
+          query: JSON.stringify(this.$route.query),
+          ...pageData
+        })
+        break
+    }
   },
   metaInfo() {
     return {

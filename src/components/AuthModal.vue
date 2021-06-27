@@ -85,8 +85,7 @@ name: "AuthModal",
         })
         this.$analytics.setUserId(this.$store.state.login)
         this.authData.password = ''
-        this.loginRequest = false
-        if (this.login) this.showModal = false
+        this.showModal = false
       }
       else {
         this.$analytics.logEvent('try_login', {
@@ -98,6 +97,7 @@ name: "AuthModal",
           page_path: document.location.origin + '/#' + this.$route.path,
         })
       }
+      this.loginRequest = false
 
     },
     async logout(){
