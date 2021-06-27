@@ -38,6 +38,8 @@ import {Text} from "@/classes";
 import FooterRoute from "@/components/layout/FooterRoute";
 import AuthModal from "@/components/AuthModal";
 import {mapState} from "vuex";
+import {routesNames} from "@/data/constants";
+
 export default {
 name: "Footer",
   components: {
@@ -49,17 +51,17 @@ name: "Footer",
       navigation: {
         title: new Text('Навигация', 'Navigation'),
         routes: [
-          { title: new Text('Главная', 'Home'), route: { name: 'Home' } },
-          { title: new Text('Обо мне', 'About me'), route: { name: 'AboutIndex' }, children: [
+          { title: new Text('Главная', 'Home'), route: { name: routesNames.HOME_PAGE } },
+          { title: new Text('Обо мне', 'About me'), route: { name: routesNames.ABOUT_MAIN_PAGE }, children: [
               { title: new Text('Резюме', 'Resume'),
-                route: { name: 'ResumeIndex' }, children: [
+                route: { name: routesNames.RESUME_CONTROLLER }, children: [
                   //{ title: new Text('Фронтенд', 'Frontend'), route: { name: 'Resume' } },
                   //{ title: new Text('Бэкенд', 'Backend'), route: { name: 'Resume' } },
                   //{ title: new Text('Фуллстак', 'Fullstack'), route: { name: 'Resume' } }
                 ] }
             ] },
-          { title: new Text('Портфолио', 'Portfolio'), route: { name: 'PortfolioIndex' } },
-          { title: new Text('Блог', 'Blog'), route: { name: 'Blog' } },
+          { title: new Text('Портфолио', 'Portfolio'), route: { name: routesNames.PORTFOLIO } },
+          { title: new Text('Блог', 'Blog'), route: { name: routesNames.BLOG_CONTROLLER } },
         ]
       },
       connection: {

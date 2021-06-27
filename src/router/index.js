@@ -14,6 +14,7 @@ import AboutMain from "@/views/About/Main";
 import LangRouter from "@/views/LangRouter";
 
 Vue.use(VueRouter)
+import {routesNames} from "@/data/constants";
 
 const routes = [
   {
@@ -22,7 +23,7 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'Home',
+        name: routesNames.HOME_PAGE,
         component: Home,
         meta: { scrollToTop: true }
       },
@@ -33,25 +34,25 @@ const routes = [
         children: [
           {
             path: '',
-            name: 'AboutIndex',
+            name: routesNames.ABOUT_MAIN_PAGE,
             component: AboutMain,
             meta: { scrollToTop: true }
           },
           {
             path: 'resume',
-            name: 'ResumeIndex',
+            name: routesNames.RESUME_CONTROLLER,
             component: ResumeIndex,
             meta: { scrollToTop: true },
             children: [
               {
                 path: ':resumeId',
-                name: 'Resume',
+                name: routesNames.RESUME_PAGE,
                 component: Resume,
                 meta: { scrollToTop: true },
               },
               {
                 path: ':resumeId/edit',
-                name: 'ResumeEdit',
+                name: routesNames.EDIT_RESUME_PAGE,
                 component: ResumeEdit,
                 meta: { scrollToTop: true }
               }
@@ -61,7 +62,7 @@ const routes = [
       },
       {
         path: 'blog',
-        name: 'Blog',
+        name: routesNames.BLOG_CONTROLLER,
         component: Blog,
         meta: { scrollToTop: true }
       },
@@ -72,13 +73,13 @@ const routes = [
         children: [
           {
             path: '',
-            name: 'PortfolioIndex',
+            name: routesNames.PORTFOLIO,
             component: Projects,
             meta: { scrollToTop: true }
           },
           {
             path: ':stringId',
-            name: 'Project',
+            name: routesNames.PROJECT_PAGE,
             component: Project,
             meta: { scrollToTop: true }
           },
@@ -90,7 +91,7 @@ const routes = [
 
   {
     path: '/*',
-    redirect: { name: "Home", params: {lang: localStorage.getItem('lang') || 'en'}}
+    redirect: { name: routesNames.HOME_PAGE, params: {lang: localStorage.getItem('lang') || 'en'}}
   }
 ]
 

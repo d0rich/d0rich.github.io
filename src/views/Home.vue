@@ -12,9 +12,9 @@
           <h1 class="align-self-start cursor-on-hover">{{data.block2.terminal.h1.text}}<span class="cursor">_</span></h1>
           <p class="align-self-start cursor-on-hover">
             {{data.block2.terminal.t1.text}}
-            <router-link class="link" :to="{name: 'PortfolioIndex'}">{{data.block2.terminal.t2.text}}</router-link>{{data.block2.terminal.t3.text}}
-            <router-link class="link" :to="{name: 'AboutIndex'}">{{data.block2.terminal.t4.text}}</router-link>{{data.block2.terminal.t5.text}}
-            <router-link class="link" :to="{name: 'Blog'}">{{data.block2.terminal.t6.text}}</router-link>{{data.block2.terminal.t7.text}}<span class="cursor">_</span>
+            <router-link class="link" :to="{name: routesNames.PORTFOLIO}">{{data.block2.terminal.t2.text}}</router-link>{{data.block2.terminal.t3.text}}
+            <router-link class="link" :to="{name: routesNames.ABOUT_MAIN_PAGE}">{{data.block2.terminal.t4.text}}</router-link>{{data.block2.terminal.t5.text}}
+            <router-link class="link" :to="{name: routesNames.BLOG_CONTROLLER}">{{data.block2.terminal.t6.text}}</router-link>{{data.block2.terminal.t7.text}}<span class="cursor">_</span>
           </p>
         </Terminal>
         <div class="block2__info">
@@ -23,7 +23,7 @@
             <div class="block2__info__text">
               <h1>{{data.block2.h1.text}}</h1>
               <p v-for="(text, index) in data.block2.p1.text.split('\n')" :key="index" >{{text}}</p>
-              <v-btn :to="{name: 'AboutIndex'}" color="primary">{{btns.myInfo.text}}</v-btn>
+              <v-btn :to="{name: routesNames.ABOUT_MAIN_PAGE}" color="primary">{{btns.myInfo.text}}</v-btn>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@
         <ProjectBlock :project="project"
                       v-for="project in projects" :key="project.id" />
       </transition-group>
-      <v-btn :to="{name: 'PortfolioIndex'}" class="align-self-end my-5" large color="primary">
+      <v-btn :to="{name: routesNames.PORTFOLIO}" class="align-self-end my-5" large color="primary">
         {{btns.myInfo.text}}
         <v-icon>
           mdi-chevron-right
@@ -86,6 +86,7 @@ import EnterBlock2 from "@/components/home/EnterBlock2";
 import ProjectBlock from "@/components/projects/ProjectBlock";
 import Loading from "@/components/Loading";
 import {Text} from "@/classes/text";
+import {routesNames} from "@/data/constants";
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -96,6 +97,7 @@ export default {
   },
   data(){
     return{
+      routesNames,
       data: homepage,
       btns: {
         myInfo: new Text('Узнать больше', 'More info')
