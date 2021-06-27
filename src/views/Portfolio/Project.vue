@@ -72,6 +72,7 @@
 import {ImageModel, Text} from "@/classes";
 import EditProjectModal from "@/components/projects/EditProjectModal";
 import DeleteProject from "@/components/projects/DeleteProject";
+import { routesNames } from "@/data/constants";
 
 export default {
   name: "Project",
@@ -133,9 +134,9 @@ export default {
       })
     },
     goBack(){
-      if (this.prevRoute.name === 'PortfolioIndex')
+      if (this.prevRoute.name === routesNames.PORTFOLIO)
         this.$router.go(-1)
-      else this.$router.push({ name: 'PortfolioIndex' })
+      else this.$router.push({ name: routesNames.PORTFOLIO })
     },
     async fetch(){
       this.turnPageLoad(true)

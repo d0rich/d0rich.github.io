@@ -33,7 +33,7 @@
     </v-dialog>
     <div class="btns">
       <v-btn v-for="resume in resumes" :key="resume.id"
-          class="mx-3" text :to="{name: 'Resume', params: { resumeId: resume.id }}" >
+          class="mx-3" text :to="{name: routesNames.RESUME_PAGE, params: { resumeId: resume.id }}" >
         {{resume.spec.text}}
       </v-btn>
       <v-btn v-if="$store.getters.isAuth" @click="showModal=true">
@@ -46,11 +46,13 @@
 
 <script>
 import {Text} from "@/classes";
+import {routesNames} from "@/data/constants";
 import {mapState, mapActions, mapGetters} from 'vuex'
 export default {
   name: "ResumeIndex",
   data(){
     return{
+      routesNames,
       valid: false,
       showModal: false,
       newResumeId: '',
@@ -90,7 +92,7 @@ export default {
     },
     async resumeNow(value){
       if (!value)
-        await this.$router.replace({ name: 'Resume', params: { resumeId: this.resumes[0].id } })
+        await this.$router.replace({ name: routesNames.RESUME_PAGE, params: { resumeId: this.resumes[0].id } })
     }
   },
   methods: {
@@ -116,7 +118,7 @@ export default {
           })
           this.showModal = false
           await this.getAllResume()
-          await this.$router.push({ name: 'ResumeEdit', params: { resumeId: this.newResumeId } })
+          await this.$router.push({ name: routesNames.EDIT_RESUME_PAGE, params: { resumeId: this.newResumeId } })
         }
         catch (e) {
           this.errMessage = await this.getServerErrorMessage(e)
@@ -134,7 +136,7 @@ export default {
   async created() {
     await this.getAllResume()
     if (!this.$route.params.resumeId)
-      await this.$router.replace({ name: 'Resume', params: { resumeId: this.resumes[0].id } })
+      await this.$router.replace({ name: routesNames.RESUME_PAGE, params: { resumeId: this.resumes[0].id } })
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <nav class="project-block">
-    <v-card :to="{name: 'Project', params: { stringId: project.stringId }}">
+    <v-card :to="{name: routesNames.PROJECT_PAGE, params: { stringId: project.stringId }}">
       <v-img height="200px"
              :src="project.image.src"
              :lazy-src="project.image.phSrc"
@@ -31,6 +31,7 @@
 
 <script>
 import {Text} from "@/classes";
+import {routesNames} from "@/data/constants";
 
 export default {
 name: "ProjectBlock",
@@ -48,6 +49,7 @@ name: "ProjectBlock",
   },
   data(){
     return{
+      routesNames,
       texts: {
         date: new Text('Дата', 'Date'),
         toProject: new Text('Подробнее', 'More info')
