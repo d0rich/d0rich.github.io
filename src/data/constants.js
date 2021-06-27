@@ -1,10 +1,10 @@
 export const routesNames = {
-    HOME_PAGE: 'Home',
-    ABOUT_MAIN_PAGE: 'AboutIndex',
-    RESUME_CONTROLLER: 'ResumeIndex',
-    RESUME_PAGE: 'Resume',
-    EDIT_RESUME_PAGE: 'ResumeEdit',
+    HOME_PAGE: 'home_page',
+    ABOUT_MAIN_PAGE: 'about_index',
+    RESUME_CONTROLLER: 'resume_index',
+    RESUME_PAGE: 'resume_page',
+    EDIT_RESUME_PAGE: 'edit_resume_page',
     BLOG_CONTROLLER: 'Blog',
-    PORTFOLIO: 'PortfolioIndex',
-    PROJECT_PAGE: 'Project'
+    PORTFOLIO: 'portfolio_page',
+    PROJECT_PAGE: 'project_page'
 }
