@@ -69,7 +69,7 @@
                                      no-title scrollable />
                     </v-menu>
                     <v-textarea v-model="projectForm.description[0]"
-                                outlined dense
+                                outlined dense auto-grow
                                 :rules="[rules.required]"
                                 label="Русское описание" />
                     <v-text-field v-model="projectForm.url"
@@ -129,7 +129,7 @@
                                      no-title scrollable />
                     </v-menu>
                     <v-textarea v-model="projectForm.description[1]"
-                                outlined dense
+                                outlined dense auto-grow
                                 :rules="[rules.required]"
                                 label="English description" />
                     <v-text-field v-model="projectForm.url"
