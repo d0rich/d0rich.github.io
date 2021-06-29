@@ -1,80 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://d0rich.github.io/&amp;num;/ru/</loc>
+    <loc>https://d0rich.github.io/#/ru/</loc>
     <priority>1</priority>
     <changefreg>monthly</changefreg>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/&amp;num;/ru/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/&amp;num;/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/"/>
   </url>
   <url>
-    <loc>https://d0rich.github.io/&amp;num;/ru/portfolio</loc>
+    <loc>https://d0rich.github.io/#/ru/portfolio</loc>
     <priority>0.8</priority>
     <changefreg>monthly</changefreg>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/&amp;num;/ru/portfolio"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/&amp;num;/en/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio"/>
   </url>
   <url>
-    <loc>https://d0rich.github.io/&amp;num;/ru/portfolio/dorich_site</loc>
+    <loc>https://d0rich.github.io/#/ru/portfolio/dorich_site</loc>
     <priority>0.7</priority>
     <lastmod>2021-06-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/&amp;num;/ru/portfolio/dorich_site"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/&amp;num;/en/portfolio/dorich_site"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/dorich_site"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/dorich_site"/>
   </url>
   <url>
-    <loc>https://d0rich.github.io/&amp;num;/ru/portfolio/sushi_time</loc>
+    <loc>https://d0rich.github.io/#/ru/portfolio/sushi_time</loc>
     <priority>0.7</priority>
     <lastmod>2021-06-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/&amp;num;/ru/portfolio/sushi_time"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/&amp;num;/en/portfolio/sushi_time"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/sushi_time"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/sushi_time"/>
   </url>
   <url>
-    <loc>https://d0rich.github.io/&amp;num;/ru/portfolio/rating_visualize</loc>
+    <loc>https://d0rich.github.io/#/ru/portfolio/rating_visualize</loc>
     <priority>0.7</priority>
     <lastmod>2021-06-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/&amp;num;/ru/portfolio/rating_visualize"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/&amp;num;/en/portfolio/rating_visualize"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/rating_visualize"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/rating_visualize"/>
   </url>
   <url>
-    <loc>https://d0rich.github.io/&amp;num;/ru/portfolio/weather_app</loc>
+    <loc>https://d0rich.github.io/#/ru/portfolio/weather_app</loc>
     <priority>0.7</priority>
     <lastmod>2021-06-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/&amp;num;/ru/portfolio/weather_app"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/&amp;num;/en/portfolio/weather_app"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/weather_app"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/weather_app"/>
   </url>
   <url>
-    <loc>https://d0rich.github.io/&amp;num;/ru/portfolio/todo</loc>
+    <loc>https://d0rich.github.io/#/ru/portfolio/todo</loc>
     <priority>0.7</priority>
     <lastmod>2021-06-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/&amp;num;/ru/portfolio/todo"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/&amp;num;/en/portfolio/todo"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/todo"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/todo"/>
   </url>
   <url>
-    <loc>https://d0rich.github.io/&amp;num;/ru/portfolio/app_son</loc>
+    <loc>https://d0rich.github.io/#/ru/portfolio/app_son</loc>
     <priority>0.7</priority>
     <lastmod>2021-06-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/&amp;num;/ru/portfolio/app_son"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/&amp;num;/en/portfolio/app_son"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/app_son"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/app_son"/>
   </url>
   <url>
-    <loc>https://d0rich.github.io/&amp;num;/ru/portfolio/sport_organizer</loc>
+    <loc>https://d0rich.github.io/#/ru/portfolio/sport_organizer</loc>
     <priority>0.7</priority>
     <lastmod>2021-06-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/&amp;num;/ru/portfolio/sport_organizer"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/&amp;num;/en/portfolio/sport_organizer"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/sport_organizer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/sport_organizer"/>
   </url>
   <url>
-    <loc>https://d0rich.github.io/&amp;num;/ru/portfolio/dorich_site_legacy</loc>
+    <loc>https://d0rich.github.io/#/ru/portfolio/dorich_site_legacy</loc>
     <priority>0.7</priority>
     <lastmod>2021-06-27</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/&amp;num;/ru/portfolio/dorich_site_legacy"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/&amp;num;/en/portfolio/dorich_site_legacy"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/dorich_site_legacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/dorich_site_legacy"/>
   </url>
   <url>
-    <loc>https://d0rich.github.io/&amp;num;/ru/about/resume/frontend</loc>
+    <loc>https://d0rich.github.io/#/ru/about/resume/frontend</loc>
     <priority>0.3</priority>
     <changefreg>monthly</changefreg>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/&amp;num;/ru/about/resume/frontend"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/&amp;num;/en/about/resume/frontend"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/about/resume/frontend"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/about/resume/frontend"/>
   </url>
 </urlset>
