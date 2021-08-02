@@ -20,4 +20,4 @@ jobs:
         uses: suisei-cn/actions-download-file@v1
         with:
           url: "https://dorich-js.appspot.com/seo/sitemap.xml"
-          target: ./
+          target: sitemap.xml
