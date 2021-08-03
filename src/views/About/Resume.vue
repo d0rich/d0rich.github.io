@@ -4,7 +4,7 @@
       <div class="intro__info">
         <h1>{{resume.header.text}} - {{resume.spec.text}}</h1>
         <p v-if="$store.getters.isAuth">{{resume.show ? text.show.text: text.notShow.text}}</p>
-        <v-btn class="mb-3" color="primary" :to="{ name: 'ResumeEdit' }" v-if="$store.getters.isAuth">
+        <v-btn class="mb-3" color="primary" :to="{ name: routesNames.EDIT_RESUME_PAGE }" v-if="$store.getters.isAuth">
           {{text.edit.goToEdit.text}}
         </v-btn>
         <div class="mb-3">
@@ -88,6 +88,7 @@ import {fake} from "@/data/fake";
 import {mapActions} from 'vuex'
 import TimeNote from "@/components/resume/TimeNote";
 import SkillsNote from "@/components/resume/SkillsNote";
+import {routesNames} from "@/data/constants";
 
 export default {
 name: "Resume",
@@ -98,7 +99,8 @@ name: "Resume",
     return{
       resume: new Resume(resumeObj),
       fakeImg: fake.img,
-      text: resumeText
+      text: resumeText,
+      routesNames
     }
   },
   watch: {
