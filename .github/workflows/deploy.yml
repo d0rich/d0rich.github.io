@@ -31,3 +31,4 @@ jobs:
           destination-repository-name: 'd0rich.github.io'
           user-email: d.orich@yandex.com
           target-branch: version2
+          commit-message: ${{ github.event.head_commit.message }}
