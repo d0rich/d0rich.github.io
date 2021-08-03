@@ -1,0 +1,33 @@
+name: Deploy site client
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  github-pages-deploy:
+    name: Deploy to d0rich.github.io
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Setup node
+        uses: actions/setup-node@master
+
+      - name: Install packages
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Push to d0rich.github.io
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: 'output'
+          destination-github-username: 'd0rich'
+          destination-repository-name: 'd0rich.github.io'
+          user-email: d.orich@yandex.com
+          target-branch: version2
