@@ -3,8 +3,6 @@
 name: Get sitemap
 
 on:
-  push:
-    branches: [ version2 ]
   schedule:
     - cron: '0 * * * *'
   workflow_dispatch:
@@ -16,8 +14,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
       - name: Get sitemap
         uses: suisei-cn/actions-download-file@v1
         with:
           url: "https://dorich-js.appspot.com/seo/sitemap.xml"
           target: sitemap.xml
+          
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v7
+        with:
+          message: 'Sitemap.xml auto update.'
+          push: true
