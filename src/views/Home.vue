@@ -13,8 +13,8 @@
           <p class="align-self-start cursor-on-hover">
             {{data.block2.terminal.t1.text}}
             <router-link class="link" :to="{name: routesNames.PORTFOLIO}">{{data.block2.terminal.t2.text}}</router-link>{{data.block2.terminal.t3.text}}
-            <router-link class="link" :to="{name: routesNames.ABOUT_MAIN_PAGE}">{{data.block2.terminal.t4.text}}</router-link>{{data.block2.terminal.t5.text}}
-            <router-link class="link" :to="{name: routesNames.BLOG_CONTROLLER}">{{data.block2.terminal.t6.text}}</router-link>{{data.block2.terminal.t7.text}}<span class="cursor">_</span>
+            <router-link class="link" :to="{name: routesNames.RESUME_PAGE}">{{data.block2.terminal.t4.text}}</router-link>{{data.block2.terminal.t5.text}}
+            <router-link class="link" :to="{name: routesNames.NEWS_CONTROLLER}">{{data.block2.terminal.t6.text}}</router-link>{{data.block2.terminal.t7.text}}<span class="cursor">_</span>
           </p>
         </Terminal>
         <div class="block2__info">
@@ -23,7 +23,7 @@
             <div class="block2__info__text">
               <h1>{{data.block2.h1.text}}</h1>
               <p v-for="(text, index) in data.block2.p1.text.split('\n')" :key="index" >{{text}}</p>
-              <v-btn :to="{name: routesNames.ABOUT_MAIN_PAGE}" color="primary">{{btns.myInfo.text}}</v-btn>
+              <v-btn :to="{name: routesNames.RESUME_PAGE}" color="primary">{{btns.myInfo.text}}</v-btn>
             </div>
           </div>
         </div>

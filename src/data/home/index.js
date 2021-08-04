@@ -16,11 +16,11 @@ export default {
             h1: new Text('Привет мир!', 'Hello world!'),
             t1: new Text('На данном сайте вы можете ознакомиться с моим ', 'Here you can see my '),
             t2: new Text('портфолио', 'portfolio'),
-            t3: new Text(', узнать побольше информации ', ', learn more information '),
-            t4: new Text('обо мне', 'about me'),
-            t5: new Text(' и моих умениях, почитать мой ', ' and my skills, read my '),
-            t6: new Text('блог', 'blog'),
-            t7: new Text(', может увидите что-то интересное :).', ', may be you will find something interesting :).')
+            t3: new Text(', ознакомиться с моим ', ', familiarize with my '),
+            t4: new Text('резюме', 'resume'),
+            t5: new Text(' , почитать ', ' , read '),
+            t6: new Text('новости', 'news'),
+            t7: new Text(' из моей жизни разработчика.', ' from my developer life.')
         },
         my_photo: my_photo,
         h1: new Text('Коротко обо мне', 'Little about me') ,

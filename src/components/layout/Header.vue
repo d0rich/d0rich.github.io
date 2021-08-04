@@ -5,13 +5,13 @@
         v-resize="onResize"
     >
       <nav class="header-line">
-        <v-btn active-class="nav-btn" text :to="navigation.blog.route">
-          <span>{{navigation.blog.text.getText(lang)}}</span>
+        <v-btn active-class="nav-btn" text :to="navigation.news.route">
+          <span>{{ navigation.news.text.getText(lang) }}</span>
           <span style="opacity: 0" class="cursor">_</span>
         </v-btn>
 
-        <v-btn active-class="nav-btn" text :to="navigation.about.route">
-          <span>{{navigation.about.text.getText(lang)}}</span>
+        <v-btn active-class="nav-btn" exact text :to="navigation.resume.route">
+          <span>{{ navigation.resume.text.getText(lang) }}</span>
           <span style="opacity: 0" class="cursor">_</span>
         </v-btn>
 

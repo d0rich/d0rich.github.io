@@ -19,7 +19,8 @@ export const resume = {
         }
     },
     actions:{
-        async getAllResume({commit, rootGetters}){
+        async getAllResume({commit, rootGetters, state}){
+            if (state.resumeCollection.length !== 0) return
             const response = await axios.get(`/resume/get/all`, rootGetters.authHeaders)
             commit('setResumeCollection', response.data)
         },

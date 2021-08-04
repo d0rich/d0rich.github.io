@@ -113,6 +113,7 @@ name: "Resume",
     ...mapActions(["getResumeById"]),
     async fetch(){
       this.turnPageLoad(true)
+      if (this.$route.params.resumeId)
       try {
         this.resume = new Resume(await this.getResumeById(this.$route.params.resumeId))
       }

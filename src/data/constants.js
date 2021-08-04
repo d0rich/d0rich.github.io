@@ -4,7 +4,7 @@ export const routesNames = {
     RESUME_CONTROLLER: 'resume_index',
     RESUME_PAGE: 'resume_page',
     EDIT_RESUME_PAGE: 'edit_resume_page',
-    BLOG_CONTROLLER: 'Blog',
+    NEWS_CONTROLLER: 'news',
     PORTFOLIO: 'portfolio_page',
     PROJECT_PAGE: 'project_page'
 }

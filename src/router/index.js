@@ -2,15 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
-import About from '../views/About/index'
 import Blog from "@/views/Blog"
 import PortfolioIndex from '@/views/Portfolio/index'
 import Projects from "@/views/Portfolio/Projects";
 import Project from "@/views/Portfolio/Project";
-import Resume from "@/views/About/Resume";
-import ResumeEdit from "@/views/About/ResumeEdit";
-import ResumeIndex from "@/views/About/ResumeIndex";
-import AboutMain from "@/views/About/Main";
+import Resume from "@/views/Resume/Resume";
+import ResumeEdit from "@/views/Resume/ResumeEdit";
+import ResumeIndex from "@/views/Resume";
 import LangRouter from "@/views/LangRouter";
 
 Vue.use(VueRouter)
@@ -28,41 +26,28 @@ const routes = [
         meta: { scrollToTop: true }
       },
       {
-        path: 'about',
-        component: About,
+        path: 'resume',
+        name: routesNames.RESUME_CONTROLLER,
+        component: ResumeIndex,
         meta: { scrollToTop: true },
         children: [
           {
-            path: '',
-            name: routesNames.ABOUT_MAIN_PAGE,
-            component: AboutMain,
-            meta: { scrollToTop: true }
+            path: ':resumeId',
+            name: routesNames.RESUME_PAGE,
+            component: Resume,
+            meta: { scrollToTop: true },
           },
           {
-            path: 'resume',
-            name: routesNames.RESUME_CONTROLLER,
-            component: ResumeIndex,
-            meta: { scrollToTop: true },
-            children: [
-              {
-                path: ':resumeId',
-                name: routesNames.RESUME_PAGE,
-                component: Resume,
-                meta: { scrollToTop: true },
-              },
-              {
-                path: ':resumeId/edit',
-                name: routesNames.EDIT_RESUME_PAGE,
-                component: ResumeEdit,
-                meta: { scrollToTop: true }
-              }
-            ]
+            path: ':resumeId/edit',
+            name: routesNames.EDIT_RESUME_PAGE,
+            component: ResumeEdit,
+            meta: { scrollToTop: true }
           }
         ]
       },
       {
         path: 'blog',
-        name: routesNames.BLOG_CONTROLLER,
+        name: routesNames.NEWS_CONTROLLER,
         component: Blog,
         meta: { scrollToTop: true }
       },
