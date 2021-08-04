@@ -6,7 +6,7 @@
         <span>
           {{ navigation.news.text.getText(lang) }}<span style="opacity: 0" class="cursor">_</span>
         </span>
-        <v-icon>mdi-newspaper-variant-outline</v-icon>
+        <v-icon>mdi-newspaper-variant</v-icon>
       </v-btn>
 
       <v-btn active-class="nav-btn" exact :to="navigation.resume.route"  >
@@ -29,7 +29,7 @@
         <span>
           {{navigation.portfolio.text.getText(lang)}}<span style="opacity: 0" class="cursor">_</span>
         </span>
-        <v-icon>mdi-file-presentation-box</v-icon>
+        <v-icon>mdi-folder-star</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </nav>
