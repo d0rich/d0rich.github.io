@@ -16,7 +16,7 @@
     </nav>
     <article class="mt-6">
       <v-img v-if="image"
-             min-width="300px" max-width="600px" width="100%" max-height="30vh"
+             min-width="300px" max-width="600px" width="100%" max-height="30vh" min-height="200px"
              class="border-light--primary align-self-center"
           :src="image.src" :lazy-src="image.phSrc" :alt="image.alt.text" />
       <div class="project-text-container">
