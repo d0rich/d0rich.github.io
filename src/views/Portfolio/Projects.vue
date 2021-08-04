@@ -15,7 +15,7 @@
       </span>
     </div>
     <div class="mx-md-5 mx-sm-1">
-      <v-chip-group class="mt-5" color="accent" multiple column v-model="chosenTags">
+      <v-chip-group class="mt-5" color="accent" multiple v-model="chosenTags">
         <v-chip :value="tag.id" v-for="tag in tags" :key="tag.id"
                 @input="logToggleTag(tag.text, $event)">
           {{tag.text}}
