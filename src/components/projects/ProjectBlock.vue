@@ -4,7 +4,6 @@
       <v-img height="200px"
              :src="project.image.src"
              :lazy-src="project.image.phSrc"
-             :transition="false"
              :alt="project.image.alt.text" />
       <v-card-title>{{project.title.text}}</v-card-title>
       <v-card-subtitle>
