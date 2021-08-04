@@ -2,16 +2,16 @@
   <nav>
     <LangSwitcher />
     <v-bottom-navigation class="bottom-nav" color="primary lighten-1">
-      <v-btn active-class="nav-btn" :to="navigation.blog.route"  >
+      <v-btn active-class="nav-btn" :to="navigation.news.route"  >
         <span>
-          {{navigation.blog.text.getText(lang)}}<span style="opacity: 0" class="cursor">_</span>
+          {{ navigation.news.text.getText(lang) }}<span style="opacity: 0" class="cursor">_</span>
         </span>
-        <v-icon>mdi-message</v-icon>
+        <v-icon>mdi-newspaper-variant-outline</v-icon>
       </v-btn>
 
-      <v-btn active-class="nav-btn" :to="navigation.about.route"  >
+      <v-btn active-class="nav-btn" exact :to="navigation.resume.route"  >
         <span>
-          {{navigation.about.text.getText(lang)}}<span style="opacity: 0" class="cursor">_</span>
+          {{ navigation.resume.text.getText(lang) }}<span style="opacity: 0" class="cursor">_</span>
         </span>
         <v-icon>mdi-account</v-icon>
       </v-btn>

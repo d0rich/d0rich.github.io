@@ -138,7 +138,7 @@ export default {
           ...pageData
         })
         break
-      case routesNames.BLOG_CONTROLLER:
+      case routesNames.NEWS_CONTROLLER:
         this.$analytics.logEvent('page_view', {
           ...pageData
         })

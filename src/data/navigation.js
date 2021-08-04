@@ -2,13 +2,13 @@ import {Text} from "@/classes/text";
 import {routesNames} from "@/data/constants";
 
 export const navigation = {
-    about: {
-        text: new Text('Обо мне', 'About me'),
-        route: { name: routesNames.ABOUT_MAIN_PAGE }
+    resume: {
+        text: new Text('Резюме', 'Resume'),
+        route: { name: routesNames.RESUME_PAGE }
     },
-    blog: {
-        text: new Text('Блог', 'Blog'),
-        route: { name: routesNames.BLOG_CONTROLLER }
+    news: {
+        text: new Text('Новости', 'News'),
+        route: { name: routesNames.NEWS_CONTROLLER }
     },
     home: {
         text: new Text('Dorich', 'Dorich'),
