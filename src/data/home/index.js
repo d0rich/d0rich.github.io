@@ -8,7 +8,7 @@ export default {
             t1: new Text('Привет, меня зовут Николай Дорофеев.', 'Hello, my name is Nikolay Dorofeev.'),
             t2: new Text('Я ', 'I am '),
             t3: new Text('JavaScript разработчик', 'JavaScript developer'),
-            t4: new Text('И это мой личный сайт.', 'And this is my own site.')
+            t4: new Text('И это мой персональный сайт.', 'And this is my personal site.')
         },
     },
     block2: {

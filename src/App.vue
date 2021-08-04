@@ -31,6 +31,7 @@ import Error404 from "@/views/Error404";
 import {mapGetters, mapMutations, mapActions, mapState} from 'vuex'
 import {Text} from "@/classes";
 import {routesNames} from "@/data/constants";
+
 export default {
   name: 'App',
 
@@ -57,6 +58,14 @@ export default {
           'I already know a lot of technologies for creating visual interfaces, ' +
           'servers, working with databases. ' +
           'I will create web applications for business or join a development team.').text
+    },
+    alternate() {
+      let routeParams = this.$route.path.split('/')
+      routeParams[1] = 'ru'
+      let ru = `${document.location.origin}/#${routeParams.join('/')}`
+      routeParams[1] = 'en'
+      let en = `${document.location.origin}/#${routeParams.join('/')}`
+      return {ru, en}
     }
   },
   methods:{
@@ -148,7 +157,8 @@ export default {
       title: this.title,
       titleTemplate: new Text('%s | Dorich - JavaScript Разработчик', '%s | Dorich - JavaScript Developer').text,
       htmlAttrs: {
-        lang: this.lang
+        lang: this.lang,
+
       },
       meta: [
         { vmid: 'description' , name: 'description', content: this.description },
@@ -166,6 +176,10 @@ export default {
         { vmid: 'og:image', property: 'og:image', content: ogImage},
         { vmid: 'vk:image', property: 'vk:image', content: vkImage},
         { vmid: 'robots', name: 'robots', content: 'index,follow'}
+      ],
+      link: [
+        { vmid: 'alter-en', rel: 'alternate', hreflang: 'en', href: this.alternate.en},
+        { vmid: 'alter-ru', rel: 'alternate', hreflang: 'ru', href: this.alternate.ru}
       ]
     }
 
