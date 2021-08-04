@@ -34,9 +34,6 @@ axios.defaults.headers = {
 }
 Vue.use(VueAxios, axios)
 
-import ImgWithPh from "@/components/ImgWithPh";
-Vue.component('img-with-ph', ImgWithPh)
-
 import vuetify from './plugins/vuetify';
 
 import './styles/transitions.scss'
