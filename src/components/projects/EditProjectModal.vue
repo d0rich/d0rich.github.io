@@ -68,10 +68,7 @@
                                      first-day-of-week="1"
                                      no-title scrollable />
                     </v-menu>
-                    <v-textarea v-model="projectForm.description[0]"
-                                outlined dense
-                                :rules="[rules.required]"
-                                label="Русское описание" />
+                    <html-editor class="mb-5" v-model="projectForm.description[0]" />
                     <v-text-field v-model="projectForm.url"
                                   outlined dense
                                   label="Ссылка на рабочий проект" />
@@ -128,10 +125,7 @@
                                      first-day-of-week="1"
                                      no-title scrollable />
                     </v-menu>
-                    <v-textarea v-model="projectForm.description[1]"
-                                outlined dense
-                                :rules="[rules.required]"
-                                label="English description" />
+                    <html-editor class="mb-5" v-model="projectForm.description[1]" />
                     <v-text-field v-model="projectForm.url"
                                   outlined dense
                                   label="Url to project" />
@@ -253,9 +247,13 @@
 <script>
 import {mapActions, mapGetters} from 'vuex'
 import {Text} from "@/classes";
+import HtmlEditor from "@/components/HtmlEditor";
 
 export default {
 name: "EditProjectModal",
+  components: {
+  HtmlEditor
+  },
   props:{
     id: Number || undefined
   },
@@ -441,3 +439,4 @@ name: "EditProjectModal",
   position: fixed;
 }
 </style>
+

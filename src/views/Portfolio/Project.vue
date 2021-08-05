@@ -29,11 +29,7 @@
             {{tag.text}}
           </v-chip>
         </section>
-        <section>
-          <p v-for="(str, index) in description.text.split('\n')" :key="index">
-            {{str}}
-          </p>
-        </section>
+        <section class="article-content mb-8" v-html="description.text" />
         <section class="project__extra">
           <div class="extra__technologies" v-if="technologies.length > 0">
             <h2>{{texts.technologies.text}}:</h2>
@@ -134,8 +130,8 @@ export default {
       })
     },
     goBack(){
-      if (this.prevRoute.name === routesNames.PORTFOLIO)
-        this.$router.go(-1)
+      if (this.prevRoute?.name === routesNames.PORTFOLIO)
+        this.$router.push({...this.prevRoute, params: {lang: this.lang}})
       else this.$router.push({ name: routesNames.PORTFOLIO })
     },
     async fetch(){
