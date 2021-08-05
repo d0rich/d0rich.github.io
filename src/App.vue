@@ -23,6 +23,7 @@
 import ogImage from '../public/og-image.jpg'
 import vkImage from '../public/vk-image.jpg'
 import '@/assets/fonts/JetBrainsMono/fontface.css'
+import '@/styles/font.scss'
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import BottomNavigation from "@/components/layout/BottomNavigation";

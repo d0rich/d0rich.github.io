@@ -138,7 +138,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-@import "../styles/font.css";
+@import "../styles/font";
 .block2{
   min-height: 400px;
   display: flex;
