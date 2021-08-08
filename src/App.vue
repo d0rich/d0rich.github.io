@@ -63,9 +63,9 @@ export default {
     alternate() {
       let routeParams = this.$route.path.split('/')
       routeParams[1] = 'ru'
-      let ru = `${document.location.origin}/#${routeParams.join('/')}`
+      let ru = `${document.location.origin}${routeParams.join('/')}`
       routeParams[1] = 'en'
-      let en = `${document.location.origin}/#${routeParams.join('/')}`
+      let en = `${document.location.origin}${routeParams.join('/')}`
       return {ru, en}
     }
   },
@@ -101,7 +101,7 @@ export default {
     const pageData = {
       lang: this.$route.params.lang || undefined,
       page_location: document.location,
-      page_path: document.location.origin + '/#' + this.$route.path,
+      page_path: document.location.origin + this.$route.path,
       page_referrer: document.referrer,
       page_referrer_name: 'external_source'
     }

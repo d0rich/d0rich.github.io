@@ -54,6 +54,7 @@ export default {
       stringId: '',
       title: new Text(),
       content: new Text(),
+      contentShort: new Text('', ''),
       image: new ImageModel(),
       createdAt: new Date(),
       dateOptions: {
@@ -78,7 +79,8 @@ export default {
           phSrc: res.data.image[1],
           alt: Text.fromArr(res.data.title)
         }),
-        content: Text.fromArr(res.data.content)
+        content: Text.fromArr(res.data.content),
+        contentShort: Text.fromArr(res.data.contentShort)
       }
     },
     async fetch(){
@@ -91,6 +93,7 @@ export default {
         this.createdAt = news.createdAt
         this.image = news.image
         this.content = news.content
+        this.contentShort = news.contentShort
       }
       catch (e){
         this.setError404(true)
@@ -100,6 +103,35 @@ export default {
   },
   async created(){
     await this.fetch()
+  },
+  computed:{
+    keywords(){
+      return new Text('JavaScript разработка, веб приложения, новости',
+          'JavaScript development, web applications, news').text
+    }
+  },
+  metaInfo() {
+    return {
+      title: this.title.text,
+      meta: [
+        {
+          vmid: 'description' , name: 'description',
+          content: this.contentShort.text.substr(0, 180) + '...'
+        },
+        {
+          vmid: 'keywords', name: 'keywords',
+          content: this.keywords
+        },
+        { vmid: 'og:title', property: 'og:title', content: this.title.text },
+        { vmid: 'og:image', property: 'og:image', content: this.image?.src },
+        { vmid: 'vk:image'},
+        {
+          vmid: 'og:description', property: 'og:description',
+          content: this.contentShort.text.substr(0, 180) + '...'
+        },
+        { vmid: 'robots', name: 'robots', content: 'index,follow'}
+      ]
+    }
   }
 }
 </script>
