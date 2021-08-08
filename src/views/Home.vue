@@ -74,6 +74,25 @@
       </v-overlay>
     </section>
 
+    <div class="hr my-16"></div>
+
+    <section class="block4">
+      <h1 class="text-center">{{data.block4.title.text}}</h1>
+      <transition-group name="glitch-transition" class="block4__news">
+        <news-card :news="news"
+                      v-for="news in newsFeed" :key="news.id" />
+      </transition-group>
+      <v-btn :to="{name: routesNames.NEWS_CONTROLLER}" class="align-self-end my-5" large color="primary">
+        {{btns.myInfo.text}}
+        <v-icon>
+          mdi-chevron-right
+        </v-icon>
+      </v-btn>
+      <v-overlay :opacity="0" absolute :value="load.news">
+        <Loading />
+      </v-overlay>
+    </section>
+
 
   </div>
 </template>
@@ -84,6 +103,7 @@ import Terminal from "@/components/Terminal"
 import JSObjectWindow from "@/components/JSObjectWindow";
 import EnterBlock2 from "@/components/home/EnterBlock2";
 import ProjectBlock from "@/components/projects/ProjectBlock";
+import NewsCard from "@/components/news/NewsCard";
 import Loading from "@/components/Loading";
 import {Text} from "@/classes/text";
 import {routesNames} from "@/data/constants";
@@ -93,7 +113,8 @@ export default {
   name: 'Home',
   components: {
     Terminal, EnterBlock2,
-    JSObjectWindow, Loading, ProjectBlock
+    JSObjectWindow, Loading, ProjectBlock,
+    NewsCard
   },
   data(){
     return{
@@ -106,21 +127,29 @@ export default {
         block2info: false
       },
       load: {
-        projects: true
+        projects: true,
+        news: true
       },
-      projects: []
+      projects: [],
+      newsFeed: []
     }
   },
   methods: {
-    ...mapActions(['getProjects']),
+    ...mapActions(['getProjects', 'getNewsFeed']),
     async fetchProjects(){
       this.load.projects = true
       this.projects = (await this.getProjects({page: 1, onPage: 3})).projects
       this.load.projects = false
+    },
+    async fetchNewsFeed(){
+      this.load.news = true
+      this.newsFeed = (await this.getNewsFeed({page: 1, onPage: 5})).news
+      this.load.news = false
     }
   },
   created(){
     this.fetchProjects()
+    this.fetchNewsFeed()
     this.turnPageLoad(false)
   },
   computed:{
@@ -218,6 +247,18 @@ export default {
   grid-gap: 1rem;
   justify-items: center;
   align-items: start;
+}
+.block4{
+  position: relative;
+  min-height: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.block4__news{
+  margin: 2rem 0;
+  width: 100%;
 }
 @media screen and (max-width: 550px){
   .block2__info{

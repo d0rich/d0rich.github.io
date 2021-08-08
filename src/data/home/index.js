@@ -65,6 +65,9 @@ export default {
     },
     block3: {
         title: new Text('Последние проекты', 'Last projects')
-    }
+    },
+    block4: {
+        title: new Text('Новости', 'News')
+    },
 
 }
