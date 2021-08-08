@@ -88,6 +88,12 @@ name: "LangRouter",
             ...pageData
           })
           break
+        case routesNames.NEWS_PAGE:
+          this.$analytics.logEvent('page_view', {
+            news_id: this.$route.params.stringId,
+            ...pageData
+          })
+          break
         default:
           this.$analytics.logEvent('page_view', {
             route_name: to.name,
