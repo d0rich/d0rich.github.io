@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from "axios";
 import {projects} from "@/store/projects";
 import {resume} from "@/store/resume";
+import {news} from "@/store/news";
 
 Vue.use(Vuex)
 
@@ -107,5 +108,6 @@ export default new Vuex.Store({
   modules: {
     resume,
     projects,
+    news
   }
 })

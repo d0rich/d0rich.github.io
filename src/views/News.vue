@@ -5,16 +5,20 @@
         {{text.text}}
       </div>
     </Terminal>
+    <news-editor>
+      Создать новость
+    </news-editor>
   </div>
 </template>
 
 <script>
 import Terminal from "@/components/Terminal";
 import {Text} from "@/classes";
+import NewsEditor from "@/components/news/NewsEditor";
 export default {
-name: "Blog",
+name: "News",
   components:{
-    Terminal
+    Terminal, NewsEditor
   },
   data(){
     return {
