@@ -33,10 +33,10 @@
     </v-dialog>
     <div class="btns">
       <v-btn v-for="resume in resumes" :key="resume.id"
-          class="mx-3" text :to="{name: routesNames.RESUME_PAGE, params: { resumeId: resume.id }}" >
+          class="ma-2" text :to="{name: routesNames.RESUME_PAGE, params: { resumeId: resume.id }}" >
         {{resume.spec.text}}
       </v-btn>
-      <v-btn v-if="$store.getters.isAuth" @click="showModal=true">
+      <v-btn v-if="$store.getters.isAuth" class="ma-2" @click="showModal=true">
         <v-icon>mdi-plus</v-icon> {{text.addResume.text}}
       </v-btn>
     </div>
