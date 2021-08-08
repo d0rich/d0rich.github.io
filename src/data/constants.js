@@ -5,6 +5,7 @@ export const routesNames = {
     RESUME_PAGE: 'resume_page',
     EDIT_RESUME_PAGE: 'edit_resume_page',
     NEWS_CONTROLLER: 'news',
+    NEWS_PAGE: 'news_page',
     PORTFOLIO: 'portfolio_page',
     PROJECT_PAGE: 'project_page'
 }

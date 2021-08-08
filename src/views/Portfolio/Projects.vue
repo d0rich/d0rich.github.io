@@ -83,10 +83,12 @@ name: "Projects",
       if (JSON.stringify(this.$route.query) !== JSON.stringify(
           { page: this.page.toString(), tags: JSON.stringify(this.chosenTags) }
           ))
-        await this.$router.push({...this.$route, query: { page: this.page.toString(), tags: JSON.stringify(this.chosenTags) }})
+        await this.$router.push({...this.$route, query: { page: this.page.toString(),
+            tags: JSON.stringify(this.chosenTags) }})
       this.turnPageLoad(true)
       this.lastFilters = this.chosenTags
-      let projectsData = await this.getProjects({page: this.page, onPage: 6, tags: this.chosenTags})
+      let projectsData = await this.getProjects({page: this.page, onPage: 6,
+        tags: this.chosenTags})
       this.projects = projectsData.projects
       this.pages = projectsData.pages
       this.turnPageLoad(false)
