@@ -59,7 +59,7 @@ name: "Footer",
               //{ title: new Text('Фуллстак', 'Fullstack'), route: { name: 'Resume' } }
             ] },
           { title: new Text('Портфолио', 'Portfolio'), route: { name: routesNames.PORTFOLIO } },
-          { title: new Text('Блог', 'Blog'), route: { name: routesNames.NEWS_CONTROLLER } },
+          { title: new Text('Новости', 'News'), route: { name: routesNames.NEWS_CONTROLLER } },
         ]
       },
       connection: {
