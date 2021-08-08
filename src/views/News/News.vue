@@ -1,12 +1,15 @@
 <template>
   <div>
     <h1 class="text-center mt-7">{{texts.title.text}}</h1>
-    <news-editor :id="id" @updated="fetch">
+    <news-editor class="mb-3" :id="id" @updated="fetch">
       {{texts.edit.text}}
     </news-editor>
+    <delete-news :id="id" :string-id="stringId" @deleted="$router.push({name: routesNames.NEWS_CONTROLLER})">
+      {{texts.delete.text}}
+    </delete-news>
     <div class="hr" />
     <nav>
-      <v-btn class="ml-5" color="primary" :to="{name: routesNames.NEWS_CONTROLLER}" >
+      <v-btn class="ml-5 mb-5" color="primary" :to="{name: routesNames.NEWS_CONTROLLER}" exact >
         <v-icon>
           mdi-chevron-left
         </v-icon>
@@ -33,16 +36,18 @@
 import {ImageModel, Text} from "@/classes";
 import {routesNames} from "@/data/constants";
 import NewsEditor from "@/components/news/NewsEditor";
+import DeleteNews from "@/components/news/DeleteNews";
 export default {
   name: "News",
   components: {
-    NewsEditor
+    NewsEditor, DeleteNews
   },
   data(){
     return {
       texts: {
         title: new Text('Новость', 'News'),
         edit: new Text('Редактировать', 'Edit'),
+        delete: new Text('Удалить новость', 'Delete news'),
         backBtn: new Text('К новостям', 'To news')
       },
       id: 0,
@@ -113,5 +118,10 @@ article{
 .news__date{
   color: var(--v-accent-darken1);
   font-size: 1.1em;
+}
+@media screen and (max-width: 640px){
+  .news-text-container{
+    width: 95%;
+  }
 }
 </style>
