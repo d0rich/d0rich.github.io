@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
-import Blog from "@/views/Blog"
+import News from "@/views/News"
 import PortfolioIndex from '@/views/Portfolio/index'
 import Projects from "@/views/Portfolio/Projects";
 import Project from "@/views/Portfolio/Project";
@@ -46,9 +46,9 @@ const routes = [
         ]
       },
       {
-        path: 'blog',
+        path: 'news',
         name: routesNames.NEWS_CONTROLLER,
-        component: Blog,
+        component: News,
         meta: { scrollToTop: true }
       },
       {
