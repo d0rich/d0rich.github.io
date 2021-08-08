@@ -4,6 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+      <script>
+          (function(){
+              var redirect = sessionStorage.redirect;
+              delete sessionStorage.redirect;
+              if (redirect && redirect != location.href) {
+                  history.replaceState(null, null, redirect);
+              }
+          })();
+      </script>
     <link rel="apple-touch-icon" sizes="57x57" href="<%= BASE_URL %>icons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="<%= BASE_URL %>icons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="<%= BASE_URL %>icons/apple-icon-72x72.png">
@@ -21,15 +30,6 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="<%= BASE_URL %>ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-      <script>
-          (function(){
-              var redirect = sessionStorage.redirect;
-              delete sessionStorage.redirect;
-              if (redirect && redirect != location.href) {
-                  history.replaceState(null, null, redirect);
-              }
-          })();
-      </script>
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
       <meta data-vue-meta="1" data-vmid="og:title" property="og:title" content="Dorich - JavaScript Developer">
       <meta data-vue-meta="1" data-vmid="og:description" property="og:description" content="Single Page Application (SPA) of the Nikolay Dorofeev (d0rich), JavaScript developer from Tomsk (Russia).">
