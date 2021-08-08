@@ -13,27 +13,25 @@ export const news = {
 
     },
     actions:{
-        async getNewsFeed(state,{page = 1, onPage = 6, tags = []}){
+        async getNewsFeed(state,{page = 1, onPage = 6}){
             let res =
-                await axios.get(`/news/get/all?page=${page}&onPage=${onPage}&tags=${tags.join(',')}`)
-            let projectsData = res.data.projects
-            let projects = projectsData.map(project => {
+                await axios.get(`/news/get/all?page=${page}&onPage=${onPage}}`)
+            let newsData = res.data.news
+            let newsFeed = newsData.map(news => {
                 return {
-                    id: project.id,
-                    stringId: project.stringId,
-                    date: new Date(project.date),
-                    title: Text.fromArr(project.title),
+                    id: news.id,
+                    stringId: news.stringId,
+                    createdAt: new Date(news.createdAt),
+                    title: Text.fromArr(news.title),
                     image: new ImageModel({
-                        src: project.imgUrl[0],
-                        phSrc: project.imgUrl[1],
-                        alt: Text.fromArr(project.title)
+                        src: news.image[0],
+                        phSrc: news.image[1],
+                        alt: Text.fromArr(news.title)
                     }),
-                    tags: project.tagId_tags.map(tag => {
-                        return {id: tag.id, text: tag.text}
-                    })
+                    contentShort: Text.fromArr(news.contentShort)
                 }
             })
-            return { pages: res.data.pages, projects }
+            return { pages: res.data.pages, news: newsFeed }
         },
         async checkNewsStringId(state, {stringId, id}){
             const result = await axios.get(`/news/check/stringId/${stringId}`)

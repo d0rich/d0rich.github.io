@@ -2,7 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
-import News from "@/views/News"
+import NewsFeed from "@/views/News/Feed"
+import News from "@/views/News/News";
+import NewsController from "@/views/News/NewsController";
 import PortfolioIndex from '@/views/Portfolio/index'
 import Projects from "@/views/Portfolio/Projects";
 import Project from "@/views/Portfolio/Project";
@@ -47,9 +49,21 @@ const routes = [
       },
       {
         path: 'news',
-        name: routesNames.NEWS_CONTROLLER,
-        component: News,
-        meta: { scrollToTop: true }
+        component: NewsController,
+        children: [
+          {
+            path: '',
+            name: routesNames.NEWS_CONTROLLER,
+            component: NewsFeed,
+            meta: { scrollToTop: true },
+          },
+          {
+            path: ':year/:month/:date/:stringId',
+            name: routesNames.NEWS_PAGE,
+            component: News,
+            meta: { scrollToTop: true }
+          }
+        ]
       },
       {
         path: 'portfolio',
