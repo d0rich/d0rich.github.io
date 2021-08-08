@@ -60,7 +60,6 @@ name: "NewsFeed",
       this.newsFeed = newsData.news
       this.pages = newsData.pages
       this.turnPageLoad(false)
-      console.log(this.newsFeed)
     }
   },
   async created(){
