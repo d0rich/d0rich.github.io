@@ -43,9 +43,17 @@ name: "NewsFeed",
       onPage: 10
     }
   },
+  watch: {
+    '$route.fullPath'(){
+      this.page = +this.$route.query.page
+      this.fetch()
+    }
+  },
   methods: {
     ...mapActions(['getNewsFeed']),
     async fetch(){
+      if (this.page != this.$route.query.page)
+        await this.$router.push({...this.$route, query: { page: this.page.toString() }})
       this.turnPageLoad(true)
       this.lastFilters = this.chosenTags
       let newsData = await this.getNewsFeed({page: this.page, onPage: 10 })
@@ -56,7 +64,11 @@ name: "NewsFeed",
     }
   },
   async created(){
-    this.fetch()
+    if (!this.$route.query.page) {
+      await this.$router.replace({...this.$route, query: { ...this.$route.query, page: '1' }})
+    }
+    this.page = +this.$route.query.page
+    await this.fetch()
   },
   computed:{
     title(){
