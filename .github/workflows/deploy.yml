@@ -21,6 +21,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Get sitemap
+        uses: suisei-cn/actions-download-file@v1
+        with:
+          url: "https://dorich-js.appspot.com/seo/sitemap.xml"
+          target: dist/
+
       - name: Push to d0rich.github.io
         uses: cpina/github-action-push-to-another-repository@main
         env:
