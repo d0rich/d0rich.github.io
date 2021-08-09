@@ -79,7 +79,7 @@
     <section class="block4">
       <h1 class="text-center">{{data.block4.title.text}}</h1>
       <transition-group name="glitch-transition" class="block4__news">
-        <news-card :news="news"
+        <news-card class="my-3" :news="news"
                       v-for="news in newsFeed" :key="news.id" />
       </transition-group>
       <v-btn :to="{name: routesNames.NEWS_CONTROLLER}" class="align-self-end my-5" large color="primary">
