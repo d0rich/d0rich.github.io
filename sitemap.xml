@@ -1,11 +1,93 @@
-<!DOCTYPE html>
-<html lang=en>
-  <meta charset=utf-8>
-  <meta name=viewport content="initial-scale=1, minimum-scale=1, width=device-width">
-  <title>Error 502 (Server Error)!!1</title>
-  <style>
-    *{margin:0;padding:0}html,code{font:15px/22px arial,sans-serif}html{background:#fff;color:#222;padding:15px}body{margin:7% auto 0;max-width:390px;min-height:180px;padding:30px 0 15px}* > body{background:url(//www.google.com/images/errors/robot.png) 100% 5px no-repeat;padding-right:205px}p{margin:11px 0 22px;overflow:hidden}ins{color:#777;text-decoration:none}a img{border:0}@media screen and (max-width:772px){body{background:none;margin-top:0;max-width:none;padding-right:0}}#logo{background:url(//www.google.com/images/branding/googlelogo/1x/googlelogo_color_150x54dp.png) no-repeat;margin-left:-5px}@media only screen and (min-resolution:192dpi){#logo{background:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) no-repeat 0% 0%/100% 100%;-moz-border-image:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) 0}}@media only screen and (-webkit-min-device-pixel-ratio:2){#logo{background:url(//www.google.com/images/branding/googlelogo/2x/googlelogo_color_150x54dp.png) no-repeat;-webkit-background-size:100% 100%}}#logo{display:inline-block;height:54px;width:150px}
-  </style>
-  <a href=//www.google.com/><span id=logo aria-label=Google></span></a>
-  <p><b>502.</b> <ins>That’s an error.</ins>
-  <p>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.  <ins>That’s all we know.</ins>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://d0rich.github.io/#/ru/</loc>
+    <priority>1</priority>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/portfolio</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/news</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/news"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/news"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/portfolio/dorich_site</loc>
+    <priority>0.7</priority>
+    <lastmod>2021-08-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/dorich_site"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/dorich_site"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/portfolio/sushi_time</loc>
+    <priority>0.7</priority>
+    <lastmod>2021-08-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/sushi_time"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/sushi_time"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/portfolio/rating_visualize</loc>
+    <priority>0.7</priority>
+    <lastmod>2021-08-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/rating_visualize"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/rating_visualize"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/portfolio/weather_app</loc>
+    <priority>0.7</priority>
+    <lastmod>2021-08-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/weather_app"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/weather_app"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/portfolio/todo</loc>
+    <priority>0.7</priority>
+    <lastmod>2021-08-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/todo"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/todo"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/portfolio/app_son</loc>
+    <priority>0.7</priority>
+    <lastmod>2021-08-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/app_son"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/app_son"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/portfolio/sport_organizer</loc>
+    <priority>0.7</priority>
+    <lastmod>2021-08-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/sport_organizer"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/sport_organizer"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/portfolio/dorich_site_legacy</loc>
+    <priority>0.7</priority>
+    <lastmod>2021-08-07</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/portfolio/dorich_site_legacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/portfolio/dorich_site_legacy"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/resume/frontend</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/resume/frontend"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/resume/frontend"/>
+  </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/news/2021/8/8/news_are_available</loc>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/news/2021/8/8/news_are_available"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/news/2021/8/8/news_are_available"/>
+  </url>
+</urlset>
