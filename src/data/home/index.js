@@ -25,7 +25,7 @@ export default {
         my_photo: my_photo,
         h1: new Text('Коротко обо мне', 'Little about me') ,
         p1: new Text('Молодой, талантливый, энергичный. \n' +
-            'Меня зовут Николай Дорофеев, я JavaScript разработчик, сейчас обучаюсь на 3-ем курсе ТПУ ' +
+            'Меня зовут Николай Дорофеев, я JavaScript разработчик, сейчас обучаюсь на 4-ом курсе ТПУ ' +
             'по направлению "Информационные системы и технологии в бизнесе и промышленности".\n' +
             'Полученных знаний и собственного опыта работы с вёрсткой сайтов, базами данных, серверами ' +
             'уже вполне достаточно, чтобы создавать Одностраничные Веб-Приложения, которые помогут ' +
@@ -33,7 +33,7 @@ export default {
             'Одностраничные Веб-Приложения - сайты, которые не требуют загрузки отдельных страниц. ' +
             'Этот подход позволяет получить новый опыт взаимодействия с продуктом без лишних задержек.',
             'Young, talented, energetic. \n' +
-            'My name is Nikolay Dorofeev, I am a JavaScript developer, now I am a 3rd year student at TPU ' +
+            'My name is Nikolay Dorofeev, I am a JavaScript developer, now I am a 4rd year student at TPU ' +
             'in the direction of "Information systems and technologies in business and industry".\n' +
             'The acquired knowledge and personal experience of working with site layout, databases, and servers ' +
             'is already quite enough to create Single Page Web Applications ' +
@@ -52,7 +52,7 @@ export default {
             new JSObject([
                 new JSField( { key: new Text('Имя', 'Name'), value: new Text('Николай', 'Nikolay') } ),
                 new JSField( { key: new Text('Фамилия', 'Surname'), value: new Text('Дорофеев', 'Dorofeev') } ),
-                new JSField( { key: new Text('Возраст', 'Age'), value: new Text('20', '20') } ),
+                new JSField( { key: new Text('Возраст', 'Age'), value: new Text('21', '21') } ),
                 new JSField( { key: new Text('Статус', 'Status'), value: new Text('Студент', 'Student') } )
             ], new Text('Личность', 'Person')),
             new JSObject([
