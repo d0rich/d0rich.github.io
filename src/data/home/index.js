@@ -33,7 +33,7 @@ export default {
             'Одностраничные Веб-Приложения - сайты, которые не требуют загрузки отдельных страниц. ' +
             'Этот подход позволяет получить новый опыт взаимодействия с продуктом без лишних задержек.',
             'Young, talented, energetic. \n' +
-            'My name is Nikolay Dorofeev, I am a JavaScript developer, now I am a 4rd year student at TPU ' +
+            'My name is Nikolay Dorofeev, I am a JavaScript developer, now I am a 4th year student at TPU ' +
             'in the direction of "Information systems and technologies in business and industry".\n' +
             'The acquired knowledge and personal experience of working with site layout, databases, and servers ' +
             'is already quite enough to create Single Page Web Applications ' +
