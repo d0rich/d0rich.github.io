@@ -90,4 +90,10 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/news/2021/8/8/news_are_available"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/news/2021/8/8/news_are_available"/>
   </url>
+  <url>
+    <loc>https://d0rich.github.io/#/ru/news/2021/10/11/bc_fourth_year_beginning</loc>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://d0rich.github.io/#/ru/news/2021/10/11/bc_fourth_year_beginning"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://d0rich.github.io/#/en/news/2021/10/11/bc_fourth_year_beginning"/>
+  </url>
 </urlset>
