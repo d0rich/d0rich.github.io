@@ -36,5 +36,5 @@ jobs:
           destination-github-username: 'd0rich'
           destination-repository-name: 'd0rich.github.io'
           user-email: d.orich@yandex.com
-          target-branch: version2
+          target-branch: version-2
           commit-message: "Auto deploy: ${{ github.event.head_commit.message }}"
