@@ -4,7 +4,9 @@
 		<BottomNavigation v-else />
 		<v-main>
 			<transition name="glitch-transition" mode="out-in">
-				<router-view class="page pa-2" />
+				<div class="page pa-2">
+					<slot />
+				</div>
 			</transition>
 		</v-main>
 		<Footer />
