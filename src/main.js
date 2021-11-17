@@ -3,7 +3,10 @@
 
 // v2.0
 import Vuetify from 'vuetify'
+import vuetify from "~/plugins/vuetify"
 import 'vuetify/dist/vuetify.min.css'
+import Vuex from 'vuex'
+import store from '~/store'
 import DefaultLayout from '~/layouts/Default.vue'
 
 export default function (Vue, { appOptions, head }) {
@@ -17,10 +20,11 @@ export default function (Vue, { appOptions, head }) {
     href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900',
   });
 
-  const opts = {  } //opts includes, vuetify themes, icons, etc.
   Vue.use(Vuetify)
+  Vue.use(Vuex)
 
-  appOptions.vuetify = new Vuetify(opts);
+  appOptions.vuetify = new Vuetify(vuetify)
+  appOptions.store = new Vuex.Store(store)
 
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
