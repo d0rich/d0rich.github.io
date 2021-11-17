@@ -26,6 +26,21 @@ export default function (Vue, { appOptions, head }) {
   appOptions.vuetify = new Vuetify(vuetify)
   appOptions.store = new Vuex.Store(store)
 
+  Vue.mixin({
+    methods:{
+      timeout(ms){
+        return new Promise(resolve => {
+          setTimeout(() =>resolve(), ms)
+        })
+      },
+      timeoutRand(ms){
+        return new Promise(resolve => {
+          setTimeout(() =>resolve(), ms * (1 - 0.1 + Math.random() * 0.2))
+        })
+      }
+    }
+  })
+
   // Set default layout as a global component
   Vue.component('Layout', DefaultLayout)
 }

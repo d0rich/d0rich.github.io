@@ -22,7 +22,6 @@
               <v-icon>{{btn.icon}}</v-icon>
             </v-btn>
           </div>
-          <AuthModal />
         </div>
       </div>
       <div class="footer__block--bottom">
