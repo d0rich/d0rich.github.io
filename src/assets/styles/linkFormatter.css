@@ -1,0 +1,14 @@
+.v-application a{
+    color: inherit;
+    text-decoration: none;
+}
+.v-application a:visited{
+    color: inherit;
+}
+.v-application a.link{
+    color: var(--v-primary-lighten2);
+    text-decoration: underline;
+}
+.v-application a.link:visited{
+    color: var(--v-primary-lighten2);
+}
