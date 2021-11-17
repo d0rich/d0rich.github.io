@@ -75,8 +75,8 @@ export default {
 						'I will create web applications for business or join a development team.'},
 				{ vmid: 'og:site_name', property: 'og:site_name', content: 'Dorich Dev'},
 				{ vmid: 'og:type', property: 'og:type', content: 'website'},
-				{ vmid: 'og:image', property: 'og:image', content: '/og/og-image.jpg'},
-				{ vmid: 'vk:image', property: 'vk:image', content: '/og/vk-image.jpg'},
+				{ vmid: 'og:image', property: 'og:image', content: '/img/og/og-image.jpg'},
+				{ vmid: 'vk:image', property: 'vk:image', content: '/img/og/vk-image.jpg'},
 				{ vmid: 'robots', name: 'robots', content: 'index,follow'}
 			]
 		}
