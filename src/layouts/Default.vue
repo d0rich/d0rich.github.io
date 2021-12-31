@@ -49,39 +49,6 @@ export default {
 			this.getWindowWidth(window.innerWidth)
 		}
 	},
-	metaInfo() {
-		return {
-			title: this.title,
-			titleTemplate: '%s | Dorich - JavaScript Developer',
-			htmlAttrs: {
-				lang: this.lang,
-			},
-			meta: [
-				{ vmid: 'description' , name: 'description',
-					content: 'I am Nikolay Dorofeev, a young JavaScript developer from Tomsk (Russia). ' +
-						'I already know a lot of technologies for creating visual interfaces, ' +
-						'servers, working with databases. ' +
-						'I will create web applications for business or join a development team.' },
-				{
-					vmid: 'keywords', name: 'keywords',
-					content: 'JavaScript developer, web applications for business, ' +
-						'developer in Tomsk, frontend, backend, fullstack'
-				},
-				{ vmid: 'og:title', property: 'og:title', content: 'Dorich - JavaScript Developer' },
-				{ vmid: 'og:description', property: 'og:description',
-					content: 'I am Nikolay Dorofeev, a young JavaScript developer from Tomsk (Russia). ' +
-						'I already know a lot of technologies for creating visual interfaces, ' +
-						'servers, working with databases. ' +
-						'I will create web applications for business or join a development team.'},
-				{ vmid: 'og:site_name', property: 'og:site_name', content: 'Dorich Dev'},
-				{ vmid: 'og:type', property: 'og:type', content: 'website'},
-				{ vmid: 'og:image', property: 'og:image', content: '/img/og/og-image.jpg'},
-				{ vmid: 'vk:image', property: 'vk:image', content: '/img/og/vk-image.jpg'},
-				{ vmid: 'robots', name: 'robots', content: 'index,follow'}
-			]
-		}
-
-	}
 };
 </script>
 

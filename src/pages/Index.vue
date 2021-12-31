@@ -158,7 +158,7 @@ export default {
 		return {
 			title: 'Home',
 			meta: [
-				{ vmid: 'og:url', property: 'og:url', content: 'https://d0rich.github.io/'},
+				{ key: 'og:url', property: 'og:url', content: 'https://d0rich.github.io/'},
 			]
 		}
 	},
