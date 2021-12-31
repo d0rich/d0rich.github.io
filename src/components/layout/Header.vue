@@ -15,10 +15,10 @@
           <span style="opacity: 0" class="cursor">_</span>
         </v-btn>
 
-        <router-link :to="navigation.home.route" class="btn-main" :class="{'nav-btn': routeNow === navigation.home.route.name}">
+        <g-link v-ripple :to="navigation.home.route" class="btn-main" :class="{'nav-btn': routeNow === navigation.home.route.name}">
           <span>{{navigation.home.text}}</span>
           <span style="opacity: 0" class="cursor">_</span>
-        </router-link>
+        </g-link>
         <v-btn active-class="nav-btn" text :to="navigation.portfolio.route">
           <span>{{navigation.portfolio.text}}</span>
           <span style="opacity: 0" class="cursor">_</span>
