@@ -1,0 +1,44 @@
+<template>
+  <router-view />
+</template>
+
+<static-query>
+query {
+  metadata {
+    siteName
+    siteDescription
+  }
+}
+</static-query>
+
+<script>
+export default {
+  metaInfo() {
+    return {
+      title: this.$static.metadata.siteName,
+      titleTemplate: '%s | Dorich - JavaScript Developer',
+      htmlAttrs: {
+        lang: this.lang,
+      },
+      meta: [
+        { key: 'description' , name: 'description',
+          content: this.$static.metadata.siteDescription },
+        {
+          key: 'keywords', name: 'keywords',
+          content: 'JavaScript developer, web applications for business, ' +
+              'developer in Tomsk, frontend, backend, fullstack'
+        },
+        { key: 'og:title', property: 'og:title', content: 'Dorich - JavaScript Developer' },
+        { key: 'og:description', property: 'og:description',
+          content: this.$static.metadata.siteDescription},
+        { key: 'og:site_name', property: 'og:site_name', content: 'Dorich Dev'},
+        { key: 'og:type', property: 'og:type', content: 'website'},
+        { key: 'og:image', property: 'og:image', content: '/img/og/og-image.jpg'},
+        { key: 'vk:image', property: 'vk:image', content: '/img/og/vk-image.jpg'},
+        { key: 'robots', name: 'robots', content: 'index,follow'}
+      ]
+    }
+
+  }
+}
+</script>

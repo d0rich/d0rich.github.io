@@ -24,6 +24,7 @@ function addStyleResource (rule) {
 
 module.exports = {
   siteName: 'Gridsome',
+  siteDescription: 'I am Nikolay Dorofeev, a young JavaScript developer from Tomsk (Russia). I already know a lot of technologies for creating visual interfaces, servers, working with databases. I will create web applications for business or join a development team.',
   plugins: [
     {
       use: '@gridsome/source-filesystem',
