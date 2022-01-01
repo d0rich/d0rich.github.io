@@ -1,33 +1,25 @@
 <template>
   <nav>
     <v-bottom-navigation class="bottom-nav" color="primary lighten-1">
-      <v-btn active-class="nav-btn" :to="navigation.news.route"  >
-        <span>
-          {{ navigation.news.text }}<span style="opacity: 0" class="cursor">_</span>
-        </span>
+      <v-btn active-class="cursor-active-box" :to="navigation.news.route"  >
+        <span class="cursor--on-active">{{ navigation.news.text }}</span>
         <v-icon>mdi-newspaper-variant</v-icon>
       </v-btn>
 
-      <v-btn active-class="nav-btn" exact :to="navigation.resume.route"  >
-        <span>
-          {{ navigation.resume.text }}<span style="opacity: 0" class="cursor">_</span>
-        </span>
+      <v-btn active-class="cursor-active-box" exact :to="navigation.resume.route"  >
+        <span class="cursor--on-active">{{ navigation.resume.text }}</span>
         <v-icon>mdi-account</v-icon>
       </v-btn>
 
 
 
-      <v-btn active-class="nav-btn" exact :to="navigation.home.route"  >
-        <span>
-          {{navigation.home.text}}<span style="opacity: 0" class="cursor">_</span>
-        </span>
+      <v-btn active-class="cursor-active-box" exact :to="navigation.home.route"  >
+        <span class="cursor--on-active">{{navigation.home.text}}</span>
         <v-icon>mdi-console-line</v-icon>
       </v-btn>
 
-      <v-btn active-class="nav-btn" :to="navigation.portfolio.route"  >
-        <span>
-          {{navigation.portfolio.text}}<span style="opacity: 0" class="cursor">_</span>
-        </span>
+      <v-btn active-class="cursor-active-box" :to="navigation.portfolio.route"  >
+        <span class="cursor--on-active">{{navigation.portfolio.text}}</span>
         <v-icon>mdi-folder-star</v-icon>
       </v-btn>
     </v-bottom-navigation>

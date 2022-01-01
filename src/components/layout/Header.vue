@@ -5,23 +5,19 @@
         v-resize="onResize"
     >
       <nav class="header-line">
-        <v-btn active-class="nav-btn" text :to="navigation.news.route">
-          <span>{{ navigation.news.text }}</span>
-          <span style="opacity: 0" class="cursor">_</span>
+        <v-btn active-class="cursor-active-box" text :to="navigation.news.route">
+          <span class="cursor--on-active">{{ navigation.news.text }}</span>
         </v-btn>
 
-        <v-btn active-class="nav-btn" exact text :to="navigation.resume.route">
-          <span>{{ navigation.resume.text }}</span>
-          <span style="opacity: 0" class="cursor">_</span>
+        <v-btn active-class="cursor-active-box" exact text :to="navigation.resume.route">
+          <span class="cursor--on-active">{{ navigation.resume.text }}</span>
         </v-btn>
 
-        <g-link v-ripple :to="navigation.home.route" class="btn-main" :class="{'nav-btn': routeNow === navigation.home.route.name}">
-          <span>{{navigation.home.text}}</span>
-          <span style="opacity: 0" class="cursor">_</span>
+        <g-link v-ripple :to="navigation.home.route" class="btn-main" :class="{'cursor-active-box': $route.fullPath === '/'}">
+          <span class="cursor--on-active">{{navigation.home.text}}</span>
         </g-link>
-        <v-btn active-class="nav-btn" text :to="navigation.portfolio.route">
-          <span>{{navigation.portfolio.text}}</span>
-          <span style="opacity: 0" class="cursor">_</span>
+        <v-btn active-class="cursor-active-box" text :to="navigation.portfolio.route">
+          <span class="cursor--on-active">{{navigation.portfolio.text}}</span>
         </v-btn>
       </nav>
       <div class="header-bg">
