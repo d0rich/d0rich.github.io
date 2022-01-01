@@ -1,19 +1,19 @@
 .glitch-transition{
   &-enter-active{
     animation: glitch .3s;
-    div:nth-of-type(2n){
+    *:nth-of-type(2n){
       animation: glitch__div--even .3s;
     }
-    div:nth-of-type(2n + 1){
+    *:nth-of-type(2n + 1){
       animation: glitch__div--odd .3s;
     }
   }
   &-leave-active{
     animation: glitch .2s reverse;
-    div:nth-of-type(2n){
+    *:nth-of-type(2n){
       animation: glitch__div--even .2s reverse;
     }
-    div:nth-of-type(2n + 1){
+    *:nth-of-type(2n + 1){
       animation: glitch__div--odd .2s reverse;
     }
   }
