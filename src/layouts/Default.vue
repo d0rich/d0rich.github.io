@@ -3,7 +3,7 @@
 		<Header v-if="headerOn" />
 		<BottomNavigation v-else />
 		<v-main>
-			<transition name="glitch-transition" mode="out-in">
+			<transition name="glitch-transition" appear mode="out-in">
 				<div class="page px-4">
 					<slot />
 				</div>
@@ -24,6 +24,7 @@ query {
 <script>
 import '~/assets/fonts/JetBrainsMono/fontface.css'
 import '~/assets/styles/font.scss'
+import '~/assets/styles/transitions.scss'
 import Header from "~/components/layout/Header";
 import Footer from "~/components/layout/Footer";
 import BottomNavigation from "~/components/layout/BottomNavigation";
