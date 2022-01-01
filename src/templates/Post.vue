@@ -1,5 +1,13 @@
 <template>
   <Layout>
+    <nav  class="ml-5 my-5 align-self-start">
+      <v-btn color="primary" :to="Router.blog()" exact>
+        <v-icon>
+          mdi-chevron-left
+        </v-icon>
+        To News
+      </v-btn>
+    </nav>
     <article>
       <div>
         <h1>{{ $page.post.title }} </h1>
@@ -39,7 +47,13 @@ query Post ($path: String!) {
 </page-query>
 
 <script>
+import {Router} from "../router";
 export default {
+  data(){
+    return{
+      Router
+    }
+  },
   metaInfo() {
     return {
       title: this.$page.post.title
