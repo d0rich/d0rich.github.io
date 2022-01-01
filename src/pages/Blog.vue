@@ -1,7 +1,8 @@
 <template>
   <Layout>
     <h1>My blog posts</h1>
-    <v-chip-group>
+    <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
+    <v-chip-group  class="align-self-start">
       <v-chip
           v-for="tag in $page.tags.edges"
           :to="tag.node.path"
@@ -57,6 +58,14 @@ import PostCard from "../components/PostCard";
 export default {
   components: {
     PostCard
+  },
+  data(){
+    return{
+      breadcrumbs: [
+        {text: 'd0rich', href: Router.home},
+        {text: 'blog', href: Router.blog(), disabled: true},
+      ]
+    }
   },
   methods: {
     changePage(page){

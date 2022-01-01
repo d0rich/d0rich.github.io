@@ -41,8 +41,8 @@ module.exports = {
     },
   ],
   templates: {
-    Tag: '/tag/:id',
-    Post: '/blog/:path',
+    Tag: '/blog/tags/:id',
+    Post: '/blog/posts/:path',
   },
   transformers: {
     remark: {

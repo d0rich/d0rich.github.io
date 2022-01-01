@@ -1,13 +1,7 @@
 <template>
   <Layout>
-    <nav  class="ml-5 my-5 align-self-start">
-      <v-btn color="primary" :to="Router.blog()" exact>
-        <v-icon>
-          mdi-chevron-left
-        </v-icon>
-        To News
-      </v-btn>
-    </nav>
+    <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
+    <back-btn class="ml-5 my-5 align-self-start" />
     <article>
       <div>
         <h1>{{ $page.post.title }} </h1>
@@ -48,10 +42,19 @@ query Post ($path: String!) {
 
 <script>
 import {Router} from "../router";
+import BackBtn from "../components/BackBtn";
 export default {
-  data(){
-    return{
-      Router
+  components: {
+    BackBtn
+  },
+  computed:{
+    breadcrumbs(){
+      return [
+        {text: 'd0rich', href: Router.home},
+        {text: 'blog', href: Router.blog()},
+        {text: 'posts', disabled: true},
+        {text: this.$page.post.title , disabled: true},
+      ]
     }
   },
   metaInfo() {

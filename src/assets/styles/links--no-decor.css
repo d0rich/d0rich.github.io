@@ -1,0 +1,7 @@
+.v-application a{
+    color: inherit;
+    text-decoration: none;
+}
+.v-application a:visited{
+    color: inherit;
+}
