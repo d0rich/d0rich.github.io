@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {navigation} from '~/data/navigation'
+import {navigation} from '~/router/navigation'
 export default {
 name: "BottomNavigation",
   data(){

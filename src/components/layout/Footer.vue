@@ -11,14 +11,14 @@
 
         <div>
           <div>Connect with me:</div>
-          <a href="mailto:d.orich@yandex.com" @click="logContact('email', 'footer')">
+          <a href="mailto:d.orich@yandex.com">
             <v-icon>mdi-email</v-icon>
             <span style="color: #FFFFFF; text-decoration: underline">d.orich@yandex.com</span>
           </a>
           <div>
             <v-btn icon target="_blank"
                    v-for="btn in connection.socials" :key="btn.href"
-                   :href="btn.href" @click="logContact(connection.title.en, 'footer')" >
+                   :href="btn.href" >
               <v-icon>{{btn.icon}}</v-icon>
             </v-btn>
           </div>
@@ -34,7 +34,7 @@
 
 <script>
 import FooterRoute from "~/components/layout/FooterRoute";
-import {routesNames} from "~/data/constants";
+import {Router} from "~/router";
 
 export default {
 name: "Footer",
@@ -45,15 +45,15 @@ name: "Footer",
     return{
       navigation: {
         routes: [
-          { title: 'Home', route: { name: routesNames.HOME_PAGE } },
+          { title: 'Home', route: Router.home },
           { title: 'Resume',
-            route: { name: routesNames.RESUME_CONTROLLER }, children: [
+            route: Router.empty, children: [
               //{ title: new Text('Фронтенд', 'Frontend'), route: { name: 'Resume' } },
               //{ title: new Text('Бэкенд', 'Backend'), route: { name: 'Resume' } },
               //{ title: new Text('Фуллстак', 'Fullstack'), route: { name: 'Resume' } }
             ] },
-          { title: 'Portfolio', route: { name: routesNames.PORTFOLIO } },
-          { title: 'News', route: { name: routesNames.NEWS_CONTROLLER } },
+          { title: 'Portfolio', route: Router.empty },
+          { title: 'News', route: Router.blog() },
         ]
       },
       connection: {

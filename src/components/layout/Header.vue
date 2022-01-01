@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {navigation} from '~/data/navigation'
+import {navigation} from '~/router/'
 export default {
 name: "Header",
   data(){
