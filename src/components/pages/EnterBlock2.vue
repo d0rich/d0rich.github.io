@@ -115,7 +115,6 @@ name: "EnterBlock2",
 .content{
   position: relative;
   width: 100vw;
-  margin-top: -8px;
 }
 .block{
   display: flex;

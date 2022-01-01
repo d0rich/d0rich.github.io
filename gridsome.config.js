@@ -29,14 +29,28 @@ module.exports = {
     {
       use: '@gridsome/source-filesystem',
       options: {
-        baseDir: './content/blog',
-        path: '*.md',
-        typeName: 'BlogPost'
+        path: 'content/blog/**/*.md',
+        typeName: 'Post',
+        refs: {
+          tags: {
+            typeName: 'Tag',
+            create: true
+          },
+        }
       }
-    }
+    },
   ],
   templates: {
-    BlogPost: '/blog/:year/:month/:slug'
+    Tag: '/tag/:id',
+    Post: '/blog/:path',
+  },
+  transformers: {
+    remark: {
+      autolinkClassName: 'icon icon-link heading-anchor',
+      externalLinksTarget: '_blank',
+      externalLinksRel: ['noopener', ],
+      anchorClassName: 'icon icon-link',
+    }
   },
   chainWebpack (config) {
     // Load variables for all vue-files
