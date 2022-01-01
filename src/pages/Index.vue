@@ -15,9 +15,9 @@
 				<h1 class="align-self-start cursor-on-hover">Hello world!<span class="cursor">_</span></h1>
 				<p class="align-self-start cursor-on-hover">
 					Here you can see my
-					<router-link class="link" :to="{name: routesNames.PORTFOLIO}">portfolio</router-link>, familiarize with my
-					<router-link class="link" :to="{name: routesNames.RESUME_PAGE}">resume</router-link> , read
-					<router-link class="link" :to="{name: routesNames.NEWS_CONTROLLER}">news</router-link> from my developer life.<span class="cursor">_</span>
+					<router-link class="link" :to="Router.empty">portfolio</router-link>, familiarize with my
+					<router-link class="link" :to="Router.empty">resume</router-link> , read
+					<router-link class="link" :to="Router.blog()">news</router-link> from my developer life.<span class="cursor">_</span>
 				</p>
 			</Terminal>
 
@@ -39,7 +39,7 @@
 							Single Page Web Applications - sites that do not require loading separate pages.
 							This approach allows you to get a new experience with the product without unnecessary delays.
 						</p>
-						<v-btn :to="{name: routesNames.RESUME_PAGE}" color="primary">More info</v-btn>
+						<v-btn :to="Router.empty" color="primary">More info</v-btn>
 					</div>
 				</div>
 			</div>
@@ -121,7 +121,7 @@ import JSObjectWindow from "~/components/pages/JSObjectWindow";
 import EnterBlock2 from "~/components/pages/EnterBlock2";
 // import ProjectBlock from "@/components/projects/ProjectBlock";
 // import NewsCard from "@/components/news/NewsCard";
-import {routesNames} from "~/data/constants";
+import {Router} from "~/router";
 import { mapGetters } from 'vuex'
 
 export default {
@@ -133,7 +133,7 @@ export default {
 	},
 	data(){
 		return{
-			routesNames,
+			Router,
 			contacts: [
 				{ href: 'mailto:d.orich@yandex.com', icon: 'mdi-email', text: 'email' },
 				{ href: 'https://t.me/d0rich', icon: 'mdi-telegram', text: 'telegram' },
