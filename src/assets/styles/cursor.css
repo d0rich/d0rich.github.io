@@ -1,18 +1,24 @@
-.nav-btn .cursor, .cursor--active{
-    opacity: 0;
-    animation: flashing linear 1s infinite;
-}
-
 @keyframes flashing {
     0%{opacity: 0}
     49%{opacity: 0}
     50%{opacity: 1}
     100%{opacity: 1}
 }
-.cursor-on-hover:hover .cursor{
+
+.cursor:after{
+    content: '_';
     animation: flashing linear 1s infinite;
 }
-.cursor-on-hover .cursor{
+
+.cursor--on-active:after, .cursor--on-hover:after{
+    content: '_';
     opacity: 0;
-    animation: none;
+}
+
+.cursor--active:after, .cursor-active-box .cursor--on-active:after{
+    animation: flashing linear 1s infinite;
+}
+
+.cursor--on-hover:hover:after{
+    animation: flashing linear 1s infinite;
 }

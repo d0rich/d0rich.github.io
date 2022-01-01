@@ -4,7 +4,7 @@
 		<EnterBlock2 class="text-center">
 			<span style="font-size: 1.7rem;" class="mx-3">Hello, my name is Nikolay Dorofeev.</span>
 			<span style="font-size: 1.7rem;" class="ma-3">I am
-				<span style="font-size: 2.3rem; font-weight: bold">JavaScript developer<span class="cursor--active">_</span></span>
+				<span class="cursor" style="font-size: 2.3rem; font-weight: bold">JavaScript developer</span>
       </span>
 			<span style="font-size: 1.7rem;" class="mx-3">You are on my personal site.</span>
 		</EnterBlock2>
@@ -12,12 +12,12 @@
 
 		<section class="block2 mt-16">
 			<Terminal reveal enter-word="hello world" @revealed="show.block2info = true">
-				<h1 class="align-self-start cursor-on-hover">Hello world!<span class="cursor">_</span></h1>
-				<p class="align-self-start cursor-on-hover">
+				<h1 class="align-self-start cursor--on-hover">Hello world!</h1>
+				<p class="align-self-start cursor--on-hover">
 					Here you can see my
 					<router-link class="link" :to="Router.empty">portfolio</router-link>, familiarize with my
 					<router-link class="link" :to="Router.empty">resume</router-link> , read
-					<router-link class="link" :to="Router.blog()">news</router-link> from my developer life.<span class="cursor">_</span>
+					<router-link class="link" :to="Router.blog()">news</router-link> from my developer life.
 				</p>
 			</Terminal>
 
