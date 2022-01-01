@@ -1,5 +1,7 @@
 <template>
   <Layout>
+    <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
+    <back-btn class="ml-5 my-5 align-self-start" />
     <article>
       <h1>Posts tagged {{ $page.tag.title }}</h1>
 
@@ -44,10 +46,21 @@ query Tag ($id: ID!, $page: Int) {
 
 <script>
 import PostCard from "../components/PostCard";
+import BackBtn from "../components/BackBtn";
 import {Router} from "../router";
 export default {
   components:{
-    PostCard
+    PostCard, BackBtn
+  },
+  computed:{
+    breadcrumbs(){
+      return [
+        {text: 'd0rich', href: Router.home},
+        {text: 'blog', href: Router.blog()},
+        {text: 'tags', disabled: true},
+        {text: this.$page.tag.title , disabled: true},
+      ]
+    }
   },
   methods: {
     changePage(page){

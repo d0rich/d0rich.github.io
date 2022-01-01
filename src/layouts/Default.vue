@@ -24,6 +24,7 @@ query {
 <script>
 import '~/assets/fonts/JetBrainsMono/fontface.css'
 import '~/assets/styles/font.scss'
+import '~/assets/styles/links.scss'
 import '~/assets/styles/transitions.scss'
 import Header from "~/components/layout/Header";
 import Footer from "~/components/layout/Footer";
@@ -54,7 +55,6 @@ export default {
 </script>
 
 <style>
-@import "../assets/styles/linkFormatter.css";
 @import "../assets/styles/cursor.css";
 @import "../assets/styles/scroll.scss";
 @import "../assets/styles/borderLight.css";

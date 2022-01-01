@@ -47,12 +47,7 @@ name: "EnterBlock2",
   methods:{
     onResize(){
       let isSmall = window.innerWidth < 960
-      if (isSmall !== this.isSmall){
-        this.windowWidth = window.innerWidth
-        this.setBlocks()
-      }
-      else
-        this.windowWidth = window.innerWidth
+      this.windowWidth = window.innerWidth
     },
     scroll(){
       let offset = 0
