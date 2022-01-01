@@ -4,7 +4,7 @@
 		<BottomNavigation v-else />
 		<v-main>
 			<transition name="glitch-transition" mode="out-in">
-				<div class="page pa-2">
+				<div class="page px-4">
 					<slot />
 				</div>
 			</transition>
@@ -30,7 +30,7 @@ import BottomNavigation from "~/components/layout/BottomNavigation";
 import {mapGetters, mapMutations} from 'vuex'
 
 export default {
-	name: 'App',
+	name: 'DefaultLayout',
 
 	components: {
 		Header, BottomNavigation,
