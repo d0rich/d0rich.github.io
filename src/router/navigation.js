@@ -6,7 +6,7 @@ export const navigation = {
         route: Router.empty
     },
     news: {
-        text: 'News',
+        text: 'Blog',
         route: Router.blog()
     },
     home: {
@@ -14,7 +14,7 @@ export const navigation = {
         route: Router.home
     },
     portfolio: {
-        text: 'Portfolio',
+        text: 'Projects',
         route: Router.empty
     }
 }
