@@ -4,8 +4,8 @@ path: '/dorich-site'
 date: 2021-08-08
 summary: ""
 image: '/projects/dorich-site/main.jpeg'
-tags: [ 'Frontend', 'Backend', 'SEO' ]
-technologies: [ 'Axios', 'Dropbox', 'Vue.js', 'Fastify', 'Node.js', 'Firebase', 'PostgreSQL' ]
+tags: [ 'frontend', 'backend', 'SEO' ]
+technologies: [ 'Dropbox', 'Vue.js', 'Fastify', 'Node.js', 'Firebase', 'PostgreSQL' ]
 ---
 I needed a resource that would demonstrate my web development competence in 
 itself and simply by describing what I can.
