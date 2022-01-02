@@ -14,7 +14,7 @@ export const navigation = {
         route: Router.home
     },
     portfolio: {
-        text: 'Projects',
-        route: Router.empty
+        text: 'Portfolio',
+        route: Router.portfolio()
     }
 }

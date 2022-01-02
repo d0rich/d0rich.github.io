@@ -39,10 +39,30 @@ module.exports = {
         }
       }
     },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'content/projects/**/*.md',
+        typeName: 'Project',
+        refs: {
+          tags: {
+            typeName: 'ProjectTag',
+            create: true
+          },
+          technologies: {
+            typeName: 'Technology',
+            create: true
+          }
+        }
+      }
+    },
   ],
   templates: {
     Tag: '/blog/tags/:id',
     Post: '/blog/posts/:path',
+    Project: '/portfolio/projects/:path',
+    ProjectTag: '/portfolio/tags/:id',
+    Technology: '/portfolio/technologies/:id',
   },
   transformers: {
     remark: {
