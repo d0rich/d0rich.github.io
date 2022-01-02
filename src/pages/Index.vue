@@ -95,32 +95,49 @@
 
 <!--		<div class="hr my-16"></div>-->
 
-<!--		<section class="block4">-->
-<!--			<h1 class="text-center">News</h1>-->
-<!--			<transition-group name="glitch-transition" class="block4__news">-->
-<!--				<news-card class="my-3" :news="news"-->
-<!--									 v-for="news in newsFeed" :key="news.id" />-->
-<!--			</transition-group>-->
-<!--			<v-btn :to="{name: routesNames.NEWS_CONTROLLER}" class="align-self-end my-5" large color="primary">-->
-<!--				{{btns.myInfo.text}}-->
-<!--				<v-icon>-->
-<!--					mdi-chevron-right-->
-<!--				</v-icon>-->
-<!--			</v-btn>-->
-<!--			<v-overlay :opacity="0" absolute :value="load.news">-->
-<!--				<Loading />-->
-<!--			</v-overlay>-->
-<!--		</section>-->
+		<section class="block4">
+			<h1 class="text-center">Last Posts</h1>
+      <div class="block4__posts">
+        <post-card v-for="post in $page.posts.edges" :key="post.node.id"
+                   :post="post.node"
+                   class="my-2" />
+      </div>
+
+			<v-btn :to="Router.blog()" class="align-self-end my-5" large color="primary">
+				To blog
+				<v-icon>
+					mdi-chevron-right
+				</v-icon>
+			</v-btn>
+		</section>
 
   </Layout>
 </template>
+
+<page-query>
+query HomePageInfo {
+  posts: allPost (sortBy: "date", order: DESC, perPage: 3, page: 1) @paginate {
+    totalCount
+    edges {
+      node {
+        id
+        title
+        date (format: "MMMM D, Y")
+        summary
+        image
+        path
+      }
+    }
+  }
+}
+</page-query>
 
 <script>
 import Terminal from "~/components/Terminal"
 import JSObjectWindow from "~/components/pages/JSObjectWindow";
 import EnterBlock2 from "~/components/pages/EnterBlock2";
 // import ProjectBlock from "@/components/projects/ProjectBlock";
-// import NewsCard from "@/components/news/NewsCard";
+import PostCard from "../components/PostCard";
 import {Router} from "~/router";
 import { mapGetters } from 'vuex'
 
@@ -128,8 +145,8 @@ export default {
 	name: 'Home',
 	components: {
 		Terminal, EnterBlock2,
-		JSObjectWindow,
-		//ProjectBlock, NewsCard
+		JSObjectWindow, PostCard
+		//ProjectBlock
 	},
 	data(){
 		return{
@@ -256,7 +273,7 @@ export default {
 	flex-direction: column;
 	align-items: center;
 }
-.block4__news{
+.block4__posts{
 	margin: 2rem 0;
 	width: 100%;
 }
