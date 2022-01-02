@@ -19,6 +19,7 @@
         <v-btn active-class="cursor-active-box" text :to="navigation.portfolio.route">
           <span class="cursor--on-active">{{navigation.portfolio.text}}</span>
         </v-btn>
+        <theme-switcher style="display: none" />
       </nav>
       <div class="header-bg">
         <div class="square1" :class="{active: squaresOn}" :style="{width: `${squareWidth}px`, height: `${squareWidth}px`}"></div>
@@ -29,8 +30,12 @@
 
 <script>
 import {navigation} from '~/router/'
+import ThemeSwitcher from "../ThemeSwitcher";
 export default {
 name: "Header",
+  components: {
+    ThemeSwitcher
+  },
   data(){
     return{
       squareWidth: 100,
@@ -104,6 +109,18 @@ name: "Header",
   transition: transform 1s ease 1.3s;
   &.active{
     transform: rotate(45deg) scale(5);
+  }
+}
+
+.theme--light{
+  .square2{
+    background-color: #f5f5f5;
+  }
+  .btn-main{
+    color: #000000de;
+    &:hover{
+      background-color: rgba(0,0,0,.1);
+    }
   }
 }
 </style>

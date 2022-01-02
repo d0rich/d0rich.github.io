@@ -53,6 +53,7 @@
 				<h1>My contacts</h1>
 				<div class="contacts__btns">
 					<v-btn v-for="contact in contacts" :key="contact.text"
+                 dark
 								 :href="contact.href" target="_blank"
 								 class="pa-10" large
 								 tile outlined :block="!headerOn">

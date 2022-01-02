@@ -16,7 +16,7 @@
     <div class="content__slot">
       <slot />
       <div class="content__btn--down" @click="scroll">
-        <v-icon class="arrow">mdi-chevron-down</v-icon>
+        <v-icon class="arrow" dark>mdi-chevron-down</v-icon>
       </div>
     </div>
   </section>
@@ -108,6 +108,7 @@ name: "EnterBlock2",
 
 <style scoped lang="scss">
 .content{
+  color: #f5f5f5;
   position: relative;
   width: 100vw;
 }
@@ -217,6 +218,13 @@ name: "EnterBlock2",
     opacity: 0;
   }
 }
+
+.theme--light{
+  .column__overlay--dark{
+    background: #f5f5f5;
+  }
+}
+
 @media screen and (max-width: 960px){
   .block__column{
     height: calc(100vh - 56px);
