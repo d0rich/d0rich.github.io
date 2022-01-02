@@ -10,7 +10,7 @@
         {{line.text}}
       </div>
       <div :style="{opacity: showCommand*1}">
-        <span style="word-break: break-all;" >{{href}}></span>{{command}}
+        <span style="word-break: break-all;" >{{href}}></span> {{command}}
       </div>
       <div :style="{opacity: showContent*1}" class="mb-5">
         <slot />
