@@ -13,7 +13,7 @@
       <v-divider v-if="project.tags.length > 0" />
       <v-card-text v-if="project.tags.length > 0">
         <v-chip class="ma-1" v-for="tag in project.tags" :key="tag.id">
-          {{tag.title}}
+          #{{tag.title}}
         </v-chip>
       </v-card-text>
     </v-card>

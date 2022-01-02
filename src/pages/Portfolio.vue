@@ -104,11 +104,6 @@ export default {
 </script>
 
 <style scoped>
-.projects-header{
-  max-width: 800px;
-  margin: 1rem auto 0 auto;
-  font-size: 1.2rem;
-}
 .projects-container{
   margin-top: 2rem;
   display: grid;
