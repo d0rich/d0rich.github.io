@@ -1,19 +1,38 @@
 <template>
   <layout>
-    <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
-    <back-btn class="ml-5 my-5 align-self-start" />
-    <article>
-      <h1>Projects where {{ $page.technology.title }} is used</h1>
+    <h1 class="mt-7">Projects filtered by technology</h1>
+    <div class="hr"></div>
+    <nav class="align-self-start">
+      <v-breadcrumbs :items="breadcrumbs"/>
+      <back-btn class="ml-5 my-5" />
+    </nav>
+
+    <nav>
+      <h1>Projects where <span class="tech-highlight">{{ $page.technology.title }}</span> is used</h1>
 
       <div class="projects-container">
         <project-block v-for="project in $page.technology.belongsTo.edges" :key="project.node.id"
                        :project="project.node" class="my-2"/>
       </div>
+    </nav>
 
+    <nav>
       <v-pagination :length="$page.technology.belongsTo.pageInfo.totalPages"
                     :value="$page.technology.belongsTo.pageInfo.currentPage"
                     @input="changePage" />
-    </article>
+    </nav>
+
+    <nav class="align-self-start mt-3">
+      <h2>All Technologies</h2>
+      <v-chip-group column>
+        <v-chip
+            v-for="tech in $page.technologies.edges"
+            :to="tech.node.path"
+            :key="tech.node.id">
+          {{ tech.node.title }}
+        </v-chip>
+      </v-chip-group>
+    </nav>
   </layout>
 </template>
 
@@ -39,6 +58,14 @@ query Tag ($id: ID!, $page: Int) {
             }
           }
         }
+      }
+    }
+  }
+  technologies: allTechnology (sortBy: "title", order: ASC) {
+    edges {
+      node {
+        title
+        path
       }
     }
   }
@@ -79,6 +106,9 @@ export default {
 </script>
 
 <style scoped>
+.tech-highlight{
+  color: var(--v-info-base);
+}
 .projects-container{
   margin-top: 2rem;
   display: grid;

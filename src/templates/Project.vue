@@ -1,7 +1,9 @@
 <template>
   <layout>
-    <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
-    <back-btn class="ml-5 my-5 align-self-start" />
+    <nav class="align-self-start">
+      <v-breadcrumbs :items="breadcrumbs"/>
+      <back-btn class="ml-5 my-5" />
+    </nav>
     <article>
       <div style="max-width: 100%">
         <h1>{{ $page.project.title }} </h1>
@@ -22,14 +24,14 @@
       <div class="hr" />
       <div class="markdown-body mb-8" id="article-area" v-html="$page.project.content" />
       <h2>Technologies</h2>
-      <div class="tech-container">
+      <nav class="tech-container">
         <v-btn v-for="tech in $page.project.technologies" :key="tech.id"
                class="mx-4 my-2"
                outlined text large
                :to="tech.path">
           {{tech.title}}
         </v-btn>
-      </div>
+      </nav>
     </article>
   </layout>
 </template>
