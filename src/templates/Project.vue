@@ -15,7 +15,7 @@
           </v-chip>
         </v-chip-group>
         <v-img v-if="$page.project.image" eager :aspect-ratio="3/2"
-               min-width="300px" max-width="600px" width="100%"
+               min-width="300px" max-width="600px" width="90vw"
                class="border-light--primary align-self-center my-4"
                :src="$page.project.image" :alt="$page.project.title" />
       </div>
