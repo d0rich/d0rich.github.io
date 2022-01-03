@@ -1,36 +1,46 @@
 <template>
   <layout>
-    <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
     <h1 class="text-center mt-7">Portfolio</h1>
     <div class="hr" />
-    <h2 class="align-self-start">All Tags</h2>
-    <v-chip-group  class="align-self-start" column>
-      <v-chip
-          v-for="tag in $page.tags.edges"
-          :to="tag.node.path"
-          :key="tag.node.id">
-        #{{ tag.node.title }}
-      </v-chip>
-    </v-chip-group>
-    <h2 class="align-self-start mt-4">All Technologies</h2>
-    <v-chip-group  class="align-self-start" column>
-      <v-chip
-          v-for="tech in $page.technologies.edges"
-          :to="tech.node.path"
-          :key="tech.node.id">
-        {{ tech.node.title }}
-      </v-chip>
-    </v-chip-group>
+    <nav class="align-self-start">
+      <v-breadcrumbs :items="breadcrumbs"/>
+    </nav>
 
-    <div class="projects-container">
+    <nav class="projects-container">
       <ProjectBlock :project="project.node"
                     v-for="project in $page.projects.edges" :key="project.node.id" />
-    </div>
+    </nav>
 
-    <h2>Pagination</h2>
-    <v-pagination :length="$page.projects.pageInfo.totalPages"
-                  :value="$page.projects.pageInfo.currentPage"
-                  @input="changePage" />
+    <nav class="text-center mt-4">
+      <v-pagination :length="$page.projects.pageInfo.totalPages"
+                    :value="$page.projects.pageInfo.currentPage"
+                    @input="changePage" />
+    </nav>
+
+    <nav class="align-self-start mt-5">
+      <h2>All Tags</h2>
+      <v-chip-group column>
+        <v-chip
+            v-for="tag in $page.tags.edges"
+            :to="tag.node.path"
+            :key="tag.node.id">
+          #{{ tag.node.title }}
+        </v-chip>
+      </v-chip-group>
+    </nav>
+
+    <nav  class="align-self-start mt-4">
+      <h2>All Technologies</h2>
+      <v-chip-group column>
+        <v-chip
+            v-for="tech in $page.technologies.edges"
+            :to="tech.node.path"
+            :key="tech.node.id">
+          {{ tech.node.title }}
+        </v-chip>
+      </v-chip-group>
+    </nav>
+
   </layout>
 </template>
 
@@ -56,7 +66,7 @@ query PortfolioInfo ($page: Int) {
       }
     }
   }
-  tags: allProjectTag (sortBy: "id", order: ASC) {
+  tags: allProjectTag (sortBy: "title", order: ASC) {
     edges {
       node {
         title
@@ -64,7 +74,7 @@ query PortfolioInfo ($page: Int) {
       }
     }
   }
-  technologies: allTechnology (sortBy: "id", order: ASC) {
+  technologies: allTechnology (sortBy: "title", order: ASC) {
     edges {
       node {
         title

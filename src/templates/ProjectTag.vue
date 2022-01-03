@@ -1,19 +1,37 @@
 <template>
   <layout>
-    <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
-    <back-btn class="ml-5 my-5 align-self-start" />
-    <article>
-      <h1>Projects tagged {{ $page.tag.title }}</h1>
+    <h1 class="mt-7">Projects filtered by tag</h1>
+    <div class="hr"></div>
+    <nav class="align-self-start">
+      <v-breadcrumbs :items="breadcrumbs"/>
+      <back-btn class="ml-5 my-5" />
+    </nav>
 
+    <nav>
+      <h2 class="mt-4">Projects tagged <span class="tag-highlight">#{{ $page.tag.title }}</span></h2>
       <div class="projects-container">
         <project-block v-for="project in $page.tag.belongsTo.edges" :key="project.node.id"
-                      :project="project.node" class="my-2"/>
+                       :project="project.node" class="my-2"/>
       </div>
+    </nav>
 
+    <nav>
       <v-pagination :length="$page.tag.belongsTo.pageInfo.totalPages"
                     :value="$page.tag.belongsTo.pageInfo.currentPage"
                     @input="changePage" />
-    </article>
+    </nav>
+
+    <nav class="align-self-start mt-5">
+      <h2>All Tags</h2>
+      <v-chip-group column>
+        <v-chip
+            v-for="tag in $page.tags.edges"
+            :to="tag.node.path"
+            :key="tag.node.id">
+          #{{ tag.node.title }}
+        </v-chip>
+      </v-chip-group>
+    </nav>
   </layout>
 </template>
 
@@ -39,6 +57,14 @@ query Tag ($id: ID!, $page: Int) {
             }
           }
         }
+      }
+    }
+  }
+  tags: allProjectTag (sortBy: "title", order: ASC) {
+    edges {
+      node {
+        title
+        path
       }
     }
   }
@@ -79,6 +105,9 @@ export default {
 </script>
 
 <style scoped>
+.tag-highlight{
+  color: var(--v-info-base);
+}
 .projects-container{
   margin-top: 2rem;
   display: grid;
