@@ -1,11 +1,11 @@
 ---
 title: "Site-business card of the developer and videomaker"
 path: '/dorich-site-v1'
-date: 2021-08-08
+date: 2020-07-11
 summary: ""
 image: '/projects/dorich-site-v1/main.jpeg'
 tags: [ 'frontend', 'backend', legacy, prod ]
-technologies: [ 'Vue.js', 'Express', 'Node.js', 'Firebase', 'MongoDB']
+technologies: [ 'Vue.js', 'Express', 'Node.js', 'Firebase', 'MongoDB', Mongoose]
 ---
 My first acquaintance with web technologies.
 
