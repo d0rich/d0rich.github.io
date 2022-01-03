@@ -1,11 +1,11 @@
 ---
 title: "JavaScript developer's personal site"
-path: '/dorich-site'
+path: '/dorich-site-v2'
 date: 2021-08-08
 summary: ""
-image: '/projects/dorich-site/main.jpeg'
-tags: [ 'frontend', 'backend', 'SEO' ]
-technologies: [ 'Dropbox', 'Vue.js', 'Fastify', 'Node.js', 'Firebase', 'PostgreSQL' ]
+image: '/projects/dorich-site-v2/main.jpeg'
+tags: [ 'frontend', 'backend', 'SEO', prod ]
+technologies: [ 'Dropbox', 'Vue.js', 'Fastify', 'Node.js', 'Firebase', 'PostgreSQL', 'Vuetify' ]
 ---
 I needed a resource that would demonstrate my web development competence in 
 itself and simply by describing what I can.
