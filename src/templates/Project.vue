@@ -21,6 +21,15 @@
       </div>
       <div class="hr" />
       <div class="markdown-body mb-8" id="article-area" v-html="$page.project.content" />
+      <h2>Technologies</h2>
+      <div class="tech-container">
+        <v-btn v-for="tech in $page.project.technologies" :key="tech.id"
+               class="mx-4 my-2"
+               outlined text large
+               :to="tech.path">
+          {{tech.title}}
+        </v-btn>
+      </div>
     </article>
   </layout>
 </template>
@@ -34,6 +43,10 @@ query Project ($path: String!) {
     content
     summary
     tags {
+      title
+      path
+    }
+    technologies {
       title
       path
     }
@@ -69,6 +82,11 @@ export default {
 </script>
 
 <style scoped>
+.tech-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 article{
   display: flex;
   flex-direction: column;
