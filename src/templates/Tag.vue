@@ -1,18 +1,35 @@
 <template>
   <Layout>
-    <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
-    <back-btn class="ml-5 my-5 align-self-start" />
-    <article>
-      <h1>Posts tagged {{ $page.tag.title }}</h1>
+    <h1 class="mt-7">Blog posts filtered by tag</h1>
+    <div class="hr"></div>
+    <nav class="align-self-start">
+      <v-breadcrumbs :items="breadcrumbs"/>
+      <back-btn class="ml-5 my-5" />
+    </nav>
+    <nav>
+      <h2>Posts tagged <span class="tag-highlight">#{{ $page.tag.title }}</span></h2>
 
       <post-card v-for="post in $page.tag.belongsTo.edges" :key="post.node.id"
                  :post="post.node"
                  class="my-2" />
-
+    </nav>
+    <nav>
       <v-pagination :length="$page.tag.belongsTo.pageInfo.totalPages"
                     :value="$page.tag.belongsTo.pageInfo.currentPage"
                     @input="changePage" />
-    </article>
+    </nav>
+
+    <nav class="align-self-start mt-5">
+      <h2>All Tags</h2>
+      <v-chip-group column>
+        <v-chip
+            v-for="tag in $page.tags.edges"
+            :to="tag.node.path"
+            :key="tag.node.id">
+          #{{ tag.node.title }}
+        </v-chip>
+      </v-chip-group>
+    </nav>
   </Layout>
 </template>
 
@@ -38,6 +55,14 @@ query Tag ($id: ID!, $page: Int) {
             }
           }
         }
+      }
+    }
+  }
+  tags: allTag (sortBy: "title", order: ASC) {
+    edges {
+      node {
+        title
+        path
       }
     }
   }
@@ -74,3 +99,8 @@ export default {
   },
 }
 </script>
+<style>
+.tag-highlight{
+  color: var(--v-info-base);
+}
+</style>
