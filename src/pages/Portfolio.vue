@@ -4,7 +4,7 @@
     <h1 class="text-center mt-7">Portfolio</h1>
     <div class="hr" />
     <h2 class="align-self-start">All Tags</h2>
-    <v-chip-group  class="align-self-start">
+    <v-chip-group  class="align-self-start" show-arrows>
       <v-chip
           v-for="tag in $page.tags.edges"
           :to="tag.node.path"
@@ -13,7 +13,7 @@
       </v-chip>
     </v-chip-group>
     <h2 class="align-self-start mt-4">All Technologies</h2>
-    <v-chip-group  class="align-self-start">
+    <v-chip-group  class="align-self-start" show-arrows>
       <v-chip
           v-for="tech in $page.technologies.edges"
           :to="tech.node.path"
