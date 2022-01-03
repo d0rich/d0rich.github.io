@@ -77,24 +77,21 @@
 
 		<div class="hr my-16"></div>
 
-<!--		<section class="block3">-->
-<!--			<h1 class="text-center">Last projects</h1>-->
-<!--			<transition-group name="glitch-transition" class="block3__projects">-->
-<!--				<ProjectBlock :project="project"-->
-<!--											v-for="project in projects" :key="project.id" />-->
-<!--			</transition-group>-->
-<!--			<v-btn :to="{name: routesNames.PORTFOLIO}" class="align-self-end my-5" large color="primary">-->
-<!--				{{btns.myInfo.text}}-->
-<!--				<v-icon>-->
-<!--					mdi-chevron-right-->
-<!--				</v-icon>-->
-<!--			</v-btn>-->
-<!--			<v-overlay :opacity="0" absolute :value="load.projects">-->
-<!--				<Loading />-->
-<!--			</v-overlay>-->
-<!--		</section>-->
+		<section class="block3">
+			<h1 class="text-center">Last projects</h1>
+			<nav class="block3__projects">
+        <ProjectBlock :project="project.node"
+                      v-for="project in $page.projects.edges" :key="project.node.id" />
+			</nav>
+			<v-btn :to="Router.portfolio()" class="align-self-end my-5" large color="primary">
+				To portfolio
+				<v-icon>
+					mdi-chevron-right
+				</v-icon>
+			</v-btn>
+		</section>
 
-<!--		<div class="hr my-16"></div>-->
+		<div class="hr my-16"></div>
 
 		<section class="block4">
 			<h1 class="text-center">Last Posts</h1>
@@ -118,7 +115,6 @@
 <page-query>
 query HomePageInfo {
   posts: allPost (sortBy: "date", order: DESC, perPage: 3, page: 1) @paginate {
-    totalCount
     edges {
       node {
         id
@@ -130,6 +126,21 @@ query HomePageInfo {
       }
     }
   }
+  projects: allProject (sortBy: "date", order: DESC, perPage: 3, page: 1) @paginate {
+    edges {
+      node {
+        id
+        title
+        date (format: "MMMM D, Y")
+        summary
+        image
+        path
+        tags {
+          title
+        }
+      }
+    }
+  }
 }
 </page-query>
 
@@ -137,7 +148,7 @@ query HomePageInfo {
 import Terminal from "~/components/Terminal"
 import JSObjectWindow from "~/components/pages/JSObjectWindow";
 import EnterBlock2 from "~/components/pages/EnterBlock2";
-// import ProjectBlock from "@/components/projects/ProjectBlock";
+import ProjectBlock from "../components/ProjectBlock";
 import PostCard from "../components/PostCard";
 import {Router} from "~/router";
 import { mapGetters } from 'vuex'
@@ -146,8 +157,7 @@ export default {
 	name: 'Home',
 	components: {
 		Terminal, EnterBlock2,
-		JSObjectWindow, PostCard
-		//ProjectBlock
+		JSObjectWindow, PostCard, ProjectBlock
 	},
 	data(){
 		return{
