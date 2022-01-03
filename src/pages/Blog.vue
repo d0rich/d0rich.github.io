@@ -1,23 +1,35 @@
 <template>
   <Layout>
-    <h1>My blog posts</h1>
-    <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
-    <v-chip-group  class="align-self-start">
-      <v-chip
-          v-for="tag in $page.tags.edges"
-          :to="tag.node.path"
-          :key="tag.node.id">
-        #{{ tag.node.title }}
-      </v-chip>
-    </v-chip-group>
-    <post-card v-for="post in $page.posts.edges" :key="post.node.id"
-               :post="post.node"
-               class="my-2" />
+    <h1 class="mt-7">My blog</h1>
+    <div class="hr"></div>
+    <nav class="align-self-start">
+      <v-breadcrumbs :items="breadcrumbs"/>
+    </nav>
 
-    <h2>Pagination</h2>
-    <v-pagination :length="$page.posts.pageInfo.totalPages"
-                  :value="$page.posts.pageInfo.currentPage"
-                  @input="changePage" />
+    <nav>
+      <post-card v-for="post in $page.posts.edges" :key="post.node.id"
+                 :post="post.node"
+                 class="my-2" />
+    </nav>
+
+    <nav>
+      <v-pagination :length="$page.posts.pageInfo.totalPages"
+                    :value="$page.posts.pageInfo.currentPage"
+                    @input="changePage" />
+    </nav>
+
+
+    <nav class="align-self-start mt-5">
+      <h2>All tags</h2>
+      <v-chip-group  column>
+        <v-chip
+            v-for="tag in $page.tags.edges"
+            :to="tag.node.path"
+            :key="tag.node.id">
+          #{{ tag.node.title }}
+        </v-chip>
+      </v-chip-group>
+    </nav>
   </Layout>
 </template>
 
@@ -40,7 +52,7 @@ query BlogInfo ($page: Int) {
       }
     }
   }
-  tags: allTag (sortBy: "title") {
+  tags: allTag (sortBy: "title", order: ASC) {
     edges {
       node {
         title
