@@ -6,7 +6,7 @@
         <v-icon>mdi-newspaper-variant</v-icon>
       </v-btn>
 
-      <v-btn active-class="cursor-active-box" exact :to="navigation.resume.route"  >
+      <v-btn active-class="cursor-active-box" :to="navigation.resume.route"  >
         <span class="cursor--on-active">{{ navigation.resume.text }}</span>
         <v-icon>mdi-account</v-icon>
       </v-btn>

@@ -23,7 +23,7 @@
       </div>
       <div class="hr" />
       <div class="markdown-body mb-8" id="article-area" v-html="$page.project.content" />
-      <h2>Technologies</h2>
+      <h2>Built with</h2>
       <nav class="tech-container">
         <v-btn v-for="tech in $page.project.technologies" :key="tech.id"
                class="mx-4 my-2"

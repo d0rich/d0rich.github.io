@@ -1,13 +1,20 @@
 <template>
   <layout>
     <nav>
-      <v-btn v-for="res in $page.allResume.edges" :key="res.node.id"
+      <v-btn active-class="cursor-active-box" v-for="res in $page.allResume.edges" :key="res.node.id"
              class="mx-3 my-2"
              :to="res.node.path"
              text outlined large>
-        {{res.node.title}}
+        <span class="cursor--on-active">{{res.node.title}}</span>
       </v-btn>
     </nav>
+
+    <nav class="align-self-start">
+      <v-breadcrumbs :items="breadcrumbs"/>
+      <back-btn class="ml-5 my-5" />
+    </nav>
+
+
     <article>
 
       <section class="intro">
@@ -136,7 +143,7 @@ query Resume($path: String!){
       }
     }
   }
-  allResume: allResume{
+  allResume: allResume (sortBy: "title", order: ASC){
     edges{
       node{
         id
@@ -164,9 +171,25 @@ query Resume($path: String!){
 <script>
 import ExpBlock from "../components/resume/ExpBlock";
 import SkillsBlock from "../components/resume/SkillsBlock";
+import BackBtn from "../components/BackBtn";
+import {Router} from "../router";
 export default {
   name: "Resume",
-  components: { ExpBlock, SkillsBlock }
+  components: { ExpBlock, SkillsBlock, BackBtn },
+  computed:{
+    breadcrumbs(){
+      return [
+        {text: 'd0rich', href: Router.home},
+        {text: 'resume', href: Router.allResume()},
+        {text: this.$page.resume.content.main.spec , disabled: true},
+      ]
+    }
+  },
+  metaInfo() {
+    return {
+      title: `${this.$page.resume.content.main.spec} Resume`
+    }
+  }
 }
 </script>
 
@@ -219,6 +242,7 @@ section.skills{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: start;
 }
 .time-notes{
   display: flex;
@@ -228,6 +252,10 @@ section.skills{
 @media screen and (max-width: 900px) {
   .intro{
     flex-direction: column-reverse;
+  }
+  .intro__photo{
+    margin-bottom: 2rem;
+    margin-top: 2rem
   }
   .block{
     display: flex;

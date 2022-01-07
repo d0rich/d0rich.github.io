@@ -1,5 +1,5 @@
 <template>
-  <nav class="project-block">
+  <div class="project-block">
     <v-card :to="project.path">
       <v-img height="200px"
              :src="project.image"
@@ -17,7 +17,7 @@
         </v-chip>
       </v-card-text>
     </v-card>
-  </nav>
+  </div>
 
 </template>
 
