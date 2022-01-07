@@ -164,9 +164,9 @@ export default {
 			Router,
 			contacts: [
 				{ href: 'mailto:d.orich@yandex.com', icon: 'mdi-email', text: 'email' },
-				{ href: 'https://t.me/d0rich', icon: 'mdi-telegram', text: 'telegram' },
+				{ href: 'https://t.me/d0rich', icon: 'fa-telegram', text: 'telegram' },
 				{ href: 'https://github.com/d0rich', icon: 'mdi-github', text: 'github' },
-				{ href: 'https://vk.com/d0rich', icon: 'mdi-vk', text: 'vk' },
+				{ href: 'https://vk.com/d0rich', icon: 'fa-vk', text: 'vk' },
 			],
 			show: {
 				block2info: false
@@ -184,7 +184,8 @@ export default {
 	},
 	metaInfo() {
 		return {
-			title: 'Home',
+			title: 'Dorich - JavaScript Developer',
+      titleTemplate: '%s',
 			meta: [
 				{ key: 'og:url', property: 'og:url', content: 'https://d0rich.github.io/'},
 			]

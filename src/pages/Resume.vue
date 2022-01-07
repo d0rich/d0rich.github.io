@@ -41,6 +41,11 @@ export default {
       ]
     }
   },
+  metaInfo() {
+    return {
+      title: 'Resume'
+    }
+  },
 }
 </script>
 
