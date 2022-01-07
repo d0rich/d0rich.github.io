@@ -114,7 +114,7 @@
 
 <page-query>
 query HomePageInfo {
-  posts: allPost (sortBy: "date", order: DESC, perPage: 3, page: 1) @paginate {
+  posts: allPost (sortBy: "date", order: DESC, limit: 5) {
     edges {
       node {
         id
@@ -126,7 +126,7 @@ query HomePageInfo {
       }
     }
   }
-  projects: allProject (sortBy: "date", order: DESC, perPage: 3, page: 1) @paginate {
+  projects: allProject (sortBy: "date", order: DESC, limit: 3) {
     edges {
       node {
         id
