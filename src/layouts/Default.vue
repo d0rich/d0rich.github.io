@@ -1,7 +1,7 @@
 <template>
 	<v-app class="main-scroll" v-resize="onResize">
-		<Header v-if="headerOn" />
-		<BottomNavigation v-else />
+		<Header id="header" />
+		<BottomNavigation id="bottom-navigation" />
 		<v-main>
 			<transition name="glitch-transition" appear mode="out-in">
 				<div class="page px-4">
@@ -62,6 +62,9 @@ export default {
 	font-family: 'JetBrains Mono', Roboto, sans-serif;
 	overflow: hidden;
 }
+#bottom-navigation{
+  display: none;
+}
 .page{
 	display: flex;
 	flex-direction: column;
@@ -82,6 +85,12 @@ export default {
 	filter: none;
 }
 @media screen and (max-width: 640px) {
+  #header{
+    display: none;
+  }
+  #bottom-navigation{
+    display: block;
+  }
 	html{
 		font-size: 13px;
 	}
