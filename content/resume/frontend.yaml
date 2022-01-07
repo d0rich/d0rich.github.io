@@ -1,0 +1,52 @@
+image: "/img/dorich.jpg"
+path: /frontend
+content:
+  main:
+    photo: "/img/dorich.jpg"
+    first_name: Nikolay
+    second_name: Dorofeev
+    spec: Frontend
+    text: "I am a JavaScript developer from Tomsk (Russia).At the moment 
+    I am studying at the 4th year at the Tomsk Polytechnic University in 
+    the direction of \"Information systems and technologies in business 
+    and industry\". I'm looking for remote work that can be combined 
+    with study to improve my own JS development skills and create awesome products."
+
+  contacts:
+    phone: "+7-999-495-29-01"
+    email: d.orich@yandex.com
+    address: "Russia, Tomsk Oblast, Tomsk 634061"
+    social:
+      telegram: d0rich
+      github: d0rich
+      vk: d0rich
+
+  skills:
+    text: "I am constantly exercising my skills and learning new technologies to do my job more efficiently."
+    fields:
+      - name: Programming Languages
+        items: [ HTML5, CSS3, SCSS, JavaScript, TypeScript ]
+      - name: Client Side Apps
+        items: [ Vue.js, Nuxt.js, VueX, Vue Router, Vuetify.js, Bootstrap ]
+      - name: Instruments
+        items: [ VS Code, WebStorm, Figma, Notion, Jira, Google Docs ]
+
+  education:
+    text: "All my life I have been driven by my strong belief 
+    that education is important. I try to learn something new every single day."
+    history:
+      - spec: Information Systems And Technologies
+        place: Tomsk Polytechnic University
+        date:
+          begin: 2018-09-01
+          end: 2022-07-01
+        description: "BС in Information Systems and Technology in 
+        Business and Industry. Now I am studying in the 4th year, I have only A in profile subjects."
+      - spec: Vue.Js Frontend Developer
+        place: Smart World Academy
+        date:
+          begin: 2020-10-01
+          end: 2020-12-01
+        description: "Mastered product development in a team with a manager, analysts, backend developers, 
+        and other frontend developers. Improved skills in developing web clients with Vue.js and VueX."
+
