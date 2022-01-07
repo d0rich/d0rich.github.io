@@ -1,9 +1,9 @@
-image: "/image/home/dorich.jpg"
+image: "/resume/system-analyst.jpg"
 path: /system-analyst
 title: System Analyst
 content:
   main:
-    photo: "/img/home/dorich.jpg"
+    photo: "/img/dorich.jpg"
     first_name: Nikolay
     second_name: Dorofeev
     spec: System Analyst

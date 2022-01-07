@@ -1,9 +1,9 @@
-image: "/image/home/dorich.jpg"
+image: "/resume/backend.jpg"
 path: /backend
 title: Backend
 content:
   main:
-    photo: "/img/home/dorich.jpg"
+    photo: "/img/dorich.jpg"
     first_name: Nikolay
     second_name: Dorofeev
     spec: Backend developer

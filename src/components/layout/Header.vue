@@ -9,7 +9,7 @@
           <span class="cursor--on-active">{{ navigation.news.text }}</span>
         </v-btn>
 
-        <v-btn active-class="cursor-active-box" exact text :to="navigation.resume.route">
+        <v-btn active-class="cursor-active-box" text :to="navigation.resume.route">
           <span class="cursor--on-active">{{ navigation.resume.text }}</span>
         </v-btn>
 

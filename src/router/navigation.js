@@ -3,7 +3,7 @@ import {Router} from "./index";
 export const navigation = {
     resume: {
         text: 'Resume',
-        route: Router.empty
+        route: Router.allResume()
     },
     news: {
         text: 'Blog',
