@@ -15,8 +15,8 @@
 				<h1 class="align-self-start cursor--on-hover">Hello world!</h1>
 				<p class="align-self-start cursor--on-hover">
 					Here you can see my
-					<router-link class="link" :to="Router.empty">portfolio</router-link>, familiarize with my
-					<router-link class="link" :to="Router.empty">resume</router-link> , read
+					<router-link class="link" :to="Router.portfolio()">portfolio</router-link>, familiarize with my
+					<router-link class="link" :to="Router.resume()">resume</router-link> , read
 					<router-link class="link" :to="Router.blog()">news</router-link> from my developer life.
 				</p>
 			</Terminal>
@@ -39,7 +39,7 @@
 							Single Page Web Applications - sites that do not require loading separate pages.
 							This approach allows you to get a new experience with the product without unnecessary delays.
 						</p>
-						<v-btn :to="Router.empty" color="primary">More info</v-btn>
+						<v-btn :to="Router.resume()" color="primary">More info</v-btn>
 					</div>
 				</div>
 			</div>
@@ -75,6 +75,24 @@
 			</div>
 		</section>
 
+    <div class="hr my-16"></div>
+
+    <section class="block4">
+      <h1 class="text-center">Last Posts</h1>
+      <div class="block4__posts">
+        <post-card v-for="post in $page.posts.edges" :key="post.node.id"
+                   :post="post.node"
+                   class="my-2" />
+      </div>
+
+      <v-btn :to="Router.blog()" class="align-self-end my-5" large color="primary">
+        To blog
+        <v-icon>
+          mdi-chevron-right
+        </v-icon>
+      </v-btn>
+    </section>
+
 		<div class="hr my-16"></div>
 
 		<section class="block3">
@@ -85,24 +103,6 @@
 			</nav>
 			<v-btn :to="Router.portfolio()" class="align-self-end my-5" large color="primary">
 				To portfolio
-				<v-icon>
-					mdi-chevron-right
-				</v-icon>
-			</v-btn>
-		</section>
-
-		<div class="hr my-16"></div>
-
-		<section class="block4">
-			<h1 class="text-center">Last Posts</h1>
-      <div class="block4__posts">
-        <post-card v-for="post in $page.posts.edges" :key="post.node.id"
-                   :post="post.node"
-                   class="my-2" />
-      </div>
-
-			<v-btn :to="Router.blog()" class="align-self-end my-5" large color="primary">
-				To blog
 				<v-icon>
 					mdi-chevron-right
 				</v-icon>

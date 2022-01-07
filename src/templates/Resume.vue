@@ -44,10 +44,10 @@
                 <v-icon>mdi-github</v-icon>
               </v-btn>
               <v-btn icon :href="`https://t.me/${$page.resume.content.contacts.social.telegram}`" target="_blank" >
-                <v-icon>mdi-github</v-icon>
+                <v-icon>fa-telegram</v-icon>
               </v-btn>
               <v-btn icon :href="`https://vk.com/${$page.resume.content.contacts.social.bk}`" target="_blank" >
-                <v-icon>mdi-github</v-icon>
+                <v-icon>fa-vk</v-icon>
               </v-btn>
             </div>
           </address>
