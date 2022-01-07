@@ -1,5 +1,13 @@
 <template>
   <layout>
+    <nav>
+      <v-btn v-for="res in $page.allResume.edges" :key="res.node.id"
+             class="mx-3 my-2"
+             :to="res.node.path"
+             text outlined large>
+        {{res.node.title}}
+      </v-btn>
+    </nav>
     <article>
 
       <section class="intro">
@@ -125,6 +133,15 @@ query Resume($path: String!){
           }
           description
         }
+      }
+    }
+  }
+  allResume: allResume{
+    edges{
+      node{
+        id
+        path
+        title
       }
     }
   }

@@ -1,11 +1,12 @@
 image: "/image/home/dorich.jpg"
 path: /backend
+title: Backend
 content:
   main:
     photo: "/img/home/dorich.jpg"
     first_name: Nikolay
     second_name: Dorofeev
-    spec: Backend
+    spec: Backend developer
     text: "I am a JavaScript developer from Tomsk (Russia).At the moment 
     I am studying at the 4th year at the Tomsk Polytechnic University in 
     the direction of \"Information systems and technologies in business 
