@@ -26,6 +26,7 @@ module.exports = {
   siteName: 'Gridsome',
   siteDescription: 'I am Nikolay Dorofeev, a young JavaScript developer from Tomsk (Russia). I already know a lot of technologies for creating visual interfaces, servers, working with databases. I will create web applications for business or join a development team.',
   plugins: [
+      // Nodes for blog
     {
       use: '@gridsome/source-filesystem',
       options: {
@@ -39,6 +40,7 @@ module.exports = {
         }
       }
     },
+      // Nodes for projects
     {
       use: '@gridsome/source-filesystem',
       options: {
@@ -56,6 +58,21 @@ module.exports = {
         }
       }
     },
+      // Nodes for resume
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'content/resume/*.yaml',
+        typeName: 'Resume'
+      }
+    },
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'content/work-exp/*.yaml',
+        typeName: 'WorkExperience'
+      }
+    },
   ],
   templates: {
     Tag: '/blog/tags/:id',
@@ -63,6 +80,7 @@ module.exports = {
     Project: '/portfolio/projects/:path',
     ProjectTag: '/portfolio/tags/:id',
     Technology: '/portfolio/technologies/:id',
+    Resume: '/resume/:path'
   },
   transformers: {
     remark: {
