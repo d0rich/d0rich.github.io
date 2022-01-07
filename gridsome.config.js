@@ -24,6 +24,7 @@ function addStyleResource (rule) {
 
 module.exports = {
   siteName: 'Gridsome',
+  siteUrl: 'https://d0rich.github.io/',
   siteDescription: 'I am Nikolay Dorofeev, a young JavaScript developer from Tomsk (Russia). I already know a lot of technologies for creating visual interfaces, servers, working with databases. I will create web applications for business or join a development team.',
   plugins: [
       // Sitemap
@@ -32,6 +33,29 @@ module.exports = {
       options: {
         config: {
         }
+      }
+    },
+      // Robots
+    {
+      use: 'gridsome-plugin-robots-txt',
+      options: {
+        host: 'https://d0rich.github.io/',
+        sitemap: 'https://d0rich.github.io/sitemap.xml',
+        policy: [
+          {
+            userAgent: "Googlebot",
+            allow: "/",
+            disallow: "/search",
+            crawlDelay: 2
+          },
+          {
+            userAgent: "*",
+            allow: "/",
+            disallow: "/search",
+            crawlDelay: 10,
+            cleanParam: "ref /articles/"
+          }
+        ]
       }
     },
       // Nodes for blog
