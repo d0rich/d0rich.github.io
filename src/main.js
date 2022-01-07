@@ -17,6 +17,11 @@ export default function (Vue, { appOptions, head }) {
 
   head.link.push({
     rel: 'stylesheet',
+    href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
+  })
+
+  head.link.push({
+    rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900',
   });
 

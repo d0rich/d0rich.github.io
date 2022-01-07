@@ -5,11 +5,14 @@
         <nav class="mb-3">
           <div>Navigation:</div>
           <ul>
-            <FooterRoute v-for="(route, index) in navigation.routes" :key="index" :route="route" />
+            <li><g-link :to="Router.home">Home</g-link></li>
+            <li><g-link :to="Router.blog()">Blog</g-link></li>
+            <li><g-link :to="Router.portfolio()">Portfolio</g-link></li>
+            <li><g-link :to="Router.allResume()">Resume</g-link></li>
           </ul>
         </nav>
 
-        <div>
+        <address>
           <div>Connect with me:</div>
           <a href="mailto:d.orich@yandex.com">
             <v-icon>mdi-email</v-icon>
@@ -17,12 +20,19 @@
           </a>
           <div>
             <v-btn icon target="_blank"
-                   v-for="btn in connection.socials" :key="btn.href"
-                   :href="btn.href" >
-              <v-icon>{{btn.icon}}</v-icon>
+                   href="https://t.me/d0rich" >
+              <v-icon>fa-telegram</v-icon>
+            </v-btn>
+            <v-btn icon target="_blank"
+                   href="https://vk.com/d0rich" >
+              <v-icon>fa-vk</v-icon>
+            </v-btn>
+            <v-btn icon target="_blank"
+                   href="https://github.com/d0rich" >
+              <v-icon>mdi-github</v-icon>
             </v-btn>
           </div>
-        </div>
+        </address>
       </div>
       <div class="footer__block--bottom">
         <span>© {{new Date().getFullYear()}} Developer Nikolay Dorofeev (d0rich)</span>
@@ -33,36 +43,13 @@
 </template>
 
 <script>
-import FooterRoute from "~/components/layout/FooterRoute";
 import {Router} from "~/router";
 
 export default {
 name: "Footer",
-  components: {
-    FooterRoute
-  },
   data(){
     return{
-      navigation: {
-        routes: [
-          { title: 'Home', route: Router.home },
-          { title: 'Resume',
-            route: Router.empty, children: [
-              //{ title: new Text('Фронтенд', 'Frontend'), route: { name: 'Resume' } },
-              //{ title: new Text('Бэкенд', 'Backend'), route: { name: 'Resume' } },
-              //{ title: new Text('Фуллстак', 'Fullstack'), route: { name: 'Resume' } }
-            ] },
-          { title: 'Portfolio', route: Router.empty },
-          { title: 'News', route: Router.blog() },
-        ]
-      },
-      connection: {
-        socials: [
-          { href: 'https://t.me/d0rich', icon: 'mdi-telegram', text: 'telegram' },
-          { href: 'https://vk.com/d0rich', icon: 'mdi-vk', text: 'vk' },
-          { href: 'https://github.com/d0rich', icon: 'mdi-github', text: 'github' },
-        ]
-      }
+      Router
     }
   },
   computed: {
