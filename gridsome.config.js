@@ -26,6 +26,14 @@ module.exports = {
   siteName: 'Gridsome',
   siteDescription: 'I am Nikolay Dorofeev, a young JavaScript developer from Tomsk (Russia). I already know a lot of technologies for creating visual interfaces, servers, working with databases. I will create web applications for business or join a development team.',
   plugins: [
+      // Sitemap
+    {
+      use: '@gridsome/plugin-sitemap',
+      options: {
+        config: {
+        }
+      }
+    },
       // Nodes for blog
     {
       use: '@gridsome/source-filesystem',
