@@ -36,15 +36,10 @@ name: "Terminal",
 					show: false },
 				{ text:  ' ', show: false}
 			],
-      href: document.location.href,
+      href: '',
       showCommand: false,
       command: '',
       showContent: false,
-    }
-  },
-  watch:{
-    '$route.fullPath'(){
-      this.href = document.location.href
     }
   },
   methods:{
@@ -57,6 +52,8 @@ name: "Terminal",
     }
   },
   async mounted(){
+    //this.href = `https://d0rich.github.io${this.$route.fullPath}`
+    this.href = document.location.href
     for (const text of this.startText) {
       text.show = false
     }
