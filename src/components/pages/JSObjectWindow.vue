@@ -1,6 +1,6 @@
 <template>
   <div class="js-object border-light--primary">
-    <span v-if="object.name">{{name}} = </span>{
+    <span v-if="name">{{name}} = </span>{
     <div v-for="(value, key, index) in object" :key="key" class="js-object__field" >
       <span class="key">{{key}}</span>: <span class="value">{{value}}</span><span class="comma" v-if="index < Object.keys(object).length - 1">,</span>
     </div>
