@@ -4,7 +4,13 @@
     <div class="hr"></div>
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
-      <back-btn class="ml-5 my-5" />
+      <v-btn color="primary" class="ml-5 my-5 align-self-start"
+             :to="Router.blog()" exact>
+        <v-icon>
+          mdi-chevron-left
+        </v-icon>
+        Back
+      </v-btn>
     </nav>
     <nav>
       <h2>Posts tagged <span class="tag-highlight">#{{ $page.tag.title }}</span></h2>
@@ -71,11 +77,10 @@ query Tag ($id: ID!, $page: Int) {
 
 <script>
 import PostCard from "../components/PostCard";
-import BackBtn from "../components/BackBtn";
 import {Router} from "../router";
 export default {
   components:{
-    PostCard, BackBtn
+    PostCard
   },
   computed:{
     breadcrumbs(){
@@ -85,7 +90,7 @@ export default {
         {text: 'tags', disabled: true},
         {text: this.$page.tag.title , disabled: true},
       ]
-    }
+    },
   },
   methods: {
     changePage(page){

@@ -4,7 +4,13 @@
     <div class="hr"></div>
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
-      <back-btn class="ml-5 my-5" />
+      <v-btn color="primary" class="ml-5 my-5 align-self-start"
+             :to="Router.portfolio()" exact>
+        <v-icon>
+          mdi-chevron-left
+        </v-icon>
+        Back
+      </v-btn>
     </nav>
 
     <nav>
@@ -73,13 +79,12 @@ query Tag ($id: ID!, $page: Int) {
 
 <script>
 import ProjectBlock from "../components/ProjectBlock";
-import BackBtn from "../components/BackBtn";
 import {Router} from "../router";
 
 export default {
   name: "ProjectTag",
   components:{
-    ProjectBlock, BackBtn
+    ProjectBlock
   },
   computed:{
     breadcrumbs(){

@@ -150,7 +150,6 @@ import JSObjectWindow from "~/components/pages/JSObjectWindow";
 import EnterBlock2 from "~/components/pages/EnterBlock2";
 import ProjectBlock from "../components/ProjectBlock";
 import PostCard from "../components/PostCard";
-import {Router} from "~/router";
 import { mapGetters } from 'vuex'
 
 export default {
@@ -161,7 +160,6 @@ export default {
 	},
 	data(){
 		return{
-			Router,
 			contacts: [
 				{ href: 'mailto:d.orich@yandex.com', icon: 'mdi-email', text: 'email' },
 				{ href: 'https://t.me/d0rich', icon: 'fa-telegram', text: 'telegram' },

@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import {Router} from "../router";
 
 export default {
 name: "ProjectBlock",
@@ -30,11 +29,6 @@ name: "ProjectBlock",
     project: {
       required: true,
       type: Object
-    }
-  },
-  data(){
-    return{
-      Router
     }
   }
 }

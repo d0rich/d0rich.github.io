@@ -2,7 +2,13 @@
   <layout>
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
-      <back-btn class="ml-5 my-5" />
+      <v-btn color="primary" class="ml-5 my-5 align-self-start"
+             :to="Router.portfolio()" exact>
+        <v-icon>
+          mdi-chevron-left
+        </v-icon>
+        Back
+      </v-btn>
     </nav>
     <article>
       <div style="max-width: 100%">
@@ -57,14 +63,10 @@ query Project ($path: String!) {
 </page-query>
 
 <script>
-import BackBtn from "../components/BackBtn";
 import {Router} from "../router";
 
 export default {
   name: "Project",
-  components: {
-    BackBtn
-  },
   computed:{
     breadcrumbs(){
       return [

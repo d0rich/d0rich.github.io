@@ -47,11 +47,6 @@ import {Router} from "~/router";
 
 export default {
 name: "Footer",
-  data(){
-    return{
-      Router
-    }
-  },
   computed: {
 
   }
