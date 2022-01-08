@@ -42,7 +42,16 @@ content:
           begin: 2018-09-01
           end: 2022-07-01
         description: "BС in Information Systems and Technology in 
-        Business and Industry. Now I am studying in the 4th year, I have only A in profile subjects."
+              Business and Industry. Now I am studying in the 4th year."
+
+      - spec: Fundamentals of digital marketing
+        place: Google Digital Garage
+        date:
+          begin: 2021-06-01
+          end: 2021-06-17
+        description: "Learn the fundamentals of digital marketing to help your business or career."
+        certificate: https://drive.google.com/file/d/1hBW6388BoIbZafNe2tx3sJr0M05RodB2/view?usp=sharing
+
       - spec: Vue.Js Frontend Developer
         place: Smart World Academy
         date:
