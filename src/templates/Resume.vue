@@ -139,6 +139,7 @@ query Resume($path: String!){
             end
           }
           description
+          certificate
         }
       }
     }

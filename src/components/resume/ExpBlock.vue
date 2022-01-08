@@ -16,7 +16,10 @@
         <time v-else >{{ expNote.date.end }}</time>
       </span>
     </div>
-    <div class="time-note__description">{{expNote.description}}</div>
+    <div class="time-note__description">
+      <p>{{expNote.description}}</p>
+      <a v-if="expNote.certificate" :href="expNote.certificate" target="_blank">Certificate</a>
+    </div>
   </div>
 </template>
 

@@ -25,12 +25,18 @@ content:
   skills:
     text: "I am constantly exercising my skills and learning new technologies to do my job more efficiently."
     fields:
+      - name: Platforms
+        items: [ Node.js ]
       - name: Programming Languages
-        items: [ HTML5, CSS3, SCSS, JavaScript, TypeScript ]
-      - name: Client Side Apps
-        items: [ Vue.js, Nuxt.js, VueX, Vue Router, Vuetify.js, Bootstrap ]
+        items: [ JavaScript, TypeScript, SQL ]
+      - name: Frameworks
+        items: [ Nuxt.js, Express, Fastify ]
+      - name: Data
+        items: [ PostgreSQL, MSSQL, MongoDB, Sequelize ORM, Mongoose ]
       - name: Instruments
-        items: [ VS Code, WebStorm, Figma, Notion, Jira, Google Docs ]
+        items: [ WebStorm, DataGrip, IntelliJ, Notion, Jira, Google Docs ]
+      - name: Also Know
+        items: [ C#, ASP.NET, Python, Flask, Alchemy ORM, Java, Dart, PHP, Laravel ]
 
   education:
     text: "All my life I have been driven by my strong belief 
@@ -42,4 +48,17 @@ content:
           begin: 2018-09-01
           end: 2022-07-01
         description: "BС in Information Systems and Technology in 
-        Business and Industry. Now I am studying in the 4th year, I have only A in profile subjects."
+        Business and Industry. Now I am studying in the 4th year."
+
+      - spec: Architecting with Google Kubernetes Engine
+        place: Coursera
+        date:
+          begin: 2021-09-01
+          end: 2021-10-10
+        description: "The Architecting with Google Kubernetes Engine specialization will
+              teach you how to implement solutions using Google Kubernetes
+              Engine, or GKE, including building, scheduling, load balancing, and
+              monitoring workloads, as well as providing for discovery of services,
+              managing role-based access control and security, and providing
+              persistent storage to these applications."
+        certificate: https://coursera.org/share/c317d250d83c22963a7659c32295d1a8
