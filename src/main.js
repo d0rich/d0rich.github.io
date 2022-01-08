@@ -12,7 +12,7 @@ import DefaultLayout from '~/layouts/Default.vue'
 export default function (Vue, { appOptions, head }) {
   head.link.push({
     rel: 'stylesheet',
-    href: 'https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css',
+    href: 'https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css',
   })
 
   head.link.push({
