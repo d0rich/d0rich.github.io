@@ -8,6 +8,7 @@ import 'vuetify/dist/vuetify.min.css'
 import Vuex from 'vuex'
 import store from '~/store'
 import DefaultLayout from '~/layouts/Default.vue'
+import {Router} from "./router";
 
 export default function (Vue, { appOptions, head }) {
   head.link.push({
@@ -43,6 +44,9 @@ export default function (Vue, { appOptions, head }) {
           setTimeout(() =>resolve(), ms * (1 - 0.1 + Math.random() * 0.2))
         })
       }
+    },
+    computed:{
+      Router: () => Router
     }
   })
 

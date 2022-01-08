@@ -1,7 +1,15 @@
 <template>
   <Layout>
-    <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
-    <back-btn class="ml-5 my-5 align-self-start" />
+    <nav>
+      <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
+      <v-btn color="primary" class="ml-5 my-5 align-self-start"
+             :to="Router.blog()" exact>
+        <v-icon>
+          mdi-chevron-left
+        </v-icon>
+        Back
+      </v-btn>
+    </nav>
     <article>
       <div style="max-width: 100%">
         <h1>{{ $page.post.title }} </h1>
@@ -42,11 +50,7 @@ query Post ($path: String!) {
 
 <script>
 import {Router} from "../router";
-import BackBtn from "../components/BackBtn";
 export default {
-  components: {
-    BackBtn
-  },
   computed:{
     breadcrumbs(){
       return [
@@ -55,7 +59,7 @@ export default {
         {text: 'posts', disabled: true},
         {text: this.$page.post.title , disabled: true},
       ]
-    }
+    },
   },
   metaInfo() {
     return {

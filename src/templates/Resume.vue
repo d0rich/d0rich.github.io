@@ -11,7 +11,13 @@
 
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
-      <back-btn class="ml-5 my-5" />
+      <v-btn color="primary" class="ml-5 my-5 align-self-start"
+             :to="Router.allResume()" exact>
+        <v-icon>
+          mdi-chevron-left
+        </v-icon>
+        Back
+      </v-btn>
     </nav>
 
 
@@ -172,11 +178,10 @@ query Resume($path: String!){
 <script>
 import ExpBlock from "../components/resume/ExpBlock";
 import SkillsBlock from "../components/resume/SkillsBlock";
-import BackBtn from "../components/BackBtn";
 import {Router} from "../router";
 export default {
   name: "Resume",
-  components: { ExpBlock, SkillsBlock, BackBtn },
+  components: { ExpBlock, SkillsBlock },
   computed:{
     breadcrumbs(){
       return [
