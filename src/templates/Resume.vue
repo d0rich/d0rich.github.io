@@ -52,7 +52,7 @@
               <v-btn icon :href="`https://t.me/${$page.resume.content.contacts.social.telegram}`" target="_blank" >
                 <v-icon>fa-telegram</v-icon>
               </v-btn>
-              <v-btn icon :href="`https://vk.com/${$page.resume.content.contacts.social.bk}`" target="_blank" >
+              <v-btn icon :href="`https://vk.com/${$page.resume.content.contacts.social.vk}`" target="_blank" >
                 <v-icon>fa-vk</v-icon>
               </v-btn>
             </div>
