@@ -66,11 +66,15 @@ export default {
 </script>
 
 <style scoped>
+.markdown-body{
+  width: 100%;
+  max-width: 1020px;
+}
 article{
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 95vw;
+  width: 95vw;
 }
 @media screen and (max-width: 640px){
   .markdown-body{
