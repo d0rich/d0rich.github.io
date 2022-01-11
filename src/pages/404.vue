@@ -25,7 +25,15 @@ export default {
   },
   metaInfo(){
     return {
-      title: 'Error 404 - Page not found'
+      title: 'Oops',
+      meta: [
+        { key: 'description' , name: 'description',
+          content: 'Page not found' },
+        { key: 'og:title', property: 'og:title', content: 'Oops | Dorich' },
+        { key: 'og:description', property: 'og:description',
+          content: 'Portfolio of Dorich, JavaScript developer'},
+        { key: 'robots', name: 'robots', content: 'noindex,follow'}
+      ]
     }
   }
 }
