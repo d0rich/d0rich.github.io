@@ -62,6 +62,14 @@ query Project ($path: String!) {
 }
 </page-query>
 
+<static-query>
+query {
+  metadata {
+    siteUrl
+  }
+}
+</static-query>
+
 <script>
 import {Router} from "../router";
 
@@ -79,7 +87,21 @@ export default {
   },
   metaInfo() {
     return {
-      title: this.$page.project.title
+      title: this.$page.project.title,
+      meta: [
+        { key: 'description' , name: 'description',
+          content: this.$page.project.summary },
+        {
+          key: 'keywords', name: 'keywords',
+          content: 'JavaScript developer, ' + this.$page.project.tags.map(t=>t.title).join(', ') + ', ' + this.$page.project.technologies.map(t=>t.title).join(', ')
+        },
+        { key: 'og:title', property: 'og:title', content: `${this.$page.project.title} | Dorich` },
+        { key: 'og:description', property: 'og:description',
+          content: this.$page.project.summary },
+        { key: 'og:url', property: 'og:url', content: this.$static.metadata.siteUrl + this.$page.project.path},
+        { key: 'og:image', property: 'og:image', content: this.$static.metadata.siteUrl + this.$page.project.image},
+        { key: 'vk:image', property: 'vk:image', content: this.$static.metadata.siteUrl + this.$page.project.image},
+      ]
     }
   }
 }
