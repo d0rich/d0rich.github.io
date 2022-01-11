@@ -28,16 +28,34 @@
                :src="$page.project.image" :alt="$page.project.title" />
       </div>
       <div class="hr" />
-      <div class="markdown-body mb-8" id="article-area" v-html="$page.project.content" />
-      <h2>Built with</h2>
-      <nav class="tech-container">
-        <v-btn v-for="tech in $page.project.technologies" :key="tech.id"
-               class="mx-4 my-2"
-               outlined text large
-               :to="tech.path">
-          {{tech.title}}
-        </v-btn>
-      </nav>
+      <div class="markdown-body">
+        <div class="mb-8" id="article-area" v-html="$page.project.content" />
+        <h2 v-if="$page.project.related.length">Related links</h2>
+        <ul class="related-links">
+          <v-list-item
+              v-for="(link, i) in $page.project.related"
+              :key="i"
+              :href="link.href" target="_blank"
+          >
+            <v-list-item-icon>
+              <v-icon v-text="link.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="link.title"/>
+            </v-list-item-content>
+          </v-list-item>
+        </ul>
+        <h2>Built with</h2>
+        <nav class="tech-container">
+          <v-btn v-for="tech in $page.project.technologies" :key="tech.id"
+                 class="mx-4 my-2"
+                 outlined text large
+                 :to="tech.path">
+            {{tech.title}}
+          </v-btn>
+        </nav>
+      </div>
+
     </article>
   </layout>
 </template>
@@ -57,6 +75,11 @@ query Project ($path: String!) {
     technologies {
       title
       path
+    }
+    related {
+      title
+      icon
+      href
     }
   }
 }
@@ -116,6 +139,11 @@ export default {
 .markdown-body{
   width: 100%;
   max-width: 1020px;
+}
+.related-links{
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 0;
 }
 article{
   display: flex;
