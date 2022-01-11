@@ -116,7 +116,7 @@ export default {
         { key: 'og:title', property: 'og:title', content: 'Blog | Dorich' },
         { key: 'og:description', property: 'og:description',
           content: 'Portfolio of Dorich, JavaScript developer'},
-        { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/portfolio/${this.$page.projects.pageInfo.currentPage}/`},
+        { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/portfolio/${this.$page.projects.pageInfo.currentPage > 1 ? this.$page.projects.pageInfo.currentPage + '/' : '' }`},
         { key: 'robots', name: 'robots', content: 'noindex,follow'}
       ]
     }
