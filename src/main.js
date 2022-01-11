@@ -9,6 +9,7 @@ import Vuex from 'vuex'
 import store from '~/store'
 import DefaultLayout from '~/layouts/Default.vue'
 import {Router} from "./router";
+import {analytics} from "./plugins/google-analytics";
 
 export default function (Vue, { appOptions, head }) {
   head.link.push({
@@ -26,6 +27,7 @@ export default function (Vue, { appOptions, head }) {
     href: 'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900',
   });
 
+  Vue.prototype.$ga = analytics
   Vue.use(Vuetify)
   Vue.use(Vuex)
 

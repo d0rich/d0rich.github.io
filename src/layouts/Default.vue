@@ -51,6 +51,13 @@ export default {
 			this.getWindowWidth(window.innerWidth)
 		}
 	},
+  mounted() {
+    //console.log(document.location.href)
+    //console.log(this.$ga.app.automaticDataCollectionEnabled)
+  },
+  updated() {
+    //console.log(document.location.href)
+  }
 };
 </script>
 
