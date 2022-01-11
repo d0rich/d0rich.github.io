@@ -84,17 +84,19 @@ export default {
       this.$router.push(Router.blog(page))
     }
   },
-  metaInfo: {
-    title: 'Blog',
-    meta: [
-      { key: 'description' , name: 'description',
-        content: 'Blog of Dorich, JavaScript developer' },
-      { key: 'og:title', property: 'og:title', content: 'Blog | Dorich' },
-      { key: 'og:description', property: 'og:description',
-        content: 'Blog of Dorich, JavaScript developer'},
-      { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/blog/${this.$page.posts.pageInfo.currentPage}/`},
-      { key: 'robots', name: 'robots', content: 'noindex,follow'}
-    ]
+  metaInfo() {
+    return {
+      title: 'Blog',
+      meta: [
+        { key: 'description' , name: 'description',
+          content: 'Blog of Dorich, JavaScript developer' },
+        { key: 'og:title', property: 'og:title', content: 'Blog | Dorich' },
+        { key: 'og:description', property: 'og:description',
+          content: 'Blog of Dorich, JavaScript developer'},
+        { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/blog/${this.$page.posts.pageInfo.currentPage}/`},
+        { key: 'robots', name: 'robots', content: 'noindex,follow'}
+      ]
+    }
   }
 }
 </script>
