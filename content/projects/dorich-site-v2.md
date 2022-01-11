@@ -6,6 +6,13 @@ summary: ""
 image: '/projects/dorich-site-v2/main.jpeg'
 tags: [ 'frontend', 'backend', 'SEO', prod ]
 technologies: [ 'Dropbox', 'Vue.js', 'Fastify', 'Node.js', 'Firebase', 'PostgreSQL', 'Vuetify' ]
+related:
+    - title: Working project
+      icon: mdi-desktop-mac-dashboard
+      href: https://d0rich.github.io/
+    - title: Source code on GitHub
+      icon: mdi-github
+      href: https://github.com/d0rich/vue-weather
 ---
 I needed a resource that would demonstrate my web development competence in 
 itself and simply by describing what I can.

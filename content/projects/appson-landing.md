@@ -6,6 +6,13 @@ summary: ""
 image: '/projects/appson-landing/main.jpeg'
 tags: [ 'frontend', learn]
 technologies: [ JQuery]
+related:
+    - title: Working project
+      icon: mdi-desktop-mac-dashboard
+      href: https://d0rich.github.io/app-son/
+    - title: Source code on GitHub
+      icon: mdi-github
+      href: https://github.com/d0rich/app-son
 ---
 In September 2020, I became a member of the Smart World Academy 
 (a project of an IT company from Tomsk for training potential employees) 

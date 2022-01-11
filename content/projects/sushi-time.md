@@ -6,6 +6,10 @@ summary: ""
 image: '/projects/sushi-time/main.jpeg'
 tags: [ 'frontend', 'backend', 'learning' ]
 technologies: [ 'Node.js', 'Nuxt.js', 'Vuetify' , 'Express', 'PostgreSQL', Sequelize ORM]
+related:
+    - title: Working project
+      icon: mdi-desktop-mac-dashboard
+      href: hhttps://sushi-service.herokuapp.com/menu
 ---
 ## How did this happen?
 This application was created as a course project at the university for the 3rd year.

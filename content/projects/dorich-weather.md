@@ -6,6 +6,10 @@ summary: ""
 image: '/projects/dorich-weather/main.jpeg'
 tags: [ 'frontend', dashboard, API, learn]
 technologies: ['Vue.js', Vuetify]
+related:
+    - title: Working project
+      icon: mdi-desktop-mac-dashboard
+      href: http://dorich-weather.herokuapp.com/
 ---
 This application was created with the goal of understanding what potentially useful application I can make in a short time.
 

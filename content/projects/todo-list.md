@@ -6,6 +6,13 @@ summary: ""
 image: '/projects/todo-list/main.jpeg'
 tags: [ 'frontend', learn]
 technologies: ['Vue.js', Bootstrap]
+related:
+    - title: Working project
+      icon: mdi-desktop-mac-dashboard
+      href: https://dorich-todo.herokuapp.com/#/
+    - title: Source code on GitHub
+      icon: mdi-github
+      href: https://github.com/d0rich/todo-list
 ---
 This is one of the tasks that I performed during the passage of the Smart World Academy (a project of an IT company from Tomsk for training potential employees).
 

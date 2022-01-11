@@ -6,6 +6,13 @@ summary: ""
 image: '/projects/rating-visualize/main.jpeg'
 tags: [ 'frontend', dashboard, learn]
 technologies: [ 'Bootstrap', 'Chart.js', 'Vue.js']
+related:
+    - title: Working project
+      icon: mdi-desktop-mac-dashboard
+      href: https://d0rich.github.io/rating-visualize/
+    - title: Source code on GitHub
+      icon: mdi-github
+      href: https://github.com/d0rich/rating-visualize
 ---
 The application visualizes the results of the qualifying round 
 of the [Olympiads 20/21 from the website of Tomsk State University](http://abiturient.tsu.ru/ru/content/results-ORMO).
