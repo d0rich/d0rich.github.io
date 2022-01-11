@@ -6,6 +6,7 @@
 query {
   metadata {
     siteName
+    siteUrl
     siteDescription
   }
 }
@@ -33,8 +34,8 @@ export default {
           content: this.$static.metadata.siteDescription},
         { key: 'og:site_name', property: 'og:site_name', content: 'Dorich | JS Developer Personal Site'},
         { key: 'og:type', property: 'og:type', content: 'website'},
-        { key: 'og:image', property: 'og:image', content: '/img/og/og-image.jpg'},
-        { key: 'vk:image', property: 'vk:image', content: '/img/og/vk-image.jpg'},
+        { key: 'og:image', property: 'og:image', content: this.$static.metadata.siteUrl + '/img/og/og-image.jpg'},
+        { key: 'vk:image', property: 'vk:image', content: this.$static.metadata.siteUrl + '/img/og/vk-image.jpg'},
         { key: 'robots', name: 'robots', content: 'index,follow'}
       ]
     }
