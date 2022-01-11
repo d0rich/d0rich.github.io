@@ -99,7 +99,16 @@ export default {
   },
   metaInfo() {
     return {
-      title: `Tag: ${this.$page.tag.title}`
+      title: `Tag: ${this.$page.tag.title}`,
+      meta: [
+        { key: 'description' , name: 'description',
+          content: `All posts of Dorich with tag #${this.$page.tag.title}` },
+        { key: 'og:title', property: 'og:title', content: `Tag: ${this.$page.tag.title} | Dorich` },
+        { key: 'og:description', property: 'og:description',
+          content: `All posts of Dorich with tag #${this.$page.tag.title}`},
+        { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/blog/tags/${this.$page.tag.title}/${this.$page.tag.belongsTo.pageInfo.currentPage}/`},
+        { key: 'robots', name: 'robots', content: 'noindex,follow'}
+      ]
     }
   },
 }
