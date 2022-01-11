@@ -14,7 +14,7 @@ import Terminal from "../components/Terminal";
 import {Router} from "../router";
 
 export default {
-  name: "404",
+  name: "Error404",
   components:{
     Terminal
   },
