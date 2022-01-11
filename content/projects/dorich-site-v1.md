@@ -6,6 +6,10 @@ summary: ""
 image: '/projects/dorich-site-v1/main.jpeg'
 tags: [ 'frontend', 'backend', legacy, prod ]
 technologies: [ 'Vue.js', 'Express', 'Node.js', 'Firebase', 'MongoDB', Mongoose]
+related:
+    - title: Source code on GitHub
+      icon: mdi-github
+      href: https://github.com/d0rich/dorich-site-legacy
 ---
 My first acquaintance with web technologies.
 

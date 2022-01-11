@@ -6,6 +6,13 @@ summary: ""
 image: '/projects/sport-organizer/main.jpeg'
 tags: [ frontend, backend, learn, legacy]
 technologies: ['Vue.js', Vuetify, Node.js, Express, Sequelize ORM, PostgreSQL ]
+related:
+    - title: Working project
+      icon: mdi-desktop-mac-dashboard
+      href: https://sport-org.herokuapp.com/
+    - title: Source code on GitHub
+      icon: mdi-github
+      href: https://github.com/d0rich/sport-organizer-client
 ---
 At practice after the 2nd year of university, I needed to create a small information system. We could have come up with the system ourselves, and therefore, having just got acquainted with web technologies (Vue, Express, MongoDb, MSSQL), I planned to create, in fact, a whole social network.
 
