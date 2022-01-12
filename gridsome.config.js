@@ -27,6 +27,15 @@ module.exports = {
   siteUrl: 'https://d0rich.github.io',
   siteDescription: 'I am Nikolay Dorofeev, a young JavaScript developer from Tomsk (Russia). I already know a lot of technologies for creating visual interfaces, servers, working with databases. I will create web applications for business or join a development team.',
   plugins: [
+      // Analytics
+    {
+      use: 'gridsome-plugin-gtag',
+      options: {
+        config: {
+          id: 'G-FJFPMTV42J',
+        },
+      },
+    },
       // Sitemap
     {
       use: '@gridsome/plugin-sitemap',
