@@ -11,6 +11,16 @@ import DefaultLayout from '~/layouts/Default.vue'
 import {Router} from "./router";
 
 export default function (Vue, { appOptions, head }) {
+  head.meta.push({
+    name: 'google-site-verification',
+    content: 'EPJeLQdX2LPTsEMv34e1U_qzfrNVuvuoB4Xn_10xnfw'
+  })
+
+  head.meta.push({
+    name: 'yandex-verification',
+    content: '70389b477fa77d75'
+  })
+
   head.link.push({
     rel: 'stylesheet',
     href: 'https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css',
