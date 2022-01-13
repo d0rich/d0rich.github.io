@@ -6,7 +6,7 @@
       <v-breadcrumbs :items="breadcrumbs"/>
     </nav>
 
-    <nav>
+    <nav class="posts-container">
       <post-card v-for="post in $page.posts.edges" :key="post.node.id"
                  :post="post.node"
                  class="my-2" />
@@ -105,3 +105,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.posts-container{
+	width: 100%;
+}
+</style>
