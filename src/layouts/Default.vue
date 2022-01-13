@@ -4,9 +4,7 @@
 		<BottomNavigation v-else />
 		<v-main>
 			<transition name="glitch-transition" appear mode="out-in">
-				<div class="page px-4">
-					<slot />
-				</div>
+				<slot />
 			</transition>
 		</v-main>
 		<Footer />
@@ -71,22 +69,6 @@ export default {
 }
 #bottom-navigation{
   display: none;
-}
-.page{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	max-width: 1080px;
-	margin: auto;
-}
-.loading-container{
-	pointer-events: none;
-	position: fixed;
-	z-index: 12000;
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	align-items: center;
 }
 .v-image__image--preload{
 	filter: none;

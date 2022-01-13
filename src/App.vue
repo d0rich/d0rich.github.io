@@ -1,6 +1,6 @@
 <template>
 	<layout>
-		<router-view />
+		<router-view  class="page px-4" />
 	</layout>
 </template>
 
@@ -45,3 +45,13 @@ export default {
   }
 }
 </script>
+<style>
+.page{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	max-width: 1080px;
+	margin: auto;
+}
+</style>
