@@ -211,7 +211,7 @@ export default {
               this.$page.resume.content.education.history.map(t=>t.place).join(', ') + ', ' +
               this.$page.workExp.edges.map(t=>t.place).join(', ')
         },
-        { key: 'og:title', property: 'og:title', content: `${this.$page.resume.content.main.spec} Resume | Dorich` },
+        { key: 'og:title', property: 'og:title', content: `${this.$page.resume.content.main.spec} Resume` },
         { key: 'og:description', property: 'og:description',
           content: this.$page.resume.content.main.text },
         { key: 'og:url', property: 'og:url', content: this.$static.metadata.siteUrl + this.$page.resume.path},

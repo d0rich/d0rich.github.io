@@ -186,6 +186,7 @@ export default {
       titleTemplate: '%s',
 			meta: [
 				{ key: 'og:url', property: 'og:url', content: 'https://d0rich.github.io/'},
+				{ key: 'og:title', property: 'og:title', content: 'Dorich - All You Need to Know' }
 			]
 		}
 	},

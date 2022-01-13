@@ -90,7 +90,7 @@ export default {
       meta: [
         { key: 'description' , name: 'description',
           content: 'Blog of Dorich, JavaScript developer' },
-        { key: 'og:title', property: 'og:title', content: 'Blog | Dorich' },
+        { key: 'og:title', property: 'og:title', content: 'Blog by Dorich' },
         { key: 'og:description', property: 'og:description',
           content: 'Blog of Dorich, JavaScript developer'},
         { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/blog/${this.$page.posts.pageInfo.currentPage > 1 ? this.$page.posts.pageInfo.currentPage + '/' : ''}`},
