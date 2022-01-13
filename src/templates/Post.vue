@@ -84,7 +84,7 @@ export default {
           key: 'keywords', name: 'keywords',
           content: 'JavaScript developer, ' + this.$page.post.tags.map(t=>t.title).join(', ')
         },
-        { key: 'og:title', property: 'og:title', content: `${this.$page.post.title} | Dorich` },
+        { key: 'og:title', property: 'og:title', content: `Blog Post: ${this.$page.post.title}` },
         { key: 'og:description', property: 'og:description',
           content: description },
         { key: 'og:url', property: 'og:url', content: this.$static.metadata.siteUrl + this.$page.post.path},

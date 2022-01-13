@@ -120,7 +120,7 @@ export default {
           key: 'keywords', name: 'keywords',
           content: 'JavaScript developer, ' + this.$page.project.tags.map(t=>t.title).join(', ') + ', ' + this.$page.project.technologies.map(t=>t.title).join(', ')
         },
-        { key: 'og:title', property: 'og:title', content: `${this.$page.project.title} | Dorich` },
+        { key: 'og:title', property: 'og:title', content: `IT Project: ${this.$page.project.title}` },
         { key: 'og:description', property: 'og:description',
           content: description },
         { key: 'og:url', property: 'og:url', content: this.$static.metadata.siteUrl + this.$page.project.path},

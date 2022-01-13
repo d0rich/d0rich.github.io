@@ -108,7 +108,7 @@ export default {
       meta: [
         { key: 'description' , name: 'description',
           content: `All projects of Dorich that use ${this.$page.technology.title}` },
-        { key: 'og:title', property: 'og:title', content: `Technology: ${this.$page.technology.title} | Dorich` },
+        { key: 'og:title', property: 'og:title', content: `Technology for IT Project: ${this.$page.technology.title}` },
         { key: 'og:description', property: 'og:description',
           content: `All projects of Dorich that use ${this.$page.technology.title}`},
         { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/portfolio/technologies/${this.$page.technology.title}/${this.$page.technology.belongsTo.pageInfo.currentPage > 1 ? this.$page.technology.belongsTo.pageInfo.currentPage + '/':''}`},
