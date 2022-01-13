@@ -207,7 +207,7 @@ export default {
           content: this.$page.resume.content.main.text },
         {
           key: 'keywords', name: 'keywords',
-          content: this.$page.resume.content.main.spec + ', ' +
+          content: 'informational technologies, IT, ' + this.$page.resume.content.main.spec + ', ' +
               this.$page.resume.content.education.history.map(t=>t.place).join(', ') + ', ' +
               this.$page.workExp.edges.map(t=>t.place).join(', ')
         },

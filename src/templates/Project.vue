@@ -116,7 +116,7 @@ export default {
           content: this.$page.project.summary },
         {
           key: 'keywords', name: 'keywords',
-          content: 'JavaScript developer, ' + this.$page.project.tags.map(t=>t.title).join(', ') + ', ' + this.$page.project.technologies.map(t=>t.title).join(', ')
+          content: 'developer, informational technologies, IT, ' + this.$page.project.tags.map(t=>t.title).join(', ') + ', ' + this.$page.project.technologies.map(t=>t.title).join(', ')
         },
         { key: 'og:title', property: 'og:title', content: `IT Project: ${this.$page.project.title}` },
         { key: 'og:description', property: 'og:description',
