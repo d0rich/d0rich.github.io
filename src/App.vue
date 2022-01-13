@@ -1,5 +1,7 @@
 <template>
-  <router-view />
+	<layout>
+		<router-view />
+	</layout>
 </template>
 
 <static-query>

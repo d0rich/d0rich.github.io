@@ -1,5 +1,5 @@
 <template>
-  <layout>
+  <div>
     <h1 class="mt-7">My Resume</h1>
     <div class="hr"></div>
     <nav class="align-self-start">
@@ -9,7 +9,7 @@
       <resume-card v-for="resume in $page.allResume.edges" :key="resume.node.id"
                    :resume="resume.node"/>
     </nav>
-  </layout>
+  </div>
 </template>
 
 <page-query>

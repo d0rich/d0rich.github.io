@@ -1,12 +1,12 @@
 <template>
-  <layout>
+  <div>
     <terminal enter-word="error404" class="mt-6">
       <div class="error--text">Oops, it seems, this page does not exist.</div>
       <v-btn :to="Router.home" class="mt-5" block color="primary">
         <v-icon>mdi-home</v-icon> To home page
       </v-btn>
     </terminal>
-  </layout>
+  </div>
 </template>
 
 <script>

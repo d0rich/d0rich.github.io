@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
     <h1 class="mt-7">My blog</h1>
     <div class="hr"></div>
     <nav class="align-self-start">
@@ -30,7 +30,7 @@
         </v-chip>
       </v-chip-group>
     </nav>
-  </Layout>
+  </div>
 </template>
 
 <page-query>

@@ -1,5 +1,5 @@
 <template>
-  <layout>
+  <div>
     <h1 class="mt-7">Projects filtered by tag</h1>
     <div class="hr"></div>
     <nav class="align-self-start">
@@ -38,7 +38,7 @@
         </v-chip>
       </v-chip-group>
     </nav>
-  </layout>
+  </div>
 </template>
 
 <page-query>

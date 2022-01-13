@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
     <h1 class="mt-7">Blog posts filtered by tag</h1>
     <div class="hr"></div>
     <nav class="align-self-start">
@@ -36,7 +36,7 @@
         </v-chip>
       </v-chip-group>
     </nav>
-  </Layout>
+  </div>
 </template>
 
 <page-query>
