@@ -12,7 +12,7 @@
         Back
       </v-btn>
     </nav>
-    <nav>
+    <nav class="posts-container">
       <h2>Posts tagged <span class="tag-highlight">#{{ $page.tag.title }}</span></h2>
 
       <post-card v-for="post in $page.tag.belongsTo.edges" :key="post.node.id"
@@ -113,7 +113,10 @@ export default {
   },
 }
 </script>
-<style>
+<style scoped>
+.posts-container{
+	width: 100%;
+}
 .tag-highlight{
   color: var(--v-info-base);
 }
