@@ -1,7 +1,7 @@
 <template>
 	<v-app class="main-scroll" v-resize="onResize">
-		<Header id="header" />
-		<BottomNavigation id="bottom-navigation" />
+		<Header v-if="headerOn" />
+		<BottomNavigation v-else />
 		<v-main>
 			<transition name="glitch-transition" appear mode="out-in">
 				<div class="page px-4">

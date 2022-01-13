@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
     <nav>
       <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
       <v-btn color="primary" class="ml-5 my-5 align-self-start"
@@ -30,7 +30,7 @@
       <div class="hr" />
       <div class="markdown-body mb-8" id="article-area" v-html="$page.post.content" />
     </article>
-  </Layout>
+  </div>
 </template>
 
 <page-query>

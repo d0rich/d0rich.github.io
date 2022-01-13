@@ -1,5 +1,5 @@
 <template>
-  <layout>
+  <div>
     <nav>
       <v-btn active-class="cursor-active-box" v-for="res in $page.allResume.edges" :key="res.node.id"
              class="mx-3 my-2"
@@ -108,7 +108,7 @@
       </section>
 
     </article>
-  </layout>
+  </div>
 </template>
 
 <page-query>

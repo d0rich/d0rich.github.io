@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
 
 		<EnterBlock2 class="text-center">
 			<span style="font-size: 1.7rem;" class="mx-3">Hello, my name is Nikolay Dorofeev.</span>
@@ -109,7 +109,7 @@
 			</v-btn>
 		</section>
 
-  </Layout>
+  </div>
 </template>
 
 <page-query>

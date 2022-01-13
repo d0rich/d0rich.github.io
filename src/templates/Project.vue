@@ -1,5 +1,5 @@
 <template>
-  <layout>
+  <div>
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
       <v-btn color="primary" class="ml-5 my-5 align-self-start"
@@ -57,7 +57,7 @@
       </div>
 
     </article>
-  </layout>
+  </div>
 </template>
 
 <page-query>

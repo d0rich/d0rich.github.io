@@ -1,5 +1,5 @@
 <template>
-  <layout>
+  <div>
     <h1 class="text-center mt-7">Portfolio</h1>
     <div class="hr" />
     <nav class="align-self-start">
@@ -41,7 +41,7 @@
       </v-chip-group>
     </nav>
 
-  </layout>
+  </div>
 </template>
 
 <page-query>
