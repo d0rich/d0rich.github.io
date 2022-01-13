@@ -28,8 +28,8 @@ export default {
           content: this.$static.metadata.siteDescription },
         {
           key: 'keywords', name: 'keywords',
-          content: 'informational technologies, IT, developer, web developer, ' +
-              'developer in Tomsk, frontend, backend, fullstack'
+          content: 'developer, web developer, ' +
+              'informational technologies, IT, frontend, backend, fullstack'
         },
         { key: 'og:title', property: 'og:title', content: 'Dorich - JavaScript Developer' },
         { key: 'og:description', property: 'og:description',

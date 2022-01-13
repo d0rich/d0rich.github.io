@@ -82,7 +82,7 @@ export default {
           content: description },
         {
           key: 'keywords', name: 'keywords',
-          content: 'JavaScript developer, ' + this.$page.post.tags.map(t=>t.title).join(', ')
+          content: 'developer, informational technologies, IT, ' + this.$page.post.tags.map(t=>t.title).join(', ')
         },
         { key: 'og:title', property: 'og:title', content: `Blog Post: ${this.$page.post.title}` },
         { key: 'og:description', property: 'og:description',
