@@ -113,11 +113,17 @@ export default {
       meta: [
         { key: 'description' , name: 'description',
           content: 'Portfolio of Dorich, JavaScript developer' },
-        { key: 'og:title', property: 'og:title', content: 'Blog | Dorich' },
+        {
+          key: 'keywords', name: 'keywords',
+          content: 'informational technologies, IT, developer, web developer, ' +
+              'portfolio, ' + this.$page.tags.edges.map(t => t.node.title).join(', ') + ', ' +
+              this.$page.technologies.edges.map(t => t.node.title).join(', ')
+        },
+        { key: 'og:title', property: 'og:title', content: 'Portfolio | Dorich' },
         { key: 'og:description', property: 'og:description',
           content: 'Portfolio of Dorich, JavaScript developer'},
         { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/portfolio/${this.$page.projects.pageInfo.currentPage > 1 ? this.$page.projects.pageInfo.currentPage + '/' : '' }`},
-        { key: 'robots', name: 'robots', content: 'noindex,follow'}
+        { key: 'robots', name: 'robots', content: 'index,follow'}
       ]
     }
 

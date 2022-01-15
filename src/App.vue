@@ -26,7 +26,7 @@ export default {
           content: this.$static.metadata.siteDescription },
         {
           key: 'keywords', name: 'keywords',
-          content: 'JavaScript developer, web developer, ' +
+          content: 'informational technologies, IT, developer, web developer, ' +
               'developer in Tomsk, frontend, backend, fullstack'
         },
         { key: 'og:title', property: 'og:title', content: 'Dorich - JavaScript Developer' },

@@ -70,18 +70,20 @@ export default {
     },
   },
   metaInfo() {
+    const description = this.$page.post.summary ||
+        this.$page.post.content.replace(/<[^>]+>/g, '').substring(0, 250) + '...'
     return {
       title: this.$page.post.title,
       meta: [
         { key: 'description' , name: 'description',
-          content: this.$page.post.summary },
+          content: description },
         {
           key: 'keywords', name: 'keywords',
           content: 'JavaScript developer, ' + this.$page.post.tags.map(t=>t.title).join(', ')
         },
         { key: 'og:title', property: 'og:title', content: `${this.$page.post.title} | Dorich` },
         { key: 'og:description', property: 'og:description',
-          content: this.$page.post.summary },
+          content: description },
         { key: 'og:url', property: 'og:url', content: this.$static.metadata.siteUrl + this.$page.post.path},
         { key: 'og:image', property: 'og:image', content: this.$static.metadata.siteUrl + this.$page.post.image},
         { key: 'vk:image', property: 'vk:image', content: this.$static.metadata.siteUrl + this.$page.post.image},
