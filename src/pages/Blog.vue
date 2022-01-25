@@ -1,12 +1,12 @@
 <template>
-  <Layout>
+  <div>
     <h1 class="mt-7">My blog</h1>
     <div class="hr"></div>
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
     </nav>
 
-    <nav>
+    <nav class="posts-container">
       <post-card v-for="post in $page.posts.edges" :key="post.node.id"
                  :post="post.node"
                  class="my-2" />
@@ -30,7 +30,7 @@
         </v-chip>
       </v-chip-group>
     </nav>
-  </Layout>
+  </div>
 </template>
 
 <page-query>
@@ -90,18 +90,18 @@ export default {
       meta: [
         { key: 'description' , name: 'description',
           content: 'Blog of Dorich, JavaScript developer' },
-        {
-          key: 'keywords', name: 'keywords',
-          content: 'informational technologies, IT, developer, web developer, ' +
-              'blog, ' + this.$page.tags.edges.map(t => t.node.title).join(', ')
-        },
-        { key: 'og:title', property: 'og:title', content: 'Blog | Dorich' },
+        { key: 'og:title', property: 'og:title', content: 'Blog by Dorich' },
         { key: 'og:description', property: 'og:description',
           content: 'Blog of Dorich, JavaScript developer'},
         { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/blog/${this.$page.posts.pageInfo.currentPage > 1 ? this.$page.posts.pageInfo.currentPage + '/' : ''}`},
-        { key: 'robots', name: 'robots', content: 'index,follow'}
+        { key: 'robots', name: 'robots', content: 'noindex,follow'}
       ]
     }
   }
 }
 </script>
+<style scoped>
+.posts-container{
+	width: 100%;
+}
+</style>

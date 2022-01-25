@@ -1,5 +1,5 @@
 <template>
-  <layout>
+  <div>
     <h1 class="mt-7">My Resume</h1>
     <div class="hr"></div>
     <nav class="align-self-start">
@@ -9,7 +9,7 @@
       <resume-card v-for="resume in $page.allResume.edges" :key="resume.node.id"
                    :resume="resume.node"/>
     </nav>
-  </layout>
+  </div>
 </template>
 
 <page-query>
@@ -47,16 +47,11 @@ export default {
       meta: [
         { key: 'description' , name: 'description',
           content: 'Resume of Dorich, JavaScript developer' },
-        {
-          key: 'keywords', name: 'keywords',
-          content: 'informational technologies, IT, developer, IT specialist, ' +
-              'resume, ' + this.$page.allResume.edges.map(r => r.node.title).join(', ')
-        },
-        { key: 'og:title', property: 'og:title', content: 'Resume | Dorich' },
+        { key: 'og:title', property: 'og:title', content: 'All resume of Dorich' },
         { key: 'og:description', property: 'og:description',
           content: 'Resume of Dorich, JavaScript developer'},
         { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/resume/`},
-        { key: 'robots', name: 'robots', content: 'index,follow'}
+        { key: 'robots', name: 'robots', content: 'noindex,follow'}
       ]
     }
   },

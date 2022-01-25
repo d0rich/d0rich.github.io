@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
 
 		<EnterBlock2 class="text-center">
 			<span style="font-size: 1.7rem;" class="mx-3">Hello, my name is Nikolay Dorofeev.</span>
@@ -109,7 +109,7 @@
 			</v-btn>
 		</section>
 
-  </Layout>
+  </div>
 </template>
 
 <page-query>
@@ -186,6 +186,7 @@ export default {
       titleTemplate: '%s',
 			meta: [
 				{ key: 'og:url', property: 'og:url', content: 'https://d0rich.github.io/'},
+				{ key: 'og:title', property: 'og:title', content: 'Dorich - All You Need to Know' }
 			]
 		}
 	},

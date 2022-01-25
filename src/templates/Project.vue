@@ -1,5 +1,5 @@
 <template>
-  <layout>
+  <div>
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
       <v-btn color="primary" class="ml-5 my-5 align-self-start"
@@ -57,7 +57,7 @@
       </div>
 
     </article>
-  </layout>
+  </div>
 </template>
 
 <page-query>
@@ -118,9 +118,9 @@ export default {
           content: description },
         {
           key: 'keywords', name: 'keywords',
-          content: 'JavaScript developer, ' + this.$page.project.tags.map(t=>t.title).join(', ') + ', ' + this.$page.project.technologies.map(t=>t.title).join(', ')
+          content: 'developer, informational technologies, IT, ' + this.$page.project.tags.map(t=>t.title).join(', ') + ', ' + this.$page.project.technologies.map(t=>t.title).join(', ')
         },
-        { key: 'og:title', property: 'og:title', content: `${this.$page.project.title} | Dorich` },
+        { key: 'og:title', property: 'og:title', content: `IT Project: ${this.$page.project.title}` },
         { key: 'og:description', property: 'og:description',
           content: description },
         { key: 'og:url', property: 'og:url', content: this.$static.metadata.siteUrl + this.$page.project.path},

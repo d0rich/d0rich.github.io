@@ -1,5 +1,5 @@
 <template>
-  <layout>
+  <div>
     <nav>
       <v-btn active-class="cursor-active-box" v-for="res in $page.allResume.edges" :key="res.node.id"
              class="mx-3 my-2"
@@ -108,7 +108,7 @@
       </section>
 
     </article>
-  </layout>
+  </div>
 </template>
 
 <page-query>
@@ -207,11 +207,11 @@ export default {
           content: this.$page.resume.content.main.text },
         {
           key: 'keywords', name: 'keywords',
-          content: this.$page.resume.content.main.spec + ', ' +
+          content: 'informational technologies, IT, ' + this.$page.resume.content.main.spec + ', ' +
               this.$page.resume.content.education.history.map(t=>t.place).join(', ') + ', ' +
               this.$page.workExp.edges.map(t=>t.place).join(', ')
         },
-        { key: 'og:title', property: 'og:title', content: `${this.$page.resume.content.main.spec} Resume | Dorich` },
+        { key: 'og:title', property: 'og:title', content: `${this.$page.resume.content.main.spec} Resume` },
         { key: 'og:description', property: 'og:description',
           content: this.$page.resume.content.main.text },
         { key: 'og:url', property: 'og:url', content: this.$static.metadata.siteUrl + this.$page.resume.path},

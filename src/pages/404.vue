@@ -1,12 +1,12 @@
 <template>
-  <layout>
+  <div>
     <terminal enter-word="error404" class="mt-6">
       <div class="error--text">Oops, it seems, this page does not exist.</div>
       <v-btn :to="Router.home" class="mt-5" block color="primary">
         <v-icon>mdi-home</v-icon> To home page
       </v-btn>
     </terminal>
-  </layout>
+  </div>
 </template>
 
 <script>
@@ -25,11 +25,11 @@ export default {
   },
   metaInfo(){
     return {
-      title: 'Oops',
+      title: 'Oops! Page not Found',
       meta: [
         { key: 'description' , name: 'description',
           content: 'Page not found' },
-        { key: 'og:title', property: 'og:title', content: 'Oops | Dorich' },
+        { key: 'og:title', property: 'og:title', content: 'Oops! Page not Found' },
         { key: 'og:description', property: 'og:description',
           content: 'Portfolio of Dorich, JavaScript developer'},
         { key: 'robots', name: 'robots', content: 'noindex,follow'}

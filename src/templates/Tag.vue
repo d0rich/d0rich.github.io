@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
     <h1 class="mt-7">Blog posts filtered by tag</h1>
     <div class="hr"></div>
     <nav class="align-self-start">
@@ -12,7 +12,7 @@
         Back
       </v-btn>
     </nav>
-    <nav>
+    <nav class="posts-container">
       <h2>Posts tagged <span class="tag-highlight">#{{ $page.tag.title }}</span></h2>
 
       <post-card v-for="post in $page.tag.belongsTo.edges" :key="post.node.id"
@@ -36,7 +36,7 @@
         </v-chip>
       </v-chip-group>
     </nav>
-  </Layout>
+  </div>
 </template>
 
 <page-query>
@@ -103,7 +103,7 @@ export default {
       meta: [
         { key: 'description' , name: 'description',
           content: `All posts of Dorich with tag #${this.$page.tag.title}` },
-        { key: 'og:title', property: 'og:title', content: `Tag: ${this.$page.tag.title} | Dorich` },
+        { key: 'og:title', property: 'og:title', content: `Tag for Blog Posts: ${this.$page.tag.title}` },
         { key: 'og:description', property: 'og:description',
           content: `All posts of Dorich with tag #${this.$page.tag.title}`},
         { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/blog/tags/${this.$page.tag.title}/${this.$page.tag.belongsTo.pageInfo.currentPage > 1 ? this.$page.tag.belongsTo.pageInfo.currentPage + '/' : ''}`},
@@ -113,7 +113,10 @@ export default {
   },
 }
 </script>
-<style>
+<style scoped>
+.posts-container{
+	width: 100%;
+}
 .tag-highlight{
   color: var(--v-info-base);
 }

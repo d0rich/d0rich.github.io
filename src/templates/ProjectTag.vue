@@ -1,5 +1,5 @@
 <template>
-  <layout>
+  <div>
     <h1 class="mt-7">Projects filtered by tag</h1>
     <div class="hr"></div>
     <nav class="align-self-start">
@@ -38,7 +38,7 @@
         </v-chip>
       </v-chip-group>
     </nav>
-  </layout>
+  </div>
 </template>
 
 <page-query>
@@ -107,7 +107,7 @@ export default {
       meta: [
         { key: 'description' , name: 'description',
           content: `All projects of Dorich with tag #${this.$page.tag.title}` },
-        { key: 'og:title', property: 'og:title', content: `Tag: ${this.$page.tag.title} | Dorich` },
+        { key: 'og:title', property: 'og:title', content: `Tag for IT Projects: ${this.$page.tag.title}` },
         { key: 'og:description', property: 'og:description',
           content: `All projects of Dorich with tag #${this.$page.tag.title}`},
         { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/portfolio/tags/${this.$page.tag.title}/${this.$page.tag.belongsTo.pageInfo.currentPage > 1 ? this.$page.tag.belongsTo.pageInfo.currentPage + '/': '' }`},

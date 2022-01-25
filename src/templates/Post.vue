@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <div>
     <nav>
       <v-breadcrumbs class="align-self-start" :items="breadcrumbs"/>
       <v-btn color="primary" class="ml-5 my-5 align-self-start"
@@ -33,7 +33,7 @@
       <div class="hr" />
       <div class="markdown-body mb-8" id="article-area" v-html="$page.post.content" />
     </article>
-  </Layout>
+  </div>
 </template>
 
 <page-query>
@@ -82,9 +82,9 @@ export default {
           content: description },
         {
           key: 'keywords', name: 'keywords',
-          content: 'JavaScript developer, ' + this.$page.post.tags.map(t=>t.title).join(', ')
+          content: 'developer, informational technologies, IT, ' + this.$page.post.tags.map(t=>t.title).join(', ')
         },
-        { key: 'og:title', property: 'og:title', content: `${this.$page.post.title} | Dorich` },
+        { key: 'og:title', property: 'og:title', content: `Blog Post: ${this.$page.post.title}` },
         { key: 'og:description', property: 'og:description',
           content: description },
         { key: 'og:url', property: 'og:url', content: this.$static.metadata.siteUrl + this.$page.post.path},
