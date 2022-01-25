@@ -2,7 +2,7 @@
   <v-card :to="post.path" class="news-card" :style="{paddingLeft: post.image ? 0 : undefined}">
     <div class="d-flex flex-no-wrap justify-space-between">
       <div>
-        <v-card-title  v-html="post.title" />
+        <v-card-title class="news-card__title" v-html="post.title" />
         <v-card-text v-html="post.summary" />
       </div>
       <v-avatar

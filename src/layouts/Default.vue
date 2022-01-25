@@ -65,7 +65,7 @@ export default {
 @import "../assets/styles/scroll.scss";
 @import "../assets/styles/borderLight.css";
 #app{
-	font-family: 'JetBrains Mono', Roboto, sans-serif;
+	font-family: 'JetBrains Mono', monospace;
 	overflow: hidden;
 }
 #bottom-navigation{

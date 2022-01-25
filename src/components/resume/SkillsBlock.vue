@@ -1,7 +1,7 @@
 <template>
   <div class="border-light--primary skills-note">
     <h2>{{skillsField.name}}</h2>
-    <div>{{skillsField.items.join(', ')}}</div>
+    <p>{{skillsField.items.join(', ')}}</p>
   </div>
 </template>
 

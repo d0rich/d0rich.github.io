@@ -6,7 +6,7 @@
              :alt="project.title"
              v-if="project.image"
              eager />
-      <v-card-title>{{project.title}}</v-card-title>
+      <v-card-title class="project-block__title">{{project.title}}</v-card-title>
       <v-card-subtitle>
         <time :datetime="project.date">{{ project.date }}</time>
       </v-card-subtitle>

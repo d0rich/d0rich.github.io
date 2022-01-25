@@ -7,11 +7,10 @@ content:
     first_name: Nikolay
     second_name: Dorofeev
     spec: Frontend developer
-    text: "I am a JavaScript developer from Tomsk (Russia).At the moment 
-    I am studying at the 4th year at the Tomsk Polytechnic University in 
-    the direction of \"Information systems and technologies in business 
-    and industry\". I'm looking for remote work that can be combined 
-    with study to improve my own JS development skills and create awesome products."
+    text: "I am a JavaScript developer from Tomsk (Russia).At the moment
+    I am studying at the 4th year at the Tomsk Polytechnic University in
+    the direction of \"Information systems and technologies in business
+    and industry\". "
 
   contacts:
     phone: "+7-999-495-29-01"
@@ -33,7 +32,7 @@ content:
         items: [ VS Code, WebStorm, Figma, Notion, Jira, Google Docs ]
 
   education:
-    text: "All my life I have been driven by my strong belief 
+    text: "All my life I have been driven by my strong belief
     that education is important. I try to learn something new every single day."
     history:
       - spec: Information Systems And Technologies
@@ -41,7 +40,7 @@ content:
         date:
           begin: 2018-09-01
           end: 2022-07-01
-        description: "BС in Information Systems and Technology in 
+        description: "BС in Information Systems and Technology in
               Business and Industry. Now I am studying in the 4th year."
 
       - spec: Fundamentals of digital marketing
@@ -57,6 +56,6 @@ content:
         date:
           begin: 2020-10-01
           end: 2020-12-01
-        description: "Mastered product development in a team with a manager, analysts, backend developers, 
+        description: "Mastered product development in a team with a manager, analysts, backend developers,
         and other frontend developers. Improved skills in developing web clients with Vue.js and VueX."
 

@@ -40,6 +40,7 @@
 query Post ($path: String!) {
   post: post (path: $path) {
     title
+		summary
     date (format: "MMMM D, Y")
     image
     content
