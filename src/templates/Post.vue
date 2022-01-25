@@ -22,10 +22,13 @@
             #{{ tag.title }}
           </v-chip>
         </v-chip-group>
-        <v-img v-if="$page.post.image" eager :aspect-ratio="3/2"
-               min-width="300px" max-width="600px" width="100%"
-               class="border-light--primary align-self-center my-4"
-               :src="$page.post.image" :alt="$page.post.title" />
+        <div class="d-flex justify-center">
+          <v-img v-if="$page.post.image" eager :aspect-ratio="3/2"
+                 min-width="300px" max-width="600px" width="100%"
+                 class="border-light--primary  my-4"
+                 :src="$page.post.image" :alt="$page.post.title" />
+        </div>
+
       </div>
       <div class="hr" />
       <div class="markdown-body mb-8" id="article-area" v-html="$page.post.content" />

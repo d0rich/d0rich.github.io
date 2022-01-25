@@ -2,7 +2,7 @@
 title: "Which Website Technology You Should Use (My Classification for Website Frameworks)"
 path: /website-classification
 date: 2022-01-25
-summary: "Nowadays there are a lot of technologies for building websites. And each technology has advantages and disadvantages. I did the big research and want share information, that I didn't find."
+summary: "Nowadays there are a lot of technologies for building websites. And each technology has advantages and disadvantages. I did the big research and want share information I found."
 image: '/img/blog/2022-01-15-web-site-technologies/triangle.png'
 tags: [ 'Article', 'Websites', 'DocOps' ]
 ---
