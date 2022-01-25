@@ -26,6 +26,7 @@ import '~/assets/fonts/JetBrainsMono/fontface.css'
 import '~/assets/styles/font.scss'
 import '~/assets/styles/links.scss'
 import '~/assets/styles/transitions.scss'
+import '~/assets/styles/article.scss'
 import Header from "~/components/layout/Header";
 import Footer from "~/components/layout/Footer";
 import BottomNavigation from "~/components/layout/BottomNavigation";

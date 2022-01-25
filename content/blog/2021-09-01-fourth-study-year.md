@@ -1,9 +1,9 @@
 ---
-title: "Starting 4th year of univercity"
+title: "Starting 4th year of university"
 path: /fourth-study-year
 date: 2021-09-01
 summary: "Some news about my progress in university"
-image: '/blog/data-science-illustration-concept.jpg'
+image: '/img/blog/data-science-illustration-concept.jpg'
 tags: [ 'News' ]
 ---
 
