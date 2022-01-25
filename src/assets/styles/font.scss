@@ -4,34 +4,19 @@ h1{
 h2{
     font-weight: 500;
 }
-h1, h2, h3, h4, h5{
+h1, h2, h3, h4, h5, .news-card__title, .project-block__title{
     color: var(--v-accent-base);
 }
 p{
     /*max-width: 700px;*/
 }
 
-.article-content, .ProseMirror{
-    h1{
-        margin-bottom: 1rem;
-        margin-top: 1rem;
-    }
-    h2{
-        margin-bottom: 0.5rem;
-        margin-top: 0.5rem;
-    }
-    p{
-        margin-bottom: 0px !important;
-        margin-top: 8px !important;
-    }
-    li p{
-        margin-top: 0px !important;
-    }
-    a{
-        color: var(--v-primary-lighten2) !important;
-        text-decoration: underline !important;
-    }
-    a:visited{
-        color: var(--v-primary-lighten2) !important;
-    }
+.time-note__description,
+.block__column--text > p,
+.skills-note > p,
+.intro__info > p,
+.news-card,
+.block2__info__text > p,
+.project-block__title{
+    font-family: "Roboto", sans-serif;
 }

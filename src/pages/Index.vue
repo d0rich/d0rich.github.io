@@ -16,7 +16,7 @@
 				<p class="align-self-start cursor--on-hover">
 					Here you can see my
 					<router-link class="link" :to="Router.portfolio()">portfolio</router-link>, familiarize with my
-					<router-link class="link" :to="Router.resume()">resume</router-link> , read
+					<router-link class="link" :to="Router.allResume()">resume</router-link> , read
 					<router-link class="link" :to="Router.blog()">news</router-link> from my developer life.
 				</p>
 			</Terminal>
