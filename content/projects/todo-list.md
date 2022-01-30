@@ -1,5 +1,5 @@
 ---
-title: "Todo list"
+title: "Todo List"
 path: '/todo-list'
 date: 2020-11-12
 summary: ""

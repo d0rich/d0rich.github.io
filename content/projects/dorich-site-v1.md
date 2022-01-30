@@ -1,5 +1,5 @@
 ---
-title: "Site-business card of the developer and videomaker"
+title: "My Personal Site v1"
 path: '/dorich-site-v1'
 date: 2020-07-11
 summary: ""

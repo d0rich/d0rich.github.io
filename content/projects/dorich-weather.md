@@ -1,5 +1,5 @@
 ---
-title: "Weather forecast app"
+title: "Weather Forecast App"
 path: '/dorich-weather'
 date: 2021-01-18
 summary: ""

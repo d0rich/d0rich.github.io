@@ -1,5 +1,5 @@
 ---
-title: "Starting 4th year of university"
+title: "Starting 4th Year of University"
 path: /fourth-study-year
 date: 2021-09-01
 summary: "Some news about my progress in university"
