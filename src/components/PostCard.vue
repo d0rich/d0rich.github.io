@@ -2,23 +2,25 @@
   <v-card :to="post.path" class="news-card" :style="{paddingLeft: post.image ? 0 : undefined}">
     <div class="d-flex flex-no-wrap justify-space-between">
       <div>
-        <v-card-title class="news-card__title" v-html="post.title" />
+				<div>
+					<v-card-title class="news-card__title" v-html="post.title" />
+					<v-card-subtitle>
+						<time>{{post.date}}</time>
+					</v-card-subtitle>
+				</div>
         <v-card-text v-html="post.summary" />
+				<div class="pa-2">
+					<v-chip small class="ma-1" v-for="tag in post.tags" :key="tag.id">
+						#{{tag.title}}
+					</v-chip>
+				</div>
       </div>
-      <v-avatar
-          class="ma-3"
-          size="125"
-          tile
-      >
-        <v-img :src="post.image"
-               :alt="post.title"
-               v-if="post.image"
-               eager
-               class="news-card__image"
-               max-height="6rem"
-               min-height="100%"
-               max-width="10rem" />
-      </v-avatar>
+			<v-img :src="post.image"
+						 :alt="post.title"
+						 v-if="post.image"
+						 max-width="150"
+						 eager
+						 min-height="100%"/>
     </div>
   </v-card>
 </template>
@@ -35,6 +37,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+.news-card .v-card__title{
+	word-break: unset;
+}
 </style>
