@@ -1,5 +1,5 @@
 ---
-title: "JavaScript developer's personal site"
+title: "My Personal Site v2"
 path: '/dorich-site-v2'
 date: 2021-08-08
 summary: ""

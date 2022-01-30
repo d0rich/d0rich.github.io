@@ -1,5 +1,5 @@
 ---
-title: "Sportsmen social network"
+title: "Sportsmen Social Network"
 path: '/sport-organizer'
 date: 2020-09-18
 summary: ""

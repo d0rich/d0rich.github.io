@@ -1,5 +1,5 @@
 ---
-title: "Interactive visualization of the results of school competitions"
+title: "Interactive Visualization of the Results of School Competitions"
 path: '/rating-visualize'
 date: 2021-02-23
 summary: ""
