@@ -49,6 +49,9 @@ query BlogInfo ($page: Int) {
         summary
         image
         path
+				tags {
+					title
+				}
       }
     }
   }

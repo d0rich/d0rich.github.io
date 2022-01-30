@@ -123,6 +123,9 @@ query HomePageInfo {
         summary
         image
         path
+				tags {
+					title
+				}
       }
     }
   }
