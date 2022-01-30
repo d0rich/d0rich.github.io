@@ -32,6 +32,10 @@
       </div>
       <div class="hr" />
       <div class="markdown-body mb-8" id="article-area" v-html="$page.post.content" />
+			<section class="disqus">
+				<Disqus shortname="dorich" />
+			</section>
+
     </article>
   </div>
 </template>
@@ -62,7 +66,12 @@ query {
 
 <script>
 import {Router} from "../router";
+import { Disqus } from 'vue-disqus'
+
 export default {
+	components: {
+		Disqus
+	},
   computed:{
     breadcrumbs(){
       return [
@@ -98,7 +107,7 @@ export default {
 </script>
 
 <style scoped>
-.markdown-body{
+.markdown-body, .disqus{
   width: 100%;
   max-width: 1020px;
 }
@@ -109,7 +118,7 @@ article{
   width: 95vw;
 }
 @media screen and (max-width: 640px){
-  .markdown-body{
+  .markdown-body, .disqus{
     width: 95%;
   }
 }

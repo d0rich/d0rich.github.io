@@ -6,21 +6,30 @@
         <v-icon>mdi-home</v-icon> To home page
       </v-btn>
     </terminal>
+		<section class="disqus my-4">
+			<h2>Chat for lost people</h2>
+			<Disqus shortname="dorich" :pageConfig="pageConfig" />
+		</section>
   </div>
 </template>
 
 <script>
 import Terminal from "../components/Terminal";
 import {Router} from "../router";
+import { Disqus } from 'vue-disqus'
 
 export default {
   name: "Error404",
   components:{
-    Terminal
+    Terminal, Disqus
   },
   data(){
     return{
-      Router
+      Router,
+			pageConfig: {
+				identifier: '404-chat',
+				title: 'Chat for lost people'
+			}
     }
   },
   metaInfo(){
@@ -40,5 +49,8 @@ export default {
 </script>
 
 <style scoped>
-
+.disqus{
+	width: 95%;
+	max-width: 960px;
+}
 </style>

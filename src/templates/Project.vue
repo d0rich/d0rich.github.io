@@ -57,6 +57,9 @@
             {{tech.title}}
           </v-btn>
         </nav>
+				<section class="disqus my-4">
+					<Disqus shortname="dorich" />
+				</section>
       </div>
 
     </article>
@@ -98,9 +101,13 @@ query {
 
 <script>
 import {Router} from "../router";
+import { Disqus } from 'vue-disqus'
 
 export default {
   name: "Project",
+	components: {
+		Disqus
+	},
   computed:{
     breadcrumbs(){
       return [
@@ -141,7 +148,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-.markdown-body{
+.markdown-body,.disqus{
   width: 100%;
   max-width: 1020px;
 }
@@ -157,7 +164,7 @@ article{
   width: 95vw;
 }
 @media screen and (max-width: 640px){
-  .markdown-body{
+  .markdown-body,.disqus{
     width: 95%;
   }
 }
