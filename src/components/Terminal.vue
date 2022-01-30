@@ -31,7 +31,7 @@ name: "Terminal",
   data(){
     return{
 			startText:[
-				{ text: 'Dorich site [Version 2.0.13012022]', show: false},
+				{ text: 'Dorich site [Version 3.3.30012022]', show: false},
 				{ text: `(c) Developer Nikolay Dorofeev (d0rich), ${new Date().getFullYear()}. All rights reserved.`,
 					show: false },
 				{ text:  ' ', show: false}
