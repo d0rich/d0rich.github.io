@@ -126,7 +126,7 @@ query Resume($path: String!){
         phone
         email
         address
-        social {telegram github vk}
+        social {telegram github}
       }
       skills {
         text
