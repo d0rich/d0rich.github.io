@@ -19,7 +19,7 @@ export default {
   metaInfo() {
     return {
       title: this.$static.metadata.siteName,
-      titleTemplate: '%s | Dorich - JavaScript Developer',
+      titleTemplate: '%s | Dorich - Ultimate Developer',
       htmlAttrs: {
         lang: 'en',
       },
@@ -31,10 +31,10 @@ export default {
           content: 'developer, web developer, ' +
               'informational technologies, IT, frontend, backend, fullstack'
         },
-        { key: 'og:title', property: 'og:title', content: 'Dorich - JavaScript Developer' },
+        { key: 'og:title', property: 'og:title', content: 'Dorich - Ultimate Developer' },
         { key: 'og:description', property: 'og:description',
           content: this.$static.metadata.siteDescription},
-        { key: 'og:site_name', property: 'og:site_name', content: 'Dorich - JS Developer'},
+        { key: 'og:site_name', property: 'og:site_name', content: 'Dorich - Ultimate Developer'},
         { key: 'og:type', property: 'og:type', content: 'website'},
         { key: 'og:image', property: 'og:image', content: this.$static.metadata.siteUrl + '/img/og/og-image.jpg'},
         { key: 'vk:image', property: 'vk:image', content: this.$static.metadata.siteUrl + '/img/og/vk-image.jpg'},
