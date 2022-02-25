@@ -4,9 +4,9 @@
 		<EnterBlock2 class="text-center">
 			<span style="font-size: 1.7rem;" class="mx-3">Hello, my name is Nikolay Dorofeev.</span>
 			<span style="font-size: 1.7rem;" class="ma-3">I am
-				<span class="cursor" style="font-size: 2.3rem; font-weight: bold">JavaScript developer</span>
+				<span class="cursor" style="font-size: 2.3rem; font-weight: bold">Ultimate developer</span>
       </span>
-			<span style="font-size: 1.7rem;" class="mx-3">You are on my personal site.</span>
+			<span style="font-size: 1.7rem;" class="mx-3">It is my personal site.</span>
 		</EnterBlock2>
 
 
@@ -27,17 +27,13 @@
 					<div class="block2__info__text">
 						<h1>Little about me</h1>
 						<p>
-							My name is Nikolay Dorofeev, I am a JavaScript developer, now I am a 4th year student at
+							My name is Nikolay Dorofeev, I am a ultimate software developer, now I am a 4th year student at
 							TPU in the direction of "Information systems and technologies in business and industry".
 						</p>
 						<p>
-							The acquired knowledge and personal experience of working with site layout, databases, and servers
-							is already quite enough to create Single Page Web Applications that will help you or your business
-							appear in a new light before the Internet community
-						</p>
-						<p>
-							Single Page Web Applications - sites that do not require loading separate pages.
-							This approach allows you to get a new experience with the product without unnecessary delays.
+							I am ultimate software developer. I like to create services that can help people.
+							I have tried quite wide range of technologies in order to learn it.
+							I am focused at Node.js ecosystem, but it is not my limit.
 						</p>
 						<v-btn :to="Router.resume()" color="primary">More info</v-btn>
 					</div>
@@ -65,13 +61,12 @@
 			</div>
 
 			<div class="js-objects">
-				<!-- Мои характеристики программисткими объектами -->
 				<JSObjectWindow class="mb-3 mx-3"
 												name="person"
 												:object="{name: 'Nikolay', surname: 'Dorofeev', age: '21', status: 'Student'}" />
 				<JSObjectWindow class="mb-3 mx-3"
 												name="developer"
-												:object="{nickname: 'd0rich', frontend: 'Vue.js', backend: 'Node.js, Python', database: 'PostgreSQL, MongoDB'}" />
+												:object="{nickname: 'd0rich', frontend: 'Vue.js', backend: 'Node.js, Python', database: 'PostgreSQL, MongoDB, GraphQL'}" />
 			</div>
 		</section>
 
@@ -164,10 +159,10 @@ export default {
 	data(){
 		return{
 			contacts: [
-				{ href: 'mailto:d.orich@yandex.com', icon: 'mdi-email', text: 'email' },
-				{ href: 'https://t.me/d0rich', icon: 'fa-telegram', text: 'telegram' },
+				{ href: 'mailto:dorich2000@gmail.com', icon: 'mdi-email', text: 'email' },
 				{ href: 'https://github.com/d0rich', icon: 'mdi-github', text: 'github' },
-				{ href: 'https://vk.com/d0rich', icon: 'fa-vk', text: 'vk' },
+				{ href: 'https://twitter.com/D_orich', icon: 'fa-twitter', text: 'twitter' },
+				{ href: 'https://t.me/d0rich', icon: 'fa-telegram', text: 'telegram' },
 			],
 			show: {
 				block2info: false
@@ -185,7 +180,7 @@ export default {
 	},
 	metaInfo() {
 		return {
-			title: 'Dorich - JavaScript Developer',
+			title: 'Dorich - Ultimate Developer',
       titleTemplate: '%s',
 			meta: [
 				{ key: 'og:url', property: 'og:url', content: 'https://d0rich.github.io/'},

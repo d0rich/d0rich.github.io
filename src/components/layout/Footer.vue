@@ -14,22 +14,22 @@
 
         <address>
           <div>Connect with me:</div>
-          <a href="mailto:d.orich@yandex.com">
+          <a href="mailto:dorich2000@gmail.com">
             <v-icon>mdi-email</v-icon>
-            <span style="color: #FFFFFF; text-decoration: underline">d.orich@yandex.com</span>
+            <span style="color: #FFFFFF; text-decoration: underline">dorich2000@gmail.com</span>
           </a>
           <div>
+						<v-btn icon target="_blank"
+									 href="https://github.com/d0rich" >
+							<v-icon>mdi-github</v-icon>
+						</v-btn>
+						<v-btn icon target="_blank"
+									 href="https://twitter.com/D_orich" >
+							<v-icon>fa-twitter</v-icon>
+						</v-btn>
             <v-btn icon target="_blank"
                    href="https://t.me/d0rich" >
               <v-icon>fa-telegram</v-icon>
-            </v-btn>
-            <v-btn icon target="_blank"
-                   href="https://vk.com/d0rich" >
-              <v-icon>fa-vk</v-icon>
-            </v-btn>
-            <v-btn icon target="_blank"
-                   href="https://github.com/d0rich" >
-              <v-icon>mdi-github</v-icon>
             </v-btn>
           </div>
         </address>

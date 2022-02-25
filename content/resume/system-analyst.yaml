@@ -7,10 +7,9 @@ content:
     first_name: Nikolay
     second_name: Dorofeev
     spec: System Analyst
-    text: "I am a JavaScript developer from Tomsk (Russia).At the moment
-    I am studying at the 4th year at the Tomsk Polytechnic University in
-    the direction of \"Information systems and technologies in business
-    and industry\". "
+    text: "I am ultimate software developer. I like to create services that can help people.
+    I have tried quite wide range of technologies in order to learn it. 
+    I am focused at Node.js ecosystem, but it is not my limit."
 
   contacts:
     phone: "+7-999-495-29-01"
@@ -19,7 +18,6 @@ content:
     social:
       telegram: d0rich
       github: d0rich
-      vk: d0rich
 
   skills:
     text: "I am constantly exercising my skills and learning new technologies to do my job more efficiently."

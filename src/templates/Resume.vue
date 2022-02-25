@@ -42,8 +42,8 @@
                 {{$page.resume.content.contacts.email}}
               </a>
             </div>
-            <div class="contact__title">Address</div>
-            <div class="contact__info">{{$page.resume.content.contacts.address}}</div>
+<!--            <div class="contact__title">Address</div>-->
+<!--            <div class="contact__info">{{$page.resume.content.contacts.address}}</div>-->
             <div class="contact__title">Social</div>
             <div>
               <v-btn icon :href="`https://github.com/${$page.resume.content.contacts.social.github}`" target="_blank" >
@@ -51,9 +51,6 @@
               </v-btn>
               <v-btn icon :href="`https://t.me/${$page.resume.content.contacts.social.telegram}`" target="_blank" >
                 <v-icon>fa-telegram</v-icon>
-              </v-btn>
-              <v-btn icon :href="`https://vk.com/${$page.resume.content.contacts.social.vk}`" target="_blank" >
-                <v-icon>fa-vk</v-icon>
               </v-btn>
             </div>
           </address>

@@ -24,12 +24,12 @@ to create a blog with related functionality.
 
 You cannot try most of the functionality, since it is related to 
 data editing and is available only to me. However, be sure everything 
-is beautifully done :).
+is beautifully done.
 
 This is the project in which I put the most of my heart. I 
 am constantly improving it, so the project completion date will change. 
 When writing new functionality, I try to use some new technology for myself, 
 so as not to stand still. And of course I try to make it comfortable, 
-I hope you felt it :).
+I hope you felt it.
 
-P.S. You are on this site right now :).
+P.S. You are on this site right now.

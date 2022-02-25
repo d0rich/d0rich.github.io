@@ -30,15 +30,15 @@ name: "EnterBlock2",
   data(){
     return{
       images: [
-				{img: '/img/home/enter/nodejs.svg', bg: '/img/home/enter/bg3.png', onSmall: true, smallNumber: 3, number: 1,
+				{img: '/img/home/enter/flutter.svg', bg: '/img/home/enter/flutter-bg.jpg', onSmall: true, smallNumber: 1, number: 1,
 					overlay: {primary: true, dark: true} },
-				{img: '/img/home/enter/vuejs.svg', bg: '/img/home/enter/bg2.jpg', onSmall: true, smallNumber: 1, number: 2,
+				{img: '/img/home/enter/vuejs.svg', bg: '/img/home/enter/vuejs-bg.jpg', onSmall: false, number: 2,
 					overlay: {primary: true, dark: true} },
-				{img: '/img/home/enter/javascript.svg', bg: '/img/home/enter/bg1.jpg', onSmall: true, smallNumber: 2, number: 3,
+				{img: '/img/home/enter/nodejs.svg', bg: '/img/home/enter/nodejsbg.jpg', onSmall: true, smallNumber: 2, number: 3,
 					overlay: {primary: true, dark: true} },
-				{img: '/img/home/enter/mongodb.svg', bg: '/img/home/enter/bgnosql.png', onSmall: false, number: 4,
+				{img: '/img/home/enter/postgresql.svg', bg: '/img/home/enter/sql-bg.jpeg', onSmall: true, smallNumber: 3, number: 4,
 					overlay: {primary: true, dark: true} },
-				{img: '/img/home/enter/postgresql.svg', bg: '/img/home/enter/bgsql.png', onSmall: false, number: 5,
+				{img: '/img/home/enter/graphql.svg', bg: '/img/home/enter/graphql-bg.jpg', onSmall: false, number: 5,
 					overlay: {primary: true, dark: true} },
 			],
       windowWidth: 1000
