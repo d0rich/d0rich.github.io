@@ -43,7 +43,7 @@
 
 
 		<!-- Секция с контактами и характеристиками -->
-		<section class="js-objects-block" style='background-image: url("/img/home/bgs/contacts-bg.jpg")'>
+		<section class="js-objects-block">
 			<div class="js-objects-block__contacts py-8">
 				<!-- Мои контакты -->
 				<h1>My contacts</h1>
@@ -228,6 +228,7 @@ export default {
 	padding: 3rem 0;
 	background-size: cover;
 	background-attachment: fixed;
+	background-image: url("/img/home/bgs/contacts-bg.jpg");
 
 	.js-objects{
 		display: flex;
