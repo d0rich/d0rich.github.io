@@ -161,7 +161,7 @@ export default {
 			contacts: [
 				{ href: 'mailto:dorich2000@gmail.com', icon: 'mdi-email', text: 'email' },
 				{ href: 'https://github.com/d0rich', icon: 'mdi-github', text: 'github' },
-				{ href: 'https://twitter.com/D_orich', icon: 'fa-twitter', text: 'twitter' },
+				{ href: 'https://twitter.com/d0rich_dev', icon: 'fa-twitter', text: 'twitter' },
 				{ href: 'https://t.me/d0rich', icon: 'fa-telegram', text: 'telegram' },
 			],
 			show: {
