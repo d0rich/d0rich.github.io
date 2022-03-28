@@ -24,7 +24,7 @@
 							<v-icon>mdi-github</v-icon>
 						</v-btn>
 						<v-btn icon target="_blank"
-									 href="https://twitter.com/D_orich" >
+									 href="https://twitter.com/d0rich_dev" >
 							<v-icon>fa-twitter</v-icon>
 						</v-btn>
             <v-btn icon target="_blank"
