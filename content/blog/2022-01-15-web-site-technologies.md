@@ -3,7 +3,7 @@ title: "I Proposed New Classification for Websites"
 path: /website-classification
 date: 2022-01-25
 summary: "Nowadays there are a lot of technologies for building websites. You might be disoriented trying to choose something for your site. I did the big research, and I want share information I found."
-image: '/img/blog/2022-01-15-web-site-technologies/triangle.png'
+image: '/covers/blog/2022-01-15-web-site-technologies.png'
 tags: [ 'Article', 'Websites', 'DocOps' ]
 ---
 
@@ -27,7 +27,9 @@ and communicating with people from my university.
 So there is my representation of site types in the triangle:
 
 <figure style="text-align: center">
-    <img alt="Classic Sites Triangle" src="/img/blog/2022-01-15-web-site-technologies/classic-triangle.jpg">
+
+![Classic Sites Triangle](./images/2022-01-15-web-site-technologies/classic-triangle.jpg)
+
 <figcaption>Classic Sites Triangle</figcaption>
 </figure>
 
@@ -49,7 +51,9 @@ are called *Static Site Generators (SSG)*.
 You can see how browser works with pages in this site on the diagram below:
 
 <figure style="text-align: center">
-    <img alt="Static Site Workflow" src="/img/blog/2022-01-15-web-site-technologies/workflow-static-site.png">
+
+![Static Site Workflow](./images/2022-01-15-web-site-technologies/workflow-static-site.png)
+
 <figcaption>Static Site Workflow</figcaption>
 </figure>
 
@@ -75,7 +79,9 @@ From the user side dynamic site can seem a static one. It's because on the brows
 workflow is the same. But all magic at the server side.
 
 <figure style="text-align: center">
-    <img alt="Dynamic Site Workflow" src="/img/blog/2022-01-15-web-site-technologies/workflow-dynamic-site.png">
+
+![Dynamic Site Workflow](./images/2022-01-15-web-site-technologies/workflow-dynamic-site.png)
+
 <figcaption>Dynamic Site Workflow</figcaption>
 </figure>
 
@@ -102,7 +108,9 @@ with one HTML file. But HTML files exists there only because it might exist anyw
 run JavaScript.
 
 <figure style="text-align: center">
-    <img alt="SPA Workflow" src="/img/blog/2022-01-15-web-site-technologies/workflow-spa.png">
+
+![SPA Workflow](./images/2022-01-15-web-site-technologies/workflow-spa.png)
+
 <figcaption>SPA Workflow</figcaption>
 </figure>
 
@@ -143,7 +151,9 @@ These 3 bad associations comes to my mind when I hear SPA. But SPA with SSR and 
 So I propose a solution for this problem. We can call this mixed types of sites as “Hybrid”. Basically they are some blend of classic static sites with SPA, dynamic sites with SPA (with inherited advantages and solved problems).
 
 <figure style="text-align: center">
-    <img alt="Sites Triangle" src="/img/blog/2022-01-15-web-site-technologies/triangle.png">
+
+![Sites Triangle](./images/2022-01-15-web-site-technologies/triangle.png)
+
 <figcaption>Sites Triangle</figcaption>
 </figure>
 
@@ -156,7 +166,9 @@ Static Hybrid sites are just *Static Site Generators (SSG)* that generate all po
 You can see workflow of the Static Hybrid Site below:
 
 <figure style="text-align: center">
-    <img alt="Static Hybrid Workflow" src="/img/blog/2022-01-15-web-site-technologies/wf-static-hybrid.png">
+
+![Static Hybrid Workflow](./images/2022-01-15-web-site-technologies/wf-static-hybrid.png)
+
 <figcaption>Static Hybrid Workflow</figcaption>
 </figure>
 
@@ -176,7 +188,9 @@ Basically, we can say that Dynamic Hybrid sites and static hybrid ones have simi
 The only difference is that Dynamic Hybrid site generates pages not while creating, but during runtime. This feature increases latencies a bit, but it proposes you a possibility to update data on your site often or get data from frequently changed resource.
 
 <figure style="text-align: center">
-    <img alt="Dynamic Hybrid Workflow" src="/img/blog/2022-01-15-web-site-technologies/wf-dynamic-hybrid.png">
+
+![Dynamic Hybrid Workflow](./images/2022-01-15-web-site-technologies/wf-dynamic-hybrid.png)
+
 <figcaption>Dynamic Hybrid Workflow</figcaption>
 </figure>
 
@@ -197,7 +211,9 @@ There are some dynamic hybrid technologies:
 Basically, Jamstack frameworks are cheaper to maintain, because there is no runtime app needed. Only technologies, that generates static files can be considered as Jamstack. You can see these frameworks on the sites triangle, proposed by me.
 
 <figure style="text-align: center">
-    <img alt="Sites Triangle with Jamstack Architecture" src="/img/blog/2022-01-15-web-site-technologies/jamstack.png">
+
+![Sites Triangle with Jamstack Architecture](./images/2022-01-15-web-site-technologies/jamstack.png)
+
 <figcaption>Sites Triangle with Jamstack Architecture</figcaption>
 </figure>
 

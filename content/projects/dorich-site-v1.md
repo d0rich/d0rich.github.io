@@ -3,7 +3,7 @@ title: "My Personal Site v1"
 path: '/dorich-site-v1'
 date: 2020-07-11
 summary: ""
-image: '/projects/dorich-site-v1/main.jpeg'
+image: '/covers/projects/dorich-site-v1.jpeg'
 tags: [ 'frontend', 'backend', legacy, prod ]
 technologies: [ 'Vue.js', 'Express', 'Node.js', 'Firebase', 'MongoDB', Mongoose]
 related:

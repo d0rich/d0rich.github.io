@@ -3,7 +3,7 @@ title: "Weather Forecast App"
 path: '/dorich-weather'
 date: 2021-01-18
 summary: ""
-image: '/projects/dorich-weather/main.jpeg'
+image: '/covers/projects/dorich-weather.jpeg'
 tags: [ 'frontend', dashboard, API, learn]
 technologies: ['Vue.js', Vuetify]
 related:

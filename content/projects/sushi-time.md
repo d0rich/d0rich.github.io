@@ -3,7 +3,7 @@ title: "Food Delivery Service Client"
 path: '/sushi-time'
 date: 2021-06-06
 summary: ""
-image: '/projects/sushi-time/main.jpeg'
+image: '/covers/projects/sushi-time.jpeg'
 tags: [ 'frontend', 'backend', 'learning' ]
 technologies: [ 'Node.js', 'Nuxt.js', 'Vuetify' , 'Express', 'PostgreSQL', Sequelize ORM]
 related:

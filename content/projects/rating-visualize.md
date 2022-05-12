@@ -3,7 +3,7 @@ title: "Interactive Visualization of the Results of School Competitions"
 path: '/rating-visualize'
 date: 2021-02-23
 summary: ""
-image: '/projects/rating-visualize/main.jpeg'
+image: '/covers/projects/rating-visualize.jpeg'
 tags: [ 'frontend', dashboard, learn]
 technologies: [ 'Bootstrap', 'Chart.js', 'Vue.js']
 related:
