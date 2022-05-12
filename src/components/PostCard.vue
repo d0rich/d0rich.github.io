@@ -18,7 +18,8 @@
 			<v-img :src="post.image"
 						 :alt="post.title"
 						 v-if="post.image"
-						 max-width="150"
+						 max-width="15%"
+						 width="150px"
 						 eager
 						 min-height="100%"/>
     </div>
