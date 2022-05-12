@@ -3,7 +3,7 @@ title: "Todo List"
 path: '/todo-list'
 date: 2020-11-12
 summary: ""
-image: '/projects/todo-list/main.jpeg'
+image: '/covers/projects/todo-list.jpeg'
 tags: [ 'frontend', learn]
 technologies: ['Vue.js', Bootstrap]
 related:

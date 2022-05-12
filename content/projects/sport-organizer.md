@@ -3,7 +3,7 @@ title: "Sportsmen Social Network"
 path: '/sport-organizer'
 date: 2020-09-18
 summary: ""
-image: '/projects/sport-organizer/main.jpeg'
+image: '/covers/projects/sport-organizer.jpeg'
 tags: [ frontend, backend, learn, legacy]
 technologies: ['Vue.js', Vuetify, Node.js, Express, Sequelize ORM, PostgreSQL ]
 related:

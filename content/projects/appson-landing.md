@@ -3,7 +3,7 @@ title: "Landing Page for App"
 path: '/appson-landing'
 date: 2020-10-16
 summary: ""
-image: '/projects/appson-landing/main.jpeg'
+image: '/covers/projects/appson-landing.jpeg'
 tags: [ 'frontend', learn]
 technologies: [ JQuery]
 related:
