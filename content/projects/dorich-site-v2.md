@@ -31,4 +31,50 @@ When writing new functionality, I try to use some new technology for myself,
 so as not to stand still. And of course I try to make it comfortable, 
 I hope you felt it.
 
-P.S. You are on this site right now.
+```plantuml
+left to right direction
+
+node Client [
+Client
+----
+Vue.js
+Vuetify
+]
+node Server [
+Server
+----
+Node.js
+Fastify
+]
+cloud FileStore [
+File Store
+----
+Dropbox <&box>
+]
+
+database AuthDb [
+Authentification DB
+----
+PostgreSQL
+]
+
+database ProjectsDb [
+Projects DB
+----
+PostgreSQL
+]
+
+database ResumeDb [
+Resume DB
+----
+Firebase
+]
+
+Client -d- Server
+Client -- FileStore
+Server -l- FileStore
+Server -d- AuthDb
+Server -d- ProjectsDb
+Server -d- ResumeDb
+
+```
