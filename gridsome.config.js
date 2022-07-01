@@ -69,24 +69,40 @@ module.exports = {
     },
       // Nodes for blog
     {
-      use: '@gridsome/source-filesystem',
+      use: '@gridsome/vue-remark',
       options: {
-        path: 'content/blog/**/*.md',
+        pathPrefix: '/blog/posts',
+        baseDir: 'content/blog',
+        template: './src/templates/Post.vue',
         typeName: 'Post',
         refs: {
           tags: {
             typeName: 'Tag',
             create: true
           },
-        }
+        },
+        remark: {
+          autolinkHeadings: {
+            content: {
+              type: 'text',
+              value: '#'
+            }
+          }
+        },
+        plugins: [
+          require("@akebifiky/remark-simple-plantuml"),
+          require('remark-prism'),
+        ]
       }
     },
       // Nodes for projects
     {
-      use: '@gridsome/source-filesystem',
+      use: '@gridsome/vue-remark',
       options: {
-        path: 'content/projects/**/*.md',
+        pathPrefix: '/portfolio/projects',
+        baseDir: 'content/projects',
         typeName: 'Project',
+        template: './src/templates/Project.vue',
         refs: {
           tags: {
             typeName: 'ProjectTag',
@@ -96,7 +112,19 @@ module.exports = {
             typeName: 'Technology',
             create: true
           }
-        }
+        },
+        remark: {
+          autolinkHeadings: {
+            content: {
+              type: 'text',
+              value: '#'
+            }
+          }
+        },
+        plugins: [
+          require("@akebifiky/remark-simple-plantuml"),
+          require('remark-prism'),
+        ]
       }
     },
       // Nodes for resume
@@ -117,8 +145,6 @@ module.exports = {
   ],
   templates: {
     Tag: '/blog/tags/:id',
-    Post: '/blog/posts/:path',
-    Project: '/portfolio/projects/:path',
     ProjectTag: '/portfolio/tags/:id',
     Technology: '/portfolio/technologies/:id',
     Resume: '/resume/:path'

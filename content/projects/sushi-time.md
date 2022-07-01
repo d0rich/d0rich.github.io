@@ -1,6 +1,5 @@
 ---
 title: "Food Delivery Service Client"
-path: '/sushi-time'
 date: 2021-06-06
 summary: ""
 image: '/covers/projects/sushi-time.jpeg'

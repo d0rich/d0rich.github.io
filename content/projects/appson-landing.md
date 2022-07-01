@@ -1,6 +1,5 @@
 ---
 title: "Landing Page for App"
-path: '/appson-landing'
 date: 2020-10-16
 summary: ""
 image: '/covers/projects/appson-landing.jpeg'

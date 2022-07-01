@@ -1,6 +1,5 @@
 ---
 title: "My Personal Site v1"
-path: '/dorich-site-v1'
 date: 2020-07-11
 summary: ""
 image: '/covers/projects/dorich-site-v1.jpeg'

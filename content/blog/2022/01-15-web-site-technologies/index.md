@@ -1,6 +1,5 @@
 ---
 title: "I Proposed New Classification for Websites"
-path: /website-classification
 date: 2022-01-25
 summary: "Nowadays there are a lot of technologies for building websites. You might be disoriented trying to choose something for your site. I did the big research, and I want share information I found."
 image: '/covers/blog/2022-01-15-web-site-technologies.png'
@@ -28,7 +27,7 @@ So there is my representation of site types in the triangle:
 
 <figure style="text-align: center">
 
-![Classic Sites Triangle](./images/2022-01-15-web-site-technologies/classic-triangle.jpg)
+![Classic Sites Triangle](./classic-triangle.jpg)
 
 <figcaption>Classic Sites Triangle</figcaption>
 </figure>
@@ -52,7 +51,7 @@ You can see how browser works with pages in this site on the diagram below:
 
 <figure style="text-align: center">
 
-![Static Site Workflow](./images/2022-01-15-web-site-technologies/workflow-static-site.png)
+![Static Site Workflow](./workflow-static-site.png)
 
 <figcaption>Static Site Workflow</figcaption>
 </figure>
@@ -80,7 +79,7 @@ workflow is the same. But all magic at the server side.
 
 <figure style="text-align: center">
 
-![Dynamic Site Workflow](./images/2022-01-15-web-site-technologies/workflow-dynamic-site.png)
+![Dynamic Site Workflow](./workflow-dynamic-site.png)
 
 <figcaption>Dynamic Site Workflow</figcaption>
 </figure>
@@ -109,7 +108,7 @@ run JavaScript.
 
 <figure style="text-align: center">
 
-![SPA Workflow](./images/2022-01-15-web-site-technologies/workflow-spa.png)
+![SPA Workflow](./workflow-spa.png)
 
 <figcaption>SPA Workflow</figcaption>
 </figure>
@@ -152,7 +151,7 @@ So I propose a solution for this problem. We can call this mixed types of sites 
 
 <figure style="text-align: center">
 
-![Sites Triangle](./images/2022-01-15-web-site-technologies/triangle.png)
+![Sites Triangle](./triangle.png)
 
 <figcaption>Sites Triangle</figcaption>
 </figure>
@@ -167,7 +166,7 @@ You can see workflow of the Static Hybrid Site below:
 
 <figure style="text-align: center">
 
-![Static Hybrid Workflow](./images/2022-01-15-web-site-technologies/wf-static-hybrid.png)
+![Static Hybrid Workflow](./wf-static-hybrid.png)
 
 <figcaption>Static Hybrid Workflow</figcaption>
 </figure>
@@ -189,7 +188,7 @@ The only difference is that Dynamic Hybrid site generates pages not while creati
 
 <figure style="text-align: center">
 
-![Dynamic Hybrid Workflow](./images/2022-01-15-web-site-technologies/wf-dynamic-hybrid.png)
+![Dynamic Hybrid Workflow](./wf-dynamic-hybrid.png)
 
 <figcaption>Dynamic Hybrid Workflow</figcaption>
 </figure>
@@ -212,7 +211,7 @@ Basically, Jamstack frameworks are cheaper to maintain, because there is no runt
 
 <figure style="text-align: center">
 
-![Sites Triangle with Jamstack Architecture](./images/2022-01-15-web-site-technologies/jamstack.png)
+![Sites Triangle with Jamstack Architecture](./jamstack.png)
 
 <figcaption>Sites Triangle with Jamstack Architecture</figcaption>
 </figure>
