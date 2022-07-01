@@ -1,6 +1,5 @@
 ---
 title: "Weather Forecast App"
-path: '/dorich-weather'
 date: 2021-01-18
 summary: ""
 image: '/covers/projects/dorich-weather.jpeg'

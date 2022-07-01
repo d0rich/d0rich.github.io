@@ -1,6 +1,5 @@
 ---
 title: "Interactive Visualization of the Results of School Competitions"
-path: '/rating-visualize'
 date: 2021-02-23
 summary: ""
 image: '/covers/projects/rating-visualize.jpeg'

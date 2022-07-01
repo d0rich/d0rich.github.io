@@ -31,7 +31,7 @@
 
       </div>
       <div class="hr" />
-      <div class="markdown-body mb-8" id="article-area" v-html="$page.post.content" />
+			<VueRemarkContent class="markdown-body mb-8" id="article-area" />
 			<section class="disqus">
 				<Disqus shortname="dorich" />
 			</section>

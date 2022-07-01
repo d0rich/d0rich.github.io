@@ -32,7 +32,7 @@
       </div>
       <div class="hr" />
       <div class="markdown-body">
-        <div class="mb-8" id="article-area" v-html="$page.project.content" />
+        <VueRemarkContent class="mb-8" id="article-area" />
         <h2 v-if="$page.project.related.length">Related links</h2>
         <ul class="related-links">
           <v-list-item
