@@ -102,6 +102,7 @@ query {
 <script>
 import {Router} from "../router";
 import { Disqus } from 'vue-disqus'
+import {metaMixin} from "../mixins/meta";
 
 export default {
   name: "Project",
@@ -121,23 +122,14 @@ export default {
   metaInfo() {
     const description = this.$page.project.summary ||
         this.$page.project.content.replace(/<[^>]+>/g, '').substring(0, 250) + '...'
-    return {
-      title: this.$page.project.title,
-      meta: [
-        { key: 'description' , name: 'description',
-          content: description },
-        {
-          key: 'keywords', name: 'keywords',
-          content: 'developer, informational technologies, IT, ' + this.$page.project.tags.map(t=>t.title).join(', ') + ', ' + this.$page.project.technologies.map(t=>t.title).join(', ')
-        },
-        { key: 'og:title', property: 'og:title', content: `IT Project: ${this.$page.project.title}` },
-        { key: 'og:description', property: 'og:description',
-          content: description },
-        { key: 'og:url', property: 'og:url', content: this.$static.metadata.siteUrl + this.$page.project.path},
-        { key: 'og:image', property: 'og:image', content: this.$static.metadata.siteUrl + this.$page.project.image},
-        { key: 'vk:image', property: 'vk:image', content: this.$static.metadata.siteUrl + this.$page.project.image},
-      ]
-    }
+		return this.createMetaInfo({
+			title: this.$page.project.title,
+			description: this.$page.project.summary,
+			keywords: [...this.$page.project.tags.map(t=>t.title), ...this.$page.project.technologies.map(t=>t.title)],
+			ogTitle: `IT Project: ${this.$page.project.title}`,
+			image: this.$page.project.image,
+			ogPath: this.$page.project.path
+		})
   }
 }
 </script>

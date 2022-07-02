@@ -78,9 +78,18 @@ query Tag ($id: ID!, $page: Int) {
 }
 </page-query>
 
+<static-query>
+query {
+	metadata {
+		siteUrl
+	}
+}
+</static-query>
+
 <script>
 import ProjectBlock from "../components/ProjectBlock";
 import {Router} from "../router";
+import {metaMixin} from "../mixins/meta";
 
 export default {
   name: "Technology",
@@ -102,19 +111,14 @@ export default {
       this.$router.push(Router.projectTech(this.$page.technology.title, page))
     }
   },
+	mixins: [metaMixin],
   metaInfo() {
-    return {
-      title: `Technology: ${this.$page.technology.title}`,
-      meta: [
-        { key: 'description' , name: 'description',
-          content: `All projects of Dorich that use ${this.$page.technology.title}` },
-        { key: 'og:title', property: 'og:title', content: `Technology for IT Project: ${this.$page.technology.title}` },
-        { key: 'og:description', property: 'og:description',
-          content: `All projects of Dorich that use ${this.$page.technology.title}`},
-        { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/portfolio/technologies/${this.$page.technology.title}/${this.$page.technology.belongsTo.pageInfo.currentPage > 1 ? this.$page.technology.belongsTo.pageInfo.currentPage + '/':''}`},
-        { key: 'robots', name: 'robots', content: 'noindex,follow'}
-      ]
-    }
+		return this.createMetaInfo({
+			title: `Technology: ${this.$page.technology.title}`,
+			description: `All projects of Dorich with using ${this.$page.technology.title}`,
+			ogTitle: `Technology for IT Project: ${this.$page.technology.title}`,
+			ogPath: `/portfolio/technologies/${this.$page.technology.title}/${this.$page.technology.belongsTo.pageInfo.currentPage > 1 ? this.$page.technology.belongsTo.pageInfo.currentPage + '/':''}`
+		})
   },
 }
 </script>

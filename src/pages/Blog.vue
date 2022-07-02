@@ -66,9 +66,19 @@ query BlogInfo ($page: Int) {
 }
 </page-query>
 
+
+<static-query>
+query {
+	metadata {
+		siteUrl
+	}
+}
+</static-query>
+
 <script>
 import {Router} from "../router";
 import PostCard from "../components/PostCard";
+import {metaMixin} from "../mixins/meta";
 
 export default {
   components: {
@@ -87,19 +97,14 @@ export default {
       this.$router.push(Router.blog(page))
     }
   },
+	mixins: [metaMixin],
   metaInfo() {
-    return {
-      title: 'Blog',
-      meta: [
-        { key: 'description' , name: 'description',
-          content: 'Blog of Dorich, JavaScript developer' },
-        { key: 'og:title', property: 'og:title', content: 'Blog by Dorich' },
-        { key: 'og:description', property: 'og:description',
-          content: 'Blog of Dorich, JavaScript developer'},
-        { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/blog/${this.$page.posts.pageInfo.currentPage > 1 ? this.$page.posts.pageInfo.currentPage + '/' : ''}`},
-        { key: 'robots', name: 'robots', content: 'noindex,follow'}
-      ]
-    }
+		return this.createMetaInfo({
+			title: 'Blog',
+			description: 'Blog of Dorich, JavaScript developer',
+			ogTitle: 'Blog by Dorich',
+			ogPath: `/blog/${this.$page.posts.pageInfo.currentPage > 1 ? this.$page.posts.pageInfo.currentPage + '/' : ''}`
+		})
   }
 }
 </script>

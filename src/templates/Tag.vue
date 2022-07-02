@@ -75,9 +75,18 @@ query Tag ($id: ID!, $page: Int) {
 }
 </page-query>
 
+<static-query>
+query {
+	metadata {
+		siteUrl
+	}
+}
+</static-query>
+
 <script>
 import PostCard from "../components/PostCard";
 import {Router} from "../router";
+import {metaMixin} from "../mixins/meta";
 export default {
   components:{
     PostCard
@@ -97,19 +106,14 @@ export default {
       this.$router.push(Router.tag(this.$page.tag.title, page))
     }
   },
+	mixins: [metaMixin],
   metaInfo() {
-    return {
-      title: `Tag: ${this.$page.tag.title}`,
-      meta: [
-        { key: 'description' , name: 'description',
-          content: `All posts of Dorich with tag #${this.$page.tag.title}` },
-        { key: 'og:title', property: 'og:title', content: `Tag for Blog Posts: ${this.$page.tag.title}` },
-        { key: 'og:description', property: 'og:description',
-          content: `All posts of Dorich with tag #${this.$page.tag.title}`},
-        { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/blog/tags/${this.$page.tag.title}/${this.$page.tag.belongsTo.pageInfo.currentPage > 1 ? this.$page.tag.belongsTo.pageInfo.currentPage + '/' : ''}`},
-        { key: 'robots', name: 'robots', content: 'noindex,follow'}
-      ]
-    }
+		return this.createMetaInfo({
+			title: `Tag: ${this.$page.tag.title}`,
+			description: `All posts of Dorich with tag #${this.$page.tag.title}`,
+			ogTitle: `Tag for Blog Posts: ${this.$page.tag.title}`,
+			ogPath: `/blog/tags/${this.$page.tag.title}/${this.$page.tag.belongsTo.pageInfo.currentPage > 1 ? this.$page.tag.belongsTo.pageInfo.currentPage + '/' : ''}`
+		})
   },
 }
 </script>

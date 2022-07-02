@@ -184,6 +184,7 @@ query {
 import ExpBlock from "../components/resume/ExpBlock";
 import SkillsBlock from "../components/resume/SkillsBlock";
 import {Router} from "../router";
+import {metaMixin} from "../mixins/meta";
 export default {
   name: "Resume",
   components: { ExpBlock, SkillsBlock },
@@ -196,26 +197,17 @@ export default {
       ]
     }
   },
+	mixins: [metaMixin],
   metaInfo() {
-    return {
-      title: `${this.$page.resume.content.main.spec} Resume`,
-      meta: [
-        { key: 'description' , name: 'description',
-          content: this.$page.resume.content.main.text },
-        {
-          key: 'keywords', name: 'keywords',
-          content: 'informational technologies, IT, ' + this.$page.resume.content.main.spec + ', ' +
-              this.$page.resume.content.education.history.map(t=>t.place).join(', ') + ', ' +
-              this.$page.workExp.edges.map(t=>t.place).join(', ')
-        },
-        { key: 'og:title', property: 'og:title', content: `${this.$page.resume.content.main.spec} Resume` },
-        { key: 'og:description', property: 'og:description',
-          content: this.$page.resume.content.main.text },
-        { key: 'og:url', property: 'og:url', content: this.$static.metadata.siteUrl + this.$page.resume.path},
-        { key: 'og:image', property: 'og:image', content: this.$static.metadata.siteUrl + this.$page.resume.image},
-        { key: 'vk:image', property: 'vk:image', content: this.$static.metadata.siteUrl + this.$page.resume.image},
-      ]
-    }
+		return this.createMetaInfo({
+			title: `${this.$page.resume.content.main.spec} Resume`,
+			description: this.$page.resume.content.main.text,
+			keywords: [this.$page.resume.content.main.spec,
+				...this.$page.resume.content.education.history.map(t=>t.place),
+				...this.$page.workExp.edges.map(t=>t.place)],
+			image: this.$page.resume.image,
+			ogPath: this.$page.resume.path
+		})
   }
 }
 </script>
