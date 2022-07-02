@@ -85,8 +85,6 @@ export default {
   },
 	mixins: [metaMixin],
   metaInfo() {
-    const description = this.$page.post.summary ||
-        this.$page.post.content.replace(/<[^>]+>/g, '').substring(0, 250) + '...'
 		return this.createMetaInfo({
 			title: this.$page.post.title,
 			description: this.$page.post.summary,
