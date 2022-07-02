@@ -5,6 +5,7 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 const nodeExternals = require('webpack-node-externals')
+const { markdownToTxt } = require('markdown-to-txt')
 
 module.exports = function (api) {
   api.chainWebpack((config, { isServer }) => {
@@ -14,6 +15,19 @@ module.exports = function (api) {
           allowlist: [/^vuetify/]
         })
       ])
+    }
+  })
+
+  // Update pages metadata
+  api.onCreateNode( node => {
+    if (['Post', 'Project'].includes(node.internal.typeName)) {
+      const mdDescription = /^[\w\W]*<!--more-->/.exec(node.content)
+      if (node.summary) return node
+      if (mdDescription)
+        node.summary = markdownToTxt(mdDescription[0])
+      else
+        node.summary = markdownToTxt(node.content).substring(0, 250) + '...'
+      return node
     }
   })
 

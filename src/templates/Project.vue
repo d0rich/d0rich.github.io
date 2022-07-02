@@ -120,8 +120,6 @@ export default {
     }
   },
   metaInfo() {
-    const description = this.$page.project.summary ||
-        this.$page.project.content.replace(/<[^>]+>/g, '').substring(0, 250) + '...'
 		return this.createMetaInfo({
 			title: this.$page.project.title,
 			description: this.$page.project.summary,
