@@ -67,6 +67,7 @@ query {
 <script>
 import {Router} from "../router";
 import { Disqus } from 'vue-disqus'
+import { metaMixin } from "../mixins/meta";
 
 export default {
 	components: {
@@ -82,26 +83,18 @@ export default {
       ]
     },
   },
+	mixins: [metaMixin],
   metaInfo() {
     const description = this.$page.post.summary ||
         this.$page.post.content.replace(/<[^>]+>/g, '').substring(0, 250) + '...'
-    return {
-      title: this.$page.post.title,
-      meta: [
-        { key: 'description' , name: 'description',
-          content: description },
-        {
-          key: 'keywords', name: 'keywords',
-          content: 'developer, informational technologies, IT, ' + this.$page.post.tags.map(t=>t.title).join(', ')
-        },
-        { key: 'og:title', property: 'og:title', content: `Blog Post: ${this.$page.post.title}` },
-        { key: 'og:description', property: 'og:description',
-          content: description },
-        { key: 'og:url', property: 'og:url', content: this.$static.metadata.siteUrl + this.$page.post.path},
-        { key: 'og:image', property: 'og:image', content: this.$static.metadata.siteUrl + this.$page.post.image},
-        { key: 'vk:image', property: 'vk:image', content: this.$static.metadata.siteUrl + this.$page.post.image},
-      ]
-    }
+		return this.createMetaInfo({
+			title: this.$page.post.title,
+			description: this.$page.post.summary,
+			keywords: this.$page.post.tags.map(t=>t.title),
+			ogTitle: `Blog Post: ${this.$page.post.title}`,
+			image: this.$page.post.image,
+			ogPath: this.$page.post.path
+		})
   }
 }
 </script>

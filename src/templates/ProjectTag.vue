@@ -77,9 +77,18 @@ query Tag ($id: ID!, $page: Int) {
 }
 </page-query>
 
+<static-query>
+query {
+	metadata {
+		siteUrl
+	}
+}
+</static-query>
+
 <script>
 import ProjectBlock from "../components/ProjectBlock";
 import {Router} from "../router";
+import {metaMixin} from "../mixins/meta";
 
 export default {
   name: "ProjectTag",
@@ -101,19 +110,15 @@ export default {
       this.$router.push(Router.projectTag(this.$page.tag.title, page))
     }
   },
+	mixins: [metaMixin],
   metaInfo() {
-    return {
-      title: `Project Tag: ${this.$page.tag.title}`,
-      meta: [
-        { key: 'description' , name: 'description',
-          content: `All projects of Dorich with tag #${this.$page.tag.title}` },
-        { key: 'og:title', property: 'og:title', content: `Tag for IT Projects: ${this.$page.tag.title}` },
-        { key: 'og:description', property: 'og:description',
-          content: `All projects of Dorich with tag #${this.$page.tag.title}`},
-        { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/portfolio/tags/${this.$page.tag.title}/${this.$page.tag.belongsTo.pageInfo.currentPage > 1 ? this.$page.tag.belongsTo.pageInfo.currentPage + '/': '' }`},
-        { key: 'robots', name: 'robots', content: 'noindex,follow'}
-      ]
-    }
+		return this.createMetaInfo({
+			title: `Project Tag: ${this.$page.tag.title}`,
+			description: `All projects of Dorich with tag #${this.$page.tag.title}`,
+			keywords: [this.$page.tag.title],
+			ogTitle: `Tag for IT Projects: ${this.$page.tag.title}`,
+			ogPath: `/portfolio/tags/${this.$page.tag.title}/${this.$page.tag.belongsTo.pageInfo.currentPage > 1 ? this.$page.tag.belongsTo.pageInfo.currentPage + '/': '' }`
+		})
   },
 }
 </script>

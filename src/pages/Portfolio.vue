@@ -85,6 +85,14 @@ query PortfolioInfo ($page: Int) {
 }
 </page-query>
 
+<static-query>
+query {
+	metadata {
+		siteUrl
+	}
+}
+</static-query>
+
 <script>
 import {Router} from "../router";
 import ProjectBlock from "../components/ProjectBlock";
@@ -108,25 +116,12 @@ export default {
     }
   },
   metaInfo() {
-    return {
-      title: 'Portfolio',
-      meta: [
-        { key: 'description' , name: 'description',
-          content: 'Portfolio of Dorich, JavaScript developer' },
-        {
-          key: 'keywords', name: 'keywords',
-          content: 'informational technologies, IT, developer, web developer, ' +
-              'portfolio, ' + this.$page.tags.edges.map(t => t.node.title).join(', ') + ', ' +
-              this.$page.technologies.edges.map(t => t.node.title).join(', ')
-        },
-        { key: 'og:title', property: 'og:title', content: 'Portfolio | Dorich' },
-        { key: 'og:description', property: 'og:description',
-          content: 'Portfolio of Dorich, JavaScript developer'},
-        { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/portfolio/${this.$page.projects.pageInfo.currentPage > 1 ? this.$page.projects.pageInfo.currentPage + '/' : '' }`},
-        { key: 'robots', name: 'robots', content: 'index,follow'}
-      ]
-    }
-
+		return this.createMetaInfo({
+			title: 'Portfolio',
+			description: 'Portfolio of Dorich, JavaScript developer',
+			ogTitle: 'Portfolio by Dorich',
+			ogPath: `/portfolio/${this.$page.projects.pageInfo.currentPage > 1 ? this.$page.projects.pageInfo.currentPage + '/' : '' }`
+		})
   }
 }
 </script>

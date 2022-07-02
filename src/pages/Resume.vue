@@ -27,6 +27,14 @@ query ResumeInfo{
 }
 </page-query>
 
+<static-query>
+query {
+	metadata {
+		siteUrl
+	}
+}
+</static-query>
+
 <script>
 import ResumeCard from "../components/ResumeCard";
 import {Router} from "../router";
@@ -42,23 +50,12 @@ export default {
     }
   },
   metaInfo() {
-    return {
-      title: 'Resume',
-      meta: [
-        { key: 'description' , name: 'description',
-          content: 'Resume of Dorich, JavaScript developer' },
-        {
-          key: 'keywords', name: 'keywords',
-          content: 'informational technologies, IT, developer, IT specialist, ' +
-              'resume, ' + this.$page.allResume.edges.map(r => r.node.title).join(', ')
-        },
-        { key: 'og:title', property: 'og:title', content: 'Resume | Dorich' },
-        { key: 'og:description', property: 'og:description',
-          content: 'Resume of Dorich, JavaScript developer'},
-        { key: 'og:url', property: 'og:url', content: `https://d0rich.github.io/resume/`},
-        { key: 'robots', name: 'robots', content: 'index,follow'}
-      ]
-    }
+		return this.createMetaInfo({
+			title: 'Resume',
+			description: 'Resume of Dorich, JavaScript developer',
+			ogTitle: 'Resume by Dorich',
+			ogPath: `/resume/`
+		})
   },
 }
 </script>
