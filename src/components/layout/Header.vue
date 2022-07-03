@@ -19,6 +19,9 @@
         <v-btn active-class="cursor-active-box" text :to="navigation.portfolio.route">
           <span class="cursor--on-active">{{navigation.portfolio.text}}</span>
         </v-btn>
+				<v-btn active-class="cursor-active-box" text :to="navigation.lifeline.route">
+					<span class="cursor--on-active">{{navigation.lifeline.text}}</span>
+				</v-btn>
         <theme-switcher style="display: none" />
       </nav>
       <div class="header-bg">
