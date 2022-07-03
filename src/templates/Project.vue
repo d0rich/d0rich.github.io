@@ -119,6 +119,7 @@ export default {
       ]
     }
   },
+	mixins: [metaMixin],
   metaInfo() {
 		return this.createMetaInfo({
 			title: this.$page.project.title,

@@ -38,6 +38,7 @@ query {
 <script>
 import ResumeCard from "../components/ResumeCard";
 import {Router} from "../router";
+import {metaMixin} from "../mixins/meta";
 export default {
   name: "Resume",
   components: { ResumeCard },
@@ -49,6 +50,7 @@ export default {
       ]
     }
   },
+	mixins: [metaMixin],
   metaInfo() {
 		return this.createMetaInfo({
 			title: 'Resume',

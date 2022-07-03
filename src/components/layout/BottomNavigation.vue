@@ -22,6 +22,11 @@
         <span class="cursor--on-active">{{navigation.portfolio.text}}</span>
         <v-icon>mdi-folder-star</v-icon>
       </v-btn>
+
+			<v-btn active-class="cursor-active-box" :to="navigation.lifeline.route"  >
+				<span class="cursor--on-active">{{navigation.lifeline.text}}</span>
+				<v-icon>mdi-timeline-clock-outline</v-icon>
+			</v-btn>
     </v-bottom-navigation>
   </nav>
 
