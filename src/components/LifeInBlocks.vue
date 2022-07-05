@@ -1,40 +1,44 @@
 <template>
-	<div class="life-blocks">
-		<v-tooltip bottom v-for="month of months" :key="month.number">
-			<template v-slot:activator="{ on, attrs }">
-				<div v-if="!month.events.length" class="month" :passed="month.passed"
-						 v-bind="attrs"
-						 v-on="on"  />
-				<a v-else class="month" :passed="month.passed"
-						 :href="`#${textToId(month.events[0].title)}`"
-						 v-bind="attrs"
-						 v-on="on"  />
-			</template>
-			<div>
-				<div>Year: {{month.yearOfLife}}, month: {{month.numberInYear}}</div>
-				<div v-for="note in month.events" :key="textToId(note.title)">
-					{{new Date(note.date).toLocaleDateString('de')}} {{note.title}}
-				</div>
-			</div>
+  <div>
+    <div class="life-blocks">
+      <LifeBlock v-for="month of months" :key="month.number" :month="month"
+                 @show-tooltip="showTooltip" @hide-tooltip="tooltip.show = false" />
+    </div>
+    <v-scale-transition>
+      <div class="v-tooltip__content "
+           ref="tooltip"
+           :class="{menuable__content__active: tooltip.show}"
+           v-html="tooltip.content"
+           v-show="tooltip.show"
+           :style="{ left: `${tooltip.x}px`, top: `calc(${tooltip.y}px + 0.7rem)` }"
+           style="z-index: 8;"/>
+    </v-scale-transition>
 
-		</v-tooltip>
+  </div>
 
-	</div>
 </template>
 
 <script>
 import {idMixin} from "../mixins/id";
+import LifeBlock from "./LifeBlock";
 
 export default {
 	name: "LifeInBlocks",
+  components: {LifeBlock},
 	props: {
 		notes: Array
 	},
 	data() {
 		return {
 			birthdate: new Date(2000, 6, 4),
-			averageLifeYears: 65
-		}
+			averageLifeYears: 65,
+      tooltip: {
+        content: '',
+        x: 0,
+        y: 0,
+        show: false
+      }
+    }
 	},
 	mixins: [idMixin],
 	computed: {
@@ -69,8 +73,16 @@ export default {
 	methods: {
 		weeksBetween(d1, d2) {
 			return Math.round((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
-		}
-	}
+		},
+    showTooltip(event) {
+      this.tooltip = {...this.tooltip, content: event.content, show: true}
+      setTimeout(() => {
+        const x = event.x - (this.$refs?.tooltip?.clientWidth || 0) / 2
+        this.tooltip = {...this.tooltip, x: x < 0 ? 0 : x, y: event.y}
+      }, 1)
+
+    }
+  }
 }
 </script>
 
@@ -81,19 +93,5 @@ export default {
 	grid-gap: 3px;
 	width: fit-content;
 }
-.month {
-	width: .7rem;
-	height: .7rem;
-	border: solid 1px #e7e7e7;
-	border-radius: .1rem;
-	background-color: var(--v-secondary-base);
-}
 
-.month[passed] {
-	background-color: var(--v-primary-base);
-}
-
-a.month[passed] {
-	background-color: var(--v-accent-base);
-}
 </style>
