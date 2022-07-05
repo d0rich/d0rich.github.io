@@ -21,6 +21,7 @@
 <script>
 import {idMixin} from "../mixins/id";
 import LifeBlock from "./LifeBlock";
+import {timeMixin} from "../mixins/time";
 
 export default {
 	name: "LifeInBlocks",
@@ -40,7 +41,7 @@ export default {
       }
     }
 	},
-	mixins: [idMixin],
+	mixins: [idMixin, timeMixin],
 	computed: {
 		deathdate(){
 			const birthdate = new Date(this.birthdate)
@@ -51,10 +52,7 @@ export default {
 			const numberOfMonthes = this.averageLifeYears * 12
 			const months = []
 			for (let monthNumber = 0; monthNumber < numberOfMonthes; monthNumber++ ) {
-				const date = new Date(this.birthdate)
-				date.setMonth(date.getMonth() + monthNumber)
-				const startOfYear = new Date(date)
-				startOfYear.setMonth(this.birthdate.getMonth(), this.birthdate.getDate())
+				const date = this.addMonths(this.birthdate, monthNumber)
 				months.push({
 					number: monthNumber + 1,
 					numberInYear: this.birthdate.getMonth() <= date.getMonth() ? date.getMonth() - this.birthdate.getMonth() + 1 : date.getMonth() + 12 - this.birthdate.getMonth() + 1,
@@ -63,7 +61,12 @@ export default {
 					passed: date < new Date(),
 					events: this.notes.filter(note => {
 						const noteDate = new Date(note.date)
-						return date.getMonth() === noteDate.getMonth() && date.getFullYear() === noteDate.getFullYear()
+						return (noteDate.getDate() >= date.getDate()
+                    && date.getMonth() === noteDate.getMonth()
+                    && date.getFullYear() === noteDate.getFullYear())
+              || (noteDate.getDate() < date.getDate()
+                    && this.addMonths(date, 1).getMonth() === noteDate.getMonth()
+                    && this.addMonths(date, 1).getFullYear() === noteDate.getFullYear())
 					})
 				})
 			}
@@ -71,9 +74,6 @@ export default {
 		}
 	},
 	methods: {
-		weeksBetween(d1, d2) {
-			return Math.round((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
-		},
     showTooltip(event) {
       this.tooltip = {...this.tooltip, content: event.content, show: true}
       setTimeout(() => {
