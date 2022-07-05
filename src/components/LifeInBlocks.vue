@@ -4,7 +4,7 @@
       <LifeBlock v-for="month of months" :key="month.number" :month="month"
                  @show-tooltip="showTooltip" @hide-tooltip="tooltip.show = false" />
     </div>
-    <v-scale-transition>
+    <transition name="glitch-transition" >
       <div class="v-tooltip__content "
            ref="tooltip"
            :class="{menuable__content__active: tooltip.show}"
@@ -12,7 +12,7 @@
            v-show="tooltip.show"
            :style="{ left: `${tooltip.x}px`, top: `calc(${tooltip.y}px + 0.7rem)` }"
            style="z-index: 8;"/>
-    </v-scale-transition>
+    </transition>
 
   </div>
 
@@ -77,8 +77,12 @@ export default {
     showTooltip(event) {
       this.tooltip = {...this.tooltip, content: event.content, show: true}
       setTimeout(() => {
-        const x = event.x - (this.$refs?.tooltip?.clientWidth || 0) / 2
-        this.tooltip = {...this.tooltip, x: x < 0 ? 0 : x, y: event.y}
+        const tooltipWidth = this.$refs?.tooltip?.clientWidth || 0
+        const windowWidth = this.$store.state.windowWidth
+        const x = event.x - tooltipWidth / 2
+        this.tooltip = {...this.tooltip,
+          x: x < 0 ? 0 : x + tooltipWidth > windowWidth ? windowWidth - tooltipWidth : x,
+          y: event.y}
       }, 1)
 
     }
