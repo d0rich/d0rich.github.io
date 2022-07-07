@@ -21,7 +21,8 @@
 									v-text="new Date(note.date).toLocaleDateString('de')" />
 						<div class="note__content">
 							<div>
-								<p>{{note.summary}}</p>
+								<p v-if="note.summary">{{note.summary}}</p>
+								<p v-else v-html="note.content" />
 								<v-btn v-if="note.path" :to="note.path" color="primary">More</v-btn>
 							</div>
 							<g-image class="note__image border-light--primary" :src="note.image"/>
@@ -49,6 +50,18 @@ query notesFromBlog{
 					title
 				}
 				summary
+			}
+		}
+	}
+
+	lifeNotes: allLifeNote{
+		edges {
+			node {
+				title
+				date
+				tags { title }
+				image
+				content
 			}
 		}
 	}
@@ -90,7 +103,18 @@ export default {
 	computed: {
 		notes(){
 			const blogNotes = this.$page.blogPosts.edges.map(e => e.node)
-			return [...blogNotes]
+			const lifeNotes = this.$page.lifeNotes.edges.map(e => e.node)
+			return [...blogNotes, ...lifeNotes].sort((a, b) => {
+				const dateA = new Date(a.date)
+				const dateB = new Date(b.date)
+				if (dateA < dateB) {
+					return -1;
+				}
+				if (dateA > dateB) {
+					return 1;
+				}
+				return 0;
+			})
 		},
 		showOppositeDates(){
 			return this.$store.state.windowWidth > 1000

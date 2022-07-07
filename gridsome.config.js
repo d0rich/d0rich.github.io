@@ -127,6 +127,20 @@ module.exports = {
         ]
       }
     },
+    // Nodes for lifeline
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        path: 'content/lifeline/*.md',
+        typeName: 'LifeNote',
+        refs: {
+          tags: {
+            typeName: 'Tag',
+            create: true
+          }
+        },
+      }
+    },
       // Nodes for resume
     {
       use: '@gridsome/source-filesystem',
