@@ -8,7 +8,9 @@
 		<section class="page-content">
 			<LifeInBlocks :notes="notes" />
 			<v-timeline :dense="!showOppositeDates">
-				<v-timeline-item v-for="(note, index) in notes" :id="textToId(note.title)" :key="textToId(note.title)">
+				<v-timeline-item v-for="(note, index) in notes" :key="textToId(note.title)"
+                         :id="textToId(note.title)"
+                         :icon="getIconForNote(note)">
 						<span slot="opposite"
 							:class="`font-weight-bold primary--text`"
 							v-text="new Date(note.date).toLocaleDateString('de')" />
@@ -85,7 +87,12 @@ export default {
 	methods: {
 		changePage(page){
 			this.$router.push(Router.portfolio(page))
-		}
+		},
+    getIconForNote(note){
+      if (note.tags.some(t => t.title === 'Learning'))
+        return 'mdi-flask'
+      return ''
+    }
 	},
 	computed: {
 		notes(){
