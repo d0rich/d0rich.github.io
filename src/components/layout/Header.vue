@@ -9,16 +9,18 @@
           <span class="cursor--on-active">{{ navigation.news.text }}</span>
         </v-btn>
 
-        <v-btn active-class="cursor-active-box" text :to="navigation.resume.route">
-          <span class="cursor--on-active">{{ navigation.resume.text }}</span>
-        </v-btn>
+				<v-btn active-class="cursor-active-box" text :to="navigation.portfolio.route">
+					<span class="cursor--on-active">{{navigation.portfolio.text}}</span>
+				</v-btn>
 
         <g-link v-ripple :to="navigation.home.route" class="btn-main" :class="{'cursor-active-box': $route.fullPath === '/'}">
           <span class="cursor--on-active">{{navigation.home.text}}</span>
         </g-link>
-        <v-btn active-class="cursor-active-box" text :to="navigation.portfolio.route">
-          <span class="cursor--on-active">{{navigation.portfolio.text}}</span>
-        </v-btn>
+
+				<v-btn active-class="cursor-active-box" text :to="navigation.resume.route">
+					<span class="cursor--on-active">{{ navigation.resume.text }}</span>
+				</v-btn>
+
 				<v-btn active-class="cursor-active-box" text :to="navigation.lifeline.route">
 					<span class="cursor--on-active">{{navigation.lifeline.text}}</span>
 				</v-btn>
