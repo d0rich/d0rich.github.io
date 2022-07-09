@@ -10,25 +10,23 @@
 			<v-timeline :dense="!showOppositeDates">
 				<v-timeline-item v-for="(note, index) in notes" :key="textToId(note.title)"
                          :id="textToId(note.title)"
+												 large
                          :icon="getIconForNote(note)">
-						<span slot="opposite"
-							:class="`font-weight-bold primary--text`"
-							v-text="new Date(note.date).toLocaleDateString('de')" />
-					<div class="py-4">
-						<h2 :class="`headline font-weight-light mb-4 primary--text`">
-							{{ note.title }}
-						</h2>
-						<span :class="`font-weight-bold`"
-									v-if="!showOppositeDates"
-									v-text="new Date(note.date).toLocaleDateString('de')" />
-						<div class="note__content">
-							<div>
-								<p v-if="note.summary">{{note.summary}}</p>
-								<p v-else v-html="note.content" />
-								<v-btn v-if="note.path" :to="note.path" color="primary">More</v-btn>
-							</div>
-							<g-image class="note__image border-light--primary" :src="note.image"/>
+					<span slot="opposite"
+						:class="`font-weight-bold text-h4 primary--text text--lighten-2`"
+						v-text="new Date(note.date).toLocaleDateString('de')" />
+
+					<div class="note__content py-4">
+						<div class="pr-4">
+							<h2 :class="`headline font-weight-light mb-1 accent--text`" v-text="note.title"/>
+							<span :class="`text-h5 primary--text text--lighten-2`"
+										v-if="!showOppositeDates"
+										v-text="new Date(note.date).toLocaleDateString('de')" />
+							<p v-if="note.summary" v-text="note.summary"/>
+							<div v-else v-html="note.content" />
+							<v-btn v-if="note.path" :to="note.path" color="primary">More</v-btn>
 						</div>
+						<g-image class="note__image border-light--primary" v-if="note.image" :src="note.image"/>
 					</div>
 				</v-timeline-item>
 			</v-timeline>
@@ -104,6 +102,8 @@ export default {
     getIconForNote(note){
       if (note.tags.some(t => t.title === 'Learning'))
         return 'mdi-flask'
+			if (note.tags.some(t => t.title === 'Education'))
+				return 'mdi-school'
       return ''
     }
 	},
@@ -154,6 +154,7 @@ html{
 .note__content {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	font-family: 'Roboto', sans-serif;
 }
 
