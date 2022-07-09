@@ -1,9 +1,19 @@
 <template>
-  <div>
-    <div class="life-blocks">
+  <div class="flex row justify-space-around flex-wrap-reverse">
+    <div class="life-blocks ma-2">
       <LifeBlock v-for="month of months" :key="month.number" :month="month"
                  @show-tooltip="showTooltip" @hide-tooltip="tooltip.show = false" />
     </div>
+		<div class="ma-2">
+			<h2>Legend:</h2>
+			<div class="legend">
+				<v-icon class="ma-1">mdi-cursor-default-outline</v-icon> <span>- hover block to get more info</span>
+				<div class="month ma-1"/> <span> - future months of my life</span>
+				<div class="month ma-1" passed /> <span> - passed months of my life</span>
+				<div class="month ma-1 month--has-events" passed /> <span> - passed months with events (clickable)</span>
+			</div>
+
+		</div>
     <transition name="glitch-transition" >
       <div class="v-tooltip__content "
            ref="tooltip"
@@ -97,5 +107,10 @@ export default {
 	grid-gap: 3px;
 	width: fit-content;
 }
-
+.legend{
+	display: grid;
+	grid-template-columns: 1rem 1fr;
+	grid-gap: .1rem;
+	align-items: center;
+}
 </style>
