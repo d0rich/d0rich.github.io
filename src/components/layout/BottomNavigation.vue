@@ -6,22 +6,20 @@
         <v-icon>mdi-newspaper-variant</v-icon>
       </v-btn>
 
-      <v-btn active-class="cursor-active-box" :to="navigation.resume.route"  >
-        <span class="cursor--on-active">{{ navigation.resume.text }}</span>
-        <v-icon>mdi-account</v-icon>
-      </v-btn>
-
-
+			<v-btn active-class="cursor-active-box" :to="navigation.portfolio.route"  >
+				<span class="cursor--on-active">{{navigation.portfolio.text}}</span>
+				<v-icon>mdi-folder-star</v-icon>
+			</v-btn>
 
       <v-btn active-class="cursor-active-box" exact :to="navigation.home.route"  >
         <span class="cursor--on-active">{{navigation.home.text}}</span>
         <v-icon>mdi-console-line</v-icon>
       </v-btn>
 
-      <v-btn active-class="cursor-active-box" :to="navigation.portfolio.route"  >
-        <span class="cursor--on-active">{{navigation.portfolio.text}}</span>
-        <v-icon>mdi-folder-star</v-icon>
-      </v-btn>
+			<v-btn active-class="cursor-active-box" :to="navigation.resume.route"  >
+				<span class="cursor--on-active">{{ navigation.resume.text }}</span>
+				<v-icon>mdi-account</v-icon>
+			</v-btn>
 
 			<v-btn active-class="cursor-active-box" :to="navigation.lifeline.route"  >
 				<span class="cursor--on-active">{{navigation.lifeline.text}}</span>
