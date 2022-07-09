@@ -17,9 +17,10 @@ export const metaMixin = Vue.extend({
                 meta.push({ key: 'og:description', property: 'og:description', content: ogDescription })
             }
             if (image) {
+                const imageSrc = image.src || image
                 meta.push(
-                    {key: 'og:image', property: 'og:image', content: this.$static.metadata.siteUrl + image},
-                    {key: 'vk:image', property: 'vk:image', content: this.$static.metadata.siteUrl + image}
+                    {key: 'og:image', property: 'og:image', content: this.$static.metadata.siteUrl + imageSrc},
+                    {key: 'vk:image', property: 'vk:image', content: this.$static.metadata.siteUrl + imageSrc}
                 )
             }
             return {
