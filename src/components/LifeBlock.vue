@@ -44,7 +44,7 @@ export default {
   background-color: var(--v-primary-base);
 }
 
-a.month[passed] {
+a.month[passed], .month.month--has-events {
   background-color: var(--v-accent-base);
 }
 </style>
