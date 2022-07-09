@@ -96,6 +96,7 @@ query {
 <script>
 import {Router} from "../router";
 import ProjectBlock from "../components/ProjectBlock";
+import {metaMixin} from "../mixins/meta";
 
 export default {
   name: "Projects",
@@ -115,6 +116,7 @@ export default {
       this.$router.push(Router.portfolio(page))
     }
   },
+	mixins: [metaMixin],
   metaInfo() {
 		return this.createMetaInfo({
 			title: 'Portfolio',

@@ -1,4 +1,4 @@
-image: "/resume/frontend.jpg"
+image: "./covers/frontend.jpg"
 path: /frontend
 title: Frontend
 content:
@@ -47,7 +47,7 @@ content:
           begin: 2021-06-01
           end: 2021-06-17
         description: "Learn the fundamentals of digital marketing to help your business or career."
-        certificate: https://drive.google.com/file/d/1hBW6388BoIbZafNe2tx3sJr0M05RodB2/view?usp=sharing
+        certificate: /certificates/Основы интернет-маркетинга.pdf
 
       - spec: Vue.Js Frontend Developer
         place: Smart World Academy

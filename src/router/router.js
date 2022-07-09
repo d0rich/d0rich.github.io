@@ -9,5 +9,6 @@ export const Router = {
     projectTag(id, page){ return `/portfolio/tags/${id}/${page > 1 ? page: ''}` },
     projectTech(id, page){ return `/portfolio/technologies/${id}/${page > 1 ? page: ''}` },
     allResume() {return '/resume/'},
-    resume(title) { return `/resume/${title}/` }
+    resume(title) { return `/resume/${title}/` },
+    lifeline: () => '/lifeline'
 }

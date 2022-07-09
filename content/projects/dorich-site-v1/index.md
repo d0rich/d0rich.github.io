@@ -2,13 +2,19 @@
 title: "My Personal Site v1"
 date: 2020-07-11
 summary: ""
-image: '/covers/projects/dorich-site-v1.jpeg'
+image: ./cover.png
 tags: [ 'frontend', 'backend', legacy, prod ]
 technologies: [ 'Vue.js', 'Express', 'Node.js', 'Firebase', 'MongoDB', Mongoose]
 related:
-    - title: Source code on GitHub
+    - title: Client source code on GitHub
       icon: mdi-github
       href: https://github.com/d0rich/dorich-site-legacy
+    - title: Server source code on GitHub
+      icon: mdi-github
+      href: https://github.com/d0rich/d0rich-site-v1-server
+    - title: Broken but still alive project
+      icon: mdi-monitor
+      href: https://dorich-v1.onrender.com/
 ---
 My first acquaintance with web technologies.
 
