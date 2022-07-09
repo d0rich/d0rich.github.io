@@ -8,19 +8,20 @@
 
 <script>
 import {idMixin} from "../mixins/id";
+import {timeMixin} from "../mixins/time";
 
 export default {
   props: {
     month: Object
   },
   name: "LifeBlock",
-  mixins: [idMixin],
+  mixins: [idMixin, timeMixin],
   methods: {
     showTooltip(event){
       const monthData = this.month
       let content = `<div>Year: ${monthData.yearOfLife}, month: ${monthData.numberInYear}</div>`
       for ( let note of monthData.events ){
-        content += `<div>${new Date(note.date).toLocaleDateString('de')} ${note.title}</div>`
+        content += `<div>${this.formatDate(note.date)} ${note.title}</div>`
       }
       this.$emit('show-tooltip', {
         content, x: event.pageX, y: event.pageY - 56 * this.$store.getters.headerOn
