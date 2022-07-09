@@ -1,4 +1,4 @@
-image: "/resume/frontend.jpg"
+image: "./covers/frontend.jpg"
 path: /frontend
 title: Frontend
 content:
