@@ -30,7 +30,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .month {
   width: .7rem;
   height: .7rem;
