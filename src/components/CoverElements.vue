@@ -168,8 +168,8 @@ export default Vue.extend({
           LogoD: require('@/assets/img/LogoD.svg'),
           SocialSpan:'Me in social networks:',
           Social:[
-            {imglink:require('@/assets/img/Social/instagram.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
-            {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'}
+            {imglink:require('@/assets/img/Social/instagram.svg'),link: 'https://t.me/d0rich',nick:'@d0rich'},
+            {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://t.me/d0rich',nick:'@d0rich'}
           ],
           Sections:[
             {link:'Home',name:'Home'},
@@ -181,10 +181,10 @@ export default Vue.extend({
           LogoD: require('@/assets/img/LogoD.svg'),
           SocialSpan:'Я в социальных сетях:',
           Social:[
-            {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
-            {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich_prod.'},
-            {imglink:require('@/assets/img/Social/instagram.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'},
-            {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://vk.com/d0rich',nick:'@d0rich'}
+            {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://t.me/d0rich',nick:'@d0rich'},
+            {imglink:require('@/assets/img/Social/vk.svg'),link: 'https://t.me/d0rich',nick:'@d0rich_prod.'},
+            {imglink:require('@/assets/img/Social/instagram.svg'),link: 'https://t.me/d0rich',nick:'@d0rich'},
+            {imglink:require('@/assets/img/Social/youtube.svg'),link: 'https://t.me/d0rich',nick:'@d0rich'}
           ],
           Sections:[
             {link:'Home',name:'Главная'},
