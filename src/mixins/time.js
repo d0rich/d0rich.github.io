@@ -10,5 +10,9 @@ export const timeMixin = Vue.extend({
     weeksBetween(d1, d2) {
       return Math.round((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
     },
+    formatDate(date){
+      const dateInternal = new Date(date)
+      return dateInternal.toLocaleDateString('en-GB')
+    }
   }
 })

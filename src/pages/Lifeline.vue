@@ -14,14 +14,14 @@
                          :icon="getIconForNote(note)">
 					<span slot="opposite"
 						:class="`font-weight-bold text-h4 primary--text text--lighten-2`"
-						v-text="new Date(note.date).toLocaleDateString('de')" />
+						v-text="formatDate(note.date)" />
 
 					<div class="note__content py-4">
 						<div class="pr-4">
 							<h2 :class="`headline font-weight-light mb-1 accent--text`" v-text="note.title"/>
 							<span :class="`text-h5 primary--text text--lighten-2`"
 										v-if="!showOppositeDates"
-										v-text="new Date(note.date).toLocaleDateString('de')" />
+										v-text="formatDate(note.date)" />
 							<p v-if="note.summary" v-text="note.summary"/>
 							<div v-else v-html="note.content" />
 							<v-btn v-if="note.path" :to="note.path" color="primary">More</v-btn>
@@ -81,6 +81,7 @@ import {Router} from "../router";
 import {metaMixin} from "../mixins/meta";
 import LifeInBlocks from "../components/LifeInBlocks";
 import {idMixin} from "../mixins/id";
+import {timeMixin} from "../mixins/time";
 
 export default {
 	name: "Lifeline",
@@ -100,6 +101,10 @@ export default {
 			this.$router.push(Router.portfolio(page))
 		},
     getIconForNote(note){
+			if (note.tags.some(t => t.title === 'Database'))
+				return 'mdi-database'
+			if (note.tags.some(t => t.title === 'Development'))
+				return 'mdi-code-braces'
       if (note.tags.some(t => t.title === 'Learning'))
         return 'mdi-flask'
 			if (note.tags.some(t => t.title === 'Education'))
@@ -127,7 +132,7 @@ export default {
 			return this.$store.state.windowWidth > 1000
 		}
 	},
-	mixins: [metaMixin, idMixin],
+	mixins: [metaMixin, idMixin, timeMixin],
 	metaInfo() {
 		return this.createMetaInfo({
 			title: 'Lifeline',
