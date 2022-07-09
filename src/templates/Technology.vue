@@ -46,7 +46,8 @@
 query Tag ($id: ID!, $page: Int) {
   technology: technology (id: $id) {
     title
-    belongsTo (page: $page, perPage: 6) @paginate {
+    belongsTo (page: $page, perPage: 6,
+			sortBy: "date", order: DESC) @paginate {
       totalCount
       pageInfo {
         totalPages
