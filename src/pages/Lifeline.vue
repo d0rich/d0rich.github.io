@@ -12,15 +12,17 @@
                          :id="textToId(note.title)"
 												 large
                          :icon="getIconForNote(note)">
-					<span slot="opposite"
+					<time slot="opposite"
 						:class="`font-weight-bold text-h4 primary--text text--lighten-2`"
+						:datetime="note.date"
 						v-text="formatDate(note.date)" />
 
 					<div class="note__content py-4">
 						<div class="pr-4">
 							<h2 :class="`headline font-weight-light mb-1 accent--text`" v-text="note.title"/>
-							<span :class="`text-h5 primary--text text--lighten-2`"
+							<time :class="`text-h5 primary--text text--lighten-2`"
 										v-if="!showOppositeDates"
+										:datetime="note.date"
 										v-text="formatDate(note.date)" />
 							<p v-if="note.summary" v-text="note.summary"/>
 							<div v-else v-html="note.content" />
@@ -92,7 +94,7 @@ export default {
 		return{
 			breadcrumbs: [
 				{text: 'd0rich', href: Router.home},
-				{text: 'lifeline', href: Router.lifeline(), disabled: true},
+				{text: 'story', href: Router.lifeline(), disabled: true},
 			]
 		}
 	},
@@ -105,6 +107,8 @@ export default {
 				return 'mdi-database'
 			if (note.tags.some(t => t.title === 'Development'))
 				return 'mdi-code-braces'
+			if (note.tags.some(t => t.title === 'Job'))
+				return 'mdi-briefcase'
       if (note.tags.some(t => t.title === 'Learning'))
         return 'mdi-flask'
 			if (note.tags.some(t => t.title === 'Education'))
@@ -135,9 +139,9 @@ export default {
 	mixins: [metaMixin, idMixin, timeMixin],
 	metaInfo() {
 		return this.createMetaInfo({
-			title: 'Lifeline',
-			description: 'Lifeline of Dorich, JavaScript developer',
-			ogTitle: 'Lifeline by Dorich',
+			title: 'Story',
+			description: 'Story of Dorich, JavaScript developer',
+			ogTitle: 'Story by Dorich',
 			ogPath: `/lifeline/`
 		})
 	}

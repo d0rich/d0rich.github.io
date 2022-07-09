@@ -9,6 +9,9 @@ related:
     - title: Working project
       icon: mdi-desktop-mac-dashboard
       href: hhttps://sushi-service.herokuapp.com/menu
+    - title: Source code
+      icon: mdi-github
+      href: https://github.com/d0rich/sushi-service
 ---
 ## How did this happen?
 This application was created as a course project at the university for the 3rd year.
