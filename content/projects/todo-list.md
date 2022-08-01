@@ -3,7 +3,7 @@ title: "Todo List"
 date: 2020-11-12
 summary: ""
 image: '/covers/projects/todo-list.jpeg'
-tags: [ 'frontend', learn]
+tags: [ 'frontend', learn, archive]
 technologies: ['Vue.js', Bootstrap]
 related:
     - title: Working project

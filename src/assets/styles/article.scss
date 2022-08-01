@@ -1,11 +1,15 @@
-.v-application .markdown-body{
+.v-application .markdown-body, #article-area{
   font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+
   ul, ol{
     padding-bottom: 16px;
   }
 
   figure{
     margin: 1rem 0;
+    align-self: center;
     figcaption{
       margin-top: 0.5rem;
       font-style: italic;
@@ -15,6 +19,7 @@
   img{
     max-width: 95%;
     border-radius: 5px;
+    align-self: center;
   }
 
   blockquote{
