@@ -2,7 +2,7 @@
 title: "Sportsmen Social Network"
 date: 2020-09-18
 image: ./cover.png
-tags: [ frontend, backend, learn, legacy]
+tags: [ frontend, backend, archive]
 technologies: ['Vue.js', Vuetify, Node.js, Express, Sequelize ORM, PostgreSQL ]
 related:
     - title: Working project
