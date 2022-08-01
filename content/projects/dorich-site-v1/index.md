@@ -3,7 +3,7 @@ title: "My Personal Site v1"
 date: 2020-07-11
 summary: ""
 image: ./cover.png
-tags: [ 'frontend', 'backend', legacy, prod ]
+tags: [ 'frontend', 'backend', archive ]
 technologies: [ 'Vue.js', 'Express', 'Node.js', 'Firebase', 'MongoDB', Mongoose]
 related:
     - title: Client source code on GitHub

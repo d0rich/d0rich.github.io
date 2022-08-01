@@ -62,11 +62,9 @@
 
 			<div class="js-objects">
 				<JSObjectWindow class="mb-3 mx-3"
-												name="person"
-												:object="{name: 'Nikolay', surname: 'Dorofeev', age: '21', status: 'Student'}" />
-				<JSObjectWindow class="mb-3 mx-3"
-												name="developer"
-												:object="{nickname: 'd0rich', frontend: 'Vue.js', backend: 'Node.js, Python', database: 'PostgreSQL, MongoDB, GraphQL'}" />
+                        v-for="(object, name) in jsObjects"
+												:name="name"
+												:object="object" />
 			</div>
 		</section>
 
@@ -158,6 +156,21 @@ export default {
 	},
 	data(){
 		return{
+      jsObjects: {
+        person: {
+          name: 'Nikolay',
+          surname: 'Dorofeev',
+          age: this.getAge(new Date(2000,6,4)),
+          status: 'Employee'
+        },
+        developer: {
+          nickname: 'd0rich',
+          frontend: 'Vue.js, Nuxt.js, Flutter',
+          backend: 'Node.js, SQL, NoSQL, GraphQL',
+          operations: 'Docker, Kubernetes',
+          architecture: 'Monolithic, Microservice'
+        }
+      },
 			contacts: [
 				{ href: 'mailto:dorich2000@gmail.com', icon: 'mdi-email', text: 'email' },
 				{ href: 'https://github.com/d0rich', icon: 'mdi-github', text: 'github' },
@@ -166,15 +179,20 @@ export default {
 			],
 			show: {
 				block2info: false
-			},
-			load: {
-				projects: true,
-				news: true
-			},
-			projects: [],
-			newsFeed: []
+			}
 		}
 	},
+  methods: {
+    getAge(birthDate) {
+      let today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      let m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
+    }
+  },
 	computed:{
 		...mapGetters(['headerOn'])
 	},
@@ -234,6 +252,7 @@ export default {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
+    align-items: center;
 	}
 }
 .js-objects-block__contacts{

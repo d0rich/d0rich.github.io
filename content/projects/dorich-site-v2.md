@@ -3,7 +3,7 @@ title: "My Personal Site v2"
 date: 2021-08-08
 summary: ""
 image: '/covers/projects/dorich-site-v2.jpeg'
-tags: [ 'frontend', 'backend', 'SEO', prod ]
+tags: [ 'frontend', 'backend', 'SEO' ]
 technologies: [ 'Dropbox', 'Vue.js', 'Fastify', 'Node.js', 'Firebase', 'PostgreSQL', 'Vuetify' ]
 related:
     - title: Working project
