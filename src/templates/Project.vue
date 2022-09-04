@@ -34,20 +34,22 @@
       <div class="markdown-body">
         <VueRemarkContent class="mb-8" id="article-area" />
         <h2 v-if="$page.project.related.length">Related links</h2>
-        <ul class="related-links">
-          <v-list-item
-              v-for="(link, i) in $page.project.related"
-              :key="i"
-              :href="link.href" target="_blank"
-          >
-            <v-list-item-icon>
-              <v-icon v-text="link.icon"></v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title v-text="link.title"/>
-            </v-list-item-content>
-          </v-list-item>
-        </ul>
+        <div class="row row--dense mt-2 mb-5">
+          <div class="col-lg-4 col-sm-6 col-12" v-for="link in $page.project.related" :key="link.href">
+            <v-list-item class="v-sheet--outlined rounded text-decoration-none"
+                         :href="link.href"
+                         target="_blank" >
+              <v-list-item-icon v-if="link.icon">
+                <v-icon>{{link.icon}}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title class="text-wrap">
+                  {{link.title}}
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </div>
+        </div>
         <h2>Built with</h2>
         <nav class="tech-container">
           <v-btn v-for="tech in $page.project.technologies" :key="tech.id"
@@ -142,11 +144,6 @@ export default {
 .markdown-body,.disqus{
   width: 100%;
   max-width: 1020px;
-}
-.related-links{
-  width: 100%;
-  margin-bottom: 2rem;
-  padding: 0;
 }
 article{
   display: flex;
