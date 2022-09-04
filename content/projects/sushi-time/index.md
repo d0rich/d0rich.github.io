@@ -2,7 +2,7 @@
 title: "Food Delivery Service Client"
 date: 2021-06-06
 summary: ""
-image: '/covers/projects/sushi-time.jpeg'
+image: './cover.jpeg'
 tags: [ 'frontend', 'backend', 'learning', archive ]
 technologies: [ 'Node.js', 'Nuxt.js', 'Vuetify' , 'Express', 'PostgreSQL', Sequelize ORM]
 related:
