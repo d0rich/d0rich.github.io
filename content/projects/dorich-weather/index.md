@@ -2,7 +2,7 @@
 title: "Weather Forecast App"
 date: 2021-01-18
 summary: ""
-image: '/covers/projects/dorich-weather.jpeg'
+image: './cover.jpeg'
 tags: [ 'frontend', dashboard, API, archive]
 technologies: ['Vue.js', Vuetify]
 related:
