@@ -63,6 +63,7 @@
 			<div class="js-objects">
 				<JSObjectWindow class="mb-3 mx-3"
                         v-for="(object, name) in jsObjects"
+                        :key="name"
 												:name="name"
 												:object="object" />
 			</div>
