@@ -15,7 +15,7 @@ export const navigation = {
     },
     portfolio: {
         text: 'Portfolio',
-        route: Router.projects()
+        route: Router.portfolio()
     },
     lifeline: {
         text: 'Story',

@@ -100,7 +100,8 @@ export default {
     breadcrumbs(){
       return [
         {text: 'd0rich', href: Router.home},
-        {text: 'portfolio', href: Router.projects()},
+        {text: 'portfolio', href: Router.portfolio()},
+        {text: 'projects', href: Router.projects()},
         {text: 'tags', disabled: true},
         {text: this.$page.tag.title , disabled: true},
       ]

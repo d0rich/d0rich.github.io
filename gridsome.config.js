@@ -159,8 +159,8 @@ module.exports = {
   ],
   templates: {
     Tag: '/blog/tags/:id',
-    ProjectTag: '/portfolio/tags/:id',
-    Technology: '/portfolio/technologies/:id',
+    ProjectTag: '/portfolio/projects/tags/:id',
+    Technology: '/portfolio/projects/technologies/:id',
     Resume: '/resume/:path'
   },
   transformers: {

@@ -1,5 +1,5 @@
 <template>
-	<v-app class="main-scroll" v-resize="onResize">
+	<v-app v-resize="onResize">
 		<Header v-if="headerOn" />
 		<BottomNavigation v-else />
 		<v-main>

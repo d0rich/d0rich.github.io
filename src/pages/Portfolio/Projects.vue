@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center mt-7">Portfolio</h1>
+    <h1 class="text-center mt-7">Projects</h1>
     <div class="hr" />
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
@@ -107,7 +107,8 @@ export default {
     return{
       breadcrumbs: [
         {text: 'd0rich', href: Router.home},
-        {text: 'portfolio', href: Router.projects(), disabled: true},
+        {text: 'portfolio', href: Router.portfolio()},
+        {text: 'projects', href: Router.projects(), disabled: true},
       ]
     }
   },
@@ -119,8 +120,8 @@ export default {
 	mixins: [metaMixin],
   metaInfo() {
 		return this.createMetaInfo({
-			title: 'Portfolio',
-			description: 'Portfolio of Dorich, JavaScript developer',
+			title: 'Projects',
+			description: 'Projects of Dorich, software developer',
 			ogTitle: 'Portfolio by Dorich',
 			ogPath: `/portfolio/projects/${this.$page.projects.pageInfo.currentPage > 1 ? this.$page.projects.pageInfo.currentPage + '/' : '' }`
 		})
