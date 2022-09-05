@@ -5,7 +5,7 @@
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
       <v-btn color="primary" class="ml-5 my-5 align-self-start"
-             :to="Router.portfolio()" exact>
+             :to="Router.projects()" exact>
         <v-icon>
           mdi-chevron-left
         </v-icon>
@@ -100,7 +100,7 @@ export default {
     breadcrumbs(){
       return [
         {text: 'd0rich', href: Router.home},
-        {text: 'portfolio', href: Router.portfolio()},
+        {text: 'portfolio', href: Router.projects()},
         {text: 'tags', disabled: true},
         {text: this.$page.tag.title , disabled: true},
       ]

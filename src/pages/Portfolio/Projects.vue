@@ -94,9 +94,9 @@ query {
 </static-query>
 
 <script>
-import {Router} from "../router";
-import ProjectBlock from "../components/ProjectBlock";
-import {metaMixin} from "../mixins/meta";
+import {Router} from "../../router";
+import ProjectBlock from "../../components/ProjectBlock";
+import {metaMixin} from "../../mixins/meta";
 
 export default {
   name: "Projects",
@@ -107,13 +107,13 @@ export default {
     return{
       breadcrumbs: [
         {text: 'd0rich', href: Router.home},
-        {text: 'portfolio', href: Router.portfolio(), disabled: true},
+        {text: 'portfolio', href: Router.projects(), disabled: true},
       ]
     }
   },
   methods: {
     changePage(page){
-      this.$router.push(Router.portfolio(page))
+      this.$router.push(Router.projects(page))
     }
   },
 	mixins: [metaMixin],
@@ -122,7 +122,7 @@ export default {
 			title: 'Portfolio',
 			description: 'Portfolio of Dorich, JavaScript developer',
 			ogTitle: 'Portfolio by Dorich',
-			ogPath: `/portfolio/${this.$page.projects.pageInfo.currentPage > 1 ? this.$page.projects.pageInfo.currentPage + '/' : '' }`
+			ogPath: `/portfolio/projects/${this.$page.projects.pageInfo.currentPage > 1 ? this.$page.projects.pageInfo.currentPage + '/' : '' }`
 		})
   }
 }
