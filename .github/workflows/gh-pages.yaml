@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout
@@ -17,8 +19,11 @@ jobs:
       - name: Installing packages
         run: npm ci
 
+      - name: Compile typescript plugins
+        run: npm run compile-plugins
+
       - name: Build Gridsome site
-        run: yarn build
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
