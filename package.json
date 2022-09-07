@@ -2,9 +2,9 @@
   "name": "temp",
   "private": true,
   "scripts": {
-    "build": "gridsome build",
-    "develop": "gridsome develop",
-    "explore": "gridsome explore",
+    "build": "npm run compile-plugins & gridsome build",
+    "develop": "npm run compile-plugins & gridsome develop",
+    "explore": "npm run compile-plugins & gridsome explore",
     "compile-plugins": "tsc --project tsconfig.plugins.json"
   },
   "dependencies": {

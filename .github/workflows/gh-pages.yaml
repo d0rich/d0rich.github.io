@@ -19,9 +19,6 @@ jobs:
       - name: Installing packages
         run: npm ci
 
-      - name: Compile typescript plugins
-        run: npm run compile-plugins
-
       - name: Build Gridsome site
         run: npm run build
 
