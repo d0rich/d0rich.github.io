@@ -19,12 +19,14 @@ module.exports = async function (api: PluginAPI) {
                     releasesCollection.addNode(release)
             }
             repository.releases = releases.map(r => store.createReference('Release', r.id))
-            repository.topics = repository.topics || []
-            for (const topic of repository.topics) {
-                if (topicsCollection.getNodeById(topic))
-                    topicsCollection.addNode({ id: topic, title: topic })
+            if (repository.topics) {
+                for (const topic of repository.topics) {
+                    if (!topicsCollection.getNodeById(topic))
+                        topicsCollection.addNode({ id: topic, title: topic })
+                }
+                repository.topics = repository.topics.map(t => store.createReference('Topic', t))
             }
-            repository.topics = repository.topics.map(t => store.createReference('Topic', t))
+
             if (!repositoriesCollection.getNodeById(repository.id))
                 repositoriesCollection.addNode(repository)
         }
