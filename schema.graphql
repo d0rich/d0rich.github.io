@@ -182,6 +182,90 @@ type Query {
     # Filter for WorkExperience nodes.
     filter: WorkExperienceFilterInput
   ): WorkExperienceConnection
+  repository(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Repository
+  allRepository(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Repository nodes.
+    filter: RepositoryFilterInput
+  ): RepositoryConnection
+  release(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Release
+  allRelease(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Release nodes.
+    filter: ReleaseFilterInput
+  ): ReleaseConnection
+  topic(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Topic
+  allTopic(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Topic nodes.
+    filter: TopicFilterInput
+  ): TopicConnection
+  organizations(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Organizations
+  allOrganizations(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Organizations nodes.
+    filter: OrganizationsFilterInput
+  ): OrganizationsConnection
   metadata: Metadata
   metaData: Metadata @deprecated(reason: "Use Query.metadata instead.")
   page(path: String!): Page
@@ -382,6 +466,10 @@ enum TypeName {
   LifeNote
   Resume
   WorkExperience
+  Repository
+  Release
+  Topic
+  Organizations
 }
 
 type NodeBelongsTo implements NodeConnection {
@@ -1045,7 +1133,7 @@ type Resume_Content_Education_History {
   place: String
   date: Resume_Content_Education_History_Date
   description: String
-  certificate: File
+  certificate: String
 }
 
 type Resume_Content_Education_History_Date {
@@ -1127,7 +1215,7 @@ input Resume_Content_Education_HistoryFilterInput {
   place: StringQueryOperatorInput
   date: Resume_Content_Education_History_DateFilterInput
   description: StringQueryOperatorInput
-  certificate: FileQueryOperatorInput
+  certificate: StringQueryOperatorInput
 }
 
 input Resume_Content_Education_History_DateFilterInput {
@@ -1219,6 +1307,654 @@ type WorkExperienceEdge implements NodeConnectionEdge {
   node: WorkExperience
   next: WorkExperience
   previous: WorkExperience
+}
+
+type Repository implements Node {
+  id: ID!
+  node_id: String
+  name: String
+  full_name: String
+  private: Boolean
+  owner: Repository_Owner
+  html_url: String
+  description: String
+  fork: Boolean
+  url: String
+  forks_url: String
+  keys_url: String
+  collaborators_url: String
+  teams_url: String
+  hooks_url: String
+  issue_events_url: String
+  events_url: String
+  assignees_url: String
+  branches_url: String
+  tags_url: String
+  blobs_url: String
+  git_tags_url: String
+  git_refs_url: String
+  trees_url: String
+  statuses_url: String
+  languages_url: String
+  stargazers_url: String
+  contributors_url: String
+  subscribers_url: String
+  subscription_url: String
+  commits_url: String
+  git_commits_url: String
+  comments_url: String
+  issue_comment_url: String
+  contents_url: String
+  compare_url: String
+  merges_url: String
+  archive_url: String
+  downloads_url: String
+  issues_url: String
+  pulls_url: String
+  milestones_url: String
+  notifications_url: String
+  labels_url: String
+  releases_url: String
+  deployments_url: String
+  created_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  updated_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  pushed_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  git_url: String
+  ssh_url: String
+  clone_url: String
+  svn_url: String
+  homepage: String
+  size: Int
+  stargazers_count: Int
+  watchers_count: Int
+  language: String
+  has_issues: Boolean
+  has_projects: Boolean
+  has_downloads: Boolean
+  has_wiki: Boolean
+  has_pages: Boolean
+  forks_count: Int
+  archived: Boolean
+  disabled: Boolean
+  open_issues_count: Int
+  allow_forking: Boolean
+  is_template: Boolean
+  web_commit_signoff_required: Boolean
+  topics(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [Topic]
+  visibility: String
+  forks: Int
+  open_issues: Int
+  watchers: Int
+  default_branch: String
+  permissions: Repository_Permissions
+  license: Repository_License
+  releases(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [Release]
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type Repository_Owner {
+  login: String
+  id: Int
+  node_id: String
+  avatar_url: String
+  gravatar_id: String
+  url: String
+  html_url: String
+  followers_url: String
+  following_url: String
+  gists_url: String
+  starred_url: String
+  subscriptions_url: String
+  organizations_url: String
+  repos_url: String
+  events_url: String
+  received_events_url: String
+  type: String
+  site_admin: Boolean
+}
+
+type Topic implements Node {
+  id: ID!
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type Repository_Permissions {
+  admin: Boolean
+  maintain: Boolean
+  push: Boolean
+  triage: Boolean
+  pull: Boolean
+}
+
+type Repository_License {
+  key: String
+  name: String
+  spdx_id: String
+  url: String
+  node_id: String
+}
+
+type Release implements Node {
+  id: ID!
+  url: String
+  assets_url: String
+  upload_url: String
+  html_url: String
+  author: Release_Author
+  node_id: String
+  tag_name: String
+  target_commitish: String
+  name: String
+  draft: Boolean
+  prerelease: Boolean
+  created_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  published_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  tarball_url: String
+  zipball_url: String
+  body: String
+  assets: [Release_Assets]
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type Release_Author {
+  login: String
+  id: Int
+  node_id: String
+  avatar_url: String
+  gravatar_id: String
+  url: String
+  html_url: String
+  followers_url: String
+  following_url: String
+  gists_url: String
+  starred_url: String
+  subscriptions_url: String
+  organizations_url: String
+  repos_url: String
+  events_url: String
+  received_events_url: String
+  type: String
+  site_admin: Boolean
+}
+
+type Release_Assets {
+  url: String
+  id: Int
+  node_id: String
+  name: String
+  label: String
+  uploader: Release_Assets_Uploader
+  content_type: String
+  state: String
+  size: Int
+  download_count: Int
+  created_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  updated_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  browser_download_url: String
+}
+
+type Release_Assets_Uploader {
+  login: String
+  id: Int
+  node_id: String
+  avatar_url: String
+  gravatar_id: String
+  url: String
+  html_url: String
+  followers_url: String
+  following_url: String
+  gists_url: String
+  starred_url: String
+  subscriptions_url: String
+  organizations_url: String
+  repos_url: String
+  events_url: String
+  received_events_url: String
+  type: String
+  site_admin: Boolean
+}
+
+input RepositoryFilterInput {
+  id: IDQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  full_name: StringQueryOperatorInput
+  private: BooleanQueryOperatorInput
+  owner: Repository_OwnerFilterInput
+  html_url: StringQueryOperatorInput
+  description: StringQueryOperatorInput
+  fork: BooleanQueryOperatorInput
+  url: StringQueryOperatorInput
+  forks_url: StringQueryOperatorInput
+  keys_url: StringQueryOperatorInput
+  collaborators_url: StringQueryOperatorInput
+  teams_url: StringQueryOperatorInput
+  hooks_url: StringQueryOperatorInput
+  issue_events_url: StringQueryOperatorInput
+  events_url: StringQueryOperatorInput
+  assignees_url: StringQueryOperatorInput
+  branches_url: StringQueryOperatorInput
+  tags_url: StringQueryOperatorInput
+  blobs_url: StringQueryOperatorInput
+  git_tags_url: StringQueryOperatorInput
+  git_refs_url: StringQueryOperatorInput
+  trees_url: StringQueryOperatorInput
+  statuses_url: StringQueryOperatorInput
+  languages_url: StringQueryOperatorInput
+  stargazers_url: StringQueryOperatorInput
+  contributors_url: StringQueryOperatorInput
+  subscribers_url: StringQueryOperatorInput
+  subscription_url: StringQueryOperatorInput
+  commits_url: StringQueryOperatorInput
+  git_commits_url: StringQueryOperatorInput
+  comments_url: StringQueryOperatorInput
+  issue_comment_url: StringQueryOperatorInput
+  contents_url: StringQueryOperatorInput
+  compare_url: StringQueryOperatorInput
+  merges_url: StringQueryOperatorInput
+  archive_url: StringQueryOperatorInput
+  downloads_url: StringQueryOperatorInput
+  issues_url: StringQueryOperatorInput
+  pulls_url: StringQueryOperatorInput
+  milestones_url: StringQueryOperatorInput
+  notifications_url: StringQueryOperatorInput
+  labels_url: StringQueryOperatorInput
+  releases_url: StringQueryOperatorInput
+  deployments_url: StringQueryOperatorInput
+  created_at: DateQueryOperatorInput
+  updated_at: DateQueryOperatorInput
+  pushed_at: DateQueryOperatorInput
+  git_url: StringQueryOperatorInput
+  ssh_url: StringQueryOperatorInput
+  clone_url: StringQueryOperatorInput
+  svn_url: StringQueryOperatorInput
+  homepage: StringQueryOperatorInput
+  size: IntQueryOperatorInput
+  stargazers_count: IntQueryOperatorInput
+  watchers_count: IntQueryOperatorInput
+  language: StringQueryOperatorInput
+  has_issues: BooleanQueryOperatorInput
+  has_projects: BooleanQueryOperatorInput
+  has_downloads: BooleanQueryOperatorInput
+  has_wiki: BooleanQueryOperatorInput
+  has_pages: BooleanQueryOperatorInput
+  forks_count: IntQueryOperatorInput
+  archived: BooleanQueryOperatorInput
+  disabled: BooleanQueryOperatorInput
+  open_issues_count: IntQueryOperatorInput
+  allow_forking: BooleanQueryOperatorInput
+  is_template: BooleanQueryOperatorInput
+  web_commit_signoff_required: BooleanQueryOperatorInput
+  topics: TopicInferredListQueryOperatorInput
+  visibility: StringQueryOperatorInput
+  forks: IntQueryOperatorInput
+  open_issues: IntQueryOperatorInput
+  watchers: IntQueryOperatorInput
+  default_branch: StringQueryOperatorInput
+  permissions: Repository_PermissionsFilterInput
+  license: Repository_LicenseFilterInput
+  releases: ReleaseInferredListQueryOperatorInput
+}
+
+input Repository_OwnerFilterInput {
+  login: StringQueryOperatorInput
+  id: IntQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  avatar_url: StringQueryOperatorInput
+  gravatar_id: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  html_url: StringQueryOperatorInput
+  followers_url: StringQueryOperatorInput
+  following_url: StringQueryOperatorInput
+  gists_url: StringQueryOperatorInput
+  starred_url: StringQueryOperatorInput
+  subscriptions_url: StringQueryOperatorInput
+  organizations_url: StringQueryOperatorInput
+  repos_url: StringQueryOperatorInput
+  events_url: StringQueryOperatorInput
+  received_events_url: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  site_admin: BooleanQueryOperatorInput
+}
+
+input IntQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: Int
+
+  # Filter by property not equal to provided value.
+  ne: Int
+
+  # Filter by property matching any of the provided values.
+  in: [Int]
+
+  # Filter by property not matching any of the provided values.
+  nin: [Int]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+
+  # Filter by property greater than provided value.
+  gt: Int
+
+  # Filter by property greater or equal to provided value.
+  gte: Int
+
+  # Filter by property less than provided value.
+  lt: Int
+
+  # Filter by property less than or equal to provided value.
+  lte: Int
+
+  # Filter by property between provided values.
+  between: [Int]
+}
+
+input TopicInferredListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+input Repository_PermissionsFilterInput {
+  admin: BooleanQueryOperatorInput
+  maintain: BooleanQueryOperatorInput
+  push: BooleanQueryOperatorInput
+  triage: BooleanQueryOperatorInput
+  pull: BooleanQueryOperatorInput
+}
+
+input Repository_LicenseFilterInput {
+  key: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  spdx_id: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  node_id: StringQueryOperatorInput
+}
+
+input ReleaseInferredListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+type RepositoryConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [RepositoryEdge]
+}
+
+type RepositoryEdge implements NodeConnectionEdge {
+  node: Repository
+  next: Repository
+  previous: Repository
+}
+
+input ReleaseFilterInput {
+  id: IDQueryOperatorInput
+  url: StringQueryOperatorInput
+  assets_url: StringQueryOperatorInput
+  upload_url: StringQueryOperatorInput
+  html_url: StringQueryOperatorInput
+  author: Release_AuthorFilterInput
+  node_id: StringQueryOperatorInput
+  tag_name: StringQueryOperatorInput
+  target_commitish: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  draft: BooleanQueryOperatorInput
+  prerelease: BooleanQueryOperatorInput
+  created_at: DateQueryOperatorInput
+  published_at: DateQueryOperatorInput
+  tarball_url: StringQueryOperatorInput
+  zipball_url: StringQueryOperatorInput
+  body: StringQueryOperatorInput
+  assets: Release_AssetsFilterInput
+}
+
+input Release_AuthorFilterInput {
+  login: StringQueryOperatorInput
+  id: IntQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  avatar_url: StringQueryOperatorInput
+  gravatar_id: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  html_url: StringQueryOperatorInput
+  followers_url: StringQueryOperatorInput
+  following_url: StringQueryOperatorInput
+  gists_url: StringQueryOperatorInput
+  starred_url: StringQueryOperatorInput
+  subscriptions_url: StringQueryOperatorInput
+  organizations_url: StringQueryOperatorInput
+  repos_url: StringQueryOperatorInput
+  events_url: StringQueryOperatorInput
+  received_events_url: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  site_admin: BooleanQueryOperatorInput
+}
+
+input Release_AssetsFilterInput {
+  url: StringQueryOperatorInput
+  id: IntQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  label: StringQueryOperatorInput
+  uploader: Release_Assets_UploaderFilterInput
+  content_type: StringQueryOperatorInput
+  state: StringQueryOperatorInput
+  size: IntQueryOperatorInput
+  download_count: IntQueryOperatorInput
+  created_at: DateQueryOperatorInput
+  updated_at: DateQueryOperatorInput
+  browser_download_url: StringQueryOperatorInput
+}
+
+input Release_Assets_UploaderFilterInput {
+  login: StringQueryOperatorInput
+  id: IntQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  avatar_url: StringQueryOperatorInput
+  gravatar_id: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  html_url: StringQueryOperatorInput
+  followers_url: StringQueryOperatorInput
+  following_url: StringQueryOperatorInput
+  gists_url: StringQueryOperatorInput
+  starred_url: StringQueryOperatorInput
+  subscriptions_url: StringQueryOperatorInput
+  organizations_url: StringQueryOperatorInput
+  repos_url: StringQueryOperatorInput
+  events_url: StringQueryOperatorInput
+  received_events_url: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  site_admin: BooleanQueryOperatorInput
+}
+
+type ReleaseConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ReleaseEdge]
+}
+
+type ReleaseEdge implements NodeConnectionEdge {
+  node: Release
+  next: Release
+  previous: Release
+}
+
+input TopicFilterInput {
+  id: IDQueryOperatorInput
+}
+
+type TopicConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TopicEdge]
+}
+
+type TopicEdge implements NodeConnectionEdge {
+  node: Topic
+  next: Topic
+  previous: Topic
+}
+
+type Organizations implements Node {
+  id: ID!
+  login: String
+  node_id: String
+  url: String
+  repos_url: String
+  events_url: String
+  hooks_url: String
+  issues_url: String
+  members_url: String
+  public_members_url: String
+  avatar_url: String
+  description: String
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+input OrganizationsFilterInput {
+  id: IDQueryOperatorInput
+  login: StringQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  repos_url: StringQueryOperatorInput
+  events_url: StringQueryOperatorInput
+  hooks_url: StringQueryOperatorInput
+  issues_url: StringQueryOperatorInput
+  members_url: StringQueryOperatorInput
+  public_members_url: StringQueryOperatorInput
+  avatar_url: StringQueryOperatorInput
+  description: StringQueryOperatorInput
+}
+
+type OrganizationsConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [OrganizationsEdge]
+}
+
+type OrganizationsEdge implements NodeConnectionEdge {
+  node: Organizations
+  next: Organizations
+  previous: Organizations
 }
 
 type Metadata {
