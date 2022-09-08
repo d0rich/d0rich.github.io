@@ -36,6 +36,9 @@ module.exports = {
         },
       },
     },
+    {
+      use: 'gridsome-plugin-typescript'
+    },
       // Sitemap
     {
       use: '@gridsome/plugin-sitemap',
