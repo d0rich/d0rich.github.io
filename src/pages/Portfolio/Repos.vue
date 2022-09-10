@@ -103,4 +103,10 @@ export default {
   grid-gap: 1rem;
   grid-template-columns: 1fr 1fr;
 }
+
+@media screen and (max-width: 640px) {
+  .repos-container{
+    grid-template-columns: 1fr;
+  }
+}
 </style>
