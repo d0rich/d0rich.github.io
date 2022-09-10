@@ -23,6 +23,7 @@ function getAllRepos() {
         for (let i = 0; i * REPOS_PER_PAGE < user.data.public_repos; i++) {
             const reposPage = yield octokit.rest.repos.listForUser({
                 username: user.data.login,
+                type: 'all',
                 per_page: REPOS_PER_PAGE,
                 page: i + 1
             });

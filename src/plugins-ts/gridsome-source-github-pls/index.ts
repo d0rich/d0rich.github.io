@@ -15,6 +15,7 @@ plIconsMap.set('Dart', getIconLink('dart'))
 plIconsMap.set('HTML', getIconLink('html5'))
 plIconsMap.set('CSS',  getIconLink('css3'))
 plIconsMap.set('Python', getIconLink('python'))
+plIconsMap.set('C#', getIconLink('csharp'))
 
 module.exports = async function (api: PluginAPI) {
     const { data: languagesManifest} = await axios.get('https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml')

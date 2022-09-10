@@ -26,6 +26,7 @@ plIconsMap.set('Dart', getIconLink('dart'));
 plIconsMap.set('HTML', getIconLink('html5'));
 plIconsMap.set('CSS', getIconLink('css3'));
 plIconsMap.set('Python', getIconLink('python'));
+plIconsMap.set('C#', getIconLink('csharp'));
 module.exports = function (api) {
     return __awaiter(this, void 0, void 0, function* () {
         const { data: languagesManifest } = yield axios_1.default.get('https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml');

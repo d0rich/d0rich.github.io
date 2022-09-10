@@ -30,6 +30,13 @@ query Repos ($page: Int) {
       node {
         id
         name
+        full_name
+        owner {
+          login
+          type
+          html_url
+          avatar_url
+        }
         description
         html_url
         stargazers_count
@@ -41,6 +48,7 @@ query Repos ($page: Int) {
         releases {
           name
           tag_name
+          html_url
         }
       }
     }

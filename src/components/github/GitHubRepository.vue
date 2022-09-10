@@ -6,9 +6,13 @@
         <v-icon class="mr-2">mdi-book</v-icon>
         <a class="font-weight-black github-repo__link"
            :href="repo.html_url" target="_blank">{{repo.name}}</a>
-        <span v-if="repo.releases.length" class="ml-1 text--secondary text-caption">
+        <v-chip v-if="repo.releases.length"
+                x-small
+                :href="repo.releases[0].html_url"
+                target="_blank"
+                class="ml-1">
           {{repo.releases[0].tag_name}}
-        </span>
+        </v-chip>
       </div>
       <div class="text-subtitle-1 text--secondary my-1" v-text="repo.description"/>
       <v-spacer />
@@ -19,6 +23,13 @@
         <span v-if="repo.stargazers_count" class="d-flex align-center mr-2">
           <v-icon small>mdi-star</v-icon>{{repo.stargazers_count}}
         </span>
+        <v-chip v-if="repo.owner.login !== 'd0rich'" outlined
+                :href="repo.owner.html_url" target="_blank" >
+          <v-avatar left>
+            <v-img :src="repo.owner.avatar_url"></v-img>
+          </v-avatar>
+          {{ getOwnerType(repo.owner.type) }}: {{ repo.owner.login }}
+        </v-chip>
       </div>
     </div>
     <div v-if="repo.language" class="pl-3">
@@ -40,6 +51,12 @@ export default Vue.extend({
     repo: {
       type: Object as PropType<Partial<Repository>>,
       required: true
+    }
+  },
+  methods: {
+    getOwnerType(type: string){
+      if (type === 'Organization') return 'Org'
+      return type
     }
   }
 })
