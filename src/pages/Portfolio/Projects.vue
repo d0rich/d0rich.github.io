@@ -6,7 +6,7 @@
       <v-breadcrumbs :items="breadcrumbs"/>
     </nav>
 
-    <nav class="projects-container">
+    <nav class="repos-container">
       <ProjectBlock :project="project.node"
                     v-for="project in $page.projects.edges" :key="project.node.id" />
     </nav>
@@ -130,7 +130,7 @@ export default {
 </script>
 
 <style scoped>
-.projects-container{
+.repos-container{
   margin-top: 2rem;
   display: grid;
   grid-gap: 1rem;
@@ -139,13 +139,13 @@ export default {
   align-items: start;
 }
 @media screen and (max-width: 1080px) {
-  .projects-container{
+  .repos-container{
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 640px) {
-  .projects-container{
+  .repos-container{
     grid-template-columns: 1fr;
   }
 }

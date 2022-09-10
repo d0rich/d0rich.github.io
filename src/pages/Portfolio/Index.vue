@@ -5,6 +5,7 @@
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
     </nav>
+    <!-- Projects -->
     <v-row no-gutters>
       <v-col>
         <v-card :to="projectsLink" class="projects-card">
@@ -36,6 +37,47 @@
         </v-card>
       </v-col>
     </v-row>
+    <!-- GitHub -->
+    <div class="d-flex flex-wrap mt-4">
+      <div class="col mx-1">
+        <v-card :to="reposLink" class="projects-card">
+          <v-list-item three-line>
+            <v-list-item-content>
+              <div class="text-overline mb-4">
+                PARSED
+              </div>
+              <v-list-item-title class="mb-1">
+                <h2>Relevant Repositories</h2>
+              </v-list-item-title>
+              <v-list-item-subtitle class="text" v-text="'Projects I\'m currently working on'"/>
+            </v-list-item-content>
+
+            <v-list-item-avatar tile color="primary" size="80">
+              <v-icon large>mdi-github</v-icon>
+            </v-list-item-avatar>
+          </v-list-item>
+        </v-card>
+      </div>
+      <div class="col mx-1">
+        <v-card :to="projectsLink" class="projects-card">
+          <v-list-item three-line>
+            <v-list-item-content>
+              <div class="text-overline mb-4">
+                PARSED
+              </div>
+              <v-list-item-title class="mb-1">
+                <h2>Archive</h2>
+              </v-list-item-title>
+              <v-list-item-subtitle class="text" v-text="'Archive of my old GitHub repositories'"/>
+            </v-list-item-content>
+
+            <v-list-item-avatar tile color="primary" size="80">
+              <v-icon x-large>mdi-github</v-icon>
+            </v-list-item-avatar>
+          </v-list-item>
+        </v-card>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -76,6 +118,7 @@ export default {
   },
   computed: {
     projectsLink: () => Router.projects(),
+    reposLink: () => Router.repositories(),
     projects() {
       return this.$page.projects.edges.map(edge => edge.node)
     }

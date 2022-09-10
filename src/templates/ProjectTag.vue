@@ -15,7 +15,7 @@
 
     <nav>
       <h2 class="mt-4">Projects tagged <span class="tag-highlight">#{{ $page.tag.title }}</span></h2>
-      <div class="projects-container">
+      <div class="repos-container">
         <project-block v-for="project in $page.tag.belongsTo.edges" :key="project.node.id"
                        :project="project.node" class="my-2"/>
       </div>
@@ -129,7 +129,7 @@ export default {
 .tag-highlight{
   color: var(--v-info-base);
 }
-.projects-container{
+.repos-container{
   margin-top: 2rem;
   display: grid;
   grid-gap: 1rem;
@@ -138,13 +138,13 @@ export default {
   align-items: start;
 }
 @media screen and (max-width: 1080px) {
-  .projects-container{
+  .repos-container{
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 640px) {
-  .projects-container{
+  .repos-container{
     grid-template-columns: 1fr;
   }
 }
