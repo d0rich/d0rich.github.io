@@ -59,7 +59,7 @@
         </v-card>
       </div>
       <div class="col mx-1">
-        <v-card :to="projectsLink" class="projects-card">
+        <v-card :to="archiveLink" class="projects-card">
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4">
@@ -119,6 +119,7 @@ export default {
   computed: {
     projectsLink: () => Router.projects(),
     reposLink: () => Router.repositories(),
+    archiveLink: () => Router.archive(),
     projects() {
       return this.$page.projects.edges.map(edge => edge.node)
     }
