@@ -26,12 +26,14 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "axios": "^0.27.2",
     "gridsome-plugin-typescript": "^0.4.0",
     "sass": "^1.49.9",
     "sass-loader": "^10.1.1",
     "style-resources-loader": "^1.4.1",
     "ts-loader": "^6.0.0",
     "typescript": "^4.5.5",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-node-externals": "^3.0.0",
+    "yaml": "^2.1.1"
   }
 }

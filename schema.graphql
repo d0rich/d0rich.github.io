@@ -266,6 +266,27 @@ type Query {
     # Filter for Organizations nodes.
     filter: OrganizationsFilterInput
   ): OrganizationsConnection
+  programmingLanguage(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): ProgrammingLanguage
+  allProgrammingLanguage(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for ProgrammingLanguage nodes.
+    filter: ProgrammingLanguageFilterInput
+  ): ProgrammingLanguageConnection
   metadata: Metadata
   metaData: Metadata @deprecated(reason: "Use Query.metadata instead.")
   page(path: String!): Page
@@ -288,7 +309,6 @@ type Post implements Node {
     # Locale
     locale: String
   ): Date
-  summary: String
   image(
     # Width
     width: Int
@@ -316,6 +336,7 @@ type Post implements Node {
     limit: Int
   ): [Tag]
   include_to_lifeline: Boolean
+  summary: String
   belongsTo(
     sortBy: String = "date"
     order: SortOrder = DESC
@@ -470,6 +491,7 @@ enum TypeName {
   Release
   Topic
   Organizations
+  ProgrammingLanguage
 }
 
 type NodeBelongsTo implements NodeConnection {
@@ -529,10 +551,10 @@ input PostFilterInput {
   content: StringQueryOperatorInput
   title: StringQueryOperatorInput
   date: DateQueryOperatorInput
-  summary: StringQueryOperatorInput
   image: ImageQueryOperatorInput
   tags: TagListQueryOperatorInput
   include_to_lifeline: BooleanQueryOperatorInput
+  summary: StringQueryOperatorInput
 }
 
 input Post_FileInfoFilterInput {
@@ -1385,7 +1407,7 @@ type Repository implements Node {
   size: Int
   stargazers_count: Int
   watchers_count: Int
-  language: String
+  language: ProgrammingLanguage
   has_issues: Boolean
   has_projects: Boolean
   has_downloads: Boolean
@@ -1454,8 +1476,42 @@ type Repository_Owner {
   site_admin: Boolean
 }
 
+type ProgrammingLanguage implements Node {
+  id: ID!
+  type: String
+  color: String
+  extensions: [String]
+  tm_scope: String
+  ace_mode: String
+  language_id: Int
+  name: String
+  aliases: [String]
+  codemirror_mode: String
+  codemirror_mime_type: String
+  interpreters: [String]
+  group: String
+  filenames: [String]
+  wrap: Boolean
+  icon: String
+  fs_name: String
+  searchable: Boolean
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
 type Topic implements Node {
   id: ID!
+  title: String
   belongsTo(
     sortBy: String = "date"
     order: SortOrder = DESC
@@ -1659,7 +1715,7 @@ input RepositoryFilterInput {
   size: IntQueryOperatorInput
   stargazers_count: IntQueryOperatorInput
   watchers_count: IntQueryOperatorInput
-  language: StringQueryOperatorInput
+  language: ProgrammingLanguageInferredQueryOperatorInput
   has_issues: BooleanQueryOperatorInput
   has_projects: BooleanQueryOperatorInput
   has_downloads: BooleanQueryOperatorInput
@@ -1734,6 +1790,22 @@ input IntQueryOperatorInput {
 
   # Filter by property between provided values.
   between: [Int]
+}
+
+input ProgrammingLanguageInferredQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  eq: ID
+
+  # Use the id field instead.
+  ne: ID
+
+  # Use the id field instead.
+  in: [ID]
+
+  # Use the id field instead.
+  nin: [ID]
 }
 
 input TopicInferredListQueryOperatorInput {
@@ -1889,6 +1961,7 @@ type ReleaseEdge implements NodeConnectionEdge {
 
 input TopicFilterInput {
   id: IDQueryOperatorInput
+  title: StringQueryOperatorInput
 }
 
 type TopicConnection implements NodeConnection {
@@ -1955,6 +2028,35 @@ type OrganizationsEdge implements NodeConnectionEdge {
   node: Organizations
   next: Organizations
   previous: Organizations
+}
+
+input ProgrammingLanguageFilterInput {
+  id: IDQueryOperatorInput
+  type: StringQueryOperatorInput
+  color: StringQueryOperatorInput
+  tm_scope: StringQueryOperatorInput
+  ace_mode: StringQueryOperatorInput
+  language_id: IntQueryOperatorInput
+  name: StringQueryOperatorInput
+  codemirror_mode: StringQueryOperatorInput
+  codemirror_mime_type: StringQueryOperatorInput
+  group: StringQueryOperatorInput
+  wrap: BooleanQueryOperatorInput
+  icon: StringQueryOperatorInput
+  fs_name: StringQueryOperatorInput
+  searchable: BooleanQueryOperatorInput
+}
+
+type ProgrammingLanguageConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProgrammingLanguageEdge]
+}
+
+type ProgrammingLanguageEdge implements NodeConnectionEdge {
+  node: ProgrammingLanguage
+  next: ProgrammingLanguage
+  previous: ProgrammingLanguage
 }
 
 type Metadata {

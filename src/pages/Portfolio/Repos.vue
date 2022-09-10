@@ -32,8 +32,12 @@ query Repos ($page: Int) {
         name
         description
         html_url
-        language
         stargazers_count
+        language {
+          name
+          color
+          icon
+        }
       }
     }
   }

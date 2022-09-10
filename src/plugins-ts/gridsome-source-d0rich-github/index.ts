@@ -14,6 +14,7 @@ module.exports = async function (api: PluginAPI) {
         const orgsCollection = addCollection('Organizations')
 
         function addRepoToDatabase(repository: Repository, releases: Releases) {
+            repository.language = store.createReference('ProgrammingLanguage', repository.language)
             for (const release of releases){
                 if (!releasesCollection.getNodeById(release.id))
                     releasesCollection.addNode(release)

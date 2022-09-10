@@ -1,15 +1,29 @@
 <template>
   <v-sheet outlined rounded
            class="github-repo pa-2">
-    <div class="github-repo__name">
-      <v-icon>mdi-book</v-icon>
-      <a class="font-weight-black github-repo__link"
-         :href="repo.html_url" target="_blank">{{repo.name}}</a>
+    <div class="d-flex flex-column">
+      <div class="github-repo__name">
+        <v-icon>mdi-book</v-icon>
+        <a class="font-weight-black github-repo__link"
+           :href="repo.html_url" target="_blank">{{repo.name}}</a>
+      </div>
+      <div class="text-subtitle-1 text--secondary my-1" v-text="repo.description"/>
+      <v-spacer />
+      <div class="mt-2 text--secondary d-flex">
+        <span v-if="repo.language" class="d-flex align-center mr-2">
+          <v-icon small :color="repo.language.color">mdi-circle</v-icon>{{repo.language.name}}
+        </span>
+        <span v-if="repo.stargazers_count" class="d-flex align-center mr-2">
+          <v-icon small>mdi-star</v-icon>{{repo.stargazers_count}}
+        </span>
+      </div>
     </div>
-    <div class="text-subtitle-2 text--secondary my-1" v-text="repo.description"/>
-    <div class="mt-2 text--secondary">
-      {{repo.language}} <span v-if="repo.stargazers_count"><v-icon>mdi-star</v-icon>{{repo.stargazers_count}}</span>
+    <div v-if="repo.language" class="pl-3">
+      <v-avatar tile>
+        <g-image :src="repo.language.icon"></g-image>
+      </v-avatar>
     </div>
+
   </v-sheet>
 </template>
 
@@ -21,7 +35,7 @@ export default Vue.extend({
   name: "GitHubRepository",
   props: {
     repo: {
-      type: Object as PropType<Repository>,
+      type: Object as PropType<Partial<Repository>>,
       required: true
     }
   }
@@ -32,6 +46,8 @@ export default Vue.extend({
 .github-repo {
   font-family: "Roboto", sans-serif;
   max-width: 600px;
+  display: flex;
+  justify-content: space-between;
 }
 .github-repo__name {
   font-family: 'JetBrains Mono', monospace;

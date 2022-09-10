@@ -159,7 +159,9 @@ module.exports = {
         typeName: 'WorkExperience'
       }
     },
-    require('./src/plugins/gridsome-source-d0rich-github')
+    require('./src/plugins/gridsome-source-github-pls'),
+    require('./src/plugins/gridsome-source-d0rich-github'),
+
   ],
   templates: {
     Tag: '/blog/tags/:id',

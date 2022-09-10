@@ -20,6 +20,7 @@ module.exports = function (api) {
             const topicsCollection = addCollection('Topic');
             const orgsCollection = addCollection('Organizations');
             function addRepoToDatabase(repository, releases) {
+                repository.language = store.createReference('ProgrammingLanguage', repository.language);
                 for (const release of releases) {
                     if (!releasesCollection.getNodeById(release.id))
                         releasesCollection.addNode(release);
