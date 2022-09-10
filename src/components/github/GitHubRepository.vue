@@ -3,9 +3,12 @@
            class="github-repo pa-2">
     <div class="d-flex flex-column">
       <div class="github-repo__name">
-        <v-icon>mdi-book</v-icon>
+        <v-icon class="mr-2">mdi-book</v-icon>
         <a class="font-weight-black github-repo__link"
            :href="repo.html_url" target="_blank">{{repo.name}}</a>
+        <span v-if="repo.releases.length" class="ml-1 text--secondary text-caption">
+          {{repo.releases[0].tag_name}}
+        </span>
       </div>
       <div class="text-subtitle-1 text--secondary my-1" v-text="repo.description"/>
       <v-spacer />

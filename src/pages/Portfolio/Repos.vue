@@ -38,6 +38,10 @@ query Repos ($page: Int) {
           color
           icon
         }
+        releases {
+          name
+          tag_name
+        }
       }
     }
   }
@@ -90,7 +94,7 @@ export default {
       title: 'Repositories',
       description: 'Relevant repositories of Dorich, software developer',
       ogTitle: 'Repositories by Dorich',
-      ogPath: `/portfolio/repos/${this.$page.repos.pageInfo.currentPage > 1 ? this.$page.projects.pageInfo.currentPage + '/' : '' }`
+      ogPath: `/portfolio/repos/${this.$page.repos.pageInfo.currentPage > 1 ? this.$page.repos.pageInfo.currentPage + '/' : '' }`
     })
   }
 }
