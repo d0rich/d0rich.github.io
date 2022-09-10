@@ -40,10 +40,10 @@
     <!-- GitHub -->
     <div class="d-flex flex-wrap mt-4">
       <div class="col mx-1">
-        <v-card :to="reposLink" class="projects-card">
+        <v-card :to="reposLink" class="github-card">
           <v-list-item three-line>
             <v-list-item-content>
-              <div class="text-overline mb-4">
+              <div class="text-overline mb-4 transition-swing github-card__status">
                 PARSED
               </div>
               <v-list-item-title class="mb-1">
@@ -52,17 +52,18 @@
               <v-list-item-subtitle class="text" v-text="'Projects I\'m currently working on'"/>
             </v-list-item-content>
 
-            <v-list-item-avatar tile color="primary" size="80">
+            <v-list-item-avatar tile color="primary" size="80"
+                                class="github-card__icon transition-swing">
               <v-icon large>mdi-github</v-icon>
             </v-list-item-avatar>
           </v-list-item>
         </v-card>
       </div>
       <div class="col mx-1">
-        <v-card :to="archiveLink" class="projects-card">
+        <v-card :to="archiveLink" class="github-card">
           <v-list-item three-line>
             <v-list-item-content>
-              <div class="text-overline mb-4">
+              <div class="text-overline mb-4 github-card__status transition-swing">
                 PARSED
               </div>
               <v-list-item-title class="mb-1">
@@ -71,7 +72,8 @@
               <v-list-item-subtitle class="text" v-text="'Archive of my old GitHub repositories'"/>
             </v-list-item-content>
 
-            <v-list-item-avatar tile color="primary" size="80">
+            <v-list-item-avatar tile color="primary" size="80"
+                                class="github-card__icon transition-swing">
               <v-icon x-large>mdi-github</v-icon>
             </v-list-item-avatar>
           </v-list-item>
@@ -158,4 +160,32 @@ export default {
   box-shadow: calc(min(6vw, 40px) * 2) 0 0 max(-20px, -5vw) var(--v-primary-base);
 }
 
+.github-card{
+  text-decoration: none;
+}
+
+.github-card__status{
+  text-align: right;
+  padding-right: 100%;
+  animation: status-turn-off ease-in-out .3s;
+}
+.github-card:hover .github-card__status{
+  padding-right: 0;
+  animation: status-turn-on ease-in-out .3s;
+
+  color: var(--v-primary-base);
+}
+.github-card:hover .github-card__icon{
+  transform: scale(.7);
+}
+@keyframes status-turn-on {
+  0% { filter: drop-shadow( 0 0 0 var(--v-accent-base)) }
+  50% { filter: drop-shadow( -50px 0 1px var(--v-accent-base))  }
+  100% { filter: drop-shadow( 0 0 0 var(--v-accent-base)) }
+}
+@keyframes status-turn-off {
+  0% { filter: drop-shadow( 0 0 0 var(--v-accent-base)) }
+  50% { filter: drop-shadow( 50px 0 1px var(--v-accent-base))  }
+  100% { filter: drop-shadow( 0 0 0 var(--v-accent-base)) }
+}
 </style>
