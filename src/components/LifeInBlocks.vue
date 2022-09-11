@@ -53,11 +53,6 @@ export default {
 	},
 	mixins: [idMixin, timeMixin],
 	computed: {
-		deathdate(){
-			const birthdate = new Date(this.birthdate)
-			birthdate.setFullYear(birthdate.getFullYear() + this.averageLifeYears)
-			return birthdate
-		},
 		months(){
 			const numberOfMonthes = this.averageLifeYears * 12
 			const months = []
