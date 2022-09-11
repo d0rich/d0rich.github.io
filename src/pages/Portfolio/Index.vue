@@ -32,28 +32,43 @@
             <g-image v-for="(project, i) in projects" :key="project.id"
                      :src="project.image"
                      :style="{ zIndex: projects.length - i }"
-                     class="projects-card__image" />
+                     class="projects-card__image transition-swing" />
           </div>
         </v-card>
       </v-col>
     </v-row>
     <!-- GitHub -->
+    <div class="d-flex align-center mb-4 mt-12 px-8 full-width">
+      <div class="hr"></div>
+      <div class="d-flex align-center mx-4">
+        <v-avatar>
+          <v-icon x-large>mdi-github</v-icon>
+        </v-avatar>
+        GitHub
+      </div>
+      <div class="hr"></div>
+    </div>
     <section class="d-flex flex-wrap mt-4">
       <div class="col mx-1">
         <SectionBlock :to="reposLink"
                       status="PARSED"
                       name="Relevant Repositories"
                       description="Projects I'm currently working on"
-                      icon="mdi-github" />
+                      icon="mdi-book-variant" />
       </div>
       <div class="col mx-1">
         <SectionBlock :to="archiveLink"
                       status="PARSED"
                       name="Archive"
                       description="Archive of my old GitHub repositories"
-                      icon="mdi-github" />
+                      icon="mdi-archive" />
       </div>
     </section>
+    <div class="d-flex align-center mb-4 mt-12 px-8 full-width">
+      <div class="hr"/>
+      <g-image :src="youtrackImage" class="mx-4" />
+      <div class="hr"/>
+    </div>
     <section class="col">
       <SectionBlock :to="youtrackLink"
                     status="WORK IN PROGRESS"
@@ -89,6 +104,7 @@ query Portfolio {
 import {Router} from "../../router";
 import {metaMixin} from "../../mixins/meta";
 import SectionBlock from "../../components/portfolio/SectionBlock";
+import youtrackImage from '../../assets/youtrack.svg'
 
 export default {
   name: "Portfolio",
@@ -98,7 +114,8 @@ export default {
       breadcrumbs: [
         {text: 'd0rich', href: Router.home},
         {text: 'portfolio', href: Router.portfolio(), disabled: true}
-      ]
+      ],
+      youtrackImage
     }
   },
   computed: {
@@ -123,12 +140,14 @@ export default {
 </script>
 
 <style scoped>
+.full-width{
+  width: 100%;
+}
 .projects-card{
   text-decoration: none;
 }
 .projects-card__image{
   width: 25%;
-  transition: all ease-in-out .5s;
 }
 
 .projects-card__image:last-of-type{
