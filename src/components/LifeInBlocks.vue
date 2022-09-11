@@ -48,36 +48,11 @@ export default {
         x: 0,
         y: 0,
         show: false
-      }
+      },
+      months: []
     }
 	},
 	mixins: [idMixin, timeMixin],
-	computed: {
-		months(){
-			const numberOfMonthes = this.averageLifeYears * 12
-			const months = []
-			for (let monthNumber = 0; monthNumber < numberOfMonthes; monthNumber++ ) {
-				const date = this.addMonths(this.birthdate, monthNumber)
-				months.push({
-					number: monthNumber + 1,
-					numberInYear: this.birthdate.getMonth() <= date.getMonth() ? date.getMonth() - this.birthdate.getMonth() + 1 : date.getMonth() + 12 - this.birthdate.getMonth() + 1,
-					year: date.getFullYear(),
-					yearOfLife: this.birthdate.getMonth() <= date.getMonth() ? date.getFullYear() - this.birthdate.getFullYear() + 1 : date.getFullYear() - this.birthdate.getFullYear(),
-					passed: date < new Date(),
-					events: this.notes.filter(note => {
-						const noteDate = new Date(note.date)
-						return (noteDate.getDate() >= date.getDate()
-                    && date.getMonth() === noteDate.getMonth()
-                    && date.getFullYear() === noteDate.getFullYear())
-              || (noteDate.getDate() < date.getDate()
-                    && this.addMonths(date, 1).getMonth() === noteDate.getMonth()
-                    && this.addMonths(date, 1).getFullYear() === noteDate.getFullYear())
-					})
-				})
-			}
-			return months
-		}
-	},
 	methods: {
     showTooltip(event) {
       this.tooltip = {...this.tooltip, content: event.content, show: true}
@@ -91,6 +66,31 @@ export default {
       }, 1)
 
     }
+  },
+  created() {
+    const numberOfMonthes = this.averageLifeYears * 12
+    const birthdate = this.birthdate
+    const months = []
+    for (let monthNumber = 0; monthNumber < numberOfMonthes; monthNumber++ ) {
+      const date = this.addMonths(birthdate, monthNumber)
+      months.push({
+        number: monthNumber + 1,
+        numberInYear: birthdate.getMonth() <= date.getMonth() ? date.getMonth() - birthdate.getMonth() + 1 : date.getMonth() + 12 - birthdate.getMonth() + 1,
+        year: date.getFullYear(),
+        yearOfLife: birthdate.getMonth() <= date.getMonth() ? date.getFullYear() - birthdate.getFullYear() + 1 : date.getFullYear() - birthdate.getFullYear(),
+        passed: date < new Date(),
+        events: this.notes.filter(note => {
+          const noteDate = new Date(note.date)
+          return (noteDate.getDate() >= date.getDate()
+                  && date.getMonth() === noteDate.getMonth()
+                  && date.getFullYear() === noteDate.getFullYear())
+              || (noteDate.getDate() < date.getDate()
+                  && this.addMonths(date, 1).getMonth() === noteDate.getMonth()
+                  && this.addMonths(date, 1).getFullYear() === noteDate.getFullYear())
+        })
+      })
+    }
+    this.months = months
   }
 }
 </script>
