@@ -95,7 +95,8 @@ export default {
 			breadcrumbs: [
 				{text: 'd0rich', href: Router.home},
 				{text: 'story', href: Router.lifeline(), disabled: true},
-			]
+			],
+      notes: []
 		}
 	},
 	methods: {
@@ -117,27 +118,27 @@ export default {
     }
 	},
 	computed: {
-		notes(){
-			const blogNotes = this.$page.blogPosts.edges.map(e => e.node)
-			const lifeNotes = this.$page.lifeNotes.edges.map(e => e.node)
-			return [...blogNotes, ...lifeNotes].sort((a, b) => {
-				const dateA = new Date(a.date)
-				const dateB = new Date(b.date)
-				if (dateA < dateB) {
-					return -1;
-				}
-				if (dateA > dateB) {
-					return 1;
-				}
-				return 0;
-			})
-		},
 		showOppositeDates(){
 			return this.$store.state.windowWidth > 1000
 		}
 	},
 	mixins: [metaMixin, idMixin, timeMixin],
-	metaInfo() {
+  created() {
+    const blogNotes = this.$page.blogPosts.edges.map(e => e.node)
+    const lifeNotes = this.$page.lifeNotes.edges.map(e => e.node)
+    this.notes = [...blogNotes, ...lifeNotes].sort((a, b) => {
+      const dateA = new Date(a.date)
+      const dateB = new Date(b.date)
+      if (dateA < dateB) {
+        return -1;
+      }
+      if (dateA > dateB) {
+        return 1;
+      }
+      return 0;
+    })
+  },
+  metaInfo() {
 		return this.createMetaInfo({
 			title: 'Story',
 			description: 'Story of Dorich, JavaScript developer',
