@@ -40,44 +40,18 @@
     <!-- GitHub -->
     <div class="d-flex flex-wrap mt-4">
       <div class="col mx-1">
-        <v-card :to="reposLink" class="github-card">
-          <v-list-item three-line>
-            <v-list-item-content>
-              <div class="text-overline mb-4 transition-swing github-card__status">
-                PARSED
-              </div>
-              <v-list-item-title class="mb-1">
-                <h2>Relevant Repositories</h2>
-              </v-list-item-title>
-              <v-list-item-subtitle class="text" v-text="'Projects I\'m currently working on'"/>
-            </v-list-item-content>
-
-            <v-list-item-avatar tile color="primary" size="80"
-                                class="github-card__icon transition-swing">
-              <v-icon large>mdi-github</v-icon>
-            </v-list-item-avatar>
-          </v-list-item>
-        </v-card>
+        <SectionBlock :to="reposLink"
+                      status="PARSED"
+                      name="Relevant Repositories"
+                      description="Projects I'm currently working on"
+                      icon="mdi-github" />
       </div>
       <div class="col mx-1">
-        <v-card :to="archiveLink" class="github-card">
-          <v-list-item three-line>
-            <v-list-item-content>
-              <div class="text-overline mb-4 github-card__status transition-swing">
-                PARSED
-              </div>
-              <v-list-item-title class="mb-1">
-                <h2>Archive</h2>
-              </v-list-item-title>
-              <v-list-item-subtitle class="text" v-text="'Archive of my old GitHub repositories'"/>
-            </v-list-item-content>
-
-            <v-list-item-avatar tile color="primary" size="80"
-                                class="github-card__icon transition-swing">
-              <v-icon x-large>mdi-github</v-icon>
-            </v-list-item-avatar>
-          </v-list-item>
-        </v-card>
+        <SectionBlock :to="archiveLink"
+                      status="PARSED"
+                      name="Archive"
+                      description="Archive of my old GitHub repositories"
+                      icon="mdi-github" />
       </div>
     </div>
   </div>
@@ -107,9 +81,11 @@ query Portfolio {
 <script>
 import {Router} from "../../router";
 import {metaMixin} from "../../mixins/meta";
+import SectionBlock from "../../components/portfolio/SectionBlock";
 
 export default {
   name: "Portfolio",
+  components: { SectionBlock },
   data(){
     return{
       breadcrumbs: [
@@ -160,32 +136,4 @@ export default {
   box-shadow: calc(min(6vw, 40px) * 2) 0 0 max(-20px, -5vw) var(--v-primary-base);
 }
 
-.github-card{
-  text-decoration: none;
-}
-
-.github-card__status{
-  text-align: right;
-  padding-right: 100%;
-  animation: status-turn-off ease-in-out .3s;
-}
-.github-card:hover .github-card__status{
-  padding-right: 0;
-  animation: status-turn-on ease-in-out .3s;
-
-  color: var(--v-primary-base);
-}
-.github-card:hover .github-card__icon{
-  transform: scale(.7);
-}
-@keyframes status-turn-on {
-  0% { filter: drop-shadow( 0 0 0 var(--v-accent-base)) }
-  50% { filter: drop-shadow( -50px 0 1px var(--v-accent-base))  }
-  100% { filter: drop-shadow( 0 0 0 var(--v-accent-base)) }
-}
-@keyframes status-turn-off {
-  0% { filter: drop-shadow( 0 0 0 var(--v-accent-base)) }
-  50% { filter: drop-shadow( 50px 0 1px var(--v-accent-base))  }
-  100% { filter: drop-shadow( 0 0 0 var(--v-accent-base)) }
-}
 </style>
