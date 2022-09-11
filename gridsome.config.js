@@ -36,6 +36,9 @@ module.exports = {
         },
       },
     },
+    {
+      use: 'gridsome-plugin-typescript'
+    },
       // Sitemap
     {
       use: '@gridsome/plugin-sitemap',
@@ -156,11 +159,15 @@ module.exports = {
         typeName: 'WorkExperience'
       }
     },
+    require('./src/plugins/gridsome-source-github-pls'),
+    require('./src/plugins/gridsome-source-d0rich-github'),
+    require('./src/plugins/gridsome-source-youtrack'),
+
   ],
   templates: {
     Tag: '/blog/tags/:id',
-    ProjectTag: '/portfolio/tags/:id',
-    Technology: '/portfolio/technologies/:id',
+    ProjectTag: '/portfolio/projects/tags/:id',
+    Technology: '/portfolio/projects/technologies/:id',
     Resume: '/resume/:path'
   },
   transformers: {

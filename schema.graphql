@@ -1,0 +1,2322 @@
+# Add fields from field values.
+directive @infer on OBJECT
+
+# Add reference resolver.
+directive @reference(
+  # Reference node by a custom field value.
+  by: String = "id"
+) on FIELD_DEFINITION
+
+# Return value from another field.
+directive @proxy(from: String) on FIELD_DEFINITION
+
+# Paginate a connection in a query. Only supported in page-query.
+directive @paginate on FIELD
+
+type Query {
+  post(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Post
+  allPost(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Post nodes.
+    filter: PostFilterInput
+  ): PostConnection
+  tag(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Tag
+  allTag(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Tag nodes.
+    filter: TagFilterInput
+  ): TagConnection
+  project(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Project
+  allProject(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Project nodes.
+    filter: ProjectFilterInput
+  ): ProjectConnection
+  projectTag(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): ProjectTag
+  allProjectTag(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for ProjectTag nodes.
+    filter: ProjectTagFilterInput
+  ): ProjectTagConnection
+  technology(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Technology
+  allTechnology(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Technology nodes.
+    filter: TechnologyFilterInput
+  ): TechnologyConnection
+  lifeNote(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): LifeNote
+  allLifeNote(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for LifeNote nodes.
+    filter: LifeNoteFilterInput
+  ): LifeNoteConnection
+  resume(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Resume
+  allResume(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Resume nodes.
+    filter: ResumeFilterInput
+  ): ResumeConnection
+  workExperience(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): WorkExperience
+  allWorkExperience(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for WorkExperience nodes.
+    filter: WorkExperienceFilterInput
+  ): WorkExperienceConnection
+  repository(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Repository
+  allRepository(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Repository nodes.
+    filter: RepositoryFilterInput
+  ): RepositoryConnection
+  release(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Release
+  allRelease(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Release nodes.
+    filter: ReleaseFilterInput
+  ): ReleaseConnection
+  topic(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Topic
+  allTopic(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Topic nodes.
+    filter: TopicFilterInput
+  ): TopicConnection
+  organizations(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): Organizations
+  allOrganizations(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for Organizations nodes.
+    filter: OrganizationsFilterInput
+  ): OrganizationsConnection
+  programmingLanguage(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): ProgrammingLanguage
+  allProgrammingLanguage(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for ProgrammingLanguage nodes.
+    filter: ProgrammingLanguageFilterInput
+  ): ProgrammingLanguageConnection
+  youtrackProject(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): YoutrackProject
+  allYoutrackProject(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for YoutrackProject nodes.
+    filter: YoutrackProjectFilterInput
+  ): YoutrackProjectConnection
+  youtrackAgile(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): YoutrackAgile
+  allYoutrackAgile(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for YoutrackAgile nodes.
+    filter: YoutrackAgileFilterInput
+  ): YoutrackAgileConnection
+  metadata: Metadata
+  metaData: Metadata @deprecated(reason: "Use Query.metadata instead.")
+  page(path: String!): Page
+  allPage(
+    # Filter pages.
+    filter: PageFilterInput
+  ): [Page]
+}
+
+type Post implements Node {
+  id: ID!
+  path: String
+  fileInfo: Post_FileInfo
+  content: String
+  title: String
+  date(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  summary: String
+  image(
+    # Width
+    width: Int
+
+    # Height
+    height: Int
+
+    # Fit
+    fit: ImageFit = cover
+
+    # Quality (default: 75)
+    quality: Int
+
+    # Blur level for base64 string
+    blur: Int
+
+    # Background color for 'contain'
+    background: String
+  ): Image
+  tags(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [Tag]
+  include_to_lifeline: Boolean
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+  headings(
+    depth: VueRemarkHeadingLevels
+    stripTags: Boolean = true
+  ): [VueRemarkHeading]
+}
+
+interface Node {
+  id: ID!
+}
+
+type Post_FileInfo {
+  extension: String
+  directory: String
+  path: String
+  name: String
+}
+
+scalar Date
+
+enum ImageFit {
+  # Crop to cover both provided dimensions.
+  cover
+
+  # Embed within both provided dimensions.
+  contain
+
+  # Ignore the aspect ratio of the input and stretch to both provided dimensions.
+  fill
+
+  # Preserving aspect ratio, resize the image to be as large as possible while ensuring its dimensions are less than or equal to both those specified.
+  inside
+
+  # Preserving aspect ratio, resize the image to be as small as possible while ensuring its dimensions are greater than or equal to both those specified. Some of these values are based on the object-fit CSS property.
+  outside
+}
+
+scalar Image
+
+enum SortOrder {
+  # Sort ascending
+  ASC
+
+  # Sort descending
+  DESC
+}
+
+input SortArgument {
+  by: String! = "date"
+  order: SortOrder = DESC
+}
+
+type Tag implements Node {
+  id: ID!
+  title: String
+  path(to: String = "default"): String
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+input BelongsToFilterInput {
+  id: IDQueryOperatorInput
+  path: StringQueryOperatorInput
+  typeName: TypeNameQueryOperatorInput
+}
+
+input IDQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: ID
+
+  # Filter by property not equal to provided value.
+  ne: ID
+
+  # Filter by property matching any of the provided values.
+  in: [ID]
+
+  # Filter by property not matching any of the provided values.
+  nin: [ID]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+}
+
+input StringQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: String
+
+  # Filter by property not equal to provided value.
+  ne: String
+
+  # Filter by property matching any of the provided values.
+  in: [String]
+
+  # Filter by property not matching any of the provided values.
+  nin: [String]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+
+  # Filter by property matching provided regular expression.
+  regex: String
+}
+
+input TypeNameQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: TypeName
+
+  # Filter by property not equal to provided value.
+  ne: TypeName
+
+  # Filter by property matching any of the provided values.
+  in: [TypeName]
+
+  # Filter by property not matching any of the provided values.
+  nin: [TypeName]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+}
+
+enum TypeName {
+  Post
+  Tag
+  Project
+  ProjectTag
+  Technology
+  LifeNote
+  Resume
+  WorkExperience
+  Repository
+  Release
+  Topic
+  Organizations
+  ProgrammingLanguage
+  YoutrackProject
+  YoutrackAgile
+}
+
+type NodeBelongsTo implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [NodeBelongsToEdge]
+}
+
+interface NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [NodeConnectionEdge]
+}
+
+type PageInfo {
+  perPage: Int!
+  currentPage: Int!
+  totalPages: Int!
+  totalItems: Int!
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+  isFirst: Boolean!
+  isLast: Boolean!
+}
+
+interface NodeConnectionEdge {
+  node: Node
+  next: Node
+  previous: Node
+}
+
+type NodeBelongsToEdge implements NodeConnectionEdge {
+  node: Node
+  next: Node
+  previous: Node
+}
+
+enum VueRemarkHeadingLevels {
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+}
+
+type VueRemarkHeading {
+  depth: Int
+  value: String
+  anchor: String
+}
+
+input PostFilterInput {
+  id: IDQueryOperatorInput
+  path: StringQueryOperatorInput
+  fileInfo: Post_FileInfoFilterInput
+  content: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  date: DateQueryOperatorInput
+  summary: StringQueryOperatorInput
+  image: ImageQueryOperatorInput
+  tags: TagListQueryOperatorInput
+  include_to_lifeline: BooleanQueryOperatorInput
+}
+
+input Post_FileInfoFilterInput {
+  extension: StringQueryOperatorInput
+  directory: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+}
+
+input DateQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: Date
+
+  # Filter by property not equal to provided value.
+  ne: Date
+
+  # Filter by property matching any of the provided values.
+  in: [Date]
+
+  # Filter by property not matching any of the provided values.
+  nin: [Date]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+
+  # Filter by property greater than provided value.
+  gt: Date
+
+  # Filter by property greater or equal to provided value.
+  gte: Date
+
+  # Filter by property less than provided value.
+  lt: Date
+
+  # Filter by property less than or equal to provided value.
+  lte: Date
+
+  # Filter by date property equal to provided date value.
+  dteq: Date
+
+  # Filter by property between provided values.
+  between: [Date]
+}
+
+input ImageQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: Image
+
+  # Filter by property not equal to provided value.
+  ne: Image
+
+  # Filter by property matching any of the provided values.
+  in: [Image]
+
+  # Filter by property not matching any of the provided values.
+  nin: [Image]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+
+  # Filter by property matching provided regular expression.
+  regex: String
+}
+
+input TagListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+input BooleanQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: Boolean
+
+  # Filter by property not equal to provided value.
+  ne: Boolean
+
+  # Filter by property matching any of the provided values.
+  in: [Boolean]
+
+  # Filter by property not matching any of the provided values.
+  nin: [Boolean]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+}
+
+type PostConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [PostEdge]
+}
+
+type PostEdge implements NodeConnectionEdge {
+  node: Post
+  next: Post
+  previous: Post
+}
+
+input TagFilterInput {
+  id: IDQueryOperatorInput
+  title: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+}
+
+type TagConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TagEdge]
+}
+
+type TagEdge implements NodeConnectionEdge {
+  node: Tag
+  next: Tag
+  previous: Tag
+}
+
+type Project implements Node {
+  id: ID!
+  path: String
+  fileInfo: Project_FileInfo
+  content: String
+  title: String
+  date(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  image(
+    # Width
+    width: Int
+
+    # Height
+    height: Int
+
+    # Fit
+    fit: ImageFit = cover
+
+    # Quality (default: 75)
+    quality: Int
+
+    # Blur level for base64 string
+    blur: Int
+
+    # Background color for 'contain'
+    background: String
+  ): Image
+  tags(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [ProjectTag]
+  technologies(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [Technology]
+  related: [Project_Related]
+  summary: String
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+  headings(
+    depth: VueRemarkHeadingLevels
+    stripTags: Boolean = true
+  ): [VueRemarkHeading]
+}
+
+type Project_FileInfo {
+  extension: String
+  directory: String
+  path: String
+  name: String
+}
+
+type ProjectTag implements Node {
+  id: ID!
+  title: String
+  path(to: String = "default"): String
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type Technology implements Node {
+  id: ID!
+  title: String
+  path(to: String = "default"): String
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type Project_Related {
+  title: String
+  icon: String
+  href: String
+}
+
+input ProjectFilterInput {
+  id: IDQueryOperatorInput
+  path: StringQueryOperatorInput
+  fileInfo: Project_FileInfoFilterInput
+  content: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  date: DateQueryOperatorInput
+  image: ImageQueryOperatorInput
+  tags: ProjectTagListQueryOperatorInput
+  technologies: TechnologyListQueryOperatorInput
+  related: Project_RelatedFilterInput
+  summary: StringQueryOperatorInput
+}
+
+input Project_FileInfoFilterInput {
+  extension: StringQueryOperatorInput
+  directory: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+}
+
+input ProjectTagListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+input TechnologyListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+input Project_RelatedFilterInput {
+  title: StringQueryOperatorInput
+  icon: StringQueryOperatorInput
+  href: StringQueryOperatorInput
+}
+
+type ProjectConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProjectEdge]
+}
+
+type ProjectEdge implements NodeConnectionEdge {
+  node: Project
+  next: Project
+  previous: Project
+}
+
+input ProjectTagFilterInput {
+  id: IDQueryOperatorInput
+  title: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+}
+
+type ProjectTagConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProjectTagEdge]
+}
+
+type ProjectTagEdge implements NodeConnectionEdge {
+  node: ProjectTag
+  next: ProjectTag
+  previous: ProjectTag
+}
+
+input TechnologyFilterInput {
+  id: IDQueryOperatorInput
+  title: StringQueryOperatorInput
+  path: FileQueryOperatorInput
+}
+
+input FileQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: File
+
+  # Filter by property not equal to provided value.
+  ne: File
+
+  # Filter by property matching any of the provided values.
+  in: [File]
+
+  # Filter by property not matching any of the provided values.
+  nin: [File]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+
+  # Filter by property matching provided regular expression.
+  regex: String
+}
+
+scalar File
+
+type TechnologyConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TechnologyEdge]
+}
+
+type TechnologyEdge implements NodeConnectionEdge {
+  node: Technology
+  next: Technology
+  previous: Technology
+}
+
+type LifeNote implements Node {
+  id: ID!
+  path(to: String = "default"): String
+  fileInfo: LifeNote_FileInfo
+  content: String
+  excerpt(
+    # Maximum length of generated excerpt (characters)
+    length: Int = 200
+  ): String
+  title: String
+  date(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  image(
+    # Width
+    width: Int
+
+    # Height
+    height: Int
+
+    # Fit
+    fit: ImageFit = cover
+
+    # Quality (default: 75)
+    quality: Int
+
+    # Blur level for base64 string
+    blur: Int
+
+    # Background color for 'contain'
+    background: String
+  ): Image
+  tags(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [Tag]
+  headings(
+    depth: RemarkHeadingLevels
+    stripTags: Boolean = true
+  ): [RemarkHeading]
+  timeToRead(
+    # Words per minute
+    speed: Int = 230
+  ): Int
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type LifeNote_FileInfo {
+  extension: String
+  directory: String
+  path: String
+  name: String
+}
+
+enum RemarkHeadingLevels {
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+}
+
+type RemarkHeading {
+  depth: Int
+  value: String
+  anchor: String
+}
+
+input LifeNoteFilterInput {
+  id: IDQueryOperatorInput
+  path: StringQueryOperatorInput
+  fileInfo: LifeNote_FileInfoFilterInput
+  content: StringQueryOperatorInput
+  excerpt: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  date: DateQueryOperatorInput
+  image: ImageQueryOperatorInput
+  tags: TagListQueryOperatorInput
+}
+
+input LifeNote_FileInfoFilterInput {
+  extension: StringQueryOperatorInput
+  directory: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+}
+
+type LifeNoteConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [LifeNoteEdge]
+}
+
+type LifeNoteEdge implements NodeConnectionEdge {
+  node: LifeNote
+  next: LifeNote
+  previous: LifeNote
+}
+
+type Resume implements Node {
+  id: ID!
+  path(to: String = "default"): String
+  fileInfo: Resume_FileInfo
+  image(
+    # Width
+    width: Int
+
+    # Height
+    height: Int
+
+    # Fit
+    fit: ImageFit = cover
+
+    # Quality (default: 75)
+    quality: Int
+
+    # Blur level for base64 string
+    blur: Int
+
+    # Background color for 'contain'
+    background: String
+  ): Image
+  title: String
+  content: Resume_Content
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type Resume_FileInfo {
+  extension: String
+  directory: String
+  path: String
+  name: String
+}
+
+type Resume_Content {
+  main: Resume_Content_Main
+  contacts: Resume_Content_Contacts
+  skills: Resume_Content_Skills
+  education: Resume_Content_Education
+}
+
+type Resume_Content_Main {
+  photo(
+    # Width
+    width: Int
+
+    # Height
+    height: Int
+
+    # Fit
+    fit: ImageFit = cover
+
+    # Quality (default: 75)
+    quality: Int
+
+    # Blur level for base64 string
+    blur: Int
+
+    # Background color for 'contain'
+    background: String
+  ): Image
+  first_name: String
+  second_name: String
+  spec: String
+  text: String
+}
+
+type Resume_Content_Contacts {
+  phone: String
+  email: String
+  address: String
+  social: Resume_Content_Contacts_Social
+}
+
+type Resume_Content_Contacts_Social {
+  telegram: String
+  github: String
+}
+
+type Resume_Content_Skills {
+  text: String
+  fields: [Resume_Content_Skills_Fields]
+}
+
+type Resume_Content_Skills_Fields {
+  name: String
+  items: [String]
+}
+
+type Resume_Content_Education {
+  text: String
+  history: [Resume_Content_Education_History]
+}
+
+type Resume_Content_Education_History {
+  spec: String
+  place: String
+  date: Resume_Content_Education_History_Date
+  description: String
+  certificate: File
+}
+
+type Resume_Content_Education_History_Date {
+  begin(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  end(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+}
+
+input ResumeFilterInput {
+  id: IDQueryOperatorInput
+  path: StringQueryOperatorInput
+  fileInfo: Resume_FileInfoFilterInput
+  image: ImageQueryOperatorInput
+  title: StringQueryOperatorInput
+  content: Resume_ContentFilterInput
+}
+
+input Resume_FileInfoFilterInput {
+  extension: StringQueryOperatorInput
+  directory: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+}
+
+input Resume_ContentFilterInput {
+  main: Resume_Content_MainFilterInput
+  contacts: Resume_Content_ContactsFilterInput
+  skills: Resume_Content_SkillsFilterInput
+  education: Resume_Content_EducationFilterInput
+}
+
+input Resume_Content_MainFilterInput {
+  photo: ImageQueryOperatorInput
+  first_name: StringQueryOperatorInput
+  second_name: StringQueryOperatorInput
+  spec: StringQueryOperatorInput
+  text: StringQueryOperatorInput
+}
+
+input Resume_Content_ContactsFilterInput {
+  phone: StringQueryOperatorInput
+  email: StringQueryOperatorInput
+  address: StringQueryOperatorInput
+  social: Resume_Content_Contacts_SocialFilterInput
+}
+
+input Resume_Content_Contacts_SocialFilterInput {
+  telegram: StringQueryOperatorInput
+  github: StringQueryOperatorInput
+}
+
+input Resume_Content_SkillsFilterInput {
+  text: StringQueryOperatorInput
+  fields: Resume_Content_Skills_FieldsFilterInput
+}
+
+input Resume_Content_Skills_FieldsFilterInput {
+  name: StringQueryOperatorInput
+}
+
+input Resume_Content_EducationFilterInput {
+  text: StringQueryOperatorInput
+  history: Resume_Content_Education_HistoryFilterInput
+}
+
+input Resume_Content_Education_HistoryFilterInput {
+  spec: StringQueryOperatorInput
+  place: StringQueryOperatorInput
+  date: Resume_Content_Education_History_DateFilterInput
+  description: StringQueryOperatorInput
+  certificate: FileQueryOperatorInput
+}
+
+input Resume_Content_Education_History_DateFilterInput {
+  begin: DateQueryOperatorInput
+  end: DateQueryOperatorInput
+}
+
+type ResumeConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ResumeEdge]
+}
+
+type ResumeEdge implements NodeConnectionEdge {
+  node: Resume
+  next: Resume
+  previous: Resume
+}
+
+type WorkExperience implements Node {
+  id: ID!
+  path(to: String = "default"): String
+  fileInfo: WorkExperience_FileInfo
+  spec: String
+  place: String
+  date: WorkExperience_Date
+  description: String
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type WorkExperience_FileInfo {
+  extension: String
+  directory: String
+  path: String
+  name: String
+}
+
+type WorkExperience_Date {
+  begin(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  end: String
+}
+
+input WorkExperienceFilterInput {
+  id: IDQueryOperatorInput
+  path: StringQueryOperatorInput
+  fileInfo: WorkExperience_FileInfoFilterInput
+  spec: StringQueryOperatorInput
+  place: StringQueryOperatorInput
+  date: WorkExperience_DateFilterInput
+  description: StringQueryOperatorInput
+}
+
+input WorkExperience_FileInfoFilterInput {
+  extension: StringQueryOperatorInput
+  directory: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+}
+
+input WorkExperience_DateFilterInput {
+  begin: DateQueryOperatorInput
+  end: StringQueryOperatorInput
+}
+
+type WorkExperienceConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [WorkExperienceEdge]
+}
+
+type WorkExperienceEdge implements NodeConnectionEdge {
+  node: WorkExperience
+  next: WorkExperience
+  previous: WorkExperience
+}
+
+type Repository implements Node {
+  id: ID!
+  node_id: String
+  name: String
+  full_name: String
+  private: Boolean
+  owner: Repository_Owner
+  html_url: String
+  description: String
+  fork: Boolean
+  url: String
+  forks_url: String
+  keys_url: String
+  collaborators_url: String
+  teams_url: String
+  hooks_url: String
+  issue_events_url: String
+  events_url: String
+  assignees_url: String
+  branches_url: String
+  tags_url: String
+  blobs_url: String
+  git_tags_url: String
+  git_refs_url: String
+  trees_url: String
+  statuses_url: String
+  languages_url: String
+  stargazers_url: String
+  contributors_url: String
+  subscribers_url: String
+  subscription_url: String
+  commits_url: String
+  git_commits_url: String
+  comments_url: String
+  issue_comment_url: String
+  contents_url: String
+  compare_url: String
+  merges_url: String
+  archive_url: String
+  downloads_url: String
+  issues_url: String
+  pulls_url: String
+  milestones_url: String
+  notifications_url: String
+  labels_url: String
+  releases_url: String
+  deployments_url: String
+  created_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  updated_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  pushed_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  git_url: String
+  ssh_url: String
+  clone_url: String
+  svn_url: String
+  homepage: String
+  size: Int
+  stargazers_count: Int
+  watchers_count: Int
+  language: ProgrammingLanguage
+  has_issues: Boolean
+  has_projects: Boolean
+  has_downloads: Boolean
+  has_wiki: Boolean
+  has_pages: Boolean
+  forks_count: Int
+  archived: Boolean
+  disabled: Boolean
+  open_issues_count: Int
+  allow_forking: Boolean
+  is_template: Boolean
+  web_commit_signoff_required: Boolean
+  topics(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [Topic]
+  visibility: String
+  forks: Int
+  open_issues: Int
+  watchers: Int
+  default_branch: String
+  permissions: Repository_Permissions
+  license: Repository_License
+  releases(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [Release]
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type Repository_Owner {
+  login: String
+  id: Int
+  node_id: String
+  avatar_url: String
+  gravatar_id: String
+  url: String
+  html_url: String
+  followers_url: String
+  following_url: String
+  gists_url: String
+  starred_url: String
+  subscriptions_url: String
+  organizations_url: String
+  repos_url: String
+  events_url: String
+  received_events_url: String
+  type: String
+  site_admin: Boolean
+}
+
+type ProgrammingLanguage implements Node {
+  id: ID!
+  type: String
+  color: String
+  extensions: [String]
+  tm_scope: String
+  ace_mode: String
+  language_id: Int
+  name: String
+  aliases: [String]
+  codemirror_mode: String
+  codemirror_mime_type: String
+  interpreters: [String]
+  group: String
+  filenames: [String]
+  wrap: Boolean
+  icon: String
+  fs_name: String
+  searchable: Boolean
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type Topic implements Node {
+  id: ID!
+  title: String
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type Repository_Permissions {
+  admin: Boolean
+  maintain: Boolean
+  push: Boolean
+  triage: Boolean
+  pull: Boolean
+}
+
+type Repository_License {
+  key: String
+  name: String
+  spdx_id: String
+  url: String
+  node_id: String
+}
+
+type Release implements Node {
+  id: ID!
+  url: String
+  assets_url: String
+  upload_url: String
+  html_url: String
+  author: Release_Author
+  node_id: String
+  tag_name: String
+  target_commitish: String
+  name: String
+  draft: Boolean
+  prerelease: Boolean
+  created_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  published_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  tarball_url: String
+  zipball_url: String
+  body: String
+  assets: [Release_Assets]
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type Release_Author {
+  login: String
+  id: Int
+  node_id: String
+  avatar_url: String
+  gravatar_id: String
+  url: String
+  html_url: String
+  followers_url: String
+  following_url: String
+  gists_url: String
+  starred_url: String
+  subscriptions_url: String
+  organizations_url: String
+  repos_url: String
+  events_url: String
+  received_events_url: String
+  type: String
+  site_admin: Boolean
+}
+
+type Release_Assets {
+  url: String
+  id: Int
+  node_id: String
+  name: String
+  label: String
+  uploader: Release_Assets_Uploader
+  content_type: String
+  state: String
+  size: Int
+  download_count: Int
+  created_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  updated_at(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  browser_download_url: String
+}
+
+type Release_Assets_Uploader {
+  login: String
+  id: Int
+  node_id: String
+  avatar_url: String
+  gravatar_id: String
+  url: String
+  html_url: String
+  followers_url: String
+  following_url: String
+  gists_url: String
+  starred_url: String
+  subscriptions_url: String
+  organizations_url: String
+  repos_url: String
+  events_url: String
+  received_events_url: String
+  type: String
+  site_admin: Boolean
+}
+
+input RepositoryFilterInput {
+  id: IDQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  full_name: StringQueryOperatorInput
+  private: BooleanQueryOperatorInput
+  owner: Repository_OwnerFilterInput
+  html_url: StringQueryOperatorInput
+  description: StringQueryOperatorInput
+  fork: BooleanQueryOperatorInput
+  url: StringQueryOperatorInput
+  forks_url: StringQueryOperatorInput
+  keys_url: StringQueryOperatorInput
+  collaborators_url: StringQueryOperatorInput
+  teams_url: StringQueryOperatorInput
+  hooks_url: StringQueryOperatorInput
+  issue_events_url: StringQueryOperatorInput
+  events_url: StringQueryOperatorInput
+  assignees_url: StringQueryOperatorInput
+  branches_url: StringQueryOperatorInput
+  tags_url: StringQueryOperatorInput
+  blobs_url: StringQueryOperatorInput
+  git_tags_url: StringQueryOperatorInput
+  git_refs_url: StringQueryOperatorInput
+  trees_url: StringQueryOperatorInput
+  statuses_url: StringQueryOperatorInput
+  languages_url: StringQueryOperatorInput
+  stargazers_url: StringQueryOperatorInput
+  contributors_url: StringQueryOperatorInput
+  subscribers_url: StringQueryOperatorInput
+  subscription_url: StringQueryOperatorInput
+  commits_url: StringQueryOperatorInput
+  git_commits_url: StringQueryOperatorInput
+  comments_url: StringQueryOperatorInput
+  issue_comment_url: StringQueryOperatorInput
+  contents_url: StringQueryOperatorInput
+  compare_url: StringQueryOperatorInput
+  merges_url: StringQueryOperatorInput
+  archive_url: StringQueryOperatorInput
+  downloads_url: StringQueryOperatorInput
+  issues_url: StringQueryOperatorInput
+  pulls_url: StringQueryOperatorInput
+  milestones_url: StringQueryOperatorInput
+  notifications_url: StringQueryOperatorInput
+  labels_url: StringQueryOperatorInput
+  releases_url: StringQueryOperatorInput
+  deployments_url: StringQueryOperatorInput
+  created_at: DateQueryOperatorInput
+  updated_at: DateQueryOperatorInput
+  pushed_at: DateQueryOperatorInput
+  git_url: StringQueryOperatorInput
+  ssh_url: StringQueryOperatorInput
+  clone_url: StringQueryOperatorInput
+  svn_url: StringQueryOperatorInput
+  homepage: StringQueryOperatorInput
+  size: IntQueryOperatorInput
+  stargazers_count: IntQueryOperatorInput
+  watchers_count: IntQueryOperatorInput
+  language: ProgrammingLanguageInferredQueryOperatorInput
+  has_issues: BooleanQueryOperatorInput
+  has_projects: BooleanQueryOperatorInput
+  has_downloads: BooleanQueryOperatorInput
+  has_wiki: BooleanQueryOperatorInput
+  has_pages: BooleanQueryOperatorInput
+  forks_count: IntQueryOperatorInput
+  archived: BooleanQueryOperatorInput
+  disabled: BooleanQueryOperatorInput
+  open_issues_count: IntQueryOperatorInput
+  allow_forking: BooleanQueryOperatorInput
+  is_template: BooleanQueryOperatorInput
+  web_commit_signoff_required: BooleanQueryOperatorInput
+  topics: TopicInferredListQueryOperatorInput
+  visibility: StringQueryOperatorInput
+  forks: IntQueryOperatorInput
+  open_issues: IntQueryOperatorInput
+  watchers: IntQueryOperatorInput
+  default_branch: StringQueryOperatorInput
+  permissions: Repository_PermissionsFilterInput
+  license: Repository_LicenseFilterInput
+  releases: ReleaseInferredListQueryOperatorInput
+}
+
+input Repository_OwnerFilterInput {
+  login: StringQueryOperatorInput
+  id: IntQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  avatar_url: StringQueryOperatorInput
+  gravatar_id: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  html_url: StringQueryOperatorInput
+  followers_url: StringQueryOperatorInput
+  following_url: StringQueryOperatorInput
+  gists_url: StringQueryOperatorInput
+  starred_url: StringQueryOperatorInput
+  subscriptions_url: StringQueryOperatorInput
+  organizations_url: StringQueryOperatorInput
+  repos_url: StringQueryOperatorInput
+  events_url: StringQueryOperatorInput
+  received_events_url: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  site_admin: BooleanQueryOperatorInput
+}
+
+input IntQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: Int
+
+  # Filter by property not equal to provided value.
+  ne: Int
+
+  # Filter by property matching any of the provided values.
+  in: [Int]
+
+  # Filter by property not matching any of the provided values.
+  nin: [Int]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+
+  # Filter by property greater than provided value.
+  gt: Int
+
+  # Filter by property greater or equal to provided value.
+  gte: Int
+
+  # Filter by property less than provided value.
+  lt: Int
+
+  # Filter by property less than or equal to provided value.
+  lte: Int
+
+  # Filter by property between provided values.
+  between: [Int]
+}
+
+input ProgrammingLanguageInferredQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  eq: ID
+
+  # Use the id field instead.
+  ne: ID
+
+  # Use the id field instead.
+  in: [ID]
+
+  # Use the id field instead.
+  nin: [ID]
+}
+
+input TopicInferredListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+input Repository_PermissionsFilterInput {
+  admin: BooleanQueryOperatorInput
+  maintain: BooleanQueryOperatorInput
+  push: BooleanQueryOperatorInput
+  triage: BooleanQueryOperatorInput
+  pull: BooleanQueryOperatorInput
+}
+
+input Repository_LicenseFilterInput {
+  key: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  spdx_id: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  node_id: StringQueryOperatorInput
+}
+
+input ReleaseInferredListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+type RepositoryConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [RepositoryEdge]
+}
+
+type RepositoryEdge implements NodeConnectionEdge {
+  node: Repository
+  next: Repository
+  previous: Repository
+}
+
+input ReleaseFilterInput {
+  id: IDQueryOperatorInput
+  url: StringQueryOperatorInput
+  assets_url: StringQueryOperatorInput
+  upload_url: StringQueryOperatorInput
+  html_url: StringQueryOperatorInput
+  author: Release_AuthorFilterInput
+  node_id: StringQueryOperatorInput
+  tag_name: StringQueryOperatorInput
+  target_commitish: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  draft: BooleanQueryOperatorInput
+  prerelease: BooleanQueryOperatorInput
+  created_at: DateQueryOperatorInput
+  published_at: DateQueryOperatorInput
+  tarball_url: StringQueryOperatorInput
+  zipball_url: StringQueryOperatorInput
+  body: StringQueryOperatorInput
+  assets: Release_AssetsFilterInput
+}
+
+input Release_AuthorFilterInput {
+  login: StringQueryOperatorInput
+  id: IntQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  avatar_url: StringQueryOperatorInput
+  gravatar_id: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  html_url: StringQueryOperatorInput
+  followers_url: StringQueryOperatorInput
+  following_url: StringQueryOperatorInput
+  gists_url: StringQueryOperatorInput
+  starred_url: StringQueryOperatorInput
+  subscriptions_url: StringQueryOperatorInput
+  organizations_url: StringQueryOperatorInput
+  repos_url: StringQueryOperatorInput
+  events_url: StringQueryOperatorInput
+  received_events_url: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  site_admin: BooleanQueryOperatorInput
+}
+
+input Release_AssetsFilterInput {
+  url: StringQueryOperatorInput
+  id: IntQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  label: StringQueryOperatorInput
+  uploader: Release_Assets_UploaderFilterInput
+  content_type: StringQueryOperatorInput
+  state: StringQueryOperatorInput
+  size: IntQueryOperatorInput
+  download_count: IntQueryOperatorInput
+  created_at: DateQueryOperatorInput
+  updated_at: DateQueryOperatorInput
+  browser_download_url: StringQueryOperatorInput
+}
+
+input Release_Assets_UploaderFilterInput {
+  login: StringQueryOperatorInput
+  id: IntQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  avatar_url: StringQueryOperatorInput
+  gravatar_id: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  html_url: StringQueryOperatorInput
+  followers_url: StringQueryOperatorInput
+  following_url: StringQueryOperatorInput
+  gists_url: StringQueryOperatorInput
+  starred_url: StringQueryOperatorInput
+  subscriptions_url: StringQueryOperatorInput
+  organizations_url: StringQueryOperatorInput
+  repos_url: StringQueryOperatorInput
+  events_url: StringQueryOperatorInput
+  received_events_url: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+  site_admin: BooleanQueryOperatorInput
+}
+
+type ReleaseConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ReleaseEdge]
+}
+
+type ReleaseEdge implements NodeConnectionEdge {
+  node: Release
+  next: Release
+  previous: Release
+}
+
+input TopicFilterInput {
+  id: IDQueryOperatorInput
+  title: StringQueryOperatorInput
+}
+
+type TopicConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [TopicEdge]
+}
+
+type TopicEdge implements NodeConnectionEdge {
+  node: Topic
+  next: Topic
+  previous: Topic
+}
+
+type Organizations implements Node {
+  id: ID!
+  login: String
+  node_id: String
+  url: String
+  repos_url: String
+  events_url: String
+  hooks_url: String
+  issues_url: String
+  members_url: String
+  public_members_url: String
+  avatar_url: String
+  description: String
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+input OrganizationsFilterInput {
+  id: IDQueryOperatorInput
+  login: StringQueryOperatorInput
+  node_id: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  repos_url: StringQueryOperatorInput
+  events_url: StringQueryOperatorInput
+  hooks_url: StringQueryOperatorInput
+  issues_url: StringQueryOperatorInput
+  members_url: StringQueryOperatorInput
+  public_members_url: StringQueryOperatorInput
+  avatar_url: StringQueryOperatorInput
+  description: StringQueryOperatorInput
+}
+
+type OrganizationsConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [OrganizationsEdge]
+}
+
+type OrganizationsEdge implements NodeConnectionEdge {
+  node: Organizations
+  next: Organizations
+  previous: Organizations
+}
+
+input ProgrammingLanguageFilterInput {
+  id: IDQueryOperatorInput
+  type: StringQueryOperatorInput
+  color: StringQueryOperatorInput
+  tm_scope: StringQueryOperatorInput
+  ace_mode: StringQueryOperatorInput
+  language_id: IntQueryOperatorInput
+  name: StringQueryOperatorInput
+  codemirror_mode: StringQueryOperatorInput
+  codemirror_mime_type: StringQueryOperatorInput
+  group: StringQueryOperatorInput
+  wrap: BooleanQueryOperatorInput
+  icon: StringQueryOperatorInput
+  fs_name: StringQueryOperatorInput
+  searchable: BooleanQueryOperatorInput
+}
+
+type ProgrammingLanguageConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [ProgrammingLanguageEdge]
+}
+
+type ProgrammingLanguageEdge implements NodeConnectionEdge {
+  node: ProgrammingLanguage
+  next: ProgrammingLanguage
+  previous: ProgrammingLanguage
+}
+
+type YoutrackProject implements Node {
+  id: ID!
+  description: String
+  iconUrl: String
+  shortName: String
+  name: String
+  projectLink: String
+  agiles(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [YoutrackAgile]
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type YoutrackAgile implements Node {
+  id: ID!
+  owner: YoutrackAgile_Owner
+  projects(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [YoutrackProject]
+  currentSprint: YoutrackAgile_CurrentSprint
+  sprints: [YoutrackAgile_Sprints]
+  hideOrphansSwimlane: Boolean
+  orphansAtTheTop: Boolean
+  name: String
+  agileLink: String
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type YoutrackAgile_Owner {
+  fullName: String
+  login: String
+  name: String
+  id: String
+}
+
+type YoutrackAgile_CurrentSprint {
+  archived: Boolean
+  unresolvedIssuesCount: Int
+  name: String
+  id: String
+}
+
+type YoutrackAgile_Sprints {
+  archived: Boolean
+  unresolvedIssuesCount: Int
+  name: String
+  id: String
+}
+
+input YoutrackProjectFilterInput {
+  id: IDQueryOperatorInput
+  description: StringQueryOperatorInput
+  iconUrl: StringQueryOperatorInput
+  shortName: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  projectLink: StringQueryOperatorInput
+  agiles: YoutrackAgileListQueryOperatorInput
+}
+
+input YoutrackAgileListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+type YoutrackProjectConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [YoutrackProjectEdge]
+}
+
+type YoutrackProjectEdge implements NodeConnectionEdge {
+  node: YoutrackProject
+  next: YoutrackProject
+  previous: YoutrackProject
+}
+
+input YoutrackAgileFilterInput {
+  id: IDQueryOperatorInput
+  owner: YoutrackAgile_OwnerFilterInput
+  projects: YoutrackProjectListQueryOperatorInput
+  currentSprint: YoutrackAgile_CurrentSprintFilterInput
+  sprints: YoutrackAgile_SprintsFilterInput
+  hideOrphansSwimlane: BooleanQueryOperatorInput
+  orphansAtTheTop: BooleanQueryOperatorInput
+  name: StringQueryOperatorInput
+  agileLink: StringQueryOperatorInput
+}
+
+input YoutrackAgile_OwnerFilterInput {
+  fullName: StringQueryOperatorInput
+  login: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+}
+
+input YoutrackProjectListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+input YoutrackAgile_CurrentSprintFilterInput {
+  archived: BooleanQueryOperatorInput
+  unresolvedIssuesCount: IntQueryOperatorInput
+  name: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+}
+
+input YoutrackAgile_SprintsFilterInput {
+  archived: BooleanQueryOperatorInput
+  unresolvedIssuesCount: IntQueryOperatorInput
+  name: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+}
+
+type YoutrackAgileConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [YoutrackAgileEdge]
+}
+
+type YoutrackAgileEdge implements NodeConnectionEdge {
+  node: YoutrackAgile
+  next: YoutrackAgile
+  previous: YoutrackAgile
+}
+
+type Metadata {
+  siteName: String
+  siteDescription: String
+  siteUrl: String
+  pathPrefix: String
+}
+
+type Page {
+  path: String!
+  context: JSON!
+}
+
+# The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+scalar JSON
+
+input PageFilterInput {
+  path: StringQueryOperatorInput
+  context: JSONQueryOperatorInput
+}
+
+input JSONQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: JSON
+
+  # Filter by property not equal to provided value.
+  ne: JSON
+
+  # Filter by property matching any of the provided values.
+  in: [JSON]
+
+  # Filter by property not matching any of the provided values.
+  nin: [JSON]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+
+  # Filter by property matching provided regular expression.
+  regex: String
+}
