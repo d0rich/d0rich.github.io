@@ -38,7 +38,7 @@
       </v-col>
     </v-row>
     <!-- GitHub -->
-    <div class="d-flex flex-wrap mt-4">
+    <section class="d-flex flex-wrap mt-4">
       <div class="col mx-1">
         <SectionBlock :to="reposLink"
                       status="PARSED"
@@ -53,7 +53,14 @@
                       description="Archive of my old GitHub repositories"
                       icon="mdi-github" />
       </div>
-    </div>
+    </section>
+    <section class="col">
+      <SectionBlock :to="youtrackLink"
+                    status="WORK IN PROGRESS"
+                    name="Projects in work"
+                    description="All public projects and agiles from my YouTrack server"
+                    icon="mdi-calendar" />
+    </section>
   </div>
 </template>
 
@@ -98,6 +105,7 @@ export default {
     projectsLink: () => Router.projects(),
     reposLink: () => Router.repositories(),
     archiveLink: () => Router.archive(),
+    youtrackLink: () => Router.youtrack(),
     projects() {
       return this.$page.projects.edges.map(edge => edge.node)
     }

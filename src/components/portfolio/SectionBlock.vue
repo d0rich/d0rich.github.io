@@ -52,6 +52,7 @@ export default {
 
 .github-card__status{
   text-align: right;
+  white-space: nowrap;
   padding-right: 100%;
   animation: status-turn-off ease-in-out .3s;
 }
