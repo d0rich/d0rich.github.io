@@ -1,5 +1,7 @@
 import {Youtrack} from "youtrack-rest-client";
 import {CustomAgile} from "./types";
+// @ts-ignore
+import { marked } from 'marked';
 
 const YT_BASE_URL = "https://d0rich.youtrack.cloud"
 
@@ -15,6 +17,7 @@ export async function getAllPublicProjects(){
     const projects = await Promise.all(projectsPromises)
     projects.forEach(pr => {
         pr.iconUrl = YT_BASE_URL + pr.iconUrl
+        pr.description = marked.parse(pr.description || '')
     })
     return projects
 }

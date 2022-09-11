@@ -287,6 +287,48 @@ type Query {
     # Filter for ProgrammingLanguage nodes.
     filter: ProgrammingLanguageFilterInput
   ): ProgrammingLanguageConnection
+  youtrackProject(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): YoutrackProject
+  allYoutrackProject(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for YoutrackProject nodes.
+    filter: YoutrackProjectFilterInput
+  ): YoutrackProjectConnection
+  youtrackAgile(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): YoutrackAgile
+  allYoutrackAgile(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for YoutrackAgile nodes.
+    filter: YoutrackAgileFilterInput
+  ): YoutrackAgileConnection
   metadata: Metadata
   metaData: Metadata @deprecated(reason: "Use Query.metadata instead.")
   page(path: String!): Page
@@ -492,6 +534,8 @@ enum TypeName {
   Topic
   Organizations
   ProgrammingLanguage
+  YoutrackProject
+  YoutrackAgile
 }
 
 type NodeBelongsTo implements NodeConnection {
@@ -695,7 +739,6 @@ type Project implements Node {
     # Locale
     locale: String
   ): Date
-  summary: String
   image(
     # Width
     width: Int
@@ -730,6 +773,7 @@ type Project implements Node {
     limit: Int
   ): [Technology]
   related: [Project_Related]
+  summary: String
   belongsTo(
     sortBy: String = "date"
     order: SortOrder = DESC
@@ -804,11 +848,11 @@ input ProjectFilterInput {
   content: StringQueryOperatorInput
   title: StringQueryOperatorInput
   date: DateQueryOperatorInput
-  summary: StringQueryOperatorInput
   image: ImageQueryOperatorInput
   tags: ProjectTagListQueryOperatorInput
   technologies: TechnologyListQueryOperatorInput
   related: Project_RelatedFilterInput
+  summary: StringQueryOperatorInput
 }
 
 input Project_FileInfoFilterInput {
@@ -2057,6 +2101,182 @@ type ProgrammingLanguageEdge implements NodeConnectionEdge {
   node: ProgrammingLanguage
   next: ProgrammingLanguage
   previous: ProgrammingLanguage
+}
+
+type YoutrackProject implements Node {
+  id: ID!
+  description: String
+  iconUrl: String
+  shortName: String
+  name: String
+  agiles(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [YoutrackAgile]
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type YoutrackAgile implements Node {
+  id: ID!
+  owner: YoutrackAgile_Owner
+  projects(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [YoutrackProject]
+  currentSprint: YoutrackAgile_CurrentSprint
+  sprints: [YoutrackAgile_Sprints]
+  hideOrphansSwimlane: Boolean
+  orphansAtTheTop: Boolean
+  name: String
+  agileLink: String
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type YoutrackAgile_Owner {
+  fullName: String
+  login: String
+  name: String
+  id: String
+}
+
+type YoutrackAgile_CurrentSprint {
+  archived: Boolean
+  unresolvedIssuesCount: Int
+  name: String
+  id: String
+}
+
+type YoutrackAgile_Sprints {
+  archived: Boolean
+  unresolvedIssuesCount: Int
+  name: String
+  id: String
+}
+
+input YoutrackProjectFilterInput {
+  id: IDQueryOperatorInput
+  description: StringQueryOperatorInput
+  iconUrl: StringQueryOperatorInput
+  shortName: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  agiles: YoutrackAgileListQueryOperatorInput
+}
+
+input YoutrackAgileListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+type YoutrackProjectConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [YoutrackProjectEdge]
+}
+
+type YoutrackProjectEdge implements NodeConnectionEdge {
+  node: YoutrackProject
+  next: YoutrackProject
+  previous: YoutrackProject
+}
+
+input YoutrackAgileFilterInput {
+  id: IDQueryOperatorInput
+  owner: YoutrackAgile_OwnerFilterInput
+  projects: YoutrackProjectListQueryOperatorInput
+  currentSprint: YoutrackAgile_CurrentSprintFilterInput
+  sprints: YoutrackAgile_SprintsFilterInput
+  hideOrphansSwimlane: BooleanQueryOperatorInput
+  orphansAtTheTop: BooleanQueryOperatorInput
+  name: StringQueryOperatorInput
+  agileLink: StringQueryOperatorInput
+}
+
+input YoutrackAgile_OwnerFilterInput {
+  fullName: StringQueryOperatorInput
+  login: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+}
+
+input YoutrackProjectListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+input YoutrackAgile_CurrentSprintFilterInput {
+  archived: BooleanQueryOperatorInput
+  unresolvedIssuesCount: IntQueryOperatorInput
+  name: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+}
+
+input YoutrackAgile_SprintsFilterInput {
+  archived: BooleanQueryOperatorInput
+  unresolvedIssuesCount: IntQueryOperatorInput
+  name: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+}
+
+type YoutrackAgileConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [YoutrackAgileEdge]
+}
+
+type YoutrackAgileEdge implements NodeConnectionEdge {
+  node: YoutrackAgile
+  next: YoutrackAgile
+  previous: YoutrackAgile
 }
 
 type Metadata {
