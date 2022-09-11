@@ -15,7 +15,7 @@
 				<h1 class="align-self-start cursor--on-hover">Hello world!</h1>
 				<p class="align-self-start cursor--on-hover">
 					Here you can see my
-					<router-link class="link" :to="Router.portfolio()">portfolio</router-link>, familiarize with my
+					<router-link class="link" :to="Router.projects()">portfolio</router-link>, familiarize with my
 					<router-link class="link" :to="Router.allResume()">resume</router-link> , read
 					<router-link class="link" :to="Router.blog()">news</router-link> from my developer life.
 				</p>
@@ -63,6 +63,7 @@
 			<div class="js-objects">
 				<JSObjectWindow class="mb-3 mx-3"
                         v-for="(object, name) in jsObjects"
+                        :key="name"
 												:name="name"
 												:object="object" />
 			</div>
@@ -94,7 +95,7 @@
         <ProjectBlock :project="project.node"
                       v-for="project in $page.projects.edges" :key="project.node.id" />
 			</nav>
-			<v-btn :to="Router.portfolio()" class="align-self-end my-5" large color="primary">
+			<v-btn :to="Router.projects()" class="align-self-end my-5" large color="primary">
 				To portfolio
 				<v-icon>
 					mdi-chevron-right

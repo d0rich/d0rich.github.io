@@ -1,12 +1,19 @@
 <template>
   <div>
-    <h1 class="text-center mt-7">Portfolio</h1>
+    <h1 class="text-center mt-7">Projects</h1>
     <div class="hr" />
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
+      <v-btn color="primary" class="ml-5 my-5 align-self-start"
+             :to="Router.portfolio()" exact>
+        <v-icon>
+          mdi-chevron-left
+        </v-icon>
+        Back
+      </v-btn>
     </nav>
 
-    <nav class="projects-container">
+    <nav class="repos-container">
       <ProjectBlock :project="project.node"
                     v-for="project in $page.projects.edges" :key="project.node.id" />
     </nav>
@@ -94,9 +101,9 @@ query {
 </static-query>
 
 <script>
-import {Router} from "../router";
-import ProjectBlock from "../components/ProjectBlock";
-import {metaMixin} from "../mixins/meta";
+import {Router} from "../../router";
+import ProjectBlock from "../../components/ProjectBlock";
+import {metaMixin} from "../../mixins/meta";
 
 export default {
   name: "Projects",
@@ -107,29 +114,30 @@ export default {
     return{
       breadcrumbs: [
         {text: 'd0rich', href: Router.home},
-        {text: 'portfolio', href: Router.portfolio(), disabled: true},
+        {text: 'portfolio', href: Router.portfolio()},
+        {text: 'projects', href: Router.projects(), disabled: true},
       ]
     }
   },
   methods: {
     changePage(page){
-      this.$router.push(Router.portfolio(page))
+      this.$router.push(Router.projects(page))
     }
   },
 	mixins: [metaMixin],
   metaInfo() {
 		return this.createMetaInfo({
-			title: 'Portfolio',
-			description: 'Portfolio of Dorich, JavaScript developer',
+			title: 'Projects',
+			description: 'Projects of Dorich, software developer',
 			ogTitle: 'Portfolio by Dorich',
-			ogPath: `/portfolio/${this.$page.projects.pageInfo.currentPage > 1 ? this.$page.projects.pageInfo.currentPage + '/' : '' }`
+			ogPath: `/portfolio/projects/${this.$page.projects.pageInfo.currentPage > 1 ? this.$page.projects.pageInfo.currentPage + '/' : '' }`
 		})
   }
 }
 </script>
 
 <style scoped>
-.projects-container{
+.repos-container{
   margin-top: 2rem;
   display: grid;
   grid-gap: 1rem;
@@ -138,13 +146,13 @@ export default {
   align-items: start;
 }
 @media screen and (max-width: 1080px) {
-  .projects-container{
+  .repos-container{
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 640px) {
-  .projects-container{
+  .repos-container{
     grid-template-columns: 1fr;
   }
 }

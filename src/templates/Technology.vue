@@ -5,7 +5,7 @@
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
       <v-btn color="primary" class="ml-5 my-5 align-self-start"
-             :to="Router.portfolio()" exact>
+             :to="Router.projects()" exact>
         <v-icon>
           mdi-chevron-left
         </v-icon>
@@ -16,7 +16,7 @@
     <nav>
       <h1>Projects where <span class="tech-highlight">{{ $page.technology.title }}</span> is used</h1>
 
-      <div class="projects-container">
+      <div class="repos-container">
         <project-block v-for="project in $page.technology.belongsTo.edges" :key="project.node.id"
                        :project="project.node" class="my-2"/>
       </div>
@@ -102,6 +102,7 @@ export default {
       return [
         {text: 'd0rich', href: Router.home},
         {text: 'portfolio', href: Router.portfolio()},
+        {text: 'projects', href: Router.projects()},
         {text: 'technologies', disabled: true},
         {text: this.$page.technology.title , disabled: true},
       ]
@@ -128,7 +129,7 @@ export default {
 .tech-highlight{
   color: var(--v-info-base);
 }
-.projects-container{
+.repos-container{
   margin-top: 2rem;
   display: grid;
   grid-gap: 1rem;
@@ -137,13 +138,13 @@ export default {
   align-items: start;
 }
 @media screen and (max-width: 1080px) {
-  .projects-container{
+  .repos-container{
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 640px) {
-  .projects-container{
+  .repos-container{
     grid-template-columns: 1fr;
   }
 }

@@ -100,7 +100,7 @@ export default {
 	},
 	methods: {
 		changePage(page){
-			this.$router.push(Router.portfolio(page))
+			this.$router.push(Router.projects(page))
 		},
     getIconForNote(note){
 			if (note.tags.some(t => t.title === 'Database'))
