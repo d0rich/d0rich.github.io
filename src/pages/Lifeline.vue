@@ -6,7 +6,7 @@
 			<v-breadcrumbs :items="breadcrumbs"/>
 		</nav>
 		<section class="page-content">
-			<LifeInBlocks :notes="notes" />
+<!--			<LifeInBlocks :notes="notes" />-->
 			<v-timeline :dense="!showOppositeDates">
 				<v-timeline-item v-for="(note, index) in notes" :key="textToId(note.title)"
                          :id="textToId(note.title)"
@@ -100,9 +100,6 @@ export default {
 		}
 	},
 	methods: {
-		changePage(page){
-			this.$router.push(Router.projects(page))
-		},
     getIconForNote(note){
 			if (note.tags.some(t => t.title === 'Database'))
 				return 'mdi-database'
