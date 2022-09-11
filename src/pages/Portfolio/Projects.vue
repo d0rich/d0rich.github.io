@@ -4,6 +4,13 @@
     <div class="hr" />
     <nav class="align-self-start">
       <v-breadcrumbs :items="breadcrumbs"/>
+      <v-btn color="primary" class="ml-5 my-5 align-self-start"
+             :to="Router.portfolio()" exact>
+        <v-icon>
+          mdi-chevron-left
+        </v-icon>
+        Back
+      </v-btn>
     </nav>
 
     <nav class="repos-container">
