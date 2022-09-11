@@ -1,5 +1,5 @@
 import {Youtrack} from "youtrack-rest-client";
-import {CustomAgile} from "./types";
+import {CustomAgile, CustomProject} from "./types";
 // @ts-ignore
 import { marked } from 'marked';
 
@@ -13,12 +13,16 @@ const youtrack = new Youtrack(config)
 
 export async function getAllPublicProjects(){
     const projectsReduced = await youtrack.projects.all({ $top: 100 })
-    const projectsPromises = projectsReduced.map(pr => youtrack.projects.byId(pr.id || ''))
-    const projects = await Promise.all(projectsPromises)
-    projects.forEach(pr => {
-        pr.iconUrl = YT_BASE_URL + pr.iconUrl
-        pr.description = marked.parse(pr.description || '')
+    const projectsPromises = projectsReduced.map(async (pr): Promise<Partial<CustomProject>> => {
+        const fullProject = await youtrack.projects.byId(pr.id || '')
+        return {
+            ...fullProject,
+            iconUrl: YT_BASE_URL + fullProject.iconUrl,
+            description: marked.parse(fullProject.description || ''),
+            projectLink: `${YT_BASE_URL}/projects/${fullProject.id}`
+        }
     })
+    const projects = await Promise.all(projectsPromises)
     return projects
 }
 

@@ -351,6 +351,7 @@ type Post implements Node {
     # Locale
     locale: String
   ): Date
+  summary: String
   image(
     # Width
     width: Int
@@ -378,7 +379,6 @@ type Post implements Node {
     limit: Int
   ): [Tag]
   include_to_lifeline: Boolean
-  summary: String
   belongsTo(
     sortBy: String = "date"
     order: SortOrder = DESC
@@ -595,10 +595,10 @@ input PostFilterInput {
   content: StringQueryOperatorInput
   title: StringQueryOperatorInput
   date: DateQueryOperatorInput
+  summary: StringQueryOperatorInput
   image: ImageQueryOperatorInput
   tags: TagListQueryOperatorInput
   include_to_lifeline: BooleanQueryOperatorInput
-  summary: StringQueryOperatorInput
 }
 
 input Post_FileInfoFilterInput {
@@ -1199,7 +1199,7 @@ type Resume_Content_Education_History {
   place: String
   date: Resume_Content_Education_History_Date
   description: String
-  certificate: String
+  certificate: File
 }
 
 type Resume_Content_Education_History_Date {
@@ -1281,7 +1281,7 @@ input Resume_Content_Education_HistoryFilterInput {
   place: StringQueryOperatorInput
   date: Resume_Content_Education_History_DateFilterInput
   description: StringQueryOperatorInput
-  certificate: StringQueryOperatorInput
+  certificate: FileQueryOperatorInput
 }
 
 input Resume_Content_Education_History_DateFilterInput {
@@ -2109,6 +2109,7 @@ type YoutrackProject implements Node {
   iconUrl: String
   shortName: String
   name: String
+  projectLink: String
   agiles(
     sortBy: String
     order: SortOrder = DESC
@@ -2187,6 +2188,7 @@ input YoutrackProjectFilterInput {
   iconUrl: StringQueryOperatorInput
   shortName: StringQueryOperatorInput
   name: StringQueryOperatorInput
+  projectLink: StringQueryOperatorInput
   agiles: YoutrackAgileListQueryOperatorInput
 }
 

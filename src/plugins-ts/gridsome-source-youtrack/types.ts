@@ -5,5 +5,6 @@ export type CustomAgile = Agile & {
 }
 
 export type CustomProject = Project & {
+    projectLink: string
     agiles: CustomAgile[]
 }
