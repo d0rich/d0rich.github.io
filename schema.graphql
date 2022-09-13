@@ -372,7 +372,6 @@ type Post implements Node {
     # Locale
     locale: String
   ): Date
-  summary: String
   image(
     # Width
     width: Int
@@ -400,6 +399,7 @@ type Post implements Node {
     limit: Int
   ): [Tag]
   include_to_lifeline: Boolean
+  summary: String
   belongsTo(
     sortBy: String = "date"
     order: SortOrder = DESC
@@ -617,10 +617,10 @@ input PostFilterInput {
   content: StringQueryOperatorInput
   title: StringQueryOperatorInput
   date: DateQueryOperatorInput
-  summary: StringQueryOperatorInput
   image: ImageQueryOperatorInput
   tags: TagListQueryOperatorInput
   include_to_lifeline: BooleanQueryOperatorInput
+  summary: StringQueryOperatorInput
 }
 
 input Post_FileInfoFilterInput {
@@ -761,7 +761,6 @@ type Project implements Node {
     # Locale
     locale: String
   ): Date
-  summary: String
   image(
     # Width
     width: Int
@@ -796,6 +795,7 @@ type Project implements Node {
     limit: Int
   ): [Technology]
   related: [Project_Related]
+  summary: String
   belongsTo(
     sortBy: String = "date"
     order: SortOrder = DESC
@@ -870,11 +870,11 @@ input ProjectFilterInput {
   content: StringQueryOperatorInput
   title: StringQueryOperatorInput
   date: DateQueryOperatorInput
-  summary: StringQueryOperatorInput
   image: ImageQueryOperatorInput
   tags: ProjectTagListQueryOperatorInput
   technologies: TechnologyListQueryOperatorInput
   related: Project_RelatedFilterInput
+  summary: StringQueryOperatorInput
 }
 
 input Project_FileInfoFilterInput {
@@ -1103,7 +1103,7 @@ type Resume_Content_Education_History {
   place: String
   date: Resume_Content_Education_History_Date
   description: String
-  certificate: String
+  certificate: File
 }
 
 type Resume_Content_Education_History_Date {
@@ -1185,7 +1185,7 @@ input Resume_Content_Education_HistoryFilterInput {
   place: StringQueryOperatorInput
   date: Resume_Content_Education_History_DateFilterInput
   description: StringQueryOperatorInput
-  certificate: StringQueryOperatorInput
+  certificate: FileQueryOperatorInput
 }
 
 input Resume_Content_Education_History_DateFilterInput {
@@ -1322,6 +1322,7 @@ type LifelineEvent implements Node {
     sort: [SortArgument]
     limit: Int
   ): [Tag]
+  postPath: String
   headings(
     depth: RemarkHeadingLevels
     stripTags: Boolean = true
@@ -1376,6 +1377,7 @@ input LifelineEventFilterInput {
   date: DateQueryOperatorInput
   image: ImageQueryOperatorInput
   tags: TagListQueryOperatorInput
+  postPath: StringQueryOperatorInput
 }
 
 input LifelineEvent_FileInfoFilterInput {
@@ -1403,6 +1405,13 @@ type LifelineMonth implements Node {
   numberInYear: Int
   year: Int
   yearOfLife: Int
+  date(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
   events(
     sortBy: String
     order: SortOrder = DESC
@@ -1430,6 +1439,7 @@ input LifelineMonthFilterInput {
   numberInYear: IntQueryOperatorInput
   year: IntQueryOperatorInput
   yearOfLife: IntQueryOperatorInput
+  date: DateQueryOperatorInput
   events: LifelineEventListQueryOperatorInput
 }
 
