@@ -1,8 +1,12 @@
 <template>
   <div class="flex row justify-space-around flex-wrap-reverse">
     <div class="life-blocks ma-2">
-      <LifeBlock v-for="month of months" :key="month.number" :month="month"
-                 @show-tooltip="showTooltip" @hide-tooltip="tooltip.show = false" />
+<!--      <LifeBlock v-for="month of months" :key="month.number" :month="month"-->
+<!--                 @show-tooltip="showTooltip" @hide-tooltip="tooltip.show = false" />-->
+      <component v-for="month of months" :key="month.number"
+                 :is="blockTag(month)" class="month" :passed="isMonthPassed(month)"
+                 :href="`#${idLink(month)}`"
+                 @mouseover="showTooltip($event, month)" @mouseleave="tooltip.show = false" />
     </div>
 		<div class="ma-2">
 			<h2>Legend:</h2>
@@ -79,18 +83,33 @@ export default Vue.extend({
   },
 	mixins: [timeMixin],
 	methods: {
-    showTooltip(event: any) {
-      this.tooltip = {...this.tooltip, content: event.content, show: true}
+    showTooltip(event: MouseEvent, month: LifelineMonth) {
+      let content = `<div>Year: ${month.yearOfLife}, month: ${month.numberInYear}</div>`
+      for ( let note of month.events ){
+        // @ts-ignore
+        content += `<div>${this.formatDate(note.date)} ${note.title}</div>`
+      }
+      this.tooltip = {...this.tooltip, content: content, show: true}
       setTimeout(() => {
         // @ts-ignore
         const tooltipWidth = this.$refs?.tooltip?.clientWidth || 0
         const windowWidth = this.$store.state.windowWidth
-        const x = event.x - tooltipWidth / 2
+        const x = event.pageX - tooltipWidth / 2
         this.tooltip = {...this.tooltip,
           x: x < 0 ? 0 : x + tooltipWidth > windowWidth ? windowWidth - tooltipWidth : x,
-          y: event.y}
+          y: event.pageY - 56 * this.$store.getters.headerOn}
       }, 1)
 
+    },
+    isMonthPassed(month: LifelineMonth): boolean{
+      return new Date(month.date || 0) < new Date()
+    },
+    blockTag(month: LifelineMonth): 'div' | 'a' {
+      if (month.events.length) return 'a'
+      return 'div'
+    },
+    idLink(month: LifelineMonth): string | undefined {
+      return month.events[0]?.id
     }
   },
 })
