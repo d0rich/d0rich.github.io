@@ -1,9 +1,7 @@
 <template>
-  <div v-if="!month.events.length" class="month" :passed="isMonthPassed"
-       @mouseover="showTooltip" @mouseleave="$emit('hide-tooltip')" />
-  <a v-else class="month" :passed="isMonthPassed"
-     :href="`#${month.events[0].id}`"
-     @mouseover="showTooltip" @mouseleave="$emit('hide-tooltip')" />
+  <component :is="blockTag" class="month" :passed="isMonthPassed"
+             :href="`#${month.events[0].id}`"
+             @mouseover="showTooltip" @mouseleave="$emit('hide-tooltip')" />
 </template>
 
 <script lang="ts">
@@ -23,6 +21,10 @@ export default Vue.extend({
   computed: {
     isMonthPassed(): boolean{
       return new Date(this.month.date || 0) < new Date()
+    },
+    blockTag(): 'div' | 'a' {
+      if (this.month.events.length) return 'a'
+      return 'div'
     }
   },
   methods: {
