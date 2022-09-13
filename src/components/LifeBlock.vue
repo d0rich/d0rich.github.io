@@ -7,7 +7,6 @@
 </template>
 
 <script lang="ts">
-import {idMixin} from "../mixins/id";
 import {timeMixin} from "../mixins/time";
 import Vue from "vue";
 import {LifelineMonth} from "../plugins-ts/gridsome-source-lifeline/types";
@@ -20,7 +19,7 @@ export default Vue.extend({
     }
   },
   name: "LifeBlock",
-  mixins: [idMixin, timeMixin],
+  mixins: [timeMixin],
   computed: {
     isMonthPassed(): boolean{
       return new Date(this.month.date || 0) < new Date()

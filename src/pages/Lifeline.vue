@@ -68,7 +68,6 @@ query {
 import {Router} from "../router";
 import {metaMixin} from "../mixins/meta";
 import LifeInBlocks from "../components/LifeInBlocks";
-import {idMixin} from "../mixins/id";
 import {timeMixin} from "../mixins/time";
 import Vue from 'vue'
 import {LifelineEvent} from "../plugins-ts/gridsome-source-lifeline/types";
@@ -110,7 +109,7 @@ export default Vue.extend({
       return this.$page.events.edges.map((e: any) => e.node)
     }
 	},
-	mixins: [metaMixin, idMixin, timeMixin],
+	mixins: [metaMixin, timeMixin],
   // @ts-ignore
   metaInfo() {
 		return this.createMetaInfo({
