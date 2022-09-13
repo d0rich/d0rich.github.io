@@ -5,6 +5,7 @@
 </template>
 
 <script lang="ts">
+import {timeMixin} from "../mixins/time";
 import Vue from "vue";
 import {LifelineMonth} from "../plugins-ts/gridsome-source-lifeline/types";
 
@@ -16,6 +17,7 @@ export default Vue.extend({
     }
   },
   name: "LifeBlock",
+  mixins: [timeMixin],
   computed: {
     isMonthPassed(): boolean{
       return new Date(this.month.date || 0) < new Date()
@@ -38,10 +40,6 @@ export default Vue.extend({
       this.$emit('show-tooltip', {
         content, x: event.pageX, y: event.pageY - 56 * this.$store.getters.headerOn
       })
-    },
-    formatDate(date: Date | string){
-      const dateInternal = new Date(date)
-      return dateInternal.toLocaleDateString('en-GB')
     }
   }
 })
