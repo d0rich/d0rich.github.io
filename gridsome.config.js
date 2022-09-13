@@ -130,20 +130,6 @@ module.exports = {
         ]
       }
     },
-    // Nodes for lifeline
-    {
-      use: '@gridsome/source-filesystem',
-      options: {
-        path: 'content/lifeline/*.md',
-        typeName: 'LifeNote',
-        refs: {
-          tags: {
-            typeName: 'Tag',
-            create: true
-          }
-        },
-      }
-    },
       // Nodes for resume
     {
       use: '@gridsome/source-filesystem',
@@ -159,6 +145,7 @@ module.exports = {
         typeName: 'WorkExperience'
       }
     },
+    require('./src/plugins/gridsome-source-lifeline'),
     require('./src/plugins/gridsome-source-github-pls'),
     require('./src/plugins/gridsome-source-d0rich-github'),
     require('./src/plugins/gridsome-source-youtrack'),
