@@ -52,7 +52,6 @@ module.exports = async function (api: PluginAPI) {
     api.loadSource(({ getCollection, addCollection, store }: any) => {
         const eventsCollection = getCollection('LifelineEvent')
         const monthsCollection = addCollection('LifelineMonth')
-        monthsCollection.addReference('events', 'LifelineEvent')
 
         const numberOfMonths = AVERAGE_LIFE_YEARS * 12
         const birthdate = BIRTHDATE
@@ -66,18 +65,30 @@ module.exports = async function (api: PluginAPI) {
                 year: date.getFullYear(),
                 yearOfLife: date.getFullYear() - birthdate.getFullYear() + (birthdate.getMonth() <= date.getMonth() ? 1 : 0),
                 date,
-                events: eventsCollection.data()
-                    .filter((event: LifelineEvent) => (event.date.getDate() >= date.getDate()
-                                && event.date.getMonth() === date.getMonth()
-                                && event.date.getFullYear() === date.getFullYear())
-                            || (event.date.getDate() < date.getDate()
-                                && event.date.getMonth() === addMonths(date, 1).getMonth()
-                                && event.date.getFullYear() === addMonths(date, 1).getFullYear()))
-                    .map((event: LifelineEvent) => event.id)
+                events: []
             })
         }
         for (const month of months){
             monthsCollection.addNode(month)
+        }
+    })
+
+    api.loadSource(({ getCollection, addCollection, store }: any) => {
+        const eventsCollection = getCollection('LifelineEvent')
+        const monthsCollection = getCollection('LifelineMonth')
+
+        for (const month of monthsCollection.data()){
+            monthsCollection.updateNode({
+                ...month,
+                events: eventsCollection.data()
+                    .filter((event: LifelineEvent) => (event.date.getDate() >= month.date.getDate()
+                            && event.date.getMonth() === month.date.getMonth()
+                            && event.date.getFullYear() === month.date.getFullYear())
+                        || (event.date.getDate() < month.date.getDate()
+                            && event.date.getMonth() === addMonths(month.date, 1).getMonth()
+                            && event.date.getFullYear() === addMonths(month.date, 1).getFullYear()))
+                    .map((event: LifelineEvent) => event)
+            })
         }
     })
 }
