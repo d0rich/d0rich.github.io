@@ -40,6 +40,7 @@ query month{
         date
         events{
           id
+          date
           title
         }
       }
