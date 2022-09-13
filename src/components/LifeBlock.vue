@@ -1,5 +1,5 @@
 <template>
-  <component :is="blockTag" class="month" :passed="isMonthPassed"
+  <a class="month" :passed="isMonthPassed"
              :href="`#${idLink}`"
              @mouseover="showTooltip" @mouseleave="$emit('hide-tooltip')" />
 </template>
