@@ -1,6 +1,6 @@
 <template>
   <component :is="blockTag" class="month" :passed="isMonthPassed"
-             :href="`#${month.events[0].id}`"
+             :href="`#${idLink}`"
              @mouseover="showTooltip" @mouseleave="$emit('hide-tooltip')" />
 </template>
 
@@ -25,6 +25,9 @@ export default Vue.extend({
     blockTag(): 'div' | 'a' {
       if (this.month.events.length) return 'a'
       return 'div'
+    },
+    idLink(): string | undefined {
+      return this.month.events[0]?.id
     }
   },
   methods: {
