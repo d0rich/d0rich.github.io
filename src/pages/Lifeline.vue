@@ -6,10 +6,10 @@
 			<v-breadcrumbs :items="breadcrumbs"/>
 		</nav>
 		<section class="page-content">
-<!--			<LifeInBlocks :notes="notes" />-->
+			<LifeInBlocks />
 			<v-timeline :dense="!showOppositeDates">
-				<v-timeline-item v-for="(note, index) in notes" :key="textToId(note.title)"
-                         :id="textToId(note.title)"
+				<v-timeline-item v-for="(note, index) in notes" :key="note.id"
+                         :id="note.id"
 												 large
                          :icon="getIconForNote(note)">
 					<time slot="opposite"
@@ -24,8 +24,7 @@
 										v-if="!showOppositeDates"
 										:datetime="note.date"
 										v-text="formatDate(note.date)" />
-							<p v-if="note.summary" v-text="note.summary"/>
-							<div v-else v-html="note.content" />
+							<div v-html="note.content" />
 							<v-btn v-if="note.path" :to="note.path" color="primary">More</v-btn>
 						</div>
 						<g-image class="note__image border-light--primary" v-if="note.image" :src="note.image"/>
@@ -38,12 +37,11 @@
 </template>
 
 <page-query>
-query notesFromBlog{
-	blogPosts: allPost(filter: {
-		include_to_lifeline: { eq: true }
-	}, sortBy: "date", order: ASC){
+query notes{
+	events: allLifelineEvent(sortBy: "date", order: ASC){
 		edges{
 			node{
+        id
 				path
 				title
 				date
@@ -51,18 +49,6 @@ query notesFromBlog{
 				tags{
 					title
 				}
-				summary
-			}
-		}
-	}
-
-	lifeNotes: allLifeNote{
-		edges {
-			node {
-				title
-				date
-				tags { title }
-				image
 				content
 			}
 		}
@@ -78,14 +64,16 @@ query {
 }
 </static-query>
 
-<script>
+<script lang="ts">
 import {Router} from "../router";
 import {metaMixin} from "../mixins/meta";
 import LifeInBlocks from "../components/LifeInBlocks";
 import {idMixin} from "../mixins/id";
 import {timeMixin} from "../mixins/time";
+import Vue from 'vue'
+import {LifelineEvent} from "../plugins-ts/gridsome-source-lifeline/types";
 
-export default {
+export default Vue.extend({
 	name: "Lifeline",
 	components: {
 		LifeInBlocks
@@ -95,12 +83,11 @@ export default {
 			breadcrumbs: [
 				{text: 'd0rich', href: Router.home},
 				{text: 'story', href: Router.lifeline(), disabled: true},
-			],
-      notes: []
+			]
 		}
 	},
 	methods: {
-    getIconForNote(note){
+    getIconForNote(note: LifelineEvent){
 			if (note.tags.some(t => t.title === 'Database'))
 				return 'mdi-database'
 			if (note.tags.some(t => t.title === 'Development'))
@@ -117,24 +104,14 @@ export default {
 	computed: {
 		showOppositeDates(){
 			return this.$store.state.windowWidth > 1000
-		}
+		},
+    notes(): LifelineEvent[]{
+      // @ts-ignore
+      return this.$page.events.edges.map((e: any) => e.node)
+    }
 	},
 	mixins: [metaMixin, idMixin, timeMixin],
-  created() {
-    const blogNotes = this.$page.blogPosts.edges.map(e => e.node)
-    const lifeNotes = this.$page.lifeNotes.edges.map(e => e.node)
-    this.notes = [...blogNotes, ...lifeNotes].sort((a, b) => {
-      const dateA = new Date(a.date)
-      const dateB = new Date(b.date)
-      if (dateA < dateB) {
-        return -1;
-      }
-      if (dateA > dateB) {
-        return 1;
-      }
-      return 0;
-    })
-  },
+  // @ts-ignore
   metaInfo() {
 		return this.createMetaInfo({
 			title: 'Story',
@@ -143,7 +120,7 @@ export default {
 			ogPath: `/lifeline/`
 		})
 	}
-}
+})
 </script>
 
 <style>

@@ -36,7 +36,9 @@ module.exports = async function (api: PluginAPI) {
                 date: news.date,
                 image: news.image,
                 tags: news.tags,
-                content: `<p>${news.summary}</p>`
+                content: `<p>${news.summary}</p>`,
+                fileInfo: news.fileInfo,
+                internal: news.internal
             })
         })
 
@@ -61,15 +63,14 @@ module.exports = async function (api: PluginAPI) {
                 numberInYear: date.getMonth() - birthdate.getMonth() + (birthdate.getMonth() <= date.getMonth() ?  1 :  13),
                 year: date.getFullYear(),
                 yearOfLife: date.getFullYear() - birthdate.getFullYear() + (birthdate.getMonth() <= date.getMonth() ? 1 : 0),
+                date,
                 events: eventsCollection.data()
-                    .filter((event: LifelineEvent) => {
-                        return (event.date.getDate() >= date.getDate()
-                                && date.getMonth() === event.date.getMonth()
-                                && date.getFullYear() === event.date.getFullYear())
+                    .filter((event: LifelineEvent) => (event.date.getDate() >= date.getDate()
+                                && event.date.getMonth() === date.getMonth()
+                                && event.date.getFullYear() === date.getFullYear())
                             || (event.date.getDate() < date.getDate()
-                                && addMonths(date, 1).getMonth() === event.date.getMonth()
-                                && addMonths(date, 1).getFullYear() === event.date.getFullYear())
-                    })
+                                && event.date.getMonth() === addMonths(date, 1).getMonth()
+                                && event.date.getFullYear() === addMonths(date, 1).getFullYear()))
                     .map((event: LifelineEvent) => event.id)
             })
         }

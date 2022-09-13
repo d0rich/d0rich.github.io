@@ -1,26 +1,36 @@
 <template>
-  <div v-if="!month.events.length" class="month" :passed="month.passed"
+  <div v-if="!month.events.length" class="month" :passed="isMonthPassed"
        @mouseover="showTooltip" @mouseleave="$emit('hide-tooltip')" />
-  <a v-else class="month" :passed="month.passed"
-     :href="`#${textToId(month.events[0].title)}`"
+  <a v-else class="month" :passed="isMonthPassed"
+     :href="`#${month.events[0].id}`"
      @mouseover="showTooltip" @mouseleave="$emit('hide-tooltip')" />
 </template>
 
-<script>
+<script lang="ts">
 import {idMixin} from "../mixins/id";
 import {timeMixin} from "../mixins/time";
+import Vue from "vue";
+import {LifelineMonth} from "../plugins-ts/gridsome-source-lifeline/types";
 
-export default {
+export default Vue.extend({
   props: {
-    month: Object
+    month: {
+      type: Object as () => LifelineMonth,
+      required: true
+    }
   },
   name: "LifeBlock",
   mixins: [idMixin, timeMixin],
+  computed: {
+    isMonthPassed(): boolean{
+      return new Date(this.month.date || 0) < new Date()
+    }
+  },
   methods: {
-    showTooltip(event){
-      const monthData = this.month
-      let content = `<div>Year: ${monthData.yearOfLife}, month: ${monthData.numberInYear}</div>`
-      for ( let note of monthData.events ){
+    showTooltip(event: MouseEvent){
+      let content = `<div>Year: ${this.month.yearOfLife}, month: ${this.month.numberInYear}</div>`
+      for ( let note of this.month.events ){
+        // @ts-ignore
         content += `<div>${this.formatDate(note.date)} ${note.title}</div>`
       }
       this.$emit('show-tooltip', {
@@ -28,7 +38,7 @@ export default {
       })
     }
   }
-}
+})
 </script>
 
 <style>

@@ -13,5 +13,6 @@ export type LifelineMonth = {
     numberInYear: number
     year: number
     yearOfLife: number
+    date: Date
     events: Partial<LifelineEvent>[]
 }
