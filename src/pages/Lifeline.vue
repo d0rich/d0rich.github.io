@@ -25,7 +25,7 @@
 										:datetime="note.date"
 										v-text="formatDate(note.date)" />
 							<div v-html="note.content" />
-							<v-btn v-if="note.path" :to="note.path" color="primary">More</v-btn>
+							<v-btn v-if="note.postPath" :to="note.postPath" color="primary">More</v-btn>
 						</div>
 						<g-image class="note__image border-light--primary" v-if="note.image" :src="note.image"/>
 					</div>
@@ -42,7 +42,7 @@ query notes{
 		edges{
 			node{
         id
-				path
+				postPath
 				title
 				date
 				image

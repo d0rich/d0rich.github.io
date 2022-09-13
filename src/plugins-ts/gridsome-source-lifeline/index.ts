@@ -28,6 +28,7 @@ module.exports = async function (api: PluginAPI) {
         const newsCollection = getCollection('Post')
 
         const newsToDisplayInLifeline = newsCollection.data().filter((news: any) => news.include_to_lifeline)
+
         newsToDisplayInLifeline.forEach((news: any) => {
             lifelineEventsCollection.addNode({
                 id: news.id,
@@ -37,6 +38,7 @@ module.exports = async function (api: PluginAPI) {
                 image: news.image,
                 tags: news.tags,
                 content: `<p>${news.summary}</p>`,
+                postPath: news.path,
                 fileInfo: news.fileInfo,
                 internal: news.internal
             })

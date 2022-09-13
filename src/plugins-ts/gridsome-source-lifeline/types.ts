@@ -5,6 +5,7 @@ export type LifelineEvent = {
     tags: { title: string }[]
     image: string
     content: string
+    postPath: string | null
 }
 
 export type LifelineMonth = {
