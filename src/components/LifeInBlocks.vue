@@ -1,8 +1,8 @@
 <template>
   <div class="flex row justify-space-around flex-wrap-reverse">
     <div class="life-blocks ma-2">
-<!--      <LifeBlock v-for="month of months" :key="month.number" :month="month"-->
-<!--                 @show-tooltip="showTooltip" @hide-tooltip="tooltip.show = false" />-->
+      <LifeBlock v-for="month of months" :key="month.number" :month="month"
+                 @show-tooltip="showTooltip" @hide-tooltip="tooltip.show = false" />
     </div>
 		<div class="ma-2">
 			<h2>Legend:</h2>
