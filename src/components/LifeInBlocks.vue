@@ -1,8 +1,6 @@
 <template>
   <div class="flex row justify-space-around flex-wrap-reverse">
     <div class="life-blocks ma-2">
-<!--      <LifeBlock v-for="month of months" :key="month.number" :month="month"-->
-<!--                 @show-tooltip="showTooltip" @hide-tooltip="tooltip.show = false" />-->
       <component v-for="month of months" :key="month.number"
                  :is="blockTag(month)" class="month" :passed="isMonthPassed(month)"
                  :href="`#${idLink(month)}`"
@@ -54,15 +52,12 @@ query month{
 </static-query>
 
 <script lang="ts">
-// @ts-ignore
-import LifeBlock from "./LifeBlock";
 import {timeMixin} from "../mixins/time";
 import Vue from 'vue'
 import {LifelineMonth} from "../plugins-ts/gridsome-source-lifeline/types";
 
 export default Vue.extend({
 	name: "LifeInBlocks",
-  components: {LifeBlock},
 	data() {
 		return {
 			birthdate: new Date(2000, 6, 4),
@@ -127,5 +122,21 @@ export default Vue.extend({
 	grid-template-columns: 1rem 1fr;
 	grid-gap: .1rem;
 	align-items: center;
+}
+
+.month {
+  width: .7rem;
+  height: .7rem;
+  border: solid 1px #e7e7e7;
+  border-radius: .1rem;
+  background-color: var(--v-secondary-base);
+}
+
+.month[passed] {
+  background-color: var(--v-primary-base);
+}
+
+a.month[passed], .month.month--has-events {
+  background-color: var(--v-accent-base);
 }
 </style>
