@@ -119,27 +119,6 @@ type Query {
     # Filter for Technology nodes.
     filter: TechnologyFilterInput
   ): TechnologyConnection
-  lifeNote(
-    id: ID
-    path: String
-
-    # Will return an error if not nullable.
-    nullable: Boolean = false
-  ): LifeNote
-  allLifeNote(
-    sortBy: String = "date"
-    order: SortOrder = DESC
-
-    # Defaults to 25 when page is provided.
-    perPage: Int
-    skip: Int = 0
-    limit: Int
-    page: Int
-    sort: [SortArgument]
-
-    # Filter for LifeNote nodes.
-    filter: LifeNoteFilterInput
-  ): LifeNoteConnection
   resume(
     id: ID
     path: String
@@ -182,6 +161,48 @@ type Query {
     # Filter for WorkExperience nodes.
     filter: WorkExperienceFilterInput
   ): WorkExperienceConnection
+  lifelineEvent(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): LifelineEvent
+  allLifelineEvent(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for LifelineEvent nodes.
+    filter: LifelineEventFilterInput
+  ): LifelineEventConnection
+  lifelineMonth(
+    id: ID
+    path: String
+
+    # Will return an error if not nullable.
+    nullable: Boolean = false
+  ): LifelineMonth
+  allLifelineMonth(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument]
+
+    # Filter for LifelineMonth nodes.
+    filter: LifelineMonthFilterInput
+  ): LifelineMonthConnection
   repository(
     id: ID
     path: String
@@ -351,7 +372,6 @@ type Post implements Node {
     # Locale
     locale: String
   ): Date
-  summary: String
   image(
     # Width
     width: Int
@@ -379,6 +399,7 @@ type Post implements Node {
     limit: Int
   ): [Tag]
   include_to_lifeline: Boolean
+  summary: String
   belongsTo(
     sortBy: String = "date"
     order: SortOrder = DESC
@@ -526,9 +547,10 @@ enum TypeName {
   Project
   ProjectTag
   Technology
-  LifeNote
   Resume
   WorkExperience
+  LifelineEvent
+  LifelineMonth
   Repository
   Release
   Topic
@@ -595,10 +617,10 @@ input PostFilterInput {
   content: StringQueryOperatorInput
   title: StringQueryOperatorInput
   date: DateQueryOperatorInput
-  summary: StringQueryOperatorInput
   image: ImageQueryOperatorInput
   tags: TagListQueryOperatorInput
   include_to_lifeline: BooleanQueryOperatorInput
+  summary: StringQueryOperatorInput
 }
 
 input Post_FileInfoFilterInput {
@@ -970,124 +992,6 @@ type TechnologyEdge implements NodeConnectionEdge {
   previous: Technology
 }
 
-type LifeNote implements Node {
-  id: ID!
-  path(to: String = "default"): String
-  fileInfo: LifeNote_FileInfo
-  content: String
-  excerpt(
-    # Maximum length of generated excerpt (characters)
-    length: Int = 200
-  ): String
-  title: String
-  date(
-    # Date format
-    format: String
-
-    # Locale
-    locale: String
-  ): Date
-  image(
-    # Width
-    width: Int
-
-    # Height
-    height: Int
-
-    # Fit
-    fit: ImageFit = cover
-
-    # Quality (default: 75)
-    quality: Int
-
-    # Blur level for base64 string
-    blur: Int
-
-    # Background color for 'contain'
-    background: String
-  ): Image
-  tags(
-    sortBy: String
-    order: SortOrder = DESC
-    skip: Int = 0
-    sort: [SortArgument]
-    limit: Int
-  ): [Tag]
-  headings(
-    depth: RemarkHeadingLevels
-    stripTags: Boolean = true
-  ): [RemarkHeading]
-  timeToRead(
-    # Words per minute
-    speed: Int = 230
-  ): Int
-  belongsTo(
-    sortBy: String = "date"
-    order: SortOrder = DESC
-
-    # Defaults to 25 when page is provided.
-    perPage: Int
-    skip: Int = 0
-    limit: Int
-    page: Int
-    sort: [SortArgument!]
-    filter: BelongsToFilterInput
-  ): NodeBelongsTo
-}
-
-type LifeNote_FileInfo {
-  extension: String
-  directory: String
-  path: String
-  name: String
-}
-
-enum RemarkHeadingLevels {
-  h1
-  h2
-  h3
-  h4
-  h5
-  h6
-}
-
-type RemarkHeading {
-  depth: Int
-  value: String
-  anchor: String
-}
-
-input LifeNoteFilterInput {
-  id: IDQueryOperatorInput
-  path: StringQueryOperatorInput
-  fileInfo: LifeNote_FileInfoFilterInput
-  content: StringQueryOperatorInput
-  excerpt: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  date: DateQueryOperatorInput
-  image: ImageQueryOperatorInput
-  tags: TagListQueryOperatorInput
-}
-
-input LifeNote_FileInfoFilterInput {
-  extension: StringQueryOperatorInput
-  directory: StringQueryOperatorInput
-  path: StringQueryOperatorInput
-  name: StringQueryOperatorInput
-}
-
-type LifeNoteConnection implements NodeConnection {
-  totalCount: Int!
-  pageInfo: PageInfo!
-  edges: [LifeNoteEdge]
-}
-
-type LifeNoteEdge implements NodeConnectionEdge {
-  node: LifeNote
-  next: LifeNote
-  previous: LifeNote
-}
-
 type Resume implements Node {
   id: ID!
   path(to: String = "default"): String
@@ -1373,6 +1277,230 @@ type WorkExperienceEdge implements NodeConnectionEdge {
   node: WorkExperience
   next: WorkExperience
   previous: WorkExperience
+}
+
+type LifelineEvent implements Node {
+  id: ID!
+  path(to: String = "default"): String
+  fileInfo: LifelineEvent_FileInfo
+  content: String
+  excerpt(
+    # Maximum length of generated excerpt (characters)
+    length: Int = 200
+  ): String
+  title: String
+  date(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  image(
+    # Width
+    width: Int
+
+    # Height
+    height: Int
+
+    # Fit
+    fit: ImageFit = cover
+
+    # Quality (default: 75)
+    quality: Int
+
+    # Blur level for base64 string
+    blur: Int
+
+    # Background color for 'contain'
+    background: String
+  ): Image
+  tags(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [Tag]
+  postPath: String
+  headings(
+    depth: RemarkHeadingLevels
+    stripTags: Boolean = true
+  ): [RemarkHeading]
+  timeToRead(
+    # Words per minute
+    speed: Int = 230
+  ): Int
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+type LifelineEvent_FileInfo {
+  extension: String
+  directory: String
+  path: String
+  name: String
+}
+
+enum RemarkHeadingLevels {
+  h1
+  h2
+  h3
+  h4
+  h5
+  h6
+}
+
+type RemarkHeading {
+  depth: Int
+  value: String
+  anchor: String
+}
+
+input LifelineEventFilterInput {
+  id: IDQueryOperatorInput
+  path: StringQueryOperatorInput
+  fileInfo: LifelineEvent_FileInfoFilterInput
+  content: StringQueryOperatorInput
+  excerpt: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  date: DateQueryOperatorInput
+  image: ImageQueryOperatorInput
+  tags: TagListQueryOperatorInput
+  postPath: StringQueryOperatorInput
+}
+
+input LifelineEvent_FileInfoFilterInput {
+  extension: StringQueryOperatorInput
+  directory: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+}
+
+type LifelineEventConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [LifelineEventEdge]
+}
+
+type LifelineEventEdge implements NodeConnectionEdge {
+  node: LifelineEvent
+  next: LifelineEvent
+  previous: LifelineEvent
+}
+
+type LifelineMonth implements Node {
+  id: ID!
+  number: Int
+  numberInYear: Int
+  year: Int
+  yearOfLife: Int
+  date(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  events(
+    sortBy: String
+    order: SortOrder = DESC
+    skip: Int = 0
+    sort: [SortArgument]
+    limit: Int
+  ): [LifelineEvent]
+  belongsTo(
+    sortBy: String = "date"
+    order: SortOrder = DESC
+
+    # Defaults to 25 when page is provided.
+    perPage: Int
+    skip: Int = 0
+    limit: Int
+    page: Int
+    sort: [SortArgument!]
+    filter: BelongsToFilterInput
+  ): NodeBelongsTo
+}
+
+input LifelineMonthFilterInput {
+  id: IDQueryOperatorInput
+  number: IntQueryOperatorInput
+  numberInYear: IntQueryOperatorInput
+  year: IntQueryOperatorInput
+  yearOfLife: IntQueryOperatorInput
+  date: DateQueryOperatorInput
+  events: LifelineEventListQueryOperatorInput
+}
+
+input IntQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: Int
+
+  # Filter by property not equal to provided value.
+  ne: Int
+
+  # Filter by property matching any of the provided values.
+  in: [Int]
+
+  # Filter by property not matching any of the provided values.
+  nin: [Int]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+
+  # Filter by property greater than provided value.
+  gt: Int
+
+  # Filter by property greater or equal to provided value.
+  gte: Int
+
+  # Filter by property less than provided value.
+  lt: Int
+
+  # Filter by property less than or equal to provided value.
+  lte: Int
+
+  # Filter by property between provided values.
+  between: [Int]
+}
+
+input LifelineEventListQueryOperatorInput {
+  id: IDQueryOperatorInput
+
+  # Use the id field instead.
+  size: Int
+
+  # Use the id field instead.
+  contains: [ID]
+
+  # Use the id field instead.
+  containsAny: [ID]
+
+  # Use the id field instead.
+  containsNone: [ID]
+}
+
+type LifelineMonthConnection implements NodeConnection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [LifelineMonthEdge]
+}
+
+type LifelineMonthEdge implements NodeConnectionEdge {
+  node: LifelineMonth
+  next: LifelineMonth
+  previous: LifelineMonth
 }
 
 type Repository implements Node {
@@ -1804,38 +1932,6 @@ input Repository_OwnerFilterInput {
   site_admin: BooleanQueryOperatorInput
 }
 
-input IntQueryOperatorInput {
-  # Filter by property of (strict) equality.
-  eq: Int
-
-  # Filter by property not equal to provided value.
-  ne: Int
-
-  # Filter by property matching any of the provided values.
-  in: [Int]
-
-  # Filter by property not matching any of the provided values.
-  nin: [Int]
-
-  # Filter nodes that contain the field, including nodes where the field value is null.
-  exists: Boolean
-
-  # Filter by property greater than provided value.
-  gt: Int
-
-  # Filter by property greater or equal to provided value.
-  gte: Int
-
-  # Filter by property less than provided value.
-  lt: Int
-
-  # Filter by property less than or equal to provided value.
-  lte: Int
-
-  # Filter by property between provided values.
-  between: [Int]
-}
-
 input ProgrammingLanguageInferredQueryOperatorInput {
   id: IDQueryOperatorInput
 
@@ -2105,9 +2201,9 @@ type ProgrammingLanguageEdge implements NodeConnectionEdge {
 
 type YoutrackProject implements Node {
   id: ID!
-  description: String
   iconUrl: String
   shortName: String
+  description: String
   name: String
   projectLink: String
   agiles(
@@ -2141,8 +2237,8 @@ type YoutrackAgile implements Node {
     sort: [SortArgument]
     limit: Int
   ): [YoutrackProject]
-  currentSprint: YoutrackAgile_CurrentSprint
   sprints: [YoutrackAgile_Sprints]
+  currentSprint: YoutrackAgile_CurrentSprint
   hideOrphansSwimlane: Boolean
   orphansAtTheTop: Boolean
   name: String
@@ -2162,31 +2258,31 @@ type YoutrackAgile implements Node {
 }
 
 type YoutrackAgile_Owner {
-  fullName: String
   login: String
-  name: String
-  id: String
-}
-
-type YoutrackAgile_CurrentSprint {
-  archived: Boolean
-  unresolvedIssuesCount: Int
+  fullName: String
   name: String
   id: String
 }
 
 type YoutrackAgile_Sprints {
-  archived: Boolean
   unresolvedIssuesCount: Int
+  archived: Boolean
+  name: String
+  id: String
+}
+
+type YoutrackAgile_CurrentSprint {
+  unresolvedIssuesCount: Int
+  archived: Boolean
   name: String
   id: String
 }
 
 input YoutrackProjectFilterInput {
   id: IDQueryOperatorInput
-  description: StringQueryOperatorInput
   iconUrl: StringQueryOperatorInput
   shortName: StringQueryOperatorInput
+  description: StringQueryOperatorInput
   name: StringQueryOperatorInput
   projectLink: StringQueryOperatorInput
   agiles: YoutrackAgileListQueryOperatorInput
@@ -2224,8 +2320,8 @@ input YoutrackAgileFilterInput {
   id: IDQueryOperatorInput
   owner: YoutrackAgile_OwnerFilterInput
   projects: YoutrackProjectListQueryOperatorInput
-  currentSprint: YoutrackAgile_CurrentSprintFilterInput
   sprints: YoutrackAgile_SprintsFilterInput
+  currentSprint: YoutrackAgile_CurrentSprintFilterInput
   hideOrphansSwimlane: BooleanQueryOperatorInput
   orphansAtTheTop: BooleanQueryOperatorInput
   name: StringQueryOperatorInput
@@ -2233,8 +2329,8 @@ input YoutrackAgileFilterInput {
 }
 
 input YoutrackAgile_OwnerFilterInput {
-  fullName: StringQueryOperatorInput
   login: StringQueryOperatorInput
+  fullName: StringQueryOperatorInput
   name: StringQueryOperatorInput
   id: StringQueryOperatorInput
 }
@@ -2255,16 +2351,16 @@ input YoutrackProjectListQueryOperatorInput {
   containsNone: [ID]
 }
 
-input YoutrackAgile_CurrentSprintFilterInput {
-  archived: BooleanQueryOperatorInput
+input YoutrackAgile_SprintsFilterInput {
   unresolvedIssuesCount: IntQueryOperatorInput
+  archived: BooleanQueryOperatorInput
   name: StringQueryOperatorInput
   id: StringQueryOperatorInput
 }
 
-input YoutrackAgile_SprintsFilterInput {
-  archived: BooleanQueryOperatorInput
+input YoutrackAgile_CurrentSprintFilterInput {
   unresolvedIssuesCount: IntQueryOperatorInput
+  archived: BooleanQueryOperatorInput
   name: StringQueryOperatorInput
   id: StringQueryOperatorInput
 }
