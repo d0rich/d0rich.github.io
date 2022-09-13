@@ -49,6 +49,7 @@ query month{
 </static-query>
 
 <script lang="ts">
+// @ts-ignore
 import LifeBlock from "./LifeBlock";
 import {timeMixin} from "../mixins/time";
 import Vue from 'vue'

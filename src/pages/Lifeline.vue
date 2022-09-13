@@ -67,6 +67,7 @@ query {
 <script lang="ts">
 import {Router} from "../router";
 import {metaMixin} from "../mixins/meta";
+// @ts-ignore
 import LifeInBlocks from "../components/LifeInBlocks";
 import {timeMixin} from "../mixins/time";
 import Vue from 'vue'
