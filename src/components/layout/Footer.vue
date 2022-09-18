@@ -7,8 +7,9 @@
           <ul>
             <li><g-link :to="Router.home">Home</g-link></li>
             <li><g-link :to="Router.blog()">Blog</g-link></li>
-            <li><g-link :to="Router.projects()">Portfolio</g-link></li>
+            <li><g-link :to="Router.portfolio()">Portfolio</g-link></li>
             <li><g-link :to="Router.allResume()">Resume</g-link></li>
+            <li><g-link :to="Router.lifeline()">Story</g-link></li>
           </ul>
         </nav>
 
