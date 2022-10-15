@@ -1,5 +1,5 @@
 ---
-title: I Tried out JavaScript
+title: First try of JavaScript
 date: 2020-02-15
 image: ./images/js.png
 tags: [ Learning, Development ]

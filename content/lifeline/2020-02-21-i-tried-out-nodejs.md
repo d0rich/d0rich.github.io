@@ -1,5 +1,5 @@
 ---
-title: I Tried out Node.js
+title: First try of Node.js
 date: 2020-02-21
 image: ./images/node-js.png
 tags: [ Learning, Development ]

@@ -1,5 +1,5 @@
 ---
-title: "I Tried out Flutter for Mobile Apps"
+title: First try of Flutter for Mobile Apps
 date: 2021-12-06
 image: '/covers/blog/2021-12-06-flutter.png'
 tags: [ Development, Learning ]

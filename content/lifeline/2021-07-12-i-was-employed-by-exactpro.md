@@ -1,5 +1,5 @@
 ---
-title: I Was Employed by Exactpro
+title: Entering Exactpro
 date: 2021-07-12
 image: ./images/exactpro.png
 tags: [ Job ]

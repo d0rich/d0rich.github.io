@@ -1,5 +1,5 @@
 ---
-title: I Tried out Vue.js
+title: First try of Vue.js
 date: 2020-02-15
 image: ./images/vue.png
 tags: [ Learning, Development ]

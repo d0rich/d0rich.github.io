@@ -1,5 +1,5 @@
 ---
-title: I Tried out C++
+title: First try of C++
 date: 2018-09-10
 image: ./images/cpp.png
 tags: [ Education, Development ]

@@ -1,5 +1,5 @@
 ---
-title: I Tried out Unity
+title: First try of Unity
 date: 2019-12-15
 image: ./images/unity.png
 tags: [ Education, Development ]

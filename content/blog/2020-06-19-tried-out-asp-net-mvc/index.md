@@ -1,5 +1,5 @@
 ---
-title: "I Tried out ASP.NET MVC Pattern"
+title: "First try of ASP.NET MVC Pattern"
 date: 2020-06-19
 image: '/covers/blog/2020-06-19-asp-net-mvc.png'
 tags: [ Development, Learning ]

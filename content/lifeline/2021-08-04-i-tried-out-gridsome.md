@@ -1,5 +1,5 @@
 ---
-title: I Tried out Gridsome
+title: First try of Gridsome
 date: 2021-08-04
 image: ./images/gridsome.png
 tags: [ Learning, Development ]

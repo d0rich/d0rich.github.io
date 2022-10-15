@@ -1,5 +1,5 @@
 ---
-title: I Tried out Python
+title: First try of Python
 date: 2019-06-15
 image: ./images/python.png
 tags: [ Education, Development ]

@@ -1,5 +1,5 @@
 ---
-title: I Entered University
+title: Entering the University
 date: 2018-08-23
 image: ./images/university.png
 tags: [ Education ]

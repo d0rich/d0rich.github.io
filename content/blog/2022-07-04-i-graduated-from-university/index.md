@@ -1,5 +1,5 @@
 ---
-title: I Graduated from University
+title: Graduation of University
 date: 2022-07-04
 image: ./cover.png
 tags: [ Education ]

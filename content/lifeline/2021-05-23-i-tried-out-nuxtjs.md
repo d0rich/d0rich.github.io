@@ -1,5 +1,5 @@
 ---
-title: I Tried out Nuxt.js
+title: First try of Nuxt.js
 date: 2021-05-23
 image: ./images/nuxtjs.png
 tags: [ Learning, Development ]

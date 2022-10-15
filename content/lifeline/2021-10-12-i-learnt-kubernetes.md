@@ -1,5 +1,5 @@
 ---
-title: I Learnt Kubernetes
+title: Learning Kubernetes
 date: 2021-10-12
 image: ./images/kubernetes.png
 tags: [ Education ]

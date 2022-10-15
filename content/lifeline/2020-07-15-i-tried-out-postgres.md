@@ -1,5 +1,5 @@
 ---
-title: I Tried out PostgreSQL
+title: First try of PostgreSQL
 date: 2020-07-15
 image: ./images/postgres.png
 tags: [ Learning, Development, Database ]
