@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1 class="mt-7">Lifeline</h1>
+		<h1 class="mt-7">Story</h1>
 		<div class="hr"></div>
 		<nav class="align-self-start">
 			<v-breadcrumbs :items="breadcrumbs"/>
@@ -74,7 +74,7 @@ import Vue from 'vue'
 import {LifelineEvent} from "../plugins-ts/gridsome-source-lifeline/types";
 
 export default Vue.extend({
-	name: "Lifeline",
+	name: "StoryPage",
 	components: {
 		LifeInBlocks
 	},
@@ -82,7 +82,7 @@ export default Vue.extend({
 		return{
 			breadcrumbs: [
 				{text: 'd0rich', href: Router.home},
-				{text: 'story', href: Router.lifeline(), disabled: true},
+				{text: 'story', href: Router.story(), disabled: true},
 			]
 		}
 	},
@@ -117,7 +117,7 @@ export default Vue.extend({
 			title: 'Story',
 			description: 'Story of Dorich, JavaScript developer',
 			ogTitle: 'Story by Dorich',
-			ogPath: `/lifeline/`
+			ogPath: `/story/`
 		})
 	}
 })

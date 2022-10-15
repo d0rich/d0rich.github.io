@@ -14,5 +14,5 @@ export const Router = {
     projectTech(id, page){ return `/portfolio/projects/technologies/${id}/${page > 1 ? page: ''}` },
     allResume() {return '/resume/'},
     resume(title) { return `/resume/${title}/` },
-    lifeline: () => '/lifeline'
+    story: () => '/story'
 }
