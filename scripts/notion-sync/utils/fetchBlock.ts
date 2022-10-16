@@ -1,10 +1,5 @@
 import {Client} from "@notionhq/client";
-import {BlockObjectResponse} from "@notionhq/client/build/src/api-endpoints";
-
-type BlockWithChildren = {
-    block: BlockObjectResponse
-    children: BlockObjectResponse[]
-}
+import {BlockWithChildren} from "../types";
 
 export async function fetchBlock(id: string, notion: Client): Promise<BlockWithChildren>{
     const block = await notion.blocks.retrieve({block_id: id})
