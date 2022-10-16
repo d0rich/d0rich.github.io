@@ -6,7 +6,7 @@
     "develop": "npm run compile-plugins & gridsome develop",
     "explore": "npm run compile-plugins & gridsome explore",
     "compile-plugins": "tsc --project tsconfig.plugins.json",
-    "notion-sync": "ts-node scripts/notion-sync/index.ts"
+    "notion-sync": "ts-node --project tsconfig.scripts.json scripts/notion-sync/index.ts"
   },
   "dependencies": {
     "@gridsome/vue-remark": "^0.2.6",
@@ -23,8 +23,10 @@
     "@gridsome/transformer-remark": "^0.6.4",
     "@gridsome/transformer-yaml": "^0.2.1",
     "@notionhq/client": "^2.2.1",
+    "@types/fs-extra": "^9.0.13",
     "@types/marked": "^4.0.7",
     "axios": "^0.27.2",
+    "fs-extra": "^10.1.0",
     "gridsome-plugin-gtag": "^0.1.10",
     "gridsome-plugin-robots-txt": "^1.0.2",
     "gridsome-plugin-typescript": "^0.4.0",

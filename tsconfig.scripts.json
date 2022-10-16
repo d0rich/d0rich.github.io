@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
+    "target": "ES2017",
+    "module": "commonjs",
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "noImplicitReturns": true,
-    "outDir": "./built/",
     "sourceMap": true,
     "strict": true,
     "allowJs": true
   },
   "include": [
-    "./src/**/*"
-  ],
+    "./scripts/**/*"
+  ]
 }
