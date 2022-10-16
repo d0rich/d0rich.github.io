@@ -26,6 +26,12 @@
 					<div class="note__content py-4">
 						<div class="pr-4">
 							<h2 :class="`headline font-weight-light mb-1 accent--text`" v-text="note.title"/>
+              <div v-if="note.story_filter_tag" class="my-2">
+                <v-chip outlined color="accent" small
+                        v-text="getTopicTitle(note.story_filter_tag)"
+                        :link="!!getTopicLink(note.story_filter_tag)"
+                        :to="getTopicLink(note.story_filter_tag)" />
+              </div>
 							<time :class="`text-h5 primary--text text--lighten-2`"
 										v-if="!showOppositeDates"
 										:datetime="note.date"
@@ -119,6 +125,18 @@ export default defineComponent({
       if (!filter_tag) return true
       // @ts-ignore
       return this.filters.some((filter: Filter) => filter.tag === filter_tag && filter.show)
+    },
+    getTopicTitle(filter_tag: string): string {
+      // @ts-ignore
+      const notes: LifelineEvent[] = this.notes
+      const topicTitle = notes.find(note => note.story_topic_tag === filter_tag)?.title
+      return topicTitle || 'Self Education'
+    },
+    getTopicLink(filter_tag: string): string | null {
+      // @ts-ignore
+      const notes: LifelineEvent[] = this.notes
+      const topicId = notes.find(note => note.story_topic_tag === filter_tag)?.id
+      return topicId ? `#${topicId}` : null
     }
 	},
 	computed: {
