@@ -8,9 +8,13 @@
 		<section class="page-content">
       <LifeInBlocks>
         <h2>Filters:</h2>
+        <div v-for="filter in filters" :key="filter.tag">
+          <v-switch v-model="filter.show" :label="filter.topic" inset hide-details />
+        </div>
       </LifeInBlocks>
 			<v-timeline :dense="!showOppositeDates">
-				<v-timeline-item v-for="(note, index) in filteredNotes" :key="note.id"
+				<v-timeline-item v-for="note in notes" :key="note.id"
+                         v-show="isNoteShowed(note.story_filter_tag)"
                          :id="note.id"
 												 large
                          :icon="getIconForNote(note)">
@@ -80,7 +84,7 @@ import {LifelineEvent} from "../plugins-ts/gridsome-source-lifeline/types";
 type Filter = {
   tag: string
   topic: string
-  include: boolean
+  show: boolean
 }
 
 export default defineComponent({
@@ -110,6 +114,11 @@ export default defineComponent({
 			if (note.tags.some(t => t.title === 'Education'))
 				return 'mdi-school'
       return ''
+    },
+    isNoteShowed(filter_tag: string): boolean{
+      if (!filter_tag) return true
+      // @ts-ignore
+      return this.filters.some((filter: Filter) => filter.tag === filter_tag && filter.show)
     }
 	},
 	computed: {
@@ -120,10 +129,6 @@ export default defineComponent({
       // @ts-ignore
       const notes: LifelineEvent[] = this.$page.events.edges.map((e: any) => e.node)
       return notes
-    },
-    filteredNotes(): LifelineEvent[]{
-      // @ts-ignore
-      return this.notes
     }
 	},
 	mixins: [metaMixin, timeMixin],
@@ -138,7 +143,7 @@ export default defineComponent({
         filters.push({
           tag,
           topic: notes.find(note => note.story_topic_tag === tag)?.title || 'Self Education',
-          include: true
+          show: true
         })
       }
     })

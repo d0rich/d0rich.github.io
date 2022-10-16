@@ -1,6 +1,6 @@
 import {defineComponent} from "@vue/composition-api";
 
-// FIXME: Delete meta mixin and implement as imported function
+// TODO: Delete meta mixin and implement as imported function
 export const metaMixin = defineComponent({
     methods: {
         // @ts-ignore
