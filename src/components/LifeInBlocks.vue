@@ -1,7 +1,7 @@
 <template>
   <div class="flex row justify-space-around flex-wrap-reverse">
     <div class="life-blocks ma-2">
-      <component v-for="month of months" :key="month.number"
+      <component v-for="month of monthsFiltered" :key="month.number"
                  :is="blockTag(month)" class="month" :passed="isMonthPassed(month)"
                  :href="`#${idLink(month)}`"
                  @mouseover="showTooltip($event, month)" @mouseleave="tooltip.show = false" />
@@ -59,6 +59,12 @@ import {LifelineMonth} from "../plugins-ts/gridsome-source-lifeline/types";
 
 export default Vue.extend({
 	name: "LifeInBlocks",
+  props: {
+    showedTags: {
+      type: Array as () => string[],
+      required: true
+    }
+  },
 	data() {
 		return {
 			birthdate: new Date(2000, 6, 4),
@@ -75,6 +81,15 @@ export default Vue.extend({
     months(): LifelineMonth[] {
       // @ts-ignore
       return this.$static.months.edges.map((e: any) => e.node)
+    },
+    monthsFiltered(): LifelineMonth[] {
+      const months: LifelineMonth[] = this.months
+      return months.map(month => {
+        return {
+          ...month,
+          events: month.events.filter(e => this.showedTags.includes(e.story_filter_tag || '') || !e.story_filter_tag)
+        }
+      })
     }
   },
 	mixins: [timeMixin],
