@@ -14,7 +14,7 @@
 				<div class="month ma-1" passed /> <span> - passed months of my life</span>
 				<div class="month ma-1 month--has-events" passed /> <span> - passed months with events (clickable)</span>
 			</div>
-
+      <slot class="mb-2" />
 		</div>
     <transition name="glitch-transition" >
       <div class="v-tooltip__content "
@@ -44,6 +44,7 @@ query month{
           id
           date
           title
+          story_filter_tag
         }
       }
     }
