@@ -2,13 +2,20 @@
 // The Client API can be used here. Learn more: gridsome.org/docs/client-api
 
 // v2.0
+// Vuetify
 import Vuetify from 'vuetify'
 import vuetify from "~/plugins/vuetify"
 import 'vuetify/dist/vuetify.min.css'
+// Vuex
 import Vuex from 'vuex'
 import store from '~/store'
-import DefaultLayout from '~/layouts/Default.vue'
+// Router
 import {Router} from "./router";
+// CompositionAPI
+import VueCompositionAPI from '@vue/composition-api'
+// Layout
+import DefaultLayout from '~/layouts/Default.vue'
+
 
 export default function (Vue, { appOptions, head }) {
   head.meta.push({
@@ -38,6 +45,7 @@ export default function (Vue, { appOptions, head }) {
 
   Vue.use(Vuetify)
   Vue.use(Vuex)
+  Vue.use(VueCompositionAPI)
 
   appOptions.vuetify = new Vuetify(vuetify)
   appOptions.store = new Vuex.Store(store)

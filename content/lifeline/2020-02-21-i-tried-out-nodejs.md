@@ -1,8 +1,9 @@
 ---
-title: I Tried out Node.js
+title: First try of Node.js
 date: 2020-02-21
 image: ./images/node-js.png
-tags: [ Learning, Development ]
+story_icon: mdi-nodejs
+story_filter_tag: selfEdu
 ---
 
 I used Node.js for interaction with database where website content is stored.

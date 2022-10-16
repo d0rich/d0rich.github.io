@@ -19,6 +19,6 @@ export const navigation = {
     },
     lifeline: {
         text: 'Story',
-        route: Router.lifeline()
+        route: Router.story()
     }
 }
