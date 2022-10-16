@@ -3,6 +3,8 @@ export type LifelineEvent = {
     title: string
     date: Date
     tags: { title: string }[]
+    story_filter_tag: string
+    story_topic_tag: string
     image: string
     content: string
     postPath: string | null

@@ -37,6 +37,8 @@ module.exports = async function (api: PluginAPI) {
                 date: news.date,
                 image: news.image,
                 tags: news.tags,
+                story_filter_tag: news.story_filter_tag,
+                story_topic_tag: news.story_topic_tag,
                 content: `<p>${news.summary}</p>`,
                 postPath: news.path,
                 fileInfo: news.fileInfo,
