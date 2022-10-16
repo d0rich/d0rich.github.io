@@ -1,5 +1,5 @@
 ---
-title: "I Proposed New Classification for Websites"
+title: "Classification of Website technologies"
 date: 2022-01-25
 summary: "Nowadays there are a lot of technologies for building websites. You might be disoriented trying to choose something for your site. I did the big research, and I want share information I found."
 image: './cover.png'

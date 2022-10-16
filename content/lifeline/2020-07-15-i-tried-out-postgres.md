@@ -1,8 +1,9 @@
 ---
-title: I Tried out PostgreSQL
+title: First try of PostgreSQL
 date: 2020-07-15
 image: ./images/postgres.png
-tags: [ Learning, Development, Database ]
+story_icon: mdi-database
+story_filter_tag: selfEdu
 ---
 
 I tried PostgreSQL database for [Sportsmen social network](/portfolio/projects/sport-organizer/) learning project. 

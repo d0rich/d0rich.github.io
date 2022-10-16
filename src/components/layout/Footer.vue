@@ -9,7 +9,7 @@
             <li><g-link :to="Router.blog()">Blog</g-link></li>
             <li><g-link :to="Router.portfolio()">Portfolio</g-link></li>
             <li><g-link :to="Router.allResume()">Resume</g-link></li>
-            <li><g-link :to="Router.lifeline()">Story</g-link></li>
+            <li><g-link :to="Router.story()">Story</g-link></li>
           </ul>
         </nav>
 

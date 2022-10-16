@@ -399,7 +399,9 @@ type Post implements Node {
     limit: Int
   ): [Tag]
   include_to_lifeline: Boolean
+  story_filter_tag: String
   summary: String
+  story_topic_tag: String
   belongsTo(
     sortBy: String = "date"
     order: SortOrder = DESC
@@ -620,7 +622,9 @@ input PostFilterInput {
   image: ImageQueryOperatorInput
   tags: TagListQueryOperatorInput
   include_to_lifeline: BooleanQueryOperatorInput
+  story_filter_tag: StringQueryOperatorInput
   summary: StringQueryOperatorInput
+  story_topic_tag: StringQueryOperatorInput
 }
 
 input Post_FileInfoFilterInput {
@@ -761,6 +765,7 @@ type Project implements Node {
     # Locale
     locale: String
   ): Date
+  summary: String
   image(
     # Width
     width: Int
@@ -795,7 +800,6 @@ type Project implements Node {
     limit: Int
   ): [Technology]
   related: [Project_Related]
-  summary: String
   belongsTo(
     sortBy: String = "date"
     order: SortOrder = DESC
@@ -870,11 +874,11 @@ input ProjectFilterInput {
   content: StringQueryOperatorInput
   title: StringQueryOperatorInput
   date: DateQueryOperatorInput
+  summary: StringQueryOperatorInput
   image: ImageQueryOperatorInput
   tags: ProjectTagListQueryOperatorInput
   technologies: TechnologyListQueryOperatorInput
   related: Project_RelatedFilterInput
-  summary: StringQueryOperatorInput
 }
 
 input Project_FileInfoFilterInput {
@@ -1103,7 +1107,7 @@ type Resume_Content_Education_History {
   place: String
   date: Resume_Content_Education_History_Date
   description: String
-  certificate: File
+  certificate: String
 }
 
 type Resume_Content_Education_History_Date {
@@ -1185,7 +1189,7 @@ input Resume_Content_Education_HistoryFilterInput {
   place: StringQueryOperatorInput
   date: Resume_Content_Education_History_DateFilterInput
   description: StringQueryOperatorInput
-  certificate: FileQueryOperatorInput
+  certificate: StringQueryOperatorInput
 }
 
 input Resume_Content_Education_History_DateFilterInput {
@@ -1322,6 +1326,8 @@ type LifelineEvent implements Node {
     sort: [SortArgument]
     limit: Int
   ): [Tag]
+  story_topic_tag: String
+  story_filter_tag: String
   postPath: String
   headings(
     depth: RemarkHeadingLevels
@@ -1377,6 +1383,8 @@ input LifelineEventFilterInput {
   date: DateQueryOperatorInput
   image: ImageQueryOperatorInput
   tags: TagListQueryOperatorInput
+  story_topic_tag: StringQueryOperatorInput
+  story_filter_tag: StringQueryOperatorInput
   postPath: StringQueryOperatorInput
 }
 
@@ -1412,13 +1420,7 @@ type LifelineMonth implements Node {
     # Locale
     locale: String
   ): Date
-  events(
-    sortBy: String
-    order: SortOrder = DESC
-    skip: Int = 0
-    sort: [SortArgument]
-    limit: Int
-  ): [LifelineEvent]
+  events: [LifelineMonth_Events]
   belongsTo(
     sortBy: String = "date"
     order: SortOrder = DESC
@@ -1433,6 +1435,61 @@ type LifelineMonth implements Node {
   ): NodeBelongsTo
 }
 
+type LifelineMonth_Events {
+  id: String
+  internal: LifelineMonth_Events_Internal
+  path: String
+  fileInfo: LifelineMonth_Events_FileInfo
+  content: String
+  excerpt: String
+  title: String
+  date(
+    # Date format
+    format: String
+
+    # Locale
+    locale: String
+  ): Date
+  image(
+    # Width
+    width: Int
+
+    # Height
+    height: Int
+
+    # Fit
+    fit: ImageFit = cover
+
+    # Quality (default: 75)
+    quality: Int
+
+    # Blur level for base64 string
+    blur: Int
+
+    # Background color for 'contain'
+    background: String
+  ): Image
+  tags: [String]
+  story_filter_tag: String
+  story_topic_tag: String
+  postPath: String
+}
+
+type LifelineMonth_Events_Internal {
+  typeName: String
+  origin: File
+  mimeType: String
+  content: String
+  timestamp: Float
+}
+
+type LifelineMonth_Events_FileInfo {
+  extension: String
+  directory: String
+  path: String
+  name: String
+}
+
 input LifelineMonthFilterInput {
   id: IDQueryOperatorInput
   number: IntQueryOperatorInput
@@ -1440,7 +1497,7 @@ input LifelineMonthFilterInput {
   year: IntQueryOperatorInput
   yearOfLife: IntQueryOperatorInput
   date: DateQueryOperatorInput
-  events: LifelineEventListQueryOperatorInput
+  events: LifelineMonth_EventsFilterInput
 }
 
 input IntQueryOperatorInput {
@@ -1475,20 +1532,66 @@ input IntQueryOperatorInput {
   between: [Int]
 }
 
-input LifelineEventListQueryOperatorInput {
-  id: IDQueryOperatorInput
+input LifelineMonth_EventsFilterInput {
+  id: StringQueryOperatorInput
+  internal: LifelineMonth_Events_InternalFilterInput
+  path: StringQueryOperatorInput
+  fileInfo: LifelineMonth_Events_FileInfoFilterInput
+  content: StringQueryOperatorInput
+  excerpt: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  date: DateQueryOperatorInput
+  image: ImageQueryOperatorInput
+  story_filter_tag: StringQueryOperatorInput
+  story_topic_tag: StringQueryOperatorInput
+  postPath: StringQueryOperatorInput
+}
 
-  # Use the id field instead.
-  size: Int
+input LifelineMonth_Events_InternalFilterInput {
+  typeName: StringQueryOperatorInput
+  origin: FileQueryOperatorInput
+  mimeType: StringQueryOperatorInput
+  content: StringQueryOperatorInput
+  timestamp: FloatQueryOperatorInput
+}
 
-  # Use the id field instead.
-  contains: [ID]
+input FloatQueryOperatorInput {
+  # Filter by property of (strict) equality.
+  eq: Float
 
-  # Use the id field instead.
-  containsAny: [ID]
+  # Filter by property not equal to provided value.
+  ne: Float
 
-  # Use the id field instead.
-  containsNone: [ID]
+  # Filter by property matching any of the provided values.
+  in: [Float]
+
+  # Filter by property not matching any of the provided values.
+  nin: [Float]
+
+  # Filter nodes that contain the field, including nodes where the field value is null.
+  exists: Boolean
+
+  # Filter by property greater than provided value.
+  gt: Float
+
+  # Filter by property greater or equal to provided value.
+  gte: Float
+
+  # Filter by property less than provided value.
+  lt: Float
+
+  # Filter by property less than or equal to provided value.
+  lte: Float
+
+  # Filter by property between provided values.
+  between: [Float]
+}
+
+input LifelineMonth_Events_FileInfoFilterInput {
+  extension: StringQueryOperatorInput
+  directory: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  name: StringQueryOperatorInput
 }
 
 type LifelineMonthConnection implements NodeConnection {
@@ -1744,6 +1847,7 @@ type Release implements Node {
   tarball_url: String
   zipball_url: String
   body: String
+  mentions_count: Int
   assets: [Release_Assets]
   belongsTo(
     sortBy: String = "date"
@@ -2026,6 +2130,7 @@ input ReleaseFilterInput {
   tarball_url: StringQueryOperatorInput
   zipball_url: StringQueryOperatorInput
   body: StringQueryOperatorInput
+  mentions_count: IntQueryOperatorInput
   assets: Release_AssetsFilterInput
 }
 
@@ -2201,9 +2306,9 @@ type ProgrammingLanguageEdge implements NodeConnectionEdge {
 
 type YoutrackProject implements Node {
   id: ID!
-  iconUrl: String
-  shortName: String
   description: String
+  shortName: String
+  iconUrl: String
   name: String
   projectLink: String
   agiles(
@@ -2230,6 +2335,8 @@ type YoutrackProject implements Node {
 type YoutrackAgile implements Node {
   id: ID!
   owner: YoutrackAgile_Owner
+  sprints: [YoutrackAgile_Sprints]
+  currentSprint: YoutrackAgile_CurrentSprint
   projects(
     sortBy: String
     order: SortOrder = DESC
@@ -2237,8 +2344,6 @@ type YoutrackAgile implements Node {
     sort: [SortArgument]
     limit: Int
   ): [YoutrackProject]
-  sprints: [YoutrackAgile_Sprints]
-  currentSprint: YoutrackAgile_CurrentSprint
   hideOrphansSwimlane: Boolean
   orphansAtTheTop: Boolean
   name: String
@@ -2280,9 +2385,9 @@ type YoutrackAgile_CurrentSprint {
 
 input YoutrackProjectFilterInput {
   id: IDQueryOperatorInput
-  iconUrl: StringQueryOperatorInput
-  shortName: StringQueryOperatorInput
   description: StringQueryOperatorInput
+  shortName: StringQueryOperatorInput
+  iconUrl: StringQueryOperatorInput
   name: StringQueryOperatorInput
   projectLink: StringQueryOperatorInput
   agiles: YoutrackAgileListQueryOperatorInput
@@ -2319,9 +2424,9 @@ type YoutrackProjectEdge implements NodeConnectionEdge {
 input YoutrackAgileFilterInput {
   id: IDQueryOperatorInput
   owner: YoutrackAgile_OwnerFilterInput
-  projects: YoutrackProjectListQueryOperatorInput
   sprints: YoutrackAgile_SprintsFilterInput
   currentSprint: YoutrackAgile_CurrentSprintFilterInput
+  projects: YoutrackProjectListQueryOperatorInput
   hideOrphansSwimlane: BooleanQueryOperatorInput
   orphansAtTheTop: BooleanQueryOperatorInput
   name: StringQueryOperatorInput
@@ -2331,6 +2436,20 @@ input YoutrackAgileFilterInput {
 input YoutrackAgile_OwnerFilterInput {
   login: StringQueryOperatorInput
   fullName: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+}
+
+input YoutrackAgile_SprintsFilterInput {
+  unresolvedIssuesCount: IntQueryOperatorInput
+  archived: BooleanQueryOperatorInput
+  name: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+}
+
+input YoutrackAgile_CurrentSprintFilterInput {
+  unresolvedIssuesCount: IntQueryOperatorInput
+  archived: BooleanQueryOperatorInput
   name: StringQueryOperatorInput
   id: StringQueryOperatorInput
 }
@@ -2349,20 +2468,6 @@ input YoutrackProjectListQueryOperatorInput {
 
   # Use the id field instead.
   containsNone: [ID]
-}
-
-input YoutrackAgile_SprintsFilterInput {
-  unresolvedIssuesCount: IntQueryOperatorInput
-  archived: BooleanQueryOperatorInput
-  name: StringQueryOperatorInput
-  id: StringQueryOperatorInput
-}
-
-input YoutrackAgile_CurrentSprintFilterInput {
-  unresolvedIssuesCount: IntQueryOperatorInput
-  archived: BooleanQueryOperatorInput
-  name: StringQueryOperatorInput
-  id: StringQueryOperatorInput
 }
 
 type YoutrackAgileConnection implements NodeConnection {
