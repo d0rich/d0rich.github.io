@@ -7,9 +7,11 @@
 		</nav>
 		<section class="page-content">
       <LifeInBlocks :showed-tags="filters.filter(f => f.show).map(f => f.tag)">
-        <h2>Filters:</h2>
+        <h2 class="mt-2">Filter events by topics</h2>
         <div v-for="filter in filters" :key="filter.tag">
-          <v-switch v-model="filter.show" :label="filter.topic" inset hide-details />
+          <v-switch v-model="filter.show" :label="filter.topic"
+                    class="mb-n1"
+                    inset hide-details dense />
         </div>
       </LifeInBlocks>
 			<v-timeline :dense="!showOppositeDates">
