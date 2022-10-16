@@ -2,7 +2,7 @@
 title: Learning Kubernetes
 date: 2021-10-12
 image: ./images/kubernetes.png
-tags: [ Education ]
+story_icon: mdi-kubernetes
 ---
 
 I finished the ["Architecting With Google Kubernetes Engine"](https://www.coursera.org/specializations/architecting-google-kubernetes-engine) specialization on Coursera.

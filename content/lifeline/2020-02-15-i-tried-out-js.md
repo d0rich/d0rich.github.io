@@ -2,7 +2,7 @@
 title: First try of JavaScript
 date: 2020-02-15
 image: ./images/js.png
-tags: [ Learning, Development ]
+story_icon: mdi-language-javascript
 story_filter_tag: university
 ---
 

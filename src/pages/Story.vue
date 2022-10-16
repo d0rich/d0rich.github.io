@@ -62,6 +62,7 @@ query notes{
 				image
         story_filter_tag
         story_topic_tag
+        story_icon
 				tags{
 					title
 				}
@@ -111,6 +112,8 @@ export default defineComponent({
 	},
 	methods: {
     getIconForNote(note: LifelineEvent){
+      if (note.story_icon)
+        return note.story_icon
 			if (note.tags.some(t => t.title === 'Database'))
 				return 'mdi-database'
 			if (note.tags.some(t => t.title === 'Development'))

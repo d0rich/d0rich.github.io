@@ -2,7 +2,7 @@
 title: Finishing School
 date: 2018-07-23
 image: ./images/school.png
-tags: [ Education ]
+story_icon: mdi-school
 story_topic_tag: school
 ---
 

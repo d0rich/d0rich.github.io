@@ -2,7 +2,7 @@
 title: First try of Nuxt.js
 date: 2021-05-23
 image: ./images/nuxtjs.png
-tags: [ Learning, Development ]
+story_icon: mdi-code-braces
 story_filter_tag: selfEdu
 ---
 

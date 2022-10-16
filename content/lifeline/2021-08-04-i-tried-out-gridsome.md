@@ -2,7 +2,7 @@
 title: First try of Gridsome
 date: 2021-08-04
 image: ./images/gridsome.png
-tags: [ Learning, Development ]
+story_icon: mdi-code-braces
 story_filter_tag: selfEdu
 ---
 

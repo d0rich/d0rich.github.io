@@ -2,7 +2,7 @@
 title: First try of Node.js
 date: 2020-02-21
 image: ./images/node-js.png
-tags: [ Learning, Development ]
+story_icon: mdi-nodejs
 story_filter_tag: selfEdu
 ---
 

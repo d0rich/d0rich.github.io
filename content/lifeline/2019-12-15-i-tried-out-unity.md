@@ -2,7 +2,7 @@
 title: First try of Unity
 date: 2019-12-15
 image: ./images/unity.png
-tags: [ Education, Development ]
+story_icon: mdi-unity
 story_filter_tag: selfEdu
 ---
 
