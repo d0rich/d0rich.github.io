@@ -1,4 +1,4 @@
-import {BlockObjectResponse, GetPageResponse} from "@notionhq/client/build/src/api-endpoints";
+import {BlockObjectResponse, PageObjectResponse} from "@notionhq/client/build/src/api-endpoints";
 
 export type BlockWithChildren = {
     block: BlockObjectResponse
@@ -6,6 +6,6 @@ export type BlockWithChildren = {
 }
 
 export type PageWithContent = {
-    meta: GetPageResponse
+    meta: PageObjectResponse
     content: BlockWithChildren[]
 }

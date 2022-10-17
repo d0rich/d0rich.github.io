@@ -1,8 +1,19 @@
+import { stringify } from 'yaml'
+
 export class MarkdownCompiler{
     private content: string[] = []
 
     private addBlock(...content: string[]) {
         this.content.push('', ...content, '')
+    }
+
+    addProperties(properties: any) {
+        if (!this.content.length) {
+            this.content.push('---')
+            this.content.push(stringify(properties))
+            this.content.push('---')
+        } else
+            throw new Error('Properties should be added in the beginning of Markdown document.')
     }
 
     addHeading1(text: string){
