@@ -1,6 +1,4 @@
-import {RichTextItemResponse} from "@notionhq/client/build/src/api-endpoints";
-
-export class MdSaver {
+export class MarkdownCompiler{
     private content: string[] = []
 
     addHeading1(text: string){
@@ -25,18 +23,6 @@ export class MdSaver {
 
     addBlockquote(text: string){
         this.content.push('', ...text.split('\n').map(t => `> ${t}`), '')
-    }
-
-    richTextToMd(richText: RichTextItemResponse[]): string{
-        const content: string[] = richText.map(item => {
-            let text = item.plain_text
-            if (item.annotations.code) text = '\`' + text + '\`'
-            if (item.annotations.bold) text = `**${text}**`
-            if (item.annotations.italic) text = `*${text}*`
-            if (item.href) text = `[${text}(${item.href})]`
-            return text
-        })
-        return content.join('')
     }
 
     compile(): string {
