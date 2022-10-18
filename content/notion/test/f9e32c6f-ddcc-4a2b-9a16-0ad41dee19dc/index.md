@@ -8,6 +8,7 @@ tags:
   - Websites
   - DocOps
 title: Classification of Website technologies
+cover: ./cover.png
 
 ---
 

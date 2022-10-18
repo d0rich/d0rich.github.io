@@ -29,7 +29,8 @@ export class NotionPageSaver {
         await Promise.all(downloadPromises)
     }
 
-    extractProperties(meta: PageObjectResponse): Object {
+    extractProperties(meta: PageObjectResponse,
+                      saveCoverCallback: (url: string) => string = (url: string) => './cover.png'): Object {
         const props = meta.properties
         const resultProps: any = {}
         for (let propName in props) {
@@ -55,6 +56,14 @@ export class NotionPageSaver {
                     break
             }
         }
+        if (meta.cover) {
+            if (meta.cover.type === 'file'){
+                resultProps.cover = saveCoverCallback(meta.cover.file.url)
+            } else if (meta.cover.type === 'external') {
+                resultProps.cover = saveCoverCallback(meta.cover.external.url)
+            }
+        }
+
         return resultProps
     }
 
@@ -77,7 +86,9 @@ export class NotionPageSaver {
     compileMarkdown(page: PageWithContent,
                     saveFileCallback: (url: string, name: string) => string = (url, name) => ''){
         const compiler = new MarkdownCompiler()
-        compiler.addProperties(this.extractProperties(page.meta))
+        compiler.addProperties(this.extractProperties(page.meta, (url: string) => {
+            return saveFileCallback(url, 'cover')
+        }))
         for (let blockWithChildren of page.content) {
             const block = blockWithChildren.block
             if (block.type === 'paragraph') {
