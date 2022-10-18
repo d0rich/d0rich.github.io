@@ -19,7 +19,7 @@ export class NotionPageSaver {
         const markdown = this.compileMarkdown(page, (url: string, name: string) => {
             const extention = url.split('?')[0].split('.').reverse()[0]
             const download = async () => {
-                const fileResponse = await axios.get(url, {responseType: 'blob'})
+                const fileResponse = await axios.get(url, {responseType: 'arraybuffer'})
                 fse.writeFileSync(`${this.pathToFolder}/${slug}/${slugify(name)}.${extention}`, fileResponse.data)
             }
             downloadPromises.push(download())
