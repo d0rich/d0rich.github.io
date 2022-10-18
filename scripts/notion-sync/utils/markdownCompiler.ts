@@ -38,6 +38,10 @@ export class MarkdownCompiler{
         this.addBlock(`![${title}](${url})`)
     }
 
+    addCodeSnippet(code: string, syntax: string = '') {
+        this.addBlock(`\`\`\`${syntax}`, code, '\`\`\`')
+    }
+
     addBlockquote(text: string){
         this.addBlock(...text.split('\n').map(t => `> ${t}`))
     }

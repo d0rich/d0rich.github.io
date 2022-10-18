@@ -36,7 +36,7 @@ export class NotionPageSaver {
             const prop = props[propName]
             switch (prop.type) {
                 case 'rich_text':
-                    resultProps[propName] = prop.rich_text.map(t => t.plain_text).join('')
+                    resultProps[propName] = this.richTextToPlainText(prop.rich_text)
                     break
                 case 'date':
                     resultProps[propName] = prop.date?.start
@@ -45,7 +45,7 @@ export class NotionPageSaver {
                     resultProps[propName] = prop.multi_select.map(item => item.name)
                     break
                 case 'title':
-                    resultProps[propName] = prop.title.map(t => t.plain_text).join('')
+                    resultProps[propName] = this.richTextToPlainText(prop.title)
                     break
                 case 'select':
                     resultProps[propName] = prop.select?.name
@@ -70,12 +70,16 @@ export class NotionPageSaver {
         return content.join('')
     }
 
+    richTextToPlainText(richText: RichTextItemResponse[]): string {
+        return richText.map(t => t.plain_text).join('')
+    }
+
     compileMarkdown(page: PageWithContent,
                     saveFileCallback: (url: string, name: string) => string = (url, name) => ''){
         const compiler = new MarkdownCompiler()
         compiler.addProperties(this.extractProperties(page.meta))
-        for (let blockWithChldren of page.content) {
-            const block = blockWithChldren.block
+        for (let blockWithChildren of page.content) {
+            const block = blockWithChildren.block
             if (block.type === 'paragraph') {
                 compiler.addParagraph(this.richTextToMd(block.paragraph.rich_text))
             } else if (block.type === 'heading_1') {
@@ -86,13 +90,17 @@ export class NotionPageSaver {
                 compiler.addHeading3(this.richTextToMd(block.heading_3.rich_text))
             } else if (block.type === 'image') {
                 let url: string | null = null
-                let name = block.image.caption.map(t => t.plain_text).join('')
+                let name = this.richTextToPlainText(block.image.caption)
                 if (block.image.type === 'external'){
                     url = saveFileCallback(block.image.external.url, name)
                 } else if (block.image.type === 'file'){
                     url = saveFileCallback(block.image.file.url, name)
                 }
                 if (url) compiler.addImage(url, name)
+            } else if (block.type === 'code'){
+                compiler.addCodeSnippet(this.richTextToPlainText(block.code.rich_text), block.code.language)
+            } else if (block.type === 'quote'){
+                compiler.addBlockquote(this.richTextToMd(block.quote.rich_text))
             }
         }
         return compiler.compile()

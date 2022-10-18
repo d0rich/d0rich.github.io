@@ -181,6 +181,9 @@ There are some dynamic hybrid technologies:
 ## Jamstack
 
 
+> Jamstack is an architecture designed to make the web faster, more secure, and easier to scale. It builds on many of the tools and workflows which developers love, and which bring maximum productivity.
+
+
 Basically, Jamstack frameworks are cheaper to maintain, because there is no runtime app needed. Only technologies, that generates static files can be considered as Jamstack. You can see these frameworks on the sites triangle, proposed by me.
 
 
