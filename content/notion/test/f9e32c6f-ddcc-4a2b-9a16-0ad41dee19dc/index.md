@@ -42,6 +42,9 @@ So there is my representation of site types in the triangle:
 
 As you can see,
 
+- Static site is the best choice, if you want to use hardware as little as possible
+- Dynamic site is very useful for constantly changed data (eg forum)
+- Single Page Application significantly improves *User Experience (UX)*
 
 ### Static Sites
 
@@ -69,6 +72,10 @@ flashing of the screen while new page is loading on such sites.
 
 Anyway, this technology provides content that we want with easy usage. Some of available SSG:
 
+- [Go Hugo](https://gohugo.io/)
+- [Ruby Jekyll](https://jekyllrb.com/)
+- [NodeJS Hexo](https://hexo.io/)
+- [Python Sphinx](https://www.sphinx-doc.org/en/master/)
 
 Capabilities of all these engines are about to be equal. Rendering speed is not important
 as it happens not in real time. So the only difference is only in programming language
@@ -92,6 +99,11 @@ the static ones - flashing between pages.
 
 You can create dynamic site with:
 
+- [PHP Laravel](https://laravel.com/)
+- [ASP.NET MVC Pattern](https://docs.microsoft.com/en-us/aspnet/mvc/)
+- [Java Spring Boot](https://spring.io/projects/spring-boot)
+- [Python Django](https://www.djangoproject.com/)
+- [Ruby on Rails](https://rubyonrails.org/)
 
 These technologies have different requirements to server and ways to work with database.
 
@@ -115,6 +127,8 @@ In this case your site won't contain needed information on initial state. As I k
 initial state is important for *Search Engine Optimization (SEO)*. Also, user will wait
 twice:
 
+1. Getting SPA
+2. Getting data for SPA
 
 Somebody may call disadvantage that it works on the JavaScript. There you can decide: support
 HTML only site for people with old gadgets or create cool app to use it with pleasure.
@@ -123,6 +137,11 @@ I think, that liquidation of flashing is killer feature.
 
 You can try SPA with:
 
+- [React](https://reactjs.org/)
+- [Vue](https://vuejs.org/)
+- [Nuxt.js (static mode)](https://nuxtjs.org/docs/concepts/static-site-generation/)
+- [Swelte](https://svelte.dev/)
+- [Angular](https://angular.io/)
 
 ## What is wrong?
 
@@ -132,6 +151,9 @@ Time is running, technologies are constantly improved. Business decided that UX 
 
 So sites mixed with SPA began to appear: SPA with *Server Side Rendering (SSR)*, SPA with SSG. Some newbie can be confused. May be he want seamless experience for site, but
 
+- without any database in background for delivering content to SPA
+- with small await time for user
+- with stable SEO
 
 These 3 bad associations comes to my mind when I hear SPA. But SPA with SSR and SPA with SSG don’t have these problems. Anyway, I deny these technologies because of the phrase “I am SPA” in documentation.
 
@@ -162,6 +184,9 @@ Firstly, browser gets full generated page in initial state (SEO problem of SPA i
 
 You can try static hybrid sited with:
 
+- [Gridsome (Vue)](https://gridsome.org/)
+- [Gatsby (React)](https://www.gatsbyjs.com/)
+- [Docusaurus (React)](https://docusaurus.io/)
 
 ### Dynamic Hybrid
 
@@ -177,6 +202,11 @@ The only difference is that Dynamic Hybrid site generates pages not while creati
 
 There are some dynamic hybrid technologies:
 
+- [Nuxt.js (Vue)](https://nuxtjs.org/)
+- [Next.js (React)](https://nextjs.org/)
+- [Remix (React)](https://remix.run/)
+- [Angular Universal (Angular)](https://angular.io/guide/universal)
+- [Swelte Kit (Swelte)](https://kit.svelte.dev/)
 
 ## Jamstack
 
@@ -189,18 +219,32 @@ Basically, Jamstack frameworks are cheaper to maintain, because there is no runt
 
 ![Sites Triangle with Jamstack Architecture](./Sites-Triangle-with-Jamstack-Architecture.png)
 
+- Static Site - generates static HTML files
+- Single Page Application - generates small HTML file and big JavaScript file with content for site
+- Static Hybrid - generate static HTML files with special script for seamless interpage transitions
 
 ## Summary
 
 
 To sum up, in my point of view there 5 types of sites:
 
+1. Static
+2. Dynamic
+3. Single Page Application
+4. Static Hybrid
+5. Dynamic Hybrid
 
 I think, that static and dynamic sites are obsolete. But there can be reasons to use it, if:
 
+1. You / your team know appropriate technology really well
+2. UX is not the main thing you need from web site
+3. You need to cover vanishingly small community with old browsers or with disabled JavaScript in browser
 
 In other cases, I’d advice you to choose SPA or Hybrid sites.
 
+- Single Page Application is the best choice for some GUI (eg calculator, dashboard, map).
+- Static Hybrid should be used if content on your site changes infrequently (eg blog, documentation, portfolio)
+- Dynamic Hybrid is the most expensive site type to maintain, but it provides the biggest potential for features. Mostly this type is used when content is constantly changing (eg forums, social networks)
 
 If you are not sure whether static site covers all your needs, you can start from dynamic analog. And then switch to static one, if it is possible.
 

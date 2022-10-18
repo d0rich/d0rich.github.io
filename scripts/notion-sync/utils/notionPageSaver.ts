@@ -64,7 +64,7 @@ export class NotionPageSaver {
             if (item.annotations.code) text = '\`' + text + '\`'
             if (item.annotations.bold) text = `**${text}**`
             if (item.annotations.italic) text = `*${text}*`
-            if (item.href) text = `[${text}(${item.href})]`
+            if (item.href) text = `[${text}](${item.href})`
             return text
         })
         return content.join('')
@@ -101,6 +101,10 @@ export class NotionPageSaver {
                 compiler.addCodeSnippet(this.richTextToPlainText(block.code.rich_text), block.code.language)
             } else if (block.type === 'quote'){
                 compiler.addBlockquote(this.richTextToMd(block.quote.rich_text))
+            } else if (block.type === 'bulleted_list_item'){
+                compiler.addBulletedListItem(this.richTextToMd(block.bulleted_list_item.rich_text))
+            } else if (block.type === 'numbered_list_item'){
+                compiler.addNumberedListItem(this.richTextToMd(block.numbered_list_item.rich_text))
             }
         }
         return compiler.compile()
