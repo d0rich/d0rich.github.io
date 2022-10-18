@@ -49,7 +49,12 @@ export class MarkdownCompiler{
 
     addImage(url: string, title: string = ''){
         this.numberedListCache.inProgress = false
-        this.addBlock(`![${title}](${url})`)
+        this.addBlock('<figure style="text-align: center">',
+            '',
+            `![${title}](${url})`,
+            '',
+            `<figcaption>${title}</figcaption>`,
+            '</figure>')
     }
 
     addCodeSnippet(code: string, syntax: string = '') {
