@@ -34,6 +34,10 @@ export class MarkdownCompiler{
         this.addBlock(text)
     }
 
+    addImage(url: string, title: string = ''){
+        this.addBlock(`![${title}](${url})`)
+    }
+
     addBlockquote(text: string){
         this.addBlock(...text.split('\n').map(t => `> ${t}`))
     }

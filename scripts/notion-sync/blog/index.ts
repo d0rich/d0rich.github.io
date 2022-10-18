@@ -9,7 +9,7 @@ export async function syncBlogPosts(notion: Client) {
     const postsPromises = db.results.map(async (item) => fetchPage(item.id, notion))
     const posts = await Promise.all(postsPromises)
     const saver = new NotionPageSaver('content/notion/test')
-    posts.forEach(post => {
-        saver.save(post)
-    })
+    for (let post of posts) {
+        await saver.save(post)
+    }
 }

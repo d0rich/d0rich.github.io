@@ -37,6 +37,9 @@ and communicating with people from my university.
 So there is my representation of site types in the triangle:
 
 
+![Classic Sites Triangle](./Classic-Sites-Triangle.png)
+
+
 As you can see,
 
 
@@ -53,6 +56,9 @@ are called *Static Site Generators (SSG)*.
 
 
 You can see how browser works with pages in this site on the diagram below:
+
+
+![Static Site Workflow](./Static-Site-Workflow.png)
 
 
 Working principle of static sites is pretty easy. Browser just get HTML file any time
@@ -76,6 +82,9 @@ From the user side dynamic site can seem a static one. It's because on the brows
 workflow is the same. But all magic at the server side.
 
 
+![Dynamic Site Workflow](./Dynamic-Site-Workflow.png)
+
+
 Yeah, this time browser make request not to file storage, but to server,
 that generates HTML in real time. And dynamic sites have the same problem as
 the static ones - flashing between pages.
@@ -94,6 +103,9 @@ This type of site provides more slightly UX as browser doesn't recreate whole pa
 but only elements when it is needed to change content. Technically, it is static site
 with one HTML file. But HTML files exists there only because it might exist anyway to
 run JavaScript.
+
+
+![SPA Workflow](./SPA-Workflow.png)
 
 
 SPA's don't flash, but browser need to download whole site while first request.
@@ -127,6 +139,9 @@ These 3 bad associations comes to my mind when I hear SPA. But SPA with SSR and 
 So I propose a solution for this problem. We can call this mixed types of sites as “Hybrid”. Basically they are some blend of classic static sites with SPA, dynamic sites with SPA (with inherited advantages and solved problems).
 
 
+![Sites Triangle](./Sites-Triangle.png)
+
+
 SPA is the part of the each hybrid technology. It provides seamless work. Today every hybrid framework is based on the popular SPA framework.
 
 
@@ -137,6 +152,9 @@ Static Hybrid sites are just *Static Site Generators (SSG)* that generate all po
 
 
 You can see workflow of the Static Hybrid Site below:
+
+
+![Static Hybrid Workflow](./Static-Hybrid-Workflow.png)
 
 
 Firstly, browser gets full generated page in initial state (SEO problem of SPA is solved). After that SPA starts on the page and allow site to get only useful information from page requests until it is closed (seam problem of static sites is solved).
@@ -154,6 +172,9 @@ Basically, we can say that Dynamic Hybrid sites and static hybrid ones have simi
 The only difference is that Dynamic Hybrid site generates pages not while creating, but during runtime. This feature increases latencies a bit, but it proposes you a possibility to update data on your site often or get data from frequently changed resource.
 
 
+![Dynamic Hybrid Workflow](./Dynamic-Hybrid-Workflow.png)
+
+
 There are some dynamic hybrid technologies:
 
 
@@ -161,6 +182,9 @@ There are some dynamic hybrid technologies:
 
 
 Basically, Jamstack frameworks are cheaper to maintain, because there is no runtime app needed. Only technologies, that generates static files can be considered as Jamstack. You can see these frameworks on the sites triangle, proposed by me.
+
+
+![Sites Triangle with Jamstack Architecture](./Sites-Triangle-with-Jamstack-Architecture.png)
 
 
 ## Summary

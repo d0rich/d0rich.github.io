@@ -3,6 +3,7 @@ import {MarkdownCompiler} from "./markdownCompiler";
 import {PageWithContent} from "../types";
 import * as fse from 'fs-extra'
 import slugify from "slugify";
+import axios from "axios";
 
 export class NotionPageSaver {
     private readonly pathToFolder: string
@@ -11,11 +12,21 @@ export class NotionPageSaver {
         this.pathToFolder = pathToFolder
     }
 
-    save(page: PageWithContent){
+    async save(page: PageWithContent){
         const slug = slugify(page.meta.id)
-        const markdown = this.compileMarkdown(page)
+        const downloadPromises: Promise<any>[] = []
         fse.mkdirpSync(`${this.pathToFolder}/${slug}`)
+        const markdown = this.compileMarkdown(page, (url: string, name: string) => {
+            const extention = url.split('?')[0].split('.').reverse()[0]
+            const download = async () => {
+                const fileResponse = await axios.get(url, {responseType: 'blob'})
+                fse.writeFileSync(`${this.pathToFolder}/${slug}/${slugify(name)}.${extention}`, fileResponse.data)
+            }
+            downloadPromises.push(download())
+            return `./${slugify(name)}.${extention}`
+        })
         fse.writeFileSync(`${this.pathToFolder}/${slug}/index.md`, markdown, { encoding: 'utf-8' })
+        await Promise.all(downloadPromises)
     }
 
     extractProperties(meta: PageObjectResponse): Object {
@@ -59,7 +70,8 @@ export class NotionPageSaver {
         return content.join('')
     }
 
-    compileMarkdown(page: PageWithContent){
+    compileMarkdown(page: PageWithContent,
+                    saveFileCallback: (url: string, name: string) => string = (url, name) => ''){
         const compiler = new MarkdownCompiler()
         compiler.addProperties(this.extractProperties(page.meta))
         for (let blockWithChldren of page.content) {
@@ -72,6 +84,15 @@ export class NotionPageSaver {
                 compiler.addHeading2(this.richTextToMd(block.heading_2.rich_text))
             } else if (block.type === 'heading_3') {
                 compiler.addHeading3(this.richTextToMd(block.heading_3.rich_text))
+            } else if (block.type === 'image') {
+                let url: string | null = null
+                let name = block.image.caption.map(t => t.plain_text).join('')
+                if (block.image.type === 'external'){
+                    url = saveFileCallback(block.image.external.url, name)
+                } else if (block.image.type === 'file'){
+                    url = saveFileCallback(block.image.file.url, name)
+                }
+                if (url) compiler.addImage(url, name)
             }
         }
         return compiler.compile()
