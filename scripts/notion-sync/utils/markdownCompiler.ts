@@ -9,9 +9,7 @@ export class MarkdownCompiler{
 
     addProperties(properties: any) {
         if (!this.content.length) {
-            this.content.push('---')
-            this.content.push(stringify(properties))
-            this.content.push('---')
+            this.content.push('---', stringify(properties), '---', '')
         } else
             throw new Error('Properties should be added in the beginning of Markdown document.')
     }

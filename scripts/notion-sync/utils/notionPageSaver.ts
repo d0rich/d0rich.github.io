@@ -1,9 +1,22 @@
-import {RichTextItemResponse, PageObjectResponse, PropertyItemPropertyItemListResponse,
-    RichTextPropertyItemObjectResponse} from "@notionhq/client/build/src/api-endpoints";
+import {RichTextItemResponse, PageObjectResponse} from "@notionhq/client/build/src/api-endpoints";
 import {MarkdownCompiler} from "./markdownCompiler";
+import {PageWithContent} from "../types";
+import * as fse from 'fs-extra'
+import slugify from "slugify";
 
 export class NotionPageSaver {
-    compiler = new MarkdownCompiler()
+    private readonly pathToFolder: string
+
+    constructor(pathToFolder: string) {
+        this.pathToFolder = pathToFolder
+    }
+
+    save(page: PageWithContent){
+        const slug = slugify(page.meta.id)
+        const markdown = this.compileMarkdown(page)
+        fse.mkdirpSync(`${this.pathToFolder}/${slug}`)
+        fse.writeFileSync(`${this.pathToFolder}/${slug}/index.md`, markdown, { encoding: 'utf-8' })
+    }
 
     extractProperties(meta: PageObjectResponse): Object {
         const props = meta.properties
@@ -44,5 +57,23 @@ export class NotionPageSaver {
             return text
         })
         return content.join('')
+    }
+
+    compileMarkdown(page: PageWithContent){
+        const compiler = new MarkdownCompiler()
+        compiler.addProperties(this.extractProperties(page.meta))
+        for (let blockWithChldren of page.content) {
+            const block = blockWithChldren.block
+            if (block.type === 'paragraph') {
+                compiler.addParagraph(this.richTextToMd(block.paragraph.rich_text))
+            } else if (block.type === 'heading_1') {
+                compiler.addHeading1(this.richTextToMd(block.heading_1.rich_text))
+            } else if (block.type === 'heading_2') {
+                compiler.addHeading2(this.richTextToMd(block.heading_2.rich_text))
+            } else if (block.type === 'heading_3') {
+                compiler.addHeading3(this.richTextToMd(block.heading_3.rich_text))
+            }
+        }
+        return compiler.compile()
     }
 }

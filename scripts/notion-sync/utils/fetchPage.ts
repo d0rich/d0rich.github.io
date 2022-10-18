@@ -12,6 +12,7 @@ export async function fetchPage(id: string, notion: Client): Promise<PageWithCon
             .list({block_id: id, start_cursor: childrenResponse.next_cursor})
         children.push(...await Promise.all(childrenResponse.results.map(ch => fetchBlock(ch.id, notion))))
     }
+    // @ts-ignore
     return { meta, content: children }
 }
 
