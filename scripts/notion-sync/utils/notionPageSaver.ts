@@ -14,6 +14,7 @@ export class NotionPageSaver {
     constructor(pathToFolder: string, namingStrategy: NamingStrategy) {
         this.pathToFolder = pathToFolder
         this.namingStrategy = namingStrategy
+        fse.emptyDirSync(this.pathToFolder)
     }
 
     private createFileName(page: PageWithContent): string {

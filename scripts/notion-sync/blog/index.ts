@@ -17,7 +17,7 @@ export async function syncBlogPosts(notion: Client) {
             return false
         return true
     })
-    const saver = new NotionPageSaver('content/notion/test', 'blogPost')
+    const saver = new NotionPageSaver('content/blog', 'blogPost')
     for (let post of postsFiltered) {
         await saver.save(post)
     }
