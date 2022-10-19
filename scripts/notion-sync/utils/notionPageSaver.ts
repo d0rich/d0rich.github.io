@@ -1,6 +1,6 @@
-import {RichTextItemResponse, PageObjectResponse} from "@notionhq/client/build/src/api-endpoints";
+import {RichTextItemResponse, PageObjectResponse, BlockObjectResponse} from "@notionhq/client/build/src/api-endpoints";
 import {MarkdownCompiler} from "./markdownCompiler";
-import {PageWithContent} from "../types";
+import {BlockWithChildren, PageWithContent} from "../types";
 import * as fse from 'fs-extra'
 import slugify from "slugify";
 import axios from "axios";
@@ -89,7 +89,8 @@ export class NotionPageSaver {
         compiler.addProperties(this.extractProperties(page.meta, (url: string) => {
             return saveFileCallback(url, 'cover')
         }))
-        for (let blockWithChildren of page.content) {
+
+        const blockToMd = (blockWithChildren: BlockWithChildren) => {
             const block = blockWithChildren.block
             if (block.type === 'paragraph') {
                 compiler.addParagraph(this.richTextToMd(block.paragraph.rich_text))
@@ -117,6 +118,14 @@ export class NotionPageSaver {
             } else if (block.type === 'numbered_list_item'){
                 compiler.addNumberedListItem(this.richTextToMd(block.numbered_list_item.rich_text))
             }
+            compiler.increaseIntend()
+            for (let child of blockWithChildren.children)
+                blockToMd(child)
+            compiler.decreaseIntend()
+        }
+        for (let blockWithChildren of page.content) {
+            compiler.resetIntend()
+            blockToMd(blockWithChildren)
         }
         return compiler.compile()
     }

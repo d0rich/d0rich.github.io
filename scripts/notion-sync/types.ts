@@ -2,7 +2,7 @@ import {BlockObjectResponse, PageObjectResponse} from "@notionhq/client/build/sr
 
 export type BlockWithChildren = {
     block: BlockObjectResponse
-    children: BlockObjectResponse[]
+    children: BlockWithChildren[]
 }
 
 export type PageWithContent = {

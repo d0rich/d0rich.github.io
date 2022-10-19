@@ -40,9 +40,9 @@ So there is my representation of site types in the triangle:
 
 <figure style="text-align: center">
 
-![Classic Sites Triangle](./Classic-Sites-Triangle.png)
+  ![Classic Sites Triangle](./Classic-Sites-Triangle.png)
 
-<figcaption>Classic Sites Triangle</figcaption>
+  <figcaption>Classic Sites Triangle</figcaption>
 </figure>
 
 
@@ -69,9 +69,9 @@ You can see how browser works with pages in this site on the diagram below:
 
 <figure style="text-align: center">
 
-![Static Site Workflow](./Static-Site-Workflow.png)
+  ![Static Site Workflow](./Static-Site-Workflow.png)
 
-<figcaption>Static Site Workflow</figcaption>
+  <figcaption>Static Site Workflow</figcaption>
 </figure>
 
 
@@ -102,9 +102,9 @@ workflow is the same. But all magic at the server side.
 
 <figure style="text-align: center">
 
-![Dynamic Site Workflow](./Dynamic-Site-Workflow.png)
+  ![Dynamic Site Workflow](./Dynamic-Site-Workflow.png)
 
-<figcaption>Dynamic Site Workflow</figcaption>
+  <figcaption>Dynamic Site Workflow</figcaption>
 </figure>
 
 
@@ -135,9 +135,9 @@ run JavaScript.
 
 <figure style="text-align: center">
 
-![SPA Workflow](./SPA-Workflow.png)
+  ![SPA Workflow](./SPA-Workflow.png)
 
-<figcaption>SPA Workflow</figcaption>
+  <figcaption>SPA Workflow</figcaption>
 </figure>
 
 
@@ -184,9 +184,9 @@ So I propose a solution for this problem. We can call this mixed types of sites 
 
 <figure style="text-align: center">
 
-![Sites Triangle](./Sites-Triangle.png)
+  ![Sites Triangle](./Sites-Triangle.png)
 
-<figcaption>Sites Triangle</figcaption>
+  <figcaption>Sites Triangle</figcaption>
 </figure>
 
 
@@ -204,9 +204,9 @@ You can see workflow of the Static Hybrid Site below:
 
 <figure style="text-align: center">
 
-![Static Hybrid Workflow](./Static-Hybrid-Workflow.png)
+  ![Static Hybrid Workflow](./Static-Hybrid-Workflow.png)
 
-<figcaption>Static Hybrid Workflow</figcaption>
+  <figcaption>Static Hybrid Workflow</figcaption>
 </figure>
 
 
@@ -230,9 +230,9 @@ The only difference is that Dynamic Hybrid site generates pages not while creati
 
 <figure style="text-align: center">
 
-![Dynamic Hybrid Workflow](./Dynamic-Hybrid-Workflow.png)
+  ![Dynamic Hybrid Workflow](./Dynamic-Hybrid-Workflow.png)
 
-<figcaption>Dynamic Hybrid Workflow</figcaption>
+  <figcaption>Dynamic Hybrid Workflow</figcaption>
 </figure>
 
 
@@ -255,9 +255,9 @@ Basically, Jamstack frameworks are cheaper to maintain, because there is no runt
 
 <figure style="text-align: center">
 
-![Sites Triangle with Jamstack Architecture](./Sites-Triangle-with-Jamstack-Architecture.png)
+  ![Sites Triangle with Jamstack Architecture](./Sites-Triangle-with-Jamstack-Architecture.png)
 
-<figcaption>Sites Triangle with Jamstack Architecture</figcaption>
+  <figcaption>Sites Triangle with Jamstack Architecture</figcaption>
 </figure>
 
 - Static Site - generates static HTML files
@@ -294,3 +294,28 @@ As for my choice, I chose Nuxt.js (Dynamic Hybrid) for the documentation site. I
 
 
 
+
+
+## Tests
+
+- list item 1
+  - list item 8
+- list item 2
+- list item 3
+  - list item 4
+  - list item 5
+    - list item 6
+  - list item 7
+
+  
+
+1. item 1
+   2. item 2
+3. item 3
+4. item 4
+  5. item 5
+  6. item 6
+    7. item 7
+  8. item 8
+
+  
