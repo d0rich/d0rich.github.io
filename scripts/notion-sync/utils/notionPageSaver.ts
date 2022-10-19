@@ -76,6 +76,9 @@ export class NotionPageSaver {
                 case 'number':
                     resultProps[propName] = prop.number
                     break
+                case 'checkbox':
+                    resultProps[propName] = prop.checkbox
+                    break
             }
         }
         if (meta.cover) {
