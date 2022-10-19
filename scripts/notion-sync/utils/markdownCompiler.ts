@@ -11,12 +11,22 @@ export class MarkdownCompiler{
 
     private addBlock(...content: string[]) {
         this.content.push('',
-            ...content.map(t => this.intendSymbol.repeat(this.intend) + t),
+            ...content.reduce((all: string[], current: string) => {
+                all.push(...current.split('\n'))
+                return all
+            }, [])
+                .map(t => this.intendSymbol.repeat(this.intend) + t + (t ? '  ' : '')),
             '')
     }
 
     private addLines(...content: string[]) {
-        this.content.push(...content.map(t => this.intendSymbol.repeat(this.intend) + t))
+        this.content.push(
+            ...content.reduce((all: string[], current: string) => {
+                all.push(...current.split('\n'))
+                return all
+            }, [])
+                .map(t => this.intendSymbol.repeat(this.intend) + t + (t ? '  ' : ''))
+        )
     }
 
     increaseIntend(steps: number = 1){

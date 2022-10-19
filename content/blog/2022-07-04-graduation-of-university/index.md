@@ -11,7 +11,7 @@ image: ./cover.png
 ---
 
 
-Details are coming soon…
+Details are coming soon…  
 
 
 
