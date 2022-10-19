@@ -129,9 +129,9 @@ export class NotionPageSaver {
                 let url: string | null = null
                 let name = this.richTextToPlainText(block.image.caption)
                 if (block.image.type === 'external'){
-                    url = saveFileCallback(block.image.external.url, name)
+                    url = saveFileCallback(block.image.external.url, name || block.id)
                 } else if (block.image.type === 'file'){
-                    url = saveFileCallback(block.image.file.url, name)
+                    url = saveFileCallback(block.image.file.url, name || block.id)
                 }
                 if (url) compiler.addImage(url, name)
             } else if (block.type === 'code'){
