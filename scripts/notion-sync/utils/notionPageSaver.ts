@@ -83,9 +83,9 @@ export class NotionPageSaver {
         }
         if (meta.cover) {
             if (meta.cover.type === 'file'){
-                resultProps.cover = saveCoverCallback(meta.cover.file.url)
+                resultProps.image = saveCoverCallback(meta.cover.file.url)
             } else if (meta.cover.type === 'external') {
-                resultProps.cover = saveCoverCallback(meta.cover.external.url)
+                resultProps.image = saveCoverCallback(meta.cover.external.url)
             }
         }
 
