@@ -6,13 +6,37 @@ export class MarkdownCompiler{
         lastNumber: 0,
         inProgress: false
     }
+    private intend: number = 0
+    private readonly intendSymbol = '  '
 
     private addBlock(...content: string[]) {
-        this.content.push('', ...content, '')
+        this.content.push('',
+            ...content.map(t => this.intendSymbol.repeat(this.intend) + t),
+            '')
     }
 
     private addLines(...content: string[]) {
-        this.content.push(...content)
+        this.content.push(...content.map(t => this.intendSymbol.repeat(this.intend) + t))
+    }
+
+    increaseIntend(steps: number = 1){
+        if (steps <= 0) throw new Error('Number of steps should be at least 1')
+        if (!Number.isInteger(steps)) throw new Error('Number of steps should be integer')
+        this.intend += steps
+        return this
+    }
+
+    decreaseIntend(steps: number = 1){
+        if (steps <= 0) throw new Error('Number of steps should be at least 1')
+        if (!Number.isInteger(steps)) throw new Error('Number of steps should be integer')
+        if (this.intend - steps <= 0) return this.resetIntend()
+        this.intend -= steps
+        return this
+    }
+
+    resetIntend(){
+        this.intend = 0
+        return this
     }
 
     resetNumberedListCache(){
@@ -56,9 +80,9 @@ export class MarkdownCompiler{
         this.resetNumberedListCache()
         this.addBlock('<figure style="text-align: center">',
             '',
-            `![${title}](${url})`,
+            `${this.intendSymbol}![${title}](${url})`,
             '',
-            `<figcaption>${title}</figcaption>`,
+            `${this.intendSymbol}<figcaption>${title}</figcaption>`,
             '</figure>')
     }
 
