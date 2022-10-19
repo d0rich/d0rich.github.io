@@ -5,15 +5,37 @@ import * as fse from 'fs-extra'
 import slugify from "slugify";
 import axios from "axios";
 
+type NamingStrategy = 'blogPost' | 'storyEvent'
+
 export class NotionPageSaver {
     private readonly pathToFolder: string
+    private readonly namingStrategy: NamingStrategy
 
-    constructor(pathToFolder: string) {
+    constructor(pathToFolder: string, namingStrategy: NamingStrategy) {
         this.pathToFolder = pathToFolder
+        this.namingStrategy = namingStrategy
+    }
+
+    private createFileName(page: PageWithContent): string {
+        if (this.namingStrategy === 'blogPost') {
+            if (!page.meta.properties.date)
+                throw new Error(`Post has no date property. ID: ${page.meta.id}`)
+            if (page.meta.properties.date.type !== 'date')
+                throw new Error(`Post has invalid data type for date property. ID: ${page.meta.id}`)
+            if (!page.meta.properties.date.date?.start)
+                throw new Error(`Post has empty date. ID: ${page.meta.id}`)
+            if (!page.meta.properties.title)
+                throw new Error(`Post has no title property. ID: ${page.meta.id}`)
+            if (page.meta.properties.title.type !== 'title')
+                throw new Error(`Post has invalid data type for title property. ID: ${page.meta.id}`)
+            const date = page.meta.properties.date.date
+            const title = page.meta.properties.title.title
+            return `${date.start}-${slugify(this.richTextToPlainText(title), {lower: true})}`
+        } else throw new Error(`"${this.namingStrategy}" naming strategy is not implemented`)
     }
 
     async save(page: PageWithContent){
-        const slug = slugify(page.meta.id)
+        const slug = this.createFileName(page)
         const downloadPromises: Promise<any>[] = []
         fse.mkdirpSync(`${this.pathToFolder}/${slug}`)
         const markdown = this.compileMarkdown(page, (url: string, name: string) => {
