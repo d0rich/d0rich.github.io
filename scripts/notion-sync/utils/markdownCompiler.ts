@@ -101,6 +101,7 @@ export class MarkdownCompiler{
         this.addLines(`- ${text}`)
     }
 
+    // TODO: Fix indents for nested numbered lists (Maybe just render HTML)
     addNumberedListItem(text: string){
         if (this.numberedListCache.inProgress)
             this.numberedListCache.lastNumber += 1
