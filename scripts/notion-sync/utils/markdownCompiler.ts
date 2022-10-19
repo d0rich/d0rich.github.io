@@ -15,6 +15,11 @@ export class MarkdownCompiler{
         this.content.push(...content)
     }
 
+    resetNumberedListCache(){
+        this.numberedListCache.inProgress = false
+        return this
+    }
+
     addProperties(properties: any) {
         if (!this.content.length) {
             this.content.push('---', stringify(properties), '---', '')
@@ -23,32 +28,32 @@ export class MarkdownCompiler{
     }
 
     addHeading1(text: string){
-        this.numberedListCache.inProgress = false
+        this.resetNumberedListCache()
         this.addBlock(`# ${text}`)
     }
 
     addHeading2(text: string){
-        this.numberedListCache.inProgress = false
+        this.resetNumberedListCache()
         this.addBlock(`## ${text}`)
     }
 
     addHeading3(text: string){
-        this.numberedListCache.inProgress = false
+        this.resetNumberedListCache()
         this.addBlock(`### ${text}`)
     }
 
     addHeading4(text: string){
-        this.numberedListCache.inProgress = false
+        this.resetNumberedListCache()
         this.addBlock(`#### ${text}`)
     }
 
     addParagraph(text: string){
-        this.numberedListCache.inProgress = false
+        this.resetNumberedListCache()
         this.addBlock(text)
     }
 
     addImage(url: string, title: string = ''){
-        this.numberedListCache.inProgress = false
+        this.resetNumberedListCache()
         this.addBlock('<figure style="text-align: center">',
             '',
             `![${title}](${url})`,
@@ -58,17 +63,17 @@ export class MarkdownCompiler{
     }
 
     addCodeSnippet(code: string, syntax: string = '') {
-        this.numberedListCache.inProgress = false
+        this.resetNumberedListCache()
         this.addBlock(`\`\`\`${syntax}`, code, '\`\`\`')
     }
 
     addBlockquote(text: string){
-        this.numberedListCache.inProgress = false
+        this.resetNumberedListCache()
         this.addBlock(...text.split('\n').map(t => `> ${t}`))
     }
 
     addBulletedListItem(text: string){
-        this.numberedListCache.inProgress = false
+        this.resetNumberedListCache()
         this.addLines(`- ${text}`)
     }
 
