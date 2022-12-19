@@ -11,5 +11,8 @@
     "@nuxtjs/tailwindcss": "^6.2.0",
     "@tailwindcss/typography": "^0.5.8",
     "nuxt": "^3.0.0"
+  },
+  "dependencies": {
+    "@morev/vue-transitions": "^2.3.5"
   }
 }
