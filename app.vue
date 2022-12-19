@@ -1,16 +1,11 @@
 <template>
-  <div>
+  <NuxtLayout>
     <NuxtPage />
-  </div>
+  </NuxtLayout>
 </template>
 
 <script>
 export default defineComponent({
-  name: 'App',
-  setup(){
-    definePageMeta({
-      colorMode: 'dark'
-    })
-  }
+  name: 'App'
 })
 </script>

@@ -7,18 +7,18 @@ export default defineNuxtConfig({
       ]
     }
   },
-  css: [
-    'assets/css/theme.css'
-  ],
   modules: [
     '@nuxt/content',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@morev/vue-transitions/nuxt'
   ],
+  css: [
+    'assets/css/theme.css'
+  ],
   colorMode: {
     classSuffix: '',
-    
+    preference: 'dark'
   }
   
 })
