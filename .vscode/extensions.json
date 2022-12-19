@@ -2,6 +2,7 @@
   "recommendations": [
     "vue.vscode-typescript-vue-plugin",
     "vue.volar",
-    "nuxt.mdc"
+    "nuxt.mdc",
+    "bradlc.vscode-tailwindcss"
   ]
 }
