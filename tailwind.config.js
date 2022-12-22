@@ -7,6 +7,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('./tailwind.plugins/shadows')
+    require('./plugins/tailwind/shadows')
   ],
 }
