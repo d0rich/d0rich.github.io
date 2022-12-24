@@ -1,19 +1,19 @@
 <template>
-  <NuxtLink to="/" class="btn">
-    <Highlight>
+  <NuxtLink to="/" class="font-semibold uppercase -rotate-6">
+    <FocusHighlight>
       <slot />
-    </Highlight>
+    </FocusHighlight>
   </NuxtLink>
 </template>
 
 <script lang="ts">
 
-import Highlight from './wrappers/Highlight.vue';
+import FocusHighlight from './wrappers/FocusHighlight.vue';
 
 export default defineComponent({
   name: 'Button',
   components: {
-    Highlight
+    FocusHighlight
   }
 })
 

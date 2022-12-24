@@ -13,9 +13,6 @@
       </div>
     </Shape>
   </header>
-  
-  
-  
 </template>
 
 <script lang="ts">
