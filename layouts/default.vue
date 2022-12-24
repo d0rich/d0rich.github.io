@@ -1,6 +1,12 @@
 <template>
-  <DHeader />
-  <slot />
+  <div id="default-layout">
+    <div class="fixed w-full" >
+      <DHeader class="mx-auto max-w-xl" />
+    </div>
+    <main class="pt-20">
+      <slot />
+    </main>
+  </div>
 </template>
 
 <script lang="ts">
@@ -14,3 +20,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style>
+#default-layout{
+  @apply w-full h-full overflow-x-hidden;
+}
+</style>
