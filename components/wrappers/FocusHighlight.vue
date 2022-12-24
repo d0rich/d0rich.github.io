@@ -55,7 +55,7 @@ export default defineComponent({
 }
 
 @keyframes hl--negative-tile-animation {
-  0, 100% {
+  0%, 100% {
     transform: skew(0deg) rotate(12deg);
   }
   50% {
