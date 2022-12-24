@@ -20,7 +20,7 @@
 
 <script lang="ts">
 
-import Shape from '~~/components/wrapper/Shape.vue';
+import Shape from '~~/components/wrappers/Shape.vue';
 
 export default defineComponent({
   name: 'DHeader',

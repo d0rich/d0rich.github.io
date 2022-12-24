@@ -8,7 +8,7 @@
 
 <script lang="ts">
 
-import Highlight from './wrapper/Highlight.vue';
+import Highlight from './wrappers/Highlight.vue';
 
 export default defineComponent({
   name: 'Button',
