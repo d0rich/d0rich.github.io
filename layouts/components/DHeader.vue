@@ -6,10 +6,10 @@
             clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
           }">
       <div class="w-full h-16 flex justify-evenly items-center overflow-visible">
-        <DBtn>Blog</DBtn>
-        <DBtn>Resume</DBtn>
-        <DBtn>Dorich</DBtn>
-        <DBtn>Portfolio</DBtn>
+        <DBtn to="/">Blog</DBtn>
+        <DBtn to="/">Resume</DBtn>
+        <DBtn to="/">Dorich</DBtn>
+        <DBtn to="/">Portfolio</DBtn>
       </div>
     </Shape>
   </header>
