@@ -16,9 +16,9 @@ import { StyleValue } from 'vue';
 export default defineComponent({
   name: 'Shape',
   props: {
-    shapeClass: Object as () => string | Record<string, boolean>,
+    shapeClass: [String, Object as () => Record<string, boolean>],
     shapeStyle: Object as () => StyleValue,
-    filterClass: Object as () => string | Record<string, boolean>,
+    filterClass: [String, Object as () => Record<string, boolean>],
     filterStyle: Object as () => StyleValue
   }
 })
