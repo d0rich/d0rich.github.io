@@ -1,11 +1,13 @@
 <template>
-  <div class="d-shape">
-    <div class="d-shape__bg-filter" :class="filterClass" :style="filterStyle">
-      <div class="d-shape__bg-wrapper">
-        <div class="d-shape__bg" :class="shapeClass" :style="shapeStyle" />
+  <div>
+    <div class="d-shape">
+      <div class="d-shape__bg-filter" :class="filterClass" :style="filterStyle">
+        <div class="d-shape__bg-wrapper">
+          <div class="d-shape__bg" :class="shapeClass" :style="shapeStyle" />
+        </div>
       </div>
+      <slot />
     </div>
-    <slot />
   </div>
 </template>
 
