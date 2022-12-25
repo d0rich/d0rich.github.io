@@ -9,7 +9,7 @@ const defaultStyle = {
   [X_OFFSET_VAR]: '0px',
   [Y_OFFSET_VAR]: '0px',
   [COLOR_VAR]: 'white',
-  '--tw-drop-shadow': `drop-shadow(var(${X_OFFSET_VAR}) var(${Y_OFFSET_VAR}) .5px var(${COLOR_VAR}))`,
+  '--tw-drop-shadow': `drop-shadow(var(${X_OFFSET_VAR}) var(${Y_OFFSET_VAR}) 0px var(${COLOR_VAR}))`,
   'filter': 'var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)'
 }
 
