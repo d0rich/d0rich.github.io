@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { 
       name: 'section', 
-      mode: 'out-in' 
+      mode: 'out-in'
     },
     head: {
       meta: [

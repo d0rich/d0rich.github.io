@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentDoc />
+    Blog
   </div>
 </template>
 
@@ -8,7 +8,9 @@
 
 export default defineComponent({
   setup(){
-    
+    useHead({
+      title: 'Blog'
+    })
   }
 })
 

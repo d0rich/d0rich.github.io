@@ -1,5 +1,5 @@
 <template>
-  <Component :is="currentComponent" :to="to" :href="href" class="d-btn">
+  <Component :is="currentComponent" :to="blockLinks ? '#' : to" :href="href" class="d-btn">
     <FocusHighlight>
       <slot />
     </FocusHighlight>
@@ -25,7 +25,9 @@ export default defineComponent({
   },
   setup({ to, href, tag }){
     const NuxtLink = resolveComponent('NuxtLink')
+    const { blockLinks } = usePageTransitionState()
     return {
+      blockLinks,
       currentComponent: computed(() => {
         if (to || href) return NuxtLink
         return tag
@@ -39,7 +41,7 @@ export default defineComponent({
 <style>
 
 .d-btn{
-  @apply font-semibold uppercase -rotate-6;
+  @apply font-semibold uppercase -rotate-6 cursor-pointer select-none;
 }
 
 </style>
