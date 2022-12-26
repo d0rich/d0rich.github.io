@@ -13,6 +13,7 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/content',
+    '@nuxtjs/google-fonts',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@morev/vue-transitions/nuxt'
@@ -23,6 +24,12 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
     preference: 'dark'
+  },
+  googleFonts: {
+    families: {
+      Roboto: true
+    },
+    preload: true
   }
   
 })
