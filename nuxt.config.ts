@@ -6,6 +6,7 @@ export default defineNuxtConfig({
       mode: 'out-in'
     },
     head: {
+      titleTemplate: '%s | d0rich',
       meta: [
         {}
       ]
