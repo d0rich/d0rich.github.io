@@ -8,6 +8,25 @@
 export default defineComponent({
   name: 'App',
   setup(){
+    const faviconFrames = [
+      '/favicon.ico', 
+      '/favicon-frames/frame-1.ico', 
+      '/favicon-frames/frame-2.ico', 
+      '/favicon-frames/frame-1.ico']
+    let currentFaviconFrame = 0
+    const head = useHead({})
+    setInterval(() => {
+      currentFaviconFrame += 1
+      if (currentFaviconFrame >= faviconFrames.length)
+        currentFaviconFrame = 0
+      if (head)
+        head.patch({
+          link: [
+            { rel: 'icon', type: 'image/x-icon', href: faviconFrames[currentFaviconFrame] }
+          ]
+        })
+    }, 100)
+    
     // TODO: Remove when https://github.com/vuejs/core/issues/5513 fixed
     const key = ref(0);
     const messages = [
