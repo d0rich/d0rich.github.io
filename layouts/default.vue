@@ -65,40 +65,24 @@ export default defineComponent({
   @apply bg-green-500 w-full h-full top-0 ;
 }
 
-#default-layout:has(.section-enter-active) #default-layout__transition-wrapper,
-#default-layout:has(.section-leave-active) #default-layout__transition-wrapper{
+#default-layout:has(.section-enter-active, .section-leave-active) #default-layout__transition-wrapper {
   display: block;
 }
 
 /* bar */
-#default-layout:has(.section-enter-active) #default-layout__transition-bar,
-#default-layout:has(.section-leave-active) #default-layout__transition-bar{
+#default-layout:has(.section-enter-active, .section-leave-active) #default-layout__transition-bar{
   transition: all var(--page-transition-length) linear;
-  /* animation: section-transition-overlay-animation var(--page-transition-length) linear; */
 }
 
 #default-layout:has(.section-leave-from) #default-layout__transition-bar{
   clip-path: polygon(-120% 0, -100% 0, 0 100%, -20% 100%);
 }
 
-#default-layout:has(.section-leave-to) #default-layout__transition-bar,
-#default-layout:has(.section-enter-from) #default-layout__transition-bar{
+#default-layout:has(.section-leave-to, .section-enter-from) #default-layout__transition-bar{
   clip-path: polygon(-120% 0, 120% 0, 220% 100%, -20% 100%);
 }
 
 #default-layout:has(.section-enter-to) #default-layout__transition-bar{
   clip-path: polygon(100% 0, 120% 0, 220% 100%, 200% 100%);
-}
-
-@keyframes section-transition-overlay-animation {
-  from {
-    clip-path: polygon(-120% 0, -100% 0, 0 100%, -20% 100%);
-  }
-  50% {
-    clip-path: polygon(-120% 0, 120% 0, 220% 100%, -20% 100%);
-  }
-  to {
-    clip-path: polygon(100% 0, 120% 0, 220% 100%, 200% 100%);
-  }
 }
 </style>
