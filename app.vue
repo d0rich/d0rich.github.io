@@ -1,4 +1,5 @@
 <template>
+  <div id="preloadedImages" />
   <NuxtLayout>
     <NuxtPage :key="key" />
   </NuxtLayout>
@@ -24,3 +25,18 @@ export default defineComponent({
   }
 })
 </script>
+
+<style>
+#preloadedImages {
+  width: 0px;
+  height: 0px;
+  display: inline;
+  background-image: url(~/assets/img/personas/MainBW.webp),
+                    url(~/assets/img/personas/ActionBW.webp),
+                    url(~/assets/img/personas/ProfiBW.webp),
+                    url(~/assets/img/personas/ArachnitectBW.webp),
+                    url(~/assets/img/personas/TyrionBW.webp),
+                    url(~/assets/img/personas/YodaBW.webp),
+                    url();
+}
+</style>
