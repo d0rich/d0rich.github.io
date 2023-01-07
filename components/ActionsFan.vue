@@ -26,6 +26,7 @@
               'flex justify-end': side === 'right'
              }">
           <DBtn :to="action.to" tag="button"
+                @click="$emit('actionChoose', action.emit)"
                 @mouseenter="$emit('actionFocus', action.emit)" 
                 @touchstart="$emit('actionFocus', action.emit)" 
                 @focusin="$emit('actionFocus', action.emit)" 
@@ -54,7 +55,7 @@ export type ActionItem<TEmit = any> = {
 
 export default defineComponent({
   name: 'ActionsFan',
-  emits: ['actionFocus', 'actionUnfocus'],
+  emits: ['actionFocus', 'actionUnfocus', 'actionChoose'],
   props: {
     actions: {
       type: Array as () => ActionItem[],
