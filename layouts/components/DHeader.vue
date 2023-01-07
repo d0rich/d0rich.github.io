@@ -27,8 +27,9 @@ export default defineComponent({
     Shape
   },
   setup(){
+    const { showHeader } = useLayoutState()
     return{
-      show: ref(true)
+      show: showHeader
     }
   }
 })
