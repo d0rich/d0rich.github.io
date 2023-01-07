@@ -9,7 +9,7 @@
         }"
         :style="{
           ...action.style,
-          '--tw-rotate': `${12 - index * 18}deg`
+          '--tw-rotate': `${ side === 'left' ? 12 - index * 18 : -12 + index * 18}deg`
         }"
         :shape-class="{
           'dark:bg-neutral-900': true,
@@ -23,7 +23,7 @@
              :class="{
               'flex justify-end': side === 'right'
              }">
-          <DBtn :to="action.to"
+          <DBtn :to="action.to" tag="button"
                 @mouseenter="$emit('actionFocus', action.emit)" 
                 @touchstart="$emit('actionFocus', action.emit)" 
                 @focusin="$emit('actionFocus', action.emit)" 
@@ -42,7 +42,7 @@ import { CSSProperties } from 'vue';
 
 export type ActionItem<TEmit = any> = {
   title: string,
-  to: string,
+  to?: string,
   emit?: TEmit,
   class?: string,
   style?: CSSProperties,
