@@ -1,14 +1,24 @@
 <template>
-  <TransitionGroup name="actions">
-    <WrappersShape v-for="action in displayedActions" :key="action.to"
-        class="absolute bottom-1/2 w-1/2"
+  <TransitionGroup name="actions" tag="div">
+    <WrappersShape v-for="action, index in displayedActions" :key="action.to"
+        class="w-full transform -my-8"
         :class="{
           [action.class ?? '']: true,
           'origin-left': side === 'right',
           'origin-right': side === 'left'
         }"
-        :shape-class="action.shapeClass"
-        :shape-style="action.shapeStyle">
+        :style="{
+          ...action.style,
+          '--tw-rotate': `${12 - index * 18}deg`
+        }"
+        :shape-class="{
+          'dark:bg-neutral-900': true,
+          [action.shapeClass ?? '']: true
+        }"
+        :shape-style="{
+          ...action.shapeStyle,
+          ...(side === 'right' ? shapeStyles.right : shapeStyles.left)
+        }">
         <div class="px-3 py-2" 
              :class="{
               'flex justify-end': side === 'right'
@@ -64,20 +74,14 @@ export default defineComponent({
     }
     const actions = ref<ActionItem[]>([])
     onMounted(() => {
-      actions.value = props.actions
-        .map(action => ({
-          ...action,
-          shapeStyle: {
-            ...(props.side === 'left' ? shapeStyles.left : shapeStyles.right),
-            ...(action.shapeStyle ?? {})
-          }
-        }))
+      actions.value = props.actions.filter(() => true)
     })
     onBeforeUnmount(() => {
       actions.value = props.actions.filter(() => false)
     })
     return {
-      displayedActions: actions
+      displayedActions: actions,
+      shapeStyles
     }
   }
 })
@@ -89,9 +93,11 @@ export default defineComponent({
   @apply transition-all;
 }
 .actions-enter-from {
-  @apply opacity-0 -rotate-90;
+  --tw-rotate: -90deg !important;
+  @apply opacity-0;
 }
 .actions-leave-to {
-  @apply opacity-0 rotate-90;
+  --tw-rotate: 90deg !important;
+  @apply opacity-0;
 }
 </style>
