@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Component :is="tag">
     <div class="d-shape">
       <div class="d-shape__bg-filter" :class="filterClass" :style="filterStyle">
         <div class="d-shape__bg-wrapper">
@@ -8,7 +8,7 @@
       </div>
       <slot />
     </div>
-  </div>
+  </Component>
 </template>
 
 <script lang="ts">
@@ -21,7 +21,11 @@ export default defineComponent({
     shapeClass: [String, Object as () => Record<string, boolean>],
     shapeStyle: Object as () => StyleValue,
     filterClass: [String, Object as () => Record<string, boolean>],
-    filterStyle: Object as () => StyleValue
+    filterStyle: Object as () => StyleValue,
+    tag: {
+      type: String,
+      default: 'div'
+    }
   }
 })
 

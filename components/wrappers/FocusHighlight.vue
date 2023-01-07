@@ -1,8 +1,8 @@
 <template>
-  <div class="d-focus-hl">
+  <Component :is="tag" class="d-focus-hl">
     <div v-if="variant === 'negative-tile'" class="d-focus-hl__hl--negative-tile" />
     <slot />
-  </div>
+  </Component>
 </template>
 
 <script lang="ts">
@@ -13,6 +13,10 @@ export default defineComponent({
     variant: {
       type: String as () => 'negative-tile',
       default: 'negative-tile'
+    },
+    tag: {
+      type: String,
+      default: 'div'
     }
   }
 })

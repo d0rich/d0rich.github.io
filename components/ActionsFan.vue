@@ -1,6 +1,7 @@
 <template>
-  <TransitionGroup name="actions" tag="div">
+  <TransitionGroup name="actions" tag="ul">
     <WrappersShape v-for="action, index in displayedActions" :key="action.to"
+        tag="li"
         class="w-full transform -my-8"
         :filter-class="filterClass"
         :class="{
