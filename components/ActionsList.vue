@@ -2,6 +2,7 @@
   <TransitionGroup name="actions" tag="div">
     <WrappersShape v-for="action, index in displayedActions" :key="action.to"
         class="w-full transform -my-8"
+        :filter-class="filterClass"
         :class="{
           [action.class ?? '']: true,
           'origin-left': side === 'right',
@@ -61,6 +62,10 @@ export default defineComponent({
     side: {
       type: String as () => 'right' | 'left',
       default: 'left'
+    },
+    filterClass: {
+      type: [ String, Object as () => Record<string, boolean> ],
+      default: ''
     }
   },
   setup(props){
