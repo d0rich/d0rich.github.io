@@ -52,7 +52,7 @@ export type ActionItem<TEmit = any> = {
 }
 
 export default defineComponent({
-  name: 'ActionsList',
+  name: 'ActionsFan',
   emits: ['actionFocus', 'actionUnfocus'],
   props: {
     actions: {

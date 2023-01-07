@@ -3,7 +3,7 @@
     <section id="home-intro-section">
       <div class="absolute top-0 left-0 w-fit">
         <Persona :persona="mainPersona" class="h-96 w-96 sharp-shadow ss-br-3 ss-red-600" />
-        <ActionsList :actions="actions" side="right" 
+        <ActionsFan :actions="actions" side="right" 
                      class="absolute top-2/3 w-1/2 left-2/3"
                      filter-class="sharp-shadow ss-br-3 ss-neutral-50"
                      @action-focus="mainPersona = $event" 
@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { PersonaName } from '~~/components/Persona.vue';
-import { ActionItem } from '~~/components/ActionsList.vue';
+import { ActionItem } from '~~/components/ActionsFan.vue';
 
 export default defineComponent({
   name: 'HomePage',
