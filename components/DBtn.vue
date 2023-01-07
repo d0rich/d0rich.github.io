@@ -1,9 +1,9 @@
 <template>
-  <Component :is="currentComponent" :to="to" :href="href" class="d-btn">
-    <FocusHighlight>
-      <slot />
-    </FocusHighlight>
-  </Component>
+  <FocusHighlight class="d-btn">
+    <Component :is="currentComponent" :to="to" :href="href">
+        <slot />
+    </Component>
+  </FocusHighlight>
 </template>
 
 <script lang="ts">
@@ -39,7 +39,7 @@ export default defineComponent({
 <style>
 
 .d-btn{
-  @apply font-extrabold uppercase -rotate-6 cursor-pointer select-none;
+  @apply font-extrabold uppercase -rotate-6 select-none;
 }
 
 </style>

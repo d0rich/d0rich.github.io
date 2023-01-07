@@ -22,7 +22,7 @@ export default defineComponent({
 <!-- negative-tile -->
 <style>
 .d-focus-hl{
-  @apply relative;
+  @apply relative w-fit;
 }
 
 .d-focus-hl > .d-focus-hl__hl--negative-tile {
@@ -32,6 +32,7 @@ export default defineComponent({
   left: 50%;
   content: '';
   opacity: 0;
+  pointer-events: none;
   @apply absolute backdrop-invert transition-all;
 }
 

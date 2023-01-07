@@ -28,7 +28,7 @@ export default defineComponent({
 </script>
 
 <style>
-.d-shape{
+.d-shape, .d-shape > *{
   @apply relative;
 }
 
