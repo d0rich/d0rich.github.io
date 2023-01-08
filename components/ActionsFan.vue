@@ -43,7 +43,7 @@
 <script lang="ts">
 import { CSSProperties } from 'vue';
 
-export type ActionItem<TEmit = any> = {
+export type ActionFanItem<TEmit = any> = {
   title: string,
   to?: string,
   emit?: TEmit,
@@ -58,7 +58,7 @@ export default defineComponent({
   emits: ['actionFocus', 'actionUnfocus', 'actionChoose'],
   props: {
     actions: {
-      type: Array as () => ActionItem[],
+      type: Array as () => ActionFanItem[],
       default: []
     },
     side: {
@@ -79,7 +79,7 @@ export default defineComponent({
         clipPath: 'polygon(calc(100% - 10px) 0, 100% 100%, 0 40%)'
       }
     }
-    const actions = ref<ActionItem[]>([])
+    const actions = ref<ActionFanItem[]>([])
     onMounted(() => {
       actions.value = props.actions.filter(() => true)
     })

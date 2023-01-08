@@ -1,6 +1,6 @@
 <template>
   <Component class="d-btn" :is="currentComponent" :to="to" :href="href">
-    <FocusHighlight>
+    <FocusHighlight :variant="highlight">
       <slot />
     </FocusHighlight>
   </Component>
@@ -8,7 +8,7 @@
 
 <script lang="ts">
 
-import FocusHighlight from './wrappers/FocusHighlight.vue';
+import FocusHighlight, { HighlightVariant } from './wrappers/FocusHighlight.vue';
 
 export default defineComponent({
   name: 'DButton',
@@ -21,6 +21,9 @@ export default defineComponent({
     tag: {
       type: String,
       default: 'div'
+    },
+    highlight: {
+      type: String as () => HighlightVariant
     }
   },
   setup({ to, href, tag }){
@@ -38,8 +41,8 @@ export default defineComponent({
 
 <style>
 
-.d-btn, .d-btn button{
-  @apply font-extrabold uppercase -rotate-6 select-none;
+.d-btn{
+  @apply font-extrabold uppercase -rotate-6 select-none relative;
 }
 
 </style>

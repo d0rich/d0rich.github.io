@@ -1,17 +1,22 @@
 <template>
-  <Component :is="tag" class="d-focus-hl">
-    <div v-if="variant === 'negative-tile'" class="d-focus-hl__hl--negative-tile" />
-    <slot />
-  </Component>
+  <WrappersShape>
+    <Component :is="tag" class="d-focus-hl">
+      <div v-if="variant === 'negative-tile'" class="d-focus-hl__hl--negative-tile" />
+      <div v-else-if="variant === 'list-item'" class="d-focus-hl__hl--list-item" />
+      <slot />
+    </Component>
+  </WrappersShape>
 </template>
 
 <script lang="ts">
+
+export type HighlightVariant = 'negative-tile' | 'list-item'
 
 export default defineComponent({
   name: 'Highlight',
   props: {
     variant: {
-      type: String as () => 'negative-tile',
+      type: String as () => HighlightVariant,
       default: 'negative-tile'
     },
     tag: {
@@ -23,10 +28,17 @@ export default defineComponent({
 
 </script>
 
-<!-- negative-tile -->
+<!-- common -->
 <style>
 .d-focus-hl{
-  @apply relative w-fit;
+  @apply relative;
+}
+</style>
+
+<!-- negative-tile -->
+<style>
+.d-focus-hl:has(.d-focus-hl__hl--negative-tile){
+  @apply w-fit;
 }
 
 .d-focus-hl > .d-focus-hl__hl--negative-tile {
@@ -65,6 +77,51 @@ export default defineComponent({
   }
   50% {
     transform: skew(-40deg) rotate(-28deg);
+  }
+}
+</style>
+
+<!-- list-item -->
+<style>
+.d-focus-hl:has(.d-focus-hl__hl--list-item){
+  @apply w-full;
+}
+
+.d-focus-hl > .d-focus-hl__hl--list-item {
+  width: 0%;
+  height: 300%;
+  top: -100%;
+  left: 0;
+  content: '';
+  clip-path: polygon(1rem 0, 0% 100%, 100% 50%);
+  @apply absolute bg-red-600  transition-all -z-10;
+}
+
+.d-focus-hl:hover > .d-focus-hl__hl--list-item, *:focus .d-focus-hl__hl--list-item{
+  opacity: 1;
+  animation: hl--list-item-animation .3s infinite;
+}
+
+.d-focus-hl:hover > .d-focus-hl__hl--list-item{
+  width: 200%;
+  height: 130%;
+  top: -15%;
+  left: -5%;
+}
+
+*:focus .d-focus-hl__hl--list-item{
+  width: 220% !important;
+  height: 200% !important;
+  top: -50% !important;
+  left: -5% !important;
+}
+
+@keyframes hl--list-item-animation {
+  0%, 100% {
+    clip-path: polygon(1rem 0, 0% 100%, 90% 50%);
+  }
+  50% {
+    clip-path: polygon(1rem 10%, 0% 90%, 90% 50%);
   }
 }
 </style>
