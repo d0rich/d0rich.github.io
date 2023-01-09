@@ -1,16 +1,15 @@
 <template>
   <WrappersShape 
-            shape-class="dark:bg-neutral-900"
+            shape-class="dark:bg-neutral-900 dark:bg-opacity-80 backdrop-blur"
             :shape-style="{
               clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
             }">
-    <TransitionGroup name="actions" tag="ul" class="p-10 relative">
+    <TransitionGroup name="actions" tag="ul" class="p-7 relative" :class="listClass">
       <li v-for="action in actions" :key="action.title">
         <DBtn :to="action.to" tag="button" highlight="list-item"
               @click="$emit('actionChoose', action.emit)">
           {{ action.title }}
         </DBtn>
-        
       </li>
     </TransitionGroup>
   </WrappersShape>
@@ -28,8 +27,13 @@ export default defineComponent({
   name: 'ActionsList',
   emits: ['actionChoose'],
   props: {
-    actions: Array as () => ActionListItem[],
-    default: []
+    actions: {
+      type: Array as () => ActionListItem[],
+      default: []
+    },
+    listClass: {
+      type: [String, Object as () => Record<string, boolean>]
+    }
   },
   setup(){
     

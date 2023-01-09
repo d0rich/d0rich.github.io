@@ -89,8 +89,8 @@ export default defineComponent({
 
 .d-focus-hl > .d-focus-hl__hl--list-item {
   width: 0%;
-  height: 300%;
-  top: -100%;
+  height: 200%;
+  top: -50%;
   left: 0;
   content: '';
   clip-path: polygon(1rem 0, 0% 100%, 100% 50%);
