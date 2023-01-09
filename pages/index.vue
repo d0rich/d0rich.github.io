@@ -1,21 +1,26 @@
 <template>
   <div class="-mt-20">
-    <section id="home-intro-section">
-      <Transition name="main-persona">
-        <div class="absolute top-0 left-0 w-fit" v-show="isMainPersonaActive" mode="out-in">
-          <Persona :persona="mainPersona" class="h-96 w-96 sharp-shadow ss-br-3 ss-red-600" />
-          <ActionsFan :actions="actions" side="right" 
-                      class="absolute top-2/3 w-1/2 left-2/3"
-                      filter-class="sharp-shadow ss-br-3 ss-neutral-50"
-                      @action-choose="handleMainAction"
-                      @action-focus="mainPersona = $event" 
-                      @action-unfocus="mainPersona = 'main-idle'" />
-        </div>
-      </Transition>
-      <Transition name="main-persona" mode="out-in">
-        <SectionsNavigation v-show="!isMainPersonaActive"/>
-      </Transition>
-    </section>
+    <WrappersMonochromeBackground tag="section" 
+          class="bg-[url('~/assets/img/bg/code1.jpg')] bg-cover " 
+          overlay-class="backdrop-blur backdrop-saturate-0 bg-green-600 bg-opacity-40">
+      <section id="home-intro-section">
+        <Transition name="main-persona">
+          <div class="absolute top-0 left-0 w-fit" v-show="isMainPersonaActive" mode="out-in">
+            <Persona :persona="mainPersona" class="h-96 w-96 sharp-shadow ss-br-3 ss-red-600" />
+            <ActionsFan :actions="actions" side="right" 
+                        class="absolute top-2/3 w-1/2 left-2/3"
+                        filter-class="sharp-shadow ss-br-3 ss-neutral-50"
+                        @action-choose="handleMainAction"
+                        @action-focus="mainPersona = $event" 
+                        @action-unfocus="mainPersona = 'main-idle'" />
+          </div>
+        </Transition>
+        <Transition name="main-persona" mode="out-in">
+          <SectionsNavigation v-show="!isMainPersonaActive"/>
+        </Transition>
+      </section>
+    </WrappersMonochromeBackground>
+    
   </div>
 </template>
 
@@ -61,7 +66,7 @@ export default defineComponent({
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  @apply bg-green-700 relative;
+  @apply relative;
 }
 </style>
 
