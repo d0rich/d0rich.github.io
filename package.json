@@ -15,6 +15,7 @@
     "nuxt": "^3.0.0"
   },
   "dependencies": {
-    "@morev/vue-transitions": "^2.3.5"
+    "@morev/vue-transitions": "^2.3.5",
+    "gsap": "^3.11.4"
   }
 }

@@ -12,6 +12,9 @@ export default defineNuxtConfig({
       ]
     }
   },
+  build: {
+    transpile: ['gsap'],
+  },
   modules: [
     '@nuxt/content',
     '@nuxtjs/google-fonts',

@@ -16,7 +16,7 @@
           </div>
         </Transition>
         <Transition name="main-persona" mode="out-in">
-          <SectionsNavigation v-show="!isMainPersonaActive"/>
+          <SectionsNavigation v-show="!isMainPersonaActive" @back="isMainPersonaActive = true"/>
         </Transition>
       </section>
     </WrappersMonochromeBackground>
