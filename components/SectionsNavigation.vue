@@ -13,7 +13,7 @@
         </div>  
       </WrappersShape>
     </div>
-    <Persona :persona="currentPersona" class="w-96" />
+    <Persona :persona="currentPersona" class="w-96 h-96" />
     <ActionsList class="absolute w-1/2 bottom-0 left-1/3"
           :actions="actions" />
     <BigBangButton text="Back" @click="$emit('back')" />

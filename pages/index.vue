@@ -6,9 +6,9 @@
       <section id="home-intro-section">
         <Transition name="main-persona">
           <div class="absolute top-0 left-0 w-fit" v-show="isMainPersonaActive" mode="out-in">
-            <Persona :persona="mainPersona" class="h-96 w-96 sharp-shadow ss-br-3 ss-red-600" />
+            <Persona :persona="mainPersona" id="main-persona" />
             <ActionsFan :actions="actions" side="right" 
-                        class="absolute top-2/3 w-1/2 left-2/3"
+                        id="main-actions"
                         filter-class="sharp-shadow ss-br-3 ss-neutral-50"
                         @action-choose="handleMainAction"
                         @action-focus="mainPersona = $event" 
@@ -67,6 +67,14 @@ export default defineComponent({
   height: 100vh;
   overflow: hidden;
   @apply relative;
+}
+
+#main-persona{
+  @apply sm:h-96 sm:w-96 sharp-shadow ss-br-3 ss-neutral-50;
+}
+
+#main-actions{
+  @apply absolute top-2/3 left-1/3 w-1/2 sm:left-2/3;
 }
 </style>
 

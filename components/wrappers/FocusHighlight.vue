@@ -3,6 +3,7 @@
     <Component :is="tag" class="d-focus-hl">
       <div v-if="variant === 'negative-tile'" class="d-focus-hl__hl--negative-tile" />
       <div v-else-if="variant === 'list-item'" class="d-focus-hl__hl--list-item" />
+      <div v-else-if="variant === 'negative-list-item'" class="d-focus-hl__hl--negative-list-item" />
       <slot />
     </Component>
   </WrappersShape>
@@ -10,7 +11,7 @@
 
 <script lang="ts">
 
-export type HighlightVariant = 'negative-tile' | 'list-item'
+export type HighlightVariant = 'negative-tile' | 'list-item' | 'negative-list-item'
 
 export default defineComponent({
   name: 'Highlight',
@@ -117,6 +118,51 @@ export default defineComponent({
 }
 
 @keyframes hl--list-item-animation {
+  0%, 100% {
+    clip-path: polygon(1rem 0, 0% 100%, 90% 50%);
+  }
+  50% {
+    clip-path: polygon(1rem 10%, 0% 90%, 90% 50%);
+  }
+}
+</style>
+
+<!-- negative-list-item -->
+<style>
+.d-focus-hl:has(.d-focus-hl__hl--negative-list-item){
+  @apply w-full;
+}
+
+.d-focus-hl > .d-focus-hl__hl--negative-list-item {
+  width: 0%;
+  height: 200%;
+  top: -50%;
+  left: 0;
+  content: '';
+  clip-path: polygon(1rem 0, 0% 100%, 100% 50%);
+  @apply absolute backdrop-invert transition-all;
+}
+
+.d-focus-hl:hover > .d-focus-hl__hl--negative-list-item, *:focus .d-focus-hl__hl--negative-list-item{
+  opacity: 1;
+  animation: hl--negative-list-item-animation .3s infinite;
+}
+
+.d-focus-hl:hover > .d-focus-hl__hl--negative-list-item{
+  width: 200%;
+  height: 130%;
+  top: -15%;
+  left: -5%;
+}
+
+*:focus .d-focus-hl__hl--negative-list-item{
+  width: 220% !important;
+  height: 200% !important;
+  top: -50% !important;
+  left: -5% !important;
+}
+
+@keyframes hl--negative-list-item-animation {
   0%, 100% {
     clip-path: polygon(1rem 0, 0% 100%, 90% 50%);
   }
