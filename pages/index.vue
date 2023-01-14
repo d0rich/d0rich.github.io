@@ -9,10 +9,10 @@
           <WrappersShape class="absolute w-fit top-1/3 left-0 right-0 mx-auto z-[3]" 
                           shape-class="intro-shape" 
                           :ref="(el) => { introNodeRefs.text.value = componentFromNodeRef(el) }">
-            <div class="p-10 text-xl font-serif">
+            <div class="p-10 text-xl font-serif text-center">
               My name is Nikolay Dorofeev<br/>
-              My username is <code>d0rich</code><br/>
               I am Software Developer<br/>
+              also known as <code>d0rich</code><br/>
             </div>
             
           </WrappersShape>
