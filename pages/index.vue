@@ -1,26 +1,44 @@
 <template>
   <div class="-mt-20">
-    <WrappersMonochromeBackground tag="section" 
-          class="bg-[url('~/assets/img/bg/code1.jpg')] bg-cover " 
-          overlay-class="backdrop-blur backdrop-saturate-0 bg-green-600 bg-opacity-40">
-      <section id="home-intro-section">
-        <Transition name="main-persona">
-          <div class="absolute top-0 left-0 w-fit" v-show="isMainPersonaActive" mode="out-in">
-            <Persona :persona="mainPersona" id="main-persona" />
-            <ActionsFan :actions="actions" side="right" 
-                        id="main-actions"
-                        filter-class="sharp-shadow ss-br-3 ss-neutral-50"
-                        @action-choose="handleMainAction"
-                        @action-focus="mainPersona = $event" 
-                        @action-unfocus="mainPersona = 'main-idle'" />
+    <section style="height: 200vh;">
+      <div class="sticky top-0">
+        <div :ref="(el) => { introNodeRefs.main.value = elFromNodeRef(el) }" 
+                class="relative w-screen max-w-full h-screen">
+          <div :ref="(el) => { introNodeRefs.bg.value = elFromNodeRef(el) }"
+              class="absolute h-full w-full top-0 left-0 bg-[url('~/assets/img/bg/d-bw.webp')] bg-cover bg-center z-[1]" />
+          <WrappersShape class="absolute w-fit top-1/3 left-0 right-0 mx-auto z-[3]" 
+                          shape-class="intro-shape" 
+                          :ref="(el) => { introNodeRefs.text.value = componentFromNodeRef(el) }">
+            <div class="p-10 text-xl font-serif">
+              My name is Nikolay Dorofeev<br/>
+              My username is <code>d0rich</code><br/>
+              I am Software Developer<br/>
+            </div>
+            
+          </WrappersShape>
+
+        </div>
+        <WrappersMonochromeBackground
+              class="bg-[url('~/assets/img/bg/code1.jpg')] bg-cover bg-fixed bg-center" 
+              overlay-class="backdrop-blur backdrop-saturate-0 bg-green-600 bg-opacity-40">
+          <div id="home-intro-section">
+            <div class="absolute top-0 left-0 w-fit">
+              <Persona :persona="mainPersona" 
+                      class="sm:h-96 sm:w-96 max-w-sm 
+                            sharp-shadow ss-br-3 ss-neutral-50 
+                            -ml-20 sm:ml-auto mt-20 transition-all" />
+              <ActionsFan :actions="actions" side="right" 
+                          class="absolute top-2/3 left-1/2 w-2/3 sm:left-2/3 z-10 text-xl"
+                          filter-class="sharp-shadow ss-br-3 ss-neutral-50"
+                          @action-focus="mainPersona = $event" 
+                          @action-unfocus="mainPersona = 'main-idle'" />
+            </div>
           </div>
-        </Transition>
-        <Transition name="main-persona" mode="out-in">
-          <SectionsNavigation v-show="!isMainPersonaActive" @back="isMainPersonaActive = true"/>
-        </Transition>
-      </section>
-    </WrappersMonochromeBackground>
+        </WrappersMonochromeBackground>
+      </div>
+    </section>
     
+    <section style="height: 200vh;" />
   </div>
 </template>
 
@@ -32,28 +50,23 @@ export default defineComponent({
   name: 'HomePage',
   setup(){
     const mainPersona = ref<PersonaName>('main-idle')
-    const isMainPersonaActive = ref(false)
     const { showHeader } = useLayoutState()
+    const { introNodeRefs } = useIntroBlockAnimation()
     const actions: ActionFanItem<PersonaName>[] = [
+      { title: 'Sections', to: '#sections', emit: 'main-action' },
       { title: 'About me', to: '#about', emit: 'main-profi' },
-      { title: 'More', emit: 'main-action' }
+      { title: 'Story', to: '#story', emit: 'main-idle' }
     ]
     onMounted(() => {
       showHeader.value = false
-      isMainPersonaActive.value = true
     })
     onBeforeRouteLeave(() => {
       showHeader.value = true
     })
     return {
+      introNodeRefs,
       mainPersona,
-      actions,
-      isMainPersonaActive,
-      handleMainAction(event: PersonaName) {
-        if (event === 'main-action') {
-          isMainPersonaActive.value = false
-        }
-      }
+      actions
     }
   }
 
@@ -62,34 +75,34 @@ export default defineComponent({
 </script>
 
 <style>
+.intro-shape {
+  clip-path: polygon(3% 3%, 100% 0%, 95% 95%, 0% 100%);
+  animation: intro-shape-clip-path 5s linear infinite;
+  @apply backdrop-invert bg-neutral-900 bg-opacity-60;
+}
+
+@keyframes intro-shape-clip-path {
+  0%, 100% {
+    clip-path: polygon(3% 3%, 100% 0%, 95% 95%, 0% 100%);
+  }
+  25% {
+    clip-path: polygon(5% 3%, 96% 4%, 96% 97%, 0 99%);
+  }
+  50% {
+    clip-path: polygon(3% 2%, 100% 0, 90% 94%, 1% 91%);
+  }
+  75% {
+    clip-path: polygon(4% 7%, 96% 1%, 99% 99%, 8% 95%);
+  }
+}
+
 #home-intro-section{
   width: 100vw;
-  height: 100vh;
+  max-width: 100%;
+  height: 75vh;
+  min-height: 30rem;
   overflow: hidden;
   @apply relative;
-}
-
-#main-persona{
-  @apply sm:h-96 sm:w-96 sharp-shadow ss-br-3 ss-neutral-50;
-}
-
-#main-actions{
-  @apply absolute top-2/3 left-1/3 w-1/2 sm:left-2/3;
-}
-</style>
-
-<style scoped>
-.main-persona-enter-active,
-.main-persona-leave-active {
-  @apply transition-all;
-}
-.main-persona-enter-from {
-  transform: perspective(500px) translateZ(-500px) translateX(100px) ;
-  @apply opacity-0;
-}
-.main-persona-leave-to {
-  transform: perspective(500px) translateZ(500px) translateX(-100px) ;
-  @apply opacity-0;
 }
 </style>
 

@@ -26,7 +26,7 @@ export default defineComponent({
 
 <style>
 #default-layout{
-  @apply w-full h-full overflow-x-hidden z-40;
+  @apply w-full h-full z-40;
   --page-transition-length: .4s;
 }
 </style>

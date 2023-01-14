@@ -31,7 +31,9 @@ export default defineNuxtConfig({
   },
   googleFonts: {
     families: {
-      Roboto: true
+      Roboto: true,
+      'Roboto Slab': true,
+      'JetBrains Mono': true
     },
     preload: true
   }
