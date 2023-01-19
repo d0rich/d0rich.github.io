@@ -31,11 +31,11 @@
             </svg>
             <div class="absolute top-0 left-0 w-fit">
               <Persona :persona="mainPersona" 
-                      class="sm:h-96 sm:w-96 max-w-sm 
+                      class="sm:h-96 sm:w-96 max-w-sm md:w-full md:h-auto md:max-w-lg
                             sharp-shadow ss-br-3 ss-neutral-50 
                             -ml-20 sm:ml-auto mt-20 transition-all" />
               <ActionsFan :actions="actions" side="right" 
-                          class="absolute top-2/3 left-1/2 w-2/3 sm:left-2/3 z-10 text-xl"
+                          class="absolute top-2/3 left-1/2 w-2/3 sm:left-2/3 z-10 text-xl md:text-2xl"
                           filter-class="sharp-shadow ss-br-3 ss-neutral-50"
                           @action-focus="mainPersona = $event" 
                           @action-unfocus="mainPersona = 'main-idle'" />
