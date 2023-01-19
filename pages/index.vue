@@ -22,6 +22,13 @@
               class="bg-[url('~/assets/img/bg/code1.jpg')] bg-cover bg-fixed bg-center" 
               overlay-class="backdrop-blur backdrop-saturate-0 bg-green-600 bg-opacity-40">
           <div id="home-intro-section">
+            <svg :ref="(el) => { introNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) | null }" 
+                  height="100%" width="100%"
+                  class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900" 
+                  viewBox="80 0 20 100" preserveAspectRatio="xMaxYMax">
+              <polygon :ref="(el) => { introNodeRefs.line.value = el as SVGPolygonElement | null }" 
+                        class="fill-white" />
+            </svg>
             <div class="absolute top-0 left-0 w-fit">
               <Persona :persona="mainPersona" 
                       class="sm:h-96 sm:w-96 max-w-sm 
@@ -100,7 +107,7 @@ export default defineComponent({
   width: 100vw;
   max-width: 100%;
   height: 75vh;
-  min-height: 30rem;
+  min-height: 35rem;
   overflow: hidden;
   @apply relative;
 }
