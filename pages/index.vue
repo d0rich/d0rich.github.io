@@ -19,6 +19,7 @@
 
         </div>
         <WrappersMonochromeBackground
+              dots :dots-style="{ clipPath: 'polygon(20% 100%, 100% 100%, 100% 0%)' }"
               class="bg-[url('~/assets/img/bg/code1.jpg')] bg-cover bg-fixed bg-center" 
               overlay-class="backdrop-blur backdrop-saturate-0 bg-green-600 bg-opacity-40">
           <div id="home-intro-section">
