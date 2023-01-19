@@ -45,7 +45,6 @@ export const useIntroBlockAnimation = () => {
       //{ left: { x: 60, y: 85 }, right: { x: 75, y: 80 } },
       { left: { x: 50, y: 100 }, right: { x: 75, y: 100 } }
     ]).forEach(kfs => {
-      console.log(kfs)
       // @ts-ignore
       const point = nodes.line.value?.points.appendItem(nodes.svg.value?.createSVGPoint())
       if (point) {

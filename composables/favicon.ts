@@ -27,7 +27,6 @@ export const useFaviconAnimation = () => {
     }, 300)
   }
   watch(animation, (newValue) => {
-    console.log('on animation switch')
     if (newValue) {
       initAnimation()
     }

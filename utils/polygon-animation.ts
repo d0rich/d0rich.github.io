@@ -59,7 +59,6 @@ export const generatePolygonLineKeyframes = (line: LineEdge[]): Coords[][] => {
 
 export const generatePolygonPointsKeyframes = (line: LineEdge[]): Coords[][] => {
   const lineKfs = generatePolygonLineKeyframes(line)
-  console.log(lineKfs)
   const keyframesCount = lineKfs.length
   const pointsCount = lineKfs[0].length
   const result: Coords[][] = []
