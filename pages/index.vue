@@ -31,39 +31,41 @@
                         class="fill-white" />
             </svg>
             <div class="absolute top-0 left-0 w-fit">
-              <Persona :persona="mainPersona" 
+              <Character :pose="currentPose" 
                       class="sm:h-96 sm:w-96 max-w-sm md:w-full md:h-auto md:max-w-lg
-                            sharp-shadow ss-br-3 ss-neutral-50 
+                            sharp-shadow ss-br-3 ss-neutral-400 
                             -ml-20 sm:ml-auto mt-20 transition-all" />
               <ActionsFan :actions="actions" side="right" 
                           class="absolute top-2/3 left-1/2 w-2/3 sm:left-2/3 z-10 text-xl md:text-2xl"
                           filter-class="sharp-shadow ss-br-3 ss-neutral-50"
-                          @action-focus="mainPersona = $event" 
-                          @action-unfocus="mainPersona = 'main-idle'" />
+                          @action-focus="currentPose = $event" 
+                          @action-unfocus="currentPose = 'idle'" />
             </div>
           </div>
         </WrappersMonochromeBackground>
       </div>
     </section>
-    
+    <section id="sections">
+
+    </section>
     <section style="height: 200vh;" />
   </div>
 </template>
 
 <script lang="ts">
-import { PersonaName } from '~~/components/Persona.vue';
+import { CharacterPose } from '~~/components/Character.vue';
 import { ActionFanItem } from '~~/components/ActionsFan.vue';
 
 export default defineComponent({
   name: 'HomePage',
   setup(){
-    const mainPersona = ref<PersonaName>('main-idle')
+    const currentPose = ref<CharacterPose>('idle')
     const { showHeader } = useLayoutState()
     const { introNodeRefs } = useIntroBlockAnimation()
-    const actions: ActionFanItem<PersonaName>[] = [
-      { title: 'Sections', to: '#sections', emit: 'main-action' },
-      { title: 'About me', to: '#about', emit: 'main-profi' },
-      { title: 'Story', to: '#story', emit: 'main-idle' }
+    const actions: ActionFanItem<CharacterPose>[] = [
+      { title: 'Sections', to: '#sections', emit: 'action' },
+      { title: 'About me', to: '#about', emit: 'profi' },
+      { title: 'Story', to: '#story', emit: 'idle' }
     ]
     onMounted(() => {
       showHeader.value = false
@@ -73,7 +75,7 @@ export default defineComponent({
     })
     return {
       introNodeRefs,
-      mainPersona,
+      currentPose,
       actions
     }
   }

@@ -32,12 +32,18 @@ export default defineComponent({
   width: 0px;
   height: 0px;
   display: inline;
-  background-image: url(~/assets/img/personas/MainBW.webp),
-                    url(~/assets/img/personas/ActionBW.webp),
-                    url(~/assets/img/personas/ProfiBW.webp),
-                    url(~/assets/img/personas/ArachnitectBW.webp),
-                    url(~/assets/img/personas/TyrionBW.webp),
-                    url(~/assets/img/personas/YodaBW.webp),
+  background-image: url(~/assets/img/character/action.webp),
+                    url(~/assets/img/character/action-color.webp),
+                    url(~/assets/img/character/action-outline.webp),
+                    url(~/assets/img/character/action-outline-color.webp),
+                    url(~/assets/img/character/idle.webp),
+                    url(~/assets/img/character/idle-color.webp),
+                    url(~/assets/img/character/idle-outline.webp),
+                    url(~/assets/img/character/idle-outline-color.webp),
+                    url(~/assets/img/character/profi.webp),
+                    url(~/assets/img/character/profi-color.webp),
+                    url(~/assets/img/character/profi-outline.webp),
+                    url(~/assets/img/character/profi-outline-color.webp),
                     url();
 }
 </style>
