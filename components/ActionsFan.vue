@@ -1,6 +1,6 @@
 <template>
   <TransitionGroup name="actions" tag="ul">
-    <WrappersShape v-for="action, index in displayedActions" :key="action.title"
+    <WrapperShape v-for="action, index in displayedActions" :key="action.title"
         tag="li"
         class="w-full transform -my-8"
         :filter-class="filterClass"
@@ -36,7 +36,7 @@
             {{ action.title }}
           </DBtn>
         </div>
-    </WrappersShape>
+    </WrapperShape>
   </TransitionGroup>
 </template>
 

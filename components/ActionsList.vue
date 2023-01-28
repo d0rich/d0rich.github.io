@@ -1,5 +1,5 @@
 <template>
-  <WrappersShape 
+  <WrapperShape 
             shape-class="dark:bg-neutral-900 dark:bg-opacity-80 backdrop-blur"
             :shape-style="{
               clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
@@ -12,7 +12,7 @@
         </DBtn>
       </li>
     </TransitionGroup>
-  </WrappersShape>
+  </WrapperShape>
 </template>
 
 <script lang="ts">

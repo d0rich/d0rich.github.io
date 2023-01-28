@@ -1,12 +1,12 @@
 <template>
-  <WrappersShape>
+  <WrapperShape>
     <Component :is="tag" class="d-focus-hl">
       <div v-if="variant === 'negative-tile'" class="d-focus-hl__hl--negative-tile" />
       <div v-else-if="variant === 'list-item'" class="d-focus-hl__hl--list-item" />
       <div v-else-if="variant === 'negative-list-item'" class="d-focus-hl__hl--negative-list-item" />
       <slot />
     </Component>
-  </WrappersShape>
+  </WrapperShape>
 </template>
 
 <script lang="ts">

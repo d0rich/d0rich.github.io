@@ -8,7 +8,7 @@
 
 <script lang="ts">
 
-import FocusHighlight, { HighlightVariant } from './wrappers/FocusHighlight.vue';
+import FocusHighlight, { HighlightVariant } from './wrapper/FocusHighlight.vue';
 
 export default defineComponent({
   name: 'DButton',
