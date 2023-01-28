@@ -33,7 +33,8 @@ export default defineNuxtConfig({
     families: {
       Roboto: true,
       'Roboto Slab': true,
-      'JetBrains Mono': true
+      'JetBrains Mono': true,
+      'Arsenal': true,
     },
     preload: true
   }

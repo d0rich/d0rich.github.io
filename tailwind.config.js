@@ -8,7 +8,8 @@ module.exports = {
     fontFamily: {
       'sans': ['Roboto', ...defaultTheme.fontFamily.sans],
       'serif': ['Roboto Slab', ...defaultTheme.fontFamily.sans],
-      'mono': ['JetBrains Mono', ...defaultTheme.fontFamily.mono]
+      'mono': ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
+      'dialog': ['Arsenal']
     }
   },
   plugins: [
