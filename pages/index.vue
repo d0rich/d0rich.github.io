@@ -18,11 +18,11 @@
           </WrapperShape>
 
         </div>
-        <WrapperMonochromeBackground
+        <WrapperBackground
               dots :dots-style="{ clipPath: 'polygon(20% 100%, 100% 100%, 100% 0%)' }"
               class="bg-[url('~/assets/img/bg/it-office.png')] bg-cover bg-center" 
               overlay-class="backdrop-saturate-0 bg-green-900 bg-opacity-90">
-          <div id="home-intro-section">
+          <template #svg>
             <svg :ref="(el) => { introNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) | null }" 
                   height="100%" width="100%"
                   class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900" 
@@ -30,6 +30,8 @@
               <polygon :ref="(el) => { introNodeRefs.line.value = el as SVGPolygonElement | null }" 
                         class="fill-white" />
             </svg>
+          </template>
+          <div id="home-intro-section">
             <div class="absolute top-0 left-0 w-fit">
               <Character :pose="currentPose" 
                       class="sm:h-96 sm:w-96 max-w-sm md:w-full md:h-auto md:max-w-lg
@@ -42,19 +44,21 @@
                           @action-unfocus="currentPose = 'idle'" />
             </div>
           </div>
-        </WrapperMonochromeBackground>
+        </WrapperBackground>
       </div>
     </section>
-    <WrapperMonochromeBackground tag="section" id="sections" 
+    <WrapperBackground tag="section" id="sections" 
           class="bg-[url('~/assets/img/bg/hightech-city.png')] bg-cover bg-center"
           overlay-class="backdrop-saturate-50 bg-neutral-900 bg-opacity-90">
-      <svg :ref="(el) => { sectionsNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) }" 
-            height="100%" width="100%"
-            class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900" 
-            viewBox="90 0 10 100" preserveAspectRatio="xMaxYMax">
-        <polygon :ref="(el) => { sectionsNodeRefs.line.value = el as SVGPolygonElement }" 
-                  class="fill-green-600" />
-      </svg>
+      <template #svg>
+        <svg :ref="(el) => { sectionsNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) }" 
+              height="100%" width="100%"
+              class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900" 
+              viewBox="90 0 10 100" preserveAspectRatio="xMaxYMax">
+          <polygon :ref="(el) => { sectionsNodeRefs.line.value = el as SVGPolygonElement }" 
+                    class="fill-green-600" />
+        </svg>
+      </template>
       <div class="section-description">
         <Mask mask="spider" color 
             class="section-description__image" />
@@ -94,7 +98,7 @@
         </p>
       </div>
       
-    </WrapperMonochromeBackground>
+    </WrapperBackground>
     <section style="height: 200vh;" />
   </div>
 </template>
