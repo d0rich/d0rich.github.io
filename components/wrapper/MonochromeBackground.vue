@@ -4,7 +4,9 @@
       <div class="absolute w-full h-full top-0" :class="overlayClass" :style="overlayStyle" />
       <div v-if="dots" class="absolute w-full h-full top-0 bg-dotted" 
           :class="dotsClass" :style="dotsStyle" />
-      <slot />
+      <div class="relative z-[1]">
+        <slot />
+      </div>
     </div>
   </Component>
 </template>

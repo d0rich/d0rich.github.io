@@ -2,11 +2,11 @@
   <div class="-mt-20">
     <section style="height: 200vh;">
       <div class="sticky top-0">
-        <div :ref="(el) => { introNodeRefs.main.value = elFromNodeRef(el) }" 
+        <div :ref="(el) => { introNodeRefs.main.value = el as Element }" 
                 class="relative w-screen max-w-full h-screen">
-          <div :ref="(el) => { introNodeRefs.bg.value = elFromNodeRef(el) }"
-              class="absolute h-full w-full top-0 left-0 bg-[url('~/assets/img/bg/d-bw.webp')] bg-cover bg-center z-[1]" />
-          <WrappersShape class="absolute w-fit top-1/3 left-0 right-0 mx-auto z-[3]" 
+          <div :ref="(el) => { introNodeRefs.bg.value = el as Element }"
+              class="absolute h-full w-full top-0 left-0 bg-[url('~/assets/img/bg/d-bw.webp')] bg-cover bg-center z-[2]" />
+          <WrapperShape class="absolute w-fit top-1/3 left-0 right-0 mx-auto z-[3]" 
                           shape-class="intro-shape" 
                           :ref="(el) => { introNodeRefs.text.value = componentFromNodeRef(el) }">
             <div class="p-10 text-xl font-serif text-center">
@@ -15,13 +15,13 @@
               also known as <code>d0rich</code><br/>
             </div>
             
-          </WrappersShape>
+          </WrapperShape>
 
         </div>
-        <WrappersMonochromeBackground
+        <WrapperMonochromeBackground
               dots :dots-style="{ clipPath: 'polygon(20% 100%, 100% 100%, 100% 0%)' }"
-              class="bg-[url('~/assets/img/bg/code1.jpg')] bg-cover bg-fixed bg-center" 
-              overlay-class="backdrop-blur backdrop-saturate-0 bg-green-600 bg-opacity-40">
+              class="bg-[url('~/assets/img/bg/it-office.png')] bg-cover bg-center" 
+              overlay-class="backdrop-saturate-0 bg-green-900 bg-opacity-90">
           <div id="home-intro-section">
             <svg :ref="(el) => { introNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) | null }" 
                   height="100%" width="100%"
@@ -42,12 +42,59 @@
                           @action-unfocus="currentPose = 'idle'" />
             </div>
           </div>
-        </WrappersMonochromeBackground>
+        </WrapperMonochromeBackground>
       </div>
     </section>
-    <section id="sections">
-
-    </section>
+    <WrapperMonochromeBackground tag="section" id="sections" 
+          class="bg-[url('~/assets/img/bg/hightech-city.png')] bg-cover bg-center"
+          overlay-class="backdrop-saturate-50 bg-neutral-900 bg-opacity-90">
+      <svg :ref="(el) => { sectionsNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) }" 
+            height="100%" width="100%"
+            class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900" 
+            viewBox="90 0 10 100" preserveAspectRatio="xMaxYMax">
+        <polygon :ref="(el) => { sectionsNodeRefs.line.value = el as SVGPolygonElement }" 
+                  class="fill-green-600" />
+      </svg>
+      <div class="section-description">
+        <Mask mask="spider" color 
+            class="section-description__image" />
+        <div class="section-description__text ">
+          <p>
+            The IT Portfolio section displays past and current projects in information 
+            technology including web development, mobile app development, software development, 
+            cloud computing, and more. Each project provides an overview of client's requirements, 
+            approach and outcome. The portfolio showcases ability to deliver high-quality and 
+            innovative solutions. Browse through the portfolio to see the capabilities and experience 
+            in information technology.        
+          </p>
+        </div>
+      </div>
+      <div class="section-description">
+        <Mask mask="owl" color 
+            class="section-description__image" />
+        <p class="section-description__text ">
+          The Personal IT Blog offers valuable insights, tips and tutorials on the latest 
+          trends and technologies in information technology. Written by experts, 
+          the blog covers topics like programming, web development, mobile development, 
+          cloud computing and more. It's a great resource for professionals and 
+          enthusiasts to stay updated and gain new skills. Browse through the 
+          articles and start learning today.        
+        </p>
+      </div>
+      <div class="section-description">
+        <Mask mask="wolf" color 
+            class="section-description__image" />
+        <p class="section-description__text ">
+          The IT Specialist Resume section presents my skills, qualifications and experience 
+          as an IT professional. It includes information about my education, experience, skills, 
+          and achievements in various fields such as programming, web development, mobile 
+          development, cloud computing. The section is designed for potential employers who 
+          are looking for a qualified IT professional. Browse my resume to see if my qualifications 
+          match the requirements for your open IT positions.      
+        </p>
+      </div>
+      
+    </WrapperMonochromeBackground>
     <section style="height: 200vh;" />
   </div>
 </template>
@@ -62,6 +109,7 @@ export default defineComponent({
     const currentPose = ref<CharacterPose>('idle')
     const { showHeader } = useLayoutState()
     const { introNodeRefs } = useIntroBlockAnimation()
+    const { sectionsNodeRefs } = useSectionsDescriptionAnimation()
     const actions: ActionFanItem<CharacterPose>[] = [
       { title: 'Sections', to: '#sections', emit: 'action' },
       { title: 'About me', to: '#about', emit: 'profi' },
@@ -74,7 +122,7 @@ export default defineComponent({
       showHeader.value = true
     })
     return {
-      introNodeRefs,
+      introNodeRefs, sectionsNodeRefs,
       currentPose,
       actions
     }
@@ -113,6 +161,49 @@ export default defineComponent({
   min-height: 35rem;
   overflow: hidden;
   @apply relative;
+}
+</style>
+
+<style>
+.section-description{
+  @apply md:flex justify-around items-end;
+}
+
+.section-description__image{
+  @apply w-96 sharp-shadow ss-r-2 ss-b-1 self-start;
+}
+
+.section-description__text{
+  @apply font-serif max-w-lg lg:max-w-xl p-10;
+  text-shadow: var(--tw-shadow-color) 1px 0 2rem;
+}
+
+.section-description:nth-of-type(1) .section-description__image{
+  @apply ss-red-800;
+}
+
+.section-description:nth-of-type(1) .section-description__text{
+  @apply shadow-red-600;
+}
+
+.section-description:nth-of-type(2){
+  @apply flex-row-reverse;
+}
+
+.section-description:nth-of-type(2) .section-description__image{
+  @apply ss-cyan-800;
+}
+
+.section-description:nth-of-type(2) .section-description__text{
+  @apply shadow-cyan-600;
+}
+
+.section-description:nth-of-type(3) .section-description__image{
+  @apply ss-blue-800;
+}
+
+.section-description:nth-of-type(3) .section-description__text{
+  @apply shadow-blue-600;
 }
 </style>
 
