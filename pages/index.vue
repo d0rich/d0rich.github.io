@@ -119,9 +119,6 @@ export default defineComponent({
       { title: 'About me', to: '#about', emit: 'profi' },
       { title: 'Story', to: '#story', emit: 'idle' }
     ]
-    onMounted(() => {
-      showHeader.value = false
-    })
     onBeforeRouteLeave(() => {
       showHeader.value = true
     })
