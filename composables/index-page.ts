@@ -83,8 +83,14 @@ export const useIntroBlockAnimation = () => {
 export const useSectionsDescriptionAnimation = () => {
   const nodes = {
     svg: ref<SVGElement & SVGSVGElement | null>(null),
-    line: ref<SVGPolygonElement | null>(null)
+    line: ref<SVGPolygonElement | null>(null),
+    portfolio: ref<Element | null>(null),
+    blog: ref<Element | null>(null),
+    resume: ref<Element | null>(null),
   }
+  let observer: IntersectionObserver
+  const currentSection = ref<'portfolio' | 'blog' | 'resume' | null>(null)
+  // Line animation
   onMounted(() => {
     // FIXME: svg bounds are calculated incorrectly after transition
     // TODO: delete timeout when https://github.com/nuxt/nuxt/issues/13471 is fixed
@@ -120,9 +126,40 @@ export const useSectionsDescriptionAnimation = () => {
       })
     }, 1000)
   })
+  // Current section
+  onMounted(() => {
+    observer = new IntersectionObserver((entries) => {
+      console.log(entries)
+      if (entries.some(entry => entry.intersectionRatio > 0.75 && entry.target === nodes.resume.value)) {
+        currentSection.value = 'resume'
+        return
+      }
+      if (entries.some(entry => entry.intersectionRatio > 0.75 && entry.target === nodes.blog.value)) {
+        currentSection.value = 'blog'
+        return
+      }
+      if (entries.some(entry => entry.intersectionRatio > 0.75 && entry.target === nodes.portfolio.value)) {
+        currentSection.value = 'portfolio'
+        return
+      }
+    }, {
+      threshold: 0.75
+    })
+    if (nodes.portfolio.value)
+      observer.observe(nodes.portfolio.value)
+    if (nodes.blog.value)
+      observer.observe(nodes.blog.value)
+    if (nodes.resume.value)
+      observer.observe(nodes.resume.value)
+  })
+  onBeforeUnmount(() => {
+    if (observer)
+      observer.disconnect()
+  })
   
 
   return {
-    sectionsNodeRefs: nodes
+    sectionsNodeRefs: nodes,
+    currentSection
   }
 }

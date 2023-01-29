@@ -56,10 +56,10 @@
               class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900" 
               viewBox="90 0 10 100" preserveAspectRatio="xMaxYMax">
           <polygon :ref="(el) => { sectionsNodeRefs.line.value = el as SVGPolygonElement }" 
-                    class="fill-green-600" />
+                    class="transition-colors" :class="sectionsLineColor" />
         </svg>
       </template>
-      <div class="section-description">
+      <div class="section-description" :ref="el => { sectionsNodeRefs.portfolio.value = el as Element }">
         <Mask mask="spider" color 
             class="section-description__image" />
         <div class="section-description__text ">
@@ -73,7 +73,7 @@
           </p>
         </div>
       </div>
-      <div class="section-description">
+      <div class="section-description" :ref="el => { sectionsNodeRefs.blog.value = el as Element }">
         <Mask mask="owl" color 
             class="section-description__image" />
         <p class="section-description__text ">
@@ -85,7 +85,7 @@
           articles and start learning today.        
         </p>
       </div>
-      <div class="section-description">
+      <div class="section-description" :ref="el => { sectionsNodeRefs.resume.value = el as Element }">
         <Mask mask="wolf" color 
             class="section-description__image" />
         <p class="section-description__text ">
@@ -113,7 +113,7 @@ export default defineComponent({
     const currentPose = ref<CharacterPose>('idle')
     const { showHeader } = useLayoutState()
     const { introNodeRefs } = useIntroBlockAnimation()
-    const { sectionsNodeRefs } = useSectionsDescriptionAnimation()
+    const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation()
     const actions: ActionFanItem<CharacterPose>[] = [
       { title: 'Sections', to: '#sections', emit: 'action' },
       { title: 'About me', to: '#about', emit: 'profi' },
@@ -125,7 +125,16 @@ export default defineComponent({
     return {
       introNodeRefs, sectionsNodeRefs,
       currentPose,
-      actions
+      actions,
+      sectionsLineColor: computed(() => {
+        if (currentSection.value === 'portfolio')
+          return 'fill-red-700'
+        if (currentSection.value === 'blog')
+          return 'fill-cyan-700'
+        if (currentSection.value === 'resume')
+          return 'fill-blue-700'
+        return 'fill-green-700'
+      }) 
     }
   }
 
