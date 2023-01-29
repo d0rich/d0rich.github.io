@@ -174,7 +174,7 @@ export default defineComponent({
 }
 
 .section-description__image{
-  @apply w-96 sharp-shadow ss-r-2 ss-b-1 self-start;
+  @apply max-w-full w-96 sharp-shadow ss-r-2 ss-b-1 self-start;
 }
 
 .section-description__text{

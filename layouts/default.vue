@@ -1,7 +1,7 @@
 <template>
   <div id="default-layout">
-    <div class="fixed w-full z-50" >
-      <DHeader class="mx-auto max-w-xl" />
+    <div class="fixed w-screen z-50" >
+      <DHeader class="mx-auto max-w-md sm:max-w-xl" />
     </div>
     <main class="pt-20">
       <slot />
@@ -32,12 +32,7 @@ export default defineComponent({
 </style>
 
 <style>
-.section-leave-active{
-  transition: all var(--page-transition-length);
-  /* @apply absolute; */
-}
-
-.section-enter-active{
+.section-leave-active, .section-enter-active{
   transition: all var(--page-transition-length);
 }
 .section-enter-from {
@@ -54,7 +49,7 @@ export default defineComponent({
   height: 120%;
   top: -10%;
   left: -10%;
-  @apply fixed sharp-shadow ss-neutral-50 ss-bl-3 hidden;
+  @apply fixed sharp-shadow ss-neutral-50 ss-bl-3 hidden overflow-hidden;
 }
 
 #default-layout__transition-bar{
@@ -63,6 +58,10 @@ export default defineComponent({
   background-attachment: fixed;
   clip-path: polygon(-120% 0, -100% 0, 0 100%, -20% 100%);
   @apply bg-green-500 w-full h-full top-0 ;
+}
+
+#default-layout:has(.section-enter-active, .section-leave-active){
+  overflow: hidden;
 }
 
 #default-layout:has(.section-enter-active, .section-leave-active) #default-layout__transition-wrapper {
