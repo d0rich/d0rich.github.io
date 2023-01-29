@@ -2,7 +2,9 @@ import gsap from 'gsap'
 import { ComponentPublicInstance } from 'vue'
 
 export const useIntroBlockAnimation = () => {
+  const { showHeader } = useLayoutState()
   const nodes = {
+    section: ref<Element | null>(null),
     main: ref<Element | null>(null),
     bg: ref<Element | null>(null),
     text: ref<ComponentPublicInstance | null>(null),
@@ -10,6 +12,7 @@ export const useIntroBlockAnimation = () => {
     line: ref<SVGPolygonElement | null>(null)
   }
 
+  // Transition animation
   onMounted(() => {
     const introScrollTrigger = {
       scrub: 1,
@@ -33,6 +36,10 @@ export const useIntroBlockAnimation = () => {
       scrollTrigger: introScrollTrigger,
       top: '3%'
     })
+  })
+
+  // Line animation
+  onMounted(() => {
     const lineScrollTrigger = {
       scrub: 1,
       end: () => window.innerHeight * 1,
@@ -42,7 +49,6 @@ export const useIntroBlockAnimation = () => {
       { left: { x: 90, y: 0 }, right: { x: 95, y: 0 } },
       { left: { x: 50, y: 33 }, right: { x: 63, y: 35 } },
       { left: { x: 80, y: 58 }, right: { x: 85, y: 55 } },
-      //{ left: { x: 60, y: 85 }, right: { x: 75, y: 80 } },
       { left: { x: 50, y: 100 }, right: { x: 75, y: 100 } }
     ]).forEach(kfs => {
       const point = nodes.svg.value?.createSVGPoint() 
@@ -56,6 +62,19 @@ export const useIntroBlockAnimation = () => {
     })
   })
 
+  // Handle displaying of the header
+  let observer: IntersectionObserver
+  onMounted(() => { 
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        showHeader.value = !entry.isIntersecting
+      })
+    })
+    if (nodes.section.value) 
+      observer.observe(nodes.section.value) 
+  })
+  onBeforeUnmount(() => { observer.disconnect() })
+
   return {
     introNodeRefs: nodes
   }
@@ -67,6 +86,7 @@ export const useSectionsDescriptionAnimation = () => {
     line: ref<SVGPolygonElement | null>(null)
   }
   onMounted(() => {
+    // FIXME: svg bounds are calculated incorrectly after transition
     const scrollTrigger = {
       scrub: 1,
       start: () => (nodes.svg?.value?.getBoundingClientRect().top ?? 0) + window.scrollY - window.innerHeight,

@@ -1,6 +1,6 @@
 <template>
   <div class="-mt-20">
-    <section style="height: 200vh;">
+    <section style="height: 200vh;" :ref="(el) => { introNodeRefs.section.value = el as Element }">
       <div class="sticky top-0">
         <div :ref="(el) => { introNodeRefs.main.value = el as Element }" 
                 class="relative w-screen max-w-full h-screen">
