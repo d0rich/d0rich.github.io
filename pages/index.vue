@@ -63,6 +63,7 @@
         <Mask mask="spider" color 
             class="section-description__image" />
         <div class="section-description__text ">
+          <BigBangButton to="/portfolio" text="Portfolio" class="underline" />
           <p>
             The IT Portfolio section displays past and current projects in information 
             technology including web development, mobile app development, software development, 
@@ -76,26 +77,33 @@
       <div class="section-description" :ref="el => { sectionsNodeRefs.blog.value = el as Element }">
         <Mask mask="owl" color 
             class="section-description__image" />
-        <p class="section-description__text ">
-          The Personal IT Blog offers valuable insights, tips and tutorials on the latest 
-          trends and technologies in information technology. Written by experts, 
-          the blog covers topics like programming, web development, mobile development, 
-          cloud computing and more. It's a great resource for professionals and 
-          enthusiasts to stay updated and gain new skills. Browse through the 
-          articles and start learning today.        
-        </p>
+        <div class="section-description__text ">
+          <BigBangButton to="/blog" text="Blog" class="underline" />
+          <p>
+            The Personal IT Blog offers valuable insights, tips and tutorials on the latest 
+            trends and technologies in information technology. Written by experts, 
+            the blog covers topics like programming, web development, mobile development, 
+            cloud computing and more. It's a great resource for professionals and 
+            enthusiasts to stay updated and gain new skills. Browse through the 
+            articles and start learning today.        
+          </p>
+        </div>
+        
       </div>
       <div class="section-description" :ref="el => { sectionsNodeRefs.resume.value = el as Element }">
         <Mask mask="wolf" color 
             class="section-description__image" />
-        <p class="section-description__text ">
-          The IT Specialist Resume section presents my skills, qualifications and experience 
-          as an IT professional. It includes information about my education, experience, skills, 
-          and achievements in various fields such as programming, web development, mobile 
-          development, cloud computing. The section is designed for potential employers who 
-          are looking for a qualified IT professional. Browse my resume to see if my qualifications 
-          match the requirements for your open IT positions.      
-        </p>
+        <div class="section-description__text ">
+          <BigBangButton to="/resume" text="Resume" class="underline" />
+          <p>
+            The IT Specialist Resume section presents my skills, qualifications and experience 
+            as an IT professional. It includes information about my education, experience, skills, 
+            and achievements in various fields such as programming, web development, mobile 
+            development, cloud computing. The section is designed for potential employers who 
+            are looking for a qualified IT professional. Browse my resume to see if my qualifications 
+            match the requirements for your open IT positions.      
+          </p>
+        </div>
       </div>
       
     </WrapperBackground>
@@ -176,7 +184,7 @@ export default defineComponent({
 
 <style>
 .section-description{
-  @apply md:flex justify-around items-end;
+  @apply flex flex-col md:flex-row justify-around items-end;
 }
 
 .section-description__image{
@@ -184,7 +192,7 @@ export default defineComponent({
 }
 
 .section-description__text{
-  @apply font-serif max-w-lg lg:max-w-xl p-10;
+  @apply font-serif max-w-lg lg:max-w-xl p-10 pt-0;
   text-shadow: var(--tw-shadow-color) 1px 0 2rem;
 }
 
@@ -197,15 +205,15 @@ export default defineComponent({
 }
 
 .section-description:nth-of-type(2){
-  @apply flex-row-reverse;
+  @apply md:flex-row-reverse;
 }
 
 .section-description:nth-of-type(2) .section-description__image{
-  @apply ss-cyan-800;
+  @apply ss-cyan-800 self-end;
 }
 
 .section-description:nth-of-type(2) .section-description__text{
-  @apply shadow-cyan-600;
+  @apply shadow-cyan-600 sm:text-right self-start;
 }
 
 .section-description:nth-of-type(3) .section-description__image{

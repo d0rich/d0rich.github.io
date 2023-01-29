@@ -97,11 +97,12 @@ export const useSectionsDescriptionAnimation = () => {
     setTimeout(() => {
       const scrollTrigger = {
         scrub: 1,
-        start: () => (nodes.svg?.value?.getBoundingClientRect().top ?? 0) + window.scrollY - window.innerHeight,
-        end: () => (nodes.svg?.value?.getBoundingClientRect().bottom ?? 0) + window.scrollY - window.innerHeight,
+        start: () => (nodes.svg?.value?.getBoundingClientRect().top ?? 0) + window.scrollY - window.innerHeight * ( 1 - 0.35 * Number( window.innerHeight < window.innerHeight )),
+        end: () => (nodes.svg?.value?.getBoundingClientRect().bottom ?? 0) + window.scrollY - window.innerHeight * ( 1 - 0.35 * Number( window.innerHeight < window.innerHeight )),
       }
       generatePolygonPointsKeyframes([
-        { left: { x: 0, y: 3 }, right: { x: 0, y: 2 } },
+        { left: { x: 10, y: 0 }, right: { x: 13, y: 0 } },
+        //{ left: { x: 9, y: 3 }, right: { x: 11, y: 2 } },
         { left: { x: 87, y: 4 }, right: { x: 90, y: 1 } },
         { left: { x: 83, y: 16 }, right: { x: 87, y: 10 } },
         { left: { x: 97, y: 6 }, right: { x: 94, y: 7 } },
@@ -129,7 +130,6 @@ export const useSectionsDescriptionAnimation = () => {
   // Current section
   onMounted(() => {
     observer = new IntersectionObserver((entries) => {
-      console.log(entries)
       if (entries.some(entry => entry.intersectionRatio > 0.75 && entry.target === nodes.resume.value)) {
         currentSection.value = 'resume'
         return

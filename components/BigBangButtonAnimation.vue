@@ -72,7 +72,7 @@ export default defineComponent({
 #big-bang-button-animation {
   overflow: hidden;
   pointer-events: none;
-  @apply absolute w-full h-full top-0 left-0 
+  @apply fixed w-full h-full top-0 left-0 
          text-center uppercase text-7xl md:text-9xl font-extrabold;
 }
 
