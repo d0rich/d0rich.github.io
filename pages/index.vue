@@ -63,7 +63,7 @@
         <Mask mask="spider" color 
             class="section-description__image" />
         <div class="section-description__text ">
-          <BigBangButton to="/portfolio" text="Portfolio" class="underline" />
+          <BigBangButton to="/projects" text="Projects" class="underline" />
           <p>
             The IT Portfolio section displays past and current projects in information 
             technology including web development, mobile app development, software development, 
