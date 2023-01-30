@@ -130,20 +130,21 @@ export const useSectionsDescriptionAnimation = () => {
   // Current section
   onMounted(() => {
     observer = new IntersectionObserver((entries) => {
-      if (entries.some(entry => entry.intersectionRatio > 0.75 && entry.target === nodes.resume.value)) {
+      if (entries.some(entry => entry.isIntersecting && entry.target === nodes.resume.value)) {
         currentSection.value = 'resume'
         return
       }
-      if (entries.some(entry => entry.intersectionRatio > 0.75 && entry.target === nodes.blog.value)) {
+      if (entries.some(entry => entry.isIntersecting && entry.target === nodes.blog.value)) {
         currentSection.value = 'blog'
         return
       }
-      if (entries.some(entry => entry.intersectionRatio > 0.75 && entry.target === nodes.portfolio.value)) {
+      if (entries.some(entry => entry.isIntersecting && entry.target === nodes.portfolio.value)) {
         currentSection.value = 'portfolio'
         return
       }
     }, {
-      threshold: 0.75
+      rootMargin: '-33% 0% -66% 0%',
+      threshold: 0
     })
     if (nodes.portfolio.value)
       observer.observe(nodes.portfolio.value)
