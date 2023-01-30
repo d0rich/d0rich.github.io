@@ -1,5 +1,6 @@
 <template>
   <div class="-mt-20">
+    <!-- Intro block -->
     <section style="height: 200vh;" :ref="(el) => { introNodeRefs.section.value = el as Element }">
       <div class="sticky top-0">
         <div :ref="(el) => { introNodeRefs.main.value = el as Element }" 
@@ -47,6 +48,7 @@
         </WrapperBackground>
       </div>
     </section>
+    <!-- Block about sections -->
     <WrapperBackground tag="section" id="sections" 
           class="bg-[url('~/assets/img/bg/hightech-city.png')] bg-cover bg-center"
           overlay-class="backdrop-saturate-50 bg-neutral-900 bg-opacity-90">
@@ -59,18 +61,28 @@
                     class="transition-colors" :class="sectionsLineColor" />
         </svg>
       </template>
+      <h1>Sections</h1>
       <div class="section-description" :ref="el => { sectionsNodeRefs.portfolio.value = el as Element }">
         <Mask mask="spider" color 
             class="section-description__image" />
         <div class="section-description__text ">
           <BigBangButton to="/projects" text="Projects" class="underline" />
           <p>
-            The IT Portfolio section displays past and current projects in information 
-            technology including web development, mobile app development, software development, 
-            cloud computing, and more. Each project provides an overview of client's requirements, 
-            approach and outcome. The portfolio showcases ability to deliver high-quality and 
-            innovative solutions. Browse through the portfolio to see the capabilities and experience 
-            in information technology.        
+            The Projects section of my personal website showcases my expertise and capabilities as an IT specialist. 
+            This section highlights a diverse range of my completed and ongoing IT projects, 
+            demonstrating my proficiency in various fields such as programming, web development, 
+            mobile development, and cloud computing. 
+          </p>
+          <p>
+            Each project is described in detail, including its goals, technical specifications, 
+            and possibilities. Visitors to this section will gain a 
+            comprehensive understanding of my technical skills and experience, and can see how I have 
+            applied my knowledge and creativity to deliver innovative and effective solutions. 
+          </p>
+          <p>
+            Whether you are a potential employer or just interested in my work, 
+            the Projects section of my personal 
+            website is a <NuxtLink class="underline" to="/projects">must-see</NuxtLink>.     
           </p>
         </div>
       </div>
@@ -80,12 +92,18 @@
         <div class="section-description__text ">
           <BigBangButton to="/blog" text="Blog" class="underline" />
           <p>
-            The Personal IT Blog offers valuable insights, tips and tutorials on the latest 
-            trends and technologies in information technology. Written by experts, 
-            the blog covers topics like programming, web development, mobile development, 
-            cloud computing and more. It's a great resource for professionals and 
-            enthusiasts to stay updated and gain new skills. Browse through the 
-            articles and start learning today.        
+            The Blog section of my personal website is a platform for me to share my thoughts, 
+            insights, and expertise on various topics related to information technology. 
+            Here, I share my knowledge and experience with a wider audience, and offer a glimpse 
+            into the latest trends and developments in the field. 
+          </p>
+          <p>
+            Whether you are a fellow 
+            IT professional, a student, or simply a curious reader, the Blog section of my personal 
+            website offers a wealth of information and inspiration. 
+            <NuxtLink class="underline" to="/blog">Browse</NuxtLink> 
+            through my blog posts and see how I am contributing to the growth and advancement of 
+            the information technology industry.   
           </p>
         </div>
         
@@ -96,12 +114,12 @@
         <div class="section-description__text ">
           <BigBangButton to="/resume" text="Resume" class="underline" />
           <p>
-            The IT Specialist Resume section presents my skills, qualifications and experience 
-            as an IT professional. It includes information about my education, experience, skills, 
-            and achievements in various fields such as programming, web development, mobile 
-            development, cloud computing. The section is designed for potential employers who 
-            are looking for a qualified IT professional. Browse my resume to see if my qualifications 
-            match the requirements for your open IT positions.      
+            The Resume section of my personal website displays my professional background 
+            and qualifications as an IT specialist. It includes information about my education, 
+            employment history, skills, and notable projects. The section serves as a resource 
+            for potential employers and showcases my expertise in the field of information technology. 
+            Browse through my resume to <NuxtLink class="underline" to="/resume">see</NuxtLink> how I can 
+            bring value to your organization.     
           </p>
         </div>
       </div>
@@ -183,6 +201,10 @@ export default defineComponent({
 </style>
 
 <style>
+#sections h1{
+  @apply text-center text-7xl sm:text-8xl font-serif pt-3 mb-5 sm:mb-9 mx-2 font-bold;
+}
+
 .section-description{
   @apply flex flex-col md:flex-row justify-around items-end;
 }
@@ -194,6 +216,14 @@ export default defineComponent({
 .section-description__text{
   @apply font-serif max-w-lg lg:max-w-xl p-10 pt-0;
   text-shadow: var(--tw-shadow-color) 1px 0 2rem;
+}
+
+.section-description__text > p {
+  @apply mb-3;
+}
+
+.section-description__text > p::first-letter{
+  background-color: var(--tw-shadow-color);
 }
 
 .section-description:nth-of-type(1) .section-description__image{
