@@ -8,8 +8,8 @@
           <div :ref="(el) => { introNodeRefs.bg.value = el as Element }"
               class="absolute h-full w-full top-0 left-0 bg-[url('~/assets/img/bg/d-bw.webp')] bg-cover bg-center z-[2]" />
           <WrapperShape class="absolute w-fit top-1/3 left-0 right-0 mx-auto z-[3]" 
-                          shape-class="intro-shape" 
-                          :ref="(el) => { introNodeRefs.text.value = componentFromNodeRef(el) }">
+                        shape-class="intro-shape" 
+                        :ref="(el) => { introNodeRefs.text.value = componentFromNodeRef(el) }">
             <div class="p-10 text-xl font-serif text-center">
               My name is Nikolay Dorofeev<br/>
               I am Software Developer<br/>
@@ -125,7 +125,20 @@
       </div>
       
     </WrapperBackground>
-    <section style="height: 200vh;" />
+    <WrapperBackground tag="section" id="story" 
+          class="bg-[url('~/assets/img/bg/timeline.png')] bg-cover bg-center"
+          overlay-class="backdrop-saturate-50 bg-yellow-600 bg-opacity-90">
+      <h1>Story</h1>
+      <Character pose="idle" />
+      <WrapperShape
+          class="bubble-1" 
+          shape-class="bubble-1__shape">
+        <div class="p-11">
+          Some text
+        </div>
+      </WrapperShape>
+    </WrapperBackground>
+    <section style="height: 50vh;" />
   </div>
 </template>
 
@@ -255,3 +268,33 @@ export default defineComponent({
 }
 </style>
 
+<style>
+#story {
+  @apply font-dialog;
+}
+
+#story h1{
+  @apply text-center text-7xl sm:text-8xl pt-3 mb-5 sm:mb-9 mx-2 font-bold;
+}
+
+#story .bubble-1 {
+  @apply w-2/3;
+}
+
+#story .bubble-1__shape {
+  @apply bg-black bg-opacity-90;
+  clip-path: polygon(
+    0 calc(100% - 20px),
+    20px calc(100% - 10px),
+    25px calc(100% - 15px),
+    45px calc(100% - 5px),
+    70px calc(100% - 10px),
+    100% 100%,
+    calc(100% - 40px) 0,
+    45px calc(100% - 70px),
+    40px calc(100% - 30px),
+    20px calc(100% - 45px),
+    18px calc(100% - 25px)
+  );
+}
+</style>
