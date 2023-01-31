@@ -133,8 +133,8 @@
       <WrapperShape
           class="bubble-1" 
           shape-class="bubble-1__shape">
-        <div class="p-11">
-          Some text
+        <div class="bubble-1__text">
+          Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text 
         </div>
       </WrapperShape>
     </WrapperBackground>
@@ -291,10 +291,14 @@ export default defineComponent({
     70px calc(100% - 10px),
     100% 100%,
     calc(100% - 40px) 0,
-    45px calc(100% - 70px),
+    45px 30px,
     40px calc(100% - 30px),
     20px calc(100% - 45px),
     18px calc(100% - 25px)
   );
+}
+
+#story .bubble-1__text {
+  padding: 35px 45px 15px 50px;
 }
 </style>
