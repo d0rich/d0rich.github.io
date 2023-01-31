@@ -68,7 +68,7 @@
         <div class="section-description__text ">
           <BigBangButton to="/projects" text="Projects" class="underline" />
           <p>
-            The Projects section of my personal website showcases my expertise and capabilities as an IT specialist. 
+            The Projects section showcases my expertise and capabilities as an IT specialist. 
             This section highlights a diverse range of my completed and ongoing IT projects, 
             demonstrating my proficiency in various fields such as programming, web development, 
             mobile development, and cloud computing. 
@@ -92,7 +92,7 @@
         <div class="section-description__text ">
           <BigBangButton to="/blog" text="Blog" class="underline" />
           <p>
-            The Blog section of my personal website is a platform for me to share my thoughts, 
+            The Blog section is a platform for me to share my thoughts, 
             insights, and expertise on various topics related to information technology. 
             Here, I share my knowledge and experience with a wider audience, and offer a glimpse 
             into the latest trends and developments in the field. 
@@ -114,7 +114,7 @@
         <div class="section-description__text ">
           <BigBangButton to="/resume" text="Resume" class="underline" />
           <p>
-            The Resume section of my personal website displays my professional background 
+            The Resume section displays my professional background 
             and qualifications as an IT specialist. It includes information about my education, 
             employment history, skills, and notable projects. The section serves as a resource 
             for potential employers and showcases my expertise in the field of information technology. 
