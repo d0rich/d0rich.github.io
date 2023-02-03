@@ -53,7 +53,7 @@ export default defineComponent({
 <style scoped>
 
 img{
-  @apply w-full h-full;
+  @apply w-full h-auto;
 }
 
 .character-enter-active,

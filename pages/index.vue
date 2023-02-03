@@ -129,14 +129,24 @@
           class="bg-[url('~/assets/img/bg/timeline.png')] bg-cover bg-center"
           overlay-class="backdrop-saturate-50 bg-yellow-600 bg-opacity-90">
       <h1>Story</h1>
-      <Character pose="idle" />
-      <WrapperShape
-          class="bubble-1" 
-          shape-class="bubble-1__shape">
-        <div class="bubble-1__text">
-          Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text 
-        </div>
-      </WrapperShape>
+      <div class="flex items-start justify-center">
+        <Character pose="idle" class="character" />
+        <WrapperShape
+            class="bubble-1" 
+            filter-class="sharp-shadow ss-neutral-50 ss-r-1 ss-b-1"
+            shape-class="bubble-1__shape">
+          <div class="bubble-1__text">
+            <p>
+              Right now you can get know my current skills and experience, 
+              but it is way far away the moment of beginning.
+            </p>
+            <p>
+              Discover the journey of my IT growth: from novice to specialist.
+            </p>
+          </div>
+        </WrapperShape>
+      </div>
+      
     </WrapperBackground>
     <section style="height: 50vh;" />
   </div>
@@ -277,8 +287,15 @@ export default defineComponent({
   @apply text-center text-7xl sm:text-8xl pt-3 mb-5 sm:mb-9 mx-2 font-bold;
 }
 
+#story .character {
+  @apply sm:h-96 sm:w-96 max-w-sm h-auto md:max-w-lg
+         -ml-20 transition-all;
+}
+
 #story .bubble-1 {
-  @apply w-2/3;
+  @apply max-w-md w-2/3 
+    -ml-40 sm:-ml-20 
+    sm:text-lg;
 }
 
 #story .bubble-1__shape {
@@ -300,5 +317,10 @@ export default defineComponent({
 
 #story .bubble-1__text {
   padding: 35px 45px 15px 50px;
+  @apply font-semibold;
+}
+
+#story .bubble-1__text > p {
+  @apply mb-3;
 }
 </style>
