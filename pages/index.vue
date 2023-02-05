@@ -126,8 +126,7 @@
       
     </WrapperBackground>
     <WrapperBackground tag="section" id="story" 
-          class="bg-[url('~/assets/img/bg/timeline.png')] bg-cover bg-center"
-          overlay-class="backdrop-saturate-50 bg-yellow-600 bg-opacity-90">
+          overlay-class="story__bg-overlay">
       <h1>Story</h1>
       <div class="flex items-start justify-center">
         <Character pose="idle" class="character" />
@@ -146,7 +145,7 @@
           </div>
         </WrapperShape>
       </div>
-      <div class="grid grid-cols-2 justify-start" 
+      <div class="story-blocks" 
            :ref="(el) => { storyNodeRefs.storyContainer.value = el as Element }">
         <svg :ref="(el) => { storyNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) }" 
               height="100%" width="100%"
@@ -158,7 +157,17 @@
                     class="fill-white" />
         </svg>
         <div style="height: 300vh;">
-
+          <Card mode="homepage-story">
+            <CardTitle>
+              <template #extra>
+                {{ new Date().toLocaleDateString() }}
+              </template>
+              You found me
+            </CardTitle>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur id eius incidunt earum enim. Est eligendi obcaecati quasi rerum sapiente eius natus distinctio, ipsam voluptas neque animi maxime provident, velit, libero doloribus delectus numquam voluptatibus quaerat. Ratione, consequatur nostrum, eaque magni, ipsa molestiae a provident rerum repellat quae totam repellendus!
+            </p>
+          </Card>
         </div>
       </div>
     </WrapperBackground>
@@ -295,7 +304,18 @@ export default defineComponent({
 
 <style>
 #story {
-  @apply font-dialog;
+  @apply font-dialog bg-[url('~/assets/img/bg/timeline.png')] bg-cover bg-center;
+}
+
+#story .story__bg-overlay {
+  background: 
+    url('~/assets/img/character/idle-shape-white.svg') fixed,
+    rgb(202 138 4 / var(--tw-bg-opacity));
+  background-position-x: calc(60vw - 50vh);
+  background-position-y: -25vh;
+  background-size: auto 150vh;
+  background-repeat: no-repeat;
+  @apply backdrop-saturate-50 bg-opacity-90;
 }
 
 #story h1{
@@ -337,6 +357,11 @@ export default defineComponent({
 
 #story .bubble-1__text > p {
   @apply mb-3;
+}
+#story .story-blocks {
+  grid-template-columns:  auto 1fr;
+  column-gap: 1rem;
+  @apply grid justify-start mx-3;
 }
 #story .story-progress {
   position: sticky;
