@@ -189,7 +189,7 @@ export const useStoryAnimation = () => {
         { left: { x: 4, y: 70 }, right: { x: 9, y: 73 } },
         { left: { x: 2, y: 80 }, right: { x: 6, y: 85 } },
         { left: { x: 3, y: 92 }, right: { x: 8, y: 90 } },
-        { left: { x: 2, y: 100 }, right: { x: 7, y: 100 } },
+        { left: { x: 0, y: 100 }, right: { x: 7, y: 100 } },
       ]
       generatePolygonLineKeyframes(line)
         .at(-1)
