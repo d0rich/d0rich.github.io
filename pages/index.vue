@@ -146,7 +146,21 @@
           </div>
         </WrapperShape>
       </div>
-      
+      <div class="grid grid-cols-2 justify-start" 
+           :ref="(el) => { storyNodeRefs.storyContainer.value = el as Element }">
+        <svg :ref="(el) => { storyNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) }" 
+              height="100%" width="100%"
+              class="story-progress" 
+              viewBox="0 0 10 100">
+          <polygon :ref="(el) => { storyNodeRefs.linePlaceholder.value = el as SVGPolygonElement }" 
+                    class="fill-black" />
+          <polygon :ref="(el) => { storyNodeRefs.line.value = el as SVGPolygonElement }" 
+                    class="fill-white" />
+        </svg>
+        <div style="height: 300vh;">
+
+        </div>
+      </div>
     </WrapperBackground>
     <section style="height: 50vh;" />
   </div>
@@ -163,6 +177,7 @@ export default defineComponent({
     const { showHeader } = useLayoutState()
     const { introNodeRefs } = useIntroBlockAnimation()
     const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation()
+    const { storyNodeRefs } = useStoryAnimation()
     const actions: ActionFanItem<CharacterPose>[] = [
       { title: 'Sections', to: '#sections', emit: 'action' },
       { title: 'About me', to: '#about', emit: 'profi' },
@@ -172,7 +187,7 @@ export default defineComponent({
       showHeader.value = true
     })
     return {
-      introNodeRefs, sectionsNodeRefs,
+      introNodeRefs, sectionsNodeRefs, storyNodeRefs,
       currentPose,
       actions,
       sectionsLineColor: computed(() => {
@@ -322,5 +337,11 @@ export default defineComponent({
 
 #story .bubble-1__text > p {
   @apply mb-3;
+}
+#story .story-progress {
+  position: sticky;
+  top: 15vh;
+  height: 70vh;
+  @apply  sharp-shadow ss-r-3 ss-b-1 ss-yellow-900;
 }
 </style>
