@@ -1,9 +1,8 @@
 <template>
-  <div class="card__title -mt-5 mb-3">
-    <WrapperShape class="inline-block -ml-10" 
-        shape-class="bg-black"
-        shape-style="clip-path: polygon(9% 9%, 100% 0%, 92% 91%, 0% 100%);">
-      <h3 class="p-5 text-white">
+  <div class="card__title">
+    <WrapperShape class="card__title__content" 
+        shape-class="card__title__content__shape">
+      <h3 class="card__title__content__text">
         <slot/>
       </h3>
     </WrapperShape>
@@ -15,6 +14,20 @@
 
 <style>
 .card__title {
-  @apply text-2xl sm:text-3xl font-semibold;
+  @apply text-2xl sm:text-3xl font-semibold -mt-5 mb-3;
 }
+
+.card__title__content {
+  @apply inline-block -ml-10;
+}
+
+.card__title__content__text {
+  @apply p-5 text-white;
+}
+
+.card__title__content__shape {
+  clip-path: polygon(9% 9%, 100% 0%, 92% 91%, 0% 100%);
+  @apply bg-black;
+}
+
 </style>
