@@ -177,7 +177,7 @@
 
 <script lang="ts">
 import { CharacterPose } from '~~/components/Character.vue';
-import { ActionFanItem } from '~~/components/ActionsFan.vue';
+import { ActionFanItem } from '~~/components/actions/Fan.vue';
 
 export default defineComponent({
   name: 'HomePage',
