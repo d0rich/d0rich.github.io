@@ -12,10 +12,12 @@
     "@nuxtjs/google-fonts": "^3.0.0-1",
     "@nuxtjs/tailwindcss": "^6.2.0",
     "@tailwindcss/typography": "^0.5.8",
+    "@types/dateformat": "^5.0.0",
     "nuxt": "^3.0.0"
   },
   "dependencies": {
     "@morev/vue-transitions": "^2.3.5",
+    "dateformat": "^5.0.3",
     "gsap": "^3.11.4"
   }
 }

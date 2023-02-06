@@ -160,7 +160,7 @@
           <Card mode="homepage-story">
             <CardTitle>
               <template #extra>
-                {{ new Date().toLocaleDateString() }}
+                {{ dateToMonthYear(new Date()) }}
               </template>
               You found me
             </CardTitle>
