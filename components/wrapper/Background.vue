@@ -39,13 +39,14 @@ export default defineComponent({
 
 <style>
 .mbg__main-container {
-  @apply w-full h-full;
+  isolation: isolate;
 }
 .mbg__relative-container {
   @apply relative w-full h-full;
 }
 .mbg__layer {
-  @apply absolute w-full h-full top-0;
+  inset: 0;
+  @apply absolute;
 }
 .mbg__dots {
   background: url('data:image/svg+xml;utf8,<svg width="100" height="100" transform="rotate(0)" opacity="0.2" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g  fill="%23250E17"><circle cx="25" cy="25" r="12.5"/><circle cx="75" cy="75" r="12.5"/><circle cx="75" cy="25" r="12.5"/><circle cx="25" cy="75" r="12.5"/></g></svg>');
