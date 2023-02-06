@@ -33,6 +33,11 @@ export default defineComponent({
   padding: var(--card-padding);
   @apply text-black sm:text-lg;
 }
+
+.card__content p {
+  @apply mb-2;
+}
+
 .card__bg--homepage-story {
   background: 
     url('~/assets/img/character/idle-shape-yellow-400.svg') fixed,

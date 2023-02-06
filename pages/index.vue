@@ -127,8 +127,9 @@
     </WrapperBackground>
     <WrapperBackground tag="section" id="story" 
           overlay-class="story__bg-overlay">
+      <div class="pt-20" />
       <h1>Story</h1>
-      <div class="flex items-start justify-center">
+      <div class="flex items-start justify-start ml-3 sm:ml-32 lg:ml-[25%]">
         <Character pose="idle" class="character" />
         <WrapperShape
             class="bubble-1" 
@@ -156,8 +157,9 @@
           <polygon :ref="(el) => { storyNodeRefs.line.value = el as SVGPolygonElement }" 
                     class="fill-white" />
         </svg>
-        <div style="height: 300vh;">
-          <Card mode="homepage-story">
+        <div class="story-blocks__cards">
+          <!-- TODO: Generate from markdown -->
+          <Card mode="homepage-story" class="my-20">
             <CardTitle>
               <template #extra>
                 {{ dateToMonthYear(new Date()) }}
@@ -165,13 +167,103 @@
               You found me
             </CardTitle>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur id eius incidunt earum enim. Est eligendi obcaecati quasi rerum sapiente eius natus distinctio, ipsam voluptas neque animi maxime provident, velit, libero doloribus delectus numquam voluptatibus quaerat. Ratione, consequatur nostrum, eaque magni, ipsa molestiae a provident rerum repellat quae totam repellendus!
+              You found this awesome website of mine. And possibly you think about <b>working together</b>. 
+            </p>
+          </Card>
+          <Card mode="homepage-story" class="my-20">
+            <CardTitle>
+              Future is here
+              <template #extra>
+                {{ dateToMonthYear(new Date('2022/12/16')) }}
+              </template>
+            </CardTitle>
+            <p>
+              AI saves time in development by automating repetitive tasks and generating text and images. AI algorithms can generate written content and image creation tools allow for fast design. This not only saves time, but enhances the quality of work, making AI a valuable tool.
+            </p>
+            <p>
+              <i>Sincerely, by ChatGPT</i>
+            </p>
+          </Card>
+          <Card mode="homepage-story" class="my-20">
+            <CardTitle>
+              Move to Georgia
+              <template #extra>
+                {{ dateToMonthYear(new Date('2022/07/16')) }}
+              </template>
+            </CardTitle>
+            <p>
+              I've relocated to Georgia. Now I'm trying to make world a better place from Tbilisi.
+            </p>
+          </Card>
+          <Card mode="homepage-story" class="my-20">
+            <CardTitle>
+              Finish bachelor CS programm
+              <template #extra>
+                {{ dateToMonthYear(new Date('2022/06/16')) }}
+              </template>
+            </CardTitle>
+            <p>
+              I've finished computer science program <b>"Informational Systems and Technologies"</b>
+              with <b>business</b> specialization in Tomsk Polytechnic University.
+            </p>
+          </Card>
+          <Card mode="homepage-story" class="my-20">
+            <CardTitle>
+              Let's DocOps
+              <template #extra>
+                {{ dateToMonthYear(new Date('2021/07/16')) }}
+              </template>
+            </CardTitle>
+            <p>
+              I was hired to create documentation for <b>high-end microservice framework</b>.
+            </p>
+            <p>
+              I'm gonna make the best source of knowledges with 
+              high quality <b>User Experience</b> and <b>Developer Experience</b>!
+            </p>
+          </Card>
+          <Card mode="homepage-story" class="my-20">
+            <CardTitle>
+              I'll show you!
+              <template #extra>
+                {{ dateToMonthYear(new Date('2020/05/16')) }}
+              </template>
+            </CardTitle>
+            <p>
+              It is essential to present products and visualize data in <b>interactive and buetiful</b> way. 
+              So I've created the very first version of my website as <b>SPA</b> using Vue.
+            </p>
+            <p>
+              It was just a start of a long journey in browser tecnologies and client development. 
+            </p>
+          </Card>
+          <Card mode="homepage-story" class="my-20">
+            <CardTitle>
+              I'll create your back!
+              <template #extra>
+                {{ dateToMonthYear(new Date('2019/11/16')) }}
+              </template>
+            </CardTitle>
+            <p>
+              I've created my first <b>backend</b> application. 
+              There was still a lot to learn in future: <b>patterns, databases, archtitecture, ...</b> .
+            </p>
+          </Card>
+          <Card mode="homepage-story" class="my-20">
+            <CardTitle>
+              Let's make a shot
+              <template #extra>
+                {{ dateToMonthYear(new Date('2018/11/16')) }}
+              </template>
+            </CardTitle>
+            <p>
+              Some time I was into <b>video production</b> in student Media Center at Tomsk Polytechnic University. 
+              So knowledge about <b>composition, colors, motion design</b> are the part of me.
             </p>
           </Card>
         </div>
       </div>
     </WrapperBackground>
-    <section style="height: 50vh;" />
   </div>
 </template>
 
@@ -319,7 +411,7 @@ export default defineComponent({
 }
 
 #story h1{
-  @apply text-center text-7xl sm:text-8xl pt-3 mb-5 sm:mb-9 mx-2 font-bold;
+  @apply text-center text-7xl sm:text-8xl pt-3 mb-5 sm:mb-9 mx-2 mb-20 font-bold;
 }
 
 #story .character {
@@ -360,13 +452,21 @@ export default defineComponent({
 }
 #story .story-blocks {
   grid-template-columns:  auto 1fr;
-  column-gap: 1rem;
-  @apply grid justify-start mx-3;
+  column-gap: clamp(1rem, 5vw, 3rem);
+  margin-left: auto;
+  @apply grid justify-start max-w-3xl mr-3 sm:mr-32 lg:mr-[20%];
 }
+
+#story .story-blocks__cards {
+  padding-bottom: 60vh;
+}
+
 #story .story-progress {
   position: sticky;
   top: 15vh;
+  margin-top: 15vh;
+  margin-bottom: 15vh;
   height: 70vh;
-  @apply  sharp-shadow ss-r-3 ss-b-1 ss-yellow-900;
+  @apply  sharp-shadow ss-r-3 ss-b-1 ss-yellow-900 ml-3;
 }
 </style>

@@ -26,7 +26,7 @@
 }
 
 .card__title__content__shape {
-  clip-path: polygon(9% 9%, 100% 0%, 92% 91%, 0% 100%);
+  clip-path: polygon(.4em .4em, 100% 0%, calc(100% - .4em) calc(100% - .4em), 0% 100%);
   @apply bg-black;
 }
 
