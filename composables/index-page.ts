@@ -1,5 +1,6 @@
 import gsap from 'gsap'
 import { ComponentPublicInstance } from 'vue'
+import { isMobile } from '~~/utils/device'
 
 export const useIntroBlockAnimation = () => {
   const { showHeader } = useLayoutState()
@@ -99,9 +100,8 @@ export const useSectionsDescriptionAnimation = () => {
         start: () => (nodes.svg?.value?.getBoundingClientRect().top ?? 0) + window.scrollY - window.innerHeight * ( 1 - 0.35 * Number( window.innerHeight < window.innerHeight )),
         end: () => (nodes.svg?.value?.getBoundingClientRect().bottom ?? 0) + window.scrollY - window.innerHeight * ( 1 - 0.35 * Number( window.innerHeight < window.innerHeight )),
       }
-      generatePolygonPointsKeyframes([
+      const line = [
         { left: { x: 10, y: 0 }, right: { x: 13, y: 0 } },
-        //{ left: { x: 9, y: 3 }, right: { x: 11, y: 2 } },
         { left: { x: 87, y: 4 }, right: { x: 90, y: 1 } },
         { left: { x: 83, y: 16 }, right: { x: 87, y: 10 } },
         { left: { x: 97, y: 6 }, right: { x: 94, y: 7 } },
@@ -114,16 +114,29 @@ export const useSectionsDescriptionAnimation = () => {
         { left: { x: 40, y: 76 }, right: { x: 30, y: 75 } },
         { left: { x: 80, y: 60 }, right: { x: 95, y: 50 } },
         { left: { x: 50, y: 100 }, right: { x: 75, y: 100 } },
-      ]).forEach(kfs => {
-        const point = nodes.svg.value?.createSVGPoint() 
-        if (point) {
-          nodes.line.value?.points.appendItem(point)
-          gsap.to(point, {
-            keyframes: kfs,
-            scrollTrigger
-          })
-        }
-      })
+      ]
+      // If calculations are too complicated, change to apropriate detection
+      if (true) {
+        generatePolygonPointsKeyframes(line).forEach(kfs => {
+          const point = nodes.svg.value?.createSVGPoint() 
+          if (point) {
+            nodes.line.value?.points.appendItem(point)
+            gsap.to(point, {
+              keyframes: kfs,
+              scrollTrigger
+            })
+          }
+        })
+      } else {
+        generatePolygonLineKeyframes(line).at(-1)?.forEach(coords => {
+          const point = nodes.svg.value?.createSVGPoint() 
+          if (point){
+            point.x = coords.x
+            point.y = coords.y
+            nodes.line.value?.points.appendItem(point)
+          }
+        })
+      }
     }, 1000)
   })
   // Current section
