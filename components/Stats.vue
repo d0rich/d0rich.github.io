@@ -12,12 +12,12 @@
           starFromValue(firstStat.value)[posToIndex['1']],
           starFromValue(Math.min(firstStat.value, fifthStat.value))[posToIndex['5-1']],
           center
-        ])" class="fill-yellow-500" />
+        ])" class="fill-yellow-700" />
       <polygon :points="pointsToString([ 
           starFromValue(firstStat.value)[posToIndex['1']],
           starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
           center
-        ])"  class="fill-yellow-700" />
+        ])"  class="fill-yellow-500" />
     </g>
     <!-- 2 -->
     <g class="stats__single-stat">
@@ -64,12 +64,12 @@
           starFromValue(fifthStat.value)[posToIndex['5']],
           starFromValue(Math.min(forthStat.value, fifthStat.value))[posToIndex['4-5']],
           center
-        ])" class="fill-yellow-500" />
+        ])" class="fill-yellow-700" />
       <polygon :points="pointsToString([ 
           starFromValue(fifthStat.value)[posToIndex['5']],
           starFromValue(Math.min(fifthStat.value, firstStat.value))[posToIndex['5-1']],
           center
-        ])"  class="fill-yellow-700" />
+        ])"  class="fill-yellow-500" />
     </g>
   </svg>
 </template>
