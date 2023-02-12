@@ -18,6 +18,10 @@
           starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
           center
         ])"  class="fill-yellow-500" />
+      <text class="stats__title"
+        :x="starFromValue(firstStat.value)[posToIndex['1']][0]"
+        :y="starFromValue(firstStat.value)[posToIndex['1']][1]"
+      >{{ firstStat.title }}</text>
     </g>
     <!-- 2 -->
     <g class="stats__single-stat">
@@ -31,6 +35,10 @@
           starFromValue(Math.min(thirdStat.value, secondStat.value))[posToIndex['2-3']],
           center
         ])"  class="fill-yellow-700" />
+      <text class="stats__title"
+        :x="starFromValue(secondStat.value)[posToIndex['2']][0]"
+        :y="starFromValue(secondStat.value)[posToIndex['2']][1]"
+      >{{ secondStat.title }}</text>
     </g>
     <!-- 3 -->
     <g class="stats__single-stat">
@@ -149,9 +157,6 @@ export default defineComponent({
 </script>
 
 <style>
-.stats__single-stat{
-
-}
 .stats__single-stat:hover{
   animation: single-stat-hover 1.5s ease-in-out infinite;
 }
@@ -165,5 +170,14 @@ export default defineComponent({
   100% {
     filter: brightness(1);
   }
+}
+
+.stats__title {
+  font-size: 70px;
+  text-anchor: middle;
+  font-weight: bold;
+  transform: rotate(6deg);
+  paint-order: stroke;
+  @apply stroke-white stroke-2;
 }
 </style>

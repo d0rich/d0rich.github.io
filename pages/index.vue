@@ -130,6 +130,7 @@
           overlay-class="skills__bg-overlay">
       <div class="pt-20" />
       <h1>Skills</h1>
+      <Stats :values="[5, 2, 3, 4, 5]" :titles="['TypeScript', 'TypeScript', 'TypeScript', 'TypeScript', 'TypeScript']" />
       <div style="height: 200vh;"></div>
     </WrapperBackground>
     <WrapperBackground tag="section" id="story" 
