@@ -125,6 +125,13 @@
       </div>
       
     </WrapperBackground>
+    <!-- Block about skills -->
+    <WrapperBackground tag="section" id="skills" 
+          overlay-class="skills__bg-overlay">
+      <div class="pt-20" />
+      <h1>Skills</h1>
+      <div style="height: 200vh;"></div>
+    </WrapperBackground>
     <WrapperBackground tag="section" id="story" 
           overlay-class="story__bg-overlay">
       <div class="pt-20" />
@@ -281,7 +288,7 @@ export default defineComponent({
     const { storyNodeRefs } = useStoryAnimation()
     const actions: ActionFanItem<CharacterPose>[] = [
       { title: 'Sections', to: '#sections', emit: 'action' },
-      { title: 'About me', to: '#about', emit: 'profi' },
+      { title: 'Skills', to: '#skills', emit: 'profi' },
       { title: 'Story', to: '#story', emit: 'idle' }
     ]
     onBeforeRouteLeave(() => {
@@ -307,6 +314,7 @@ export default defineComponent({
 
 </script>
 
+<!-- Intro -->
 <style>
 .intro-shape {
   clip-path: polygon(3% 3%, 100% 0%, 95% 95%, 0% 100%);
@@ -339,6 +347,7 @@ export default defineComponent({
 }
 </style>
 
+<!-- Sections -->
 <style>
 #sections h1{
   @apply text-center text-7xl sm:text-8xl font-serif pt-3 mb-5 sm:mb-9 mx-2 font-bold;
@@ -394,6 +403,36 @@ export default defineComponent({
 }
 </style>
 
+<!-- Skills -->
+<style>
+#skills {
+  @apply font-dialog bg-[url('~/assets/img/bg/skills.png')] bg-cover bg-center;
+}
+#skills .skills__bg-overlay {
+  background: 
+    url('~/assets/img/character/action-shape-white.svg') fixed,
+    rgb(14 116 144 / var(--tw-bg-opacity));
+  background-position: center;
+  background-size: auto 100vh;
+  background-repeat: no-repeat;
+  @apply backdrop-saturate-50 bg-opacity-90;
+}
+
+#skills h1{
+  background: 
+    url('~/assets/img/character/action-shape-cyan-400.svg') fixed,
+    rgb(255 255 255 / var(--tw-bg-opacity));
+  background-position: center;
+  background-size: auto 100vh;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+	background-clip: text;
+  color: transparent;
+  @apply text-center text-7xl sm:text-8xl pt-3 sm:mb-9 mx-2 mb-20 font-bold;
+}
+</style>
+
+<!-- Story -->
 <style>
 #story {
   @apply font-dialog bg-[url('~/assets/img/bg/timeline.png')] bg-cover bg-center;
@@ -411,7 +450,17 @@ export default defineComponent({
 }
 
 #story h1{
-  @apply text-center text-7xl sm:text-8xl pt-3 mb-5 sm:mb-9 mx-2 mb-20 font-bold;
+  background: 
+    url('~/assets/img/character/idle-shape-yellow-400.svg') fixed,
+    rgb(255 255 255 / var(--tw-bg-opacity));
+  background-position-x: calc(60vw - 50vh);
+  background-position-y: -25vh;
+  background-size: auto 150vh;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+	background-clip: text;
+  color: transparent;
+  @apply text-center text-7xl sm:text-8xl pt-3 sm:mb-9 mx-2 mb-20 font-bold;
 }
 
 #story .character {
