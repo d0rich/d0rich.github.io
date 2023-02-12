@@ -7,60 +7,70 @@
             'fill-neutral-800': !(index % 2),
           }"/>
     <!-- 1 -->
-    <polygon :points="pointsToString([ 
-        starFromValue(firstStat.value)[posToIndex['1']],
-        starFromValue(Math.min(firstStat.value, fifthStat.value))[posToIndex['5-1']],
-        center
-      ])" class="fill-yellow-500" />
-    <polygon :points="pointsToString([ 
-        starFromValue(firstStat.value)[posToIndex['1']],
-        starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
-        center
-      ])"  class="fill-yellow-700" />
+    <g class="stats__single-stat">
+      <polygon :points="pointsToString([ 
+          starFromValue(firstStat.value)[posToIndex['1']],
+          starFromValue(Math.min(firstStat.value, fifthStat.value))[posToIndex['5-1']],
+          center
+        ])" class="fill-yellow-500" />
+      <polygon :points="pointsToString([ 
+          starFromValue(firstStat.value)[posToIndex['1']],
+          starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
+          center
+        ])"  class="fill-yellow-700" />
+    </g>
     <!-- 2 -->
-    <polygon :points="pointsToString([ 
-        starFromValue(secondStat.value)[posToIndex['2']],
-        starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
-        center
-      ])" class="fill-yellow-500" />
-    <polygon :points="pointsToString([ 
-        starFromValue(secondStat.value)[posToIndex['2']],
-        starFromValue(Math.min(thirdStat.value, secondStat.value))[posToIndex['2-3']],
-        center
-      ])"  class="fill-yellow-700" />
+    <g class="stats__single-stat">
+      <polygon :points="pointsToString([ 
+          starFromValue(secondStat.value)[posToIndex['2']],
+          starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
+          center
+        ])" class="fill-yellow-500" />
+      <polygon :points="pointsToString([ 
+          starFromValue(secondStat.value)[posToIndex['2']],
+          starFromValue(Math.min(thirdStat.value, secondStat.value))[posToIndex['2-3']],
+          center
+        ])"  class="fill-yellow-700" />
+    </g>
     <!-- 3 -->
-    <polygon :points="pointsToString([ 
-        starFromValue(thirdStat.value)[posToIndex['3']],
-        starFromValue(Math.min(secondStat.value, thirdStat.value))[posToIndex['2-3']],
-        center
-      ])" class="fill-yellow-500" />
-    <polygon :points="pointsToString([ 
-        starFromValue(thirdStat.value)[posToIndex['3']],
-        starFromValue(Math.min(thirdStat.value, forthStat.value))[posToIndex['3-4']],
-        center
-      ])"  class="fill-yellow-700" />
+    <g class="stats__single-stat">
+      <polygon :points="pointsToString([ 
+          starFromValue(thirdStat.value)[posToIndex['3']],
+          starFromValue(Math.min(secondStat.value, thirdStat.value))[posToIndex['2-3']],
+          center
+        ])" class="fill-yellow-500" />
+      <polygon :points="pointsToString([ 
+          starFromValue(thirdStat.value)[posToIndex['3']],
+          starFromValue(Math.min(thirdStat.value, forthStat.value))[posToIndex['3-4']],
+          center
+        ])"  class="fill-yellow-700" />
+    </g>
     <!-- 4 -->
-    <polygon :points="pointsToString([ 
-        starFromValue(forthStat.value)[posToIndex['4']],
-        starFromValue(Math.min(thirdStat.value, forthStat.value))[posToIndex['3-4']],
-        center
-      ])" class="fill-yellow-500" />
-    <polygon :points="pointsToString([ 
-        starFromValue(forthStat.value)[posToIndex['4']],
-        starFromValue(Math.min(forthStat.value, fifthStat.value))[posToIndex['4-5']],
-        center
-      ])"  class="fill-yellow-700" />
+    <g class="stats__single-stat">
+      <polygon :points="pointsToString([ 
+          starFromValue(forthStat.value)[posToIndex['4']],
+          starFromValue(Math.min(thirdStat.value, forthStat.value))[posToIndex['3-4']],
+          center
+        ])" class="fill-yellow-500" />
+      <polygon :points="pointsToString([ 
+          starFromValue(forthStat.value)[posToIndex['4']],
+          starFromValue(Math.min(forthStat.value, fifthStat.value))[posToIndex['4-5']],
+          center
+        ])"  class="fill-yellow-700" />
+    </g>
     <!-- 5 -->
-    <polygon :points="pointsToString([ 
-        starFromValue(fifthStat.value)[posToIndex['5']],
-        starFromValue(Math.min(forthStat.value, fifthStat.value))[posToIndex['4-5']],
-        center
-      ])" class="fill-yellow-500" />
-    <polygon :points="pointsToString([ 
-        starFromValue(fifthStat.value)[posToIndex['5']],
-        starFromValue(Math.min(fifthStat.value, firstStat.value))[posToIndex['5-1']],
-        center
-      ])"  class="fill-yellow-700" />
+    <g class="stats__single-stat">
+      <polygon :points="pointsToString([ 
+          starFromValue(fifthStat.value)[posToIndex['5']],
+          starFromValue(Math.min(forthStat.value, fifthStat.value))[posToIndex['4-5']],
+          center
+        ])" class="fill-yellow-500" />
+      <polygon :points="pointsToString([ 
+          starFromValue(fifthStat.value)[posToIndex['5']],
+          starFromValue(Math.min(fifthStat.value, firstStat.value))[posToIndex['5-1']],
+          center
+        ])"  class="fill-yellow-700" />
+    </g>
   </svg>
 </template>
 
@@ -137,3 +147,23 @@ export default defineComponent({
   }
 })
 </script>
+
+<style>
+.stats__single-stat{
+
+}
+.stats__single-stat:hover{
+  animation: single-stat-hover 1.5s ease-in-out infinite;
+}
+@keyframes single-stat-hover {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.35);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+</style>
