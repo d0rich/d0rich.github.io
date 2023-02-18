@@ -1,5 +1,5 @@
 <template>
-  <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="-500 -500 2000 2000" xmlns="http://www.w3.org/2000/svg">
     <polygon v-for="star, index in scaledStars" :key="index" 
           :points="pointsToString(star)" 
           :class="{
@@ -18,10 +18,6 @@
           starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
           center
         ])"  class="fill-yellow-500" />
-      <text class="stats__title"
-        :x="starFromValue(firstStat.value)[posToIndex['1']][0]"
-        :y="starFromValue(firstStat.value)[posToIndex['1']][1]"
-      >{{ firstStat.title }}</text>
     </g>
     <!-- 2 -->
     <g class="stats__single-stat">
@@ -35,10 +31,6 @@
           starFromValue(Math.min(thirdStat.value, secondStat.value))[posToIndex['2-3']],
           center
         ])"  class="fill-yellow-700" />
-      <text class="stats__title"
-        :x="starFromValue(secondStat.value)[posToIndex['2']][0]"
-        :y="starFromValue(secondStat.value)[posToIndex['2']][1]"
-      >{{ secondStat.title }}</text>
     </g>
     <!-- 3 -->
     <g class="stats__single-stat">
