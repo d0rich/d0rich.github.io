@@ -79,6 +79,40 @@
           ])"  class="fill-yellow-500" />
       </g>
     </g>
+    <!-- Images -->
+    <g>
+
+    </g>
+    <!-- Titles -->
+    <g>
+      <text
+        :x="fullStarPoints[posToIndex['1']][0]"
+        :y="fullStarPoints[posToIndex['1']][1] - 100"
+        class="stats__title"
+      >{{ firstStat.title }}</text>
+      <text
+        :x="fullStarPoints[posToIndex['2']][0] + 100"
+        :y="fullStarPoints[posToIndex['2']][1] - 100"
+        class="stats__title"
+      >{{ secondStat.title }}</text>
+      <text
+        dominant-baseline="hanging" 
+        :x="fullStarPoints[posToIndex['3']][0] + 150"
+        :y="fullStarPoints[posToIndex['3']][1] + 150"
+        class="stats__title"
+      >{{ thirdStat.title }}</text>
+      <text
+        dominant-baseline="hanging" 
+        :x="fullStarPoints[posToIndex['4']][0] - 150"
+        :y="fullStarPoints[posToIndex['4']][1] + 150"
+        class="stats__title"
+      >{{ forthStat.title }}</text>
+      <text
+        :x="fullStarPoints[posToIndex['5']][0] - 100"
+        :y="fullStarPoints[posToIndex['5']][1] - 100"
+        class="stats__title"
+      >{{ fifthStat.title }}</text>
+    </g>
     
   </svg>
 </template>
@@ -174,11 +208,12 @@ export default defineComponent({
 }
 
 .stats__title {
-  font-size: 70px;
-  text-anchor: middle;
-  font-weight: bold;
-  transform: rotate(6deg);
+  font-size: 150px;
   paint-order: stroke;
-  @apply stroke-white stroke-2;
+  text-anchor: middle;
+  dominant-baseline: text-top;
+  font-weight: 900;
+  stroke-width: 20;
+  @apply fill-black font-sans stroke-yellow-600;
 }
 </style>
