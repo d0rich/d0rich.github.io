@@ -89,29 +89,44 @@
         :x="fullStarPoints[posToIndex['1']][0]"
         :y="fullStarPoints[posToIndex['1']][1] - 100"
         class="stats__title"
-      >{{ firstStat.title }}</text>
+      >
+        {{ firstStat.title }}
+        <tspan class="stats__title__value">{{ firstStat.value }}</tspan>
+      </text>
       <text
         :x="fullStarPoints[posToIndex['2']][0] + 100"
         :y="fullStarPoints[posToIndex['2']][1] - 100"
         class="stats__title"
-      >{{ secondStat.title }}</text>
+      >
+        {{ secondStat.title }}
+        <tspan class="stats__title__value">{{ secondStat.value }}</tspan>
+      </text>
       <text
         dominant-baseline="hanging" 
         :x="fullStarPoints[posToIndex['3']][0] + 150"
         :y="fullStarPoints[posToIndex['3']][1] + 150"
         class="stats__title"
-      >{{ thirdStat.title }}</text>
+      >
+        {{ thirdStat.title }}
+        <tspan class="stats__title__value">{{ thirdStat.value }}</tspan>
+      </text>
       <text
         dominant-baseline="hanging" 
         :x="fullStarPoints[posToIndex['4']][0] - 150"
         :y="fullStarPoints[posToIndex['4']][1] + 150"
         class="stats__title"
-      >{{ forthStat.title }}</text>
+      >
+        {{ forthStat.title }}
+        <tspan class="stats__title__value">{{ forthStat.value }}</tspan>
+      </text>
       <text
         :x="fullStarPoints[posToIndex['5']][0] - 100"
         :y="fullStarPoints[posToIndex['5']][1] - 100"
         class="stats__title"
-      >{{ fifthStat.title }}</text>
+      >
+        {{ fifthStat.title }}
+        <tspan class="stats__title__value">{{ fifthStat.value }}</tspan>
+      </text>
     </g>
     
   </svg>
@@ -208,12 +223,19 @@ export default defineComponent({
 }
 
 .stats__title {
-  font-size: 150px;
+  font-size: 100px;
   paint-order: stroke;
   text-anchor: middle;
   dominant-baseline: text-top;
   font-weight: 900;
   stroke-width: 20;
   @apply fill-black font-sans stroke-yellow-600;
+}
+
+.stats__title__value {
+  font-size: 80px;
+  stroke-width: 30;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 </style>
