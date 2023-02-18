@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
-    '@morev/vue-transitions/nuxt'
+    'nuxt-icon'
   ],
   css: [
     'assets/css/theme.css'

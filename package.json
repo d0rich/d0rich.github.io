@@ -19,6 +19,7 @@
     "@morev/vue-transitions": "^2.3.5",
     "dateformat": "^5.0.3",
     "gsap": "^3.11.4",
-    "mobile-detect": "^1.4.5"
+    "mobile-detect": "^1.4.5",
+    "nuxt-icon": "^0.3.2"
   }
 }

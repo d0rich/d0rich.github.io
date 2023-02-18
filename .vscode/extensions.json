@@ -3,6 +3,7 @@
     "vue.vscode-typescript-vue-plugin",
     "vue.volar",
     "nuxt.mdc",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "antfu.iconify"
   ]
 }
