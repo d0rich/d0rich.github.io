@@ -88,6 +88,7 @@
           <text
             :x="fullStarPoints[posToIndex['1']][0]"
             :y="fullStarPoints[posToIndex['1']][1] - 100"
+            :transform-origin="`${fullStarPoints[posToIndex['1']][0]} ${fullStarPoints[posToIndex['1']][1] - 100}`"
             class="stats__title"
           >
             {{ firstStat.title }}
@@ -96,6 +97,7 @@
           <text
             :x="fullStarPoints[posToIndex['2']][0] + 100"
             :y="fullStarPoints[posToIndex['2']][1] - 100"
+            :transform-origin="`${fullStarPoints[posToIndex['2']][0] + 100} ${fullStarPoints[posToIndex['2']][1] - 100}`"
             class="stats__title"
           >
             {{ secondStat.title }}
@@ -105,6 +107,7 @@
             dominant-baseline="hanging" 
             :x="fullStarPoints[posToIndex['3']][0] + 150"
             :y="fullStarPoints[posToIndex['3']][1] + 150"
+            :transform-origin="`${fullStarPoints[posToIndex['3']][0] + 150} ${fullStarPoints[posToIndex['3']][1] + 150}`"
             class="stats__title"
           >
             {{ thirdStat.title }}
@@ -114,6 +117,7 @@
             dominant-baseline="hanging" 
             :x="fullStarPoints[posToIndex['4']][0] - 150"
             :y="fullStarPoints[posToIndex['4']][1] + 150"
+            :transform-origin="`${fullStarPoints[posToIndex['4']][0] - 150} ${fullStarPoints[posToIndex['4']][1] + 150}`"
             class="stats__title"
           >
             {{ forthStat.title }}
@@ -122,6 +126,7 @@
           <text
             :x="fullStarPoints[posToIndex['5']][0] - 100"
             :y="fullStarPoints[posToIndex['5']][1] - 100"
+            :transform-origin="`${fullStarPoints[posToIndex['5']][0] - 100} ${fullStarPoints[posToIndex['5']][1] - 100}`"
             class="stats__title"
           >
             {{ fifthStat.title }}
@@ -231,13 +236,13 @@ export default defineComponent({
   dominant-baseline: text-top;
   font-weight: 900;
   stroke-width: 20;
+  rotate: 5deg;
   @apply fill-black font-sans stroke-yellow-600;
 }
 
 .stats__title__value {
   font-size: 80px;
-  stroke-width: 30;
-  stroke-linecap: round;
+  stroke-width: 20;
   stroke-linejoin: round;
 }
 </style>
