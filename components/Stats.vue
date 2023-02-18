@@ -82,6 +82,13 @@
           </g>
         </g>        
       </svg>
+      <div class="stats__images">
+        <div class="stats__image"><slot name="icon-1" /></div>
+        <div class="stats__image"><slot name="icon-2" /></div>
+        <div class="stats__image"><slot name="icon-3" /></div>
+        <div class="stats__image"><slot name="icon-4" /></div>
+        <div class="stats__image"><slot name="icon-5" /></div>
+      </div>
       <svg viewBox="-500 -500 2000 2000" xmlns="http://www.w3.org/2000/svg" 
         class="absolute inset-0 pointer-events-none">
         <g>
@@ -234,6 +241,41 @@ export default defineComponent({
   100% {
     filter: brightness(1);
   }
+}
+
+.stats__images {
+  @apply absolute inset-0 pointer-events-none;
+}
+
+.stats__image {
+  width: 20%;
+  height: 20%;
+  @apply absolute;
+}
+
+.stats__image:nth-child(1){
+  top: 2%;
+  left: 50%;
+}
+
+.stats__image:nth-child(2){
+  top: 20%;
+  right: 6%;
+}
+
+.stats__image:nth-child(3){
+  bottom: 8%;
+  right: 30%;
+}
+
+.stats__image:nth-child(4){
+  bottom: 4%;
+  left: 10%;
+}
+
+.stats__image:nth-child(5){
+  top: 30%;
+  left: 6%;
 }
 
 .stats__title {
