@@ -1,11 +1,16 @@
 <template>
   <svg viewBox="-500 -500 2000 2000" xmlns="http://www.w3.org/2000/svg">
-    <polygon v-for="star, index in scaledStars" :key="index" 
-          :points="pointsToString(star)" 
-          :class="{
-            'fill-neutral-500': index % 2,
-            'fill-neutral-800': !(index % 2),
-          }"/>
+    <polygon points="100,-350 1500,-500 1000,1350 -500,1500" class="fill-neutral-900" />
+    <polygon :points="pointsToString(shrinkStar(fullStarPoints, 2))" class="fill-neutral-500" />
+    <!-- Stats bg -->
+    <g>
+      <polygon v-for="star, index in scaledStars" :key="index" 
+            :points="pointsToString(star)" 
+            :class="{
+              'fill-neutral-500': index % 2,
+              'fill-neutral-800': !(index % 2),
+            }"/>
+    </g>
     <!-- Stats value -->
     <g>
       <!-- 1 -->
