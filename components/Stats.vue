@@ -21,12 +21,12 @@
                 starFromValue(firstStat.value)[posToIndex['1']],
                 starFromValue(Math.min(firstStat.value, fifthStat.value))[posToIndex['5-1']],
                 center
-              ])" class="fill-yellow-700" />
+              ])" class="stats__star--dark" />
             <polygon :points="pointsToString([ 
                 starFromValue(firstStat.value)[posToIndex['1']],
                 starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
                 center
-              ])"  class="fill-yellow-500" />
+              ])"  class="stats__star--light" />
           </g>
           <!-- 2 -->
           <g class="stats__single-stat">
@@ -34,12 +34,12 @@
                 starFromValue(secondStat.value)[posToIndex['2']],
                 starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
                 center
-              ])" class="fill-yellow-500" />
+              ])" class="stats__star--light" />
             <polygon :points="pointsToString([ 
                 starFromValue(secondStat.value)[posToIndex['2']],
                 starFromValue(Math.min(thirdStat.value, secondStat.value))[posToIndex['2-3']],
                 center
-              ])"  class="fill-yellow-700" />
+              ])"  class="stats__star--dark" />
           </g>
           <!-- 3 -->
           <g class="stats__single-stat">
@@ -47,12 +47,12 @@
                 starFromValue(thirdStat.value)[posToIndex['3']],
                 starFromValue(Math.min(secondStat.value, thirdStat.value))[posToIndex['2-3']],
                 center
-              ])" class="fill-yellow-500" />
+              ])" class="stats__star--light" />
             <polygon :points="pointsToString([ 
                 starFromValue(thirdStat.value)[posToIndex['3']],
                 starFromValue(Math.min(thirdStat.value, forthStat.value))[posToIndex['3-4']],
                 center
-              ])"  class="fill-yellow-700" />
+              ])"  class="stats__star--dark" />
           </g>
           <!-- 4 -->
           <g class="stats__single-stat">
@@ -60,12 +60,12 @@
                 starFromValue(forthStat.value)[posToIndex['4']],
                 starFromValue(Math.min(thirdStat.value, forthStat.value))[posToIndex['3-4']],
                 center
-              ])" class="fill-yellow-500" />
+              ])" class="stats__star--light" />
             <polygon :points="pointsToString([ 
                 starFromValue(forthStat.value)[posToIndex['4']],
                 starFromValue(Math.min(forthStat.value, fifthStat.value))[posToIndex['4-5']],
                 center
-              ])"  class="fill-yellow-700" />
+              ])"  class="stats__star--dark" />
           </g>
           <!-- 5 -->
           <g class="stats__single-stat">
@@ -73,12 +73,12 @@
                 starFromValue(fifthStat.value)[posToIndex['5']],
                 starFromValue(Math.min(forthStat.value, fifthStat.value))[posToIndex['4-5']],
                 center
-              ])" class="fill-yellow-700" />
+              ])" class="stats__star--dark" />
             <polygon :points="pointsToString([ 
                 starFromValue(fifthStat.value)[posToIndex['5']],
                 starFromValue(Math.min(fifthStat.value, firstStat.value))[posToIndex['5-1']],
                 center
-              ])"  class="fill-yellow-500" />
+              ])"  class="stats__star--light" />
           </g>
         </g>        
       </svg>
@@ -217,6 +217,13 @@ export default defineComponent({
 .stats__single-stat:hover{
   animation: single-stat-hover 1.5s ease-in-out infinite;
 }
+.stats__star--light {
+  @apply fill-yellow-400;
+}
+
+.stats__star--dark {
+  @apply fill-yellow-600;
+}
 @keyframes single-stat-hover {
   0% {
     filter: brightness(1);
@@ -237,7 +244,7 @@ export default defineComponent({
   font-weight: 900;
   stroke-width: 20;
   rotate: 5deg;
-  @apply fill-black font-sans stroke-yellow-600;
+  @apply fill-black font-sans stroke-yellow-500;
 }
 
 .stats__title__value {
