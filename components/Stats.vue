@@ -1,135 +1,137 @@
 <template>
-  <svg viewBox="-500 -500 2000 2000" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="100,-350 1500,-500 1000,1350 -500,1500" class="fill-neutral-900" />
-    <polygon :points="pointsToString(shrinkStar(fullStarPoints, 2))" class="fill-neutral-500" />
-    <!-- Stats bg -->
-    <g>
-      <polygon v-for="star, index in scaledStars" :key="index" 
-            :points="pointsToString(star)" 
-            :class="{
-              'fill-neutral-500': index % 2,
-              'fill-neutral-800': !(index % 2),
-            }"/>
-    </g>
-    <!-- Stats value -->
-    <g>
-      <!-- 1 -->
-      <g class="stats__single-stat">
-        <polygon :points="pointsToString([ 
-            starFromValue(firstStat.value)[posToIndex['1']],
-            starFromValue(Math.min(firstStat.value, fifthStat.value))[posToIndex['5-1']],
-            center
-          ])" class="fill-yellow-700" />
-        <polygon :points="pointsToString([ 
-            starFromValue(firstStat.value)[posToIndex['1']],
-            starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
-            center
-          ])"  class="fill-yellow-500" />
-      </g>
-      <!-- 2 -->
-      <g class="stats__single-stat">
-        <polygon :points="pointsToString([ 
-            starFromValue(secondStat.value)[posToIndex['2']],
-            starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
-            center
-          ])" class="fill-yellow-500" />
-        <polygon :points="pointsToString([ 
-            starFromValue(secondStat.value)[posToIndex['2']],
-            starFromValue(Math.min(thirdStat.value, secondStat.value))[posToIndex['2-3']],
-            center
-          ])"  class="fill-yellow-700" />
-      </g>
-      <!-- 3 -->
-      <g class="stats__single-stat">
-        <polygon :points="pointsToString([ 
-            starFromValue(thirdStat.value)[posToIndex['3']],
-            starFromValue(Math.min(secondStat.value, thirdStat.value))[posToIndex['2-3']],
-            center
-          ])" class="fill-yellow-500" />
-        <polygon :points="pointsToString([ 
-            starFromValue(thirdStat.value)[posToIndex['3']],
-            starFromValue(Math.min(thirdStat.value, forthStat.value))[posToIndex['3-4']],
-            center
-          ])"  class="fill-yellow-700" />
-      </g>
-      <!-- 4 -->
-      <g class="stats__single-stat">
-        <polygon :points="pointsToString([ 
-            starFromValue(forthStat.value)[posToIndex['4']],
-            starFromValue(Math.min(thirdStat.value, forthStat.value))[posToIndex['3-4']],
-            center
-          ])" class="fill-yellow-500" />
-        <polygon :points="pointsToString([ 
-            starFromValue(forthStat.value)[posToIndex['4']],
-            starFromValue(Math.min(forthStat.value, fifthStat.value))[posToIndex['4-5']],
-            center
-          ])"  class="fill-yellow-700" />
-      </g>
-      <!-- 5 -->
-      <g class="stats__single-stat">
-        <polygon :points="pointsToString([ 
-            starFromValue(fifthStat.value)[posToIndex['5']],
-            starFromValue(Math.min(forthStat.value, fifthStat.value))[posToIndex['4-5']],
-            center
-          ])" class="fill-yellow-700" />
-        <polygon :points="pointsToString([ 
-            starFromValue(fifthStat.value)[posToIndex['5']],
-            starFromValue(Math.min(fifthStat.value, firstStat.value))[posToIndex['5-1']],
-            center
-          ])"  class="fill-yellow-500" />
-      </g>
-    </g>
-    <!-- Images -->
-    <g>
-
-    </g>
-    <!-- Titles -->
-    <g>
-      <text
-        :x="fullStarPoints[posToIndex['1']][0]"
-        :y="fullStarPoints[posToIndex['1']][1] - 100"
-        class="stats__title"
-      >
-        {{ firstStat.title }}
-        <tspan class="stats__title__value">{{ firstStat.value }}</tspan>
-      </text>
-      <text
-        :x="fullStarPoints[posToIndex['2']][0] + 100"
-        :y="fullStarPoints[posToIndex['2']][1] - 100"
-        class="stats__title"
-      >
-        {{ secondStat.title }}
-        <tspan class="stats__title__value">{{ secondStat.value }}</tspan>
-      </text>
-      <text
-        dominant-baseline="hanging" 
-        :x="fullStarPoints[posToIndex['3']][0] + 150"
-        :y="fullStarPoints[posToIndex['3']][1] + 150"
-        class="stats__title"
-      >
-        {{ thirdStat.title }}
-        <tspan class="stats__title__value">{{ thirdStat.value }}</tspan>
-      </text>
-      <text
-        dominant-baseline="hanging" 
-        :x="fullStarPoints[posToIndex['4']][0] - 150"
-        :y="fullStarPoints[posToIndex['4']][1] + 150"
-        class="stats__title"
-      >
-        {{ forthStat.title }}
-        <tspan class="stats__title__value">{{ forthStat.value }}</tspan>
-      </text>
-      <text
-        :x="fullStarPoints[posToIndex['5']][0] - 100"
-        :y="fullStarPoints[posToIndex['5']][1] - 100"
-        class="stats__title"
-      >
-        {{ fifthStat.title }}
-        <tspan class="stats__title__value">{{ fifthStat.value }}</tspan>
-      </text>
-    </g>
-    
-  </svg>
+  <figure>
+    <div class="relative">
+      <svg viewBox="-500 -500 2000 2000" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="100,-350 1500,-500 1000,1350 -500,1500" class="fill-neutral-900" />
+        <polygon :points="pointsToString(shrinkStar(fullStarPoints, 2))" class="fill-neutral-500" />
+        <!-- Stats bg -->
+        <g>
+          <polygon v-for="star, index in scaledStars" :key="index" 
+                :points="pointsToString(star)" 
+                :class="{
+                  'fill-neutral-500': index % 2,
+                  'fill-neutral-800': !(index % 2),
+                }"/>
+        </g>
+        <!-- Stats value -->
+        <g>
+          <!-- 1 -->
+          <g class="stats__single-stat">
+            <polygon :points="pointsToString([ 
+                starFromValue(firstStat.value)[posToIndex['1']],
+                starFromValue(Math.min(firstStat.value, fifthStat.value))[posToIndex['5-1']],
+                center
+              ])" class="fill-yellow-700" />
+            <polygon :points="pointsToString([ 
+                starFromValue(firstStat.value)[posToIndex['1']],
+                starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
+                center
+              ])"  class="fill-yellow-500" />
+          </g>
+          <!-- 2 -->
+          <g class="stats__single-stat">
+            <polygon :points="pointsToString([ 
+                starFromValue(secondStat.value)[posToIndex['2']],
+                starFromValue(Math.min(firstStat.value, secondStat.value))[posToIndex['1-2']],
+                center
+              ])" class="fill-yellow-500" />
+            <polygon :points="pointsToString([ 
+                starFromValue(secondStat.value)[posToIndex['2']],
+                starFromValue(Math.min(thirdStat.value, secondStat.value))[posToIndex['2-3']],
+                center
+              ])"  class="fill-yellow-700" />
+          </g>
+          <!-- 3 -->
+          <g class="stats__single-stat">
+            <polygon :points="pointsToString([ 
+                starFromValue(thirdStat.value)[posToIndex['3']],
+                starFromValue(Math.min(secondStat.value, thirdStat.value))[posToIndex['2-3']],
+                center
+              ])" class="fill-yellow-500" />
+            <polygon :points="pointsToString([ 
+                starFromValue(thirdStat.value)[posToIndex['3']],
+                starFromValue(Math.min(thirdStat.value, forthStat.value))[posToIndex['3-4']],
+                center
+              ])"  class="fill-yellow-700" />
+          </g>
+          <!-- 4 -->
+          <g class="stats__single-stat">
+            <polygon :points="pointsToString([ 
+                starFromValue(forthStat.value)[posToIndex['4']],
+                starFromValue(Math.min(thirdStat.value, forthStat.value))[posToIndex['3-4']],
+                center
+              ])" class="fill-yellow-500" />
+            <polygon :points="pointsToString([ 
+                starFromValue(forthStat.value)[posToIndex['4']],
+                starFromValue(Math.min(forthStat.value, fifthStat.value))[posToIndex['4-5']],
+                center
+              ])"  class="fill-yellow-700" />
+          </g>
+          <!-- 5 -->
+          <g class="stats__single-stat">
+            <polygon :points="pointsToString([ 
+                starFromValue(fifthStat.value)[posToIndex['5']],
+                starFromValue(Math.min(forthStat.value, fifthStat.value))[posToIndex['4-5']],
+                center
+              ])" class="fill-yellow-700" />
+            <polygon :points="pointsToString([ 
+                starFromValue(fifthStat.value)[posToIndex['5']],
+                starFromValue(Math.min(fifthStat.value, firstStat.value))[posToIndex['5-1']],
+                center
+              ])"  class="fill-yellow-500" />
+          </g>
+        </g>        
+      </svg>
+      <svg viewBox="-500 -500 2000 2000" xmlns="http://www.w3.org/2000/svg" 
+        class="absolute inset-0 pointer-events-none">
+        <g>
+          <text
+            :x="fullStarPoints[posToIndex['1']][0]"
+            :y="fullStarPoints[posToIndex['1']][1] - 100"
+            class="stats__title"
+          >
+            {{ firstStat.title }}
+            <tspan class="stats__title__value">{{ firstStat.value }}</tspan>
+          </text>
+          <text
+            :x="fullStarPoints[posToIndex['2']][0] + 100"
+            :y="fullStarPoints[posToIndex['2']][1] - 100"
+            class="stats__title"
+          >
+            {{ secondStat.title }}
+            <tspan class="stats__title__value">{{ secondStat.value }}</tspan>
+          </text>
+          <text
+            dominant-baseline="hanging" 
+            :x="fullStarPoints[posToIndex['3']][0] + 150"
+            :y="fullStarPoints[posToIndex['3']][1] + 150"
+            class="stats__title"
+          >
+            {{ thirdStat.title }}
+            <tspan class="stats__title__value">{{ thirdStat.value }}</tspan>
+          </text>
+          <text
+            dominant-baseline="hanging" 
+            :x="fullStarPoints[posToIndex['4']][0] - 150"
+            :y="fullStarPoints[posToIndex['4']][1] + 150"
+            class="stats__title"
+          >
+            {{ forthStat.title }}
+            <tspan class="stats__title__value">{{ forthStat.value }}</tspan>
+          </text>
+          <text
+            :x="fullStarPoints[posToIndex['5']][0] - 100"
+            :y="fullStarPoints[posToIndex['5']][1] - 100"
+            class="stats__title"
+          >
+            {{ fifthStat.title }}
+            <tspan class="stats__title__value">{{ fifthStat.value }}</tspan>
+          </text>
+        </g>
+      </svg>
+    </div>
+  </figure>
+  
 </template>
 
 <script lang="ts">
