@@ -1,6 +1,7 @@
 <template>
   <WrapperShape class="card__vars" :shape-class="{
       'card__bg--homepage-story': mode === 'homepage-story',
+      'card__bg--homepage-skills': mode === 'homepage-skills',
       'card__bg': mode === 'default'
     }">
     <div class="card__content">
@@ -15,7 +16,7 @@ export default defineComponent({
   name: 'Card',
   props: {
     mode: {
-      type: String as () => 'homepage-story' | 'default',
+      type: String as () => 'default' | 'homepage-story' | 'homepage-skills',
       default: 'default'
     }
   },
@@ -45,6 +46,16 @@ export default defineComponent({
   background-position-x: calc(60vw - 50vh);
   background-position-y: -25vh;
   background-size: auto 150vh;
+  background-repeat: no-repeat;
+  clip-path: var(--card-clip-path);
+}
+
+.card__bg--homepage-skills {
+  background: 
+    url('~/assets/img/character/action-shape-cyan-400.svg') fixed,
+    rgb(255 255 255 / var(--tw-bg-opacity));
+  background-position: center;
+  background-size: auto 100vh;
   background-repeat: no-repeat;
   clip-path: var(--card-clip-path);
 }

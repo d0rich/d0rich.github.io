@@ -130,29 +130,167 @@
           overlay-class="skills__bg-overlay">
       <div class="pt-20" />
       <h1>Skills</h1>
-      <Stats :values="[5, 2, 3, 4, 5]" :titles="['TypeScript', 'TypeScript', 'TypeScript', 'TypeScript', 'TypeScript']" />
-      <div style="height: 200vh;"></div>
+      <div class="max-w-7xl mx-auto px-3">
+        <div class="skills-group">
+          <Stats class="w-96"
+                :values="[5, 4, 3, 3, 5]" 
+                :titles="['TypeScript', 'Python', 'Kotlin', 'C#', 'HTML/CSS']">
+            <template #icon-1>
+              <Icon class="w-full h-full" name="vscode-icons:file-type-typescript-official" />
+            </template>
+            <template #icon-2>
+              <Icon class="w-full h-full" name="vscode-icons:file-type-python" />
+            </template>
+            <template #icon-3>
+              <Icon class="w-full h-full" name="vscode-icons:file-type-kotlin" />
+            </template>
+            <template #icon-4>
+              <Icon class="w-full h-full" name="vscode-icons:file-type-csharp2" />
+            </template>
+            <template #icon-5>
+              <Icon class="w-2/3 h-auto mt-[20%]" name="vscode-icons:file-type-html" />
+              <Icon class="w-2/3 h-auto ml-[20%] -mt-[40%]" name="vscode-icons:file-type-css" />
+            </template>
+          </Stats>
+          <Card mode="homepage-skills">
+            <CardTitle>Programming Languages</CardTitle>
+            <p>
+              Knowing multiple programming languages makes it easier to <b>learn new technologies quickly</b>. 
+              The <b>fundamental concepts</b> are similar, allowing for easy recognition of similarities and 
+              differences between languages. This continuous learning makes me a more <b>versatile programmer</b>.
+            </p>
+          </Card>
+        </div>
+        <div class="skills-group">
+          <Stats class="w-96"
+                :values="[5, 5, 4, 4, 2]" 
+                :titles="['Single Page App', 'SSR/SSG', 'SEO', 'Deployment', 'Web3']">
+            <template #icon-1>
+              <Icon class="w-full h-full" name="vscode-icons:file-type-vue" />
+            </template>
+            <template #icon-2>
+              <Icon class="w-full h-full" name="vscode-icons:file-type-nuxt" />
+            </template>
+            <template #icon-3>
+              <Icon class="w-full h-full" name="logos:google-icon" />
+            </template>
+            <template #icon-4>
+              <Icon class="w-full h-full" name="flat-color-icons:workflow" />
+            </template>
+            <template #icon-5>
+              <Icon class="w-full h-full" name="logos:ethereum-color" />
+            </template>
+          </Stats>
+          <Card mode="homepage-skills">
+            <CardTitle>Web</CardTitle>
+            <p>
+              My skills in <b>web technologies</b> enable me to deliver fast, high-performing, 
+              and <b>user-friendly</b> web applications that are optimized for search engines 
+              and provide a great <b>user experience</b>.
+            </p>
+          </Card>
+        </div>
+        <div class="skills-group">
+          <Stats class="w-96"
+                :values="[5, 5, 5, 1, 5]" 
+                :titles="['Data Modeling', 'Storage', 'Integration', 'Machine Learning', 'Documentation']">
+            <template #icon-1>
+              <Icon class="w-full h-full" name="flat-color-icons:mind-map" />
+            </template>
+            <template #icon-2>
+              <Icon class="w-full h-full" name="flat-color-icons:database" />
+            </template>
+            <template #icon-3>
+              <Icon class="w-full h-full" name="flat-color-icons:collect" />
+            </template>
+            <template #icon-4>
+              <Icon class="w-full h-full" name="logos:tensorflow" />
+            </template>
+            <template #icon-5>
+              <Icon class="w-full h-full" name="flat-color-icons:document" />
+            </template>
+          </Stats>
+          <Card mode="homepage-skills">
+            <CardTitle>Information</CardTitle>
+            <p>
+              My knowledge of different <b>storage solutions</b> enables me to select the most appropriate 
+              storage option for a given use case. I have extensive experience in reading and <b>documenting</b> 
+              technical materials. 
+            </p>
+            <p>
+              My expertise in these areas enables me 
+              to provide effective solutions for <b>managing, processing, and analyzing complex data</b>.
+            </p>
+          </Card>
+        </div>
+        <div class="skills-group">
+          <Stats class="w-96"
+                :values="[5, 4, 2, 4, 5]" 
+                :titles="['UML', 'Microservices', 'Dapps', 'Security', 'Design patterns']">
+            <template #icon-1>
+              <Icon class="w-full h-full" name="vscode-icons:file-type-drawio" />
+            </template>
+            <template #icon-2>
+              <Icon class="w-full h-full" name="flat-color-icons:mind-map" />
+            </template>
+            <template #icon-3>
+              <Icon class="w-full h-full" name="flat-color-icons:org-unit" />
+            </template>
+            <template #icon-4>
+              <Icon class="w-full h-full" name="flat-color-icons:lock" />
+            </template>
+            <template #icon-5>
+              <Icon class="w-full h-full" name="flat-color-icons:template" />
+            </template>
+          </Stats>
+          <Card mode="homepage-skills">
+            <CardTitle>Architecture</CardTitle>
+            <p>
+              With my proficiency in UML, I am capable of creating clear and concise <b>visual models </b>
+              of system architectures that can be <b>easily understood and maintained</b>. 
+            </p>
+            <p>
+              My knowledge 
+              of Microservices and Dapps enables me to design and develop <b>distributed systems </b>
+              that are highly scalable.
+            </p>
+            <p>
+              By utilizing Design patterns, I am able to apply <b>best practices</b> and proven 
+              solutions to common design problems, resulting in efficient and maintainable code. 
+            </p>
+            <p>
+              With these skills, I can deliver high-quality solutions that are secure, scalable, 
+              and easy to maintain.
+            </p>
+          </Card>
+        </div>
+      </div>
+      
+      
+      <div style="height: 20vh;" />
     </WrapperBackground>
     <WrapperBackground tag="section" id="story" 
           overlay-class="story__bg-overlay">
       <div class="pt-20" />
       <h1>Story</h1>
-      <div class="flex items-start justify-start ml-3 sm:ml-32 lg:ml-[25%]">
-        <Character pose="idle" class="character" />
-        <WrapperShape
-            class="bubble-1" 
-            filter-class="sharp-shadow ss-neutral-50 ss-r-1 ss-b-1"
-            shape-class="bubble-1__shape">
-          <div class="bubble-1__text">
-            <p>
-              Right now you can get know my current skills and experience, 
-              but it is way far away the moment of beginning.
-            </p>
-            <p>
-              Discover the journey of my IT growth: from novice to specialist.
-            </p>
-          </div>
-        </WrapperShape>
+      <div class="max-w-7xl px-3 mx-auto -mb-10 sm:-mb-32">
+        <div class="flex items-start justify-start">
+          <Character pose="profi" class="character" />
+          <WrapperShape
+              class="bubble-1" 
+              filter-class="sharp-shadow ss-neutral-50 ss-r-1 ss-b-1"
+              shape-class="bubble-1__shape">
+            <div class="bubble-1__text">
+              <p>
+                Right now you can get know my current skills and experience, 
+                but it is way far away the moment of beginning.
+              </p>
+              <p>
+                Discover the journey of my IT growth: from novice to specialist.
+              </p>
+            </div>
+          </WrapperShape>
+        </div>
       </div>
       <div class="story-blocks" 
            :ref="(el) => { storyNodeRefs.storyContainer.value = el as Element }">
@@ -431,6 +569,23 @@ export default defineComponent({
   color: transparent;
   @apply text-center text-7xl sm:text-8xl pt-3 sm:mb-9 mx-2 mb-20 font-bold;
 }
+
+#skills .skills-group {
+  @apply flex flex-col-reverse items-center md:flex-row md:max-w-6xl
+         mb-36;
+}
+
+#skills .skills-group:nth-child(2n) {
+  @apply md:flex-row-reverse;
+}
+
+#skills .skills-group > :nth-child(1) {
+  @apply md:w-1/3;
+}
+
+#skills .skills-group > :nth-child(2) {
+  @apply md:w-2/3;
+}
 </style>
 
 <!-- Story -->
@@ -477,19 +632,7 @@ export default defineComponent({
 
 #story .bubble-1__shape {
   @apply bg-black bg-opacity-90;
-  clip-path: polygon(
-    0 calc(100% - 20px),
-    20px calc(100% - 10px),
-    25px calc(100% - 15px),
-    45px calc(100% - 5px),
-    70px calc(100% - 10px),
-    100% 100%,
-    calc(100% - 40px) 0,
-    45px 30px,
-    40px calc(100% - 30px),
-    20px calc(100% - 45px),
-    18px calc(100% - 25px)
-  );
+  clip-path: var(--shape-bubble);
 }
 
 #story .bubble-1__text {

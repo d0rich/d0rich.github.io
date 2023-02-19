@@ -49,3 +49,22 @@ export default defineComponent({
 }
 
 </style>
+
+<!-- Global shapes -->
+<style>
+:root {
+  --shape-bubble: polygon(
+    0 calc(100% - 20px),
+    20px calc(100% - 10px),
+    25px calc(100% - 15px),
+    45px calc(100% - 5px),
+    70px calc(100% - 10px),
+    100% 100%,
+    calc(100% - 40px) 0,
+    45px 30px,
+    40px calc(100% - 30px),
+    20px calc(100% - 45px),
+    18px calc(100% - 25px)
+  )
+}
+</style>
