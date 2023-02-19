@@ -1,5 +1,5 @@
 <template>
-  <figure>
+  <figure class="max-w-full">
     <div class="relative">
       <svg viewBox="-500 -500 2000 2000" xmlns="http://www.w3.org/2000/svg">
         <polygon points="100,-350 1500,-500 1000,1350 -500,1500" class="fill-neutral-900" />

@@ -26,7 +26,7 @@
           <template #svg>
             <svg :ref="(el) => { introNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) | null }" 
                   height="100%" width="100%"
-                  class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900" 
+                  class="absolute top-0 w-full max-w-6xl h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900" 
                   viewBox="80 0 20 100" preserveAspectRatio="xMaxYMax">
               <polygon :ref="(el) => { introNodeRefs.line.value = el as SVGPolygonElement | null }" 
                         class="fill-white" />
@@ -62,67 +62,70 @@
         </svg>
       </template>
       <h1>Sections</h1>
-      <div class="section-description" :ref="el => { sectionsNodeRefs.portfolio.value = el as Element }">
-        <Mask mask="spider" color 
-            class="section-description__image" />
-        <div class="section-description__text ">
-          <BigBangButton to="/projects" text="Projects" class="underline" />
-          <p>
-            The Projects section showcases my expertise and capabilities as an IT specialist. 
-            This section highlights a diverse range of my completed and ongoing IT projects, 
-            demonstrating my proficiency in various fields such as programming, web development, 
-            mobile development, and cloud computing. 
-          </p>
-          <p>
-            Each project is described in detail, including its goals, technical specifications, 
-            and possibilities. Visitors to this section will gain a 
-            comprehensive understanding of my technical skills and experience, and can see how I have 
-            applied my knowledge and creativity to deliver innovative and effective solutions. 
-          </p>
-          <p>
-            Whether you are a potential employer or just interested in my work, 
-            the Projects section of my personal 
-            website is a <NuxtLink class="underline" to="/projects">must-see</NuxtLink>.     
-          </p>
+      <div class="w-full max-w-6xl mx-auto">
+        <div class="section-description" :ref="el => { sectionsNodeRefs.portfolio.value = el as Element }">
+          <Mask mask="spider" color 
+              class="section-description__image" />
+          <div class="section-description__text ">
+            <BigBangButton to="/projects" text="Projects" class="underline" />
+            <p>
+              The Projects section showcases my expertise and capabilities as an IT specialist. 
+              This section highlights a diverse range of my completed and ongoing IT projects, 
+              demonstrating my proficiency in various fields such as programming, web development, 
+              mobile development, and cloud computing. 
+            </p>
+            <p>
+              Each project is described in detail, including its goals, technical specifications, 
+              and possibilities. Visitors to this section will gain a 
+              comprehensive understanding of my technical skills and experience, and can see how I have 
+              applied my knowledge and creativity to deliver innovative and effective solutions. 
+            </p>
+            <p>
+              Whether you are a potential employer or just interested in my work, 
+              the Projects section of my personal 
+              website is a <NuxtLink class="underline" to="/projects">must-see</NuxtLink>.     
+            </p>
+          </div>
+        </div>
+        <div class="section-description" :ref="el => { sectionsNodeRefs.blog.value = el as Element }">
+          <Mask mask="owl" color 
+              class="section-description__image" />
+          <div class="section-description__text ">
+            <BigBangButton to="/blog" text="Blog" class="underline" />
+            <p>
+              The Blog section is a platform for me to share my thoughts, 
+              insights, and expertise on various topics related to information technology. 
+              Here, I share my knowledge and experience with a wider audience, and offer a glimpse 
+              into the latest trends and developments in the field. 
+            </p>
+            <p>
+              Whether you are a fellow 
+              IT professional, a student, or simply a curious reader, the Blog section of my personal 
+              website offers a wealth of information and inspiration. 
+              <NuxtLink class="underline" to="/blog">Browse</NuxtLink> 
+              through my blog posts and see how I am contributing to the growth and advancement of 
+              the information technology industry.   
+            </p>
+          </div>
+          
+        </div>
+        <div class="section-description" :ref="el => { sectionsNodeRefs.resume.value = el as Element }">
+          <Mask mask="wolf" color 
+              class="section-description__image" />
+          <div class="section-description__text ">
+            <BigBangButton to="/resume" text="Resume" class="underline" />
+            <p>
+              The Resume section displays my professional background 
+              and qualifications as an IT specialist. It includes information about my education, 
+              employment history, skills, and notable projects. The section serves as a resource 
+              for potential employers and showcases my expertise in the field of information technology. 
+              Browse through my resume to <NuxtLink class="underline" to="/resume">see</NuxtLink> how I can 
+              bring value to your organization.     
+            </p>
+          </div>
         </div>
       </div>
-      <div class="section-description" :ref="el => { sectionsNodeRefs.blog.value = el as Element }">
-        <Mask mask="owl" color 
-            class="section-description__image" />
-        <div class="section-description__text ">
-          <BigBangButton to="/blog" text="Blog" class="underline" />
-          <p>
-            The Blog section is a platform for me to share my thoughts, 
-            insights, and expertise on various topics related to information technology. 
-            Here, I share my knowledge and experience with a wider audience, and offer a glimpse 
-            into the latest trends and developments in the field. 
-          </p>
-          <p>
-            Whether you are a fellow 
-            IT professional, a student, or simply a curious reader, the Blog section of my personal 
-            website offers a wealth of information and inspiration. 
-            <NuxtLink class="underline" to="/blog">Browse</NuxtLink> 
-            through my blog posts and see how I am contributing to the growth and advancement of 
-            the information technology industry.   
-          </p>
-        </div>
-        
-      </div>
-      <div class="section-description" :ref="el => { sectionsNodeRefs.resume.value = el as Element }">
-        <Mask mask="wolf" color 
-            class="section-description__image" />
-        <div class="section-description__text ">
-          <BigBangButton to="/resume" text="Resume" class="underline" />
-          <p>
-            The Resume section displays my professional background 
-            and qualifications as an IT specialist. It includes information about my education, 
-            employment history, skills, and notable projects. The section serves as a resource 
-            for potential employers and showcases my expertise in the field of information technology. 
-            Browse through my resume to <NuxtLink class="underline" to="/resume">see</NuxtLink> how I can 
-            bring value to your organization.     
-          </p>
-        </div>
-      </div>
+      
       
     </WrapperBackground>
     <!-- Block about skills -->
@@ -477,12 +480,11 @@ export default defineComponent({
 }
 
 #home-intro-section{
-  width: 100vw;
-  max-width: 100%;
+  width: 100%;
   height: 75vh;
   min-height: 35rem;
   overflow: hidden;
-  @apply relative;
+  @apply relative max-w-6xl mx-auto;
 }
 </style>
 
@@ -571,7 +573,7 @@ export default defineComponent({
 }
 
 #skills .skills-group {
-  @apply flex flex-col-reverse items-center md:flex-row md:max-w-6xl
+  @apply flex flex-col-reverse items-center md:flex-row
          mb-36;
 }
 
