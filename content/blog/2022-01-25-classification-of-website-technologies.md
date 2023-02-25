@@ -7,7 +7,7 @@ tags:
   - Article
   - Websites
   - DocOps
-image: ./cover.png
+image: /blog/2022-01-25-classification-of-website-technologies/cover.png
 ---
 
 # Classification of Website technologies 
@@ -28,7 +28,7 @@ purposes. Templates for documentation are designed to get information from only 
 
 
 Nowadays, as I see, web developers community identifies 3 types of  
-frameworks for website development. I realized it searching a lot of documentations  
+frameworks for website development. I realized it searching a lot of documentations 
 and communicating with people from my university.  
 
 
@@ -37,7 +37,7 @@ So there is my representation of site types in the triangle:
 
 <figure style="text-align: center">  
 
-  ![Classic Sites Triangle](./Classic-Sites-Triangle.png)  
+  ![Classic Sites Triangle](/blog/2022-01-25-classification-of-website-technologies/Classic-Sites-Triangle.png)  
 
   <figcaption>Classic Sites Triangle</figcaption>  
 </figure>  
@@ -52,12 +52,12 @@ As you can see,
 ### Static Sites  
 
 
-The most simple way to deploy a site is just put heap of HTML, JS, and CSS files  
+The most simple way to deploy a site is just put heap of HTML, JS, and CSS files 
 into hosting and get it from browser. And static sites are about it.  
 
 
-Of course, you can just write all pages by yourself. But there is a list of technologies,  
-that can generate all pages by template and required information. Such technologies  
+Of course, you can just write all pages by yourself. But there is a list of technologies, 
+that can generate all pages by template and required information. Such technologies 
 are called *Static Site Generators (SSG)*.  
 
 
@@ -66,15 +66,15 @@ You can see how browser works with pages in this site on the diagram below:
 
 <figure style="text-align: center">  
 
-  ![Static Site Workflow](./Static-Site-Workflow.png)  
+  ![Static Site Workflow](/blog/2022-01-25-classification-of-website-technologies/Static-Site-Workflow.png)  
 
   <figcaption>Static Site Workflow</figcaption>  
 </figure>  
 
 
-Working principle of static sites is pretty easy. Browser just get HTML file any time  
-you want to view a new page. Any. Time. It recreates even pattern elements, that exist  
-on the page (eg header, navigation, footer), that you already see. You can notice  
+Working principle of static sites is pretty easy. Browser just get HTML file any time 
+you want to view a new page. Any. Time. It recreates even pattern elements, that exist 
+on the page (eg header, navigation, footer), that you already see. You can notice 
 flashing of the screen while new page is loading on such sites.  
 
 
@@ -85,28 +85,28 @@ Anyway, this technology provides content that we want with easy usage. Some of a
 - [NodeJS Hexo](https://hexo.io/)  
 - [Python Sphinx](https://www.sphinx-doc.org/en/master/)  
 
-Capabilities of all these engines are about to be equal. Rendering speed is not important  
-as it happens not in real time. So the only difference is only in programming language  
+Capabilities of all these engines are about to be equal. Rendering speed is not important 
+as it happens not in real time. So the only difference is only in programming language 
 syntax while creating template.  
 
 
 ### Dynamic Sites  
 
 
-From the user side dynamic site can seem a static one. It's because on the browser side  
+From the user side dynamic site can seem a static one. It's because on the browser side 
 workflow is the same. But all magic at the server side.  
 
 
 <figure style="text-align: center">  
 
-  ![Dynamic Site Workflow](./Dynamic-Site-Workflow.png)  
+  ![Dynamic Site Workflow](/blog/2022-01-25-classification-of-website-technologies/Dynamic-Site-Workflow.png)  
 
   <figcaption>Dynamic Site Workflow</figcaption>  
 </figure>  
 
 
-Yeah, this time browser make request not to file storage, but to server,  
-that generates HTML in real time. And dynamic sites have the same problem as  
+Yeah, this time browser make request not to file storage, but to server, 
+that generates HTML in real time. And dynamic sites have the same problem as 
 the static ones - flashing between pages.  
 
 
@@ -124,32 +124,32 @@ These technologies have different requirements to server and ways to work with d
 ### Single Pages Applications  
 
 
-This type of site provides more slightly UX as browser doesn't recreate whole page,  
-but only elements when it is needed to change content. Technically, it is static site  
-with one HTML file. But HTML files exists there only because it might exist anyway to  
+This type of site provides more slightly UX as browser doesn't recreate whole page, 
+but only elements when it is needed to change content. Technically, it is static site 
+with one HTML file. But HTML files exists there only because it might exist anyway to 
 run JavaScript.  
 
 
 <figure style="text-align: center">  
 
-  ![SPA Workflow](./SPA-Workflow.png)  
+  ![SPA Workflow](/blog/2022-01-25-classification-of-website-technologies/SPA-Workflow.png)  
 
   <figcaption>SPA Workflow</figcaption>  
 </figure>  
 
 
-SPA's don't flash, but browser need to download whole site while first request.  
-And if you have a lot of content, it will be a huge file.  
-There is another way, when browser require data to show on the third-party resource.  
-In this case your site won't contain needed information on initial state. As I know,  
-initial state is important for *Search Engine Optimization (SEO)*. Also, user will wait  
+SPA's don't flash, but browser need to download whole site while first request. 
+And if you have a lot of content, it will be a huge file. 
+There is another way, when browser require data to show on the third-party resource. 
+In this case your site won't contain needed information on initial state. As I know, 
+initial state is important for *Search Engine Optimization (SEO)*. Also, user will wait 
 twice:  
 
 1. Getting SPA  
 2. Getting data for SPA  
 
-Somebody may call disadvantage that it works on the JavaScript. There you can decide: support  
-HTML only site for people with old gadgets or create cool app to use it with pleasure.  
+Somebody may call disadvantage that it works on the JavaScript. There you can decide: support 
+HTML only site for people with old gadgets or create cool app to use it with pleasure. 
 I think, that liquidation of flashing is killer feature.  
 
 
@@ -164,10 +164,11 @@ You can try SPA with:
 ## What is wrong?  
 
 
-Time is running, technologies are constantly improved. Business decided that UX is the main feature  for sites. Because our site should be more comfortable than competitor’s one.  
+Time is running, technologies are constantly improved. Business decided that UX is the main
+feature  for sites. Because our site should be more comfortable than competitor’s one.  
 
 
-So sites mixed with SPA began to appear: SPA with *Server Side Rendering (SSR)*, SPA with SSG. Some newbie can be confused. May be he want seamless experience for site, but  
+So sites mixed with SPA began to appear: SPA with *Server Side Rendering (SSR)*, SPA with SSG. Some newbie can be confused. May be he want seamless experience for site, but 
 
 - without any database in background for delivering content to SPA  
 - with small await time for user  
@@ -181,7 +182,7 @@ So I propose a solution for this problem. We can call this mixed types of sites 
 
 <figure style="text-align: center">  
 
-  ![Sites Triangle](./Sites-Triangle.png)  
+  ![Sites Triangle](/blog/2022-01-25-classification-of-website-technologies/Sites-Triangle.png)  
 
   <figcaption>Sites Triangle</figcaption>  
 </figure>  
@@ -201,7 +202,7 @@ You can see workflow of the Static Hybrid Site below:
 
 <figure style="text-align: center">  
 
-  ![Static Hybrid Workflow](./Static-Hybrid-Workflow.png)  
+  ![Static Hybrid Workflow](/blog/2022-01-25-classification-of-website-technologies/Static-Hybrid-Workflow.png)  
 
   <figcaption>Static Hybrid Workflow</figcaption>  
 </figure>  
@@ -227,7 +228,7 @@ The only difference is that Dynamic Hybrid site generates pages not while creati
 
 <figure style="text-align: center">  
 
-  ![Dynamic Hybrid Workflow](./Dynamic-Hybrid-Workflow.png)  
+  ![Dynamic Hybrid Workflow](/blog/2022-01-25-classification-of-website-technologies/Dynamic-Hybrid-Workflow.png)  
 
   <figcaption>Dynamic Hybrid Workflow</figcaption>  
 </figure>  
@@ -251,7 +252,7 @@ Basically, Jamstack frameworks are cheaper to maintain, because there is no runt
 
 <figure style="text-align: center">  
 
-  ![Sites Triangle with Jamstack Architecture](./Sites-Triangle-with-Jamstack-Architecture.png)  
+  ![Sites Triangle with Jamstack Architecture](/blog/2022-01-25-classification-of-website-technologies/Sites-Triangle-with-Jamstack-Architecture.png)  
 
   <figcaption>Sites Triangle with Jamstack Architecture</figcaption>  
 </figure>  
