@@ -1,6 +1,11 @@
 <template>
   <div>
-    <ContentDoc tag="article" class="blog-article" />
+    <ContentDoc  v-slot="{ doc }">
+      <div class="blog-article">
+        <img :src="doc.image" />
+      </div>
+      <ContentRenderer :value="doc" tag="article" class="blog-article" />
+    </ContentDoc>
   </div>
 </template>
 
