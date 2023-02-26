@@ -2,7 +2,8 @@
   <WrapperShape>
     <Component :is="tag" class="d-focus-hl" :class="{
       'd-focus-hl--exact': linkExact,
-      'd-focus-hl--not-exact': !linkExact
+      'd-focus-hl--not-exact': !linkExact,
+      'd-focus-hl--no-passive-link': noPassiveLink
     }">
       <div v-if="variant === 'negative-tile'" class="d-focus-hl__hl--negative-tile" />
       <div v-else-if="variant === 'list-item'" class="d-focus-hl__hl--list-item" />
@@ -20,6 +21,7 @@ export default defineComponent({
   name: 'Highlight',
   props: {
     linkExact: Boolean,
+    noPassiveLink: Boolean,
     variant: {
       type: String as () => HighlightVariant,
       default: 'negative-tile'
@@ -77,8 +79,8 @@ export default defineComponent({
   left: -20% !important;
 }
 
-.router-link-active .d-focus-hl--not-exact .d-focus-hl__hl--negative-tile, 
-.router-link-exact-active .d-focus-hl--exact .d-focus-hl__hl--negative-tile {
+.router-link-active .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--negative-tile, 
+.router-link-exact-active .d-focus-hl--exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--negative-tile {
   opacity: 1;
   width: 120% !important;
   height: 120% !important;
@@ -131,8 +133,8 @@ export default defineComponent({
   left: -5% !important;
 }
 
-.router-link-active .d-focus-hl--not-exact .d-focus-hl__hl--list-item, 
-.router-link-exact-active .d-focus-hl--exact .d-focus-hl__hl--list-item {
+.router-link-active .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--list-item, 
+.router-link-exact-active .d-focus-hl--exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--list-item {
   opacity: 1;
   width: 220% !important;
   height: 200% !important;
@@ -185,8 +187,8 @@ export default defineComponent({
   left: -5% !important;
 }
 
-.router-link-active .d-focus-hl--not-exact .d-focus-hl__hl--negative-list-item, 
-.router-link-exact-active .d-focus-hl--exact .d-focus-hl__hl--negative-list-item {
+.router-link-active .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--negative-list-item, 
+.router-link-exact-active .d-focus-hl--exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--negative-list-item {
   opacity: 1;
   width: 220% !important;
   height: 200% !important;

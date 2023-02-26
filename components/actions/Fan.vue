@@ -25,7 +25,7 @@
              :class="{
               'flex justify-end': side === 'right'
              }">
-          <DBtn :to="action.to" tag="button"
+          <DBtn :to="action.to" tag="button" no-passive-hl
                 @click="$emit('actionChoose', action.emit)"
                 @mouseenter="$emit('actionFocus', action.emit)" 
                 @touchstart="$emit('actionFocus', action.emit)" 

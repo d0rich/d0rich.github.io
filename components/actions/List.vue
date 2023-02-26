@@ -7,6 +7,7 @@
     <TransitionGroup name="actions" tag="ul" class="p-7 relative" :class="listClass">
       <li v-for="action in actions" :key="action.title">
         <DBtn :to="action.to" tag="button" highlight="negative-list-item"
+              no-passive-hl
               @click="$emit('actionChoose', action.emit)">
           {{ action.title }}
         </DBtn>

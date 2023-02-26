@@ -1,6 +1,6 @@
 <template>
   <Component class="d-btn" :is="currentComponent" :to="to" :href="href">
-    <FocusHighlight :variant="highlight" :link-exact="exact">
+    <FocusHighlight :variant="highlight" :link-exact="exact" :no-passive-link="noPassiveHl">
       <slot />
     </FocusHighlight>
   </Component>
@@ -19,6 +19,7 @@ export default defineComponent({
     to: String,
     href: String,
     exact: Boolean,
+    noPassiveHl: Boolean,
     tag: {
       type: String,
       default: 'div'
