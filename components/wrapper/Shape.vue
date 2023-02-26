@@ -1,5 +1,17 @@
+<script setup lang="ts">
+import { StyleValue } from 'vue'
+
+defineProps<{
+  shapeClass?: string | Record<string, boolean>,
+  shapeStyle?: StyleValue,
+  filterClass?: string | Record<string, boolean>,
+  filterStyle?: StyleValue,
+  tag?: string
+}>()
+</script>
+
 <template>
-  <Component :is="tag">
+  <Component :is="tag ?? 'div'">
     <div class="d-shape">
       <div class="d-shape__bg-filter" :class="filterClass" :style="filterStyle">
         <div class="d-shape__bg-wrapper">
@@ -10,26 +22,6 @@
     </div>
   </Component>
 </template>
-
-<script lang="ts">
-
-import { StyleValue } from 'vue';
-
-export default defineComponent({
-  name: 'Shape',
-  props: {
-    shapeClass: [String, Object as () => Record<string, boolean>],
-    shapeStyle: Object as () => StyleValue,
-    filterClass: [String, Object as () => Record<string, boolean>],
-    filterStyle: Object as () => StyleValue,
-    tag: {
-      type: String,
-      default: 'div'
-    }
-  }
-})
-
-</script>
 
 <style>
 .d-shape, .d-shape > *{
@@ -65,6 +57,12 @@ export default defineComponent({
     40px calc(100% - 30px),
     20px calc(100% - 45px),
     18px calc(100% - 25px)
-  )
+  );
+  --shape-bubble-padding: 35px 45px 15px 50px;
+}
+
+:root {
+  --shape-card: polygon(2em 0, 0% 100%, 100% calc(100% - 5em), 100% 4em);
+  --shape-card-padding: 4.5em .5em 5.5em 2.5em;
 }
 </style>

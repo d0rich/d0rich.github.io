@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { NavItem, QueryBuilderParams, ParsedContent } from '@nuxt/content/dist/runtime/types';
+import { QueryBuilderParams } from '@nuxt/content/dist/runtime/types'
+import {BlogContent} from '@/components/blog/Tile.vue'
+
 const blogQuery: QueryBuilderParams = {
   path: '/blog',
   without: [ 'excerpt', 'body' ]
-  // where: [
-  //   { _path: /^\/blog/ }
-  // ]
 }
 
 </script>
@@ -15,13 +14,8 @@ const blogQuery: QueryBuilderParams = {
     Blog
 
     <nav>
-      <ContentList :query="blogQuery" v-slot="{ list }: { list: ParsedContent[] }">
-        <NuxtLink v-for="article in list" :key="article._path" :to="article._path">
-          <div>
-            <h2>{{ article.title }}</h2>
-            <p>{{ article.description }}</p>
-          </div>
-        </NuxtLink>
+      <ContentList :query="blogQuery" v-slot="{ list }: { list: BlogContent[] }">
+        <BlogTile :article="article" v-for="article in list" :key="article._path" />
       </ContentList>
     </nav>
   </div>

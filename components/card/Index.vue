@@ -1,5 +1,5 @@
 <template>
-  <WrapperShape class="card__vars" :shape-class="{
+  <WrapperShape :shape-class="{
       'card__bg--homepage-story': mode === 'homepage-story',
       'card__bg--homepage-skills': mode === 'homepage-skills',
       'card__bg': mode === 'default'
@@ -26,12 +26,8 @@ export default defineComponent({
 </script>
 
 <style>
-.card__vars {
-  --card-clip-path: polygon(2em 0, 0% 100%, 100% calc(100% - 5em), 100% 4em);
-  --card-padding: 4.5em .5em 5.5em 2.5em;
-}
 .card__content {
-  padding: var(--card-padding);
+  padding: var(--shape-card-padding);
   @apply text-black sm:text-lg;
 }
 
@@ -47,7 +43,7 @@ export default defineComponent({
   background-position-y: -25vh;
   background-size: auto 150vh;
   background-repeat: no-repeat;
-  clip-path: var(--card-clip-path);
+  clip-path: var(--shape-card);
 }
 
 .card__bg--homepage-skills {
@@ -57,11 +53,11 @@ export default defineComponent({
   background-position: center;
   background-size: auto 100vh;
   background-repeat: no-repeat;
-  clip-path: var(--card-clip-path);
+  clip-path: var(--shape-card);
 }
 
 .card__bg {
-  clip-path: var(--card-clip-path);
+  clip-path: var(--shape-card);
   @apply bg-white;
 }
 

@@ -638,7 +638,7 @@ export default defineComponent({
 }
 
 #story .bubble-1__text {
-  padding: 35px 45px 15px 50px;
+  padding: var(--shape-bubble-padding);
   @apply font-semibold;
 }
 
