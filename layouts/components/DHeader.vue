@@ -1,8 +1,9 @@
 <template>
   <Transition name="header">
     <header v-if="show">
-      <Shape filter-class="header__shape-filter"
-            shape-class="dark:bg-neutral-900"
+      <Shape 
+            :filter-class="`${shadowColor} header__shape-filter`"
+            shape-class="bg-neutral-900"
             :shape-style="{
               clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
             }">
@@ -28,8 +29,18 @@ export default defineComponent({
   },
   setup(){
     const { showHeader } = useLayoutState()
+    const route = useRoute()
     return{
-      show: showHeader
+      show: showHeader,
+      shadowColor: computed(() => {
+        if (route.path.startsWith('/blog'))
+          return 'ss-cyan-300'
+        if (route.path.startsWith('/projects'))
+          return 'ss-red-300'
+        if (route.path.startsWith('/resume'))
+          return 'ss-blue-300'
+        return 'ss-neutral-50'
+      })
     }
   }
 })
@@ -37,7 +48,7 @@ export default defineComponent({
 
 <style>
 .header__shape-filter{
-  @apply sharp-shadow ss-neutral-50 ss-b-2 ss-r-3;
+  @apply sharp-shadow ss-b-2 ss-r-3;
 }
 
 .header-enter-from .d-shape__bg-filter{
