@@ -2,15 +2,35 @@
 import { QueryBuilderParams } from '@nuxt/content/dist/runtime/types'
 import {BlogContent} from '@/components/blog/Tile.vue'
 
+const { currentPage } = defineProps({
+  currentPage: {
+    type: Number,
+    default: 1
+  }
+})
+
+const itemsOnPage = 5
+
+const { data: pagesCount } = useAsyncData(
+  `blog/pages-count/${itemsOnPage}`,
+  () => queryContent('/blog/').only('title').find(),
+  {
+    server: true,
+    transform: (articles) => Math.ceil((articles.length) / itemsOnPage)
+  }
+)
+
 const blogQuery: QueryBuilderParams = {
   path: '/blog',
-  without: [ 'excerpt', 'body' ]
+  without: [ 'excerpt', 'body' ],
+  limit: itemsOnPage,
+  skip: (currentPage - 1) * itemsOnPage
 }
 
 </script>
 
 <template>
-  <div class="">
+  <div class="mb-96">
     <div class="relative isolate px-3 max-w-3xl mx-auto my-10 overflow-hidden">
       <div class="max-w-lg">
         <h1 class="text-6xl sm:text-8xl font-serif mb-5 text-cyan-300">Blog</h1>
@@ -24,11 +44,18 @@ const blogQuery: QueryBuilderParams = {
         class="h-full absolute top-0 right-0 -z-10 brightness-[25%] sm:brightness-100 transition-all" />
     </div>
     
-
-    <nav>
-      <ContentList :query="blogQuery" v-slot="{ list }: { list: BlogContent[] }">
-        <BlogTile :article="article" v-for="article in list" :key="article._path" />
-      </ContentList>
-    </nav>
+    <section v-if="pagesCount">
+      <DPagination class="mx-auto my-10 max-w-md" v-if="pagesCount > 1"
+                  :current-page="currentPage" 
+                  :all-pages="pagesCount" base-link="/blog" />
+      <nav>
+        <ContentList :query="blogQuery" v-slot="{ list }: { list: BlogContent[] }">
+          <BlogTile :article="article" v-for="article in list" :key="article._path" />
+        </ContentList>
+      </nav>
+      <DPagination class="mx-auto my-10 max-w-md" v-if="pagesCount > 1"
+                  :current-page="currentPage" 
+                  :all-pages="pagesCount" base-link="/blog" />
+    </section>
   </div>
 </template>

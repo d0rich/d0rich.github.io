@@ -17,7 +17,7 @@ const props = defineProps({
 function getLinkToPage(page: number){
   if (page === 1)
     return props.baseLink
-  return `${props.baseLink}/${page}`
+  return `${props.baseLink}/page-${page}`
 }
 
 const visiblePages = computed(() => {
@@ -28,7 +28,7 @@ const visiblePages = computed(() => {
 </script>
 
 <template>
-  <div class="w-fit text-2xl font-bold">
+  <nav class="w-fit text-2xl font-bold">
     <DBtn class="inline-block mx-1" :to="getLinkToPage(currentPage - 1)" v-if="currentPage > 1">
       <Icon name="ic:baseline-arrow-back-ios" />
     </DBtn>
@@ -50,5 +50,5 @@ const visiblePages = computed(() => {
     <DBtn class="inline-block mx-1" :to="getLinkToPage(currentPage + 1)" v-if="currentPage < allPages">
       <Icon name="ic:baseline-arrow-forward-ios" />
     </DBtn>
-  </div>
+  </nav>
 </template>
