@@ -15,7 +15,7 @@ defineProps<{
 
 <template>
   <div class="blog-tile overflow-x-hidden" :style="{
-    '--page-bg-color': '#0891b2'
+    '--page-bg-color': '#262626'
   }">
     <div class="blog-tile__frame--top" />
     <div class="blog-tile__frame--bottom" />
@@ -96,7 +96,7 @@ defineProps<{
 
 .blog-tile__link-image-overlay {
   background-color: var(--page-bg-color);
-  @apply absolute -z-10 inset-0 opacity-50 bg-black;
+  @apply absolute -z-10 inset-0 opacity-50 bg-cyan-800;
 }
 
 .blog-tile__link__tag {
