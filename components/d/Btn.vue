@@ -1,6 +1,6 @@
 <template>
   <Component class="d-btn" :is="currentComponent" :to="to" :href="href">
-    <FocusHighlight :variant="highlight">
+    <FocusHighlight :variant="highlight" :link-exact="exact">
       <slot />
     </FocusHighlight>
   </Component>
@@ -18,6 +18,7 @@ export default defineComponent({
   props: {
     to: String,
     href: String,
+    exact: Boolean,
     tag: {
       type: String,
       default: 'div'

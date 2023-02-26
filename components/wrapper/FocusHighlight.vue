@@ -1,6 +1,9 @@
 <template>
   <WrapperShape>
-    <Component :is="tag" class="d-focus-hl">
+    <Component :is="tag" class="d-focus-hl" :class="{
+      'd-focus-hl--exact': linkExact,
+      'd-focus-hl--not-exact': !linkExact
+    }">
       <div v-if="variant === 'negative-tile'" class="d-focus-hl__hl--negative-tile" />
       <div v-else-if="variant === 'list-item'" class="d-focus-hl__hl--list-item" />
       <div v-else-if="variant === 'negative-list-item'" class="d-focus-hl__hl--negative-list-item" />
@@ -16,6 +19,7 @@ export type HighlightVariant = 'negative-tile' | 'list-item' | 'negative-list-it
 export default defineComponent({
   name: 'Highlight',
   props: {
+    linkExact: Boolean,
     variant: {
       type: String as () => HighlightVariant,
       default: 'negative-tile'
@@ -53,7 +57,8 @@ export default defineComponent({
   @apply absolute backdrop-invert transition-all;
 }
 
-.d-focus-hl:hover > .d-focus-hl__hl--negative-tile, *:focus .d-focus-hl__hl--negative-tile{
+.d-focus-hl:hover > .d-focus-hl__hl--negative-tile, 
+*:focus .d-focus-hl__hl--negative-tile{
   opacity: 1;
   animation: hl--negative-tile-animation linear 1s infinite;
 }
@@ -70,6 +75,15 @@ export default defineComponent({
   height: 200% !important;
   top: -50% !important;
   left: -20% !important;
+}
+
+.router-link-active .d-focus-hl--not-exact .d-focus-hl__hl--negative-tile, 
+.router-link-exact-active .d-focus-hl--exact .d-focus-hl__hl--negative-tile {
+  opacity: 1;
+  width: 120% !important;
+  height: 120% !important;
+  top: -10% !important;
+  left: -10% !important;
 }
 
 @keyframes hl--negative-tile-animation {
@@ -117,6 +131,15 @@ export default defineComponent({
   left: -5% !important;
 }
 
+.router-link-active .d-focus-hl--not-exact .d-focus-hl__hl--list-item, 
+.router-link-exact-active .d-focus-hl--exact .d-focus-hl__hl--list-item {
+  opacity: 1;
+  width: 220% !important;
+  height: 200% !important;
+  top: -50% !important;
+  left: -5% !important;
+}
+
 @keyframes hl--list-item-animation {
   0%, 100% {
     clip-path: polygon(1rem 0, 0% 100%, 90% 50%);
@@ -156,6 +179,15 @@ export default defineComponent({
 }
 
 *:focus .d-focus-hl__hl--negative-list-item{
+  width: 220% !important;
+  height: 200% !important;
+  top: -50% !important;
+  left: -5% !important;
+}
+
+.router-link-active .d-focus-hl--not-exact .d-focus-hl__hl--negative-list-item, 
+.router-link-exact-active .d-focus-hl--exact .d-focus-hl__hl--negative-list-item {
+  opacity: 1;
   width: 220% !important;
   height: 200% !important;
   top: -50% !important;
