@@ -22,7 +22,7 @@ export default defineComponent({
     noPassiveHl: Boolean,
     tag: {
       type: String,
-      default: 'div'
+      default: 'span'
     },
     highlight: {
       type: String as () => HighlightVariant
