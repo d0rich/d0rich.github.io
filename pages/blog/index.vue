@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { QueryBuilderParams } from '@nuxt/content/dist/runtime/types'
-import {BlogContent} from '@/components/blog/Tile.vue'
+import { QueryBuilderParams, SortOptions } from '@nuxt/content/dist/runtime/types'
+import { BlogContent } from '@/components/blog/Tile.vue'
 
 const { currentPage } = defineProps({
   currentPage: {
@@ -24,7 +24,10 @@ const blogQuery: QueryBuilderParams = {
   path: '/blog',
   without: [ 'excerpt', 'body' ],
   limit: itemsOnPage,
-  skip: (currentPage - 1) * itemsOnPage
+  skip: (currentPage - 1) * itemsOnPage,
+  sort: [
+    { 'date': -1 }
+  ]
 }
 
 </script>
