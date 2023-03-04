@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { QueryBuilderParams, SortOptions } from '@nuxt/content/dist/runtime/types'
+import { QueryBuilderParams, QueryBuilderWhere } from '@nuxt/content/dist/runtime/types'
 import { BlogContent } from '@/components/blog/Tile.vue'
 
 const { currentPage } = defineProps({
@@ -11,9 +11,13 @@ const { currentPage } = defineProps({
 
 const itemsOnPage = 5
 
+const config = useRuntimeConfig()
+
+const filterObject: QueryBuilderWhere = config.public.isProd ? { _draft: { $not: true } } : {}
+
 const { data: pagesCount } = useAsyncData(
   `blog/pages-count/${itemsOnPage}`,
-  () => queryContent('/blog/').only('title').find(),
+  () => queryContent('/blog/').only('_path').where(filterObject).find(),
   {
     server: true,
     transform: (articles) => Math.ceil((articles.length) / itemsOnPage)
@@ -23,6 +27,9 @@ const { data: pagesCount } = useAsyncData(
 const blogQuery: QueryBuilderParams = {
   path: '/blog',
   without: [ 'excerpt', 'body' ],
+  // @ts-ignore
+  // FIXME: QueryBuilderParams wrong type definition
+  where: filterObject,
   limit: itemsOnPage,
   skip: (currentPage - 1) * itemsOnPage,
   sort: [

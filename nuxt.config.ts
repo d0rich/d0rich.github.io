@@ -15,6 +15,12 @@ export default defineNuxtConfig({
   build: {
     transpile: ['gsap'],
   },
+  runtimeConfig: {
+    public: {
+      isDev: process.env.NODE_ENV === 'development',
+      isProd: process.env.NODE_ENV === 'production'
+    }
+  },
   modules: [
     '@nuxt/content',
     '@nuxtjs/google-fonts',
