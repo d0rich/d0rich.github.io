@@ -20,6 +20,7 @@
     "dateformat": "^5.0.3",
     "gsap": "^3.11.4",
     "mobile-detect": "^1.4.5",
-    "nuxt-icon": "^0.3.2"
+    "nuxt-icon": "^0.3.2",
+    "rehype-external-links": "^2.0.1"
   }
 }

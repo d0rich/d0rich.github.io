@@ -15,6 +15,9 @@ export default defineNuxtConfig({
   build: {
     transpile: ['gsap'],
   },
+  css: [
+    'assets/css/theme.css'
+  ],
   runtimeConfig: {
     public: {
       isDev: process.env.NODE_ENV === 'development',
@@ -28,9 +31,15 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'nuxt-icon'
   ],
-  css: [
-    'assets/css/theme.css'
-  ],
+  content: {
+    markdown: {
+      rehypePlugins: {
+        'rehype-external-links': {
+          target: '_blank'
+        }
+      }
+    }
+  },
   colorMode: {
     classSuffix: '',
     preference: 'dark'
