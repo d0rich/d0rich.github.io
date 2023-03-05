@@ -30,6 +30,39 @@ export default defineComponent({
   setup(){
     const { showHeader } = useLayoutState()
     const route = useRoute()
+    let lastScrollTop = 0
+    let isFreezed = false
+    let freezeTimer: ReturnType<typeof setTimeout>
+    function freezeHeaderDisplay(){
+      if (freezeTimer)
+        clearTimeout(freezeTimer)
+      isFreezed = true
+      freezeTimer = setTimeout(() => {
+        isFreezed = false
+      }, 1000)
+    }
+    function onScroll(event: Event){
+      const newScroll = window.scrollY
+      if (!isFreezed) {
+        if (newScroll > lastScrollTop){
+          showHeader.value = false
+        }
+        else {
+          showHeader.value = true
+        }
+      }
+
+      watch(showHeader, () => {
+        freezeHeaderDisplay()
+      })
+      lastScrollTop = newScroll
+    }
+    onBeforeMount(() => {
+      window.addEventListener('scroll', onScroll)
+    })
+    onBeforeUnmount(() => {
+      window.removeEventListener('scroll', onScroll)
+    })
     return{
       show: showHeader,
       shadowColor: computed(() => {

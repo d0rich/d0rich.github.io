@@ -424,7 +424,6 @@ export default defineComponent({
   name: 'HomePage',
   setup(){
     const currentPose = ref<CharacterPose>('idle')
-    const { showHeader } = useLayoutState()
     const { introNodeRefs } = useIntroBlockAnimation()
     const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation()
     const { storyNodeRefs } = useStoryAnimation()
@@ -433,9 +432,6 @@ export default defineComponent({
       { title: 'Skills', to: '#skills', emit: 'profi' },
       { title: 'Story', to: '#story', emit: 'idle' }
     ]
-    onBeforeRouteLeave(() => {
-      showHeader.value = true
-    })
     return {
       introNodeRefs, sectionsNodeRefs, storyNodeRefs,
       currentPose,

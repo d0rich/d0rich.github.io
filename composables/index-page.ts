@@ -3,7 +3,6 @@ import { ComponentPublicInstance } from 'vue'
 import { isMobile } from '~~/utils/device'
 
 export const useIntroBlockAnimation = () => {
-  const { showHeader } = useLayoutState()
   const nodes = {
     section: ref<Element | null>(null),
     main: ref<Element | null>(null),
@@ -62,19 +61,6 @@ export const useIntroBlockAnimation = () => {
       }
     })
   })
-
-  // Handle displaying of the header
-  let observer: IntersectionObserver
-  onMounted(() => { 
-    observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        showHeader.value = !entry.isIntersecting
-      })
-    })
-    if (nodes.section.value) 
-      observer.observe(nodes.section.value) 
-  })
-  onBeforeUnmount(() => { observer.disconnect() })
 
   return {
     introNodeRefs: nodes
