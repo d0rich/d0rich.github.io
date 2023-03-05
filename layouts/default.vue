@@ -6,20 +6,19 @@
     <main class="pt-20">
       <slot />
     </main>
-    <div id="default-layout__transition-wrapper">
-      <div id="default-layout__transition-bar" />
-    </div>
+    <SectionsTransitionWrapper />
   </div>
 </template>
 
 <script lang="ts">
 
-import DHeader from './components/DHeader.vue';
+import DHeader from './components/DHeader.vue'
+import SectionsTransitionWrapper from './components/SectionsTransitionWrapper.vue'
 
 export default defineComponent({
   name: 'DefaultLayout',
   components: {
-    DHeader
+    DHeader, SectionsTransitionWrapper
   }
 })
 </script>
@@ -44,44 +43,7 @@ export default defineComponent({
   opacity: 0;
 }
 
-#default-layout__transition-wrapper{
-  width: 120%;
-  height: 120%;
-  top: -10%;
-  left: -10%;
-  @apply fixed sharp-shadow ss-neutral-50 ss-bl-3 hidden overflow-hidden;
-}
-
-#default-layout__transition-bar{
-  background-image: url('~/assets/img/page-transition-pattern.svg');
-  background-size: 80px;
-  background-attachment: fixed;
-  clip-path: polygon(-120% 0, -100% 0, 0 100%, -20% 100%);
-  @apply bg-green-500 w-full h-full top-0 ;
-}
-
 #default-layout:has(.section-enter-active, .section-leave-active){
   overflow: hidden;
-}
-
-#default-layout:has(.section-enter-active, .section-leave-active) #default-layout__transition-wrapper {
-  display: block;
-}
-
-/* bar */
-#default-layout:has(.section-enter-active, .section-leave-active) #default-layout__transition-bar{
-  transition: all var(--page-transition-length) linear;
-}
-
-#default-layout:has(.section-leave-from) #default-layout__transition-bar{
-  clip-path: polygon(-120% 0, -100% 0, 0 100%, -20% 100%);
-}
-
-#default-layout:has(.section-leave-to, .section-enter-from) #default-layout__transition-bar{
-  clip-path: polygon(-120% 0, 120% 0, 220% 100%, -20% 100%);
-}
-
-#default-layout:has(.section-enter-to) #default-layout__transition-bar{
-  clip-path: polygon(100% 0, 120% 0, 220% 100%, 200% 100%);
 }
 </style>
