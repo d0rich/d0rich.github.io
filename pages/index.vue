@@ -546,9 +546,6 @@ export default defineComponent({
 
 <!-- Skills -->
 <style>
-#skills {
-  @apply font-dialog bg-[url('~/assets/img/bg/skills.png')] bg-cover bg-center;
-}
 #skills .skills__bg-overlay {
   background: 
     url('~/assets/img/character/action-shape-white.svg') fixed,
@@ -558,6 +555,12 @@ export default defineComponent({
   background-repeat: no-repeat;
   @apply backdrop-saturate-50 bg-opacity-90;
 }
+</style>
+<style scoped>
+#skills {
+  @apply font-dialog bg-[url('~/assets/img/bg/skills.png')] bg-cover bg-center;
+}
+
 
 #skills h1{
   background: 

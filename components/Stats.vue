@@ -91,6 +91,9 @@
       </div>
       <svg viewBox="-500 -500 2000 2000" xmlns="http://www.w3.org/2000/svg" 
         class="absolute inset-0 pointer-events-none">
+        <text x="-500" y="-300" class="stats__group-title">
+          {{ groupTitle }}
+        </text>
         <g>
           <text
             :x="fullStarPoints[posToIndex['1']][0]"
@@ -151,6 +154,7 @@
 export default defineComponent({
   name: 'Stats',
   props: {
+    groupTitle: String,
     titles: Array as () => string[],
     values: Array as () => number[]
   },
@@ -276,6 +280,16 @@ export default defineComponent({
 .stats__image:nth-child(5){
   top: 30%;
   left: 6%;
+}
+
+.stats__group-title {
+  font-size: 150px;
+  paint-order: stroke;
+  text-anchor: start;
+  dominant-baseline: text-bottom;
+  font-weight: 900;
+  stroke-width: 20;
+  @apply fill-black font-sans stroke-yellow-500;
 }
 
 .stats__title {

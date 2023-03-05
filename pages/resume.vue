@@ -1,78 +1,85 @@
-<template>
-  <div>
-    Resume
-    <div class="hidden">
-      <div class="skills-group">
-        <Stats class="w-96"
-              :values="[5, 3, 2, 3, 4]" 
-              :titles="['REST', 'GraphQL', 'Message Queues', 'SOAP', 'gRPC']">
-          <template #icon-1>
-            <Icon class="w-full h-full" name="vscode-icons:file-type-rest" />
-          </template>
-          <template #icon-2>
-            <Icon class="w-full h-full" name="logos:graphql" />
-          </template>
-          <template #icon-3>
-            <Icon class="w-full h-full" name="logos:rabbitmq-icon" />
-          </template>
-          <template #icon-4>
-            <Icon class="w-full h-full" name="vscode-icons:file-type-apib" />
-          </template>
-          <template #icon-5>
-            <Icon class="w-full h-full" name="vscode-icons:file-type-protobuf" />
-          </template>
-        </Stats>
-        <Card mode="homepage-skills">
-          <CardTitle>Integration</CardTitle>
-          <p>
-            Knowing multiple programming languages makes it easier to learn new technologies quickly. 
-            The fundamental concepts are similar, allowing for easy recognition of similarities and 
-            differences between languages. This continuous learning makes you a more versatile programmer.
-          </p>
-        </Card>
-      </div>
-      <div class="skills-group">
-        <Stats class="w-96"
-              :values="[5, 4, 3, 1, 2]" 
-              :titles="['SQL', 'NoSQL', 'NewSQL', 'Machine Learning', 'Natural Language']">
-          <template #icon-1>
-            <Icon class="w-full h-full" name="vscode-icons:file-type-sql" />
-          </template>
-          <template #icon-2>
-            <Icon class="w-full h-full" name="vscode-icons:file-type-json" />
-          </template>
-          <template #icon-3>
-            <Icon class="w-full h-full" name="logos:surrealdb-icon" />
-          </template>
-          <template #icon-4>
-            <Icon class="w-full h-full" name="logos:tensorflow" />
-          </template>
-          <template #icon-5>
-            <Icon class="w-full h-full" name="vscode-icons:file-type-elastic" />
-          </template>
-        </Stats>
-        <Card mode="homepage-skills">
-          <CardTitle>Data</CardTitle>
-          <p>
-            Knowing multiple programming languages makes it easier to learn new technologies quickly. 
-            The fundamental concepts are similar, allowing for easy recognition of similarities and 
-            differences between languages. This continuous learning makes you a more versatile programmer.
-          </p>
-        </Card>
-      </div>
+<script setup lang="ts">
+import {TimeNote} from '~~/components/resume/TimeNote.vue'
 
-    </div>
-  </div>
-</template>
-
-<script lang="ts">
-
-export default defineComponent({
-  setup(){
-    useHead({
-      title: 'Resume'
-    })
-  }
+useHead({
+  title: 'Resume'
 })
 
+const { data: contacts, error: contactsError } = useAsyncData(
+  'resume/contacts',
+  () => queryContent('/resume/contacts').findOne()
+)
+
+const { data: education, error: educationError } = useAsyncData(
+  'resume/education',
+  () => queryContent<TimeNote>('/resume/education')
+                    .sort({ 'daterange.end': -1 })
+                    .find()
+)
+
+const { data: work, error: workError } = useAsyncData(
+  'resume/work',
+  () => queryContent<TimeNote>('/resume/work')
+                    .sort({ 'daterange.end': -1 })
+                    .find()
+)
+
+const { data: skills, error: skillsError } = useAsyncData(
+  'resume/skills',
+  () => queryContent('/resume/skills').find()
+)
+
+const error = contactsError || educationError || workError || skillsError
 </script>
+
+<template>
+  <div>
+    <DevOnly>
+      <div class="text-white bg-red-600 overflow-x-auto">
+        <div>{{ error }}</div>
+        <pre>{{ error?.stack }}</pre>
+      </div>
+    </DevOnly>
+
+    <article id="resume-container" class="max-w-4xl mx-auto px-3 font-serif">
+      <h1 class="text-2xl dark:text-blue-300">Resume</h1>
+      <section class="py-3 relative isolate overflow-hidden">
+        <div class="max-w-xl">
+          <div class="text-4xl sm:text-6xl mb-1">Nikolay Dorofeev</div>
+          <div class="text-3xl dark:text-blue-300 mb-1">Software Engineer</div>
+          <p>
+            Software Engineer with experience in wide range of technologies. 
+            I collaborate seamlessly with team members and stakeholders 
+            throughout the software development lifecycle.
+          </p>
+        </div>
+        <Mask mask="wolf" color outline 
+          class="h-full absolute top-0 right-0 -z-10 brightness-[25%] md:brightness-100 transition-all" />
+      </section>
+      <ContentRenderer :value="contacts" v-if="contacts"
+                      tag="section" class="[&>span]:m-2" />
+      <section id="skills" v-if="skills">
+        <h2 class="text-5xl dark:text-blue-300 mb-2">Skills</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <ContentRenderer v-for="skillset in skills" :key="skillset._id" :value="skillset" />
+        </div>
+      </section>
+      <div class="grid md:grid-cols-2 gap-x-20">
+        <section id="work-experience" v-if="work">
+          <h2 class="text-5xl dark:text-blue-300 mb-2">Work Experience</h2>
+          <ResumeTimeNote class="my-3" v-for="workPlace in work" :key="workPlace._id" :timenote="workPlace"/>
+        </section>
+        <section id="education" v-if="education">
+          <h2 class="text-5xl dark:text-blue-300 mb-2">Education</h2>
+          <ResumeTimeNote class="my-3" v-for="eduPlace in education" :key="eduPlace._id" :timenote="eduPlace"/>
+        </section>
+      </div>
+      
+    </article>
+  </div>
+</template>
+<style scoped>
+section {
+  @apply my-10;
+}
+</style>

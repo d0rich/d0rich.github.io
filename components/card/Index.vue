@@ -1,8 +1,9 @@
 <template>
-  <WrapperShape :shape-class="{
-      'card__bg--homepage-story': mode === 'homepage-story',
-      'card__bg--homepage-skills': mode === 'homepage-skills',
-      'card__bg': mode === 'default'
+  <WrapperShape shape-class="card__bg" 
+    :class="{ 
+      'card--homepage-story force-light': mode === 'homepage-story',
+      'card--homepage-skills force-light': mode === 'homepage-skills',
+      'card': mode === 'default' 
     }">
     <div class="card__content">
       <slot />
@@ -28,17 +29,24 @@ export default defineComponent({
 <style>
 .card__content {
   padding: var(--shape-card-padding);
-  @apply text-black sm:text-lg;
+  @apply md:text-lg;
 }
 
 .card__content p {
   @apply mb-2;
 }
 
-.card__bg--homepage-story {
-  background: 
-    url('~/assets/img/character/idle-shape-yellow-400.svg') fixed,
-    rgb(255 255 255 / var(--tw-bg-opacity));
+.card--homepage-story .card__content,
+.card--homepage-skills .card__content {
+  @apply text-black;
+}
+
+.force-light .card__bg {
+  @apply dark:bg-white;
+}
+
+.card--homepage-story .card__bg {
+  background: url('~/assets/img/character/idle-shape-yellow-400.svg') fixed;
   background-position-x: calc(60vw - 50vh);
   background-position-y: -25vh;
   background-size: auto 150vh;
@@ -46,10 +54,8 @@ export default defineComponent({
   clip-path: var(--shape-card);
 }
 
-.card__bg--homepage-skills {
-  background: 
-    url('~/assets/img/character/action-shape-cyan-400.svg') fixed,
-    rgb(255 255 255 / var(--tw-bg-opacity));
+.card--homepage-skills .card__bg {
+  background: url('~/assets/img/character/action-shape-cyan-400.svg') fixed;
   background-position: center;
   background-size: auto 100vh;
   background-repeat: no-repeat;
@@ -58,7 +64,7 @@ export default defineComponent({
 
 .card__bg {
   clip-path: var(--shape-card);
-  @apply bg-white;
+  @apply bg-white dark:bg-neutral-700;
 }
 
 </style>

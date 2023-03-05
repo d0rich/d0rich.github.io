@@ -14,7 +14,7 @@
 
 <style>
 .card__title {
-  @apply text-2xl sm:text-3xl font-semibold -mt-5 mb-3;
+  @apply text-2xl md:text-3xl font-semibold -mt-5 mb-3;
 }
 
 .card__title__content {
@@ -22,12 +22,19 @@
 }
 
 .card__title__content__text {
-  @apply p-5 text-white;
+  @apply p-5 text-white dark:text-black;
 }
 
 .card__title__content__shape {
   clip-path: polygon(.4em .4em, 100% 0%, calc(100% - .4em) calc(100% - .4em), 0% 100%);
-  @apply bg-black;
+  @apply bg-black dark:bg-white;
+}
+
+.force-light .card__title__content__text {
+  @apply dark:text-white;
+}
+.force-light .card__title__content__shape {
+  @apply dark:bg-black;
 }
 
 </style>
