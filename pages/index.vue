@@ -504,7 +504,7 @@ export default defineComponent({
 
 .section-description__text{
   @apply font-serif max-w-lg lg:max-w-xl p-10 pt-0;
-  text-shadow: var(--tw-shadow-color) 1px 0 5px;
+  text-shadow: var(--tw-shadow-color) 1px 0 0;
 }
 
 .section-description__text > p {
