@@ -2,6 +2,10 @@
 import { QueryBuilderParams, QueryBuilderWhere } from '@nuxt/content/dist/runtime/types'
 import { BlogContent } from '@/components/blog/Tile.vue'
 
+useHead({
+  title: 'Blog'
+})
+
 const { currentPage } = defineProps({
   currentPage: {
     type: Number,
