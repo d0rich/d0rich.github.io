@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { CharacterPose } from '~~/components/Character.vue';
-import { ActionFanItem } from '~~/components/actions/Fan.vue';
+import { CharacterPose } from '~~/components/Character.vue'
+import { MaskType } from '~~/components/Mask.vue'
+import { ActionFanItem } from '~~/components/actions/Fan.vue'
+import { ParsedContent } from '@nuxt/content/dist/runtime/types'
 
 const currentPose = ref<CharacterPose>('idle')
 const { introNodeRefs } = useIntroBlockAnimation()
@@ -22,6 +24,33 @@ const sectionsLineColor = computed(() => {
   return 'fill-green-700'
 }) 
 
+interface SectionsParsedContent extends ParsedContent {
+  title: string,
+  link: string,
+  mask: MaskType
+}
+
+const { data: introContent, error: introError } = useAsyncData(
+  'homepage/intro', 
+  () => queryContent('/homepage/intro').findOne()
+)
+const {data:sectionsContent, error: sectionsError} = useAsyncData(
+  'homepage/sections', 
+  () => queryContent<SectionsParsedContent>('/homepage/sections').find()
+)
+const {data:skillsContent, error: skillsError} = useAsyncData(
+  'homepage/skills', 
+  () => queryContent('/homepage/skills').find()
+)
+const {data:storyIntroContent, error: storyIntroError} = useAsyncData(
+  'homepage/story/intro', 
+  () => queryContent('/homepage/story/intro').findOne()
+)
+const {data:storyBlocksContent, error: storyBlocksError} = useAsyncData(
+  'homepage/story/blocks', 
+  () => queryContent('/homepage/story/blocks').sort({ date: -1 }).find()
+)
+
 </script>
 
 
@@ -37,11 +66,7 @@ const sectionsLineColor = computed(() => {
           <WrapperShape class="absolute w-fit top-1/3 left-0 right-0 mx-auto z-[3]" 
                         shape-class="intro-shape" 
                         :ref="(el) => { introNodeRefs.text.value = componentFromNodeRef(el) }">
-            <div class="p-10 text-xl font-serif text-center">
-              My name is Nikolay Dorofeev<br/>
-              I am Software Developer<br/>
-              also known as <code>d0rich</code><br/>
-            </div>
+            <ContentRenderer v-if="introContent" tag="div" :value="introContent" class="p-10 text-xl font-serif text-center"/>
             
           </WrapperShape>
 
@@ -89,66 +114,19 @@ const sectionsLineColor = computed(() => {
         </svg>
       </template>
       <h1>Sections</h1>
-      <div class="w-full max-w-6xl mx-auto">
-        <div class="section-description" :ref="el => { sectionsNodeRefs.portfolio.value = el as Element }">
-          <Mask mask="spider" color 
+      <div class="w-full max-w-6xl mx-auto" v-if="sectionsContent">
+        <div class="section-description" 
+             v-for="doc, index in sectionsContent" :key="doc._id"
+             :ref="el => { 
+                if (index === 0) sectionsNodeRefs.portfolio.value = el as Element 
+                else if (index === 1) sectionsNodeRefs.blog.value = el as Element 
+                else if (index === 2) sectionsNodeRefs.resume.value = el as Element 
+              }">
+          <Mask :mask="doc.mask" color 
               class="section-description__image" />
           <div class="section-description__text ">
-            <BigBangButton to="/projects" text="Projects" class="underline" />
-            <p>
-              The Projects section showcases my expertise and capabilities as an IT specialist. 
-              This section highlights a diverse range of my completed and ongoing IT projects, 
-              demonstrating my proficiency in various fields such as programming, web development, 
-              mobile development, and cloud computing. 
-            </p>
-            <p>
-              Each project is described in detail, including its goals, technical specifications, 
-              and possibilities. Visitors to this section will gain a 
-              comprehensive understanding of my technical skills and experience, and can see how I have 
-              applied my knowledge and creativity to deliver innovative and effective solutions. 
-            </p>
-            <p>
-              Whether you are a potential employer or just interested in my work, 
-              the Projects section of my personal 
-              website is a <NuxtLink class="underline" to="/projects">must-see</NuxtLink>.     
-            </p>
-          </div>
-        </div>
-        <div class="section-description" :ref="el => { sectionsNodeRefs.blog.value = el as Element }">
-          <Mask mask="owl" color 
-              class="section-description__image" />
-          <div class="section-description__text ">
-            <BigBangButton to="/blog" text="Blog" class="underline" />
-            <p>
-              The Blog section is a platform for me to share my thoughts, 
-              insights, and expertise on various topics related to information technology. 
-              Here, I share my knowledge and experience with a wider audience, and offer a glimpse 
-              into the latest trends and developments in the field. 
-            </p>
-            <p>
-              Whether you are a fellow 
-              IT professional, a student, or simply a curious reader, the Blog section of my personal 
-              website offers a wealth of information and inspiration. 
-              <NuxtLink class="underline" to="/blog">Browse</NuxtLink> 
-              through my blog posts and see how I am contributing to the growth and advancement of 
-              the information technology industry.   
-            </p>
-          </div>
-          
-        </div>
-        <div class="section-description" :ref="el => { sectionsNodeRefs.resume.value = el as Element }">
-          <Mask mask="wolf" color 
-              class="section-description__image" />
-          <div class="section-description__text ">
-            <BigBangButton to="/resume" text="Resume" class="underline" />
-            <p>
-              The Resume section displays my professional background 
-              and qualifications as an IT specialist. It includes information about my education, 
-              employment history, skills, and notable projects. The section serves as a resource 
-              for potential employers and showcases my expertise in the field of information technology. 
-              Browse through my resume to <NuxtLink class="underline" to="/resume">see</NuxtLink> how I can 
-              bring value to your organization.     
-            </p>
+            <BigBangButton :to="doc.link" :text="doc.title" class="underline" />
+            <ContentRenderer :value="doc"/>
           </div>
         </div>
       </div>
@@ -160,165 +138,25 @@ const sectionsLineColor = computed(() => {
           overlay-class="skills__bg-overlay">
       <div class="pt-20" />
       <h1>Skills</h1>
-      <div class="max-w-7xl mx-auto px-3">
-        <div class="skills-group">
-          <Stats class="w-96"
-                :values="[5, 4, 3, 3, 5]" 
-                :titles="['TypeScript', 'Python', 'Kotlin', 'C#', 'HTML/CSS']">
-            <template #icon-1>
-              <Icon class="w-full h-full" name="vscode-icons:file-type-typescript-official" />
-            </template>
-            <template #icon-2>
-              <Icon class="w-full h-full" name="vscode-icons:file-type-python" />
-            </template>
-            <template #icon-3>
-              <Icon class="w-full h-full" name="vscode-icons:file-type-kotlin" />
-            </template>
-            <template #icon-4>
-              <Icon class="w-full h-full" name="vscode-icons:file-type-csharp2" />
-            </template>
-            <template #icon-5>
-              <Icon class="w-2/3 h-auto mt-[20%]" name="vscode-icons:file-type-html" />
-              <Icon class="w-2/3 h-auto ml-[20%] -mt-[40%]" name="vscode-icons:file-type-css" />
-            </template>
-          </Stats>
-          <Card mode="homepage-skills">
-            <CardTitle>Programming Languages</CardTitle>
-            <p>
-              Knowing multiple programming languages makes it easier to <b>learn new technologies quickly</b>. 
-              The <b>fundamental concepts</b> are similar, allowing for easy recognition of similarities and 
-              differences between languages. This continuous learning makes me a more <b>versatile programmer</b>.
-            </p>
-          </Card>
-        </div>
-        <div class="skills-group">
-          <Stats class="w-96"
-                :values="[5, 5, 4, 4, 2]" 
-                :titles="['Single Page App', 'SSR/SSG', 'SEO', 'Deployment', 'Web3']">
-            <template #icon-1>
-              <Icon class="w-full h-full" name="vscode-icons:file-type-vue" />
-            </template>
-            <template #icon-2>
-              <Icon class="w-full h-full" name="vscode-icons:file-type-nuxt" />
-            </template>
-            <template #icon-3>
-              <Icon class="w-full h-full" name="logos:google-icon" />
-            </template>
-            <template #icon-4>
-              <Icon class="w-full h-full" name="flat-color-icons:workflow" />
-            </template>
-            <template #icon-5>
-              <Icon class="w-full h-full" name="logos:ethereum-color" />
-            </template>
-          </Stats>
-          <Card mode="homepage-skills">
-            <CardTitle>Web</CardTitle>
-            <p>
-              My skills in <b>web technologies</b> enable me to deliver fast, high-performing, 
-              and <b>user-friendly</b> web applications that are optimized for search engines 
-              and provide a great <b>user experience</b>.
-            </p>
-          </Card>
-        </div>
-        <div class="skills-group">
-          <Stats class="w-96"
-                :values="[5, 5, 5, 1, 5]" 
-                :titles="['Data Modeling', 'Storage', 'Integration', 'Machine Learning', 'Documentation']">
-            <template #icon-1>
-              <Icon class="w-full h-full" name="flat-color-icons:mind-map" />
-            </template>
-            <template #icon-2>
-              <Icon class="w-full h-full" name="flat-color-icons:database" />
-            </template>
-            <template #icon-3>
-              <Icon class="w-full h-full" name="flat-color-icons:collect" />
-            </template>
-            <template #icon-4>
-              <Icon class="w-full h-full" name="logos:tensorflow" />
-            </template>
-            <template #icon-5>
-              <Icon class="w-full h-full" name="flat-color-icons:document" />
-            </template>
-          </Stats>
-          <Card mode="homepage-skills">
-            <CardTitle>Information</CardTitle>
-            <p>
-              My knowledge of different <b>storage solutions</b> enables me to select the most appropriate 
-              storage option for a given use case. I have extensive experience in reading and <b>documenting</b> 
-              technical materials. 
-            </p>
-            <p>
-              My expertise in these areas enables me 
-              to provide effective solutions for <b>managing, processing, and analyzing complex data</b>.
-            </p>
-          </Card>
-        </div>
-        <div class="skills-group">
-          <Stats class="w-96"
-                :values="[5, 4, 2, 4, 5]" 
-                :titles="['UML', 'Microservices', 'Dapps', 'Security', 'Design patterns']">
-            <template #icon-1>
-              <Icon class="w-full h-full" name="vscode-icons:file-type-drawio" />
-            </template>
-            <template #icon-2>
-              <Icon class="w-full h-full" name="flat-color-icons:mind-map" />
-            </template>
-            <template #icon-3>
-              <Icon class="w-full h-full" name="flat-color-icons:org-unit" />
-            </template>
-            <template #icon-4>
-              <Icon class="w-full h-full" name="flat-color-icons:lock" />
-            </template>
-            <template #icon-5>
-              <Icon class="w-full h-full" name="flat-color-icons:template" />
-            </template>
-          </Stats>
-          <Card mode="homepage-skills">
-            <CardTitle>Architecture</CardTitle>
-            <p>
-              With my proficiency in UML, I am capable of creating clear and concise <b>visual models </b>
-              of system architectures that can be <b>easily understood and maintained</b>. 
-            </p>
-            <p>
-              My knowledge 
-              of Microservices and Dapps enables me to design and develop <b>distributed systems </b>
-              that are highly scalable.
-            </p>
-            <p>
-              By utilizing Design patterns, I am able to apply <b>best practices</b> and proven 
-              solutions to common design problems, resulting in efficient and maintainable code. 
-            </p>
-            <p>
-              With these skills, I can deliver high-quality solutions that are secure, scalable, 
-              and easy to maintain.
-            </p>
-          </Card>
-        </div>
+      <div class="max-w-7xl mx-auto px-3" v-if="skillsContent">
+        <ContentRenderer tag="div" class="skills-group"
+          v-for="doc in skillsContent" :key="doc._id" :value="doc" />
       </div>
-      
-      
       <div style="height: 20vh;" />
     </WrapperBackground>
+
     <WrapperBackground tag="section" id="story" 
           overlay-class="story__bg-overlay">
       <div class="pt-20" />
       <h1>Story</h1>
       <div class="max-w-7xl px-3 mx-auto -mb-10 sm:-mb-32">
-        <div class="flex items-start justify-start">
+        <div class="flex items-start justify-start" v-if="storyIntroContent">
           <Character pose="profi" class="character" />
           <WrapperShape
               class="bubble-1" 
               filter-class="sharp-shadow ss-neutral-50 ss-r-1 ss-b-1"
               shape-class="bubble-1__shape">
-            <div class="bubble-1__text">
-              <p>
-                Right now you can get know my current skills and experience, 
-                but it is way far away the moment of beginning.
-              </p>
-              <p>
-                Discover the journey of my IT growth: from novice to specialist.
-              </p>
-            </div>
+            <ContentRenderer :value="storyIntroContent" tag="div" class="bubble-1__text" />
           </WrapperShape>
         </div>
       </div>
@@ -333,109 +171,15 @@ const sectionsLineColor = computed(() => {
           <polygon :ref="(el) => { storyNodeRefs.line.value = el as SVGPolygonElement }" 
                     class="fill-white" />
         </svg>
-        <div class="story-blocks__cards">
-          <!-- TODO: Generate from markdown -->
-          <Card mode="homepage-story" class="my-20">
+        <div class="story-blocks__cards" v-if="storyBlocksContent">
+          <Card v-for="doc in storyBlocksContent" :key="doc._id" mode="homepage-story" class="my-20">
             <CardTitle>
               <template #extra>
-                {{ dateToMonthYear(new Date()) }}
+                {{ dateToMonthYear(doc.date) }}
               </template>
-              You found me
+              {{ doc.title }}
             </CardTitle>
-            <p>
-              You found this awesome website of mine. And possibly you think about <b>working together</b>. 
-            </p>
-          </Card>
-          <Card mode="homepage-story" class="my-20">
-            <CardTitle>
-              Future is here
-              <template #extra>
-                {{ dateToMonthYear(new Date('2022/12/16')) }}
-              </template>
-            </CardTitle>
-            <p>
-              AI saves time in development by automating repetitive tasks and generating text and images. AI algorithms can generate written content and image creation tools allow for fast design. This not only saves time, but enhances the quality of work, making AI a valuable tool.
-            </p>
-            <p>
-              <i>Sincerely, by ChatGPT</i>
-            </p>
-          </Card>
-          <Card mode="homepage-story" class="my-20">
-            <CardTitle>
-              Move to Georgia
-              <template #extra>
-                {{ dateToMonthYear(new Date('2022/07/16')) }}
-              </template>
-            </CardTitle>
-            <p>
-              I've relocated to Georgia. Now I'm trying to make world a better place from Tbilisi.
-            </p>
-          </Card>
-          <Card mode="homepage-story" class="my-20">
-            <CardTitle>
-              Finish bachelor CS programm
-              <template #extra>
-                {{ dateToMonthYear(new Date('2022/06/16')) }}
-              </template>
-            </CardTitle>
-            <p>
-              I've finished computer science program <b>"Informational Systems and Technologies"</b>
-              with <b>business</b> specialization in Tomsk Polytechnic University.
-            </p>
-          </Card>
-          <Card mode="homepage-story" class="my-20">
-            <CardTitle>
-              Let's DocOps
-              <template #extra>
-                {{ dateToMonthYear(new Date('2021/07/16')) }}
-              </template>
-            </CardTitle>
-            <p>
-              I was hired to create documentation for <b>high-end microservice framework</b>.
-            </p>
-            <p>
-              I'm gonna make the best source of knowledges with 
-              high quality <b>User Experience</b> and <b>Developer Experience</b>!
-            </p>
-          </Card>
-          <Card mode="homepage-story" class="my-20">
-            <CardTitle>
-              I'll show you!
-              <template #extra>
-                {{ dateToMonthYear(new Date('2020/05/16')) }}
-              </template>
-            </CardTitle>
-            <p>
-              It is essential to present products and visualize data in <b>interactive and buetiful</b> way. 
-              So I've created the very first version of my website as <b>SPA</b> using Vue.
-            </p>
-            <p>
-              It was just a start of a long journey in browser tecnologies and client development. 
-            </p>
-          </Card>
-          <Card mode="homepage-story" class="my-20">
-            <CardTitle>
-              I'll create your back!
-              <template #extra>
-                {{ dateToMonthYear(new Date('2019/11/16')) }}
-              </template>
-            </CardTitle>
-            <p>
-              I've created my first <b>backend</b> application. 
-              There was still a lot to learn in future: <b>patterns, databases, archtitecture, ...</b> .
-            </p>
-          </Card>
-          <Card mode="homepage-story" class="my-20">
-            <CardTitle>
-              Let's make a shot
-              <template #extra>
-                {{ dateToMonthYear(new Date('2018/11/16')) }}
-              </template>
-            </CardTitle>
-            <p>
-              Some time I was into <b>video production</b> in student Media Center at Tomsk Polytechnic University. 
-              So knowledge about <b>composition, colors, motion design</b> are the part of me.
-            </p>
+            <ContentRenderer :value="doc" />
           </Card>
         </div>
       </div>
