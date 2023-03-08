@@ -1,3 +1,30 @@
+<script setup lang="ts">
+import { CharacterPose } from '~~/components/Character.vue';
+import { ActionFanItem } from '~~/components/actions/Fan.vue';
+
+const currentPose = ref<CharacterPose>('idle')
+const { introNodeRefs } = useIntroBlockAnimation()
+const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation()
+const { storyNodeRefs } = useStoryAnimation()
+const actions: ActionFanItem<CharacterPose>[] = [
+  { title: 'Sections', to: '#sections', emit: 'action' },
+  { title: 'Skills', to: '#skills', emit: 'profi' },
+  { title: 'Story', to: '#story', emit: 'idle' }
+]
+
+const sectionsLineColor = computed(() => {
+  if (currentSection.value === 'portfolio')
+    return 'fill-red-700'
+  if (currentSection.value === 'blog')
+    return 'fill-cyan-700'
+  if (currentSection.value === 'resume')
+    return 'fill-blue-700'
+  return 'fill-green-700'
+}) 
+
+</script>
+
+
 <template>
   <div class="-mt-20">
     <!-- Intro block -->
@@ -415,42 +442,6 @@
     </WrapperBackground>
   </div>
 </template>
-
-<script lang="ts">
-import { CharacterPose } from '~~/components/Character.vue';
-import { ActionFanItem } from '~~/components/actions/Fan.vue';
-
-export default defineComponent({
-  name: 'HomePage',
-  setup(){
-    const currentPose = ref<CharacterPose>('idle')
-    const { introNodeRefs } = useIntroBlockAnimation()
-    const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation()
-    const { storyNodeRefs } = useStoryAnimation()
-    const actions: ActionFanItem<CharacterPose>[] = [
-      { title: 'Sections', to: '#sections', emit: 'action' },
-      { title: 'Skills', to: '#skills', emit: 'profi' },
-      { title: 'Story', to: '#story', emit: 'idle' }
-    ]
-    return {
-      introNodeRefs, sectionsNodeRefs, storyNodeRefs,
-      currentPose,
-      actions,
-      sectionsLineColor: computed(() => {
-        if (currentSection.value === 'portfolio')
-          return 'fill-red-700'
-        if (currentSection.value === 'blog')
-          return 'fill-cyan-700'
-        if (currentSection.value === 'resume')
-          return 'fill-blue-700'
-        return 'fill-green-700'
-      }) 
-    }
-  }
-
-})
-
-</script>
 
 <!-- Intro -->
 <style>
