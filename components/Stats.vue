@@ -1,3 +1,69 @@
+<script setup lang="ts">
+
+export type StatsProps = {
+  groupTitle?: string,
+  titles: string[],
+  values: number[]
+}
+
+const props = defineProps<StatsProps>()
+
+const fullStarPoints = ref<number[][]>([
+  [500,0], // 1
+  [630,330], // 1-2
+  [980,350], // 2
+  [700,590], // 2-3
+  [790,910], // 3
+  [500,720], // 3-4
+  [210,910], // 4
+  [300,590], // 4-5
+  [20,350], // 5
+  [370,330] // 5-1
+])
+const scales = ref<number[]>([1, 0.8, 0.6, 0.4, 0.27])
+const posToIndex = {
+  '1': 0,
+  '1-2': 1,
+  '2': 2,
+  '2-3': 3,
+  '3': 4,
+  '3-4': 5,
+  '4': 6,
+  '4-5': 7,
+  '5': 8,
+  '5-1': 9
+}
+const center = [500, 500]
+function pointsToString(points: number[][]){
+  return points.map(pair => pair.join(',')).join(' ')
+}
+function shrinkStar(points: number[][], scale: number, cx = 500, cy = 500){
+  return points.map(coords => {
+    return [
+      coords[0] - (coords[0] - cx) * (1 - scale),
+      coords[1] - (coords[1] - cy) * (1 - scale),
+    ]
+  })
+}
+const scaledStars = computed(() => {
+  return scales.value.map((scale) => shrinkStar(fullStarPoints.value, scale))
+})
+function starFromValue(value: number) {
+  return scaledStars.value[5 - value]
+}
+function statFromIndex(index: number) {
+  return {
+    value: props.values ? props.values[index] ?? 1 : 1,
+    title: props.titles ? props.titles[index] ?? '' : ''
+  }
+}
+const firstStat = computed(() => statFromIndex(0))
+const secondStat = computed(() => statFromIndex(1))
+const thirdStat = computed(() => statFromIndex(2))
+const forthStat = computed(() => statFromIndex(3))
+const fifthStat = computed(() => statFromIndex(4))
+</script>
+
 <template>
   <figure class="max-w-full">
     <div class="relative">
@@ -148,81 +214,6 @@
   </figure>
   
 </template>
-
-<script lang="ts">
-
-export default defineComponent({
-  name: 'Stats',
-  props: {
-    groupTitle: String,
-    titles: Array as () => string[],
-    values: Array as () => number[]
-  },
-  setup(props){
-    const fullStarPoints = ref<number[][]>([
-      [500,0], // 1
-      [630,330], // 1-2
-      [980,350], // 2
-      [700,590], // 2-3
-      [790,910], // 3
-      [500,720], // 3-4
-      [210,910], // 4
-      [300,590], // 4-5
-      [20,350], // 5
-      [370,330] // 5-1
-    ])
-    const scales = ref<number[]>([1, 0.8, 0.6, 0.4, 0.27])
-    const posToIndex = {
-      '1': 0,
-      '1-2': 1,
-      '2': 2,
-      '2-3': 3,
-      '3': 4,
-      '3-4': 5,
-      '4': 6,
-      '4-5': 7,
-      '5': 8,
-      '5-1': 9
-    }
-    const center = [500, 500]
-    function pointsToString(points: number[][]){
-      return points.map(pair => pair.join(',')).join(' ')
-    }
-    function shrinkStar(points: number[][], scale: number, cx = 500, cy = 500){
-      return points.map(coords => {
-        return [
-          coords[0] - (coords[0] - cx) * (1 - scale),
-          coords[1] - (coords[1] - cy) * (1 - scale),
-        ]
-      })
-    }
-    const scaledStars = computed(() => {
-      return scales.value.map((scale) => shrinkStar(fullStarPoints.value, scale))
-    })
-    function starFromValue(value: number) {
-      return scaledStars.value[5 - value]
-    }
-    function statFromIndex(index: number) {
-      return {
-        value: props.values ? props.values[index] ?? 1 : 1,
-        title: props.titles ? props.titles[index] ?? '' : ''
-      }
-    }
-    return {
-      fullStarPoints, posToIndex, center,
-      scales, scaledStars,
-      starFromValue,
-      pointsToString,
-      shrinkStar,
-      firstStat: computed(() => statFromIndex(0)),
-      secondStat: computed(() => statFromIndex(1)),
-      thirdStat: computed(() => statFromIndex(2)),
-      forthStat: computed(() => statFromIndex(3)),
-      fifthStat: computed(() => statFromIndex(4)),
-    }
-  }
-})
-</script>
 
 <style>
 .stats__single-stat:hover{
