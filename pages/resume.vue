@@ -42,7 +42,7 @@ const error = contactsError || educationError || workError || skillsError
     </DevOnly>
 
     <article id="resume-container" class="max-w-4xl mx-auto px-3 font-serif">
-      <h1 class="text-2xl dark:text-blue-300">Resume</h1>
+      <h1 class="text-2xl dark:text-blue-300 print:hidden">Resume</h1>
       <section class="py-3 relative isolate overflow-hidden">
         <div class="max-w-xl">
           <div class="text-4xl sm:text-6xl mb-1">Nikolay Dorofeev</div>
@@ -59,27 +59,41 @@ const error = contactsError || educationError || workError || skillsError
       <ContentRenderer :value="contacts" v-if="contacts"
                       tag="section" class="[&>span]:m-2" />
       <section id="skills" v-if="skills">
-        <h2 class="text-5xl dark:text-blue-300 mb-2">Skills</h2>
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <h2 class="resume-page__section-title">Skills</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 print:grid-cols-3 print:gap-2">
           <ContentRenderer v-for="skillset in skills" :key="skillset._id" :value="skillset" />
         </div>
       </section>
       <div class="grid md:grid-cols-2 gap-x-20">
         <section id="work-experience" v-if="work">
-          <h2 class="text-5xl dark:text-blue-300 mb-2">Work Experience</h2>
-          <ResumeTimeNote class="my-3" v-for="workPlace in work" :key="workPlace._id" :timenote="workPlace"/>
+          <h2 class="resume-page__section-title">Work Experience</h2>
+          <ResumeTimeNote class="my-3 print:my-6" v-for="workPlace in work" :key="workPlace._id" :timenote="workPlace"/>
         </section>
         <section id="education" v-if="education">
-          <h2 class="text-5xl dark:text-blue-300 mb-2">Education</h2>
-          <ResumeTimeNote class="my-3" v-for="eduPlace in education" :key="eduPlace._id" :timenote="eduPlace"/>
+          <h2 class="resume-page__section-title">Education</h2>
+          <ResumeTimeNote class="my-3 print:my-6" v-for="eduPlace in education" :key="eduPlace._id" :timenote="eduPlace"/>
         </section>
       </div>
       
     </article>
   </div>
 </template>
+
 <style scoped>
 section {
-  @apply my-10;
+  @apply my-10 print:my-2;
+}
+</style>
+
+<style>
+.resume-page__section-title {
+  @apply text-5xl dark:text-blue-300 mb-2
+    print:text-2xl print:mb-6;
+}
+
+@media print {
+  html {
+    font-size: 12px;
+  }
 }
 </style>

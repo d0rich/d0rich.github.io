@@ -11,4 +11,12 @@
   padding: .4em;
 }
 
+@media print {
+  .d-chip {
+    clip-path: none;
+    padding: 0;
+    background: unset !important;
+  }
+}
+
 </style>

@@ -29,11 +29,7 @@ export default defineComponent({
 <style>
 .card__content {
   padding: var(--shape-card-padding);
-  @apply md:text-lg;
-}
-
-.card__content p {
-  @apply mb-2;
+  @apply md:text-lg print:p-0;
 }
 
 .card--homepage-story .card__content,
@@ -64,7 +60,15 @@ export default defineComponent({
 
 .card__bg {
   clip-path: var(--shape-card);
-  @apply bg-white dark:bg-neutral-700;
+  @apply bg-white dark:bg-neutral-700 
+        print:bg-none;
+}
+
+@media print {
+  .card__bg {
+    clip-path: none !important;
+    background: none !important;
+  }
 }
 
 </style>

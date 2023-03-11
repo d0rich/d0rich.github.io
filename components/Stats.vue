@@ -66,7 +66,16 @@ const fifthStat = computed(() => statFromIndex(4))
 
 <template>
   <figure class="max-w-full">
-    <div class="relative">
+    <div class="hidden print:block">
+      <div class="text-lg font-bold">{{ groupTitle }}</div>
+      <div>
+        <div class="grid grid-cols-2 items-center gap-x-4 gapy-1" v-for="skill, index in titles" :key="skill">
+          <div>{{ skill }}</div>
+          <div>{{ values[index] }}</div> 
+        </div>
+      </div>
+    </div>
+    <div class="relative print:hidden">
       <svg viewBox="-500 -500 2000 2000" xmlns="http://www.w3.org/2000/svg">
         <polygon points="100,-350 1500,-500 1000,1350 -500,1500" class="fill-neutral-900" />
         <polygon :points="pointsToString(shrinkStar(fullStarPoints, 2))" class="fill-neutral-500" />

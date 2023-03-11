@@ -3,7 +3,7 @@
     <div class="fixed w-screen z-50" >
       <DHeader class="mx-auto max-w-md sm:max-w-xl" />
     </div>
-    <main class="pt-20">
+    <main class="pt-20 print:pt-0">
       <slot />
     </main>
     <SectionsTransitionWrapper />

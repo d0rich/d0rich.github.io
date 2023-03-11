@@ -6,7 +6,7 @@
         <slot/>
       </h3>
     </WrapperShape>
-    <span class="ml-2">
+    <span class="ml-2 print:text-neutral-600">
       <slot name="extra" />
     </span>
   </div>
@@ -14,20 +14,24 @@
 
 <style>
 .card__title {
-  @apply text-2xl md:text-3xl font-semibold -mt-5 mb-3;
+  @apply text-2xl md:text-3xl font-semibold -mt-5 mb-3
+        print:text-base print:ml-0 print:mb-0;
 }
 
 .card__title__content {
-  @apply inline-block -ml-10;
+  @apply inline-block -ml-10 
+        print:ml-0;
 }
 
 .card__title__content__text {
-  @apply p-5 text-white dark:text-black;
+  @apply p-5 text-white dark:text-black
+        print:p-0 print:text-inherit;
 }
 
 .card__title__content__shape {
   clip-path: polygon(.4em .4em, 100% 0%, calc(100% - .4em) calc(100% - .4em), 0% 100%);
-  @apply bg-black dark:bg-white;
+  @apply bg-black dark:bg-white
+        print:bg-transparent;
 }
 
 .force-light .card__title__content__text {
@@ -37,4 +41,9 @@
   @apply dark:bg-black;
 }
 
+@media print {
+  .card__title__content__shape {
+    clip-path: none;
+  }
+}
 </style>
