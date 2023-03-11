@@ -22,7 +22,7 @@ const currentBarVariation = computed(() => {
   height: 120%;
   top: -10%;
   left: -10%;
-  @apply fixed sharp-shadow ss-neutral-50 ss-bl-3 hidden overflow-hidden;
+  @apply fixed sharp-shadow ss-neutral-50 ss-bl-3 hidden overflow-hidden print:hidden;
 }
 
 .sections-transition-wrapper__bar{

@@ -2,6 +2,7 @@
   <Transition name="header">
     <header v-if="show">
       <Shape 
+            class="print:hidden"
             :filter-class="`${shadowColor} header__shape-filter`"
             shape-class="bg-neutral-900"
             :shape-style="{

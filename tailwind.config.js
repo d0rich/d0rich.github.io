@@ -10,6 +10,11 @@ module.exports = {
       'serif': ['Roboto Slab', ...defaultTheme.fontFamily.sans],
       'mono': ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
       'dialog': ['Arsenal']
+    },
+    extend: {
+      screens: {
+          'print': { 'raw': 'print' },
+      }
     }
   },
   plugins: [

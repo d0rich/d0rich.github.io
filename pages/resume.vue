@@ -54,7 +54,7 @@ const error = contactsError || educationError || workError || skillsError
           </p>
         </div>
         <Mask mask="wolf" color outline 
-          class="h-full absolute top-0 right-0 -z-10 brightness-[25%] md:brightness-100 transition-all" />
+          class="h-full absolute top-0 right-0 -z-10 brightness-[25%] md:brightness-100 transition-all print:hidden" />
       </section>
       <ContentRenderer :value="contacts" v-if="contacts"
                       tag="section" class="[&>span]:m-2" />
