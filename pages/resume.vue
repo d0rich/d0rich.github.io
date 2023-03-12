@@ -40,6 +40,8 @@ const error = contactsError || educationError || workError || skillsError
         <pre>{{ error?.stack }}</pre>
       </div>
     </DevOnly>
+    
+    <DBtn href="/resume/united.pdf" tag="a" class="print:hidden">Print</DBtn>
 
     <article id="resume-container" class="max-w-4xl mx-auto px-3 font-serif">
       <h1 class="text-2xl dark:text-blue-300 print:hidden">Resume</h1>
@@ -88,7 +90,7 @@ section {
 <style>
 .resume-page__section-title {
   @apply text-5xl text-blue-700 dark:text-blue-300 mb-2
-    print:text-2xl print:mb-6;
+    print:text-2xl print:mt-4;
 }
 
 @media print {

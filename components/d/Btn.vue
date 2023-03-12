@@ -1,5 +1,5 @@
 <template>
-  <Component class="d-btn" :is="currentComponent" :to="to" :href="href">
+  <Component class="d-btn" :is="currentComponent" v-bind="{ to, href }">
     <FocusHighlight :variant="highlight" :link-exact="exact" :no-passive-link="noPassiveHl">
       <slot />
     </FocusHighlight>
@@ -32,6 +32,7 @@ export default defineComponent({
     const NuxtLink = resolveComponent('NuxtLink')
     return {
       currentComponent: computed(() => {
+        if (tag === 'a') return tag
         if (to || href) return NuxtLink
         return tag
       })
