@@ -60,18 +60,18 @@ const error = contactsError || educationError || workError || skillsError
                       tag="section" class="[&>span]:m-2" />
       <section id="skills" v-if="skills">
         <h2 class="resume-page__section-title">Skills</h2>
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 print:grid-cols-3 print:gap-2">
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 print:grid-cols-3">
           <ContentRenderer v-for="skillset in skills" :key="skillset._id" :value="skillset" />
         </div>
       </section>
       <div class="grid md:grid-cols-2 gap-x-20">
         <section id="work-experience" v-if="work">
           <h2 class="resume-page__section-title">Work Experience</h2>
-          <ResumeTimeNote class="my-3 print:my-6" v-for="workPlace in work" :key="workPlace._id" :timenote="workPlace"/>
+          <ResumeTimeNote class="my-3 print:my-8" v-for="workPlace in work" :key="workPlace._id" :timenote="workPlace"/>
         </section>
         <section id="education" v-if="education">
           <h2 class="resume-page__section-title">Education</h2>
-          <ResumeTimeNote class="my-3 print:my-6" v-for="eduPlace in education" :key="eduPlace._id" :timenote="eduPlace"/>
+          <ResumeTimeNote class="my-3 print:my-8" v-for="eduPlace in education" :key="eduPlace._id" :timenote="eduPlace"/>
         </section>
       </div>
       

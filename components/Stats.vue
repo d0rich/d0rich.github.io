@@ -69,9 +69,12 @@ const fifthStat = computed(() => statFromIndex(4))
     <div class="hidden print:block">
       <div class="text-lg font-bold">{{ groupTitle }}</div>
       <div>
-        <div class="grid grid-cols-2 items-center gap-x-4 gapy-1" v-for="skill, index in titles" :key="skill">
+        <div class="grid grid-cols-[1fr_auto] items-center gap-x-4 gapy-1" v-for="skill, index in titles" :key="skill">
           <div>{{ skill }}</div>
-          <div>{{ values[index] }}</div> 
+          <div>
+            <Icon name="ic:sharp-star" v-for="n in values[index]" :key="n" />
+            <Icon name="ic:sharp-star-border" v-for="n in (5 - values[index])" :key="n" />
+          </div> 
         </div>
       </div>
     </div>

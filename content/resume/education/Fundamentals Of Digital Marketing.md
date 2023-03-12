@@ -8,6 +8,6 @@ daterange:
   end: 2021-07-15
 ---
 
-Learn the fundamentals of digital marketing to help your business or career. 
+Learned the fundamentals of digital marketing and **Search Engine Optimization (SEO)**. 
 
 :a[Certificate]{href="/certificates/fundamentals-of-digital-marketing.pdf" target="_blank"}
