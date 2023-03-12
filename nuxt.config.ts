@@ -31,6 +31,11 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'nuxt-icon'
   ],
+  nitro: {
+    prerender: {
+      routes: ['/resume/test.pdf']
+    }
+  },
   content: {
     markdown: {
       rehypePlugins: {
