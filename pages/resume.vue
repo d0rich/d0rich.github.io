@@ -46,7 +46,7 @@ const error = contactsError || educationError || workError || skillsError
       <section class="py-3 relative isolate overflow-hidden">
         <div class="max-w-xl">
           <div class="text-4xl sm:text-6xl mb-1">Nikolay Dorofeev</div>
-          <div class="text-3xl dark:text-blue-300 mb-1">Software Engineer</div>
+          <div class="text-3xl dark:text-blue-300 text-blue-700 mb-1">Software Engineer</div>
           <p>
             Software Engineer with experience in wide range of technologies. 
             I collaborate seamlessly with team members and stakeholders 
@@ -57,7 +57,7 @@ const error = contactsError || educationError || workError || skillsError
           class="h-full absolute top-0 right-0 -z-10 brightness-[25%] md:brightness-100 transition-all print:hidden" />
       </section>
       <ContentRenderer :value="contacts" v-if="contacts"
-                      tag="section" class="[&>span]:m-2" />
+                      tag="section" class="[&>span]:m-2 print:bg-neutral-800 print:text-white" />
       <section id="skills" v-if="skills">
         <h2 class="resume-page__section-title">Skills</h2>
         <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 print:grid-cols-3">
@@ -87,7 +87,7 @@ section {
 
 <style>
 .resume-page__section-title {
-  @apply text-5xl dark:text-blue-300 mb-2
+  @apply text-5xl text-blue-700 dark:text-blue-300 mb-2
     print:text-2xl print:mb-6;
 }
 

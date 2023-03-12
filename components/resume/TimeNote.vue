@@ -29,7 +29,7 @@ defineProps<{
         </Component>
       </template>
     </CardTitle>
-    <p class="dark:text-blue-300">
+    <p class="text-blue-600 dark:text-blue-300 print:text-sm">
       <time :datetime="timenote.daterange.start">
         {{ dateToMonthYear(timenote.daterange.start) }}
       </time>
@@ -37,6 +37,9 @@ defineProps<{
       <time :datetime="timenote.daterange.end">
         {{ timenote.daterange.end ? dateToMonthYear(timenote.daterange.end) : 'Present' }}
       </time>
+      <span v-if="timenote.daterange.start">
+        ({{ formatYearMonthDateDiff(new Date(timenote.daterange.start), new Date(timenote.daterange.end ?? new Date())) }})
+      </span>
     </p>
     <ContentRenderer class="resume-time-note__content" :value="timenote" />
   </Card>
