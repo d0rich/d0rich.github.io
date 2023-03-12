@@ -1,5 +1,5 @@
 <template>
-  <Component class="d-btn" :is="currentComponent" v-bind="{ to, href }">
+  <Component class="d-btn" :is="currentComponent" v-bind="props">
     <FocusHighlight :variant="highlight" :link-exact="exact" :no-passive-link="noPassiveHl">
       <slot />
     </FocusHighlight>
@@ -28,14 +28,15 @@ export default defineComponent({
       type: String as () => HighlightVariant
     }
   },
-  setup({ to, href, tag }){
+  setup(props){
     const NuxtLink = resolveComponent('NuxtLink')
     return {
       currentComponent: computed(() => {
-        if (tag === 'a') return tag
-        if (to || href) return NuxtLink
-        return tag
-      })
+        if (props.tag === 'a') return props.tag
+        if (props.to || props.href) return NuxtLink
+        return props.tag
+      }),
+      props
     }
   }
 })

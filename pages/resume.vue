@@ -40,8 +40,6 @@ const error = contactsError || educationError || workError || skillsError
         <pre>{{ error?.stack }}</pre>
       </div>
     </DevOnly>
-    
-    <DBtn href="/resume/united.pdf" tag="a" class="print:hidden">Print</DBtn>
 
     <article id="resume-container" class="max-w-4xl mx-auto px-3 font-serif">
       <h1 class="text-2xl dark:text-blue-300 print:hidden">Resume</h1>
