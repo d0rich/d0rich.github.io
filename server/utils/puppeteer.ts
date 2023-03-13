@@ -11,7 +11,7 @@ export async function fetchPageWithCss(path: string) {
   for (let cssRel of cssRels) {
     const href = cssRel.getAttribute('href')
     if (!href?.endsWith('.css')) continue
-    const style = fs.readFileSync('./dist' + href, { encoding: 'utf-8' })
+    const style = fs.readFileSync('./.nuxt/dist/client' + href, { encoding: 'utf-8' })
     head.appendChild(parse(`<style>${style}</style>`))
   }
   return parsedHtml.toString()
