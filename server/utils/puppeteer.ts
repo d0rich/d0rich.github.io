@@ -14,6 +14,10 @@ export async function fetchPageWithCss(path: string) {
     const style = fs.readFileSync('./.nuxt/dist/client' + href, { encoding: 'utf-8' })
     head.appendChild(parse(`<style>${style}</style>`))
   }
+  // Add Roboto Slab from Google fonts
+  head.appendChild(parse(`<link rel="preconnect" href="https://fonts.googleapis.com">`))
+  head.appendChild(parse(`<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`))
+  head.appendChild(parse(`<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">`))
   return parsedHtml.toString()
 }
 
@@ -25,7 +29,7 @@ export async function savePdf(path: string) {
     await page.goto('http://localhost:3000' + path, { waitUntil: 'networkidle0' })
   } else {
     // If prerender
-    await page.setContent(await fetchPageWithCss(path), { waitUntil: 'domcontentloaded' })
+    await page.setContent(await fetchPageWithCss(path), { waitUntil: ['domcontentloaded', 'networkidle0'] })
   }
   await page.emulateMediaType('print')
   await page.evaluate(() => {
