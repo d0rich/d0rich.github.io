@@ -46,7 +46,7 @@ export default defineComponent({
 <style>
 
 .d-btn{
-  @apply font-extrabold uppercase -rotate-6 select-none relative;
+  @apply font-extrabold uppercase -rotate-6 select-none relative inline-block;
 }
 
 </style>

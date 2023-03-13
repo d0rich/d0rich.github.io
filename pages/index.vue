@@ -51,8 +51,6 @@ const {data:storyBlocksContent, error: storyBlocksError} = useAsyncData(
   () => queryContent('/homepage/story/blocks').sort({ date: -1 }).find()
 )
 
-useAsyncData(() => $fetch('/api/resume/generate'))
-
 </script>
 
 
