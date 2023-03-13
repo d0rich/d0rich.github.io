@@ -5,6 +5,10 @@ useHead({
   title: 'Resume'
 })
 
+definePageMeta({
+  path: '/resume/:type(.*(?<!\\.pdf\\)$)?'
+})
+
 const { data: contacts, error: contactsError } = useAsyncData(
   'resume/contacts',
   () => queryContent('/resume/contacts').findOne()
