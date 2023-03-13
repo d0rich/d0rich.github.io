@@ -6,12 +6,13 @@ useHead({
   title: 'Blog'
 })
 
-const { currentPage } = defineProps({
-  currentPage: {
-    type: Number,
-    default: 1
-  }
+definePageMeta({
+  path: '/blog/:page(\\d+)?'
 })
+
+const route = useRoute()
+
+const currentPage = computed(() => Number(route.params.page || 1)) 
 
 const itemsOnPage = 5
 
@@ -35,7 +36,7 @@ const blogQuery: QueryBuilderParams = {
   // FIXME: QueryBuilderParams wrong type definition
   where: filterObject,
   limit: itemsOnPage,
-  skip: (currentPage - 1) * itemsOnPage,
+  skip: (currentPage.value - 1) * itemsOnPage,
   sort: [
     { 'date': -1 }
   ]
