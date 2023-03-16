@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {TimeNote} from '~~/components/resume/TimeNote.vue'
+import {ResumeData} from '~~/server/routes/api/resume/data'
 
 useHead({
   title: 'Resume'
@@ -34,7 +34,11 @@ const resumeType = computed(() => useRoute().params.type as string)
 //   }
 // )
 
-const { data, error } = useFetch('/api/resume/data', { query: { resumeType: resumeType.value } })
+const { data, error } = useFetch<ResumeData>(
+  '/api/resume/data', 
+  { 
+    query: { resumeType: resumeType.value } 
+  })
 </script>
 
 <template>
