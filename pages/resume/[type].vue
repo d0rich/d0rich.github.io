@@ -9,6 +9,13 @@ definePageMeta({
   path: '/resume/:type(.*(?<!\\.pdf\\)$)?'
 })
 
+const resumeType = computed(() => useRoute().params.type as string)
+
+const { data: lead, error: leadError } = useAsyncData(
+  `resume/${resumeType.value || 'united'}/lead`,
+  () => queryContent(`/resume/leads/${resumeType.value}`).findOne()
+)
+
 const { data: contacts, error: contactsError } = useAsyncData(
   'resume/contacts',
   () => queryContent('/resume/contacts').findOne()
@@ -33,7 +40,7 @@ const { data: skills, error: skillsError } = useAsyncData(
   () => queryContent('/resume/skills').find()
 )
 
-const error = contactsError || educationError || workError || skillsError
+const error = leadError || contactsError || educationError || workError || skillsError
 </script>
 
 <template>
@@ -47,18 +54,14 @@ const error = contactsError || educationError || workError || skillsError
 
     <article id="resume-container" class="max-w-4xl mx-auto px-3 font-serif">
       <h1 class="text-2xl inline-block dark:text-blue-300 print:hidden">Resume</h1>
-      <section class="py-3 relative isolate overflow-hidden">
+      <section class="py-3 relative isolate overflow-hidden" v-if="lead">
         <div class="max-w-xl">
           <div class="text-4xl sm:text-6xl mb-1">Nikolay Dorofeev</div>
           <div>
-            <span class="text-3xl dark:text-blue-300 text-blue-700 mb-1">Software Engineer</span>
+            <span class="text-3xl dark:text-blue-300 text-blue-700 mb-1">{{ lead.title }}</span>
             <DBtn class="print:!hidden ml-6 pb-2" href="/resume/test.pdf" target="_blank">Print</DBtn>
           </div>
-          <p>
-            Software Engineer with experience in wide range of technologies. 
-            I collaborate seamlessly with team members and stakeholders 
-            throughout the software development lifecycle.
-          </p>
+          <ContentRenderer :value="lead" />
         </div>
         <Mask mask="wolf" color outline 
           class="h-full absolute top-0 right-0 -z-10 brightness-[25%] md:brightness-100 transition-all print:hidden" />
@@ -67,7 +70,7 @@ const error = contactsError || educationError || workError || skillsError
                       tag="section" class="[&>span]:m-2 print:bg-neutral-800 print:text-white" />
       <section id="skills" v-if="skills">
         <h2 class="resume-page__section-title">Skills</h2>
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 print:grid-cols-3">
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 print:grid-cols-3 print:text-sm">
           <ContentRenderer v-for="skillset in skills" :key="skillset._id" :value="skillset" />
         </div>
       </section>
