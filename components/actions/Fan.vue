@@ -52,7 +52,7 @@
 </template>
 
 <script lang="ts">
-import { CSSProperties } from "vue"
+import { CSSProperties } from 'vue'
 
 export type ActionFanItem<TEmit = any> = {
   title: string
@@ -65,29 +65,29 @@ export type ActionFanItem<TEmit = any> = {
 }
 
 export default defineComponent({
-  name: "ActionsFan",
+  name: 'ActionsFan',
   props: {
     actions: {
       type: Array as () => ActionFanItem[],
       default: () => []
     },
     side: {
-      type: String as () => "right" | "left",
-      default: "left"
+      type: String as () => 'right' | 'left',
+      default: 'left'
     },
     filterClass: {
       type: [String, Object as () => Record<string, boolean>],
-      default: ""
+      default: ''
     }
   },
-  emits: ["actionFocus", "actionUnfocus", "actionChoose"],
+  emits: ['actionFocus', 'actionUnfocus', 'actionChoose'],
   setup(props) {
     const shapeStyles: Record<string, CSSProperties> = {
       left: {
-        clipPath: "polygon(10px 0, 0 100%, 100% 40%)"
+        clipPath: 'polygon(10px 0, 0 100%, 100% 40%)'
       },
       right: {
-        clipPath: "polygon(calc(100% - 10px) 0, 100% 100%, 0 40%)"
+        clipPath: 'polygon(calc(100% - 10px) 0, 100% 100%, 0 40%)'
       }
     }
     const actions = ref<ActionFanItem[]>([])

@@ -23,10 +23,10 @@
 </template>
 
 <script lang="ts">
-import Shape from "~~/components/wrapper/Shape.vue"
+import Shape from '~~/components/wrapper/Shape.vue'
 
 export default defineComponent({
-  name: "DHeader",
+  name: 'DHeader',
   components: {
     Shape
   },
@@ -59,18 +59,18 @@ export default defineComponent({
       lastScrollTop = newScroll
     }
     onBeforeMount(() => {
-      window.addEventListener("scroll", onScroll)
+      window.addEventListener('scroll', onScroll)
     })
     onBeforeUnmount(() => {
-      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener('scroll', onScroll)
     })
     return {
       show: showHeader,
       shadowColor: computed(() => {
-        if (route.path.startsWith("/blog")) return "ss-cyan-300"
-        if (route.path.startsWith("/projects")) return "ss-red-300"
-        if (route.path.startsWith("/resume")) return "ss-blue-300"
-        return "ss-neutral-50"
+        if (route.path.startsWith('/blog')) return 'ss-cyan-300'
+        if (route.path.startsWith('/projects')) return 'ss-red-300'
+        if (route.path.startsWith('/resume')) return 'ss-blue-300'
+        return 'ss-neutral-50'
       })
     }
   }

@@ -2,15 +2,15 @@
 import {
   QueryBuilderParams,
   QueryBuilderWhere
-} from "@nuxt/content/dist/runtime/types"
-import { BlogContent } from "@/components/blog/Tile.vue"
+} from '@nuxt/content/dist/runtime/types'
+import { BlogContent } from '@/components/blog/Tile.vue'
 
 useHead({
-  title: "Blog"
+  title: 'Blog'
 })
 
 definePageMeta({
-  path: "/blog/:page(\\d+)?"
+  path: '/blog/:page(\\d+)?'
 })
 
 const route = useRoute()
@@ -28,8 +28,8 @@ const filterObject: QueryBuilderWhere = config.public.isProd
 const { data: pagesCount } = useAsyncData(
   `blog/pages-count/${itemsOnPage}`,
   () =>
-    queryContent<BlogContent>("/blog/")
-      .only("_path")
+    queryContent<BlogContent>('/blog/')
+      .only('_path')
       .where(filterObject)
       .find(),
   {
@@ -39,8 +39,8 @@ const { data: pagesCount } = useAsyncData(
 )
 
 const blogQuery: QueryBuilderParams = {
-  path: "/blog",
-  without: ["excerpt", "body"],
+  path: '/blog',
+  without: ['excerpt', 'body'],
   // @ts-ignore
   // FIXME: QueryBuilderParams wrong type definition
   where: filterObject,

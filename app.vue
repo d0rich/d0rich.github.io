@@ -7,14 +7,14 @@
 
 <script lang="ts">
 export default defineComponent({
-  name: "App",
+  name: 'App',
   setup() {
     useFaviconAnimation()
     const { key } = useTransitionAnimationWorkaround()
     useHead({
       titleTemplate(title: string | undefined) {
         if (title) return `${title} | d0rich`
-        else return "d0rich developer"
+        else return 'd0rich developer'
       }
     })
     return {

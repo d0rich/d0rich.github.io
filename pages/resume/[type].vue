@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { ResumeData } from "~~/server/routes/api/resume/data"
+import { ResumeData } from '~~/server/routes/api/resume/data'
 
 useHead({
-  title: "Resume"
+  title: 'Resume'
 })
 
 definePageMeta({
-  path: "/resume/:type(.*(?<!\\.pdf\\)$)?"
+  path: '/resume/:type(.*(?<!\\.pdf\\)$)?'
 })
 
 const resumeType = computed(() => useRoute().params.type as string)
 
-const { data, error } = useFetch<ResumeData>("/api/resume/data", {
+const { data, error } = useFetch<ResumeData>('/api/resume/data', {
   query: { resumeType: resumeType.value }
 })
 </script>

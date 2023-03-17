@@ -6,7 +6,7 @@
 
 <script lang="ts">
 export default defineComponent({
-  name: "BigBangButton",
+  name: 'BigBangButton',
   props: {
     text: {
       type: String,
@@ -14,24 +14,24 @@ export default defineComponent({
     },
     tag: {
       type: String,
-      default: "button"
+      default: 'button'
     },
     to: {
       type: String
     }
   },
-  emits: ["click"],
+  emits: ['click'],
   setup(props, ctx) {
-    const NuxtLink = resolveComponent("NuxtLink")
+    const NuxtLink = resolveComponent('NuxtLink')
     const animationText = useBigBangButtonAnimationText()
     return {
       currentTag: computed(() => {
         return props.to ? NuxtLink : props.tag
       }),
-      symbols: computed(() => props.text.split("")),
+      symbols: computed(() => props.text.split('')),
       onClick(event: MouseEvent) {
         animationText.value = props.text
-        ctx.emit("click", event)
+        ctx.emit('click', event)
       }
     }
   }

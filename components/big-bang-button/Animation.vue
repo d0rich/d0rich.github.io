@@ -17,27 +17,27 @@
 </template>
 
 <script lang="ts">
-import gsap from "gsap"
+import gsap from 'gsap'
 
 const paths = {
-  first: "M 0 0 C -489.471 -116.5 -526.692 -193.268 -563.913 -311.911",
-  last: "M 0 0 C 317.761 171.963 466.645 199.879 680.666 171.963",
+  first: 'M 0 0 C -489.471 -116.5 -526.692 -193.268 -563.913 -311.911',
+  last: 'M 0 0 C 317.761 171.963 466.645 199.879 680.666 171.963',
   intermediate: [
-    "M 0 0 C 36.277 125.437 19.992 358.068 -49.797 413.9",
-    "M 0 0 C 52.561 -69.974 71.171 -118.827 64.192 -446.837",
-    "M 0 0 C -3.271 137.068 -26.534 395.289 33.95 439.489"
+    'M 0 0 C 36.277 125.437 19.992 358.068 -49.797 413.9',
+    'M 0 0 C 52.561 -69.974 71.171 -118.827 64.192 -446.837',
+    'M 0 0 C -3.271 137.068 -26.534 395.289 33.95 439.489'
   ]
 }
 
 export default defineComponent({
-  name: "BigBangButtonAnimation",
+  name: 'BigBangButtonAnimation',
   setup() {
     const text = useBigBangButtonAnimationText()
-    const symbols = computed(() => text.value.split(""))
+    const symbols = computed(() => text.value.split(''))
     let clearTask: NodeJS.Timeout
     watch(text, (val) => {
       clearTimeout(clearTask)
-      if (val) clearTask = setTimeout(() => (text.value = ""), 1500)
+      if (val) clearTask = setTimeout(() => (text.value = ''), 1500)
     })
     function pathFromIndex(i: number) {
       if (i === 0) return paths.first
@@ -67,7 +67,7 @@ export default defineComponent({
         )
       },
       onLeave(el: Element, done: () => void) {
-        const index = +gsap.getProperty(el, "i")
+        const index = +gsap.getProperty(el, 'i')
         gsap.to(el, {
           motionPath: {
             path: pathFromIndex(index)

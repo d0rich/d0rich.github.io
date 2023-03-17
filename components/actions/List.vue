@@ -34,7 +34,7 @@ export type ActionListItem<TEmit = any> = {
 }
 
 export default defineComponent({
-  name: "ActionsList",
+  name: 'ActionsList',
   props: {
     actions: {
       type: Array as () => ActionListItem[],
@@ -44,7 +44,7 @@ export default defineComponent({
       type: [String, Object as () => Record<string, boolean>]
     }
   },
-  emits: ["actionChoose"],
+  emits: ['actionChoose'],
   setup() {}
 })
 </script>

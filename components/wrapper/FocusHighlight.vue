@@ -28,22 +28,22 @@
 
 <script lang="ts">
 export type HighlightVariant =
-  | "negative-tile"
-  | "list-item"
-  | "negative-list-item"
+  | 'negative-tile'
+  | 'list-item'
+  | 'negative-list-item'
 
 export default defineComponent({
-  name: "Highlight",
+  name: 'Highlight',
   props: {
     linkExact: Boolean,
     noPassiveLink: Boolean,
     variant: {
       type: String as () => HighlightVariant,
-      default: "negative-tile"
+      default: 'negative-tile'
     },
     tag: {
       type: String,
-      default: "div"
+      default: 'div'
     }
   }
 })
@@ -67,7 +67,7 @@ export default defineComponent({
   height: 0%;
   top: 50%;
   left: 50%;
-  content: "";
+  content: '';
   opacity: 0;
   pointer-events: none;
   @apply absolute backdrop-invert transition-all;
@@ -128,7 +128,7 @@ export default defineComponent({
   height: 200%;
   top: -50%;
   left: 0;
-  content: "";
+  content: '';
   clip-path: polygon(1rem 0, 0% 100%, 100% 50%);
   @apply absolute bg-red-600  transition-all -z-10;
 }
@@ -188,7 +188,7 @@ export default defineComponent({
   height: 200%;
   top: -50%;
   left: 0;
-  content: "";
+  content: '';
   clip-path: polygon(1rem 0, 0% 100%, 100% 50%);
   @apply absolute backdrop-invert transition-all;
 }

@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { ParsedContent } from "@nuxt/content/dist/runtime/types"
-import { CharacterPose } from "~~/components/Character.vue"
-import { MaskType } from "~~/components/Mask.vue"
-import { ActionFanItem } from "~~/components/actions/Fan.vue"
+import { ParsedContent } from '@nuxt/content/dist/runtime/types'
+import { CharacterPose } from '~~/components/Character.vue'
+import { MaskType } from '~~/components/Mask.vue'
+import { ActionFanItem } from '~~/components/actions/Fan.vue'
 
-const currentPose = ref<CharacterPose>("idle")
+const currentPose = ref<CharacterPose>('idle')
 const { introNodeRefs } = useIntroBlockAnimation()
 const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation()
 const { storyNodeRefs } = useStoryAnimation()
 const actions: ActionFanItem<CharacterPose>[] = [
-  { title: "Sections", to: "#sections", emit: "action" },
-  { title: "Skills", to: "#skills", emit: "profi" },
-  { title: "Story", to: "#story", emit: "idle" }
+  { title: 'Sections', to: '#sections', emit: 'action' },
+  { title: 'Skills', to: '#skills', emit: 'profi' },
+  { title: 'Story', to: '#story', emit: 'idle' }
 ]
 
 const sectionsLineColor = computed(() => {
-  if (currentSection.value === "portfolio") return "fill-red-700"
-  if (currentSection.value === "blog") return "fill-cyan-700"
-  if (currentSection.value === "resume") return "fill-blue-700"
-  return "fill-green-700"
+  if (currentSection.value === 'portfolio') return 'fill-red-700'
+  if (currentSection.value === 'blog') return 'fill-cyan-700'
+  if (currentSection.value === 'resume') return 'fill-blue-700'
+  return 'fill-green-700'
 })
 
 interface SectionsParsedContent extends ParsedContent {
@@ -27,13 +27,13 @@ interface SectionsParsedContent extends ParsedContent {
   mask: MaskType
 }
 
-const { data } = useAsyncData("homepage", async () => {
-  const introPromise = queryContent("/homepage/intro").findOne()
+const { data } = useAsyncData('homepage', async () => {
+  const introPromise = queryContent('/homepage/intro').findOne()
   const sectionsPromise =
-    queryContent<SectionsParsedContent>("/homepage/sections").find()
-  const skillsPromise = queryContent("/homepage/skills").find()
-  const storyIntroPromise = queryContent("/homepage/story/intro").findOne()
-  const storyBlocksPromise = queryContent("/homepage/story/blocks")
+    queryContent<SectionsParsedContent>('/homepage/sections').find()
+  const skillsPromise = queryContent('/homepage/skills').find()
+  const storyIntroPromise = queryContent('/homepage/story/intro').findOne()
+  const storyBlocksPromise = queryContent('/homepage/story/blocks')
     .sort({ date: -1 })
     .find()
   const [intro, sections, skills, storyIntro, storyBlocks] = await Promise.all([
@@ -346,7 +346,7 @@ const { data } = useAsyncData("homepage", async () => {
 <!-- Skills -->
 <style>
 #skills .skills__bg-overlay {
-  background: url("~/assets/img/character/action-shape-white.svg") fixed,
+  background: url('~/assets/img/character/action-shape-white.svg') fixed,
     rgb(14 116 144 / var(--tw-bg-opacity));
   background-position: center;
   background-size: auto 100vh;
@@ -360,7 +360,7 @@ const { data } = useAsyncData("homepage", async () => {
 }
 
 #skills h1 {
-  background: url("~/assets/img/character/action-shape-cyan-400.svg") fixed,
+  background: url('~/assets/img/character/action-shape-cyan-400.svg') fixed,
     rgb(255 255 255 / var(--tw-bg-opacity));
   background-position: center;
   background-size: auto 100vh;
@@ -396,7 +396,7 @@ const { data } = useAsyncData("homepage", async () => {
 }
 
 #story .story__bg-overlay {
-  background: url("~/assets/img/character/idle-shape-white.svg") fixed,
+  background: url('~/assets/img/character/idle-shape-white.svg') fixed,
     rgb(202 138 4 / var(--tw-bg-opacity));
   background-position-x: calc(60vw - 50vh);
   background-position-y: -25vh;
@@ -406,7 +406,7 @@ const { data } = useAsyncData("homepage", async () => {
 }
 
 #story h1 {
-  background: url("~/assets/img/character/idle-shape-yellow-400.svg") fixed,
+  background: url('~/assets/img/character/idle-shape-yellow-400.svg') fixed,
     rgb(255 255 255 / var(--tw-bg-opacity));
   background-position-x: calc(60vw - 50vh);
   background-position-y: -25vh;

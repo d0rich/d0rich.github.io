@@ -1,5 +1,5 @@
-import gsap from "gsap"
-import { ComponentPublicInstance } from "vue"
+import gsap from 'gsap'
+import { ComponentPublicInstance } from 'vue'
 //  import { isMobile } from "~~/utils/device"
 
 export const useIntroBlockAnimation = () => {
@@ -22,11 +22,11 @@ export const useIntroBlockAnimation = () => {
     gsap.fromTo(
       nodes.bg.value,
       {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 77% 100%, 0 100%)"
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 77% 100%, 0 100%)'
       },
       {
         scrollTrigger: introScrollTrigger,
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 48%, 77% 25%, 0 25%)"
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 48%, 77% 25%, 0 25%)'
       }
     )
     gsap.fromTo(
@@ -34,17 +34,17 @@ export const useIntroBlockAnimation = () => {
       {},
       {
         scrollTrigger: introScrollTrigger,
-        marginBottom: "-75vh"
+        marginBottom: '-75vh'
       }
     )
     gsap.fromTo(
       nodes.text.value?.$el,
       {
-        top: "33%"
+        top: '33%'
       },
       {
         scrollTrigger: introScrollTrigger,
-        top: "3%"
+        top: '3%'
       }
     )
   })
@@ -87,7 +87,7 @@ export const useSectionsDescriptionAnimation = () => {
     resume: ref<Element | null>(null)
   }
   let observer: IntersectionObserver
-  const currentSection = ref<"portfolio" | "blog" | "resume" | null>(null)
+  const currentSection = ref<'portfolio' | 'blog' | 'resume' | null>(null)
   // Line animation
   onMounted(() => {
     // TODO: delete timeout when https://github.com/nuxt/nuxt/issues/13471 is fixed
@@ -142,7 +142,7 @@ export const useSectionsDescriptionAnimation = () => {
               entry.isIntersecting && entry.target === nodes.resume.value
           )
         ) {
-          currentSection.value = "resume"
+          currentSection.value = 'resume'
           return
         }
         if (
@@ -150,7 +150,7 @@ export const useSectionsDescriptionAnimation = () => {
             (entry) => entry.isIntersecting && entry.target === nodes.blog.value
           )
         ) {
-          currentSection.value = "blog"
+          currentSection.value = 'blog'
           return
         }
         if (
@@ -159,11 +159,11 @@ export const useSectionsDescriptionAnimation = () => {
               entry.isIntersecting && entry.target === nodes.portfolio.value
           )
         ) {
-          currentSection.value = "portfolio"
+          currentSection.value = 'portfolio'
         }
       },
       {
-        rootMargin: "-33% 0% -66% 0%",
+        rootMargin: '-33% 0% -66% 0%',
         threshold: 0
       }
     )

@@ -5,10 +5,10 @@ export const useFaviconState = () => ({
 export const useFaviconAnimation = () => {
   const { animation } = useFaviconState()
   const faviconFrames = [
-    "/favicon.ico",
-    "/favicon-frames/frame-1.ico",
-    "/favicon-frames/frame-2.ico",
-    "/favicon-frames/frame-1.ico"
+    '/favicon.ico',
+    '/favicon-frames/frame-1.ico',
+    '/favicon-frames/frame-2.ico',
+    '/favicon-frames/frame-1.ico'
   ]
   const head = useHead({})
   let currentFaviconFrame = 0
@@ -21,8 +21,8 @@ export const useFaviconAnimation = () => {
         head.patch({
           link: [
             {
-              rel: "icon",
-              type: "image/x-icon",
+              rel: 'icon',
+              type: 'image/x-icon',
               href: faviconFrames[currentFaviconFrame]
             }
           ]

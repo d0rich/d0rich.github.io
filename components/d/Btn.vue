@@ -11,10 +11,10 @@
 </template>
 
 <script lang="ts">
-import FocusHighlight, { HighlightVariant } from "../wrapper/FocusHighlight.vue"
+import FocusHighlight, { HighlightVariant } from '../wrapper/FocusHighlight.vue'
 
 export default defineComponent({
-  name: "DButton",
+  name: 'DButton',
   components: {
     FocusHighlight
   },
@@ -25,17 +25,17 @@ export default defineComponent({
     noPassiveHl: Boolean,
     tag: {
       type: String,
-      default: "span"
+      default: 'span'
     },
     highlight: {
       type: String as () => HighlightVariant
     }
   },
   setup(props) {
-    const NuxtLink = resolveComponent("NuxtLink")
+    const NuxtLink = resolveComponent('NuxtLink')
     return {
       currentComponent: computed(() => {
-        if (props.tag === "a") return props.tag
+        if (props.tag === 'a') return props.tag
         if (props.to || props.href) return NuxtLink
         return props.tag
       }),

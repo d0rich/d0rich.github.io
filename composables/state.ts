@@ -3,4 +3,4 @@ export const useLayoutState = () => ({
 })
 
 export const useBigBangButtonAnimationText = () =>
-  useState("bbb-animation-text", () => "")
+  useState('bbb-animation-text', () => '')

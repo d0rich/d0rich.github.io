@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ParsedContent } from "@nuxt/content/dist/runtime/types"
+import { ParsedContent } from '@nuxt/content/dist/runtime/types'
 
 export interface TimeNote extends ParsedContent {
   place: {
@@ -41,7 +41,7 @@ defineProps<{
         {{
           timenote.daterange.end
             ? dateToMonthYear(timenote.daterange.end)
-            : "Present"
+            : 'Present'
         }}
       </time>
       <span v-if="timenote.daterange.start">

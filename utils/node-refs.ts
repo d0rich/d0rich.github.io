@@ -1,4 +1,4 @@
-import { ComponentPublicInstance } from "vue"
+import { ComponentPublicInstance } from 'vue'
 
 export const elFromNodeRef = (
   el: ComponentPublicInstance | Element | null

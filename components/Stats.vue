@@ -21,20 +21,20 @@ const fullStarPoints = ref<number[][]>([
 ])
 const scales = ref<number[]>([1, 0.8, 0.6, 0.4, 0.27])
 const posToIndex = {
-  "1": 0,
-  "1-2": 1,
-  "2": 2,
-  "2-3": 3,
-  "3": 4,
-  "3-4": 5,
-  "4": 6,
-  "4-5": 7,
-  "5": 8,
-  "5-1": 9
+  '1': 0,
+  '1-2': 1,
+  '2': 2,
+  '2-3': 3,
+  '3': 4,
+  '3-4': 5,
+  '4': 6,
+  '4-5': 7,
+  '5': 8,
+  '5-1': 9
 }
 const center = [500, 500]
 function pointsToString(points: number[][]) {
-  return points.map((pair) => pair.join(",")).join(" ")
+  return points.map((pair) => pair.join(',')).join(' ')
 }
 function shrinkStar(points: number[][], scale: number, cx = 500, cy = 500) {
   return points.map((coords) => {
@@ -53,7 +53,7 @@ function starFromValue(value: number) {
 function statFromIndex(index: number) {
   return {
     value: props.values ? props.values[index] ?? 1 : 1,
-    title: props.titles ? props.titles[index] ?? "" : ""
+    title: props.titles ? props.titles[index] ?? '' : ''
   }
 }
 const firstStat = computed(() => statFromIndex(0))

@@ -19,10 +19,10 @@
 </template>
 
 <script lang="ts">
-import { StyleValue } from "vue"
+import { StyleValue } from 'vue'
 
 export default defineComponent({
-  name: "Background",
+  name: 'Background',
   props: {
     overlayClass: [String, Object as () => Record<string, boolean>],
     overlayStyle: Object as () => StyleValue,
@@ -34,7 +34,7 @@ export default defineComponent({
     },
     tag: {
       type: String,
-      default: "div"
+      default: 'div'
     }
   }
 })
