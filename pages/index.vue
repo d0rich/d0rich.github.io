@@ -30,32 +30,38 @@ interface SectionsParsedContent extends ParsedContent {
   mask: MaskType
 }
 
-const { data: introContent, error: introError } = useAsyncData(
-  'homepage/intro', 
-  () => queryContent('/homepage/intro').findOne()
-)
-const {data:sectionsContent, error: sectionsError} = useAsyncData(
-  'homepage/sections', 
-  () => queryContent<SectionsParsedContent>('/homepage/sections').find()
-)
-const {data:skillsContent, error: skillsError} = useAsyncData(
-  'homepage/skills', 
-  () => queryContent('/homepage/skills').find()
-)
-const {data:storyIntroContent, error: storyIntroError} = useAsyncData(
-  'homepage/story/intro', 
-  () => queryContent('/homepage/story/intro').findOne()
-)
-const {data:storyBlocksContent, error: storyBlocksError} = useAsyncData(
-  'homepage/story/blocks', 
-  () => queryContent('/homepage/story/blocks').sort({ date: -1 }).find()
+const { data, error } = useAsyncData(
+  'homepage',
+  async () => {
+    const introPromise = queryContent('/homepage/intro').findOne()
+    const sectionsPromise = queryContent<SectionsParsedContent>('/homepage/sections').find()
+    const skillsPromise = queryContent('/homepage/skills').find()
+    const storyIntroPromise = queryContent('/homepage/story/intro').findOne()
+    const storyBlocksPromise = queryContent('/homepage/story/blocks').sort({ date: -1 }).find()
+    const [intro, sections, skills, storyIntro, storyBlocks] = await Promise.all([
+      introPromise,
+      sectionsPromise,
+      skillsPromise,
+      storyIntroPromise,
+      storyBlocksPromise
+    ])
+    return {
+      intro, 
+      sections, 
+      skills, 
+      story: {
+        intro: storyIntro,
+        blocks: storyBlocks
+      }
+    }
+  }
 )
 
 </script>
 
 
 <template>
-  <div class="-mt-20">
+  <div class="-mt-20" v-if="data">
     <!-- Intro block -->
     <section style="height: 200vh;" :ref="(el) => { introNodeRefs.section.value = el as Element }">
       <div class="sticky top-0">
@@ -66,7 +72,7 @@ const {data:storyBlocksContent, error: storyBlocksError} = useAsyncData(
           <WrapperShape class="absolute w-fit top-1/3 left-0 right-0 mx-auto z-[3]" 
                         shape-class="intro-shape" 
                         :ref="(el) => { introNodeRefs.text.value = componentFromNodeRef(el) }">
-            <ContentRenderer v-if="introContent" tag="div" :value="introContent" class="p-10 text-xl font-serif text-center"/>
+            <ContentRenderer tag="div" :value="data.intro" class="p-10 text-xl font-serif text-center"/>
             
           </WrapperShape>
 
@@ -114,9 +120,9 @@ const {data:storyBlocksContent, error: storyBlocksError} = useAsyncData(
         </svg>
       </template>
       <h1>Sections</h1>
-      <div class="w-full max-w-6xl mx-auto" v-if="sectionsContent">
+      <div class="w-full max-w-6xl mx-auto">
         <div class="section-description" 
-             v-for="doc, index in sectionsContent" :key="doc._id"
+             v-for="doc, index in data.sections" :key="doc._id"
              :ref="el => { 
                 if (index === 0) sectionsNodeRefs.portfolio.value = el as Element 
                 else if (index === 1) sectionsNodeRefs.blog.value = el as Element 
@@ -138,9 +144,9 @@ const {data:storyBlocksContent, error: storyBlocksError} = useAsyncData(
           overlay-class="skills__bg-overlay">
       <div class="pt-20" />
       <h1>Skills</h1>
-      <div class="max-w-7xl mx-auto px-3" v-if="skillsContent">
+      <div class="max-w-7xl mx-auto px-3">
         <ContentRenderer tag="div" class="skills-group"
-          v-for="doc in skillsContent" :key="doc._id" :value="doc" />
+          v-for="doc in data.skills" :key="doc._id" :value="doc" />
       </div>
       <div style="height: 20vh;" />
     </WrapperBackground>
@@ -150,13 +156,13 @@ const {data:storyBlocksContent, error: storyBlocksError} = useAsyncData(
       <div class="pt-20" />
       <h1>Story</h1>
       <div class="max-w-7xl px-3 mx-auto -mb-10 sm:-mb-32">
-        <div class="flex items-start justify-start" v-if="storyIntroContent">
+        <div class="flex items-start justify-start">
           <Character pose="profi" class="character" />
           <WrapperShape
               class="bubble-1" 
               filter-class="sharp-shadow ss-neutral-50 ss-r-1 ss-b-1"
               shape-class="bubble-1__shape">
-            <ContentRenderer :value="storyIntroContent" tag="div" class="bubble-1__text" />
+            <ContentRenderer :value="data.story.intro" tag="div" class="bubble-1__text" />
           </WrapperShape>
         </div>
       </div>
@@ -171,8 +177,8 @@ const {data:storyBlocksContent, error: storyBlocksError} = useAsyncData(
           <polygon :ref="(el) => { storyNodeRefs.line.value = el as SVGPolygonElement }" 
                     class="fill-white" />
         </svg>
-        <div class="story-blocks__cards" v-if="storyBlocksContent">
-          <Card v-for="doc in storyBlocksContent" :key="doc._id" mode="homepage-story" class="my-20">
+        <div class="story-blocks__cards">
+          <Card v-for="doc in data.story.blocks" :key="doc._id" mode="homepage-story" class="my-20">
             <CardTitle>
               <template #extra>
                 {{ dateToMonthYear(doc.date) }}
