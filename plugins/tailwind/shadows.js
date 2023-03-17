@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const plugin = require("tailwindcss/plugin")
 const colors = require("tailwindcss/colors")
 
@@ -8,7 +9,7 @@ const COLOR_VAR = "--tw-ss-color"
 const defaultStyle = {
   [X_OFFSET_VAR]: "0px",
   [Y_OFFSET_VAR]: "0px",
-  //[COLOR_VAR]: 'white',
+  // [COLOR_VAR]: 'white',
   "--tw-drop-shadow": `drop-shadow(var(${X_OFFSET_VAR}) var(${Y_OFFSET_VAR}) 0px var(${COLOR_VAR}))`,
   filter:
     "var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)"
@@ -28,9 +29,9 @@ function generateDirections() {
   const directions = ["t", "tr", "tl", "b", "bl", "br", "r", "l"]
   const offsets = [0, 1, 2, 3, 4, 5]
   const result = {}
-  for (let dir of directions) {
+  for (const dir of directions) {
     const { x, y } = direction2vector(dir)
-    for (let offset of offsets) {
+    for (const offset of offsets) {
       const newVariant = {
         [X_OFFSET_VAR]: x * offset + "px",
         [Y_OFFSET_VAR]: y * offset + "px"
@@ -45,7 +46,7 @@ function generateDirections() {
 
 function generateColors() {
   const result = {}
-  for (let colorKey in colors) {
+  for (const colorKey in colors) {
     if (
       [
         "inherit",
@@ -59,7 +60,7 @@ function generateColors() {
       ].includes(colorKey)
     )
       continue
-    for (let colorVariantKey in colors[colorKey]) {
+    for (const colorVariantKey in colors[colorKey]) {
       result[`.ss-${colorKey}-${colorVariantKey}`] = {
         [COLOR_VAR]: colors[colorKey][colorVariantKey]
       }
