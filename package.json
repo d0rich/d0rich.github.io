@@ -1,6 +1,10 @@
 {
   "private": true,
   "scripts": {
+    "lint:js": "eslint --ext \".ts,.vue\" --ignore-path .gitignore .",
+    "lint:prettier": "prettier --check .",
+    "lint": "yarn lint:js && yarn lint:prettier",
+    "lintfix": "prettier --write --list-different . && eslint --ext \".ts,.vue\" --ignore-path .gitignore . --fix",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -16,11 +20,16 @@
     "nuxt": "^3.3.1"
   },
   "dependencies": {
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "dateformat": "^5.0.3",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "gsap": "^3.11.4",
     "mobile-detect": "^1.4.5",
     "node-html-parser": "^6.1.5",
     "nuxt-icon": "^0.3.2",
+    "prettier": "^2.8.4",
     "puppeteer": "^19.7.4",
     "rehype-external-links": "^2.0.1"
   }
