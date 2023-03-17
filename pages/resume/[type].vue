@@ -14,6 +14,25 @@ const resumeType = computed(() => useRoute().params.type as string)
 const { data, error } = useFetch<ResumeData>('/api/resume/data', {
   query: { resumeType: resumeType.value }
 })
+
+const printResumeLink = computed(() => {
+  return `/api/resume/Nikolay_Dorofeev-${data.value?.lead.title}.pdf`
+})
+
+const { data: resumeList } = useAsyncData(
+  'resume/all',
+  () =>
+    queryContent('/resume/leads')
+      .only(['_path' as const, 'title' as const])
+      .find(),
+  {
+    transform: (results) =>
+      results.map((r) => {
+        if (r._path) r._path = r._path.replace('/resume/leads', '/resume')
+        return r
+      })
+  }
+)
 </script>
 
 <template>
@@ -30,9 +49,18 @@ const { data, error } = useFetch<ResumeData>('/api/resume/data', {
       id="resume-container"
       class="max-w-4xl mx-auto px-3 font-serif"
     >
-      <h1 class="text-2xl inline-block dark:text-blue-300 print:hidden">
+      <h1 class="text-2xl inline-block dark:text-blue-300 print:hidden mb-5">
         Resume
       </h1>
+      <nav class="flex flex-wrap print:hidden gap-4 md:gap-8">
+        <DBtn
+          v-for="resume in resumeList"
+          :key="resume._path"
+          class="max-w-[9rem] text-center"
+          :to="resume._path"
+          >{{ resume.title }}</DBtn
+        >
+      </nav>
       <section class="py-3 relative isolate overflow-hidden">
         <div class="max-w-xl">
           <div class="text-4xl sm:text-6xl mb-1">Nikolay Dorofeev</div>
@@ -42,7 +70,7 @@ const { data, error } = useFetch<ResumeData>('/api/resume/data', {
             }}</span>
             <DBtn
               class="print:!hidden ml-6 pb-2"
-              href="/resume/test.pdf"
+              :href="printResumeLink"
               target="_blank"
               >Print</DBtn
             >
@@ -63,7 +91,9 @@ const { data, error } = useFetch<ResumeData>('/api/resume/data', {
       />
       <section id="skills">
         <h2 class="resume-page__section-title">Skills</h2>
-        <div
+        <TransitionGroup
+          name="skills-list"
+          tag="div"
           class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 print:grid-cols-3 print:text-sm"
         >
           <ContentRenderer
@@ -71,7 +101,7 @@ const { data, error } = useFetch<ResumeData>('/api/resume/data', {
             :key="skillset._id"
             :value="skillset"
           />
-        </div>
+        </TransitionGroup>
       </section>
       <div class="grid md:grid-cols-2 gap-x-20">
         <section id="work-experience">
@@ -113,5 +143,26 @@ section {
   html {
     font-size: 12px;
   }
+}
+</style>
+
+<!-- Animation -->
+<style>
+.skills-list-move, /* apply transition to moving elements */
+.skills-list-enter-active,
+.skills-list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.skills-list-enter-from,
+.skills-list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving
+   animations can be calculated correctly. */
+.skills-list-leave-active {
+  position: absolute;
 }
 </style>

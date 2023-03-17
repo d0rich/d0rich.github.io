@@ -29,7 +29,12 @@ export default defineNuxtConfig({
   ],
   nitro: {
     prerender: {
-      routes: ['/resume/test.pdf']
+      routes: [
+        '/api/resume/Nikolay_Dorofeev-Software Engineer.pdf',
+        '/api/resume/Nikolay_Dorofeev-Node.js Developer.pdf',
+        '/api/resume/Nikolay_Dorofeev-Vue Frontend Developer.pdf',
+        '/api/resume/Nikolay_Dorofeev-System Analyst.pdf'
+      ]
     }
   },
   content: {
