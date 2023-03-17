@@ -11,34 +11,12 @@ definePageMeta({
 
 const resumeType = computed(() => useRoute().params.type as string)
 
-// const { data, error } = useAsyncData(
-//   `resume/${resumeType.value}`,
-//   async () => {
-//     const leadPromise = queryContent(`/resume/leads/${resumeType.value}`).findOne()
-//     const contactsPromise = queryContent('/resume/contacts').findOne()
-//     const skillsPromise = queryContent('/resume/skills').find()
-//     const educationPromise = queryContent<TimeNote>('/resume/education')
-//       .sort({ 'daterange.end': -1 })
-//       .find()
-//     const workPromise = queryContent<TimeNote>('/resume/work')
-//       .sort({ 'daterange.end': -1 })
-//       .find()
-//     const [lead, contacts, skills, education, work] = await Promise.all([
-//       leadPromise, 
-//       contactsPromise, 
-//       skillsPromise, 
-//       educationPromise, 
-//       workPromise
-//     ])
-//     return {lead, contacts, skills, education, work}
-//   }
-// )
-
 const { data, error } = useFetch<ResumeData>(
   '/api/resume/data', 
   { 
     query: { resumeType: resumeType.value } 
-  })
+  }
+)
 </script>
 
 <template>
