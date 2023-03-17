@@ -1,17 +1,20 @@
 <template>
-  <Component class="d-btn" :is="currentComponent" v-bind="props">
-    <FocusHighlight :variant="highlight" :link-exact="exact" :no-passive-link="noPassiveHl">
+  <Component :is="currentComponent" class="d-btn" v-bind="props">
+    <FocusHighlight
+      :variant="highlight"
+      :link-exact="exact"
+      :no-passive-link="noPassiveHl"
+    >
       <slot />
     </FocusHighlight>
   </Component>
 </template>
 
 <script lang="ts">
-
-import FocusHighlight, { HighlightVariant } from '../wrapper/FocusHighlight.vue';
+import FocusHighlight, { HighlightVariant } from "../wrapper/FocusHighlight.vue"
 
 export default defineComponent({
-  name: 'DButton',
+  name: "DButton",
   components: {
     FocusHighlight
   },
@@ -22,17 +25,17 @@ export default defineComponent({
     noPassiveHl: Boolean,
     tag: {
       type: String,
-      default: 'span'
+      default: "span"
     },
     highlight: {
       type: String as () => HighlightVariant
     }
   },
-  setup(props){
-    const NuxtLink = resolveComponent('NuxtLink')
+  setup(props) {
+    const NuxtLink = resolveComponent("NuxtLink")
     return {
       currentComponent: computed(() => {
-        if (props.tag === 'a') return props.tag
+        if (props.tag === "a") return props.tag
         if (props.to || props.href) return NuxtLink
         return props.tag
       }),
@@ -40,13 +43,10 @@ export default defineComponent({
     }
   }
 })
-
 </script>
 
 <style>
-
-.d-btn{
+.d-btn {
   @apply font-extrabold uppercase -rotate-6 select-none relative inline-block;
 }
-
 </style>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { StyleValue } from 'vue'
+import { StyleValue } from "vue"
 
 defineProps<{
-  shapeClass?: string | Record<string, boolean>,
-  shapeStyle?: StyleValue,
-  filterClass?: string | Record<string, boolean>,
-  filterStyle?: StyleValue,
+  shapeClass?: string | Record<string, boolean>
+  shapeStyle?: StyleValue
+  filterClass?: string | Record<string, boolean>
+  filterStyle?: StyleValue
   tag?: string
 }>()
 </script>
@@ -24,22 +24,22 @@ defineProps<{
 </template>
 
 <style>
-.d-shape, .d-shape > *{
+.d-shape,
+.d-shape > * {
   @apply relative;
 }
 
-.d-shape__bg-filter{
+.d-shape__bg-filter {
   @apply absolute top-0 left-0 w-full h-full;
 }
 
-.d-shape__bg-wrapper{
+.d-shape__bg-wrapper {
   @apply relative w-full h-full;
 }
 
-.d-shape__bg{
+.d-shape__bg {
   @apply absolute w-full h-full;
 }
-
 </style>
 
 <!-- Global shapes -->
@@ -63,6 +63,6 @@ defineProps<{
 
 :root {
   --shape-card: polygon(2em 0, 0% 100%, 100% calc(100% - 5em), 100% 4em);
-  --shape-card-padding: 4.5em .5em 5.5em 2.5em;
+  --shape-card-padding: 4.5em 0.5em 5.5em 2.5em;
 }
 </style>

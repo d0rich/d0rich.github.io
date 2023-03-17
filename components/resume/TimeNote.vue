@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ParsedContent } from '@nuxt/content/dist/runtime/types'
+import { ParsedContent } from "@nuxt/content/dist/runtime/types"
 
 export interface TimeNote extends ParsedContent {
   place: {
@@ -22,9 +22,12 @@ defineProps<{
     <CardTitle>
       {{ timenote.title }}
       <template #extra>
-        <Component :is="timenote.place.link ? 'a' : 'span'" 
-                    :href="timenote.place.link" target="_blank"
-                    class="timenote__place-link" >
+        <Component
+          :is="timenote.place.link ? 'a' : 'span'"
+          :href="timenote.place.link"
+          target="_blank"
+          class="timenote__place-link"
+        >
           {{ timenote.place.title }}
         </Component>
       </template>
@@ -35,10 +38,19 @@ defineProps<{
       </time>
       -
       <time :datetime="timenote.daterange.end">
-        {{ timenote.daterange.end ? dateToMonthYear(timenote.daterange.end) : 'Present' }}
+        {{
+          timenote.daterange.end
+            ? dateToMonthYear(timenote.daterange.end)
+            : "Present"
+        }}
       </time>
       <span v-if="timenote.daterange.start">
-        ({{ formatYearMonthDateDiff(new Date(timenote.daterange.start), new Date(timenote.daterange.end ?? new Date())) }})
+        ({{
+          formatYearMonthDateDiff(
+            new Date(timenote.daterange.start),
+            new Date(timenote.daterange.end ?? new Date())
+          )
+        }})
       </span>
     </p>
     <ContentRenderer class="resume-time-note__content" :value="timenote" />

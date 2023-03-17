@@ -22,10 +22,10 @@ import profiColor from "~~/assets/img/character/profi-color.webp"
 import profiOutline from "~~/assets/img/character/profi-outline.webp"
 import profiOutlineColor from "~~/assets/img/character/profi-outline-color.webp"
 
-export type CharacterPose = 'idle' | 'action' | 'profi'
+export type CharacterPose = "idle" | "action" | "profi"
 
 export default defineComponent({
-  name: 'Character',
+  name: "Character",
   props: {
     pose: {
       type: String as () => CharacterPose,
@@ -34,25 +34,36 @@ export default defineComponent({
     outline: Boolean,
     color: Boolean
   },
-  setup({ outline, color }){
+  setup(props) {
     const assets = {
-      idle, idleColor, idleOutline, idleOutlineColor,
-      action, actionColor, actionOutline, actionOutlineColor,
-      profi, profiColor, profiOutline, profiOutlineColor,
+      idle,
+      idleColor,
+      idleOutline,
+      idleOutlineColor,
+      action,
+      actionColor,
+      actionOutline,
+      actionOutlineColor,
+      profi,
+      profiColor,
+      profiOutline,
+      profiOutlineColor
     }
     return {
       assets,
-      getAsset: (pose: CharacterPose) => 
-        assets[`${pose}${outline ? 'Outline' : ''}${color ? 'Color' : ''}`]
+      getAsset: (pose: CharacterPose) =>
+        assets[
+          `${pose}${props.outline ? "Outline" : ""}${
+            props.color ? "Color" : ""
+          }`
+        ]
     }
   }
 })
-
 </script>
 
 <style scoped>
-
-img{
+img {
   @apply w-full h-auto;
 }
 
@@ -61,8 +72,8 @@ img{
   @apply transition-all;
 }
 
-.character-enter-from, .character-leave-to {
+.character-enter-from,
+.character-leave-to {
   @apply opacity-0;
 }
-
 </style>

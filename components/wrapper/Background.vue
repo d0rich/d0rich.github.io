@@ -5,8 +5,12 @@
       <div class="mbg__layer">
         <slot name="svg" />
       </div>
-      <div v-if="dots" class="mbg__layer mbg__dots" 
-          :class="dotsClass" :style="dotsStyle" />
+      <div
+        v-if="dots"
+        class="mbg__layer mbg__dots"
+        :class="dotsClass"
+        :style="dotsStyle"
+      />
       <div class="mbg__content">
         <slot />
       </div>
@@ -15,11 +19,10 @@
 </template>
 
 <script lang="ts">
-
-import { StyleValue } from 'vue';
+import { StyleValue } from "vue"
 
 export default defineComponent({
-  name: 'Background',
+  name: "Background",
   props: {
     overlayClass: [String, Object as () => Record<string, boolean>],
     overlayStyle: Object as () => StyleValue,
@@ -31,7 +34,7 @@ export default defineComponent({
     },
     tag: {
       type: String,
-      default: 'div'
+      default: "div"
     }
   }
 })

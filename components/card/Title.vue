@@ -1,9 +1,11 @@
 <template>
   <div class="card__title">
-    <WrapperShape class="card__title__content" 
-        shape-class="card__title__content__shape">
+    <WrapperShape
+      class="card__title__content"
+      shape-class="card__title__content__shape"
+    >
       <h3 class="card__title__content__text">
-        <slot/>
+        <slot />
       </h3>
     </WrapperShape>
     <span class="ml-2 print:text-neutral-600">
@@ -29,7 +31,12 @@
 }
 
 .card__title__content__shape {
-  clip-path: polygon(.4em .4em, 100% 0%, calc(100% - .4em) calc(100% - .4em), 0% 100%);
+  clip-path: polygon(
+    0.4em 0.4em,
+    100% 0%,
+    calc(100% - 0.4em) calc(100% - 0.4em),
+    0% 100%
+  );
   @apply bg-black dark:bg-white
         print:bg-transparent;
 }

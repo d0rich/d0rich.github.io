@@ -1,13 +1,13 @@
-{	
-	"tailwindCSS.emmetCompletions": true,
-	"editor.inlineSuggest.enabled": true,
-	"tailwindCSS.includeLanguages": {
+{
+  "tailwindCSS.emmetCompletions": true,
+  "editor.inlineSuggest.enabled": true,
+  "tailwindCSS.includeLanguages": {
     "plaintext": "html",
-		"vue": "html",
-		"vue-html": "html"
-	},
-	"editor.quickSuggestions": {
-		"strings": true
-	},
-	"css.validate": false,
+    "vue": "html",
+    "vue-html": "html"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "css.validate": false
 }

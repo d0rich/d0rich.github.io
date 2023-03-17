@@ -1,6 +1,6 @@
-import * as MobileDetect from 'mobile-detect'
+import * as MobileDetect from "mobile-detect"
 
-export function isMobile(): boolean{
+export function isMobile(): boolean {
   const md = new MobileDetect(window.navigator.userAgent)
   return !!md.mobile()
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="default-layout">
-    <div class="fixed w-screen z-50" >
+    <div class="fixed w-screen z-50">
       <DHeader class="mx-auto max-w-md sm:max-w-xl" />
     </div>
     <main class="pt-20 print:pt-0">
@@ -11,27 +11,28 @@
 </template>
 
 <script lang="ts">
-
-import DHeader from './components/DHeader.vue'
-import SectionsTransitionWrapper from './components/SectionsTransitionWrapper.vue'
+import DHeader from "./components/DHeader.vue"
+import SectionsTransitionWrapper from "./components/SectionsTransitionWrapper.vue"
 
 export default defineComponent({
-  name: 'DefaultLayout',
+  name: "DefaultLayout",
   components: {
-    DHeader, SectionsTransitionWrapper
+    DHeader,
+    SectionsTransitionWrapper
   }
 })
 </script>
 
 <style>
-#default-layout{
+#default-layout {
   @apply w-full h-full z-40;
-  --page-transition-length: .4s;
+  --page-transition-length: 0.4s;
 }
 </style>
 
 <style>
-.section-leave-active, .section-enter-active{
+.section-leave-active,
+.section-enter-active {
   transition: all var(--page-transition-length);
 }
 .section-enter-from {
@@ -43,7 +44,7 @@ export default defineComponent({
   opacity: 0;
 }
 
-#default-layout:has(.section-enter-active, .section-leave-active){
+#default-layout:has(.section-enter-active, .section-leave-active) {
   overflow: hidden;
 }
 </style>

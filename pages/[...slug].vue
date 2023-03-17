@@ -5,11 +5,7 @@
 </template>
 
 <script lang="ts">
-
 export default defineComponent({
-  setup(){
-    
-  }
+  setup() {}
 })
-
 </script>

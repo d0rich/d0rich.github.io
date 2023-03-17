@@ -1,6 +1,6 @@
-import gsap from 'gsap'
-import { ComponentPublicInstance } from 'vue'
-import { isMobile } from '~~/utils/device'
+import gsap from "gsap"
+import { ComponentPublicInstance } from "vue"
+//  import { isMobile } from "~~/utils/device"
 
 export const useIntroBlockAnimation = () => {
   const nodes = {
@@ -8,7 +8,7 @@ export const useIntroBlockAnimation = () => {
     main: ref<Element | null>(null),
     bg: ref<Element | null>(null),
     text: ref<ComponentPublicInstance | null>(null),
-    svg: ref<SVGElement & SVGSVGElement | null>(null),
+    svg: ref<(SVGElement & SVGSVGElement) | null>(null),
     line: ref<SVGPolygonElement | null>(null)
   }
 
@@ -17,25 +17,36 @@ export const useIntroBlockAnimation = () => {
     const introScrollTrigger = {
       scrub: 1,
       start: () => 0,
-      end: () => window.innerHeight * .5,
+      end: () => window.innerHeight * 0.5
     }
-    gsap.fromTo(nodes.bg.value, {
-      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 77% 100%, 0 100%)'
-    }, {
-      scrollTrigger: introScrollTrigger,
-      clipPath: 'polygon(0% 0%, 100% 0%, 100% 48%, 77% 25%, 0 25%)',
-    })
-    gsap.fromTo(nodes.main.value, {
-    }, {
-      scrollTrigger: introScrollTrigger,
-      marginBottom: '-75vh'
-    })
-    gsap.fromTo(nodes.text.value?.$el, {
-      top: '33%'
-    }, {
-      scrollTrigger: introScrollTrigger,
-      top: '3%'
-    })
+    gsap.fromTo(
+      nodes.bg.value,
+      {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 77% 100%, 0 100%)"
+      },
+      {
+        scrollTrigger: introScrollTrigger,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 48%, 77% 25%, 0 25%)"
+      }
+    )
+    gsap.fromTo(
+      nodes.main.value,
+      {},
+      {
+        scrollTrigger: introScrollTrigger,
+        marginBottom: "-75vh"
+      }
+    )
+    gsap.fromTo(
+      nodes.text.value?.$el,
+      {
+        top: "33%"
+      },
+      {
+        scrollTrigger: introScrollTrigger,
+        top: "3%"
+      }
+    )
   })
 
   // Line animation
@@ -43,15 +54,15 @@ export const useIntroBlockAnimation = () => {
     const lineScrollTrigger = {
       scrub: 1,
       end: () => window.innerHeight * 1,
-      start: () => window.innerHeight * .3,
+      start: () => window.innerHeight * 0.3
     }
     generatePolygonPointsKeyframes([
       { left: { x: 90, y: 0 }, right: { x: 95, y: 0 } },
       { left: { x: 50, y: 33 }, right: { x: 63, y: 35 } },
       { left: { x: 80, y: 58 }, right: { x: 85, y: 55 } },
       { left: { x: 50, y: 100 }, right: { x: 75, y: 100 } }
-    ]).forEach(kfs => {
-      const point = nodes.svg.value?.createSVGPoint() 
+    ]).forEach((kfs) => {
+      const point = nodes.svg.value?.createSVGPoint()
       if (point) {
         nodes.line.value?.points.appendItem(point)
         gsap.to(point, {
@@ -69,22 +80,30 @@ export const useIntroBlockAnimation = () => {
 
 export const useSectionsDescriptionAnimation = () => {
   const nodes = {
-    svg: ref<SVGElement & SVGSVGElement | null>(null),
+    svg: ref<(SVGElement & SVGSVGElement) | null>(null),
     line: ref<SVGPolygonElement | null>(null),
     portfolio: ref<Element | null>(null),
     blog: ref<Element | null>(null),
-    resume: ref<Element | null>(null),
+    resume: ref<Element | null>(null)
   }
   let observer: IntersectionObserver
-  const currentSection = ref<'portfolio' | 'blog' | 'resume' | null>(null)
+  const currentSection = ref<"portfolio" | "blog" | "resume" | null>(null)
   // Line animation
   onMounted(() => {
     // TODO: delete timeout when https://github.com/nuxt/nuxt/issues/13471 is fixed
     setTimeout(() => {
       const scrollTrigger = {
         scrub: 1,
-        start: () => (nodes.svg?.value?.getBoundingClientRect().top ?? 0) + window.scrollY - window.innerHeight * ( 1 - 0.35 * Number( window.innerHeight < window.innerHeight )),
-        end: () => (nodes.svg?.value?.getBoundingClientRect().bottom ?? 0) + window.scrollY - window.innerHeight * ( 1 - 0.35 * Number( window.innerHeight < window.innerHeight )),
+        start: () =>
+          (nodes.svg?.value?.getBoundingClientRect().top ?? 0) +
+          window.scrollY -
+          window.innerHeight *
+            (1 - 0.35 * Number(window.innerHeight < window.innerWidth)),
+        end: () =>
+          (nodes.svg?.value?.getBoundingClientRect().bottom ?? 0) +
+          window.scrollY -
+          window.innerHeight *
+            (1 - 0.35 * Number(window.innerHeight < window.innerWidth))
       }
       const line = [
         { left: { x: 10, y: 0 }, right: { x: 13, y: 0 } },
@@ -99,61 +118,61 @@ export const useSectionsDescriptionAnimation = () => {
         { left: { x: 97, y: 93 }, right: { x: 99, y: 99 } },
         { left: { x: 40, y: 76 }, right: { x: 30, y: 75 } },
         { left: { x: 80, y: 60 }, right: { x: 95, y: 50 } },
-        { left: { x: 50, y: 100 }, right: { x: 75, y: 100 } },
+        { left: { x: 50, y: 100 }, right: { x: 75, y: 100 } }
       ]
-      // If calculations are too complicated, change to apropriate detection
-      if (true) {
-        generatePolygonPointsKeyframes(line).forEach(kfs => {
-          const point = nodes.svg.value?.createSVGPoint() 
-          if (point) {
-            nodes.line.value?.points.appendItem(point)
-            gsap.to(point, {
-              keyframes: kfs,
-              scrollTrigger
-            })
-          }
-        })
-      } else {
-        generatePolygonLineKeyframes(line).at(-1)?.forEach(coords => {
-          const point = nodes.svg.value?.createSVGPoint() 
-          if (point){
-            point.x = coords.x
-            point.y = coords.y
-            nodes.line.value?.points.appendItem(point)
-          }
-        })
-      }
+      generatePolygonPointsKeyframes(line).forEach((kfs) => {
+        const point = nodes.svg.value?.createSVGPoint()
+        if (point) {
+          nodes.line.value?.points.appendItem(point)
+          gsap.to(point, {
+            keyframes: kfs,
+            scrollTrigger
+          })
+        }
+      })
     }, 1000)
   })
   // Current section
   onMounted(() => {
-    observer = new IntersectionObserver((entries) => {
-      if (entries.some(entry => entry.isIntersecting && entry.target === nodes.resume.value)) {
-        currentSection.value = 'resume'
-        return
+    observer = new IntersectionObserver(
+      (entries) => {
+        if (
+          entries.some(
+            (entry) =>
+              entry.isIntersecting && entry.target === nodes.resume.value
+          )
+        ) {
+          currentSection.value = "resume"
+          return
+        }
+        if (
+          entries.some(
+            (entry) => entry.isIntersecting && entry.target === nodes.blog.value
+          )
+        ) {
+          currentSection.value = "blog"
+          return
+        }
+        if (
+          entries.some(
+            (entry) =>
+              entry.isIntersecting && entry.target === nodes.portfolio.value
+          )
+        ) {
+          currentSection.value = "portfolio"
+        }
+      },
+      {
+        rootMargin: "-33% 0% -66% 0%",
+        threshold: 0
       }
-      if (entries.some(entry => entry.isIntersecting && entry.target === nodes.blog.value)) {
-        currentSection.value = 'blog'
-        return
-      }
-      if (entries.some(entry => entry.isIntersecting && entry.target === nodes.portfolio.value)) {
-        currentSection.value = 'portfolio'
-        return
-      }
-    }, {
-      rootMargin: '-33% 0% -66% 0%',
-      threshold: 0
-    })
-    if (nodes.portfolio.value)
-      observer.observe(nodes.portfolio.value)
-    if (nodes.blog.value)
-      observer.observe(nodes.blog.value)
-    if (nodes.resume.value)
-      observer.observe(nodes.resume.value)
+    )
+    if (nodes.portfolio.value) observer.observe(nodes.portfolio.value)
+    if (nodes.blog.value) observer.observe(nodes.blog.value)
+    if (nodes.resume.value) observer.observe(nodes.resume.value)
   })
   onBeforeUnmount(() => {
-    if (observer)
-      observer.disconnect()
+    if (observer) observer.disconnect()
   })
   return {
     sectionsNodeRefs: nodes,
@@ -164,7 +183,7 @@ export const useSectionsDescriptionAnimation = () => {
 export const useStoryAnimation = () => {
   const nodes = {
     storyContainer: ref<Element | null>(null),
-    svg: ref<SVGElement & SVGSVGElement | null>(null),
+    svg: ref<(SVGElement & SVGSVGElement) | null>(null),
     line: ref<SVGPolygonElement | null>(null),
     linePlaceholder: ref<SVGPolygonElement | null>(null)
   }
@@ -174,8 +193,14 @@ export const useStoryAnimation = () => {
     setTimeout(() => {
       const scrollTrigger = {
         scrub: 1,
-        start: () => (nodes.storyContainer?.value?.getBoundingClientRect().top ?? 0) + window.scrollY - window.innerHeight ,
-        end: () => (nodes.storyContainer?.value?.getBoundingClientRect().bottom ?? 0) + window.scrollY - window.innerHeight,
+        start: () =>
+          (nodes.storyContainer?.value?.getBoundingClientRect().top ?? 0) +
+          window.scrollY -
+          window.innerHeight,
+        end: () =>
+          (nodes.storyContainer?.value?.getBoundingClientRect().bottom ?? 0) +
+          window.scrollY -
+          window.innerHeight
       }
       const line = [
         { left: { x: 2, y: 0 }, right: { x: 7, y: 0 } },
@@ -188,29 +213,28 @@ export const useStoryAnimation = () => {
         { left: { x: 4, y: 70 }, right: { x: 9, y: 73 } },
         { left: { x: 2, y: 80 }, right: { x: 6, y: 85 } },
         { left: { x: 3, y: 92 }, right: { x: 8, y: 90 } },
-        { left: { x: 0, y: 100 }, right: { x: 7, y: 100 } },
+        { left: { x: 0, y: 100 }, right: { x: 7, y: 100 } }
       ]
       generatePolygonLineKeyframes(line)
         .at(-1)
-        ?.forEach(coords => {
-          const point = nodes.svg.value?.createSVGPoint() 
-          if (point){
+        ?.forEach((coords) => {
+          const point = nodes.svg.value?.createSVGPoint()
+          if (point) {
             point.x = coords.x
             point.y = coords.y
             nodes.linePlaceholder.value?.points.appendItem(point)
           }
         })
-      generatePolygonPointsKeyframes(line)
-        .forEach(kfs => {
-          const point = nodes.svg.value?.createSVGPoint() 
-          if (point) {
-            nodes.line.value?.points.appendItem(point)
-            gsap.to(point, {
-              keyframes: kfs,
-              scrollTrigger
-            })
-          }
-        })
+      generatePolygonPointsKeyframes(line).forEach((kfs) => {
+        const point = nodes.svg.value?.createSVGPoint()
+        if (point) {
+          nodes.line.value?.points.appendItem(point)
+          gsap.to(point, {
+            keyframes: kfs,
+            scrollTrigger
+          })
+        }
+      })
     }, 1000)
   })
 

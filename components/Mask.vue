@@ -22,10 +22,10 @@ import wolfColor from "~~/assets/img/masks/wolf-color.webp"
 import wolfOutline from "~~/assets/img/masks/wolf-outline.webp"
 import wolfOutlineColor from "~~/assets/img/masks/wolf-outline-color.webp"
 
-export type MaskType = 'wolf' | 'owl' | 'spider'
+export type MaskType = "wolf" | "owl" | "spider"
 
 export default defineComponent({
-  name: 'Mask',
+  name: "Mask",
   props: {
     mask: {
       type: String as () => MaskType,
@@ -34,25 +34,36 @@ export default defineComponent({
     outline: Boolean,
     color: Boolean
   },
-  setup({ outline, color }){
+  setup(props) {
     const assets = {
-      spider, spiderColor, spiderOutline, spiderOutlineColor,
-      owl, owlColor, owlOutline, owlOutlineColor,
-      wolf, wolfColor, wolfOutline, wolfOutlineColor,
+      spider,
+      spiderColor,
+      spiderOutline,
+      spiderOutlineColor,
+      owl,
+      owlColor,
+      owlOutline,
+      owlOutlineColor,
+      wolf,
+      wolfColor,
+      wolfOutline,
+      wolfOutlineColor
     }
     return {
       assets,
-      getAsset: (mask: MaskType) => 
-        assets[`${mask}${outline ? 'Outline' : ''}${color ? 'Color' : ''}`]
+      getAsset: (mask: MaskType) =>
+        assets[
+          `${mask}${props.outline ? "Outline" : ""}${
+            props.color ? "Color" : ""
+          }`
+        ]
     }
   }
 })
-
 </script>
 
 <style scoped>
-
-img{
+img {
   @apply w-full h-full;
 }
 

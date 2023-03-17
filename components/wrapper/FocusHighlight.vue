@@ -1,50 +1,64 @@
 <template>
   <WrapperShape>
-    <Component :is="tag" class="d-focus-hl" :class="{
-      'd-focus-hl--exact': linkExact,
-      'd-focus-hl--not-exact': !linkExact,
-      'd-focus-hl--no-passive-link': noPassiveLink
-    }">
-      <div v-if="variant === 'negative-tile'" class="d-focus-hl__hl--negative-tile" />
-      <div v-else-if="variant === 'list-item'" class="d-focus-hl__hl--list-item" />
-      <div v-else-if="variant === 'negative-list-item'" class="d-focus-hl__hl--negative-list-item" />
+    <Component
+      :is="tag"
+      class="d-focus-hl"
+      :class="{
+        'd-focus-hl--exact': linkExact,
+        'd-focus-hl--not-exact': !linkExact,
+        'd-focus-hl--no-passive-link': noPassiveLink
+      }"
+    >
+      <div
+        v-if="variant === 'negative-tile'"
+        class="d-focus-hl__hl--negative-tile"
+      />
+      <div
+        v-else-if="variant === 'list-item'"
+        class="d-focus-hl__hl--list-item"
+      />
+      <div
+        v-else-if="variant === 'negative-list-item'"
+        class="d-focus-hl__hl--negative-list-item"
+      />
       <slot />
     </Component>
   </WrapperShape>
 </template>
 
 <script lang="ts">
-
-export type HighlightVariant = 'negative-tile' | 'list-item' | 'negative-list-item'
+export type HighlightVariant =
+  | "negative-tile"
+  | "list-item"
+  | "negative-list-item"
 
 export default defineComponent({
-  name: 'Highlight',
+  name: "Highlight",
   props: {
     linkExact: Boolean,
     noPassiveLink: Boolean,
     variant: {
       type: String as () => HighlightVariant,
-      default: 'negative-tile'
+      default: "negative-tile"
     },
     tag: {
       type: String,
-      default: 'div'
+      default: "div"
     }
   }
 })
-
 </script>
 
 <!-- common -->
 <style>
-.d-focus-hl{
+.d-focus-hl {
   @apply relative;
 }
 </style>
 
 <!-- negative-tile -->
 <style>
-.d-focus-hl:has(.d-focus-hl__hl--negative-tile){
+.d-focus-hl:has(.d-focus-hl__hl--negative-tile) {
   @apply w-fit;
 }
 
@@ -53,34 +67,38 @@ export default defineComponent({
   height: 0%;
   top: 50%;
   left: 50%;
-  content: '';
+  content: "";
   opacity: 0;
   pointer-events: none;
   @apply absolute backdrop-invert transition-all;
 }
 
-.d-focus-hl:hover > .d-focus-hl__hl--negative-tile, 
-*:focus .d-focus-hl__hl--negative-tile{
+.d-focus-hl:hover > .d-focus-hl__hl--negative-tile,
+*:focus .d-focus-hl__hl--negative-tile {
   opacity: 1;
   animation: hl--negative-tile-animation linear 1s infinite;
 }
 
-.d-focus-hl:hover > .d-focus-hl__hl--negative-tile{
+.d-focus-hl:hover > .d-focus-hl__hl--negative-tile {
   width: 110%;
   height: 130%;
   top: -15%;
   left: -5%;
 }
 
-*:focus .d-focus-hl__hl--negative-tile{
+*:focus .d-focus-hl__hl--negative-tile {
   width: 140% !important;
   height: 200% !important;
   top: -50% !important;
   left: -20% !important;
 }
 
-.router-link-active .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--negative-tile, 
-.router-link-exact-active .d-focus-hl--exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--negative-tile {
+.router-link-active
+  .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link)
+  .d-focus-hl__hl--negative-tile,
+.router-link-exact-active
+  .d-focus-hl--exact:not(.d-focus-hl--no-passive-link)
+  .d-focus-hl__hl--negative-tile {
   opacity: 1;
   width: 120% !important;
   height: 120% !important;
@@ -89,7 +107,8 @@ export default defineComponent({
 }
 
 @keyframes hl--negative-tile-animation {
-  0%, 100% {
+  0%,
+  100% {
     transform: skew(0deg) rotate(12deg);
   }
   50% {
@@ -100,7 +119,7 @@ export default defineComponent({
 
 <!-- list-item -->
 <style>
-.d-focus-hl:has(.d-focus-hl__hl--list-item){
+.d-focus-hl:has(.d-focus-hl__hl--list-item) {
   @apply w-full;
 }
 
@@ -109,32 +128,37 @@ export default defineComponent({
   height: 200%;
   top: -50%;
   left: 0;
-  content: '';
+  content: "";
   clip-path: polygon(1rem 0, 0% 100%, 100% 50%);
   @apply absolute bg-red-600  transition-all -z-10;
 }
 
-.d-focus-hl:hover > .d-focus-hl__hl--list-item, *:focus .d-focus-hl__hl--list-item{
+.d-focus-hl:hover > .d-focus-hl__hl--list-item,
+*:focus .d-focus-hl__hl--list-item {
   opacity: 1;
-  animation: hl--list-item-animation .3s infinite;
+  animation: hl--list-item-animation 0.3s infinite;
 }
 
-.d-focus-hl:hover > .d-focus-hl__hl--list-item{
+.d-focus-hl:hover > .d-focus-hl__hl--list-item {
   width: 200%;
   height: 130%;
   top: -15%;
   left: -5%;
 }
 
-*:focus .d-focus-hl__hl--list-item{
+*:focus .d-focus-hl__hl--list-item {
   width: 220% !important;
   height: 200% !important;
   top: -50% !important;
   left: -5% !important;
 }
 
-.router-link-active .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--list-item, 
-.router-link-exact-active .d-focus-hl--exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--list-item {
+.router-link-active
+  .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link)
+  .d-focus-hl__hl--list-item,
+.router-link-exact-active
+  .d-focus-hl--exact:not(.d-focus-hl--no-passive-link)
+  .d-focus-hl__hl--list-item {
   opacity: 1;
   width: 220% !important;
   height: 200% !important;
@@ -143,7 +167,8 @@ export default defineComponent({
 }
 
 @keyframes hl--list-item-animation {
-  0%, 100% {
+  0%,
+  100% {
     clip-path: polygon(1rem 0, 0% 100%, 90% 50%);
   }
   50% {
@@ -154,7 +179,7 @@ export default defineComponent({
 
 <!-- negative-list-item -->
 <style>
-.d-focus-hl:has(.d-focus-hl__hl--negative-list-item){
+.d-focus-hl:has(.d-focus-hl__hl--negative-list-item) {
   @apply w-full;
 }
 
@@ -163,32 +188,37 @@ export default defineComponent({
   height: 200%;
   top: -50%;
   left: 0;
-  content: '';
+  content: "";
   clip-path: polygon(1rem 0, 0% 100%, 100% 50%);
   @apply absolute backdrop-invert transition-all;
 }
 
-.d-focus-hl:hover > .d-focus-hl__hl--negative-list-item, *:focus .d-focus-hl__hl--negative-list-item{
+.d-focus-hl:hover > .d-focus-hl__hl--negative-list-item,
+*:focus .d-focus-hl__hl--negative-list-item {
   opacity: 1;
-  animation: hl--negative-list-item-animation .3s infinite;
+  animation: hl--negative-list-item-animation 0.3s infinite;
 }
 
-.d-focus-hl:hover > .d-focus-hl__hl--negative-list-item{
+.d-focus-hl:hover > .d-focus-hl__hl--negative-list-item {
   width: 200%;
   height: 130%;
   top: -15%;
   left: -5%;
 }
 
-*:focus .d-focus-hl__hl--negative-list-item{
+*:focus .d-focus-hl__hl--negative-list-item {
   width: 220% !important;
   height: 200% !important;
   top: -50% !important;
   left: -5% !important;
 }
 
-.router-link-active .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--negative-list-item, 
-.router-link-exact-active .d-focus-hl--exact:not(.d-focus-hl--no-passive-link) .d-focus-hl__hl--negative-list-item {
+.router-link-active
+  .d-focus-hl--not-exact:not(.d-focus-hl--no-passive-link)
+  .d-focus-hl__hl--negative-list-item,
+.router-link-exact-active
+  .d-focus-hl--exact:not(.d-focus-hl--no-passive-link)
+  .d-focus-hl__hl--negative-list-item {
   opacity: 1;
   width: 220% !important;
   height: 200% !important;
@@ -197,7 +227,8 @@ export default defineComponent({
 }
 
 @keyframes hl--negative-list-item-animation {
-  0%, 100% {
+  0%,
+  100% {
     clip-path: polygon(1rem 0, 0% 100%, 90% 50%);
   }
   50% {

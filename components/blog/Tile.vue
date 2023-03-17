@@ -1,53 +1,66 @@
 <script setup lang="ts">
-import { ParsedContent } from '@nuxt/content/dist/runtime/types'
+import { ParsedContent } from "@nuxt/content/dist/runtime/types"
 
 export interface BlogContent extends ParsedContent {
-  image?: string,
-  date?: Date,
+  image?: string
+  date?: Date
   tags?: string[]
 }
 
 defineProps<{
   article: BlogContent
 }>()
-
 </script>
 
 <template>
-  <div class="blog-tile overflow-x-hidden" :style="{
-    '--page-bg-color': '#262626'
-  }">
+  <div
+    class="blog-tile overflow-x-hidden"
+    :style="{
+      '--page-bg-color': '#262626'
+    }"
+  >
     <div class="blog-tile__frame--top" />
     <div class="blog-tile__frame--bottom" />
     <NuxtLink class="blog-tile__link" :to="article._path">
       <div class="blog-tile__link__image-wrapper">
-        <div class="blog-tile__link__image" :style="`background-image: url(${article.image});`" />
+        <div
+          class="blog-tile__link__image"
+          :style="`background-image: url(${article.image});`"
+        />
       </div>
       <div class="blog-tile__link-image-overlay" />
-      <div style="height: 5rem; pointer-events: none;" />
+      <div style="height: 5rem; pointer-events: none" />
       <div class="max-w-2xl mx-auto px-3">
-        <WrapperShape shape-class="bg-black bg-opacity-70" shape-style="clip-path: var(--shape-card);">
-          <div style="padding: var(--shape-card-padding);">
+        <WrapperShape
+          shape-class="bg-black bg-opacity-70"
+          shape-style="clip-path: var(--shape-card);"
+        >
+          <div style="padding: var(--shape-card-padding)">
             <div class="text-right font-bold">
               <time>{{ dateToDayMonthYear(article.date) }}</time>
             </div>
-            <h2 class="text-3xl font-bold text-cyan-200 mb-2">{{ article.title }}</h2>
-            
+            <h2 class="text-3xl font-bold text-cyan-200 mb-2">
+              {{ article.title }}
+            </h2>
+
             <p>
               {{ article.description }}
             </p>
 
             <div class="text-right mt-3 -mr-5">
-                <DChip class="blog-tile__link__tag" v-for="tag in article.tags" :key="tag">
-                  #{{ tag }}
-                </DChip>
-              </div>
+              <DChip
+                v-for="tag in article.tags"
+                :key="tag"
+                class="blog-tile__link__tag"
+              >
+                #{{ tag }}
+              </DChip>
+            </div>
           </div>
         </WrapperShape>
       </div>
-      <div style="height: 5rem; pointer-events: none;" />
+      <div style="height: 5rem; pointer-events: none" />
     </NuxtLink>
-    
   </div>
 </template>
 
@@ -56,7 +69,8 @@ defineProps<{
   @apply relative isolate;
 }
 
-.blog-tile__frame--top, .blog-tile__frame--bottom {
+.blog-tile__frame--top,
+.blog-tile__frame--bottom {
   @apply absolute border-solid w-full h-8 z-50;
 }
 
@@ -82,7 +96,7 @@ defineProps<{
 }
 
 .blog-tile__link__image {
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   width: 100%;
   height: 100%;
   @apply bg-cover bg-center;
@@ -102,5 +116,4 @@ defineProps<{
 .blog-tile__link__tag {
   @apply mx-1 text-lg font-bold bg-cyan-600;
 }
-
 </style>

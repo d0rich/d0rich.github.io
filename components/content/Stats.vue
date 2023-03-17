@@ -1,5 +1,5 @@
 <script lang="ts">
-import Stats from '../Stats.vue'
+import Stats from "../Stats.vue"
 
 export default Stats
 </script>

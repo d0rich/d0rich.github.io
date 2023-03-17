@@ -1,6 +1,6 @@
 <template>
   <div class="pb-[50vh] pt-10">
-    <ContentDoc  v-slot="{ doc }">
+    <ContentDoc v-slot="{ doc }">
       <div class="blog-article">
         <time v-if="doc.date">{{ dateToDayMonthYear(doc.date) }}</time>
       </div>
@@ -10,7 +10,7 @@
 </template>
 
 <style>
-.blog-article{
+.blog-article {
   @apply prose dark:prose-invert font-sans
          md:prose-lg
          mx-auto px-3 sm:px-0

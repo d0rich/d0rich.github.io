@@ -1,14 +1,17 @@
 <template>
   <Transition name="header">
     <header v-if="show">
-      <Shape 
-            class="print:hidden"
-            :filter-class="`${shadowColor} header__shape-filter`"
-            shape-class="bg-neutral-900"
-            :shape-style="{
-              clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
-            }">
-        <div class="w-full h-16 flex justify-evenly items-center overflow-visible">
+      <Shape
+        class="print:hidden"
+        :filter-class="`${shadowColor} header__shape-filter`"
+        shape-class="bg-neutral-900"
+        :shape-style="{
+          clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
+        }"
+      >
+        <div
+          class="w-full h-16 flex justify-evenly items-center overflow-visible"
+        >
           <DBtn to="/">Dorich</DBtn>
           <DBtn to="/projects">Projects</DBtn>
           <DBtn to="/blog">Blog</DBtn>
@@ -20,35 +23,32 @@
 </template>
 
 <script lang="ts">
-
-import Shape from '~~/components/wrapper/Shape.vue';
+import Shape from "~~/components/wrapper/Shape.vue"
 
 export default defineComponent({
-  name: 'DHeader',
+  name: "DHeader",
   components: {
     Shape
   },
-  setup(){
+  setup() {
     const { showHeader } = useLayoutState()
     const route = useRoute()
     let lastScrollTop = 0
     let isFreezed = false
     let freezeTimer: ReturnType<typeof setTimeout>
-    function freezeHeaderDisplay(){
-      if (freezeTimer)
-        clearTimeout(freezeTimer)
+    function freezeHeaderDisplay() {
+      if (freezeTimer) clearTimeout(freezeTimer)
       isFreezed = true
       freezeTimer = setTimeout(() => {
         isFreezed = false
       }, 1000)
     }
-    function onScroll(event: Event){
+    function onScroll() {
       const newScroll = window.scrollY
       if (!isFreezed) {
-        if (newScroll > lastScrollTop){
+        if (newScroll > lastScrollTop) {
           showHeader.value = false
-        }
-        else {
+        } else {
           showHeader.value = true
         }
       }
@@ -59,21 +59,18 @@ export default defineComponent({
       lastScrollTop = newScroll
     }
     onBeforeMount(() => {
-      window.addEventListener('scroll', onScroll)
+      window.addEventListener("scroll", onScroll)
     })
     onBeforeUnmount(() => {
-      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener("scroll", onScroll)
     })
-    return{
+    return {
       show: showHeader,
       shadowColor: computed(() => {
-        if (route.path.startsWith('/blog'))
-          return 'ss-cyan-300'
-        if (route.path.startsWith('/projects'))
-          return 'ss-red-300'
-        if (route.path.startsWith('/resume'))
-          return 'ss-blue-300'
-        return 'ss-neutral-50'
+        if (route.path.startsWith("/blog")) return "ss-cyan-300"
+        if (route.path.startsWith("/projects")) return "ss-red-300"
+        if (route.path.startsWith("/resume")) return "ss-blue-300"
+        return "ss-neutral-50"
       })
     }
   }
@@ -81,28 +78,28 @@ export default defineComponent({
 </script>
 
 <style>
-.header__shape-filter{
+.header__shape-filter {
   @apply sharp-shadow ss-b-2 ss-r-3;
 }
 
-.header-enter-from .d-shape__bg-filter{
+.header-enter-from .d-shape__bg-filter {
   @apply ss-b-5 ss-l-5;
 }
 
-.header-enter-to .d-shape__bg-filter{
+.header-enter-to .d-shape__bg-filter {
   @apply ss-b-2 ss-r-3;
 }
 
-.header-leave-to .d-shape__bg-filter{
+.header-leave-to .d-shape__bg-filter {
   @apply ss-b-5 ss-r-3;
 }
 
-.header-enter-active .d-shape__bg-filter{
-  transition: all .5s ease-out;
+.header-enter-active .d-shape__bg-filter {
+  transition: all 0.5s ease-out;
 }
 
-.header-leave-active .d-shape__bg-filter{
-  transition: all .5s ease-in;
+.header-leave-active .d-shape__bg-filter {
+  transition: all 0.5s ease-in;
 }
 
 .header-leave-to {
@@ -110,13 +107,13 @@ export default defineComponent({
   opacity: 0;
 }
 
-.header-enter-active{
-  transition: all .5s cubic-bezier(0.4, 0, 0.2, 1);
+.header-enter-active {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: right;
 }
 
-.header-leave-active{
-  transition: .5s cubic-bezier(1, 0, 0.2, 0.4);
+.header-leave-active {
+  transition: 0.5s cubic-bezier(1, 0, 0.2, 0.4);
 }
 
 .header-enter-from {
