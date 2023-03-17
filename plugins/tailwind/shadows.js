@@ -58,11 +58,18 @@ function generateColors() {
         "blueGray",
         "lightBlue"
       ].includes(colorKey)
-    )
+    ) {
       continue
-    for (const colorVariantKey in colors[colorKey]) {
-      result[`.ss-${colorKey}-${colorVariantKey}`] = {
-        [COLOR_VAR]: colors[colorKey][colorVariantKey]
+    }
+    if (typeof colors[colorKey] === 'string') {
+      result[`.ss-${colorKey}`] = {
+        [COLOR_VAR]: colors[colorKey]
+      }
+    } else if (typeof colors[colorKey] === 'object') {
+      for (const colorVariantKey in colors[colorKey]) {
+        result[`.ss-${colorKey}-${colorVariantKey}`] = {
+          [COLOR_VAR]: colors[colorKey][colorVariantKey]
+        }
       }
     }
   }
