@@ -40,7 +40,8 @@ export default defineComponent({
       default: () => []
     },
     listClass: {
-      type: [String, Object as () => Record<string, boolean>]
+      type: [String, Object as () => Record<string, boolean>],
+      default: ''
     }
   },
   emits: ['actionChoose'],

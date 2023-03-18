@@ -10,12 +10,25 @@ useHead({
     else return 'd0rich: dream developer'
   },
   meta: [
-    { name: 'keywords', content: ['developer', 'Georgia', 'hire', 'IT', 'informational technologies', 'web', 'frontend', 'backend', 'system analyst'].join(', ') }
+    {
+      name: 'keywords',
+      content: [
+        'developer',
+        'Georgia',
+        'hire',
+        'IT',
+        'informational technologies',
+        'web',
+        'frontend',
+        'backend',
+        'system analyst'
+      ].join(', ')
+    }
   ]
 })
 
 useSeoMeta({
-  description: description,
+  description,
   ogDescription: description,
   author: 'Nikolay Dorofeev',
   generator: 'Nuxt 3',
@@ -24,7 +37,6 @@ useSeoMeta({
   ogImage: 'https://d0rich.me/og/image.jpg',
   ogUrl: computed(() => 'https://d0rich.me' + useRoute().path)
 })
-
 </script>
 
 <template>

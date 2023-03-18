@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import {
-  QueryBuilderParams,
-  QueryBuilderWhere
-} from '@nuxt/content/dist/runtime/types'
+import { QueryBuilderParams } from '@nuxt/content/dist/runtime/types'
 import { BlogContent } from '@/components/blog/Tile.vue'
 
 useSeoCommon({
@@ -17,7 +14,7 @@ const route = useRoute()
 
 const currentPage = computed(() => Number(route.params.page || 1))
 
-const {itemsOnPage} = getBlogPostsNavConfig()
+const { itemsOnPage } = getBlogPostsNavConfig()
 const filterObject = getBlogPostsFilterObject()
 
 const { data: pagesCount } = useAsyncData(

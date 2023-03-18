@@ -1,9 +1,9 @@
-import { MaybeComputedRefOrPromise, UseSeoMetaInput } from "@unhead/vue"
+import { MaybeComputedRefOrPromise, UseSeoMetaInput } from '@unhead/vue'
 
 export const useSeoCommon = (input: {
-  title?: MaybeComputedRefOrPromise<string | null>,
-  ogTitle?: MaybeComputedRefOrPromise<string | null>,
-  description?: MaybeComputedRefOrPromise<string | null | undefined>,
+  title?: MaybeComputedRefOrPromise<string | null>
+  ogTitle?: MaybeComputedRefOrPromise<string | null>
+  description?: MaybeComputedRefOrPromise<string | null | undefined>
   image?: MaybeComputedRefOrPromise<string | null | undefined>
 }) => {
   const options: UseSeoMetaInput = {}

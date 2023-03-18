@@ -11,7 +11,9 @@
 </template>
 
 <script lang="ts">
-import FocusHighlight, { HighlightVariant } from '~~/components/d/wrap/FocusHighlight.vue'
+import FocusHighlight, {
+  HighlightVariant
+} from '~~/components/d/wrap/FocusHighlight.vue'
 
 export default defineComponent({
   name: 'DButton',
@@ -19,8 +21,14 @@ export default defineComponent({
     FocusHighlight
   },
   props: {
-    to: String,
-    href: String,
+    to: {
+      type: String,
+      default: undefined
+    },
+    href: {
+      type: String,
+      default: undefined
+    },
     exact: Boolean,
     noPassiveHl: Boolean,
     tag: {
@@ -28,7 +36,8 @@ export default defineComponent({
       default: 'span'
     },
     highlight: {
-      type: String as () => HighlightVariant
+      type: String as () => HighlightVariant,
+      default: undefined
     }
   },
   setup(props) {

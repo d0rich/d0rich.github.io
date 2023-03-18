@@ -168,7 +168,11 @@ const { data } = useAsyncData('homepage', async () => {
         >
           <DMask :mask="doc.mask" color class="section-description__image" />
           <div class="section-description__text">
-            <DBigBangButton :to="doc.link" :text="doc.title" class="underline" />
+            <DBigBangButton
+              :to="doc.link"
+              :text="doc.title"
+              class="underline"
+            />
             <ContentRenderer :value="doc" />
           </div>
         </div>
@@ -194,11 +198,7 @@ const { data } = useAsyncData('homepage', async () => {
       <div style="height: 20vh" />
     </DWrapBackground>
 
-    <DWrapBackground
-      id="story"
-      tag="section"
-      overlay-class="story__bg-overlay"
-    >
+    <DWrapBackground id="story" tag="section" overlay-class="story__bg-overlay">
       <div class="pt-20" />
       <h1>Story</h1>
       <div class="max-w-7xl px-3 mx-auto -mb-10 sm:-mb-32">

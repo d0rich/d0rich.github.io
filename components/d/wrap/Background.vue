@@ -24,10 +24,22 @@ import { StyleValue } from 'vue'
 export default defineComponent({
   name: 'Background',
   props: {
-    overlayClass: [String, Object as () => Record<string, boolean>],
-    overlayStyle: Object as () => StyleValue,
-    dotsClass: [String, Object as () => Record<string, boolean>],
-    dotsStyle: Object as () => StyleValue,
+    overlayClass: {
+      type: [String, Object as () => Record<string, boolean>],
+      default: ''
+    },
+    overlayStyle: {
+      type: Object as () => StyleValue,
+      default: () => {}
+    },
+    dotsClass: {
+      type: [String, Object as () => Record<string, boolean>],
+      default: ''
+    },
+    dotsStyle: {
+      type: Object as () => StyleValue,
+      default: () => {}
+    },
     dots: {
       type: Boolean,
       default: false

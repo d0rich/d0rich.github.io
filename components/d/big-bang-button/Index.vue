@@ -16,7 +16,8 @@ export default defineComponent({
       default: 'button'
     },
     to: {
-      type: String
+      type: String,
+      default: undefined
     }
   },
   emits: ['click'],
