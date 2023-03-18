@@ -1,0 +1,50 @@
+<template>
+  <div id="default-layout">
+    <div class="fixed w-screen z-50">
+      <DHeader class="mx-auto max-w-md sm:max-w-xl" />
+    </div>
+    <main class="pt-20 print:pt-0">
+      <slot />
+    </main>
+    <SectionsTransitionWrapper />
+  </div>
+</template>
+
+<script lang="ts">
+import DHeader from '~~/components/layouts/DHeader.vue'
+import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionWrapper.vue'
+
+export default defineComponent({
+  name: 'DefaultLayout',
+  components: {
+    DHeader,
+    SectionsTransitionWrapper
+  }
+})
+</script>
+
+<style>
+#default-layout {
+  @apply w-full h-full z-40;
+  --page-transition-length: 0.4s;
+}
+</style>
+
+<style>
+.section-leave-active,
+.section-enter-active {
+  transition: all var(--page-transition-length);
+}
+.section-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.section-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+#default-layout:has(.section-enter-active, .section-leave-active) {
+  overflow: hidden;
+}
+</style>
