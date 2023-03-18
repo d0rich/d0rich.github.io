@@ -4,10 +4,6 @@ export default defineNuxtConfig({
     pageTransition: {
       name: 'section',
       mode: 'out-in'
-    },
-    head: {
-      titleTemplate: '%s | d0rich',
-      meta: [{}]
     }
   },
   build: {

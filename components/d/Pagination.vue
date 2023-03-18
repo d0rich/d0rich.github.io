@@ -15,8 +15,7 @@ const props = defineProps({
 })
 
 function getLinkToPage(page: number) {
-  if (page === 1) return props.baseLink
-  return `${props.baseLink}/${page}`
+  return getLinkToPaginatedPage(props.baseLink, page)
 }
 
 const visiblePages = computed(() => {

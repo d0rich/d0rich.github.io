@@ -1,11 +1,44 @@
+<script setup lang="ts">
+const { data: doc } = useAsyncData(useRoute().path, () => queryContent(useRoute().path).findOne())
+
+useSeoCommon({
+  title: computed(() => doc.value?.title),
+  description: computed(() => doc.value?.description)
+})
+
+const {itemsOnPage} = getBlogPostsNavConfig()
+const filterObject = getBlogPostsFilterObject()
+
+const { data: position } = useAsyncData(
+  useRoute().path + '/position',
+  () => queryContent('/blog')
+    .only('_path')
+    .where({
+      ...filterObject,
+      date: { $gte: doc.value?.date }
+    })
+    .find(),
+  {
+    server: true,
+    transform: (result) => result.length,
+    watch: [doc]
+  }
+)
+
+const linkToBlog = computed(() => {
+  return getLinkToPaginatedPage('/blog', Math.floor((position.value ?? 1) / itemsOnPage + 1))
+})
+</script>
+
 <template>
   <div class="pb-[50vh] pt-10">
-    <ContentDoc v-slot="{ doc }">
-      <div class="blog-article">
-        <time v-if="doc.date">{{ dateToDayMonthYear(doc.date) }}</time>
-      </div>
-      <ContentRenderer :value="doc" tag="article" class="blog-article" />
-    </ContentDoc>
+    <div class="blog-article" v-if="doc">
+      <nav>
+        <DBigBangButton text="< Back" :to="linkToBlog" />
+      </nav>
+      <time v-if="doc.date">{{ dateToDayMonthYear(doc.date) }}</time>
+    </div>
+    <ContentRenderer v-if="doc" :value="doc" tag="article" class="blog-article" />
   </div>
 </template>
 

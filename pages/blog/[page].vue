@@ -5,7 +5,7 @@ import {
 } from '@nuxt/content/dist/runtime/types'
 import { BlogContent } from '@/components/blog/Tile.vue'
 
-useHead({
+useSeoCommon({
   title: 'Blog'
 })
 
@@ -17,13 +17,8 @@ const route = useRoute()
 
 const currentPage = computed(() => Number(route.params.page || 1))
 
-const itemsOnPage = 5
-
-const config = useRuntimeConfig()
-
-const filterObject: QueryBuilderWhere = config.public.isProd
-  ? { _draft: { $not: true } }
-  : {}
+const {itemsOnPage} = getBlogPostsNavConfig()
+const filterObject = getBlogPostsFilterObject()
 
 const { data: pagesCount } = useAsyncData(
   `blog/pages-count/${itemsOnPage}`,

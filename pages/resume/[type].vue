@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ResumeData } from '~~/server/routes/api/resume/data'
 
-useHead({
-  title: 'Resume'
-})
-
 definePageMeta({
   path: '/resume/:type(.*(?<!\\.pdf\\)$)?'
 })
@@ -33,6 +29,11 @@ const { data: resumeList } = useAsyncData(
       })
   }
 )
+
+useSeoCommon({
+  title: computed(() => `Resume: ${data.value?.lead.title}`),
+  description: computed(() => data.value?.lead.description)
+})
 </script>
 
 <template>

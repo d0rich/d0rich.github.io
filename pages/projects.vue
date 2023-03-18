@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useHead({
+useSeoCommon({
   title: 'Projects'
 })
 </script>

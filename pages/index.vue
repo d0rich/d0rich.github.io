@@ -4,6 +4,10 @@ import { CharacterPose } from '~~/components/d/Character.vue'
 import { MaskType } from '~~/components/d/Mask.vue'
 import { ActionFanItem } from '~~/components/d/actions/Fan.vue'
 
+useSeoCommon({
+  ogTitle: 'Homepage'
+})
+
 const currentPose = ref<CharacterPose>('idle')
 const { introNodeRefs } = useIntroBlockAnimation()
 const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation()

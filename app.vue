@@ -1,25 +1,35 @@
+<script setup lang="ts">
+useFaviconAnimation()
+const { key } = useTransitionAnimationWorkaround()
+
+const description = 'Small web portal of an experienced IT specialist.'
+
+useHead({
+  titleTemplate(title: string | undefined) {
+    if (title) return `${title} • d0rich`
+    else return 'd0rich: dream developer'
+  },
+  meta: [
+    { name: 'keywords', content: ['developer', 'Georgia', 'hire', 'IT', 'informational technologies', 'web', 'frontend', 'backend', 'system analyst'].join(', ') }
+  ]
+})
+
+useSeoMeta({
+  description: description,
+  ogDescription: description,
+  author: 'Nikolay Dorofeev',
+  generator: 'Nuxt 3',
+  colorScheme: 'dark',
+  ogSiteName: 'd0rich',
+  ogImage: 'https://d0rich.me/og/image.jpg',
+  ogUrl: computed(() => 'https://d0rich.me' + useRoute().path)
+})
+
+</script>
+
 <template>
   <NuxtLayout>
     <NuxtPage :key="key" />
   </NuxtLayout>
   <DBigBangButtonAnimation class="z-50" />
 </template>
-
-<script lang="ts">
-export default defineComponent({
-  name: 'App',
-  setup() {
-    useFaviconAnimation()
-    const { key } = useTransitionAnimationWorkaround()
-    useHead({
-      titleTemplate(title: string | undefined) {
-        if (title) return `${title} | d0rich`
-        else return 'd0rich developer'
-      }
-    })
-    return {
-      key
-    }
-  }
-})
-</script>
