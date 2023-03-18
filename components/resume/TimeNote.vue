@@ -18,8 +18,8 @@ defineProps<{
 </script>
 
 <template>
-  <Card>
-    <CardTitle>
+  <DCard>
+    <DCardTitle>
       {{ timenote.title }}
       <template #extra>
         <Component
@@ -31,7 +31,7 @@ defineProps<{
           {{ timenote.place.title }}
         </Component>
       </template>
-    </CardTitle>
+    </DCardTitle>
     <p class="text-blue-600 dark:text-blue-300 print:text-sm">
       <time :datetime="timenote.daterange.start">
         {{ dateToMonthYear(timenote.daterange.start) }}
@@ -54,7 +54,7 @@ defineProps<{
       </span>
     </p>
     <ContentRenderer class="resume-time-note__content" :value="timenote" />
-  </Card>
+  </DCard>
 </template>
 
 <style>

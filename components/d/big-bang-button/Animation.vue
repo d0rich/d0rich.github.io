@@ -30,7 +30,6 @@ const paths = {
 }
 
 export default defineComponent({
-  name: 'BigBangButtonAnimation',
   setup() {
     const text = useBigBangButtonAnimationText()
     const symbols = computed(() => text.value.split(''))
@@ -87,7 +86,7 @@ export default defineComponent({
 #big-bang-button-animation {
   overflow: hidden;
   pointer-events: none;
-  @apply fixed w-full h-full top-0 left-0 
+  @apply fixed w-full h-full top-0 left-0
          text-center uppercase text-7xl md:text-9xl font-extrabold;
 }
 

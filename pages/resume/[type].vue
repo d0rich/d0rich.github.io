@@ -77,7 +77,7 @@ const { data: resumeList } = useAsyncData(
           </div>
           <ContentRenderer :value="data.lead" />
         </div>
-        <Mask
+        <DMask
           mask="wolf"
           color
           outline

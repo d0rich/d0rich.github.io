@@ -1,13 +1,13 @@
 <template>
   <div class="card__title">
-    <WrapperShape
+    <DWrapShape
       class="card__title__content"
       shape-class="card__title__content__shape"
     >
       <h3 class="card__title__content__text">
         <slot />
       </h3>
-    </WrapperShape>
+    </DWrapShape>
     <span class="ml-2 print:text-neutral-600">
       <slot name="extra" />
     </span>
@@ -21,7 +21,7 @@
 }
 
 .card__title__content {
-  @apply inline-block -ml-10 
+  @apply inline-block -ml-10
         print:ml-0;
 }
 

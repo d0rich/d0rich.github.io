@@ -62,7 +62,7 @@ const blogQuery: QueryBuilderParams = {
           content that is useful for developers of all levels.
         </p>
       </div>
-      <Mask
+      <DMask
         mask="owl"
         color
         outline

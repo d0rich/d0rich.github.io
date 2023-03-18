@@ -6,7 +6,6 @@
 
 <script lang="ts">
 export default defineComponent({
-  name: 'BigBangButton',
   props: {
     text: {
       type: String,

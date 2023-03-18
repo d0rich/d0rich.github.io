@@ -2,7 +2,7 @@ export const useTransitionAnimationWorkaround = () => {
   // TODO: Remove when https://github.com/vuejs/core/issues/5513 fixed
   const key = ref(0)
   const messages = [
-    "Uncaught NotFoundError: Failed to execute 'insertBefore' on 'Node': The node before which the new node is to be inserted is not a child of this node.", // chromium based
+    'Uncaught NotFoundError: Failed to execute \'insertBefore\' on \'Node\': The node before which the new node is to be inserted is not a child of this node.', // chromium based
     'NotFoundError: The object can not be found here.' // safari
   ]
   if (typeof window !== 'undefined') {

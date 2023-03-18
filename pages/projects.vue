@@ -17,7 +17,7 @@ useHead({
           websites will be aggregated on this page.
         </p>
       </div>
-      <Mask
+      <DMask
         mask="spider"
         color
         outline

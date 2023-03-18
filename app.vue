@@ -2,7 +2,7 @@
   <NuxtLayout>
     <NuxtPage :key="key" />
   </NuxtLayout>
-  <BigBangButtonAnimation class="z-50" />
+  <DBigBangButtonAnimation class="z-50" />
 </template>
 
 <script lang="ts">

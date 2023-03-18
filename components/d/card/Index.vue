@@ -1,5 +1,5 @@
 <template>
-  <WrapperShape
+  <DWrapShape
     shape-class="card__bg"
     :class="{
       'card--homepage-story force-light': mode === 'homepage-story',
@@ -10,12 +10,11 @@
     <div class="card__content">
       <slot />
     </div>
-  </WrapperShape>
+  </DWrapShape>
 </template>
 
 <script lang="ts">
 export default defineComponent({
-  name: 'Card',
   props: {
     mode: {
       type: String as () => 'default' | 'homepage-story' | 'homepage-skills',
@@ -60,7 +59,7 @@ export default defineComponent({
 
 .card__bg {
   clip-path: var(--shape-card);
-  @apply bg-white dark:bg-neutral-700 
+  @apply bg-white dark:bg-neutral-700
         print:bg-none;
 }
 

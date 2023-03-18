@@ -1,5 +1,5 @@
 <template>
-  <WrapperShape>
+  <DWrapShape>
     <Component
       :is="tag"
       class="d-focus-hl"
@@ -23,7 +23,7 @@
       />
       <slot />
     </Component>
-  </WrapperShape>
+  </DWrapShape>
 </template>
 
 <script lang="ts">
@@ -33,7 +33,6 @@ export type HighlightVariant =
   | 'negative-list-item'
 
 export default defineComponent({
-  name: 'Highlight',
   props: {
     linkExact: Boolean,
     noPassiveLink: Boolean,

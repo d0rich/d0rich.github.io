@@ -1,5 +1,5 @@
 <template>
-  <WrapperShape
+  <DWrapShape
     shape-class="dark:bg-neutral-900 dark:bg-opacity-80 backdrop-blur"
     :shape-style="{
       clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
@@ -23,7 +23,7 @@
         </DBtn>
       </li>
     </TransitionGroup>
-  </WrapperShape>
+  </DWrapShape>
 </template>
 
 <script lang="ts">
@@ -34,7 +34,6 @@ export type ActionListItem<TEmit = any> = {
 }
 
 export default defineComponent({
-  name: 'ActionsList',
   props: {
     actions: {
       type: Array as () => ActionListItem[],

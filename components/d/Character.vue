@@ -25,7 +25,6 @@ import profiOutlineColor from '~~/assets/img/character/profi-outline-color.webp'
 export type CharacterPose = 'idle' | 'action' | 'profi'
 
 export default defineComponent({
-  name: 'Character',
   props: {
     pose: {
       type: String as () => CharacterPose,

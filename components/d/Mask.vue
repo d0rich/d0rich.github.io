@@ -25,7 +25,6 @@ import wolfOutlineColor from '~~/assets/img/masks/wolf-outline-color.webp'
 export type MaskType = 'wolf' | 'owl' | 'spider'
 
 export default defineComponent({
-  name: 'Mask',
   props: {
     mask: {
       type: String as () => MaskType,

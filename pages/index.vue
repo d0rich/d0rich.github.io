@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ParsedContent } from '@nuxt/content/dist/runtime/types'
-import { CharacterPose } from '~~/components/Character.vue'
-import { MaskType } from '~~/components/Mask.vue'
-import { ActionFanItem } from '~~/components/actions/Fan.vue'
+import { CharacterPose } from '~~/components/d/Character.vue'
+import { MaskType } from '~~/components/d/Mask.vue'
+import { ActionFanItem } from '~~/components/d/actions/Fan.vue'
 
 const currentPose = ref<CharacterPose>('idle')
 const { introNodeRefs } = useIntroBlockAnimation()
@@ -71,7 +71,7 @@ const { data } = useAsyncData('homepage', async () => {
             :ref="(el) => { introNodeRefs.bg.value = el as Element }"
             class="absolute h-full w-full top-0 left-0 bg-[url('~/assets/img/bg/d-bw.webp')] bg-cover bg-center z-[2]"
           />
-          <WrapperShape
+          <DWrapShape
             :ref="
               (el) => {
                 introNodeRefs.text.value = componentFromNodeRef(el)
@@ -85,9 +85,9 @@ const { data } = useAsyncData('homepage', async () => {
               :value="data.intro"
               class="p-10 text-xl font-serif text-center"
             />
-          </WrapperShape>
+          </DWrapShape>
         </div>
-        <WrapperBackground
+        <DWrapBackground
           dots
           :dots-style="{ clipPath: 'polygon(20% 100%, 100% 100%, 100% 0%)' }"
           class="bg-[url('~/assets/img/bg/it-office.png')] bg-cover bg-center"
@@ -110,11 +110,11 @@ const { data } = useAsyncData('homepage', async () => {
           </template>
           <div id="home-intro-section">
             <div class="absolute top-0 left-0 w-fit">
-              <Character
+              <DCharacter
                 :pose="currentPose"
                 class="sm:h-96 sm:w-96 max-w-sm md:w-full md:h-auto md:max-w-lg sharp-shadow ss-br-3 ss-neutral-400 -ml-20 sm:ml-auto mt-20 transition-all"
               />
-              <ActionsFan
+              <DActionsFan
                 :actions="actions"
                 side="right"
                 class="absolute top-2/3 left-1/2 w-2/3 sm:left-2/3 z-10 text-xl md:text-2xl"
@@ -124,11 +124,11 @@ const { data } = useAsyncData('homepage', async () => {
               />
             </div>
           </div>
-        </WrapperBackground>
+        </DWrapBackground>
       </div>
     </section>
     <!-- Block about sections -->
-    <WrapperBackground
+    <DWrapBackground
       id="sections"
       tag="section"
       class="bg-[url('~/assets/img/bg/hightech-city.png')] bg-cover bg-center"
@@ -155,23 +155,23 @@ const { data } = useAsyncData('homepage', async () => {
         <div
           v-for="(doc, index) in data.sections"
           :key="doc._id"
-          :ref="el => { 
-                if (index === 0) sectionsNodeRefs.portfolio.value = el as Element 
-                else if (index === 1) sectionsNodeRefs.blog.value = el as Element 
-                else if (index === 2) sectionsNodeRefs.resume.value = el as Element 
+          :ref="el => {
+                if (index === 0) sectionsNodeRefs.portfolio.value = el as Element
+                else if (index === 1) sectionsNodeRefs.blog.value = el as Element
+                else if (index === 2) sectionsNodeRefs.resume.value = el as Element
               }"
           class="section-description"
         >
-          <Mask :mask="doc.mask" color class="section-description__image" />
+          <DMask :mask="doc.mask" color class="section-description__image" />
           <div class="section-description__text">
-            <BigBangButton :to="doc.link" :text="doc.title" class="underline" />
+            <DBigBangButton :to="doc.link" :text="doc.title" class="underline" />
             <ContentRenderer :value="doc" />
           </div>
         </div>
       </div>
-    </WrapperBackground>
+    </DWrapBackground>
     <!-- Block about skills -->
-    <WrapperBackground
+    <DWrapBackground
       id="skills"
       tag="section"
       overlay-class="skills__bg-overlay"
@@ -188,9 +188,9 @@ const { data } = useAsyncData('homepage', async () => {
         />
       </div>
       <div style="height: 20vh" />
-    </WrapperBackground>
+    </DWrapBackground>
 
-    <WrapperBackground
+    <DWrapBackground
       id="story"
       tag="section"
       overlay-class="story__bg-overlay"
@@ -199,8 +199,8 @@ const { data } = useAsyncData('homepage', async () => {
       <h1>Story</h1>
       <div class="max-w-7xl px-3 mx-auto -mb-10 sm:-mb-32">
         <div class="flex items-start justify-start">
-          <Character pose="profi" class="character" />
-          <WrapperShape
+          <DCharacter pose="profi" class="character" />
+          <DWrapShape
             class="bubble-1"
             filter-class="sharp-shadow ss-neutral-50 ss-r-1 ss-b-1"
             shape-class="bubble-1__shape"
@@ -210,7 +210,7 @@ const { data } = useAsyncData('homepage', async () => {
               tag="div"
               class="bubble-1__text"
             />
-          </WrapperShape>
+          </DWrapShape>
         </div>
       </div>
       <div
@@ -234,23 +234,23 @@ const { data } = useAsyncData('homepage', async () => {
           />
         </svg>
         <div class="story-blocks__cards">
-          <Card
+          <DCard
             v-for="doc in data.story.blocks"
             :key="doc._id"
             mode="homepage-story"
             class="my-20"
           >
-            <CardTitle>
+            <DCardTitle>
               <template #extra>
                 {{ dateToMonthYear(doc.date) }}
               </template>
               {{ doc.title }}
-            </CardTitle>
+            </DCardTitle>
             <ContentRenderer :value="doc" />
-          </Card>
+          </DCard>
         </div>
       </div>
-    </WrapperBackground>
+    </DWrapBackground>
   </div>
 </template>
 
@@ -424,8 +424,8 @@ const { data } = useAsyncData('homepage', async () => {
 }
 
 #story .bubble-1 {
-  @apply max-w-md w-2/3 
-    -ml-40 sm:-ml-20 
+  @apply max-w-md w-2/3
+    -ml-40 sm:-ml-20
     sm:text-lg;
 }
 

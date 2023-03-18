@@ -1,6 +1,6 @@
 <template>
   <TransitionGroup name="actions" tag="ul">
-    <WrapperShape
+    <DWrapShape
       v-for="(action, index) in displayedActions"
       :key="action.title"
       tag="li"
@@ -47,7 +47,7 @@
           {{ action.title }}
         </DBtn>
       </div>
-    </WrapperShape>
+    </DWrapShape>
   </TransitionGroup>
 </template>
 

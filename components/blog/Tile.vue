@@ -31,7 +31,7 @@ defineProps<{
       <div class="blog-tile__link-image-overlay" />
       <div style="height: 5rem; pointer-events: none" />
       <div class="max-w-2xl mx-auto px-3">
-        <WrapperShape
+        <DWrapShape
           shape-class="bg-black bg-opacity-70"
           shape-style="clip-path: var(--shape-card);"
         >
@@ -57,7 +57,7 @@ defineProps<{
               </DChip>
             </div>
           </div>
-        </WrapperShape>
+        </DWrapShape>
       </div>
       <div style="height: 5rem; pointer-events: none" />
     </NuxtLink>

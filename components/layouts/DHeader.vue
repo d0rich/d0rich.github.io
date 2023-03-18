@@ -1,7 +1,7 @@
 <template>
   <Transition name="header">
     <header v-if="show">
-      <Shape
+      <DShape
         class="print:hidden"
         :filter-class="`${shadowColor} header__shape-filter`"
         shape-class="bg-neutral-900"
@@ -17,18 +17,18 @@
           <DBtn to="/blog">Blog</DBtn>
           <DBtn to="/resume">Resume</DBtn>
         </div>
-      </Shape>
+      </DShape>
     </header>
   </Transition>
 </template>
 
 <script lang="ts">
-import Shape from '~~/components/wrapper/Shape.vue'
+import DShape from '~~/components/d/wrap/Shape.vue'
 
 export default defineComponent({
   name: 'DHeader',
   components: {
-    Shape
+    DShape
   },
   setup() {
     const { showHeader } = useLayoutState()
