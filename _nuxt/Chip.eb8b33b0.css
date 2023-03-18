@@ -1,0 +1,1 @@
+.d-chip{-webkit-clip-path:polygon(0 0,100% .2em,calc(100% - .3em) 100%,.2em calc(100% - .3em));clip-path:polygon(0 0,100% .2em,calc(100% - .3em) 100%,.2em calc(100% - .3em));display:inline-block;padding:.4em}@media print{.d-chip{background:unset!important;-webkit-clip-path:none;clip-path:none;padding:0}}
