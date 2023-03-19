@@ -11,13 +11,11 @@
 </template>
 
 <script lang="ts">
-import DHeader from '~~/components/layouts/DHeader.vue'
 import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionWrapper.vue'
 
 export default defineComponent({
   name: 'DefaultLayout',
   components: {
-    DHeader,
     SectionsTransitionWrapper
   }
 })

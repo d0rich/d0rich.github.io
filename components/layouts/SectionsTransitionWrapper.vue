@@ -29,7 +29,7 @@ const currentBarVariation = computed(() => {
 }
 
 .sections-transition-wrapper__bar {
-  background-image: url('~/assets/img/page-transition-pattern.svg');
+  background-image: url('@d0rich/nuxt-design-system/assets/img/page-transition-pattern.svg');
   background-size: 80px;
   background-attachment: fixed;
   clip-path: polygon(-120% 0, -100% 0, 0 100%, -20% 100%);
@@ -38,19 +38,19 @@ const currentBarVariation = computed(() => {
 }
 
 .sections-transition-wrapper__bar--projects {
-  background-image: url('~/assets/img/masks/spider-outline-color.webp');
+  background-image: url('@d0rich/nuxt-design-system/assets/img/masks/spider-outline-color.webp');
   background-size: 160px;
   @apply bg-red-600;
 }
 
 .sections-transition-wrapper__bar--blog {
-  background-image: url('~/assets/img/masks/owl-outline-color.webp');
+  background-image: url('@d0rich/nuxt-design-system/assets/img/masks/owl-outline-color.webp');
   background-size: 160px;
   @apply bg-cyan-600;
 }
 
 .sections-transition-wrapper__bar--resume {
-  background-image: url('~/assets/img/masks/wolf-outline-color.webp');
+  background-image: url('@d0rich/nuxt-design-system/assets/img/masks/wolf-outline-color.webp');
   background-size: 160px;
   @apply bg-blue-600;
 }

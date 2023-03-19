@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ParsedContent } from '@nuxt/content/dist/runtime/types'
-import { CharacterPose } from '~~/components/d/Character.vue'
-import { MaskType } from '~~/components/d/Mask.vue'
-import { ActionFanItem } from '~~/components/d/actions/Fan.vue'
+import { CharacterPose } from '@d0rich/nuxt-design-system/components/d/Character.vue'
+import { MaskType } from '@d0rich/nuxt-design-system/components/d/Mask.vue'
+import { ActionFanItem } from '@d0rich/nuxt-design-system/components/d/actions/Fan.vue'
 
 const currentPose = ref<CharacterPose>('idle')
 const { introNodeRefs } = useIntroBlockAnimation()
