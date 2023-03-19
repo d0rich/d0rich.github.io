@@ -1,11 +1,6 @@
-<script setup lang="ts">
-useSeoCommon({
-  title: 'Error 404'
-})
-</script>
-
 <template>
   <div class="mt-10 md:mt-20 px-3">
+    <AsyncSafeSeoWithOg title="Error 404" />
     <section class="flex justify-evenly items-center flex-wrap gap-4">
       <DCharacter
         class="w-[clamp(300px,_50%,_430px)]"

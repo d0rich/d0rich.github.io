@@ -1,11 +1,6 @@
-<script setup lang="ts">
-useSeoCommon({
-  title: 'Projects'
-})
-</script>
-
 <template>
   <div>
+    <AsyncSafeSeoWithOg title="Projects" />
     <div class="relative isolate px-3 max-w-3xl mx-auto my-10 overflow-hidden">
       <div class="max-w-lg">
         <h1 class="text-6xl sm:text-8xl font-serif mb-5 text-red-300">

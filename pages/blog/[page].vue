@@ -2,10 +2,6 @@
 import { QueryBuilderParams } from '@nuxt/content/dist/runtime/types'
 import { BlogContent } from '@/components/blog/Tile.vue'
 
-useSeoCommon({
-  title: 'Blog'
-})
-
 definePageMeta({
   path: '/blog/:page(\\d+)?'
 })
@@ -44,6 +40,7 @@ const blogQuery: QueryBuilderParams = {
 
 <template>
   <div class="mb-96">
+    <AsyncSafeSeoWithOg title="Blog" />
     <div class="relative isolate px-3 max-w-3xl mx-auto my-10 overflow-hidden">
       <div class="max-w-lg">
         <h1 class="text-6xl sm:text-8xl font-serif mb-5 text-cyan-300">Blog</h1>
