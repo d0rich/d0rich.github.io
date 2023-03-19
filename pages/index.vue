@@ -347,11 +347,8 @@ const { data } = useAsyncData('homepage', async () => {
 <!-- Skills -->
 <style>
 #skills .skills__bg-overlay {
-  background: url('@d0rich/nuxt-design-system/assets/img/character/action-shape-white.svg') fixed,
+  background: var(--d-card-x-ray--action__white),
     rgb(14 116 144 / var(--tw-bg-opacity));
-  background-position: center;
-  background-size: auto 100vh;
-  background-repeat: no-repeat;
   @apply backdrop-saturate-50 bg-opacity-90;
 }
 </style>
@@ -361,11 +358,8 @@ const { data } = useAsyncData('homepage', async () => {
 }
 
 #skills h1 {
-  background: url('@d0rich/nuxt-design-system/assets/img/character/action-shape-cyan-400.svg') fixed,
+  background: var(--d-card-x-ray--action__color),
     rgb(255 255 255 / var(--tw-bg-opacity));
-  background-position: center;
-  background-size: auto 100vh;
-  background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -397,22 +391,14 @@ const { data } = useAsyncData('homepage', async () => {
 }
 
 #story .story__bg-overlay {
-  background: url('@d0rich/nuxt-design-system/assets/img/character/idle-shape-white.svg') fixed,
+  background: var(--d-card-x-ray--idle__white),
     rgb(202 138 4 / var(--tw-bg-opacity));
-  background-position-x: calc(60vw - 50vh);
-  background-position-y: -25vh;
-  background-size: auto 150vh;
-  background-repeat: no-repeat;
   @apply backdrop-saturate-50 bg-opacity-90;
 }
 
 #story h1 {
-  background: url('@d0rich/nuxt-design-system/assets/img/character/idle-shape-yellow-400.svg') fixed,
+  background: var(--d-card-x-ray--idle__color),
     rgb(255 255 255 / var(--tw-bg-opacity));
-  background-position-x: calc(60vw - 50vh);
-  background-position-y: -25vh;
-  background-size: auto 150vh;
-  background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
