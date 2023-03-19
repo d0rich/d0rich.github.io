@@ -32,7 +32,7 @@ useSeoMeta({
   ogDescription: description,
   author: 'Nikolay Dorofeev',
   generator: 'Nuxt 3',
-  colorScheme: 'dark',
+  // colorScheme: 'dark',
   ogSiteName: 'd0rich',
   ogImage: 'https://d0rich.me/og/image.jpg',
   ogUrl: computed(() => 'https://d0rich.me' + useRoute().path)
