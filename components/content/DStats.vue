@@ -1,5 +1,5 @@
 <script lang="ts">
-import Stats from '@d0rich/nuxt-design-system/d/Stats.vue'
+import Stats from '@d0rich/nuxt-design-system/components/d/Stats.vue'
 
 export default Stats
 </script>

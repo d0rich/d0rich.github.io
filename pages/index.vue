@@ -347,7 +347,7 @@ const { data } = useAsyncData('homepage', async () => {
 <!-- Skills -->
 <style>
 #skills .skills__bg-overlay {
-  background: url('~/assets/img/character/action-shape-white.svg') fixed,
+  background: url('@d0rich/nuxt-design-system/assets/img/character/action-shape-white.svg') fixed,
     rgb(14 116 144 / var(--tw-bg-opacity));
   background-position: center;
   background-size: auto 100vh;
@@ -361,7 +361,7 @@ const { data } = useAsyncData('homepage', async () => {
 }
 
 #skills h1 {
-  background: url('~/assets/img/character/action-shape-cyan-400.svg') fixed,
+  background: url('@d0rich/nuxt-design-system/assets/img/character/action-shape-cyan-400.svg') fixed,
     rgb(255 255 255 / var(--tw-bg-opacity));
   background-position: center;
   background-size: auto 100vh;
@@ -397,7 +397,7 @@ const { data } = useAsyncData('homepage', async () => {
 }
 
 #story .story__bg-overlay {
-  background: url('~/assets/img/character/idle-shape-white.svg') fixed,
+  background: url('@d0rich/nuxt-design-system/assets/img/character/idle-shape-white.svg') fixed,
     rgb(202 138 4 / var(--tw-bg-opacity));
   background-position-x: calc(60vw - 50vh);
   background-position-y: -25vh;
@@ -407,7 +407,7 @@ const { data } = useAsyncData('homepage', async () => {
 }
 
 #story h1 {
-  background: url('~/assets/img/character/idle-shape-yellow-400.svg') fixed,
+  background: url('@d0rich/nuxt-design-system/assets/img/character/idle-shape-yellow-400.svg') fixed,
     rgb(255 255 255 / var(--tw-bg-opacity));
   background-position-x: calc(60vw - 50vh);
   background-position-y: -25vh;

@@ -29,7 +29,7 @@ const currentBarVariation = computed(() => {
 }
 
 .sections-transition-wrapper__bar {
-  background-image: url('@d0rich/nuxt-design-system/assets/img/page-transition-pattern.svg');
+  background-image: url('~~/assets/img/page-transition-pattern.svg');
   background-size: 80px;
   background-attachment: fixed;
   clip-path: polygon(-120% 0, -100% 0, 0 100%, -20% 100%);
