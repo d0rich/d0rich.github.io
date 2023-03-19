@@ -1,13 +1,11 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  extends: ['@d0rich/nuxt-design-system'],
   app: {
     pageTransition: {
       name: 'section',
       mode: 'out-in'
     }
-  },
-  build: {
-    transpile: ['gsap']
   },
   css: ['assets/css/theme.css'],
   runtimeConfig: {
@@ -16,13 +14,7 @@ export default defineNuxtConfig({
       isProd: process.env.NODE_ENV === 'production'
     }
   },
-  modules: [
-    '@nuxt/content',
-    '@nuxtjs/google-fonts',
-    '@nuxtjs/tailwindcss',
-    '@nuxtjs/color-mode',
-    'nuxt-icon'
-  ],
+  modules: ['@nuxt/content'],
   nitro: {
     prerender: {
       routes: [
@@ -41,18 +33,5 @@ export default defineNuxtConfig({
         }
       }
     }
-  },
-  colorMode: {
-    classSuffix: '',
-    preference: 'dark'
-  },
-  googleFonts: {
-    families: {
-      Roboto: true,
-      'Roboto Slab': true,
-      'JetBrains Mono': true,
-      Arsenal: true
-    },
-    preload: true
   }
 })

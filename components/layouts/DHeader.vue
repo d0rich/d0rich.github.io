@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import DShape from '~~/components/d/wrap/Shape.vue'
+import DShape from '@d0rich/nuxt-design-system/components/d/wrap/Shape.vue'
 
 export default defineComponent({
   name: 'DHeader',

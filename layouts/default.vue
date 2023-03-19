@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import DHeader from '~~/components/layouts/DHeader.vue'
+import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionWrapper.vue'
+</script>
+
 <template>
   <div id="default-layout">
     <div class="fixed w-screen z-50">
@@ -9,19 +14,6 @@
     <SectionsTransitionWrapper />
   </div>
 </template>
-
-<script lang="ts">
-import DHeader from '~~/components/layouts/DHeader.vue'
-import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionWrapper.vue'
-
-export default defineComponent({
-  name: 'DefaultLayout',
-  components: {
-    DHeader,
-    SectionsTransitionWrapper
-  }
-})
-</script>
 
 <style>
 #default-layout {

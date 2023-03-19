@@ -1,4 +1,4 @@
 <script lang="ts">
-import Chip from '~~/components/d/Chip.vue'
+import Chip from '@d0rich/nuxt-design-system/components/d/Chip.vue'
 export default Chip
 </script>
