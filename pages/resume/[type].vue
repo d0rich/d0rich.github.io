@@ -2,10 +2,6 @@
 import AsyncSafeSeoWithOg from '~~/components/AsyncSafeSeoWithOg.vue'
 import { ResumeData } from '~~/server/routes/api/resume/data'
 
-definePageMeta({
-  path: '/resume/:type(.*(?<!\\.pdf\\)$)?'
-})
-
 const resumeType = computed(() => useRoute().params.type as string)
 
 const { data, error } = useFetch<ResumeData>('/api/resume/data', {
