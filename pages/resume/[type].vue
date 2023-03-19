@@ -3,7 +3,7 @@ import AsyncSafeSeoWithOg from '~~/components/AsyncSafeSeoWithOg.vue'
 import { ResumeData } from '~~/server/routes/api/resume/data'
 
 definePageMeta({
-  path: '/resume/:type(.*(?<!\\.pdf\\)$)?'
+  path: '/resume/:type?'
 })
 
 const resumeType = computed(() => useRoute().params.type as string)

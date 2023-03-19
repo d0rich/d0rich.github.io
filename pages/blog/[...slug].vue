@@ -1,13 +1,15 @@
 <script setup lang="ts">
-const { data: doc } = useAsyncData(useRoute().path, () =>
-  queryContent(useRoute().path).findOne()
+const slug = clearSlug(useRoute().params.slug as string[])
+
+const { data: doc } = useAsyncData(['blog', ...slug].join('/'), () =>
+  queryContent('blog', ...slug).findOne()
 )
 
 const { itemsOnPage } = getBlogPostsNavConfig()
 const filterObject = getBlogPostsFilterObject()
 
 const { data: position } = useAsyncData(
-  useRoute().path + '/position',
+  ['blog', ...slug, 'position'].join('/'),
   () =>
     queryContent('/blog')
       .only('_path')
