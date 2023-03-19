@@ -29,17 +29,16 @@ const { data: resumeList } = useAsyncData(
       })
   }
 )
-
-useSeoMeta(
-  getSeoTagsWithOG({
-    title: computed(() => `Resume: ${data.value?.lead.title}`),
-    description: computed(() => data.value?.lead.description)
-  })
-)
 </script>
 
 <template>
   <div>
+    <Head v-if="data">
+      <Title>Resume: {{ data.lead.title }}</Title>
+      <Meta property="og:title" :content="`Resume: ${data.lead.title}`" />
+      <Meta name="description" :content="data.lead.description" />
+      <Meta property="og:description" :content="data.lead.description" />
+    </Head>
     <DevOnly>
       <div class="text-white bg-red-600 overflow-x-auto">
         <div>{{ error }}</div>
