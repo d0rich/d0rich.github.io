@@ -6,9 +6,6 @@ export default defineNuxtConfig({
       mode: 'out-in'
     }
   },
-  build: {
-    transpile: ['gsap']
-  },
   css: ['assets/css/theme.css'],
   runtimeConfig: {
     public: {
@@ -17,11 +14,7 @@ export default defineNuxtConfig({
     }
   },
   modules: [
-    '@nuxt/content',
-    '@nuxtjs/google-fonts',
-    '@nuxtjs/tailwindcss',
-    '@nuxtjs/color-mode',
-    'nuxt-icon'
+    '@nuxt/content'
   ],
   nitro: {
     prerender: {
@@ -41,18 +34,5 @@ export default defineNuxtConfig({
         }
       }
     }
-  },
-  colorMode: {
-    classSuffix: '',
-    preference: 'dark'
-  },
-  googleFonts: {
-    families: {
-      Roboto: true,
-      'Roboto Slab': true,
-      'JetBrains Mono': true,
-      Arsenal: true
-    },
-    preload: true
   }
 })
