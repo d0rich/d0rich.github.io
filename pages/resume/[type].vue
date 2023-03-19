@@ -30,10 +30,12 @@ const { data: resumeList } = useAsyncData(
   }
 )
 
-useSeoCommon({
-  title: computed(() => `Resume: ${data.value?.lead.title}`),
-  description: computed(() => data.value?.lead.description)
-})
+useSeoMeta(
+  getSeoTagsWithOG({
+    title: computed(() => `Resume: ${data.value?.lead.title}`),
+    description: computed(() => data.value?.lead.description)
+  })
+)
 </script>
 
 <template>
