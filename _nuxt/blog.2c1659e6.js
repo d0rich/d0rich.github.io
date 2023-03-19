@@ -1,0 +1,1 @@
+import{q as o}from"./entry.12b53ddf.js";function i(t,n){return n===1?t:`${t}/${n}`}function r(){return o().public.isProd?{_draft:{$not:!0}}:{}}function g(){return{itemsOnPage:5}}export{i as a,g as b,r as g};
