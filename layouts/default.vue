@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DHeader from '~~/components/layouts/DHeader.vue';
+import DHeader from '~~/components/layouts/DHeader.vue'
 import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionWrapper.vue'
 </script>
 

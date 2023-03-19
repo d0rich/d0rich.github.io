@@ -1,8 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  extends: [
-    '@d0rich/nuxt-design-system'
-  ],
+  extends: ['@d0rich/nuxt-design-system'],
   app: {
     pageTransition: {
       name: 'section',
@@ -16,9 +14,7 @@ export default defineNuxtConfig({
       isProd: process.env.NODE_ENV === 'production'
     }
   },
-  modules: [
-    '@nuxt/content'
-  ],
+  modules: ['@nuxt/content'],
   nitro: {
     prerender: {
       routes: [
