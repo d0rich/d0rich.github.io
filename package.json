@@ -24,15 +24,10 @@
     "vue-tsc": "^1.2.0"
   },
   "dependencies": {
-    "@nuxtjs/color-mode": "^3.2.0",
-    "@nuxtjs/google-fonts": "^3.0.0",
-    "@nuxtjs/tailwindcss": "^6.6.0",
-    "@tailwindcss/typography": "^0.5.9",
+    "@d0rich/nuxt-design-system": "^0.1.0",
     "dateformat": "^5.0.3",
-    "gsap": "^3.11.5",
     "mobile-detect": "^1.4.5",
     "node-html-parser": "^6.1.5",
-    "nuxt-icon": "^0.3.3",
     "puppeteer": "^19.7.4",
     "rehype-external-links": "^2.0.1",
     "vue-gtag": "^2.0.1"
