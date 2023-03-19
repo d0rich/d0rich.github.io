@@ -2,6 +2,9 @@ import gsap from 'gsap'
 import { ComponentPublicInstance } from 'vue'
 //  import { isMobile } from "~~/utils/device"
 
+const { generatePolygonLineKeyframes, generatePolygonPointsKeyframes } =
+  usePolygonAnimationUtils()
+
 export const useIntroBlockAnimation = () => {
   const nodes = {
     section: ref<Element | null>(null),
@@ -215,6 +218,7 @@ export const useStoryAnimation = () => {
         { left: { x: 3, y: 92 }, right: { x: 8, y: 90 } },
         { left: { x: 0, y: 100 }, right: { x: 7, y: 100 } }
       ]
+      // Scroll background from last frame
       generatePolygonLineKeyframes(line)
         .at(-1)
         ?.forEach((coords) => {
@@ -225,6 +229,7 @@ export const useStoryAnimation = () => {
             nodes.linePlaceholder.value?.points.appendItem(point)
           }
         })
+      // Scroll thumb animation
       generatePolygonPointsKeyframes(line).forEach((kfs) => {
         const point = nodes.svg.value?.createSVGPoint()
         if (point) {
