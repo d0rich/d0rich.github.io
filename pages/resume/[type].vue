@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AsyncSafeSeoWithOg from '~~/components/AsyncSafeSeoWithOg.vue'
 import { ResumeData } from '~~/server/routes/api/resume/data'
 
 definePageMeta({
@@ -29,15 +30,15 @@ const { data: resumeList } = useAsyncData(
       })
   }
 )
-
-useSeoCommon({
-  title: computed(() => `Resume: ${data.value?.lead.title}`),
-  description: computed(() => data.value?.lead.description)
-})
 </script>
 
 <template>
   <div>
+    <AsyncSafeSeoWithOg
+      v-if="data"
+      :title="`Resume: ${data.lead.title}`"
+      :description="data.lead.description"
+    />
     <DevOnly>
       <div class="text-white bg-red-600 overflow-x-auto">
         <div>{{ error }}</div>

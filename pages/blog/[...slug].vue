@@ -3,11 +3,6 @@ const { data: doc } = useAsyncData(useRoute().path, () =>
   queryContent(useRoute().path).findOne()
 )
 
-useSeoCommon({
-  title: computed(() => doc.value?.title),
-  description: computed(() => doc.value?.description)
-})
-
 const { itemsOnPage } = getBlogPostsNavConfig()
 const filterObject = getBlogPostsFilterObject()
 
@@ -37,19 +32,15 @@ const linkToBlog = computed(() => {
 </script>
 
 <template>
-  <div class="pb-[50vh] pt-10">
-    <div v-if="doc" class="blog-article">
+  <div v-if="doc" class="pb-[50vh] pt-10">
+    <AsyncSafeSeoWithOg :title="doc.title" :description="doc.description" />
+    <div class="blog-article">
       <nav>
         <DBigBangButton text="< Back" :to="linkToBlog" />
       </nav>
       <time v-if="doc.date">{{ dateToDayMonthYear(doc.date) }}</time>
     </div>
-    <ContentRenderer
-      v-if="doc"
-      :value="doc"
-      tag="article"
-      class="blog-article"
-    />
+    <ContentRenderer :value="doc" tag="article" class="blog-article" />
   </div>
 </template>
 
