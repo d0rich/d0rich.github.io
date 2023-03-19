@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AsyncSafeSeoWithOg from '~~/components/AsyncSafeSeoWithOg.vue'
 import { ResumeData } from '~~/server/routes/api/resume/data'
 
 definePageMeta({
@@ -33,12 +34,11 @@ const { data: resumeList } = useAsyncData(
 
 <template>
   <div>
-    <Head v-if="data">
-      <Title>Resume: {{ data.lead.title }}</Title>
-      <Meta property="og:title" :content="`Resume: ${data.lead.title}`" />
-      <Meta name="description" :content="data.lead.description" />
-      <Meta property="og:description" :content="data.lead.description" />
-    </Head>
+    <AsyncSafeSeoWithOg
+      v-if="data"
+      :title="`Resume: ${data.lead.title}`"
+      :description="data.lead.description"
+    />
     <DevOnly>
       <div class="text-white bg-red-600 overflow-x-auto">
         <div>{{ error }}</div>
