@@ -1,17 +1,37 @@
 <script setup lang="ts">
 import { ParsedContent } from '@nuxt/content/dist/runtime/types'
-import { CharacterPose } from '@d0rich/nuxt-design-system/components/d/Character.vue'
-import { MaskType } from '@d0rich/nuxt-design-system/components/d/Mask.vue'
-import { ActionFanItem } from '@d0rich/nuxt-design-system/components/d/actions/Fan.vue'
+import {
+  CharacterPose,
+  MaskType,
+  ActionFanItem
+} from '@d0rich/nuxt-design-system/types'
 
 const currentPose = ref<CharacterPose>('idle')
 const { introNodeRefs } = useIntroBlockAnimation()
 const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation()
 const { storyNodeRefs } = useStoryAnimation()
 const actions: ActionFanItem<CharacterPose>[] = [
-  { title: 'Sections', to: '#sections', emit: 'action' },
-  { title: 'Skills', to: '#skills', emit: 'profi' },
-  { title: 'Story', to: '#story', emit: 'idle' }
+  {
+    title: 'Sections',
+    emit: 'action',
+    attrs: {
+      to: '#sections'
+    }
+  },
+  {
+    title: 'Skills',
+    emit: 'profi',
+    attrs: {
+      to: '#skills'
+    }
+  },
+  {
+    title: 'Story',
+    emit: 'idle',
+    attrs: {
+      to: '#story'
+    }
+  }
 ]
 
 const sectionsLineColor = computed(() => {
