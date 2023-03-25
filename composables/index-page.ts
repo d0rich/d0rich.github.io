@@ -1,6 +1,5 @@
-import gsap from 'gsap'
+import { gsap } from '@d0rich/nuxt-design-system/exports'
 import { ComponentPublicInstance } from 'vue'
-//  import { isMobile } from "~~/utils/device"
 
 const { generatePolygonLineKeyframes, generatePolygonPointsKeyframes } =
   usePolygonAnimationUtils()
