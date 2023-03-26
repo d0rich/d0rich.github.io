@@ -1,4 +1,4 @@
-name: Build
+name: Test
 
 on:
   push:
@@ -16,6 +16,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm install
+      - run: npm ci
       - run: ls ./node_modules/gsap
       - run: npm run generate
