@@ -24,8 +24,9 @@
     "vue-tsc": "^1.2.0"
   },
   "dependencies": {
-    "@d0rich/nuxt-design-system": "^0.3.8",
+    "@d0rich/nuxt-design-system": "^0.3.9",
     "dateformat": "^5.0.3",
+    "gsap": "npm:@gsap/shockingly@^3.11.5",
     "mobile-detect": "^1.4.5",
     "node-html-parser": "^6.1.5",
     "puppeteer": "^19.7.4",
