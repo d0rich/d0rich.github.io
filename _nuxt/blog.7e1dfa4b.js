@@ -1,1 +1,0 @@
-import{q as o}from"./entry.e36745e0.js";const e=()=>({getLinkToPaginatedPage(t,n){return n===1?t:`${t}/${n}`}});function r(){return o().public.isProd?{_draft:{$not:!0}}:{}}function s(){return{itemsOnPage:5}}export{s as a,r as g,e as u};
