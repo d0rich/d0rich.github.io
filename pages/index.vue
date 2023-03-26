@@ -1,17 +1,37 @@
 <script setup lang="ts">
 import { ParsedContent } from '@nuxt/content/dist/runtime/types'
-import { CharacterPose } from '@d0rich/nuxt-design-system/components/d/Character.vue'
-import { MaskType } from '@d0rich/nuxt-design-system/components/d/Mask.vue'
-import { ActionFanItem } from '@d0rich/nuxt-design-system/components/d/actions/Fan.vue'
+import {
+  CharacterPose,
+  MaskType,
+  ActionFanItem
+} from '@d0rich/nuxt-design-system/types'
 
 const currentPose = ref<CharacterPose>('idle')
 const { introNodeRefs } = useIntroBlockAnimation()
 const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation()
 const { storyNodeRefs } = useStoryAnimation()
 const actions: ActionFanItem<CharacterPose>[] = [
-  { title: 'Sections', to: '#sections', emit: 'action' },
-  { title: 'Skills', to: '#skills', emit: 'profi' },
-  { title: 'Story', to: '#story', emit: 'idle' }
+  {
+    title: 'Sections',
+    emit: 'action',
+    attrs: {
+      href: '#sections'
+    }
+  },
+  {
+    title: 'Skills',
+    emit: 'profi',
+    attrs: {
+      href: '#skills'
+    }
+  },
+  {
+    title: 'Story',
+    emit: 'idle',
+    attrs: {
+      href: '#story'
+    }
+  }
 ]
 
 const sectionsLineColor = computed(() => {
@@ -110,18 +130,20 @@ const { data } = useAsyncData('homepage', async () => {
             </svg>
           </template>
           <div id="home-intro-section">
-            <div class="absolute top-0 left-0 w-fit">
+            <div
+              class="relative h-full max-w-7xl mx-auto grid md:grid-cols-2 items-center"
+            >
               <DCharacter
                 :pose="currentPose"
-                class="sm:h-96 sm:w-96 max-w-sm md:w-full md:h-auto md:max-w-lg sharp-shadow ss-br-3 ss-neutral-400 -ml-20 sm:ml-auto mt-20 transition-all"
+                shape-class="fill-black"
+                class="absolute self-end h-full -ml-20 sm:ml-auto mt-20 transition-all"
               />
               <DActionsFan
                 :actions="actions"
                 side="right"
-                class="absolute top-2/3 left-1/2 w-2/3 sm:left-2/3 z-10 text-xl md:text-2xl"
+                class="absolute top-1/2 left-1/3 w-1/2 md:w-1/3 max-w-xs z-10 text-xl md:text-2xl"
                 filter-class="sharp-shadow ss-br-3 ss-neutral-50"
                 @action-focus="currentPose = $event"
-                @action-unfocus="currentPose = 'idle'"
               />
             </div>
           </div>

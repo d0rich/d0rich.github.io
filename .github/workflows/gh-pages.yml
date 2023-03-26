@@ -8,8 +8,11 @@ on:
   # schedule:
   #   - cron: "0 3 * * *"
 
+env:
+  GSAP_TOKEN: ${{secrets.GSAP_TOKEN}}
+
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,7 +25,7 @@ jobs:
           node-version: 16
 
       - name: Installing packages
-        run: npm install
+        run: npm ci
 
       - name: Build Nuxt 3 static site
         run: npm run generate
