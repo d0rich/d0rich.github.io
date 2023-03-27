@@ -1,8 +1,10 @@
-import { gsap } from '@d0rich/nuxt-design-system/exports'
+import gsap from 'gsap'
 import { ComponentPublicInstance } from 'vue'
 
-const { generatePolygonLineKeyframes, generatePolygonPointsKeyframes } =
+const { applyLinePerPointAnimation, applyStaticPoints, createLineFromArray } =
   usePolygonAnimationUtils()
+
+const { getAbsoluteBoundingsGetters } = useElementsUtils()
 
 export const useIntroBlockAnimation = () => {
   const nodes = {
@@ -53,26 +55,40 @@ export const useIntroBlockAnimation = () => {
 
   // Line animation
   onMounted(() => {
-    const lineScrollTrigger = {
-      scrub: 1,
-      end: () => window.innerHeight * 1,
-      start: () => window.innerHeight * 0.3
-    }
-    generatePolygonPointsKeyframes([
-      { left: { x: 90, y: 0 }, right: { x: 95, y: 0 } },
-      { left: { x: 50, y: 33 }, right: { x: 63, y: 35 } },
-      { left: { x: 80, y: 58 }, right: { x: 85, y: 55 } },
-      { left: { x: 50, y: 100 }, right: { x: 75, y: 100 } }
-    ]).forEach((kfs) => {
-      const point = nodes.svg.value?.createSVGPoint()
-      if (point) {
-        nodes.line.value?.points.appendItem(point)
+    if (!nodes.svg.value || !nodes.line.value) return
+
+    applyLinePerPointAnimation(
+      createLineFromArray([
+        [
+          [90, 0],
+          [95, 0]
+        ],
+        [
+          [50, 33],
+          [63, 35]
+        ],
+        [
+          [80, 58],
+          [85, 55]
+        ],
+        [
+          [50, 100],
+          [75, 100]
+        ]
+      ]),
+      nodes.svg.value,
+      nodes.line.value,
+      (point, keyframes) => {
         gsap.to(point, {
-          keyframes: kfs,
-          scrollTrigger: lineScrollTrigger
+          keyframes,
+          scrollTrigger: {
+            scrub: 1,
+            end: () => window.innerHeight * 1,
+            start: () => window.innerHeight * 0.3
+          }
         })
       }
-    })
+    )
   })
 
   return {
@@ -94,73 +110,95 @@ export const useSectionsDescriptionAnimation = () => {
   onMounted(() => {
     // TODO: delete timeout when https://github.com/nuxt/nuxt/issues/13471 is fixed
     setTimeout(() => {
+      const svgBoundings = getAbsoluteBoundingsGetters(nodes.svg, {
+        y: () =>
+          -window.innerHeight *
+          (1 - 0.35 * Number(window.innerHeight < window.innerWidth))
+      })
       const scrollTrigger = {
         scrub: 1,
-        start: () =>
-          (nodes.svg?.value?.getBoundingClientRect().top ?? 0) +
-          window.scrollY -
-          window.innerHeight *
-            (1 - 0.35 * Number(window.innerHeight < window.innerWidth)),
-        end: () =>
-          (nodes.svg?.value?.getBoundingClientRect().bottom ?? 0) +
-          window.scrollY -
-          window.innerHeight *
-            (1 - 0.35 * Number(window.innerHeight < window.innerWidth))
+        start: svgBoundings.top,
+        end: svgBoundings.bottom
       }
-      const line = [
-        { left: { x: 10, y: 0 }, right: { x: 13, y: 0 } },
-        { left: { x: 87, y: 4 }, right: { x: 90, y: 1 } },
-        { left: { x: 83, y: 16 }, right: { x: 87, y: 10 } },
-        { left: { x: 97, y: 6 }, right: { x: 94, y: 7 } },
-        { left: { x: 43, y: 8 }, right: { x: 50, y: 9 } },
-        { left: { x: 45, y: 67 }, right: { x: 57, y: 49 } },
-        { left: { x: 90, y: 40 }, right: { x: 85, y: 38 } },
-        { left: { x: 83, y: 23 }, right: { x: 72, y: 14 } },
-        { left: { x: 95, y: 28 }, right: { x: 98, y: 25 } },
-        { left: { x: 97, y: 93 }, right: { x: 99, y: 99 } },
-        { left: { x: 40, y: 76 }, right: { x: 30, y: 75 } },
-        { left: { x: 80, y: 60 }, right: { x: 95, y: 50 } },
-        { left: { x: 50, y: 100 }, right: { x: 75, y: 100 } }
-      ]
-      generatePolygonPointsKeyframes(line).forEach((kfs) => {
-        const point = nodes.svg.value?.createSVGPoint()
-        if (point) {
-          nodes.line.value?.points.appendItem(point)
+      const line = createLineFromArray([
+        [
+          [10, 0],
+          [13, 0]
+        ],
+        [
+          [87, 4],
+          [90, 1]
+        ],
+        [
+          [83, 16],
+          [87, 10]
+        ],
+        [
+          [97, 6],
+          [94, 7]
+        ],
+        [
+          [43, 8],
+          [50, 9]
+        ],
+        [
+          [45, 67],
+          [57, 49]
+        ],
+        [
+          [90, 40],
+          [85, 38]
+        ],
+        [
+          [83, 23],
+          [72, 14]
+        ],
+        [
+          [95, 28],
+          [98, 25]
+        ],
+        [
+          [97, 93],
+          [99, 99]
+        ],
+        [
+          [40, 76],
+          [30, 75]
+        ],
+        [
+          [80, 60],
+          [95, 50]
+        ],
+        [
+          [50, 100],
+          [75, 100]
+        ]
+      ])
+      if (!nodes.svg.value || !nodes.line.value) return
+      applyLinePerPointAnimation(
+        line,
+        nodes.svg.value,
+        nodes.line.value,
+        (point, keyframes) => {
           gsap.to(point, {
-            keyframes: kfs,
+            keyframes,
             scrollTrigger
           })
         }
-      })
+      )
     }, 1000)
   })
   // Current section
   onMounted(() => {
     observer = new IntersectionObserver(
       (entries) => {
-        if (
-          entries.some(
-            (entry) =>
-              entry.isIntersecting && entry.target === nodes.resume.value
-          )
-        ) {
+        const checkIntersection = (el: Element | null) =>
+          entries.some((entry) => entry.isIntersecting && entry.target === el)
+        if (checkIntersection(nodes.resume.value)) {
           currentSection.value = 'resume'
-          return
-        }
-        if (
-          entries.some(
-            (entry) => entry.isIntersecting && entry.target === nodes.blog.value
-          )
-        ) {
+        } else if (checkIntersection(nodes.blog.value)) {
           currentSection.value = 'blog'
-          return
-        }
-        if (
-          entries.some(
-            (entry) =>
-              entry.isIntersecting && entry.target === nodes.portfolio.value
-          )
-        ) {
+        } else if (checkIntersection(nodes.portfolio.value)) {
           currentSection.value = 'portfolio'
         }
       },
@@ -193,52 +231,75 @@ export const useStoryAnimation = () => {
   onMounted(() => {
     // TODO: delete timeout when https://github.com/nuxt/nuxt/issues/13471 is fixed
     setTimeout(() => {
-      const scrollTrigger = {
-        scrub: 1,
-        start: () =>
-          (nodes.storyContainer?.value?.getBoundingClientRect().top ?? 0) +
-          window.scrollY -
-          window.innerHeight,
-        end: () =>
-          (nodes.storyContainer?.value?.getBoundingClientRect().bottom ?? 0) +
-          window.scrollY -
-          window.innerHeight
-      }
-      const line = [
-        { left: { x: 2, y: 0 }, right: { x: 7, y: 0 } },
-        { left: { x: 3, y: 10 }, right: { x: 9, y: 13 } },
-        { left: { x: 1, y: 20 }, right: { x: 7, y: 20 } },
-        { left: { x: 2, y: 30 }, right: { x: 7, y: 30 } },
-        { left: { x: 0, y: 36 }, right: { x: 6, y: 40 } },
-        { left: { x: 3, y: 47 }, right: { x: 8, y: 50 } },
-        { left: { x: 1, y: 64 }, right: { x: 6, y: 60 } },
-        { left: { x: 4, y: 70 }, right: { x: 9, y: 73 } },
-        { left: { x: 2, y: 80 }, right: { x: 6, y: 85 } },
-        { left: { x: 3, y: 92 }, right: { x: 8, y: 90 } },
-        { left: { x: 0, y: 100 }, right: { x: 7, y: 100 } }
-      ]
+      const line = createLineFromArray([
+        [
+          [2, 0],
+          [7, 0]
+        ],
+        [
+          [3, 10],
+          [9, 13]
+        ],
+        [
+          [1, 20],
+          [7, 20]
+        ],
+        [
+          [2, 30],
+          [7, 30]
+        ],
+        [
+          [0, 36],
+          [6, 40]
+        ],
+        [
+          [3, 47],
+          [8, 50]
+        ],
+        [
+          [1, 64],
+          [6, 60]
+        ],
+        [
+          [4, 70],
+          [9, 73]
+        ],
+        [
+          [2, 80],
+          [6, 85]
+        ],
+        [
+          [3, 92],
+          [8, 90]
+        ],
+        [
+          [0, 100],
+          [7, 100]
+        ]
+      ])
+      if (!nodes.svg.value || !nodes.linePlaceholder.value || !nodes.line.value)
+        return
       // Scroll background from last frame
-      generatePolygonLineKeyframes(line)
-        .at(-1)
-        ?.forEach((coords) => {
-          const point = nodes.svg.value?.createSVGPoint()
-          if (point) {
-            point.x = coords.x
-            point.y = coords.y
-            nodes.linePlaceholder.value?.points.appendItem(point)
-          }
-        })
+      applyStaticPoints(line, nodes.svg.value, nodes.linePlaceholder.value)
       // Scroll thumb animation
-      generatePolygonPointsKeyframes(line).forEach((kfs) => {
-        const point = nodes.svg.value?.createSVGPoint()
-        if (point) {
-          nodes.line.value?.points.appendItem(point)
+      const storyBoundings = getAbsoluteBoundingsGetters(nodes.storyContainer, {
+        y: () => -window.innerHeight
+      })
+      applyLinePerPointAnimation(
+        line,
+        nodes.svg.value,
+        nodes.line.value,
+        (point, keyframes) => {
           gsap.to(point, {
-            keyframes: kfs,
-            scrollTrigger
+            keyframes,
+            scrollTrigger: {
+              scrub: 1,
+              start: storyBoundings.top,
+              end: storyBoundings.bottom
+            }
           })
         }
-      })
+      )
     }, 1000)
   })
 
