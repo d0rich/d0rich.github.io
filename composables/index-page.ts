@@ -6,7 +6,7 @@ const { applyLinePerPointAnimation, applyStaticPoints, createLineFromArray } =
 
 const { getAbsoluteBoundingsGetters } = useElementsUtils()
 
-export const useIntroBlockAnimation = () => {
+export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
   const nodes = {
     section: ref<Element | null>(null),
     main: ref<Element | null>(null),
@@ -17,7 +17,7 @@ export const useIntroBlockAnimation = () => {
   }
 
   // Transition animation
-  onMounted(() => {
+  useSafeOnMounted(rootRef, () => {
     const introScrollTrigger = {
       scrub: 1,
       start: () => 0,
@@ -54,7 +54,7 @@ export const useIntroBlockAnimation = () => {
   })
 
   // Line animation
-  onMounted(() => {
+  useSafeOnMounted(rootRef, () => {
     if (!nodes.svg.value || !nodes.line.value) return
 
     applyLinePerPointAnimation(
@@ -96,7 +96,7 @@ export const useIntroBlockAnimation = () => {
   }
 }
 
-export const useSectionsDescriptionAnimation = () => {
+export const useSectionsDescriptionAnimation = (rootRef: Ref<HTMLElement>) => {
   const nodes = {
     svg: ref<(SVGElement & SVGSVGElement) | null>(null),
     line: ref<SVGPolygonElement | null>(null),
@@ -107,89 +107,86 @@ export const useSectionsDescriptionAnimation = () => {
   let observer: IntersectionObserver
   const currentSection = ref<'portfolio' | 'blog' | 'resume' | null>(null)
   // Line animation
-  onMounted(() => {
-    // TODO: delete timeout when https://github.com/nuxt/nuxt/issues/13471 is fixed
-    setTimeout(() => {
-      const svgBoundings = getAbsoluteBoundingsGetters(nodes.svg, {
-        y: () =>
-          -window.innerHeight *
-          (1 - 0.35 * Number(window.innerHeight < window.innerWidth))
-      })
-      const scrollTrigger = {
-        scrub: 1,
-        start: svgBoundings.top,
-        end: svgBoundings.bottom
+  useSafeOnMounted(rootRef, () => {
+    const svgBoundings = getAbsoluteBoundingsGetters(nodes.svg, {
+      y: () =>
+        -window.innerHeight *
+        (1 - 0.35 * Number(window.innerHeight < window.innerWidth))
+    })
+    const scrollTrigger = {
+      scrub: 1,
+      start: svgBoundings.top,
+      end: svgBoundings.bottom
+    }
+    const line = createLineFromArray([
+      [
+        [10, 0],
+        [13, 0]
+      ],
+      [
+        [87, 4],
+        [90, 1]
+      ],
+      [
+        [83, 16],
+        [87, 10]
+      ],
+      [
+        [97, 6],
+        [94, 7]
+      ],
+      [
+        [43, 8],
+        [50, 9]
+      ],
+      [
+        [45, 67],
+        [57, 49]
+      ],
+      [
+        [90, 40],
+        [85, 38]
+      ],
+      [
+        [83, 23],
+        [72, 14]
+      ],
+      [
+        [95, 28],
+        [98, 25]
+      ],
+      [
+        [97, 93],
+        [99, 99]
+      ],
+      [
+        [40, 76],
+        [30, 75]
+      ],
+      [
+        [80, 60],
+        [95, 50]
+      ],
+      [
+        [50, 100],
+        [75, 100]
+      ]
+    ])
+    if (!nodes.svg.value || !nodes.line.value) return
+    applyLinePerPointAnimation(
+      line,
+      nodes.svg.value,
+      nodes.line.value,
+      (point, keyframes) => {
+        gsap.to(point, {
+          keyframes,
+          scrollTrigger
+        })
       }
-      const line = createLineFromArray([
-        [
-          [10, 0],
-          [13, 0]
-        ],
-        [
-          [87, 4],
-          [90, 1]
-        ],
-        [
-          [83, 16],
-          [87, 10]
-        ],
-        [
-          [97, 6],
-          [94, 7]
-        ],
-        [
-          [43, 8],
-          [50, 9]
-        ],
-        [
-          [45, 67],
-          [57, 49]
-        ],
-        [
-          [90, 40],
-          [85, 38]
-        ],
-        [
-          [83, 23],
-          [72, 14]
-        ],
-        [
-          [95, 28],
-          [98, 25]
-        ],
-        [
-          [97, 93],
-          [99, 99]
-        ],
-        [
-          [40, 76],
-          [30, 75]
-        ],
-        [
-          [80, 60],
-          [95, 50]
-        ],
-        [
-          [50, 100],
-          [75, 100]
-        ]
-      ])
-      if (!nodes.svg.value || !nodes.line.value) return
-      applyLinePerPointAnimation(
-        line,
-        nodes.svg.value,
-        nodes.line.value,
-        (point, keyframes) => {
-          gsap.to(point, {
-            keyframes,
-            scrollTrigger
-          })
-        }
-      )
-    }, 1000)
+    )
   })
   // Current section
-  onMounted(() => {
+  useSafeOnMounted(rootRef, () => {
     observer = new IntersectionObserver(
       (entries) => {
         const checkIntersection = (el: Element | null) =>
@@ -220,7 +217,7 @@ export const useSectionsDescriptionAnimation = () => {
   }
 }
 
-export const useStoryAnimation = () => {
+export const useStoryAnimation = (rootRef: Ref<HTMLElement>) => {
   const nodes = {
     storyContainer: ref<Element | null>(null),
     svg: ref<(SVGElement & SVGSVGElement) | null>(null),
@@ -228,79 +225,76 @@ export const useStoryAnimation = () => {
     linePlaceholder: ref<SVGPolygonElement | null>(null)
   }
 
-  onMounted(() => {
-    // TODO: delete timeout when https://github.com/nuxt/nuxt/issues/13471 is fixed
-    setTimeout(() => {
-      const line = createLineFromArray([
-        [
-          [2, 0],
-          [7, 0]
-        ],
-        [
-          [3, 10],
-          [9, 13]
-        ],
-        [
-          [1, 20],
-          [7, 20]
-        ],
-        [
-          [2, 30],
-          [7, 30]
-        ],
-        [
-          [0, 36],
-          [6, 40]
-        ],
-        [
-          [3, 47],
-          [8, 50]
-        ],
-        [
-          [1, 64],
-          [6, 60]
-        ],
-        [
-          [4, 70],
-          [9, 73]
-        ],
-        [
-          [2, 80],
-          [6, 85]
-        ],
-        [
-          [3, 92],
-          [8, 90]
-        ],
-        [
-          [0, 100],
-          [7, 100]
-        ]
-      ])
-      if (!nodes.svg.value || !nodes.linePlaceholder.value || !nodes.line.value)
-        return
-      // Scroll background from last frame
-      applyStaticPoints(line, nodes.svg.value, nodes.linePlaceholder.value)
-      // Scroll thumb animation
-      const storyBoundings = getAbsoluteBoundingsGetters(nodes.storyContainer, {
-        y: () => -window.innerHeight
-      })
-      applyLinePerPointAnimation(
-        line,
-        nodes.svg.value,
-        nodes.line.value,
-        (point, keyframes) => {
-          gsap.to(point, {
-            keyframes,
-            scrollTrigger: {
-              scrub: 1,
-              start: storyBoundings.top,
-              end: storyBoundings.bottom
-            }
-          })
-        }
-      )
-    }, 1000)
+  useSafeOnMounted(rootRef, () => {
+    const line = createLineFromArray([
+      [
+        [2, 0],
+        [7, 0]
+      ],
+      [
+        [3, 10],
+        [9, 13]
+      ],
+      [
+        [1, 20],
+        [7, 20]
+      ],
+      [
+        [2, 30],
+        [7, 30]
+      ],
+      [
+        [0, 36],
+        [6, 40]
+      ],
+      [
+        [3, 47],
+        [8, 50]
+      ],
+      [
+        [1, 64],
+        [6, 60]
+      ],
+      [
+        [4, 70],
+        [9, 73]
+      ],
+      [
+        [2, 80],
+        [6, 85]
+      ],
+      [
+        [3, 92],
+        [8, 90]
+      ],
+      [
+        [0, 100],
+        [7, 100]
+      ]
+    ])
+    if (!nodes.svg.value || !nodes.linePlaceholder.value || !nodes.line.value)
+      return
+    // Scroll background from last frame
+    applyStaticPoints(line, nodes.svg.value, nodes.linePlaceholder.value)
+    // Scroll thumb animation
+    const storyBoundings = getAbsoluteBoundingsGetters(nodes.storyContainer, {
+      y: () => -window.innerHeight
+    })
+    applyLinePerPointAnimation(
+      line,
+      nodes.svg.value,
+      nodes.line.value,
+      (point, keyframes) => {
+        gsap.to(point, {
+          keyframes,
+          scrollTrigger: {
+            scrub: 1,
+            start: storyBoundings.top,
+            end: storyBoundings.bottom
+          }
+        })
+      }
+    )
   })
 
   return {

@@ -7,9 +7,10 @@ import {
 } from '@d0rich/nuxt-design-system/types'
 
 const currentPose = ref<CharacterPose>('idle')
-const { introNodeRefs } = useIntroBlockAnimation()
-const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation()
-const { storyNodeRefs } = useStoryAnimation()
+const rootRef = ref<HTMLElement>() as Ref<HTMLElement>
+const { introNodeRefs } = useIntroBlockAnimation(rootRef)
+const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation(rootRef)
+const { storyNodeRefs } = useStoryAnimation(rootRef)
 const actions: ActionFanItem<CharacterPose>[] = [
   {
     title: 'Sections',
@@ -76,7 +77,7 @@ const { data } = useAsyncData('homepage', async () => {
 </script>
 
 <template>
-  <div v-if="data" class="-mt-20">
+  <div v-if="data" class="-mt-20" ref="rootRef">
     <AsyncSafeSeoWithOg og-title="Homepage" />
     <!-- Intro block -->
     <section
