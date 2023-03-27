@@ -9,7 +9,8 @@ import {
 const currentPose = ref<CharacterPose>('idle')
 const rootRef = ref<HTMLElement>() as Ref<HTMLElement>
 const { introNodeRefs } = useIntroBlockAnimation(rootRef)
-const { sectionsNodeRefs, currentSection } = useSectionsDescriptionAnimation(rootRef)
+const { sectionsNodeRefs, currentSection } =
+  useSectionsDescriptionAnimation(rootRef)
 const { storyNodeRefs } = useStoryAnimation(rootRef)
 const actions: ActionFanItem<CharacterPose>[] = [
   {
@@ -77,7 +78,7 @@ const { data } = useAsyncData('homepage', async () => {
 </script>
 
 <template>
-  <div v-if="data" class="-mt-20" ref="rootRef">
+  <div v-if="data" ref="rootRef" class="-mt-20">
     <AsyncSafeSeoWithOg og-title="Homepage" />
     <!-- Intro block -->
     <section
