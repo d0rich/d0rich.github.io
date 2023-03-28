@@ -6,12 +6,20 @@ import {
   ActionFanItem
 } from '@d0rich/nuxt-design-system/types'
 
+// Use animation composables
 const currentPose = ref<CharacterPose>('idle')
 const rootRef = ref<HTMLElement>() as Ref<HTMLElement>
 const { introNodeRefs } = useIntroBlockAnimation(rootRef)
 const { sectionsNodeRefs, currentSection } =
   useSectionsDescriptionAnimation(rootRef)
 const { storyNodeRefs } = useStoryAnimation(rootRef)
+
+// Intro block
+const socialLinks = ref([
+  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/' },
+  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/' },
+  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/' }
+])
 const actions: ActionFanItem<CharacterPose>[] = [
   {
     title: 'Sections',
@@ -36,6 +44,7 @@ const actions: ActionFanItem<CharacterPose>[] = [
   }
 ]
 
+// Sections block
 const sectionsLineColor = computed(() => {
   if (currentSection.value === 'portfolio') return 'fill-red-700'
   if (currentSection.value === 'blog') return 'fill-cyan-700'
@@ -43,6 +52,7 @@ const sectionsLineColor = computed(() => {
   return 'fill-green-700'
 })
 
+// Fetch data
 interface SectionsParsedContent extends ParsedContent {
   title: string
   link: string
@@ -132,9 +142,7 @@ const { data } = useAsyncData('homepage', async () => {
             </svg>
           </template>
           <div id="home-intro-section">
-            <div
-              class="relative h-full max-w-7xl mx-auto grid md:grid-cols-2 items-center"
-            >
+            <div class="relative h-full max-w-7xl mx-auto">
               <DCharacter
                 :pose="currentPose"
                 shape-class="fill-black"
@@ -147,6 +155,20 @@ const { data } = useAsyncData('homepage', async () => {
                 filter-class="sharp-shadow ss-br-3 ss-neutral-50"
                 @action-focus="currentPose = $event"
               />
+              <div class="absolute text-3xl">
+                <DWrapShape v-for="(socialLink, index) in socialLinks"
+                    :key="index"
+                    shape-class="d-chip bg-black"
+                    filter-class="sharp-shadow ss-br-2 ss-white" >
+                  <DBtn
+                    :href="socialLink.link"
+                    target="_blank"
+                  >
+                    <Icon :name="socialLink.icon" class="m-[0.4em]" />
+                  </DBtn>
+                </DWrapShape>
+
+              </div>
             </div>
           </div>
         </DWrapBackground>
