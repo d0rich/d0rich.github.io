@@ -7,6 +7,8 @@ const { applyLinePerPointAnimation, applyStaticPoints } =
 
 const { getAbsoluteBoundingsGetters } = useElementsUtils()
 
+type ScrollTrigger = Parameters<typeof gsap.to>[2]['scrollTrigger']
+
 export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
   const nodes = {
     section: ref<Element | null>(null),
@@ -59,22 +61,31 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
   // Social links animation
 
   useSafeOnMounted(rootRef, () => {
-    const [ linkedIn, email, telegram ] = nodes.socials.value.map(comp => comp?.$el)
+    const [ email, linkedIn, telegram ] = nodes.socials.value.map(comp => comp?.$el)
     if (!(linkedIn && email && telegram)) return
 
-    gsap.to(linkedIn, {
+    const fromOptions = {
+      top: '-30%',
+      left: '50%',
+      rotate: 360
+    }
+
+    gsap.from(email, {
       scrollTrigger: {
         scrub: 1,
-        end: () => window.innerHeight * 1,
-        start: () => window.innerHeight * 0.3
+        start: () => window.innerHeight * 0.1,
+        end: () => window.innerHeight * 0.6,
       },
-      motionPath: {
-        path: [
-          {x: 50, y: 0},
-          { x: 20, y: 100 }
-        ]
+      ...fromOptions
+    })
+
+    gsap.from(linkedIn, {
+      scrollTrigger: {
+        scrub: 1,
+        start: () => window.innerHeight * 0.2,
+        end: () => window.innerHeight * 0.7,
       },
-      rotate: 360
+      ...fromOptions
     })
   })
 

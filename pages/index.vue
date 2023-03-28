@@ -16,9 +16,9 @@ const { storyNodeRefs } = useStoryAnimation(rootRef)
 
 // Intro block
 const socialLinks = ref([
-  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/' },
-  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/' },
-  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/' }
+  { icon: 'ic:sharp-mail', link: 'mailto:dorich2000@gmail.com', class: 'social__mail' },
+  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/', class: 'social__linked-in' },
+  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/', class: 'social__telegram' }
 ])
 const actions: ActionFanItem<CharacterPose>[] = [
   {
@@ -155,10 +155,11 @@ const { data } = useAsyncData('homepage', async () => {
                 filter-class="sharp-shadow ss-br-3 ss-neutral-50"
                 @action-focus="currentPose = $event"
               />
-              <div class="absolute inset-0 text-3xl">
+              <div class="absolute inset-0 text-3xl md:text-4xl">
                 <DWrapShape v-for="(socialLink, index) in socialLinks"
                     :key="index"
-                    class="absolute -top-20 left-1/2 mx-auto"
+                    class="absolute"
+                    :class="socialLink.class"
                     shape-class="d-chip bg-black"
                     filter-class="sharp-shadow ss-br-2 ss-white"
                     :ref="(el) => { introNodeRefs.socials.value[index] = el as ComponentPublicInstance }" >
@@ -198,6 +199,7 @@ const { data } = useAsyncData('homepage', async () => {
           />
         </svg>
       </template>
+      <div class="pt-20" />
       <h1>Sections</h1>
       <div class="w-full max-w-6xl mx-auto">
         <div
@@ -332,6 +334,18 @@ const { data } = useAsyncData('homepage', async () => {
   min-height: 35rem;
   overflow: hidden;
   @apply relative max-w-6xl mx-auto;
+}
+
+#home-intro-section .social__mail {
+  @apply top-12 left-10 md:left-48;
+}
+
+#home-intro-section .social__linked-in {
+
+}
+
+#home-intro-section .social__telegram {
+
 }
 </style>
 
