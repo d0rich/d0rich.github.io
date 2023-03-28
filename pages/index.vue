@@ -158,8 +158,10 @@ const { data } = useAsyncData('homepage', async () => {
               <div class="absolute text-3xl">
                 <DWrapShape v-for="(socialLink, index) in socialLinks"
                     :key="index"
+                    class="absolute"
                     shape-class="d-chip bg-black"
-                    filter-class="sharp-shadow ss-br-2 ss-white" >
+                    filter-class="sharp-shadow ss-br-2 ss-white"
+                    :ref="(el) => { introNodeRefs.socials.value[index] = el as ComponentPublicInstance }" >
                   <DBtn
                     :href="socialLink.link"
                     target="_blank"

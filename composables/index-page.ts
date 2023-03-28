@@ -14,7 +14,8 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
     bg: ref<Element | null>(null),
     text: ref<ComponentPublicInstance | null>(null),
     svg: ref<(SVGElement & SVGSVGElement) | null>(null),
-    line: ref<SVGPolygonElement | null>(null)
+    line: ref<SVGPolygonElement | null>(null),
+    socials: ref<(ComponentPublicInstance | null)[]>([])
   }
 
   // Transition animation
@@ -56,6 +57,9 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
 
   // Line animation
   useSafeOnMounted(rootRef, () => {
+    for (let link of nodes.socials.value) {
+      console.log(link?.$el)
+    }
     if (!nodes.svg.value || !nodes.line.value) return
 
     applyLinePerPointAnimation(
