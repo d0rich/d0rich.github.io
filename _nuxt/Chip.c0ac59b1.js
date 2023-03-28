@@ -1,0 +1,1 @@
+/* empty css                 */import{C as s,o,e as t,j as c}from"./entry.d4b16921.js";const r={},n={class:"d-chip"};function a(e,_){return o(),t("span",n,[c(e.$slots,"default")])}const l=s(r,[["render",a]]);export{l as C};
