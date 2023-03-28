@@ -121,7 +121,7 @@ const { data } = useAsyncData('homepage', async () => {
               :ref="(el) => { introNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) | null }"
               height="100%"
               width="100%"
-              class="absolute top-0 w-full max-w-6xl h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900"
+              class="absolute inset-0 w-full max-w-6xl mx-auto h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900"
               viewBox="80 0 20 100"
               preserveAspectRatio="xMaxYMax"
             >
@@ -165,8 +165,8 @@ const { data } = useAsyncData('homepage', async () => {
           height="100%"
           width="100%"
           class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900"
-          viewBox="90 0 10 100"
-          preserveAspectRatio="xMaxYMax"
+          viewBox="70 0 10 100"
+          preserveAspectRatio="xMidYMin"
         >
           <polygon
             :ref="(el) => { sectionsNodeRefs.line.value = el as SVGPolygonElement }"
