@@ -55,13 +55,32 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
     )
   })
 
+
+  // Social links animation
+
+  useSafeOnMounted(rootRef, () => {
+    const [ linkedIn, email, telegram ] = nodes.socials.value.map(comp => comp?.$el)
+    if (!(linkedIn && email && telegram)) return
+
+    gsap.to(linkedIn, {
+      scrollTrigger: {
+        scrub: 1,
+        end: () => window.innerHeight * 1,
+        start: () => window.innerHeight * 0.3
+      },
+      motionPath: {
+        path: [
+          {x: 50, y: 0},
+          { x: 20, y: 100 }
+        ]
+      },
+      rotate: 360
+    })
+  })
+
   // Line animation
   useSafeOnMounted(rootRef, () => {
-    for (let link of nodes.socials.value) {
-      console.log(link?.$el)
-    }
     if (!nodes.svg.value || !nodes.line.value) return
-
     applyLinePerPointAnimation(
       [
         { left: { x: 90, y: 0 }, right: { x: 95, y: 0 } },

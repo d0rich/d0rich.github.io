@@ -155,10 +155,10 @@ const { data } = useAsyncData('homepage', async () => {
                 filter-class="sharp-shadow ss-br-3 ss-neutral-50"
                 @action-focus="currentPose = $event"
               />
-              <div class="absolute text-3xl">
+              <div class="absolute inset-0 text-3xl">
                 <DWrapShape v-for="(socialLink, index) in socialLinks"
                     :key="index"
-                    class="absolute"
+                    class="absolute -top-20 left-1/2 mx-auto"
                     shape-class="d-chip bg-black"
                     filter-class="sharp-shadow ss-br-2 ss-white"
                     :ref="(el) => { introNodeRefs.socials.value[index] = el as ComponentPublicInstance }" >
@@ -169,7 +169,6 @@ const { data } = useAsyncData('homepage', async () => {
                     <Icon :name="socialLink.icon" class="m-[0.4em]" />
                   </DBtn>
                 </DWrapShape>
-
               </div>
             </div>
           </div>
