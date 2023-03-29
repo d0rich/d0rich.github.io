@@ -157,16 +157,15 @@ const { data } = useAsyncData('homepage', async () => {
                 @action-focus="currentPose = $event"
               />
               <div class="absolute inset-0 text-3xl md:text-4xl">
-                <DWrapShape v-for="(socialLink, index) in socialLinks"
-                    :key="index"
-                    class="absolute -top-1/3 left-1/2"
-                    shape-class="d-chip bg-black"
-                    filter-class="sharp-shadow ss-br-2 ss-white"
-                    :ref="(el) => { introNodeRefs.socials.value[index] = el as ComponentPublicInstance }" >
-                  <DBtn
-                    :href="socialLink.link"
-                    target="_blank"
-                  >
+                <DWrapShape
+                  v-for="(socialLink, index) in socialLinks"
+                  :key="index"
+                  :ref="(el) => { introNodeRefs.socials.value[index] = el as ComponentPublicInstance }"
+                  class="absolute -top-1/3 left-1/2"
+                  shape-class="d-chip bg-black"
+                  filter-class="sharp-shadow ss-br-2 ss-white"
+                >
+                  <DBtn :href="socialLink.link" target="_blank">
                     <Icon :name="socialLink.icon" class="m-[0.4em]" />
                   </DBtn>
                 </DWrapShape>
