@@ -205,8 +205,16 @@ const { data } = useAsyncData('homepage', async () => {
           :ref="el => { sectionsNodeRefs.sections.value[index] = el as Element}"
           class="section-description"
         >
-          <DMask :mask="doc.mask" color class="section-description__image" />
-          <div class="section-description__text">
+          <DMask
+            :ref="el => sectionsNodeRefs.sectionsMasks.value[index] = el as ComponentPublicInstance"
+            :mask="doc.mask"
+            color
+            class="section-description__image"
+          />
+          <div
+            :ref="el => sectionsNodeRefs.sectionsContent.value[index] = el as Element"
+            class="section-description__text"
+          >
             <DBigBangButton
               :to="doc.link"
               :text="doc.title"

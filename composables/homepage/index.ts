@@ -18,7 +18,9 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
   const sectionsNodeRefs = {
     svg: ref<SVGSVGElement | null>(null),
     line: ref<SVGPolygonElement | null>(null),
-    sections: ref<Element[]>([])
+    sections: ref<Element[]>([]),
+    sectionsMasks: ref<ComponentPublicInstance[]>([]),
+    sectionsContent: ref<Element[]>([])
   }
 
   const disconnectObserver = ref(() => {})
@@ -46,6 +48,10 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
     disconnectObserver.value = sectionsAnimations.setupCurrentSectionObserver(
       sectionsNodeRefs.sections,
       currentSection
+    )
+    sectionsAnimations.applySectionsContentRevealAnimation(
+      sectionsNodeRefs.sectionsMasks,
+      sectionsNodeRefs.sectionsContent
     )
     storyAnimations.applyProgressAnimation(
       storyNodeRefs.storyContainer,

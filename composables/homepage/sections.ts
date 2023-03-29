@@ -1,4 +1,5 @@
 import { LineEdge } from '@d0rich/nuxt-design-system/types'
+import { ComponentPublicInstance } from 'nuxt/dist/app/compat/capi'
 
 export function applyLineAnimation(
   svgRef: Ref<SVGSVGElement | null>,
@@ -72,4 +73,11 @@ export function setupCurrentSectionObserver(
   return () => {
     observer.disconnect()
   }
+}
+
+export function applySectionsContentRevealAnimation(
+  masksRefs: Ref<ComponentPublicInstance[]>,
+  contentRefs: Ref<Element[]>
+) {
+
 }
