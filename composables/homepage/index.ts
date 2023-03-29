@@ -18,10 +18,7 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
   const sectionsNodeRefs = {
     svg: ref<SVGSVGElement | null>(null),
     line: ref<SVGPolygonElement | null>(null),
-    sections: ref<Element[]>([]),
-    portfolio: ref<Element | null>(null),
-    blog: ref<Element | null>(null),
-    resume: ref<Element | null>(null)
+    sections: ref<Element[]>([])
   }
 
   const disconnectObserver = ref(() => {})
@@ -34,12 +31,18 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
     linePlaceholder: ref<SVGPolygonElement | null>(null)
   }
 
-
   useSafeOnMounted(rootRef, () => {
-    introAnimations.applyBgTransitionAnimation(introNodeRefs.main, introNodeRefs.bg, introNodeRefs.text)
+    introAnimations.applyBgTransitionAnimation(
+      introNodeRefs.main,
+      introNodeRefs.bg,
+      introNodeRefs.text
+    )
     introAnimations.applySocialLinksAnimation(introNodeRefs.socials)
     introAnimations.applyLineAnimation(introNodeRefs.svg, introNodeRefs.line)
-    sectionsAnimations.applyLineAnimation(sectionsNodeRefs.svg, sectionsNodeRefs.line)
+    sectionsAnimations.applyLineAnimation(
+      sectionsNodeRefs.svg,
+      sectionsNodeRefs.line
+    )
     disconnectObserver.value = sectionsAnimations.setupCurrentSectionObserver(
       sectionsNodeRefs.sections,
       currentSection
