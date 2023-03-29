@@ -9,10 +9,7 @@ import {
 // Use animation composables
 const currentPose = ref<CharacterPose>('idle')
 const rootRef = ref<HTMLElement>() as Ref<HTMLElement>
-const { introNodeRefs } = useIntroBlockAnimation(rootRef)
-const { sectionsNodeRefs, currentSection } =
-  useSectionsDescriptionAnimation(rootRef)
-const { storyNodeRefs } = useStoryAnimation(rootRef)
+const { introNodeRefs, sectionsNodeRefs, currentSection, storyNodeRefs } = useHomepageAnimations(rootRef)
 
 // Intro block
 const socialLinks = ref([
