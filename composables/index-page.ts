@@ -69,25 +69,25 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
     const emailScrollTrigger: ScrollTrigger = {
       scrub: 1,
       start: () => window.innerHeight * 0.1,
-      end: () => window.innerHeight * 0.6,
+      end: () => window.innerHeight * 0.3,
     }
 
     const linkedInScrollTrigger = {
       scrub: 1,
       start: () => window.innerHeight * 0.2,
-      end: () => window.innerHeight * 0.7,
+      end: () => window.innerHeight * 0.4,
     }
 
     const githubScrollTrigger = {
       scrub: 1,
       start: () => window.innerHeight * 0.4,
-      end: () => window.innerHeight * 1,
+      end: () => window.innerHeight * 0.5,
     }
 
     const telegramScrollTrigger = {
       scrub: 1,
-      start: () => window.innerHeight * 0.3,
-      end: () => window.innerHeight * 0.9,
+      start: () => window.innerHeight * 0.35,
+      end: () => window.innerHeight * 0.45,
     }
 
     matchMedia.add('(max-width: 639px)', () => {
@@ -95,12 +95,12 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
         scrollTrigger: emailScrollTrigger,
         top: '10%',
         left: '10%',
-        rotate: 360
+        rotate: 354
       })
 
       gsap.to(linkedIn, {
         scrollTrigger: linkedInScrollTrigger,
-        top: '10%',
+        top: '8%',
         left: '30%',
         rotate: 360
       })
@@ -109,14 +109,14 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
         scrollTrigger: githubScrollTrigger,
         top: '10%',
         left: '50%',
-        rotate: 360
+        rotate: 366
       })
 
       gsap.to(telegram, {
         scrollTrigger: telegramScrollTrigger,
-        top: '10%',
+        top: '14%',
         left: '70%',
-        rotate: 360
+        rotate: 354
       })
     })
 
@@ -125,28 +125,28 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
         scrollTrigger: emailScrollTrigger,
         top: '15%',
         left: '70%',
-        rotate: 360
+        rotate: 354
       })
 
       gsap.to(linkedIn, {
         scrollTrigger: linkedInScrollTrigger,
-        top: '30%',
-        left: '90%',
-        rotate: 360
-      })
-
-      gsap.to(github, {
-        scrollTrigger: githubScrollTrigger,
         top: '23%',
         left: '80%',
         rotate: 360
       })
 
+      gsap.to(github, {
+        scrollTrigger: githubScrollTrigger,
+        top: '35%',
+        left: '85%',
+        rotate: 366
+      })
+
       gsap.to(telegram, {
         scrollTrigger: telegramScrollTrigger,
         top: '50%',
-        left: '60%',
-        rotate: 360
+        left: '85%',
+        rotate: 354
       })
     })
 
@@ -154,8 +154,8 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
       gsap.to(email, {
         scrollTrigger: emailScrollTrigger,
         top: '15%',
-        left: '50%',
-        rotate: 360
+        left: '60%',
+        rotate: 354
       })
 
       gsap.to(linkedIn, {
@@ -169,14 +169,14 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
         scrollTrigger: githubScrollTrigger,
         top: '23%',
         left: '80%',
-        rotate: 360
+        rotate: 366
       })
 
       gsap.to(telegram, {
         scrollTrigger: telegramScrollTrigger,
         top: '50%',
-        left: '60%',
-        rotate: 360
+        left: '73%',
+        rotate: 354
       })
     })
 
