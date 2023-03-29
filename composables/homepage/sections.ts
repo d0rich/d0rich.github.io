@@ -44,16 +44,10 @@ export function applyLineAnimation(
 }
 
 export function setupCurrentSectionObserver(
-  projectsRef: Ref<Element | null>,
-  blogRef: Ref<Element | null>,
-  resumeRef: Ref<Element | null>,
+  sectionsRefs: Ref<Element[]>,
   currentSectionRef: Ref<'portfolio' | 'blog' | 'resume' | null>
 ) {
-  const [projectsNode, blogNode, resumeNode] = [
-    projectsRef.value,
-    blogRef.value,
-    resumeRef.value
-  ]
+  const [projectsNode, blogNode, resumeNode] = sectionsRefs.value
   const observer = new IntersectionObserver(
     (entries) => {
       const checkIntersection = (el: Element | null) =>

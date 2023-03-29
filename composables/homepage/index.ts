@@ -18,6 +18,7 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
   const sectionsNodeRefs = {
     svg: ref<SVGSVGElement | null>(null),
     line: ref<SVGPolygonElement | null>(null),
+    sections: ref<Element[]>([]),
     portfolio: ref<Element | null>(null),
     blog: ref<Element | null>(null),
     resume: ref<Element | null>(null)
@@ -40,9 +41,7 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
     introAnimations.applyLineAnimation(introNodeRefs.svg, introNodeRefs.line)
     sectionsAnimations.applyLineAnimation(sectionsNodeRefs.svg, sectionsNodeRefs.line)
     disconnectObserver.value = sectionsAnimations.setupCurrentSectionObserver(
-      sectionsNodeRefs.portfolio,
-      sectionsNodeRefs.blog,
-      sectionsNodeRefs.resume,
+      sectionsNodeRefs.sections,
       currentSection
     )
     storyAnimations.applyProgressAnimation(

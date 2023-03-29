@@ -201,11 +201,7 @@ const { data } = useAsyncData('homepage', async () => {
         <div
           v-for="(doc, index) in data.sections"
           :key="doc._id"
-          :ref="el => {
-                if (index === 0) sectionsNodeRefs.portfolio.value = el as Element
-                else if (index === 1) sectionsNodeRefs.blog.value = el as Element
-                else if (index === 2) sectionsNodeRefs.resume.value = el as Element
-              }"
+          :ref="el => { sectionsNodeRefs.sections.value[index] = el as Element}"
           class="section-description"
         >
           <DMask :mask="doc.mask" color class="section-description__image" />
