@@ -61,8 +61,8 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
   // Social links animation
 
   useSafeOnMounted(rootRef, () => {
-    const [ email, linkedIn, telegram ] = nodes.socials.value.map(comp => comp?.$el)
-    if (!(linkedIn && email && telegram)) return
+    const [ email, linkedIn, github, telegram ] = nodes.socials.value.map(comp => comp?.$el)
+    if (!(linkedIn && email && github && telegram)) return
 
     const matchMedia = gsap.matchMedia()
 
@@ -78,6 +78,18 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
       end: () => window.innerHeight * 0.7,
     }
 
+    const githubScrollTrigger = {
+      scrub: 1,
+      start: () => window.innerHeight * 0.4,
+      end: () => window.innerHeight * 1,
+    }
+
+    const telegramScrollTrigger = {
+      scrub: 1,
+      start: () => window.innerHeight * 0.3,
+      end: () => window.innerHeight * 0.9,
+    }
+
     matchMedia.add('(max-width: 639px)', () => {
       gsap.to(email, {
         scrollTrigger: emailScrollTrigger,
@@ -90,6 +102,20 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
         scrollTrigger: linkedInScrollTrigger,
         top: '10%',
         left: '30%',
+        rotate: 360
+      })
+
+      gsap.to(github, {
+        scrollTrigger: githubScrollTrigger,
+        top: '10%',
+        left: '50%',
+        rotate: 360
+      })
+
+      gsap.to(telegram, {
+        scrollTrigger: telegramScrollTrigger,
+        top: '10%',
+        left: '70%',
         rotate: 360
       })
     })
@@ -108,6 +134,20 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
         left: '90%',
         rotate: 360
       })
+
+      gsap.to(github, {
+        scrollTrigger: githubScrollTrigger,
+        top: '23%',
+        left: '80%',
+        rotate: 360
+      })
+
+      gsap.to(telegram, {
+        scrollTrigger: telegramScrollTrigger,
+        top: '50%',
+        left: '60%',
+        rotate: 360
+      })
     })
 
     matchMedia.add('(min-width: 768px)', () => {
@@ -122,6 +162,20 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
         scrollTrigger: linkedInScrollTrigger,
         top: '30%',
         left: '70%',
+        rotate: 360
+      })
+
+      gsap.to(github, {
+        scrollTrigger: githubScrollTrigger,
+        top: '23%',
+        left: '80%',
+        rotate: 360
+      })
+
+      gsap.to(telegram, {
+        scrollTrigger: telegramScrollTrigger,
+        top: '50%',
+        left: '60%',
         rotate: 360
       })
     })

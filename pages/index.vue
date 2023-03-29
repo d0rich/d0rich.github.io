@@ -18,7 +18,8 @@ const { storyNodeRefs } = useStoryAnimation(rootRef)
 const socialLinks = ref([
   { icon: 'ic:sharp-mail', link: 'mailto:dorich2000@gmail.com' },
   { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/' },
-  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich' }
+  { icon: 'fa6-brands:github', link: 'https://github.com/d0rich' },
+  { icon: 'fa6-brands:telegram', link: 'https://d0rich.t.me/' }
 ])
 const actions: ActionFanItem<CharacterPose>[] = [
   {
