@@ -64,29 +64,68 @@ export const useIntroBlockAnimation = (rootRef: Ref<HTMLElement>) => {
     const [ email, linkedIn, telegram ] = nodes.socials.value.map(comp => comp?.$el)
     if (!(linkedIn && email && telegram)) return
 
-    const fromOptions = {
-      top: '-30%',
-      left: '50%',
-      rotate: 360
+    const matchMedia = gsap.matchMedia()
+
+    const emailScrollTrigger: ScrollTrigger = {
+      scrub: 1,
+      start: () => window.innerHeight * 0.1,
+      end: () => window.innerHeight * 0.6,
     }
 
-    gsap.from(email, {
-      scrollTrigger: {
-        scrub: 1,
-        start: () => window.innerHeight * 0.1,
-        end: () => window.innerHeight * 0.6,
-      },
-      ...fromOptions
+    const linkedInScrollTrigger = {
+      scrub: 1,
+      start: () => window.innerHeight * 0.2,
+      end: () => window.innerHeight * 0.7,
+    }
+
+    matchMedia.add('(max-width: 639px)', () => {
+      gsap.to(email, {
+        scrollTrigger: emailScrollTrigger,
+        top: '10%',
+        left: '10%',
+        rotate: 360
+      })
+
+      gsap.to(linkedIn, {
+        scrollTrigger: linkedInScrollTrigger,
+        top: '10%',
+        left: '30%',
+        rotate: 360
+      })
     })
 
-    gsap.from(linkedIn, {
-      scrollTrigger: {
-        scrub: 1,
-        start: () => window.innerHeight * 0.2,
-        end: () => window.innerHeight * 0.7,
-      },
-      ...fromOptions
+    matchMedia.add('(min-width: 640px) and (max-width: 767px)', () => {
+      gsap.to(email, {
+        scrollTrigger: emailScrollTrigger,
+        top: '15%',
+        left: '70%',
+        rotate: 360
+      })
+
+      gsap.to(linkedIn, {
+        scrollTrigger: linkedInScrollTrigger,
+        top: '30%',
+        left: '90%',
+        rotate: 360
+      })
     })
+
+    matchMedia.add('(min-width: 768px)', () => {
+      gsap.to(email, {
+        scrollTrigger: emailScrollTrigger,
+        top: '15%',
+        left: '50%',
+        rotate: 360
+      })
+
+      gsap.to(linkedIn, {
+        scrollTrigger: linkedInScrollTrigger,
+        top: '30%',
+        left: '70%',
+        rotate: 360
+      })
+    })
+
   })
 
   // Line animation

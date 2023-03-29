@@ -16,9 +16,9 @@ const { storyNodeRefs } = useStoryAnimation(rootRef)
 
 // Intro block
 const socialLinks = ref([
-  { icon: 'ic:sharp-mail', link: 'mailto:dorich2000@gmail.com', class: 'social__mail' },
-  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/', class: 'social__linked-in' },
-  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/', class: 'social__telegram' }
+  { icon: 'ic:sharp-mail', link: 'mailto:dorich2000@gmail.com' },
+  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/' },
+  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich' }
 ])
 const actions: ActionFanItem<CharacterPose>[] = [
   {
@@ -158,8 +158,7 @@ const { data } = useAsyncData('homepage', async () => {
               <div class="absolute inset-0 text-3xl md:text-4xl">
                 <DWrapShape v-for="(socialLink, index) in socialLinks"
                     :key="index"
-                    class="absolute"
-                    :class="socialLink.class"
+                    class="absolute -top-1/3 left-1/2"
                     shape-class="d-chip bg-black"
                     filter-class="sharp-shadow ss-br-2 ss-white"
                     :ref="(el) => { introNodeRefs.socials.value[index] = el as ComponentPublicInstance }" >
@@ -334,18 +333,6 @@ const { data } = useAsyncData('homepage', async () => {
   min-height: 35rem;
   overflow: hidden;
   @apply relative max-w-6xl mx-auto;
-}
-
-#home-intro-section .social__mail {
-  @apply top-12 left-10 md:left-48;
-}
-
-#home-intro-section .social__linked-in {
-
-}
-
-#home-intro-section .social__telegram {
-
 }
 </style>
 
