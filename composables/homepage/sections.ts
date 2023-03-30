@@ -90,10 +90,26 @@ export function applySectionsContentRevealAnimation(
         trigger: content,
         scrub: 1,
         start: 'top 80%',
-        end: 'bottom 66%',
-        markers: true
+        end: 'bottom 66%'
       },
       stagger: 0.2
+    })
+  }
+
+  for (let mask of masksRefs.value) {
+    const el = mask.$el
+    gsap.set(el, {
+      transform: 'perspective(400px)'
+    })
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        scrub: 1,
+        start: 'top 80%',
+        end: 'bottom 66%',
+      },
+      opacity: 0,
+      rotateY: -90
     })
   }
 }

@@ -198,7 +198,7 @@ const { data } = useAsyncData('homepage', async () => {
       </template>
       <div class="pt-20" />
       <h1>Sections</h1>
-      <div class="w-full max-w-6xl mx-auto">
+      <div class="w-full max-w-6xl mx-auto overflow-hidden">
         <div
           v-for="(doc, index) in data.sections"
           :key="doc._id"
