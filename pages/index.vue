@@ -9,8 +9,13 @@ import {
 // Use animation composables
 const currentPose = ref<CharacterPose>('idle')
 const rootRef = ref<HTMLElement>() as Ref<HTMLElement>
-const { introNodeRefs, sectionsNodeRefs, currentSection, storyNodeRefs } =
-  useHomepageAnimations(rootRef)
+const {
+  introNodeRefs,
+  sectionsNodeRefs,
+  currentSection,
+  skillsNodeRefs,
+  storyNodeRefs
+} = useHomepageAnimations(rootRef)
 
 // Intro block
 const socialLinks = ref([
@@ -229,14 +234,16 @@ const { data } = useAsyncData('homepage', async () => {
     <DWrapBackground
       id="skills"
       tag="section"
+      class="overflow-hidden"
       overlay-class="skills__bg-overlay"
     >
       <div class="pt-20" />
       <h1>Skills</h1>
       <div class="max-w-7xl mx-auto px-3">
         <ContentRenderer
-          v-for="doc in data.skills"
+          v-for="(doc, index) in data.skills"
           :key="doc._id"
+          :ref="el => skillsNodeRefs.skillsGroups.value[index] = el as ComponentPublicInstance"
           tag="div"
           class="skills-group"
           :value="doc"

@@ -76,11 +76,11 @@ export function setupCurrentSectionObserver(
   }
 }
 
-export function applySectionsContentRevealAnimation(
+export function applyContentRevealAnimation(
   masksRefs: Ref<ComponentPublicInstance[]>,
   contentRefs: Ref<Element[]>
 ) {
-  for (let content of contentRefs.value) {
+  for (const content of contentRefs.value) {
     const elementsToAnimate: Element[] = []
     elementsToAnimate.push(content.children[0])
     elementsToAnimate.push(...content.children[1].children)
@@ -96,7 +96,7 @@ export function applySectionsContentRevealAnimation(
     })
   }
 
-  for (let mask of masksRefs.value) {
+  for (const mask of masksRefs.value) {
     const el = mask.$el
     gsap.set(el, {
       transform: 'perspective(400px)'

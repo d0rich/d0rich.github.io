@@ -3,6 +3,7 @@ import { ComponentPublicInstance } from 'vue'
 import * as introAnimations from './intro'
 import * as sectionsAnimations from './sections'
 import * as storyAnimations from './story'
+import * as skillsAnimations from './skills'
 
 export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
   const introNodeRefs = {
@@ -25,6 +26,10 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
 
   const disconnectObserver = ref(() => {})
   const currentSection = ref<'portfolio' | 'blog' | 'resume' | null>(null)
+
+  const skillsNodeRefs = {
+    skillsGroups: ref<ComponentPublicInstance[]>([])
+  }
 
   const storyNodeRefs = {
     storyContainer: ref<Element | null>(null),
@@ -49,10 +54,11 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
       sectionsNodeRefs.sections,
       currentSection
     )
-    sectionsAnimations.applySectionsContentRevealAnimation(
+    sectionsAnimations.applyContentRevealAnimation(
       sectionsNodeRefs.sectionsMasks,
       sectionsNodeRefs.sectionsContent
     )
+    skillsAnimations.applyContentRevealAnimation(skillsNodeRefs.skillsGroups)
     storyAnimations.applyProgressAnimation(
       storyNodeRefs.storyContainer,
       storyNodeRefs.svg,
@@ -67,6 +73,7 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
     introNodeRefs,
     sectionsNodeRefs,
     currentSection,
+    skillsNodeRefs,
     storyNodeRefs
   }
 }
