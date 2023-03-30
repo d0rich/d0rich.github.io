@@ -106,7 +106,7 @@ export function applySectionsContentRevealAnimation(
         trigger: el,
         scrub: 1,
         start: 'top 80%',
-        end: 'bottom 66%',
+        end: 'bottom 66%'
       },
       opacity: 0,
       rotateY: -90
