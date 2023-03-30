@@ -1,3 +1,4 @@
+import { gsap } from 'gsap/all'
 import { LineEdge } from '@d0rich/nuxt-design-system/types'
 import { ComponentPublicInstance } from 'nuxt/dist/app/compat/capi'
 
@@ -79,5 +80,20 @@ export function applySectionsContentRevealAnimation(
   masksRefs: Ref<ComponentPublicInstance[]>,
   contentRefs: Ref<Element[]>
 ) {
-
+  for (let content of contentRefs.value) {
+    const elementsToAnimate: Element[] = []
+    elementsToAnimate.push(content.children[0])
+    elementsToAnimate.push(...content.children[1].children)
+    gsap.from(elementsToAnimate, {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: content,
+        scrub: 1,
+        start: 'top 80%',
+        end: 'bottom 66%',
+        markers: true
+      },
+      stagger: 0.2
+    })
+  }
 }
