@@ -43,3 +43,21 @@ export function applyProgressAnimation(
     })
   })
 }
+
+export function applyContentRevealAnimation(
+  cardsRefs: Ref<ComponentPublicInstance[]>
+) {
+  const cards = cardsRefs.value
+  for (const card of cards) {
+    gsap.from(card.$el, {
+      scrollTrigger: {
+        trigger: card.$el,
+        scrub: 1,
+        start: 'top bottom',
+        end: 'top 70%'
+      },
+      paddingTop: '100vh',
+      marginBottom: '-100vh'
+    })
+  }
+}

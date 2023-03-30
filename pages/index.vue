@@ -293,8 +293,9 @@ const { data } = useAsyncData('homepage', async () => {
         </svg>
         <div class="story-blocks__cards">
           <DCard
-            v-for="doc in data.story.blocks"
+            v-for="(doc, index) in data.story.blocks"
             :key="doc._id"
+            :ref="el => storyNodeRefs.cards.value[index] = el as ComponentPublicInstance"
             mode="homepage-story"
             class="my-20"
           >
@@ -409,6 +410,7 @@ const { data } = useAsyncData('homepage', async () => {
   @apply backdrop-saturate-50 bg-opacity-90;
 }
 </style>
+
 <style scoped>
 #skills {
   @apply font-dialog bg-[url('~/assets/img/bg/skills.png')] bg-cover bg-center;
@@ -495,6 +497,7 @@ const { data } = useAsyncData('homepage', async () => {
 
 #story .story-blocks__cards {
   padding-bottom: 60vh;
+  overflow: hidden;
 }
 
 #story .story-progress {

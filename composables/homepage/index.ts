@@ -35,7 +35,8 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
     storyContainer: ref<Element | null>(null),
     svg: ref<(SVGElement & SVGSVGElement) | null>(null),
     line: ref<SVGPolygonElement | null>(null),
-    linePlaceholder: ref<SVGPolygonElement | null>(null)
+    linePlaceholder: ref<SVGPolygonElement | null>(null),
+    cards: ref<ComponentPublicInstance[]>([])
   }
 
   useSafeOnMounted(rootRef, () => {
@@ -65,6 +66,7 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
       storyNodeRefs.line,
       storyNodeRefs.linePlaceholder
     )
+    storyAnimations.applyContentRevealAnimation(storyNodeRefs.cards)
   })
 
   onBeforeUnmount(() => disconnectObserver.value())
