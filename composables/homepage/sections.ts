@@ -89,8 +89,8 @@ export function applyContentRevealAnimation(
       scrollTrigger: {
         trigger: content,
         scrub: 1,
-        start: 'top 80%',
-        end: 'bottom 66%'
+        start: 'top 90%',
+        end: 'center 66%'
       },
       stagger: 0.2
     })
@@ -105,8 +105,8 @@ export function applyContentRevealAnimation(
       scrollTrigger: {
         trigger: el,
         scrub: 1,
-        start: 'top 80%',
-        end: 'bottom 66%'
+        start: 'top 90%',
+        end: 'center 66%'
       },
       opacity: 0,
       rotateY: -90

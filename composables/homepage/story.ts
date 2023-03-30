@@ -54,7 +54,7 @@ export function applyContentRevealAnimation(
         trigger: card.$el,
         scrub: 1,
         start: 'top bottom',
-        end: 'top 70%'
+        end: 'top 60%'
       },
       paddingTop: '100vh',
       marginBottom: '-100vh'

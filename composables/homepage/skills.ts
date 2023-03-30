@@ -11,7 +11,7 @@ export function applyContentRevealAnimation(
     const card = group.children[1]
     const scrollTriggerOptions = {
       scrub: 1,
-      start: 'top 80%',
+      start: 'top bottom',
       end: 'center 66%'
     }
     matchMedia.add('(min-width: 768px)', () => {
