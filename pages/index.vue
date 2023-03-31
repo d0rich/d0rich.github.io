@@ -413,7 +413,7 @@ const { data } = useAsyncData('homepage', async () => {
 
 <style scoped>
 #skills {
-  @apply font-dialog bg-[url('~/assets/img/bg/skills.png')] bg-cover bg-center;
+  @apply font-dialog bg-[url('~/assets/img/bg/skills.png')] bg-cover bg-fixed bg-center;
 }
 
 #skills h1 {
@@ -446,7 +446,7 @@ const { data } = useAsyncData('homepage', async () => {
 <!-- Story -->
 <style>
 #story {
-  @apply font-dialog bg-[url('~/assets/img/bg/timeline.png')] bg-cover bg-center;
+  @apply font-dialog bg-[url('~/assets/img/bg/timeline.png')] bg-fixed bg-cover bg-center;
 }
 
 #story .story__bg-overlay {
