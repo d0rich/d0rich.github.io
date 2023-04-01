@@ -477,11 +477,11 @@ const { data } = useAsyncData('homepage', async () => {
 
 #story .bubble-1__shape {
   @apply bg-black bg-opacity-90;
-  clip-path: var(--shape-bubble);
+  clip-path: var(--shape-bubble--right);
 }
 
 #story .bubble-1__text {
-  padding: var(--shape-bubble-padding);
+  padding: var(--shape-bubble--right__padding);
   @apply font-semibold;
 }
 
