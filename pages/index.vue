@@ -275,21 +275,15 @@ const { data } = useAsyncData('homepage', async () => {
     >
       <template #svg>
         <div class="relative w-full h-full max-w-3xl mx-auto">
-          <DAnimationSpinner
+          <DAnimationHypnosis
             :ref="el => skillsNodeRefs.bgSpinner.value = el as ComponentPublicInstance"
-            class="absolute inset-0 mx-auto right-2/3 top-64 w-96"
-          />
-          <DAnimationAccordion
-            class="absolute inset-0 m-auto right-1/4 bottom-1/2 w-[60vw] max-w-2xl rotate-[126deg]"
+            class="absolute inset-0 mx-auto right-2/3 top-[12%] w-80 -rotate-12"
           />
           <DAnimationHypnosis
             class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12"
           />
-          <DAnimationSpinner
-            class="absolute inset-0 my-auto -left-[150vh] top-2/3 w-[200vh]"
-          />
-          <DAnimationAccordion
-            class="absolute inset-0 m-auto left-1/4 top-3/4 w-[100vw] max-w-3xl rotate-[36deg]"
+          <DAnimationHypnosis
+            class="absolute -left-40 bottom-5 w-96"
           />
         </div>
       </template>
@@ -310,9 +304,9 @@ const { data } = useAsyncData('homepage', async () => {
 
     <DWrapBackground id="story" tag="section" overlay-class="story__bg-overlay">
       <template #svg>
-        <div class="sticky top-[25vh] w-full h-screen overflow-hidden">
+        <div class="sticky top-[25vh] mt-28 w-full h-screen overflow-hidden">
           <div class="mx-auto max-w-3xl">
-            <DAnimationHypnosis class="h-[50vh] -ml-[20vh]" />
+            <DAnimationSpinner class="h-[50vh] -ml-[20vh]" />
           </div>
         </div>
       </template>

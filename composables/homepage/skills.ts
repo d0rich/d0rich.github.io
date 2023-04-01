@@ -45,21 +45,3 @@ export function applyContentRevealAnimation(
     })
   }
 }
-
-export function applyBgSpinnerParallaxAnimation(
-  containerRef: Ref<ComponentPublicInstance | null>,
-  bgSpinnerRef: Ref<ComponentPublicInstance | null>
-) {
-  const bgSpinner = bgSpinnerRef.value
-  if (bgSpinner) {
-    gsap.to(bgSpinner.$el, {
-      scrollTrigger: {
-        trigger: containerRef.value?.$el as Element,
-        scrub: 1,
-        start: 'top center',
-        end: 'bottom top'
-      },
-      top: '60%'
-    })
-  }
-}

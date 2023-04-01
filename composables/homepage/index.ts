@@ -62,10 +62,6 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
       sectionsNodeRefs.sectionsContent
     )
     skillsAnimations.applyContentRevealAnimation(skillsNodeRefs.skillsGroups)
-    // skillsAnimations.applyBgSpinnerParallaxAnimation(
-    //   skillsNodeRefs.block,
-    //   skillsNodeRefs.bgSpinner
-    // )
     storyAnimations.applyProgressAnimation(
       storyNodeRefs.storyContainer,
       storyNodeRefs.svg,
