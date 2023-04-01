@@ -315,7 +315,7 @@ const { data } = useAsyncData('homepage', async () => {
       <div class="pt-20" />
       <h1>Story</h1>
       <div class="max-w-7xl px-3 mx-auto -mb-10 sm:-mb-32">
-        <div class="flex items-start justify-start">
+        <div class="flex items-center justify-center">
           <img
             src="~/assets/img/avatar-transparent-frame.webp"
             class="character"
@@ -528,7 +528,7 @@ const { data } = useAsyncData('homepage', async () => {
 
 #story .character {
   @apply sm:h-96 sm:w-96 max-w-sm h-auto md:max-w-lg
-         -ml-20 transition-all;
+         -ml-20 sm:ml-[unset] transition-all;
 }
 
 #story .bubble-1 {
@@ -553,8 +553,7 @@ const { data } = useAsyncData('homepage', async () => {
 #story .story-blocks {
   grid-template-columns: auto 1fr;
   column-gap: clamp(1rem, 5vw, 3rem);
-  margin-left: auto;
-  @apply grid justify-start max-w-3xl mr-3 sm:mr-32 lg:mr-[20%];
+  @apply grid justify-start max-w-3xl mx-auto;
 }
 
 #story .story-blocks__cards {
