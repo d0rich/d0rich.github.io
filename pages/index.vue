@@ -282,9 +282,7 @@ const { data } = useAsyncData('homepage', async () => {
           <DAnimationHypnosis
             class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12"
           />
-          <DAnimationHypnosis
-            class="absolute -left-40 bottom-5 w-96"
-          />
+          <DAnimationHypnosis class="absolute -left-40 bottom-5 w-96" />
         </div>
       </template>
       <div class="pt-20" />
