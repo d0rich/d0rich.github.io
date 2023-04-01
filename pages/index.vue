@@ -145,7 +145,9 @@ const { data } = useAsyncData('homepage', async () => {
                 class="fill-white"
               />
             </svg>
-            <DAnimationAccordion class="absolute bottom-8 -right-20 sm:right-5 -rotate-12 w-[clamp(300px,_33%,_500px)]" />
+            <div class="absolute inset-0 overflow-hidden">
+              <DAnimationAccordion class="absolute bottom-8 -right-20 sm:right-5 -rotate-12 w-[clamp(300px,_33%,_500px)]" />
+            </div>
           </template>
           <div id="home-intro-section">
             <div class="relative h-full max-w-7xl mx-auto">
@@ -188,12 +190,14 @@ const { data } = useAsyncData('homepage', async () => {
       overlay-class="backdrop-saturate-50 bg-neutral-900 bg-opacity-90"
     >
       <template #svg>
-        <DAnimationFloatingLetter class="absolute w-56 inset-0 left-1/3 mx-auto" :path-class="sectionsLineColor" />
-        <DAnimationFloatingLetter class="absolute w-32 inset-0 bottom-1/2 right-2/3 m-auto" :path-class="sectionsLineColor" />
-        <DAnimationFloatingLetter class="absolute w-52 inset-0 left-1/3 m-auto" :path-class="sectionsLineColor" />
-        <DAnimationFloatingLetter class="absolute w-60 inset-0 bottom-1/3 left-3/4 m-auto" :path-class="sectionsLineColor" />
-        <DAnimationFloatingLetter class="absolute w-48 inset-0 top-1/2 right-1/3 m-auto" :path-class="sectionsLineColor" />
-        <DAnimationFloatingLetter class="absolute w-96 inset-0 top-3/4 left-1/4 m-auto" :path-class="sectionsLineColor" />
+        <div class="absolute inset-0 overflow-hidden">
+          <DAnimationFloatingLetter class="absolute w-56 inset-0 left-1/3 mx-auto" :path-class="sectionsLineColor" />
+          <DAnimationFloatingLetter class="absolute w-32 inset-0 bottom-1/2 right-2/3 m-auto" :path-class="sectionsLineColor" />
+          <DAnimationFloatingLetter class="absolute w-52 inset-0 left-1/3 m-auto" :path-class="sectionsLineColor" />
+          <DAnimationFloatingLetter class="absolute w-60 inset-0 bottom-1/3 left-3/4 m-auto" :path-class="sectionsLineColor" />
+          <DAnimationFloatingLetter class="absolute w-48 inset-0 top-1/2 right-1/3 m-auto" :path-class="sectionsLineColor" />
+          <DAnimationFloatingLetter class="absolute w-96 inset-0 top-3/4 left-1/4 m-auto" :path-class="sectionsLineColor" />
+        </div>
         <svg
           :ref="(el) => { sectionsNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) }"
           height="100%"
