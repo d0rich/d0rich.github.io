@@ -131,7 +131,7 @@ const { data } = useAsyncData('homepage', async () => {
           overlay-class="backdrop-saturate-0 bg-green-900 bg-opacity-90"
         >
           <template #svg>
-            <DAnimationFloatingLetter class="absolute landscape:h-full m-auto inset-0" path-class="fill-white" />
+            <DAnimationHypnosis class="absolute landscape:h-full m-auto inset-0" path-class="fill-white" />
             <svg
               :ref="(el) => { introNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) | null }"
               height="100%"
