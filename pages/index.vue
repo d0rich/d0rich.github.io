@@ -245,6 +245,14 @@ const { data } = useAsyncData('homepage', async () => {
       class="overflow-hidden"
       overlay-class="skills__bg-overlay"
     >
+      <template #svg>
+        <!-- TODO: Make scroll parallax animation -->
+        <DAnimationSpinner class="absolute inset-0 mx-auto right-2/3 top-64 w-96" />
+        <DAnimationAccordion class="absolute inset-0 m-auto right-1/4 bottom-1/4 w-[60vw] rotate-[126deg]" />
+        <DAnimationHypnosis class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12" />
+        <DAnimationSpinner class="absolute inset-0 my-auto -left-[150vh] top-2/3 w-[200vh]" />
+        <DAnimationAccordion class="absolute inset-0 m-auto left-1/4 top-3/4 w-[100vw] rotate-[36deg]" />
+      </template>
       <div class="pt-20" />
       <h1>Skills</h1>
       <div class="max-w-7xl mx-auto px-3">
