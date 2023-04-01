@@ -131,7 +131,10 @@ const { data } = useAsyncData('homepage', async () => {
           overlay-class="backdrop-saturate-0 bg-green-900 bg-opacity-90"
         >
           <template #svg>
-            <DAnimationHypnosis class="absolute landscape:h-full m-auto inset-0" path-class="fill-white" />
+            <DAnimationHypnosis
+              class="absolute landscape:h-full m-auto inset-0"
+              path-class="fill-white"
+            />
             <svg
               :ref="(el) => { introNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) | null }"
               height="100%"
@@ -146,7 +149,9 @@ const { data } = useAsyncData('homepage', async () => {
               />
             </svg>
             <div class="absolute inset-0 overflow-hidden">
-              <DAnimationAccordion class="absolute bottom-8 -right-20 sm:right-5 -rotate-12 w-[clamp(300px,_33%,_500px)]" />
+              <DAnimationAccordion
+                class="absolute bottom-8 -right-20 sm:right-5 -rotate-12 w-[clamp(300px,_33%,_500px)]"
+              />
             </div>
           </template>
           <div id="home-intro-section">
@@ -191,12 +196,30 @@ const { data } = useAsyncData('homepage', async () => {
     >
       <template #svg>
         <div class="absolute inset-0 overflow-hidden">
-          <DAnimationFloatingLetter class="absolute w-56 inset-0 left-1/3 mx-auto" :path-class="sectionsLineColor" />
-          <DAnimationFloatingLetter class="absolute w-32 inset-0 bottom-1/2 right-2/3 m-auto" :path-class="sectionsLineColor" />
-          <DAnimationFloatingLetter class="absolute w-52 inset-0 left-1/3 m-auto" :path-class="sectionsLineColor" />
-          <DAnimationFloatingLetter class="absolute w-60 inset-0 bottom-1/3 left-3/4 m-auto" :path-class="sectionsLineColor" />
-          <DAnimationFloatingLetter class="absolute w-48 inset-0 top-1/2 right-1/3 m-auto" :path-class="sectionsLineColor" />
-          <DAnimationFloatingLetter class="absolute w-96 inset-0 top-3/4 left-1/4 m-auto" :path-class="sectionsLineColor" />
+          <DAnimationFloatingLetter
+            class="absolute w-56 inset-0 left-1/3 mx-auto"
+            :path-class="sectionsLineColor"
+          />
+          <DAnimationFloatingLetter
+            class="absolute w-32 inset-0 bottom-1/2 right-2/3 m-auto"
+            :path-class="sectionsLineColor"
+          />
+          <DAnimationFloatingLetter
+            class="absolute w-52 inset-0 left-1/3 m-auto"
+            :path-class="sectionsLineColor"
+          />
+          <DAnimationFloatingLetter
+            class="absolute w-60 inset-0 bottom-1/3 left-3/4 m-auto"
+            :path-class="sectionsLineColor"
+          />
+          <DAnimationFloatingLetter
+            class="absolute w-48 inset-0 top-1/2 right-1/3 m-auto"
+            :path-class="sectionsLineColor"
+          />
+          <DAnimationFloatingLetter
+            class="absolute w-96 inset-0 top-3/4 left-1/4 m-auto"
+            :path-class="sectionsLineColor"
+          />
         </div>
         <svg
           :ref="(el) => { sectionsNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) }"
@@ -245,17 +268,28 @@ const { data } = useAsyncData('homepage', async () => {
     <!-- Block about skills -->
     <DWrapBackground
       id="skills"
+      :ref="el => skillsNodeRefs.block.value = el as ComponentPublicInstance"
       tag="section"
       class="overflow-hidden"
       overlay-class="skills__bg-overlay"
-      :ref="el => skillsNodeRefs.block.value = el as ComponentPublicInstance"
     >
       <template #svg>
-        <DAnimationSpinner class="absolute inset-0 mx-auto right-2/3 top-64 w-96" :ref="el => skillsNodeRefs.bgSpinner.value = el as ComponentPublicInstance" />
-        <DAnimationAccordion class="absolute inset-0 m-auto right-1/4 bottom-1/2 w-[60vw] rotate-[126deg]" />
-        <DAnimationHypnosis class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12" />
-        <DAnimationSpinner class="absolute inset-0 my-auto -left-[150vh] top-2/3 w-[200vh]" />
-        <DAnimationAccordion class="absolute inset-0 m-auto left-1/4 top-3/4 w-[100vw] rotate-[36deg]" />
+        <DAnimationSpinner
+          :ref="el => skillsNodeRefs.bgSpinner.value = el as ComponentPublicInstance"
+          class="absolute inset-0 mx-auto right-2/3 top-64 w-96"
+        />
+        <DAnimationAccordion
+          class="absolute inset-0 m-auto right-1/4 bottom-1/2 w-[60vw] rotate-[126deg]"
+        />
+        <DAnimationHypnosis
+          class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12"
+        />
+        <DAnimationSpinner
+          class="absolute inset-0 my-auto -left-[150vh] top-2/3 w-[200vh]"
+        />
+        <DAnimationAccordion
+          class="absolute inset-0 m-auto left-1/4 top-3/4 w-[100vw] rotate-[36deg]"
+        />
       </template>
       <div class="pt-20" />
       <h1>Skills</h1>
@@ -282,7 +316,10 @@ const { data } = useAsyncData('homepage', async () => {
       <h1>Story</h1>
       <div class="max-w-7xl px-3 mx-auto -mb-10 sm:-mb-32">
         <div class="flex items-start justify-start">
-          <img src="~/assets/img/avatar-transparent-frame.webp" class="character" />
+          <img
+            src="~/assets/img/avatar-transparent-frame.webp"
+            class="character"
+          />
           <DWrapShape
             class="bubble-1"
             filter-class="sharp-shadow ss-neutral-50 ss-r-1 ss-b-1"
