@@ -131,6 +131,7 @@ const { data } = useAsyncData('homepage', async () => {
           overlay-class="backdrop-saturate-0 bg-green-900 bg-opacity-90"
         >
           <template #svg>
+            <DAnimationFloatingLetter class="absolute landscape:h-full m-auto inset-0" path-class="fill-white" />
             <svg
               :ref="(el) => { introNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) | null }"
               height="100%"
@@ -144,6 +145,7 @@ const { data } = useAsyncData('homepage', async () => {
                 class="fill-white"
               />
             </svg>
+            <DAnimationAccordion class="absolute bottom-8 -right-20 sm:right-5 -rotate-12 w-[clamp(300px,_33%,_500px)]" />
           </template>
           <div id="home-intro-section">
             <div class="relative h-full max-w-7xl mx-auto">
