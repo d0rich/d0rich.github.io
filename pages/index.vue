@@ -273,6 +273,11 @@ const { data } = useAsyncData('homepage', async () => {
     </DWrapBackground>
 
     <DWrapBackground id="story" tag="section" overlay-class="story__bg-overlay">
+      <template #svg>
+        <div class="sticky -top-[10vh] w-full h-[120vh] overflow-hidden">
+          <DAnimationHypnosis class="h-full -ml-[65vh]" />
+        </div>
+      </template>
       <div class="pt-20" />
       <h1>Story</h1>
       <div class="max-w-7xl px-3 mx-auto -mb-10 sm:-mb-32">
