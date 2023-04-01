@@ -273,7 +273,7 @@ const { data } = useAsyncData('homepage', async () => {
       <h1>Story</h1>
       <div class="max-w-7xl px-3 mx-auto -mb-10 sm:-mb-32">
         <div class="flex items-start justify-start">
-          <DCharacter pose="profi" class="character" />
+          <img src="~/assets/img/avatar-transparent-frame.webp" class="character" />
           <DWrapShape
             class="bubble-1"
             filter-class="sharp-shadow ss-neutral-50 ss-r-1 ss-b-1"
