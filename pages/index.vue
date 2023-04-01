@@ -310,9 +310,9 @@ const { data } = useAsyncData('homepage', async () => {
 
     <DWrapBackground id="story" tag="section" overlay-class="story__bg-overlay">
       <template #svg>
-        <div class="sticky top-0 w-full h-screen overflow-hidden">
+        <div class="sticky top-[25vh] w-full h-screen overflow-hidden">
           <div class="mx-auto max-w-3xl">
-            <DAnimationHypnosis class="h-[120vh] -ml-[65vh] -mt-[10vh]" />
+            <DAnimationHypnosis class="h-[50vh] -ml-[20vh]" />
           </div>
         </div>
       </template>
@@ -563,6 +563,7 @@ const { data } = useAsyncData('homepage', async () => {
 #story .story-blocks__cards {
   padding-bottom: 60vh;
   overflow: hidden;
+  @apply pr-3;
 }
 
 #story .story-progress {
