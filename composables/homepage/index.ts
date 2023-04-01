@@ -28,7 +28,9 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
   const currentSection = ref<'portfolio' | 'blog' | 'resume' | null>(null)
 
   const skillsNodeRefs = {
-    skillsGroups: ref<ComponentPublicInstance[]>([])
+    block: ref<ComponentPublicInstance | null>(null),
+    skillsGroups: ref<ComponentPublicInstance[]>([]),
+    bgSpinner: ref<ComponentPublicInstance | null>(null)
   }
 
   const storyNodeRefs = {
@@ -60,6 +62,7 @@ export const useHomepageAnimations = (rootRef: Ref<HTMLElement>) => {
       sectionsNodeRefs.sectionsContent
     )
     skillsAnimations.applyContentRevealAnimation(skillsNodeRefs.skillsGroups)
+    skillsAnimations.applyBgSpinnerParallaxAnimation(skillsNodeRefs.block, skillsNodeRefs.bgSpinner)
     storyAnimations.applyProgressAnimation(
       storyNodeRefs.storyContainer,
       storyNodeRefs.svg,
