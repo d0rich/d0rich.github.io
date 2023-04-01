@@ -3,8 +3,6 @@ name: Build & Deploy
 on:
   workflow_dispatch:
   push:
-    branches:
-      - master
   # schedule:
   #   - cron: "0 3 * * *"
 
@@ -29,6 +27,9 @@ jobs:
 
       - name: Build Nuxt 3 static site
         run: npm run generate
+
+      - name: Check installed GSAP modules
+        run: ls ./node_modules/gsap
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

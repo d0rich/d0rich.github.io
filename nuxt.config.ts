@@ -8,6 +8,9 @@ export default defineNuxtConfig({
     }
   },
   css: ['assets/css/theme.css'],
+  imports: {
+    dirs: ['composables/*/index.{ts,js,mjs,mts}']
+  },
   runtimeConfig: {
     public: {
       isDev: process.env.NODE_ENV === 'development',

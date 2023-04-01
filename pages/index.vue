@@ -6,12 +6,24 @@ import {
   ActionFanItem
 } from '@d0rich/nuxt-design-system/types'
 
+// Use animation composables
 const currentPose = ref<CharacterPose>('idle')
 const rootRef = ref<HTMLElement>() as Ref<HTMLElement>
-const { introNodeRefs } = useIntroBlockAnimation(rootRef)
-const { sectionsNodeRefs, currentSection } =
-  useSectionsDescriptionAnimation(rootRef)
-const { storyNodeRefs } = useStoryAnimation(rootRef)
+const {
+  introNodeRefs,
+  sectionsNodeRefs,
+  currentSection,
+  skillsNodeRefs,
+  storyNodeRefs
+} = useHomepageAnimations(rootRef)
+
+// Intro block
+const socialLinks = ref([
+  { icon: 'ic:sharp-mail', link: 'mailto:dorich2000@gmail.com' },
+  { icon: 'fa6-brands:linkedin', link: 'https://www.linkedin.com/in/d0rich/' },
+  { icon: 'fa6-brands:github', link: 'https://github.com/d0rich' },
+  { icon: 'fa6-brands:telegram', link: 'https://d0rich.t.me/' }
+])
 const actions: ActionFanItem<CharacterPose>[] = [
   {
     title: 'Sections',
@@ -36,6 +48,7 @@ const actions: ActionFanItem<CharacterPose>[] = [
   }
 ]
 
+// Sections block
 const sectionsLineColor = computed(() => {
   if (currentSection.value === 'portfolio') return 'fill-red-700'
   if (currentSection.value === 'blog') return 'fill-cyan-700'
@@ -43,6 +56,7 @@ const sectionsLineColor = computed(() => {
   return 'fill-green-700'
 })
 
+// Fetch data
 interface SectionsParsedContent extends ParsedContent {
   title: string
   link: string
@@ -117,11 +131,15 @@ const { data } = useAsyncData('homepage', async () => {
           overlay-class="backdrop-saturate-0 bg-green-900 bg-opacity-90"
         >
           <template #svg>
+            <DAnimationHypnosis
+              class="absolute landscape:h-full m-auto inset-0"
+              path-class="fill-white"
+            />
             <svg
               :ref="(el) => { introNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) | null }"
               height="100%"
               width="100%"
-              class="absolute top-0 w-full max-w-6xl h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900"
+              class="absolute inset-0 w-full max-w-6xl mx-auto h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900"
               viewBox="80 0 20 100"
               preserveAspectRatio="xMaxYMax"
             >
@@ -130,11 +148,14 @@ const { data } = useAsyncData('homepage', async () => {
                 class="fill-white"
               />
             </svg>
+            <div class="absolute inset-0 overflow-hidden">
+              <DAnimationAccordion
+                class="absolute bottom-8 -right-20 sm:right-5 -rotate-12 w-[clamp(300px,_33%,_500px)]"
+              />
+            </div>
           </template>
           <div id="home-intro-section">
-            <div
-              class="relative h-full max-w-7xl mx-auto grid md:grid-cols-2 items-center"
-            >
+            <div class="relative h-full max-w-7xl mx-auto">
               <DCharacter
                 :pose="currentPose"
                 shape-class="fill-black"
@@ -147,6 +168,20 @@ const { data } = useAsyncData('homepage', async () => {
                 filter-class="sharp-shadow ss-br-3 ss-neutral-50"
                 @action-focus="currentPose = $event"
               />
+              <div class="absolute inset-0 text-3xl md:text-4xl">
+                <DWrapShape
+                  v-for="(socialLink, index) in socialLinks"
+                  :key="index"
+                  :ref="(el) => { introNodeRefs.socials.value[index] = el as ComponentPublicInstance }"
+                  class="absolute -top-1/3 left-1/2"
+                  shape-class="d-chip bg-black"
+                  filter-class="sharp-shadow ss-br-2 ss-white"
+                >
+                  <DBtn :href="socialLink.link" target="_blank">
+                    <Icon :name="socialLink.icon" class="m-[0.4em]" />
+                  </DBtn>
+                </DWrapShape>
+              </div>
             </div>
           </div>
         </DWrapBackground>
@@ -160,13 +195,39 @@ const { data } = useAsyncData('homepage', async () => {
       overlay-class="backdrop-saturate-50 bg-neutral-900 bg-opacity-90"
     >
       <template #svg>
+        <div class="absolute inset-0 overflow-hidden">
+          <DAnimationFloatingLetter
+            class="absolute w-56 inset-0 left-1/3 mx-auto"
+            :path-class="sectionsLineColor"
+          />
+          <DAnimationFloatingLetter
+            class="absolute w-32 inset-0 bottom-1/2 right-2/3 m-auto"
+            :path-class="sectionsLineColor"
+          />
+          <DAnimationFloatingLetter
+            class="absolute w-52 inset-0 left-1/3 m-auto"
+            :path-class="sectionsLineColor"
+          />
+          <DAnimationFloatingLetter
+            class="absolute w-60 inset-0 bottom-1/3 left-3/4 m-auto"
+            :path-class="sectionsLineColor"
+          />
+          <DAnimationFloatingLetter
+            class="absolute w-48 inset-0 top-1/2 right-1/3 m-auto"
+            :path-class="sectionsLineColor"
+          />
+          <DAnimationFloatingLetter
+            class="absolute w-96 inset-0 top-3/4 left-1/4 m-auto"
+            :path-class="sectionsLineColor"
+          />
+        </div>
         <svg
           :ref="(el) => { sectionsNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) }"
           height="100%"
           width="100%"
           class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900"
-          viewBox="90 0 10 100"
-          preserveAspectRatio="xMaxYMax"
+          viewBox="70 0 10 100"
+          preserveAspectRatio="xMidYMin"
         >
           <polygon
             :ref="(el) => { sectionsNodeRefs.line.value = el as SVGPolygonElement }"
@@ -175,20 +236,25 @@ const { data } = useAsyncData('homepage', async () => {
           />
         </svg>
       </template>
+      <div class="pt-20" />
       <h1>Sections</h1>
-      <div class="w-full max-w-6xl mx-auto">
+      <div class="w-full max-w-6xl mx-auto overflow-hidden">
         <div
           v-for="(doc, index) in data.sections"
           :key="doc._id"
-          :ref="el => {
-                if (index === 0) sectionsNodeRefs.portfolio.value = el as Element
-                else if (index === 1) sectionsNodeRefs.blog.value = el as Element
-                else if (index === 2) sectionsNodeRefs.resume.value = el as Element
-              }"
+          :ref="el => { sectionsNodeRefs.sections.value[index] = el as Element}"
           class="section-description"
         >
-          <DMask :mask="doc.mask" color class="section-description__image" />
-          <div class="section-description__text">
+          <DMask
+            :ref="el => sectionsNodeRefs.sectionsMasks.value[index] = el as ComponentPublicInstance"
+            :mask="doc.mask"
+            color
+            class="section-description__image"
+          />
+          <div
+            :ref="el => sectionsNodeRefs.sectionsContent.value[index] = el as Element"
+            class="section-description__text"
+          >
             <DBigBangButton
               :to="doc.link"
               :text="doc.title"
@@ -202,15 +268,30 @@ const { data } = useAsyncData('homepage', async () => {
     <!-- Block about skills -->
     <DWrapBackground
       id="skills"
+      :ref="el => skillsNodeRefs.block.value = el as ComponentPublicInstance"
       tag="section"
+      class="overflow-hidden"
       overlay-class="skills__bg-overlay"
     >
+      <template #svg>
+        <div class="relative w-full h-full max-w-3xl mx-auto">
+          <DAnimationHypnosis
+            :ref="el => skillsNodeRefs.bgSpinner.value = el as ComponentPublicInstance"
+            class="absolute inset-0 mx-auto right-2/3 top-[12%] w-80 -rotate-12"
+          />
+          <DAnimationHypnosis
+            class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12"
+          />
+          <DAnimationHypnosis class="absolute -left-40 bottom-5 w-96" />
+        </div>
+      </template>
       <div class="pt-20" />
       <h1>Skills</h1>
       <div class="max-w-7xl mx-auto px-3">
         <ContentRenderer
-          v-for="doc in data.skills"
+          v-for="(doc, index) in data.skills"
           :key="doc._id"
+          :ref="el => skillsNodeRefs.skillsGroups.value[index] = el as ComponentPublicInstance"
           tag="div"
           class="skills-group"
           :value="doc"
@@ -220,11 +301,21 @@ const { data } = useAsyncData('homepage', async () => {
     </DWrapBackground>
 
     <DWrapBackground id="story" tag="section" overlay-class="story__bg-overlay">
+      <template #svg>
+        <div class="sticky top-[25vh] mt-28 w-full h-screen overflow-hidden">
+          <div class="mx-auto max-w-3xl">
+            <DAnimationSpinner class="h-[50vh] -ml-[20vh]" />
+          </div>
+        </div>
+      </template>
       <div class="pt-20" />
       <h1>Story</h1>
       <div class="max-w-7xl px-3 mx-auto -mb-10 sm:-mb-32">
-        <div class="flex items-start justify-start">
-          <DCharacter pose="profi" class="character" />
+        <div class="flex items-center justify-center">
+          <img
+            src="~/assets/img/avatar-transparent-frame.webp"
+            class="character"
+          />
           <DWrapShape
             class="bubble-1"
             filter-class="sharp-shadow ss-neutral-50 ss-r-1 ss-b-1"
@@ -260,8 +351,9 @@ const { data } = useAsyncData('homepage', async () => {
         </svg>
         <div class="story-blocks__cards">
           <DCard
-            v-for="doc in data.story.blocks"
+            v-for="(doc, index) in data.story.blocks"
             :key="doc._id"
+            :ref="el => storyNodeRefs.cards.value[index] = el as ComponentPublicInstance"
             mode="homepage-story"
             class="my-20"
           >
@@ -376,9 +468,10 @@ const { data } = useAsyncData('homepage', async () => {
   @apply backdrop-saturate-50 bg-opacity-90;
 }
 </style>
+
 <style scoped>
 #skills {
-  @apply font-dialog bg-[url('~/assets/img/bg/skills.png')] bg-cover bg-center;
+  @apply font-dialog bg-[url('~/assets/img/bg/skills.png')] bg-cover bg-fixed bg-center;
 }
 
 #skills h1 {
@@ -411,7 +504,7 @@ const { data } = useAsyncData('homepage', async () => {
 <!-- Story -->
 <style>
 #story {
-  @apply font-dialog bg-[url('~/assets/img/bg/timeline.png')] bg-cover bg-center;
+  @apply font-dialog bg-[url('~/assets/img/bg/timeline.png')] bg-fixed bg-cover bg-center;
 }
 
 #story .story__bg-overlay {
@@ -431,7 +524,7 @@ const { data } = useAsyncData('homepage', async () => {
 
 #story .character {
   @apply sm:h-96 sm:w-96 max-w-sm h-auto md:max-w-lg
-         -ml-20 transition-all;
+         -ml-20 sm:ml-[unset] transition-all;
 }
 
 #story .bubble-1 {
@@ -442,11 +535,11 @@ const { data } = useAsyncData('homepage', async () => {
 
 #story .bubble-1__shape {
   @apply bg-black bg-opacity-90;
-  clip-path: var(--shape-bubble);
+  clip-path: var(--shape-bubble--right);
 }
 
 #story .bubble-1__text {
-  padding: var(--shape-bubble-padding);
+  padding: var(--shape-bubble--right__padding);
   @apply font-semibold;
 }
 
@@ -456,12 +549,13 @@ const { data } = useAsyncData('homepage', async () => {
 #story .story-blocks {
   grid-template-columns: auto 1fr;
   column-gap: clamp(1rem, 5vw, 3rem);
-  margin-left: auto;
-  @apply grid justify-start max-w-3xl mr-3 sm:mr-32 lg:mr-[20%];
+  @apply grid justify-start max-w-3xl mx-auto;
 }
 
 #story .story-blocks__cards {
   padding-bottom: 60vh;
+  overflow: hidden;
+  @apply pr-3;
 }
 
 #story .story-progress {
