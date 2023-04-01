@@ -274,22 +274,24 @@ const { data } = useAsyncData('homepage', async () => {
       overlay-class="skills__bg-overlay"
     >
       <template #svg>
-        <DAnimationSpinner
-          :ref="el => skillsNodeRefs.bgSpinner.value = el as ComponentPublicInstance"
-          class="absolute inset-0 mx-auto right-2/3 top-64 w-96"
-        />
-        <DAnimationAccordion
-          class="absolute inset-0 m-auto right-1/4 bottom-1/2 w-[60vw] rotate-[126deg]"
-        />
-        <DAnimationHypnosis
-          class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12"
-        />
-        <DAnimationSpinner
-          class="absolute inset-0 my-auto -left-[150vh] top-2/3 w-[200vh]"
-        />
-        <DAnimationAccordion
-          class="absolute inset-0 m-auto left-1/4 top-3/4 w-[100vw] rotate-[36deg]"
-        />
+        <div class="relative w-full h-full max-w-3xl mx-auto">
+          <DAnimationSpinner
+            :ref="el => skillsNodeRefs.bgSpinner.value = el as ComponentPublicInstance"
+            class="absolute inset-0 mx-auto right-2/3 top-64 w-96"
+          />
+          <DAnimationAccordion
+            class="absolute inset-0 m-auto right-1/4 bottom-1/2 w-[60vw] max-w-2xl rotate-[126deg]"
+          />
+          <DAnimationHypnosis
+            class="absolute inset-0 m-auto left-1/4 bottom-64 w-96 rotate-12"
+          />
+          <DAnimationSpinner
+            class="absolute inset-0 my-auto -left-[150vh] top-2/3 w-[200vh]"
+          />
+          <DAnimationAccordion
+            class="absolute inset-0 m-auto left-1/4 top-3/4 w-[100vw] max-w-3xl rotate-[36deg]"
+          />
+        </div>
       </template>
       <div class="pt-20" />
       <h1>Skills</h1>
@@ -308,8 +310,10 @@ const { data } = useAsyncData('homepage', async () => {
 
     <DWrapBackground id="story" tag="section" overlay-class="story__bg-overlay">
       <template #svg>
-        <div class="sticky -top-[10vh] w-full h-[120vh] overflow-hidden">
-          <DAnimationHypnosis class="h-full -ml-[65vh]" />
+        <div class="sticky top-0 w-full h-screen overflow-hidden">
+          <div class="mx-auto max-w-3xl">
+            <DAnimationHypnosis class="h-[120vh] -ml-[65vh] -mt-[10vh]" />
+          </div>
         </div>
       </template>
       <div class="pt-20" />
