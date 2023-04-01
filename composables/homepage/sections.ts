@@ -105,7 +105,7 @@ export function applyContentRevealAnimation(
       scrollTrigger: {
         trigger: el,
         scrub: 1,
-        start: 'top 90%',
+        start: 'center 90%',
         end: 'center 66%'
       },
       opacity: 0,
