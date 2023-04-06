@@ -1,0 +1,1 @@
+import{q as o}from"./entry.1ff84675.js";function i(t,n){return n===1?t:`${t}/${n}`}const r=()=>({getLinkToPaginatedPage:i});function s(){return o().public.isProd?{_draft:{$not:!0}}:{}}function g(){return{itemsOnPage:5}}export{g as a,s as g,r as u};
