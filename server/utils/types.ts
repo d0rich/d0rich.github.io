@@ -1,4 +1,4 @@
-export type D0xigenProjectMeta ={
+export type D0xigenProjectMeta = {
   title: string
   description: string
   tags: string[]

@@ -1,5 +1,6 @@
-import { IProjectsRepository } from "./IProjectsRepository";
-import { ProjectsRepositoryCache } from "./ProjectsRepositoryCache";
-import { ProjectsRepositorySource } from "./ProjectsRepositorySource";
+import { IProjectsRepository } from './IProjectsRepository'
+import { ProjectsRepositoryCache } from './ProjectsRepositoryCache'
+import { ProjectsRepositorySource } from './ProjectsRepositorySource'
 
-export const ProjectsRepository: IProjectsRepository = new ProjectsRepositoryCache(new ProjectsRepositorySource())
+export const ProjectsRepository: IProjectsRepository =
+  new ProjectsRepositoryCache(new ProjectsRepositorySource())

@@ -1,6 +1,6 @@
 import { createStorage } from 'unstorage'
-import { IProjectsRepository } from "./IProjectsRepository"
 import { D0xigenProjectMeta } from '../types'
+import { IProjectsRepository } from './IProjectsRepository'
 
 const cache = createStorage()
 
@@ -11,7 +11,7 @@ export class ProjectsRepositoryCache implements IProjectsRepository {
     if (await cache.hasItem('projects')) {
       const storageValue = await cache.getItem('projects')
       if (!Array.isArray(storageValue)) {
-        throw new Error('Storage value is not an array')
+        throw new TypeError('Storage value is not an array')
       }
       const projects = storageValue satisfies D0xigenProjectMeta[]
       return projects
