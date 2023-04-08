@@ -2,7 +2,9 @@ import { Octokit } from "octokit"
 import { D0xigenProjectMeta } from "../types"
 import { IProjectsRepository } from "./IProjectsRepository"
 
-const octokit = new Octokit()
+const octokit = new Octokit({
+  auth: process.env.GITHUB_TOKEN
+})
 
 export class ProjectsRepositorySource implements IProjectsRepository {
 
