@@ -29,6 +29,7 @@
     "gsap": "npm:@gsap/shockingly@^3.11.5",
     "mobile-detect": "^1.4.5",
     "node-html-parser": "^6.1.5",
+    "octokit": "^2.0.14",
     "puppeteer": "^19.7.4",
     "rehype-external-links": "^2.0.1",
     "sitemap": "^7.1.1",
