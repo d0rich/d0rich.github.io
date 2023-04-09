@@ -1,1 +1,0 @@
-#default-layout{--page-transition-length:.4s;height:100%;width:100%;z-index:40}.section-enter-active,.section-leave-active{transition:all var(--page-transition-length)}.section-enter-from{opacity:0;transform:translate(-100%)}.section-leave-to{opacity:0;transform:translate(100%)}#default-layout:has(.section-enter-active,.section-leave-active){overflow:hidden}
