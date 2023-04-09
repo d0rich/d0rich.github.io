@@ -13,84 +13,46 @@ defineProps<{
 </script>
 
 <template>
-  <div
-    class="blog-tile overflow-x-hidden"
-    :style="{
-      '--page-bg-color': '#262626'
-    }"
+  <DWrapShape
+    class="scale-90 hover:scale-100 transition-transform"
+    shape-class="bg-black bg-opacity-70"
+    shape-style="clip-path: var(--shape-card--dense);"
   >
-    <div class="blog-tile__frame--top" />
-    <div class="blog-tile__frame--bottom" />
-    <NuxtLink class="blog-tile__link" :to="article._path">
-      <div class="blog-tile__link__image-wrapper">
-        <div
-          class="blog-tile__link__image"
-          :style="`background-image: url(${article.image});`"
-        />
-      </div>
-      <div class="blog-tile__link-image-overlay" />
-      <div style="height: 5rem; pointer-events: none" />
-      <div class="max-w-2xl mx-auto px-3">
-        <DWrapShape
-          shape-class="bg-black bg-opacity-70"
-          shape-style="clip-path: var(--shape-card);"
-        >
-          <div style="padding: var(--shape-card-padding)">
-            <div class="text-right font-bold">
-              <time>{{ dateToDayMonthYear(article.date) }}</time>
-            </div>
-            <h2 class="text-3xl font-bold text-cyan-200 mb-2">
-              {{ article.title }}
-            </h2>
+    <template #bg-overlay>
+      <!-- <div class="absolute inset-0 bg-cyan-400" style="clip-path: var(--shape-card--dense__outline);" /> -->
+    </template>
+    <NuxtLink
+      :to="article._path"
+      class="block"
+      style="padding: var(--shape-card--dense__padding)"
+    >
+      <div class="p-2">
+        <div class="text-right font-bold">
+          <time>{{ dateToDayMonthYear(article.date) }}</time>
+        </div>
+        <h2 class="text-3xl font-bold text-cyan-200 mb-2">
+          {{ article.title }}
+        </h2>
 
-            <p>
-              {{ article.description }}
-            </p>
+        <p>
+          {{ article.description }}
+        </p>
 
-            <div class="text-right mt-3 -mr-5">
-              <DChip
-                v-for="tag in article.tags"
-                :key="tag"
-                class="blog-tile__link__tag"
-              >
-                #{{ tag }}
-              </DChip>
-            </div>
-          </div>
-        </DWrapShape>
+        <div class="text-right mt-3 -mr-5">
+          <DChip
+            v-for="tag in article.tags"
+            :key="tag"
+            class="blog-tile__link__tag"
+          >
+            #{{ tag }}
+          </DChip>
+        </div>
       </div>
-      <div style="height: 5rem; pointer-events: none" />
     </NuxtLink>
-  </div>
+  </DWrapShape>
 </template>
 
 <style>
-.blog-tile {
-  @apply relative isolate;
-}
-
-.blog-tile__frame--top,
-.blog-tile__frame--bottom {
-  @apply absolute border-solid w-full h-8 z-50;
-}
-
-.blog-tile__frame--top {
-  border-width: 2rem 100vw 0 0;
-  border-color: var(--page-bg-color) transparent transparent transparent;
-  @apply top-0;
-}
-
-.blog-tile__frame--bottom {
-  border-width: 0 0 2rem 100vw;
-  border-color: transparent transparent var(--page-bg-color) transparent;
-  @apply bottom-0;
-}
-
-.blog-tile__link {
-  overflow: hidden;
-  @apply relative;
-}
-
 .blog-tile__link__image-wrapper {
   @apply absolute inset-0 w-full h-full overflow-hidden -z-20;
 }
