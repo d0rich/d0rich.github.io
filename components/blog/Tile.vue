@@ -14,12 +14,13 @@ defineProps<{
 
 <template>
   <DWrapShape
-    class="scale-90 hover:scale-100 transition-transform"
-    shape-class="bg-black bg-opacity-70"
-    shape-style="clip-path: var(--shape-card--dense);"
+    class="blog-tile"
+    shape-class="blog-tile__shape"
   >
-    <template #bg-overlay>
-      <!-- <div class="absolute inset-0 bg-cyan-400" style="clip-path: var(--shape-card--dense__outline);" /> -->
+    <template #shape-content>
+      <div class="relative w-full h-full overflow-hidden">
+        <img class="blog-tile__image" :src="article.image">
+      </div>
     </template>
     <NuxtLink
       :to="article._path"
@@ -53,26 +54,23 @@ defineProps<{
 </template>
 
 <style>
-.blog-tile__link__image-wrapper {
-  @apply absolute inset-0 w-full h-full overflow-hidden -z-20;
+.blog-tile {
+  @apply scale-90 hover:scale-100 transition-transform;
 }
 
-.blog-tile__link__image {
-  transition: all 0.5s ease-in-out;
-  width: 100%;
-  height: 100%;
-  @apply bg-cover bg-center;
+.blog-tile__shape {
+  clip-path: var(--shape-card--dense);
+  @apply bg-black bg-opacity-70;
 }
 
-.blog-tile__link:hover .blog-tile__link__image {
-  width: 120%;
-  height: 120%;
-  transform: translate(-10%, -10%) rotate(-2deg);
+.blog-tile__image {
+  @apply absolute object-cover h-full
+         translate-x-2/3 translate-y-2/3 -rotate-45
+         transition-all;
 }
 
-.blog-tile__link-image-overlay {
-  background-color: var(--page-bg-color);
-  @apply absolute -z-10 inset-0 opacity-50 bg-cyan-800;
+.blog-tile:hover .blog-tile__image {
+  @apply translate-x-1/2 translate-y-1/2 opacity-10;
 }
 
 .blog-tile__link__tag {
