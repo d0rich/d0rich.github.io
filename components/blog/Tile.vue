@@ -13,13 +13,10 @@ defineProps<{
 </script>
 
 <template>
-  <DWrapShape
-    class="blog-tile"
-    shape-class="blog-tile__shape"
-  >
+  <DWrapShape class="blog-tile" shape-class="blog-tile__shape">
     <template #shape-content>
       <div class="relative w-full h-full overflow-hidden">
-        <img class="blog-tile__image" :src="article.image">
+        <img class="blog-tile__image" :src="article.image" />
       </div>
     </template>
     <NuxtLink
