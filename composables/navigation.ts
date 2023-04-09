@@ -4,7 +4,7 @@ export const useBlogNavigationConfig = () => {
   const config = useRuntimeConfig()
   const filterObject: QueryBuilderWhere = config.public.isProd ? { _draft: { $not: true } } : {}
   return {
-    itemsOnPage: 5,
+    itemsOnPage: 6,
     filter: filterObject
   }
 }
