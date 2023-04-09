@@ -32,8 +32,6 @@ export class GithubRepository {
     return Promise.all(pagesPromises)
   }
 
-
-
   private initCaching(octokit: Octokit) {
     const cache = createStorage()
 
@@ -43,7 +41,6 @@ export class GithubRepository {
     octokit.hook.wrap('request', async (request, options) => {
       const cacheKey = getCacheKey(options)
       if (await cache.hasItem(cacheKey)) {
-        console.log('Cache hit', cacheKey)
         const storageValue = await cache.getItem(cacheKey)
         if (!storageValue) {
           throw new Error('Storage value does not exist')
@@ -56,12 +53,10 @@ export class GithubRepository {
       return request(options)
     })
 
-
     function getCacheKey(options: EndpointOptions) {
       let url = options.url
       for (const [key, value] of Object.entries(options)) {
-        if (typeof value === 'string')
-        url = url.replace(`{${key}}`, value)
+        if (typeof value === 'string') url = url.replace(`{${key}}`, value)
       }
       return url
     }
