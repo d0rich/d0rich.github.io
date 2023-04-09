@@ -1,7 +1,7 @@
 <script lang="ts">
 import { D0xigenProjectMeta } from '~~/server/utils/types'
 export default {
-  name: 'ProjectTile'
+  name: 'ProjectsTile'
 }
 </script>
 
@@ -31,19 +31,38 @@ defineProps<{
       <div style="height: 5rem; pointer-events: none" />
       <div class="max-w-2xl mx-auto px-3">
         <DWrapShape
-          shape-class="bg-black bg-opacity-70"
+          shape-class="bg-black bg-opacity-90"
           shape-style="clip-path: var(--shape-card);"
         >
           <div style="padding: var(--shape-card-padding)">
-            <div class="text-right font-bold">
-              <time>{{ dateToDayMonthYear(project.last_updated) }}</time>
+            <div class="text-right">
+              Last updated:
+              <time class="font-bold">{{
+                dateToDayMonthYear(project.last_updated)
+              }}</time>
             </div>
-            <h2 class="text-3xl font-bold text-cyan-200 mb-2">
+            <h2 class="text-3xl font-bold text-red-200 mb-2">
               {{ project.title }}
             </h2>
 
-            <p>
+            <p class="my-2">
               {{ project.description }}
+            </p>
+
+            <p>
+              Complexity:
+              <Icon
+                v-for="num in project.complexity"
+                :key="num"
+                class="text-red-200"
+                name="ic:sharp-star"
+              />
+              <Icon
+                v-for="num in 5 - (project.complexity || 0)"
+                :key="num"
+                class="text-red-200"
+                name="ic:sharp-star-outline"
+              />
             </p>
 
             <div class="text-right mt-3 -mr-5">
@@ -109,10 +128,10 @@ defineProps<{
 
 .project-tile__link-image-overlay {
   background-color: var(--page-bg-color);
-  @apply absolute -z-10 inset-0 opacity-50 bg-cyan-800;
+  @apply absolute -z-10 inset-0 opacity-50 bg-red-900;
 }
 
 .project-tile__link__tag {
-  @apply mx-1 text-lg font-bold bg-cyan-600;
+  @apply mx-1 text-lg font-bold bg-red-600;
 }
 </style>
