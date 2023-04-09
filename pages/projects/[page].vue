@@ -13,7 +13,7 @@ const { data } = useAsyncData(`/projects/pages/${currentPage.value}`, () =>
 </script>
 
 <template>
-  <div>
+  <div class="pb-[50vh]">
     <AsyncSafeSeoWithOg title="Projects" />
     <div class="relative isolate px-3 max-w-3xl mx-auto my-10 overflow-hidden">
       <div class="max-w-lg">
