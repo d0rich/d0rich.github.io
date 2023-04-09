@@ -318,9 +318,11 @@ const { data } = useAsyncData('homepage', async () => {
           />
           <DWrapShape
             class="bubble-1"
-            filter-class="sharp-shadow ss-neutral-50 ss-r-1 ss-b-1"
             shape-class="bubble-1__shape"
           >
+            <template #bg-overlay>
+              <div class="absolute inset-0 bg-white" style="clip-path: var(--shape-bubble--right__outline);" />
+            </template>
             <ContentRenderer
               :value="data.story.intro"
               tag="div"
