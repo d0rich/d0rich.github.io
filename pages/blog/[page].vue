@@ -10,15 +10,14 @@ const route = useRoute()
 
 const currentPage = computed(() => Number(route.params.page || 1))
 
-const { itemsOnPage } = getBlogPostsNavConfig()
-const filterObject = getBlogPostsFilterObject()
+const { itemsOnPage, filter } = useBlogNavigationConfig()
 
 const { data: pagesCount } = useAsyncData(
   `blog/pages-count/${itemsOnPage}`,
   () =>
     queryContent<BlogContent>('/blog/')
       .only('_path')
-      .where(filterObject)
+      .where(filter)
       .find(),
   {
     server: true,
@@ -31,7 +30,7 @@ const blogQuery: QueryBuilderParams = {
   without: ['excerpt', 'body'],
   // @ts-ignore
   // FIXME: QueryBuilderParams wrong type definition
-  where: filterObject,
+  where: filter,
   limit: itemsOnPage,
   skip: (currentPage.value - 1) * itemsOnPage,
   sort: [{ date: -1 }]

@@ -5,8 +5,7 @@ const { data: doc } = useAsyncData(['blog', ...slug].join('/'), () =>
   queryContent('blog', ...slug).findOne()
 )
 
-const { itemsOnPage } = getBlogPostsNavConfig()
-const filterObject = getBlogPostsFilterObject()
+const { itemsOnPage, filter } = useBlogNavigationConfig()
 
 const { data: position } = useAsyncData(
   ['blog', ...slug, 'position'].join('/'),
@@ -14,7 +13,7 @@ const { data: position } = useAsyncData(
     queryContent('/blog')
       .only('_path')
       .where({
-        ...filterObject,
+        ...filter,
         date: { $gte: doc.value?.date }
       })
       .find(),
