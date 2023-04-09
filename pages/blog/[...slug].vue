@@ -29,7 +29,7 @@ const { getLinkToPaginatedPage } = useDPaginationUtils()
 const linkToBlog = computed(() => {
   return getLinkToPaginatedPage(
     '/blog',
-    Math.floor((position.value ?? 1) / itemsOnPage + 1)
+    Math.floor((position.value ?? 1) / (itemsOnPage - 1) + 1)
   )
 })
 </script>
