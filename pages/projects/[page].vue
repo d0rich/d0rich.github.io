@@ -20,10 +20,14 @@ const { data } = useAsyncData(`/projects/pages/${currentPage.value}`, () =>
         <h1 class="text-6xl sm:text-8xl font-serif mb-5 text-red-300">
           Projects
         </h1>
-        <p class="first-letter:bg-red-600">Work in progress.</p>
-        <p>
-          Docs template for projects will be created. Then all projects docs
-          websites will be aggregated on this page.
+        <p class="first-letter:bg-red-600">
+          Explore my portfolio of IT projects - a collection of custom
+          documentation websites that showcase my technical skills and expertise
+          in solving complex IT problems with innovative solutions.
+        </p>
+        <p class="first-letter:bg-red-600">
+          Browse through for valuable insights into my approach to information
+          technology.
         </p>
       </div>
       <DMask
