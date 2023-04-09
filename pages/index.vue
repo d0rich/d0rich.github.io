@@ -29,21 +29,24 @@ const actions: ActionFanItem<CharacterPose>[] = [
     title: 'Sections',
     emit: 'action',
     attrs: {
-      href: '#sections'
+      href: '#sections',
+      noPassiveHighlight: true
     }
   },
   {
     title: 'Skills',
     emit: 'profi',
     attrs: {
-      href: '#skills'
+      href: '#skills',
+      noPassiveHighlight: true
     }
   },
   {
     title: 'Story',
     emit: 'idle',
     attrs: {
-      href: '#story'
+      href: '#story',
+      noPassiveHighlight: true
     }
   }
 ]
