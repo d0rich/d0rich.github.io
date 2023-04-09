@@ -316,12 +316,12 @@ const { data } = useAsyncData('homepage', async () => {
             src="~/assets/img/avatar-transparent-frame.webp"
             class="character"
           />
-          <DWrapShape
-            class="bubble-1"
-            shape-class="bubble-1__shape"
-          >
+          <DWrapShape class="bubble-1" shape-class="bubble-1__shape">
             <template #bg-overlay>
-              <div class="absolute inset-0 bg-white" style="clip-path: var(--shape-bubble--right__outline);" />
+              <div
+                class="absolute inset-0 bg-white"
+                style="clip-path: var(--shape-bubble--right__outline)"
+              />
             </template>
             <ContentRenderer
               :value="data.story.intro"

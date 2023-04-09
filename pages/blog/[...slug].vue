@@ -5,8 +5,7 @@ const { data: doc } = useAsyncData(['blog', ...slug].join('/'), () =>
   queryContent('blog', ...slug).findOne()
 )
 
-const { itemsOnPage } = getBlogPostsNavConfig()
-const filterObject = getBlogPostsFilterObject()
+const { itemsOnPage, filter } = useBlogNavigationConfig()
 
 const { data: position } = useAsyncData(
   ['blog', ...slug, 'position'].join('/'),
@@ -14,7 +13,7 @@ const { data: position } = useAsyncData(
     queryContent('/blog')
       .only('_path')
       .where({
-        ...filterObject,
+        ...filter,
         date: { $gte: doc.value?.date }
       })
       .find(),
@@ -30,7 +29,7 @@ const { getLinkToPaginatedPage } = useDPaginationUtils()
 const linkToBlog = computed(() => {
   return getLinkToPaginatedPage(
     '/blog',
-    Math.floor((position.value ?? 1) / itemsOnPage + 1)
+    Math.floor((position.value ?? 1) / (itemsOnPage - 1) + 1)
   )
 })
 </script>

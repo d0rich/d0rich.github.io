@@ -10,16 +10,11 @@ const route = useRoute()
 
 const currentPage = computed(() => Number(route.params.page || 1))
 
-const { itemsOnPage } = getBlogPostsNavConfig()
-const filterObject = getBlogPostsFilterObject()
+const { itemsOnPage, filter } = useBlogNavigationConfig()
 
 const { data: pagesCount } = useAsyncData(
   `blog/pages-count/${itemsOnPage}`,
-  () =>
-    queryContent<BlogContent>('/blog/')
-      .only('_path')
-      .where(filterObject)
-      .find(),
+  () => queryContent<BlogContent>('/blog/').only('_path').where(filter).find(),
   {
     server: true,
     transform: (articles) => Math.ceil(articles.length / itemsOnPage)
@@ -31,7 +26,7 @@ const blogQuery: QueryBuilderParams = {
   without: ['excerpt', 'body'],
   // @ts-ignore
   // FIXME: QueryBuilderParams wrong type definition
-  where: filterObject,
+  where: filter,
   limit: itemsOnPage,
   skip: (currentPage.value - 1) * itemsOnPage,
   sort: [{ date: -1 }]
@@ -67,7 +62,9 @@ const blogQuery: QueryBuilderParams = {
         :all-pages="pagesCount"
         base-link="/blog"
       />
-      <nav>
+      <nav
+        class="max-w-7xl grid md:grid-cols-2 lg:grid-cols-3 mx-auto gap-6 px-2 md:px-6"
+      >
         <ContentList
           v-slot="{ list }: { list: BlogContent[] }"
           :query="blogQuery"

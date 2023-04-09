@@ -1,4 +1,4 @@
-import { useProjectsNavigationConfig } from '~~/composables/projects-navigation'
+import { useProjectsNavigationConfig } from '~~/composables/navigation'
 import { ProjectsRepository } from '~~/server/utils/repositories/projects'
 
 export default defineEventHandler(async (event) => {
