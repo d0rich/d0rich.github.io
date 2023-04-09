@@ -40,3 +40,34 @@ import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionW
   overflow: hidden;
 }
 </style>
+
+<style>
+::-webkit-scrollbar {
+  width: 0.7rem;
+  height: 0.4rem;
+}
+
+.dark ::-webkit-scrollbar-track {
+  @apply bg-neutral-900;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-neutral-300;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-50;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-neutral-200;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-500;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-700;
+}
+</style>
