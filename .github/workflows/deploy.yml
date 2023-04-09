@@ -3,11 +3,12 @@ name: Build & Deploy
 on:
   workflow_dispatch:
   push:
-  # schedule:
-  #   - cron: "0 3 * * *"
+  schedule:
+    - cron: "0 3 * * *" # every day at 3am UTC
 
 env:
   GSAP_TOKEN: ${{secrets.GSAP_TOKEN}}
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
 jobs:
   build-and-deploy:
