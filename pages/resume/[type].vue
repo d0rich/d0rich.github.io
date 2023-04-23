@@ -77,7 +77,10 @@ const { data: resumeList } = useAsyncData(
               >Print</DBtn
             >
           </div>
-          <ContentRenderer class="resume-page__prose-content" :value="data.lead" />
+          <ContentRenderer
+            class="resume-page__prose-content"
+            :value="data.lead"
+          />
         </div>
         <DMask
           mask="wolf"

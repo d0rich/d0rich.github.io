@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import DHeader from '~~/components/layouts/DHeader.vue'
+import DFooter from '~~/components/layouts/DFooter.vue'
 import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionWrapper.vue'
 </script>
 
@@ -11,6 +12,7 @@ import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionW
     <main class="pt-20 print:pt-0">
       <slot />
     </main>
+    <DFooter />
     <SectionsTransitionWrapper />
   </div>
 </template>
