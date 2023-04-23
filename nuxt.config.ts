@@ -1,6 +1,10 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  extends: ['@d0rich/nuxt-design-system'],
+  extends: [
+    '@d0rich/nuxt-content-mermaid',
+    '@nuxt-themes/typography',
+    '@d0rich/nuxt-design-system'
+  ],
   app: {
     pageTransition: {
       name: 'section',
@@ -29,8 +33,12 @@ export default defineNuxtConfig({
       ]
     }
   },
+  pinceau: {
+    preflight: false
+  },
   content: {
     markdown: {
+      remarkPlugins: ['@akebifiky/remark-simple-plantuml'],
       rehypePlugins: {
         'rehype-external-links': {
           target: '_blank'
