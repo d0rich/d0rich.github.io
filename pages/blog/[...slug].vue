@@ -49,12 +49,11 @@ const linkToBlog = computed(() => {
 
 <style>
 .blog-article {
-  @apply prose dark:prose-invert font-sans
-         md:prose-lg
-         mx-auto px-3 sm:px-0
-         dark:prose-headings:text-cyan-400 dark:prose-a:text-inherit
-         dark:prose-p:first-letter:bg-cyan-800
-         dark:prose-blockquote:border-cyan-400
+  @apply max-w-screen-md font-sans
+         mx-auto px-3
+         dark:prose-headings:text-cyan-400
+         dark:[&_p]:first-letter:bg-cyan-800
+         dark:[&_:not(blockquote)_p]:first-letter:bg-transparent
          dark:marker:text-cyan-400;
 }
 
