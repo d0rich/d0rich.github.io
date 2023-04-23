@@ -38,6 +38,7 @@ export default defineNuxtConfig({
   },
   content: {
     markdown: {
+      remarkPlugins: ['@akebifiky/remark-simple-plantuml'],
       rehypePlugins: {
         'rehype-external-links': {
           target: '_blank'
