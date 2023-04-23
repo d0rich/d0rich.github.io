@@ -123,7 +123,7 @@ const { data } = useAsyncData('homepage', async () => {
             <ContentRenderer
               tag="div"
               :value="data.intro"
-              class="p-10 text-xl font-serif text-center"
+              class="p-10 text-xl font-serif text-center [&>p>br]:!m-0"
             />
           </DWrapShape>
         </div>
