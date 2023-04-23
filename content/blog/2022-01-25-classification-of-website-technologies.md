@@ -13,22 +13,23 @@ image: /blog/2022-01-25-classification-of-website-technologies/cover.png
 # Classification of Website technologies 
 
 
-Once my team met one challenge. We needed to create a documentation site  
-for a technology. It should be easy to work with for a non-specialist in web  
+Once my team met one challenge. We needed to create a documentation site 
+for a technology. It should be easy to work with for a non-specialist in web 
 technologies and just give great *User Experience (UX)*.  
 
 
 We found some experience from *DocOps* specialists on the internet.  
-By the by, DocOps specialists are people who create documentation  
-for technologies. But I found classic DocOps technologies unsuitable for our  
+
+By the by, DocOps specialists are people who create documentation 
+for technologies. But I found classic DocOps technologies unsuitable for our 
 purposes. Templates for documentation are designed to get information from only one repository. But technology we want to describe is more complicated than other, because it includes many repositories and we need to get fresh info about all components. So I put forward the idea of looking for something new.  
 
 
 ## What do we know?  
 
 
-Nowadays, as I see, web developers community identifies 3 types of  
-frameworks for website development. I realized it searching a lot of documentations 
+Nowadays, as I see, web developers community identifies 3 types of 
+frameworks for website development. I realized it searching a lot of documentations
 and communicating with people from my university.  
 
 
