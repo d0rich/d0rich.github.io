@@ -77,7 +77,7 @@ const { data: resumeList } = useAsyncData(
               >Print</DBtn
             >
           </div>
-          <ContentRenderer :value="data.lead" />
+          <ContentRenderer class="resume-page__prose-content" :value="data.lead" />
         </div>
         <DMask
           mask="wolf"
@@ -111,7 +111,7 @@ const { data: resumeList } = useAsyncData(
           <ResumeTimeNote
             v-for="workPlace in data.work"
             :key="workPlace._id"
-            class="my-3 print:my-8"
+            class="my-3 print:my-8 resume-page__prose-content"
             :timenote="workPlace"
           />
         </section>
@@ -120,7 +120,7 @@ const { data: resumeList } = useAsyncData(
           <ResumeTimeNote
             v-for="eduPlace in data.education"
             :key="eduPlace._id"
-            class="my-3 print:my-8"
+            class="my-3 print:my-8 resume-page__prose-content"
             :timenote="eduPlace"
           />
         </section>
@@ -139,6 +139,10 @@ section {
 .resume-page__section-title {
   @apply text-5xl text-blue-700 dark:text-blue-300 mb-2
     print:text-2xl print:mt-4;
+}
+
+.resume-page__prose-content {
+  @apply [&_p]:!m-0 [&_p]:!text-base [&_ul]:!m-0 [&_li]:!m-0;
 }
 
 @media print {
