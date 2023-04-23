@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   extends: [
     '@d0rich/nuxt-content-mermaid',
+    '@nuxt-themes/typography',
     '@d0rich/nuxt-design-system'
   ],
   app: {
@@ -31,6 +32,9 @@ export default defineNuxtConfig({
         '/api/resume/Nikolay_Dorofeev-System Analyst.pdf'
       ]
     }
+  },
+  pinceau: {
+    preflight: false
   },
   content: {
     markdown: {
