@@ -106,7 +106,7 @@ const { data: resumeList } = useAsyncData(
         <div>
           <section id="languages">
             <h2 class="resume-page__section-title">Languages</h2>
-            <ContentRenderer :value="data.languages" tag="section" />
+            <ContentRenderer :value="data.languages" tag="section" class="resume-page__prose-content" />
           </section>
           <section id="skills">
             <h2 class="resume-page__section-title">Skills</h2>
