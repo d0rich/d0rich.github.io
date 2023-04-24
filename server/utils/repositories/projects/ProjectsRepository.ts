@@ -25,6 +25,17 @@ export class ProjectsRepository {
     )
   }
 
+  async getProjectsByTags(...tags: string[]) {
+    const projects = await this.getProjectsSortedByDate()
+    if (!tags.length) return projects
+    return projects.filter((project) => {
+      for (const tag of tags) {
+        if (!project.tags.includes(tag)) return false
+      }
+      return true
+    })
+  }
+
   async getPaginatedProjects(page: number, itemsOnPage: number) {
     const projects = await this.getProjectsSortedByDate()
     const startIndex = (page - 1) * itemsOnPage
