@@ -32,7 +32,10 @@ export default defineEventHandler(async (event) => {
       }
     : {}
   const contacts = await serverQueryContent(event, '/resume/contacts').findOne()
-  const languages = await serverQueryContent(event, '/resume/languages').findOne()
+  const languages = await serverQueryContent(
+    event,
+    '/resume/languages'
+  ).findOne()
   const skills = await serverQueryContent<TaggedParsedContent>(
     event,
     '/resume/skills'
@@ -48,6 +51,13 @@ export default defineEventHandler(async (event) => {
   const work = await serverQueryContent<TimeNote>(event, '/resume/work')
     .sort({ 'daterange.end': -1 })
     .find()
-  const result: ResumeData = { lead, contacts, languages, skills, education, work }
+  const result: ResumeData = {
+    lead,
+    contacts,
+    languages,
+    skills,
+    education,
+    work
+  }
   return result
 })

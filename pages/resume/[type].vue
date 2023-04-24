@@ -6,7 +6,6 @@ definePageMeta({
   path: '/resume/:type?'
 })
 
-
 usePrintSetup()
 const smallPrintStats = true
 
@@ -98,16 +97,16 @@ const { data: resumeList } = useAsyncData(
         tag="section"
         class="[&>span]:m-2 print:bg-neutral-800 print:text-white"
       />
-      <section :class="{
-        'print:grid print:grid-cols-[25%_70%] print:gap-x-[5%] small-print-stats': smallPrintStats
-      }">
+      <section
+        :class="{
+          'print:grid print:grid-cols-[25%_70%] print:gap-x-[5%] small-print-stats':
+            smallPrintStats
+        }"
+      >
         <div>
           <section id="languages">
             <h2 class="resume-page__section-title">Languages</h2>
-            <ContentRenderer
-              :value="data.languages"
-              tag="section"
-            />
+            <ContentRenderer :value="data.languages" tag="section" />
           </section>
           <section id="skills">
             <h2 class="resume-page__section-title">Skills</h2>
