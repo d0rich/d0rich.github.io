@@ -30,9 +30,9 @@ export class ProjectsRepository {
     if (!tags.length) return projects
     return projects.filter((project) => {
       for (const tag of tags) {
-        if (!project.tags.includes(tag)) return false
+        if (project.tags.includes(tag)) return true
       }
-      return true
+      return false
     })
   }
 
