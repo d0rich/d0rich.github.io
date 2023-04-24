@@ -9,6 +9,9 @@ import { serverQueryContent } from '#content/server'
 
 interface TaggedParsedContent extends ParsedContent {
   tags?: string[]
+  projects?: {
+    tags?: string[]
+  }
 }
 
 export type ResumeData = {
@@ -48,7 +51,7 @@ export default defineEventHandler(async (event) => {
   const work = await serverQueryContent<TimeNote>(event, '/resume/work')
     .sort({ 'daterange.end': -1 })
     .find()
-  const projects = await ProjectsRepository.getProjectsByTags(...(lead.tags ?? []))
+  const projects = await ProjectsRepository.getProjectsByTags(...(lead.projects?.tags ?? []))
   const education = await serverQueryContent<TimeNote>(
     event,
     '/resume/education'
