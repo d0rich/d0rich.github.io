@@ -51,7 +51,9 @@ export default defineEventHandler(async (event) => {
   const work = await serverQueryContent<TimeNote>(event, '/resume/work')
     .sort({ 'daterange.end': -1 })
     .find()
-  const projects = await ProjectsRepository.getProjectsByTags(...(lead.projects?.tags ?? []))
+  const projects = await ProjectsRepository.getProjectsByTags(
+    ...(lead.projects?.tags ?? [])
+  )
   const education = await serverQueryContent<TimeNote>(
     event,
     '/resume/education'
