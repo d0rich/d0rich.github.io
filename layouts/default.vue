@@ -9,7 +9,7 @@ import SectionsTransitionWrapper from '~~/components/layouts/SectionsTransitionW
     <div class="fixed w-screen z-50">
       <DHeader class="mx-auto max-w-md sm:max-w-xl" />
     </div>
-    <main class="pt-20 print:pt-0">
+    <main class="pt-20 print:pt-0 min-h-[calc(100vh_-_200px)]">
       <slot />
     </main>
     <DFooter />
