@@ -141,6 +141,15 @@ const { data: resumeList } = useAsyncData(
               :timenote="workPlace"
             />
           </section>
+          <section id="projects">
+            <h2 class="resume-page__section-title">Projects</h2>
+            <ResumeProjectNote
+              v-for="project in data.projects"
+              :key="project.url"
+              class="my-3 print:my-8 resume-page__prose-content"
+              :project="project"
+            />
+          </section>
           <section id="education">
             <h2 class="resume-page__section-title">Education</h2>
             <ResumeTimeNote
@@ -159,6 +168,9 @@ const { data: resumeList } = useAsyncData(
 <style scoped>
 section {
   @apply my-10 print:my-2;
+}
+#work-experience {
+  grid-column-end: span 2;
 }
 </style>
 

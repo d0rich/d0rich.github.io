@@ -3,6 +3,8 @@ import {
   QueryBuilderWhere
 } from '@nuxt/content/dist/runtime/types'
 import { TimeNote } from '~~/components/resume/TimeNote.vue'
+import { ProjectsRepository } from '~~/server/utils/repositories/projects'
+import { D0xigenProjectMeta } from '~~/server/utils/types'
 import { serverQueryContent } from '#content/server'
 
 interface TaggedParsedContent extends ParsedContent {
@@ -14,8 +16,9 @@ export type ResumeData = {
   contacts: ParsedContent
   languages: ParsedContent
   skills: TaggedParsedContent[]
-  education: TimeNote[]
   work: TimeNote[]
+  projects: D0xigenProjectMeta[]
+  education: TimeNote[]
 }
 
 export default defineEventHandler(async (event) => {
@@ -42,13 +45,14 @@ export default defineEventHandler(async (event) => {
   )
     .where(filterObject)
     .find()
+  const work = await serverQueryContent<TimeNote>(event, '/resume/work')
+    .sort({ 'daterange.end': -1 })
+    .find()
+  const projects = await ProjectsRepository.getProjectsByTags(...(lead.tags ?? []))
   const education = await serverQueryContent<TimeNote>(
     event,
     '/resume/education'
   )
-    .sort({ 'daterange.end': -1 })
-    .find()
-  const work = await serverQueryContent<TimeNote>(event, '/resume/work')
     .sort({ 'daterange.end': -1 })
     .find()
   const result: ResumeData = {
@@ -56,8 +60,9 @@ export default defineEventHandler(async (event) => {
     contacts,
     languages,
     skills,
-    education,
-    work
+    work,
+    projects,
+    education
   }
   return result
 })
