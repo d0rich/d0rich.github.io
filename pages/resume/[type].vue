@@ -6,6 +6,8 @@ definePageMeta({
   path: '/resume/:type?'
 })
 
+
+usePrintSetup()
 const smallPrintStats = true
 
 const resumeType = computed(() => useRoute().params.type as string)
