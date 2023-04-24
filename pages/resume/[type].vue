@@ -97,7 +97,7 @@ const { data: resumeList } = useAsyncData(
         class="[&>span]:m-2 print:bg-neutral-800 print:text-white"
       />
       <section :class="{
-        'print:grid print:grid-cols-[25%_70%] print:gap-x-[5%]': smallPrintStats
+        'print:grid print:grid-cols-[25%_70%] print:gap-x-[5%] small-print-stats': smallPrintStats
       }">
         <div>
           <section id="languages">
