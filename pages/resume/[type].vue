@@ -117,7 +117,7 @@ const { data: resumeList } = useAsyncData(
             <TransitionGroup
               name="skills-list"
               tag="div"
-              class="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
+              class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-6"
               :class="{
                 'print:flex print:flex-col print:gap-6': smallPrintStats,
                 'print:text-sm print:grid-cols-3': !smallPrintStats
