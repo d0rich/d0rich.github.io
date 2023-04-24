@@ -106,7 +106,11 @@ const { data: resumeList } = useAsyncData(
         <div>
           <section id="languages">
             <h2 class="resume-page__section-title">Languages</h2>
-            <ContentRenderer :value="data.languages" tag="section" class="resume-page__prose-content" />
+            <ContentRenderer
+              :value="data.languages"
+              tag="section"
+              class="resume-page__prose-content"
+            />
           </section>
           <section id="skills">
             <h2 class="resume-page__section-title">Skills</h2>
@@ -127,7 +131,7 @@ const { data: resumeList } = useAsyncData(
             </TransitionGroup>
           </section>
         </div>
-        <div class="grid md:grid-cols-2 gap-x-20">
+        <div class="grid md:grid-cols-2 gap-x-20 print:block">
           <section id="work-experience">
             <h2 class="resume-page__section-title">Work Experience</h2>
             <ResumeTimeNote
