@@ -99,24 +99,33 @@ const { data: resumeList } = useAsyncData(
       <section :class="{
         'print:grid print:grid-cols-[25%_70%] print:gap-x-[5%]': smallPrintStats
       }">
-        <section id="skills">
-          <h2 class="resume-page__section-title">Skills</h2>
-          <TransitionGroup
-            name="skills-list"
-            tag="div"
-            class="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
-            :class="{
-              'print:flex print:flex-col print:gap-6': smallPrintStats,
-              'print:text-sm print:grid-cols-3': !smallPrintStats
-            }"
-          >
+        <div>
+          <section id="languages">
+            <h2 class="resume-page__section-title">Languages</h2>
             <ContentRenderer
-              v-for="skillset in data.skills"
-              :key="skillset._id"
-              :value="skillset"
+              :value="data.languages"
+              tag="section"
             />
-          </TransitionGroup>
-        </section>
+          </section>
+          <section id="skills">
+            <h2 class="resume-page__section-title">Skills</h2>
+            <TransitionGroup
+              name="skills-list"
+              tag="div"
+              class="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
+              :class="{
+                'print:flex print:flex-col print:gap-6': smallPrintStats,
+                'print:text-sm print:grid-cols-3': !smallPrintStats
+              }"
+            >
+              <ContentRenderer
+                v-for="skillset in data.skills"
+                :key="skillset._id"
+                :value="skillset"
+              />
+            </TransitionGroup>
+          </section>
+        </div>
         <div class="grid md:grid-cols-2 gap-x-20">
           <section id="work-experience">
             <h2 class="resume-page__section-title">Work Experience</h2>
