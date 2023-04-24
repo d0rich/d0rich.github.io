@@ -52,6 +52,9 @@ export async function savePdf(path: string) {
     const html = document.querySelector('html')
     if (html) {
       html.className = 'light'
+      html.querySelectorAll('a').forEach((a) => {
+        if (a.href.startsWith('/')) a.href = 'https://d0rich.me' + a.href
+      })
     }
   })
   const pdf = await page.pdf({

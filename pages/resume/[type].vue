@@ -6,6 +6,9 @@ definePageMeta({
   path: '/resume/:type?'
 })
 
+usePrintSetup()
+const smallPrintStats = true
+
 const resumeType = computed(() => useRoute().params.type as string)
 
 const { data, error } = useFetch<ResumeData>('/api/resume/data', {
@@ -94,40 +97,70 @@ const { data: resumeList } = useAsyncData(
         tag="section"
         class="[&>span]:m-2 print:bg-neutral-800 print:text-white"
       />
-      <section id="skills">
-        <h2 class="resume-page__section-title">Skills</h2>
-        <TransitionGroup
-          name="skills-list"
-          tag="div"
-          class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 print:grid-cols-3 print:text-sm"
-        >
-          <ContentRenderer
-            v-for="skillset in data.skills"
-            :key="skillset._id"
-            :value="skillset"
-          />
-        </TransitionGroup>
+      <section
+        :class="{
+          'print:grid print:grid-cols-[25%_70%] print:gap-x-[5%] small-print-stats':
+            smallPrintStats
+        }"
+      >
+        <div>
+          <section id="languages">
+            <h2 class="resume-page__section-title">Languages</h2>
+            <ContentRenderer
+              :value="data.languages"
+              tag="section"
+              class="resume-page__prose-content"
+            />
+          </section>
+          <section id="skills">
+            <h2 class="resume-page__section-title">Skills</h2>
+            <TransitionGroup
+              name="skills-list"
+              tag="div"
+              class="grid sm:grid-cols-2 md:grid-cols-3 gap-6"
+              :class="{
+                'print:flex print:flex-col print:gap-6': smallPrintStats,
+                'print:text-sm print:grid-cols-3': !smallPrintStats
+              }"
+            >
+              <ContentRenderer
+                v-for="skillset in data.skills"
+                :key="skillset._id"
+                :value="skillset"
+              />
+            </TransitionGroup>
+          </section>
+        </div>
+        <div class="grid md:grid-cols-2 gap-x-20 print:block">
+          <section id="work-experience">
+            <h2 class="resume-page__section-title">Work Experience</h2>
+            <ResumeTimeNote
+              v-for="workPlace in data.work"
+              :key="workPlace._id"
+              class="my-3 print:my-8 resume-page__prose-content"
+              :timenote="workPlace"
+            />
+          </section>
+          <section id="projects">
+            <h2 class="resume-page__section-title">Projects</h2>
+            <ResumeProjectNote
+              v-for="project in data.projects"
+              :key="project.url"
+              class="my-3 print:my-8 resume-page__prose-content"
+              :project="project"
+            />
+          </section>
+          <section id="education">
+            <h2 class="resume-page__section-title">Education</h2>
+            <ResumeTimeNote
+              v-for="eduPlace in data.education"
+              :key="eduPlace._id"
+              class="my-3 print:my-8 resume-page__prose-content"
+              :timenote="eduPlace"
+            />
+          </section>
+        </div>
       </section>
-      <div class="grid md:grid-cols-2 gap-x-20">
-        <section id="work-experience">
-          <h2 class="resume-page__section-title">Work Experience</h2>
-          <ResumeTimeNote
-            v-for="workPlace in data.work"
-            :key="workPlace._id"
-            class="my-3 print:my-8 resume-page__prose-content"
-            :timenote="workPlace"
-          />
-        </section>
-        <section id="education">
-          <h2 class="resume-page__section-title">Education</h2>
-          <ResumeTimeNote
-            v-for="eduPlace in data.education"
-            :key="eduPlace._id"
-            class="my-3 print:my-8 resume-page__prose-content"
-            :timenote="eduPlace"
-          />
-        </section>
-      </div>
     </article>
   </div>
 </template>
@@ -135,6 +168,9 @@ const { data: resumeList } = useAsyncData(
 <style scoped>
 section {
   @apply my-10 print:my-2;
+}
+#work-experience {
+  grid-column-end: span 2;
 }
 </style>
 

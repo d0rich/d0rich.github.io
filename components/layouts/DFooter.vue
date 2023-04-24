@@ -5,7 +5,7 @@ import Dialog from '@d0rich/nuxt-design-system/components/content/ProseBlockquot
 <template>
   <DWrapShape
     tag="footer"
-    class="w-full -mt-[1rem]"
+    class="w-full -mt-[1rem] print:hidden"
     shape-class="bg-white dark:bg-black"
     :shape-style="{
       clipPath: 'polygon(0 0, 100% 1rem, 100% 100%, 0 100%)'

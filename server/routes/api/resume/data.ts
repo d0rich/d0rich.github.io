@@ -3,18 +3,25 @@ import {
   QueryBuilderWhere
 } from '@nuxt/content/dist/runtime/types'
 import { TimeNote } from '~~/components/resume/TimeNote.vue'
+import { ProjectsRepository } from '~~/server/utils/repositories/projects'
+import { D0xigenProjectMeta } from '~~/server/utils/types'
 import { serverQueryContent } from '#content/server'
 
 interface TaggedParsedContent extends ParsedContent {
   tags?: string[]
+  projects?: {
+    tags?: string[]
+  }
 }
 
 export type ResumeData = {
   lead: TaggedParsedContent
   contacts: ParsedContent
+  languages: ParsedContent
   skills: TaggedParsedContent[]
-  education: TimeNote[]
   work: TimeNote[]
+  projects: D0xigenProjectMeta[]
+  education: TimeNote[]
 }
 
 export default defineEventHandler(async (event) => {
@@ -31,21 +38,36 @@ export default defineEventHandler(async (event) => {
       }
     : {}
   const contacts = await serverQueryContent(event, '/resume/contacts').findOne()
+  const languages = await serverQueryContent(
+    event,
+    '/resume/languages'
+  ).findOne()
   const skills = await serverQueryContent<TaggedParsedContent>(
     event,
     '/resume/skills'
   )
     .where(filterObject)
     .find()
+  const work = await serverQueryContent<TimeNote>(event, '/resume/work')
+    .sort({ 'daterange.end': -1 })
+    .find()
+  const projects = await ProjectsRepository.getProjectsByTags(
+    ...(lead.projects?.tags ?? [])
+  )
   const education = await serverQueryContent<TimeNote>(
     event,
     '/resume/education'
   )
     .sort({ 'daterange.end': -1 })
     .find()
-  const work = await serverQueryContent<TimeNote>(event, '/resume/work')
-    .sort({ 'daterange.end': -1 })
-    .find()
-  const result: ResumeData = { lead, contacts, skills, education, work }
+  const result: ResumeData = {
+    lead,
+    contacts,
+    languages,
+    skills,
+    work,
+    projects,
+    education
+  }
   return result
 })
