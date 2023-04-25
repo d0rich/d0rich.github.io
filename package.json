@@ -28,7 +28,7 @@
   "dependencies": {
     "@akebifiky/remark-simple-plantuml": "^1.0.2",
     "@d0rich/nuxt-content-mermaid": "^0.1.1",
-    "@d0rich/nuxt-design-system": "^0.7.1",
+    "@d0rich/nuxt-design-system": "^0.7.2",
     "dateformat": "^5.0.3",
     "gsap": "npm:@gsap/shockingly@^3.11.5",
     "mobile-detect": "^1.4.5",
@@ -37,6 +37,7 @@
     "puppeteer": "^19.7.4",
     "rehype-external-links": "^2.0.1",
     "sitemap": "^7.1.1",
+    "unist-util-visit": "^4.1.2",
     "vue-gtag": "^2.0.1"
   }
 }
