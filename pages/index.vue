@@ -1,46 +1,20 @@
 <script setup lang="ts">
-import { ParsedContent } from '@nuxt/content/dist/runtime/types'
-import { MaskType } from '@d0rich/nuxt-design-system/types'
-
 // Use animation composables
 const rootRef = ref<HTMLElement>() as Ref<HTMLElement>
-const { sectionsNodeRefs, currentSection, skillsNodeRefs, storyNodeRefs } =
-  useHomepageAnimations(rootRef)
-
-// Sections block
-const sectionsLineColor = computed(() => {
-  if (currentSection.value === 'portfolio') return 'fill-red-700'
-  if (currentSection.value === 'blog') return 'fill-cyan-700'
-  if (currentSection.value === 'resume') return 'fill-blue-700'
-  return 'fill-green-700'
-})
-
-// Fetch data
-interface SectionsParsedContent extends ParsedContent {
-  title: string
-  link: string
-  mask: MaskType
-}
+const { skillsNodeRefs, storyNodeRefs } = useHomepageAnimations(rootRef)
 
 const { data } = useAsyncData('homepage', async () => {
-  const introPromise = queryContent('/homepage/intro').findOne()
-  const sectionsPromise =
-    queryContent<SectionsParsedContent>('/homepage/sections').find()
   const skillsPromise = queryContent('/homepage/skills').find()
   const storyIntroPromise = queryContent('/homepage/story/intro').findOne()
   const storyBlocksPromise = queryContent('/homepage/story/blocks')
     .sort({ date: -1 })
     .find()
-  const [intro, sections, skills, storyIntro, storyBlocks] = await Promise.all([
-    introPromise,
-    sectionsPromise,
+  const [skills, storyIntro, storyBlocks] = await Promise.all([
     skillsPromise,
     storyIntroPromise,
     storyBlocksPromise
   ])
   return {
-    intro,
-    sections,
     skills,
     story: {
       intro: storyIntro,
@@ -56,83 +30,7 @@ const { data } = useAsyncData('homepage', async () => {
     <!-- Intro block -->
     <HomepageB1Intro />
     <!-- Block about sections -->
-    <DWrapBackground
-      id="sections"
-      tag="section"
-      class="bg-[url('~/assets/img/bg/hightech-city.png')] bg-cover bg-center"
-      overlay-class="backdrop-saturate-50 bg-neutral-900 bg-opacity-90"
-    >
-      <template #svg>
-        <div class="absolute inset-0 overflow-hidden">
-          <DAnimationFloatingLetter
-            class="absolute w-56 inset-0 left-1/3 mx-auto"
-            :path-class="sectionsLineColor"
-          />
-          <DAnimationFloatingLetter
-            class="absolute w-32 inset-0 bottom-1/2 right-2/3 m-auto"
-            :path-class="sectionsLineColor"
-          />
-          <DAnimationFloatingLetter
-            class="absolute w-52 inset-0 left-1/3 m-auto"
-            :path-class="sectionsLineColor"
-          />
-          <DAnimationFloatingLetter
-            class="absolute w-60 inset-0 bottom-1/3 left-3/4 m-auto"
-            :path-class="sectionsLineColor"
-          />
-          <DAnimationFloatingLetter
-            class="absolute w-48 inset-0 top-1/2 right-1/3 m-auto"
-            :path-class="sectionsLineColor"
-          />
-          <DAnimationFloatingLetter
-            class="absolute w-96 inset-0 top-3/4 left-1/4 m-auto"
-            :path-class="sectionsLineColor"
-          />
-        </div>
-        <svg
-          :ref="(el) => { sectionsNodeRefs.svg.value = el as (SVGElement & SVGSVGElement) }"
-          height="100%"
-          width="100%"
-          class="absolute top-0 w-full h-full sharp-shadow ss-r-4 ss-b-2 ss-neutral-900"
-          viewBox="70 0 10 100"
-          preserveAspectRatio="xMidYMin"
-        >
-          <polygon
-            :ref="(el) => { sectionsNodeRefs.line.value = el as SVGPolygonElement }"
-            class="transition-colors"
-            :class="sectionsLineColor"
-          />
-        </svg>
-      </template>
-      <div class="pt-20" />
-      <h1>Sections</h1>
-      <div class="w-full max-w-6xl mx-auto overflow-hidden">
-        <div
-          v-for="(doc, index) in data.sections"
-          :key="doc._id"
-          :ref="el => { sectionsNodeRefs.sections.value[index] = el as Element}"
-          class="section-description"
-        >
-          <DMask
-            :ref="el => sectionsNodeRefs.sectionsMasks.value[index] = el as ComponentPublicInstance"
-            :mask="doc.mask"
-            color
-            class="section-description__image"
-          />
-          <div
-            :ref="el => sectionsNodeRefs.sectionsContent.value[index] = el as Element"
-            class="section-description__text"
-          >
-            <DBigBangButton
-              :to="doc.link"
-              :text="doc.title"
-              class="underline"
-            />
-            <ContentRenderer :value="doc" />
-          </div>
-        </div>
-      </div>
-    </DWrapBackground>
+    <HomepageB2Sections />
     <!-- Block about skills -->
     <DWrapBackground
       id="skills"
@@ -240,62 +138,6 @@ const { data } = useAsyncData('homepage', async () => {
     </DWrapBackground>
   </div>
 </template>
-
-<!-- Sections -->
-<style>
-#sections h1 {
-  @apply text-center text-7xl sm:text-8xl font-serif pt-3 mb-5 sm:mb-9 mx-2 font-bold;
-}
-
-.section-description {
-  @apply flex flex-col md:flex-row justify-around items-end;
-}
-
-.section-description__image {
-  @apply max-w-full w-96 sharp-shadow ss-r-2 ss-b-1 self-start;
-}
-
-.section-description__text {
-  @apply font-serif max-w-lg lg:max-w-xl p-10 pt-0;
-  text-shadow: var(--tw-shadow-color) 1px 0 0;
-}
-
-.section-description__text > p {
-  @apply mb-3;
-}
-
-.section-description__text > p::first-letter {
-  background-color: var(--tw-shadow-color);
-}
-
-.section-description:nth-of-type(1) .section-description__image {
-  @apply ss-red-800;
-}
-
-.section-description:nth-of-type(1) .section-description__text {
-  @apply shadow-red-600;
-}
-
-.section-description:nth-of-type(2) {
-  @apply md:flex-row-reverse;
-}
-
-.section-description:nth-of-type(2) .section-description__image {
-  @apply ss-cyan-800 self-end;
-}
-
-.section-description:nth-of-type(2) .section-description__text {
-  @apply shadow-cyan-600 sm:text-right self-start;
-}
-
-.section-description:nth-of-type(3) .section-description__image {
-  @apply ss-blue-800;
-}
-
-.section-description:nth-of-type(3) .section-description__text {
-  @apply shadow-blue-600;
-}
-</style>
 
 <!-- Skills -->
 <style>
