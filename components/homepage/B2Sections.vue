@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ParsedContent } from '@nuxt/content/dist/runtime/types'
 import { MaskType } from '@d0rich/nuxt-design-system/types'
-import * as sectionsAnimations from '~/composables/homepage/sections'
+import * as sectionsAnimations from '~~/utils/homepage/sections'
 
 interface SectionsParsedContent extends ParsedContent {
   title: string

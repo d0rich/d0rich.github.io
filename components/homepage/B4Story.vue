@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import * as storyAnimations from '~/composables/homepage/story'
+import * as storyAnimations from '~~/utils/homepage/story'
 
 const { data } = useAsyncData('homepage', async () => {
   const introPromise = queryContent('/homepage/story/intro').findOne()

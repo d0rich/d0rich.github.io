@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import * as skillsAnimations from '~/composables/homepage/skills'
+import * as skillsAnimations from '~~/utils/homepage/skills'
 
 const { data } = useAsyncData(() => queryContent('/homepage/skills').find())
 
