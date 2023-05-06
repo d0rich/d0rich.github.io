@@ -162,7 +162,6 @@ const { data: resumeList } = useAsyncData(
             </section>
           </div>
         </div>
-
       </section>
     </article>
   </div>
