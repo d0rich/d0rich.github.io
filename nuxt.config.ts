@@ -34,9 +34,6 @@ export default defineNuxtConfig({
       ]
     }
   },
-  pinceau: {
-    preflight: false
-  },
   content: {
     markdown: {
       remarkPlugins: ['@akebifiky/remark-simple-plantuml'],

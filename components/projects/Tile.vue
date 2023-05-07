@@ -15,7 +15,7 @@ defineProps<{
   <div
     class="project-tile overflow-x-hidden"
     :style="{
-      '--page-bg-color': '#262626'
+      '--page-bg-color': 'rgb(23 23 23 / var(--tw-bg-opacity))'
     }"
   >
     <div class="project-tile__frame--top" />

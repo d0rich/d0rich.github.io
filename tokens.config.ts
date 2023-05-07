@@ -3,8 +3,9 @@ import { defineTheme } from 'pinceau'
 export default defineTheme({
   typography: {
     font: {
-      body: '.font-sans',
-      code: '.font-mono'
+      body: 'var(--tw-typography-font-serif)',
+      code: 'var(--tw-typography-font-mono)',
+      display: 'var(--tw-typography-font-serif)'
     }
   }
 })

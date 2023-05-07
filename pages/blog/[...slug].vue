@@ -50,15 +50,17 @@ const linkToBlog = computed(() => {
 
 <style>
 .blog-article {
-  @apply max-w-screen-md font-sans
+  @apply max-w-screen-md
          mx-auto px-3
          dark:prose-headings:text-cyan-400
          dark:[&_p]:first-letter:bg-cyan-800
          dark:[&_:not(blockquote)_p]:first-letter:bg-transparent
-         dark:marker:text-cyan-400;
-}
-
-.blog-article blockquote p::before {
-  content: none;
+         dark:marker:text-cyan-400
+         [&_p]:!font-sans [&_a]:!font-sans [&_em]:!font-sans [&_li]:!font-sans
+         [&_ul]:!font-sans [&_ol]:!font-sans [&_blockquote]:!font-sans
+         [&_strong]:!font-sans [&_del]:!font-sans [&_hr]:!font-sans
+         [&_table]:!font-sans [&_thead]:!font-sans [&_tbody]:!font-sans [&_tr]:!font-sans
+         [&_th]:!font-sans [&_td]:!font-sans [&_sup]:!font-sans [&_sub]:!font-sans
+         [&_h1]:!font-sans [&_h2]:!font-sans [&_h3]:!font-sans [&_h4]:!font-sans [&_h5]:!font-sans [&_h6]:!font-sans;
 }
 </style>

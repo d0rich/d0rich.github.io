@@ -4,7 +4,7 @@
       <DShape
         class="print:hidden"
         :filter-class="`${shadowColor} header__shape-filter`"
-        shape-class="bg-neutral-900"
+        shape-class="bg-black"
         :shape-style="{
           clipPath: 'polygon(10px 0, 0 100%, 100% calc(100% - 10px), 100% 13px)'
         }"
