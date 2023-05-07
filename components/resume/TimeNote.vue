@@ -61,9 +61,4 @@ defineProps<{
 a.timenote__place-link {
   @apply underline;
 }
-.resume-time-note__content {
-  @apply prose dark:prose-invert
-        prose-p:my-0
-        prose-ul:my-0 prose-li:my-0;
-}
 </style>
