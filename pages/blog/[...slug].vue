@@ -45,6 +45,7 @@ const linkToBlog = computed(() => {
     </div>
     <ContentRenderer :value="doc" tag="article" class="blog-article" />
   </div>
+  <Error404 v-else />
 </template>
 
 <style>

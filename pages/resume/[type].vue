@@ -164,6 +164,7 @@ const { data: resumeList } = useAsyncData(
         </div>
       </section>
     </article>
+    <Error404 v-else />
   </div>
 </template>
 
