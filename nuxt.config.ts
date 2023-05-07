@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     prerender: {
       routes: [
         '/sitemap.xml',
+        '/robots.txt',
         '/api/resume/Nikolay_Dorofeev-Software Engineer.pdf',
         '/api/resume/Nikolay_Dorofeev-Node.js Developer.pdf',
         '/api/resume/Nikolay_Dorofeev-Vue Frontend Developer.pdf',
