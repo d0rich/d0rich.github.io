@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: https://d0rich.me/sitemap.xml
