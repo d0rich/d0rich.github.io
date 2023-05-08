@@ -4,13 +4,12 @@ description: Nowadays there are a lot of technologies for building websites. You
   research, and I want share information I found.
 date: 2022-01-25
 tags:
-  - Article
-  - Websites
   - DocOps
+  - Frontend
 image: /blog/2022-01-25/cover.png
 ---
 
-# Classification of Website technologies 
+# Classification of website technologies 
 
 
 Once my team met one challenge. We needed to create a documentation site 
