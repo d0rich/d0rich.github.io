@@ -35,7 +35,13 @@ useSeoMeta({
   // colorScheme: 'dark',
   ogSiteName: 'd0rich',
   ogImage: 'https://d0rich.me/og/image.jpg',
-  ogUrl: computed(() => 'https://d0rich.me' + useRoute().path)
+  ogUrl: computed(() => 'https://d0rich.me' + useRoute().path),
+  twitterCard: 'summary_large_image',
+  twitterSite: '@d0rich',
+  twitterCreator: '@d0rich',
+  twitterImage: 'https://d0rich.me/og/image.jpg',
+  twitterTitle: 'd0rich: dream developer',
+  twitterDescription: description
 })
 </script>
 

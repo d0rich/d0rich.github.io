@@ -45,12 +45,19 @@ const linkToBlog = computed(() => {
       </nav>
       <time v-if="doc.date">{{ dateToDayMonthYear(doc.date) }}</time>
     </div>
-    <ContentRenderer :value="doc" tag="article" class="blog-article blog-fonts" />
+    <ContentRenderer
+      :value="doc"
+      tag="article"
+      class="blog-article blog-fonts"
+    />
     <nav class="blog-article blog-fonts my-10">
       <DBigBangButton text="< Back" :to="linkToBlog" />
     </nav>
     <ClientOnly>
-      <Disqus class="blog-fonts max-w-screen-md mx-auto px-3 mt-32" :identifier="doc._path" />
+      <Disqus
+        class="blog-fonts max-w-screen-md mx-auto px-3 mt-32"
+        :identifier="doc._path"
+      />
     </ClientOnly>
   </div>
   <Error404 v-else />
