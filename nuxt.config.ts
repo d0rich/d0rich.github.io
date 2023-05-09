@@ -35,6 +35,9 @@ export default defineNuxtConfig({
     }
   },
   content: {
+    highlight: {
+      theme: 'one-dark-pro'
+    },
     markdown: {
       remarkPlugins: ['@akebifiky/remark-simple-plantuml'],
       rehypePlugins: {
