@@ -1,1 +1,0 @@
-import{H as t}from"./entry.0ef73bab.js";const n=()=>({itemsOnPage:6,filter:t().public.isProd?{_draft:{$not:!0}}:{}});export{n as u};
