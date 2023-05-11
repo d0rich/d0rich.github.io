@@ -8,6 +8,6 @@ daterange:
   end: 2021-10-15
 ---
 
-Learned about architecturing passibilities of **Kubernetes** and **Google Kubernetes Engine (GKE)**.
+Learned about architecting possibilities of **Kubernetes** and **Google Kubernetes Engine (GKE)**.
 
 [Certificate](https://coursera.org/share/c317d250d83c22963a7659c32295d1a8)
