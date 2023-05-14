@@ -144,12 +144,7 @@ const { data: resumeList } = useAsyncData(
           <div class="grid md:grid-cols-2 gap-x-20 print:block">
             <section id="projects">
               <h2 class="resume-page__section-title">Projects</h2>
-              <ResumeProjectNote
-                v-for="project in data.projects"
-                :key="project.url"
-                class="my-3 print:my-8 resume-page__prose-content"
-                :project="project"
-              />
+              <ResumeProjectsCard :projects="data.projects" />
             </section>
             <section id="certificates">
               <h2 class="resume-page__section-title">Certificates</h2>
