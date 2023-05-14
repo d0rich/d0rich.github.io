@@ -27,10 +27,10 @@ export default defineNuxtConfig({
       routes: [
         '/sitemap.xml',
         '/robots.txt',
-        '/api/resume/Nikolay_Dorofeev-Software Engineer.pdf',
-        '/api/resume/Nikolay_Dorofeev-Node.js Developer.pdf',
-        '/api/resume/Nikolay_Dorofeev-Vue Frontend Developer.pdf',
-        '/api/resume/Nikolay_Dorofeev-System Analyst.pdf'
+        '/api/resume/Nikolay_Dorofeev-Software_Engineer.pdf',
+        '/api/resume/Nikolay_Dorofeev-Backend_Developer.pdf',
+        '/api/resume/Nikolay_Dorofeev-Frontend_Developer.pdf',
+        '/api/resume/Nikolay_Dorofeev-System_Analyst.pdf'
       ]
     }
   },
