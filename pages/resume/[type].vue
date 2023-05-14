@@ -151,6 +151,10 @@ const { data: resumeList } = useAsyncData(
                 :project="project"
               />
             </section>
+            <section id="certificates">
+              <h2 class="resume-page__section-title">Certificates</h2>
+              <ResumeCertificatesCard :cerificates="data.certificates" />
+            </section>
             <section id="education">
               <h2 class="resume-page__section-title">Education</h2>
               <ResumeTimeNote
