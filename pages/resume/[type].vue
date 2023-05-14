@@ -16,7 +16,7 @@ const { data, error } = useFetch<ResumeData>('/api/resume/data', {
 })
 
 const printResumeLink = computed(() => {
-  return `/api/resume/Nikolay_Dorofeev-${data.value?.lead.title?.replaceAll(' ', '_')}.pdf`
+  return `/api/resume/Nikolai_Dorofeev-${data.value?.lead.title?.replaceAll(' ', '_')}.pdf`
 })
 
 const { data: resumeList } = useAsyncData(
@@ -68,7 +68,7 @@ const { data: resumeList } = useAsyncData(
       </nav>
       <section class="py-3 relative isolate overflow-hidden">
         <div class="max-w-xl">
-          <div class="text-4xl sm:text-6xl mb-1">Nikolay Dorofeev</div>
+          <div class="text-4xl sm:text-6xl mb-1">Nikolai Dorofeev</div>
           <div>
             <span class="text-3xl dark:text-blue-300 text-blue-700 mb-1">{{
               data.lead.title
