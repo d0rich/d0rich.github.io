@@ -30,7 +30,7 @@ useHead({
 useSeoMeta({
   description,
   ogDescription: description,
-  author: 'Nikolay Dorofeev',
+  author: 'Nikolai Dorofeev',
   generator: 'Nuxt 3',
   // colorScheme: 'dark',
   ogSiteName: 'd0rich',

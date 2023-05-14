@@ -6,8 +6,8 @@ export default defineEventHandler(async (event) => {
   const fileName = getRouterParam(event, 'type.pdf')
   const spec = fileName
     .replace('.pdf', '')
-    .replace('Nikolay_Dorofeev-', '')
-    .replaceAll('%20', ' ')
+    .replace('Nikolai_Dorofeev-', '')
+    .replaceAll('_', ' ')
   const resume = await serverQueryContent(event, '/resume/leads')
     .where({
       title: spec

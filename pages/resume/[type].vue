@@ -16,7 +16,10 @@ const { data, error } = useFetch<ResumeData>('/api/resume/data', {
 })
 
 const printResumeLink = computed(() => {
-  return `/api/resume/Nikolay_Dorofeev-${data.value?.lead.title}.pdf`
+  return `/api/resume/Nikolai_Dorofeev-${data.value?.lead.title?.replaceAll(
+    ' ',
+    '_'
+  )}.pdf`
 })
 
 const { data: resumeList } = useAsyncData(
@@ -68,7 +71,7 @@ const { data: resumeList } = useAsyncData(
       </nav>
       <section class="py-3 relative isolate overflow-hidden">
         <div class="max-w-xl">
-          <div class="text-4xl sm:text-6xl mb-1">Nikolay Dorofeev</div>
+          <div class="text-4xl sm:text-6xl mb-1">Nikolai Dorofeev</div>
           <div>
             <span class="text-3xl dark:text-blue-300 text-blue-700 mb-1">{{
               data.lead.title
@@ -144,23 +147,22 @@ const { data: resumeList } = useAsyncData(
           <div class="grid md:grid-cols-2 gap-x-20 print:block">
             <section id="projects">
               <h2 class="resume-page__section-title">Projects</h2>
-              <ResumeProjectNote
-                v-for="project in data.projects"
-                :key="project.url"
-                class="my-3 print:my-8 resume-page__prose-content"
-                :project="project"
-              />
+              <ResumeProjectsCard :projects="data.projects" />
             </section>
-            <section id="education">
-              <h2 class="resume-page__section-title">Education</h2>
-              <ResumeTimeNote
-                v-for="eduPlace in data.education"
-                :key="eduPlace._id"
-                class="my-3 print:my-8 resume-page__prose-content"
-                :timenote="eduPlace"
-              />
+            <section id="certificates">
+              <h2 class="resume-page__section-title">Certificates</h2>
+              <ResumeCertificatesCard :cerificates="data.certificates" />
             </section>
           </div>
+          <section id="education">
+            <h2 class="resume-page__section-title">Education</h2>
+            <ResumeTimeNote
+              v-for="eduPlace in data.education"
+              :key="eduPlace._id"
+              class="my-3 print:my-8 resume-page__prose-content"
+              :timenote="eduPlace"
+            />
+          </section>
         </div>
       </section>
     </article>

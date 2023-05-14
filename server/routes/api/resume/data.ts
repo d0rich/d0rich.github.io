@@ -21,6 +21,7 @@ export type ResumeData = {
   skills: TaggedParsedContent[]
   work: TimeNote[]
   projects: D0xigenProjectMeta[]
+  certificates: TimeNote[]
   education: TimeNote[]
 }
 
@@ -54,6 +55,12 @@ export default defineEventHandler(async (event) => {
   const projects = await ProjectsRepository.getProjectsByTags(
     ...(lead.projects?.tags ?? [])
   )
+  const certificates = await serverQueryContent<TimeNote>(
+    event,
+    '/resume/certificates'
+  )
+    .sort({ 'daterange.end': -1 })
+    .find()
   const education = await serverQueryContent<TimeNote>(
     event,
     '/resume/education'
@@ -67,6 +74,7 @@ export default defineEventHandler(async (event) => {
     skills,
     work,
     projects,
+    certificates,
     education
   }
   return result

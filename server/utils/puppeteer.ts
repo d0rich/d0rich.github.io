@@ -34,7 +34,7 @@ export async function fetchPageWithCss(path: string) {
 }
 
 export async function savePdf(path: string) {
-  const browser = await launch({ headless: true })
+  const browser = await launch({ headless: 'new' })
   const page = await browser.newPage()
   if (useRuntimeConfig().public.isDev) {
     // If in development mode
@@ -53,7 +53,9 @@ export async function savePdf(path: string) {
     if (html) {
       html.className = 'light'
       html.querySelectorAll('a').forEach((a) => {
-        if (a.href.startsWith('/')) a.href = 'https://d0rich.me' + a.href
+        const href = a.getAttribute('href')
+        if (!href) return
+        if (href.startsWith('/')) a.href = 'https://d0rich.me' + href
       })
     }
   })
