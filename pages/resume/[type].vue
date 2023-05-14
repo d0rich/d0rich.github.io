@@ -150,16 +150,16 @@ const { data: resumeList } = useAsyncData(
               <h2 class="resume-page__section-title">Certificates</h2>
               <ResumeCertificatesCard :cerificates="data.certificates" />
             </section>
-            <section id="education">
-              <h2 class="resume-page__section-title">Education</h2>
-              <ResumeTimeNote
-                v-for="eduPlace in data.education"
-                :key="eduPlace._id"
-                class="my-3 print:my-8 resume-page__prose-content"
-                :timenote="eduPlace"
-              />
-            </section>
           </div>
+          <section id="education">
+            <h2 class="resume-page__section-title">Education</h2>
+            <ResumeTimeNote
+              v-for="eduPlace in data.education"
+              :key="eduPlace._id"
+              class="my-3 print:my-8 resume-page__prose-content"
+              :timenote="eduPlace"
+            />
+          </section>
         </div>
       </section>
     </article>
