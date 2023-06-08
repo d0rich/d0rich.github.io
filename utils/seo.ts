@@ -1,4 +1,4 @@
-export function addTrailingSlash (path?: string) {
+export function addTrailingSlash(path?: string) {
   if (!path) {
     return '/'
   }
