@@ -26,8 +26,6 @@ const { data: position } = useAsyncData(
   }
 )
 
-const { getLinkToPaginatedPage } = useDPaginationUtils()
-
 const linkToBlog = computed(() => {
   return getLinkToPaginatedPage(
     '/blog',
