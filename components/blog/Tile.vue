@@ -20,7 +20,7 @@ defineProps<{
       </div>
     </template>
     <NuxtLink
-      :to="article._path"
+      :to="addTrailingSlash(article._path)"
       class="block"
       style="padding: var(--shape-card--dense__padding)"
     >

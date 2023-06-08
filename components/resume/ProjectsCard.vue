@@ -10,7 +10,7 @@ defineProps<{
   <DCard dense>
     <ul class="resume-projects-card__list">
       <li v-for="project in projects" :key="project.url">
-        <NuxtLink class="resume-projects-card__place" :href="project.url">{{
+        <NuxtLink class="resume-projects-card__place" :href="addTrailingSlash(project.url)">{{
           project.title
         }}</NuxtLink
         >: {{ project.description }}

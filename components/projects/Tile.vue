@@ -20,7 +20,7 @@ defineProps<{
   >
     <div class="project-tile__frame--top" />
     <div class="project-tile__frame--bottom" />
-    <NuxtLink class="project-tile__link" :to="project.url">
+    <NuxtLink class="project-tile__link" :to="addTrailingSlash(project.url)">
       <div class="project-tile__link__image-wrapper">
         <div
           class="project-tile__link__image"

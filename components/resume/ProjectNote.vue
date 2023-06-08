@@ -26,7 +26,7 @@ defineProps<{
     <div class="text-blue-600 dark:text-blue-300 print:text-sm">
       <p>
         <NuxtLink
-          :href="project.url"
+          :href="addTrailingSlash(project.url)"
           target="_blank"
           class="timenote__place-link"
         >

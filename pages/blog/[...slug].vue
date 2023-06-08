@@ -41,7 +41,7 @@ const linkToBlog = computed(() => {
     <AsyncSafeSeoWithOg :title="doc.title" :description="doc.description" />
     <div class="blog-article blog-fonts">
       <nav class="mb-10">
-        <DBigBangButton text="< Back" :to="linkToBlog" />
+        <DBigBangButton text="< Back" :to="addTrailingSlash(linkToBlog)" />
       </nav>
       <time v-if="doc.date">{{ dateToDayMonthYear(doc.date) }}</time>
     </div>
@@ -51,7 +51,7 @@ const linkToBlog = computed(() => {
       class="blog-article blog-fonts"
     />
     <nav class="blog-article blog-fonts my-10">
-      <DBigBangButton text="< Back" :to="linkToBlog" />
+      <DBigBangButton text="< Back" :to="addTrailingSlash(linkToBlog)" />
     </nav>
     <ClientOnly>
       <Disqus

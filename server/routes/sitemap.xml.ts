@@ -19,22 +19,28 @@ export default defineEventHandler(async (event) => {
     changefreq: 'monthly'
   })
   sitemap.write({
-    url: '/projects',
+    url: '/projects/',
     changefreq: 'monthly'
   })
   sitemap.write({
-    url: '/blog',
+    url: '/blog/',
     changefreq: 'monthly'
   })
   for (const doc of blogDocs) {
+    if (typeof doc._path === 'undefined') {
+      continue
+    }
     sitemap.write({
-      url: doc._path,
+      url: addTrailingSlash(doc._path),
       changefreq: 'monthly'
     })
   }
   for (const doc of resumeDocs) {
+    if (typeof doc._path === 'undefined') {
+      continue
+    }
     sitemap.write({
-      url: doc._path?.replace('/resume/leads', '/resume'),
+      url: addTrailingSlash(doc._path.replace('/resume/leads', '/resume')),
       changefreq: 'monthly'
     })
   }

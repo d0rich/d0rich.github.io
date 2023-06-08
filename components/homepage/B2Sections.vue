@@ -112,7 +112,7 @@ onBeforeUnmount(() => disconnectObserver.value())
           :ref="el => sectionsContent[index] = el as Element"
           class="section-description__text"
         >
-          <DBigBangButton :to="doc.link" :text="doc.title" class="underline" />
+          <DBigBangButton :to="addTrailingSlash(doc.link)" :text="doc.title" class="underline" />
           <ContentRenderer :value="doc" />
         </div>
       </div>

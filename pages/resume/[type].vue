@@ -65,7 +65,7 @@ const { data: resumeList } = useAsyncData(
           v-for="resume in resumeList"
           :key="resume._path"
           class="max-w-[9rem] text-center"
-          :to="resume._path"
+          :to="addTrailingSlash(resume._path)"
           >{{ resume.title }}</DBtn
         >
       </nav>
