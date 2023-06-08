@@ -1,6 +1,7 @@
 import { SitemapStream, streamToPromise } from 'sitemap'
 import { serverQueryContent } from '#content/server'
 import { useBlogNavigationConfig } from '~~/composables/navigation'
+import { addTrailingSlash } from '~/utils/seo'
 
 export default defineEventHandler(async (event) => {
   const config = useBlogNavigationConfig()
