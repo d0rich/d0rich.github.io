@@ -1,13 +1,34 @@
 <script setup lang="ts">
 import { Disqus } from 'vue-disqus'
+import { MarkdownParsedContent } from '@nuxt/content/dist/runtime/types'
+
+interface Document extends MarkdownParsedContent {
+  date?: Date
+}
 
 const slug = clearSlug(useRoute().params.slug as string[])
-
-const { data: doc } = useAsyncData(['blog', ...slug].join('/'), () =>
-  queryContent('blog', ...slug).findOne()
-)
-
 const { itemsOnPage, filter } = useBlogNavigationConfig()
+const pagePath = ['/blog', ...slug].join('/')
+
+const { data: doc } = useAsyncData(pagePath, async () => {
+  const docPromise = queryContent<Document>('blog', ...slug).findOne()
+  const surroundPromise = queryContent<Document>()
+    .only(['_path', 'title', 'description'])
+    .where({
+      ...filter,
+      _path: /^\/blog/
+    })
+    .findSurround(pagePath, {
+      before: 1,
+      after: 1
+    })
+  const [doc, surround] = await Promise.all([docPromise, surroundPromise])
+  return {
+    ...doc,
+    before: surround[0] as Document,
+    after: surround[1] as Document
+  }
+})
 
 const { data: position } = useAsyncData(
   ['blog', ...slug, 'position'].join('/'),
@@ -16,7 +37,7 @@ const { data: position } = useAsyncData(
       .only('_path')
       .where({
         ...filter,
-        date: { $gte: doc.value?.date }
+        date: { $gte: Number(doc.value?.date) }
       })
       .find(),
   {
@@ -48,6 +69,20 @@ const linkToBlog = computed(() => {
       tag="article"
       class="blog-article blog-fonts"
     />
+    <nav
+      class="blog-article justify-center grid sm:grid-cols-2 gap-8 items-start my-16"
+    >
+      <BlogSurroundDocCard
+        v-if="doc.after"
+        :doc="doc.after"
+        direction="after"
+      />
+      <BlogSurroundDocCard
+        v-if="doc.before"
+        :doc="doc.before"
+        direction="before"
+      />
+    </nav>
     <nav class="blog-article blog-fonts my-10">
       <DBigBangButton text="< Back" :to="addTrailingSlash(linkToBlog)" />
     </nav>
