@@ -90,6 +90,7 @@ const linkToBlog = computed(() => {
       <Disqus
         class="blog-fonts max-w-screen-md mx-auto px-3 mt-32"
         :identifier="doc._path"
+        :url="`https://d0rich.me${pagePath}`"
       />
     </ClientOnly>
   </div>
