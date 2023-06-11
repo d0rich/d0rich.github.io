@@ -15,10 +15,10 @@ const socialLinks = ref([
 
 const actions: ActionFanItem<CharacterPose>[] = [
   {
-    title: 'Sections',
+    title: 'Sitemap',
     emit: 'action',
     attrs: {
-      href: '#sections',
+      href: '#sitemap',
       noPassiveHighlight: true
     }
   },

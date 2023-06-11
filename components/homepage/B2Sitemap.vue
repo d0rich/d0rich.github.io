@@ -45,7 +45,7 @@ onBeforeUnmount(() => disconnectObserver.value())
 
 <template>
   <DWrapBackground
-    id="sections"
+    id="sitemap"
     :ref="(el) => { rootComponent = el as ComponentPublicInstance }"
     tag="section"
     class="bg-[url('~/assets/img/bg/hightech-city.png')] bg-cover bg-center"
@@ -94,7 +94,7 @@ onBeforeUnmount(() => disconnectObserver.value())
       </svg>
     </template>
     <div class="pt-20" />
-    <h1>Sections</h1>
+    <h1>Sitemap</h1>
     <div class="w-full max-w-6xl mx-auto overflow-hidden">
       <div
         v-for="(doc, index) in data"
@@ -125,7 +125,7 @@ onBeforeUnmount(() => disconnectObserver.value())
 </template>
 
 <style>
-#sections h1 {
+#sitemap h1 {
   @apply text-center text-7xl sm:text-8xl font-serif pt-3 mb-5 sm:mb-9 mx-2 font-bold;
 }
 

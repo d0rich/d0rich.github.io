@@ -4,7 +4,7 @@
     <!-- Intro block -->
     <HomepageB1Intro />
     <!-- Block about sections -->
-    <HomepageB2Sections />
+    <HomepageB2Sitemap />
     <!-- Block about skills -->
     <HomepageB3Skills />
     <HomepageB4Story />
