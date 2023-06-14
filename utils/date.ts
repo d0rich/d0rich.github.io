@@ -17,7 +17,7 @@ export function monthDiff(d1: Date, d2: Date) {
 }
 
 export function formatYearMonthDateDiff(d1: Date, d2: Date) {
-  const allMonths = monthDiff(d1, d2)
+  const allMonths = monthDiff(d1, d2) + 1
   const months = allMonths % 12
   const fullYears = (allMonths - months) / 12
   const yearsPart =
