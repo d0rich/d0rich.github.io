@@ -1,5 +1,5 @@
 ---
-title: Fullstack Developer
+title: Full-stack Developer
 place:
   title: Exactpro
   link: https://exactpro.com/

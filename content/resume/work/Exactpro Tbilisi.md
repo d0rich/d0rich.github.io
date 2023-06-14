@@ -1,5 +1,5 @@
 ---
-title: Fullstack Developer
+title: Full-stack Developer
 place:
   title: Exactpro (Georgia)
   link: https://exactpro.com/
