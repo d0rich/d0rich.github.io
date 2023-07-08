@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import AsyncSafeSeoWithOg from '~~/components/AsyncSafeSeoWithOg.vue'
-import { ResumeData } from '~~/server/routes/api/resume/data'
 
 definePageMeta({
   path: '/resume/:type?'
@@ -9,11 +8,7 @@ definePageMeta({
 usePrintSetup()
 const smallPrintStats = true
 
-const resumeType = computed(() => useRoute().params.type as string)
-
-const { data, error } = useFetch<ResumeData>('/api/resume/data', {
-  query: { resumeType: resumeType.value }
-})
+const { data, error } = useResumeData()
 
 const printResumeLink = computed(() => {
   return `/api/resume/Nikolai_Dorofeev-${data.value?.lead.title?.replaceAll(
