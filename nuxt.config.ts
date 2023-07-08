@@ -21,7 +21,7 @@ export default defineNuxtConfig({
       isProd: process.env.NODE_ENV === 'production'
     }
   },
-  modules: ['@nuxt/content'],
+  modules: ['@nuxthq/studio', '@nuxt/content'],
   nitro: {
     prerender: {
       routes: [
