@@ -9,6 +9,7 @@ on:
 env:
   GSAP_TOKEN: ${{secrets.GSAP_TOKEN}}
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  NUXT_PUBLIC_STUDIO_TOKENS: ${{secrets.NUXT_PUBLIC_STUDIO_TOKENS}}
 
 jobs:
   build-and-deploy:
