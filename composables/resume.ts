@@ -35,6 +35,9 @@ export function useResumeData() {
                 tags: { $containsAny: lead.tags }
               }
             : {}
+          // https://nuxt.com/docs/guide/concepts/auto-imports#using-vue-and-nuxt-composables
+          // It seems utils won't work here because context disappears on next tick after the first await.
+          // And it doesn't matter if you use async/await or Promise.then().
           Promise.all([
             queryContent('/resume/contacts').findOne(),
             queryContent('/resume/languages').findOne(),
