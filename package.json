@@ -29,9 +29,9 @@
   "dependencies": {
     "@akebifiky/remark-simple-plantuml": "^1.0.2",
     "@d0rich/nuxt-content-mermaid": "^0.1.2",
-    "@d0rich/nuxt-design-system": "^0.7.5",
+    "@d0rich/nuxt-design-system": "^0.8.0",
     "dateformat": "^5.0.3",
-    "gsap": "npm:@gsap/shockingly@^3.11.5",
+    "gsap": "^3.11.5",
     "mobile-detect": "^1.4.5",
     "node-html-parser": "^6.1.5",
     "octokit": "^2.0.14",
