@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <DCard dense>
+  <DCard dense class="break-inside-avoid">
     <ul class="resume-projects-card__list">
       <li v-for="project in projects" :key="project.url">
         <NuxtLink

@@ -102,12 +102,12 @@ const { data: resumeList } = useAsyncData(
       />
       <section
         :class="{
-          'print:grid print:grid-cols-[25%_70%] print:gap-x-[5%] small-print-stats':
+          'print:grid print:grid-cols-[70%_25%] print:gap-x-[5%] small-print-stats':
             smallPrintStats
         }"
       >
-        <div>
-          <section id="languages">
+        <div class="print:order-2">
+          <section id="languages" class="break-inside-avoid">
             <h2 class="resume-page__section-title">Languages</h2>
             <ContentRenderer
               :value="data.languages"
@@ -115,7 +115,7 @@ const { data: resumeList } = useAsyncData(
               class="resume-page__prose-content"
             />
           </section>
-          <section id="skills">
+          <section id="skills" class="break-inside-avoid">
             <h2 class="resume-page__section-title">Skills</h2>
             <TransitionGroup
               name="skills-list"
@@ -135,7 +135,7 @@ const { data: resumeList } = useAsyncData(
           </section>
         </div>
         <div>
-          <section id="work-experience">
+          <section id="work-experience" class="break-inside-avoid">
             <h2 class="resume-page__section-title">Work Experience</h2>
             <ResumeTimeNote
               v-for="workPlace in data.work"
@@ -145,16 +145,16 @@ const { data: resumeList } = useAsyncData(
             />
           </section>
           <div class="grid md:grid-cols-2 gap-x-20 print:block">
-            <section id="projects">
+            <section id="projects" class="break-inside-avoid">
               <h2 class="resume-page__section-title">Projects</h2>
               <ResumeProjectsCard :projects="data.projects" />
             </section>
-            <section id="certificates">
+            <section id="certificates" class="break-inside-avoid">
               <h2 class="resume-page__section-title">Certificates</h2>
               <ResumeCertificatesCard :cerificates="data.certificates" />
             </section>
           </div>
-          <section id="education">
+          <section id="education" class="break-inside-avoid">
             <h2 class="resume-page__section-title">Education</h2>
             <ResumeTimeNote
               v-for="eduPlace in data.education"
@@ -183,7 +183,7 @@ section {
 }
 
 .resume-page__prose-content {
-  @apply [&_p]:!m-0 [&_p]:!text-base [&_ul]:!m-0 [&_li]:!m-0;
+  @apply [&_p]:!m-0 [&_p]:!mb-2 [&_p]:!text-base [&_ul]:!m-0 [&_li]:!m-0;
 }
 
 @media print {

@@ -26,10 +26,9 @@ export default defineNuxtConfig({
     prerender: {
       routes: [
         '/sitemap.xml',
-        '/api/resume/Nikolai_Dorofeev-Software_Engineer.pdf',
+        '/api/resume/Nikolai_Dorofeev-Fullstack_Developer.pdf',
         '/api/resume/Nikolai_Dorofeev-Backend_Developer.pdf',
-        '/api/resume/Nikolai_Dorofeev-Frontend_Developer.pdf',
-        '/api/resume/Nikolai_Dorofeev-System_Analyst.pdf'
+        '/api/resume/Nikolai_Dorofeev-Frontend_Developer.pdf'
       ]
     }
   },

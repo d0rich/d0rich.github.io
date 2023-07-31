@@ -61,8 +61,7 @@ export async function savePdf(path: string) {
   })
   const pdf = await page.pdf({
     printBackground: true,
-    format: 'A4',
-    scale: 0.8
+    format: 'A4'
   })
   await browser.close()
   return pdf
