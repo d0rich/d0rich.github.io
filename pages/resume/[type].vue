@@ -102,11 +102,11 @@ const { data: resumeList } = useAsyncData(
       />
       <section
         :class="{
-          'print:grid print:grid-cols-[25%_70%] print:gap-x-[5%] small-print-stats':
+          'print:grid print:grid-cols-[70%_25%] print:gap-x-[5%] small-print-stats':
             smallPrintStats
         }"
       >
-        <div>
+        <div class="print:order-2">
           <section id="languages" class="break-inside-avoid">
             <h2 class="resume-page__section-title">Languages</h2>
             <ContentRenderer
