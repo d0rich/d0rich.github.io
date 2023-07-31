@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <DCard dense>
+  <DCard dense class="break-inside-avoid">
     <ul class="resume-sertificates-card__list">
       <li v-for="cert in cerificates" :key="cert._id">
         {{ cert.title }}
