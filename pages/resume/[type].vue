@@ -183,7 +183,7 @@ section {
 }
 
 .resume-page__prose-content {
-  @apply [&_p]:!m-0 [&_p]:!text-base [&_ul]:!m-0 [&_li]:!m-0;
+  @apply [&_p]:!m-0 [&_p]:!mb-2 [&_p]:!text-base [&_ul]:!m-0 [&_li]:!m-0;
 }
 
 @media print {
