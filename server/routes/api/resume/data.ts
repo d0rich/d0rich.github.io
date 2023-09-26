@@ -50,6 +50,7 @@ export default defineEventHandler(async (event) => {
     .where(filterObject)
     .find()
   const work = await serverQueryContent<TimeNote>(event, '/resume/work')
+    .where({ _draft: false })
     .sort({ 'daterange.end': -1 })
     .find()
   const projects = await ProjectsRepository.getProjectsByTags(
