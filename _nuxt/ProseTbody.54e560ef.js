@@ -1,0 +1,1 @@
+import{_ as e}from"./_plugin-vue_export-helper.c27b6911.js";import{b as t,c as r,L as s}from"./entry.8b155df3.js";import"https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";const c={},n={class:"prose-tbody"};function a(o,_){return t(),r("tbody",n,[s(o.$slots,"default")])}const m=e(c,[["render",a]]);export{m as default};

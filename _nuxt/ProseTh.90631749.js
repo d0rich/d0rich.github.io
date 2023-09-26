@@ -1,0 +1,1 @@
+import{_ as t}from"./_plugin-vue_export-helper.c27b6911.js";import{b as o,c as s,L as r}from"./entry.8b155df3.js";import"https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";const _={},c={class:"prose-th"};function n(e,a){return o(),s("th",c,[r(e.$slots,"default",{},void 0,!0)])}const p=t(_,[["render",n],["__scopeId","data-v-481388ac"]]);export{p as default};
