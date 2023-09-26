@@ -7,5 +7,10 @@ export default defineTheme({
       code: 'var(--tw-typography-font-mono)',
       display: 'var(--tw-typography-font-serif)'
     }
+  },
+  prose: {
+    img: {
+      borderRadius: '{typography.radii.none}'
+    }
   }
 })
