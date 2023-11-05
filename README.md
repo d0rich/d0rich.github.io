@@ -1,3 +1,5 @@
+> This project is moved to the monorepo: https://github.com/d0rich/esprit
+
 # d0rich.me
 
 This is the source code for my personal website, [d0rich.me](https://d0rich.me).
